@@ -1,5 +1,5 @@
 from chargebee.model import Model
-from chargebee import request, result
+from chargebee import request
 
 
 class Transaction(Model):

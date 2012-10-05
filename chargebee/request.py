@@ -1,14 +1,22 @@
-#from chargebee import
+import json
 
-from chargebee import util, rest
+from chargebee import util, http
+from chargebee.main import ChargeBee
+from chargebee.result import Result
+from chargebee.list_result import ListResult
 
 
 def send(method, url, params=None, env=None):
-    #env = env or ChargeBee.default_env
+    env = env or ChargeBee.default_env
 
     if params is None:
         params = {}
 
     ser_params = util.serialize(params)
 
-    response = rest.request(method, url, env, ser_params)
+    response = json.loads(http.request(method, url, env, ser_params).read())
+
+    if 'list' in response:
+        return ListResult(response['list'])
+
+    return Result(response)

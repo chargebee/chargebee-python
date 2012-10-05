@@ -2,16 +2,16 @@ from chargebee.model import Model
 from chargebee import request
 
 
-class Addon(Model):
-    pass
-
-
 class Subscription(Model):
+
+    class Addon(Model):
+        pass
 
     def create(self, params, env=None):
         return request.send('post', '/subscriptions', params, env)
 
-    def list(self, params=None, env=None):
+    @staticmethod
+    def list(params=None, env=None):
         return request.send('get', '/subscriptions', params, env)
 
     def retrieve(self, id, env=None):

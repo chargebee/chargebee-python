@@ -2,7 +2,7 @@ import json
 
 from chargebee.model import Model
 from chargebee import request, result
-from chargebee.api_error import APIError
+from chargebee import APIError
 
 
 class Content(result.Result):
