@@ -1,4 +1,4 @@
-from chargebee.models.subscription import Subscription
+from chargebee.models.subscription import Subscription, Addon
 
 
 class Result(object):
