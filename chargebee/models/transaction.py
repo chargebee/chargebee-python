@@ -5,13 +5,13 @@ from chargebee import request
 class Transaction(Model):
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/transactions', params, env)
+    def list(**params):
+        return request.send('get', '/transactions', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/transactions/%s' % id, {}, env)
+    def retrieve(id, **params):
+        return request.send('get', '/transactions/%s' % id, params)
 
     @staticmethod
-    def transactions_for_subscription(id, params=None, env=None):
-        return request.send('get', '/subscriptions/%s/transactions' % id, params, env)
+    def transactions_for_subscription(id, **params):
+        return request.send('get', '/subscriptions/%s/transactions' % id, params)

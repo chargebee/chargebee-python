@@ -5,9 +5,9 @@ from chargebee import request
 class Addon(Model):
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/addons', params, env)
+    def list(**params):
+        return request.send('get', '/addons', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/addons/%s' % id, {}, env)
+    def retrieve(id, **params):
+        return request.send('get', '/addons/%s' % id, params)

@@ -14,9 +14,10 @@ def request(method, url, env, params=None):
 
     headers = {}
 
-    method = method.lower()
+    url = env.api_url(url)
 
-    if method in ('get', 'head', 'delete'):
+    if method.lower() in ('get', 'head', 'delete'):
+        url = '%s?%s' % (url, urllib.urlencode(params))
         payload = None
     else:
         payload = params
@@ -26,7 +27,7 @@ def request(method, url, env, params=None):
         'accept': 'json',
     })
 
-    request = urllib2.Request(env.api_url(url), payload, headers)
+    request = urllib2.Request(url, payload, headers)
     request.add_header('Authorization', _basic_auth_str(env.api_key))
 
     return urllib2.urlopen(request)

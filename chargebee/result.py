@@ -55,7 +55,7 @@ class Result(object):
         return self._get('coupon', Coupon)
 
     def _get(self, type, cls, sub_types=None):
-        print self._response
+        print self._response.keys()
         if not type in self._response:
             return None
 

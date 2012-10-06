@@ -4,11 +4,11 @@ from chargebee import util, http
 from chargebee.main import ChargeBee
 
 
-def send(method, url, params=None, env=None):
-    env = env or ChargeBee.default_env
-
+def send(method, url, params=None):
     if params is None:
         params = {}
+
+    env = params.pop('env', ChargeBee.default_env)
 
     ser_params = util.serialize(params)
 

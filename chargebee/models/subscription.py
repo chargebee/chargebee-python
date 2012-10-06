@@ -8,25 +8,25 @@ class Subscription(Model):
         pass
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', '/subscriptions', params, env)
+    def create(**params):
+        return request.send('post', '/subscriptions', params)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/subscriptions', params, env)
+    def list(**params):
+        return request.send('get', '/subscriptions', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/subscriptions/%s' % id, env=env)
+    def retrieve(id, **params):
+        return request.send('get', '/subscriptions/%s' % id, params)
 
     @staticmethod
-    def update(id, params=None, env=None):
-        return request.send('post', '/subscriptions/%s' % id, params, env)
+    def update(id, **params):
+        return request.send('post', '/subscriptions/%s' % id, params)
 
     @staticmethod
-    def cancel(id, params=None, env=None):
-        return request.send('post', '/subscriptions/%s/cancel' % id, params, env)
+    def cancel(id, **params):
+        return request.send('post', '/subscriptions/%s/cancel' % id, params)
 
     @staticmethod
-    def reactivate(id, params=None, env=None):
-        return request.send('post', '/subscriptions/%s/reactivate' % id, params, env)
+    def reactivate(id, **params):
+        return request.send('post', '/subscriptions/%s/reactivate' % id, params)

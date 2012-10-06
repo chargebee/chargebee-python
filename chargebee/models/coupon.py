@@ -5,9 +5,9 @@ from chargebee import request
 class Coupon(Model):
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/coupons', params, env)
+    def list(**params):
+        return request.send('get', '/coupons', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/coupons/%s' % id, {}, env)
+    def retrieve(id, **params):
+        return request.send('get', '/coupons/%s' % id, params)

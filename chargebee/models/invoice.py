@@ -11,21 +11,21 @@ class Invoice(Model):
         pass
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/invoices', params, env)
+    def list(**params):
+        return request.send('get', '/invoices', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/invoices/%s' % id, {}, env)
+    def retrieve(id, **params):
+        return request.send('get', '/invoices/%s' % id, params)
 
     @staticmethod
-    def invoices_for_subscription(id, params=None, env=None):
-        return request.send('get', '/subscriptions/%s/invoices' % id, params, env)
+    def invoices_for_subscription(id, **params):
+        return request.send('get', '/subscriptions/%s/invoices' % id, params)
 
     @staticmethod
-    def charge(params, env=None):
-        return request.send('post', '/invoices/charge', params, env)
+    def charge(**params):
+        return request.send('post', '/invoices/charge', params)
 
     @staticmethod
-    def charge_addon(params, env=None):
-        return request.send('post', '/invoices/charge_addon', params, env)
+    def charge_addon(**params):
+        return request.send('post', '/invoices/charge_addon', params)

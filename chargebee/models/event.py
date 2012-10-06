@@ -21,9 +21,9 @@ class Event(Model):
         return Event.construct(webhook_data)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', '/events', params, env)
+    def list(**params):
+        return request.send('get', '/events', params)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', '/events/%s' % id, env)
+    def retrieve(id, **params):
+        return request.send('get', '/events/%s' % id, params)
