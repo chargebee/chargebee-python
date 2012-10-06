@@ -10,17 +10,22 @@ class Invoice(Model):
     class Discount(Model):
         pass
 
-    def list(self, params=None, env=None):
+    @staticmethod
+    def list(params=None, env=None):
         return request.send('get', '/invoices', params, env)
 
-    def retrieve(self, id, env=None):
+    @staticmethod
+    def retrieve(id, env=None):
         return request.send('get', '/invoices/%s' % id, {}, env)
 
-    def invoices_for_subscription(self, id, params=None, env=None):
+    @staticmethod
+    def invoices_for_subscription(id, params=None, env=None):
         return request.send('get', '/subscriptions/%s/invoices' % id, params, env)
 
-    def charge(self, params, env=None):
+    @staticmethod
+    def charge(params, env=None):
         return request.send('post', '/invoices/charge', params, env)
 
-    def charge_addon(self, params, env=None):
+    @staticmethod
+    def charge_addon(params, env=None):
         return request.send('post', '/invoices/charge_addon', params, env)

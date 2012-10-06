@@ -1,20 +1,18 @@
 import json
 
 from chargebee.model import Model
-from chargebee import request, result
+from chargebee import request
 from chargebee import APIError
-
-
-class Content(result.Result):
-    pass
 
 
 class Event(Model):
 
     def content(self):
+        from chargebee import Content
         return Content(self.values['content'])
 
-    def deserialize(self, json_data):
+    @staticmethod
+    def deserialize(json_data):
         try:
             webhook_data = json.loads(json_data)
         except (TypeError, ValueError):
@@ -22,8 +20,10 @@ class Event(Model):
 
         return Event.construct(webhook_data)
 
-    def list(self, params=None, env=None):
+    @staticmethod
+    def list(params=None, env=None):
         return request.send('get', '/events', params, env)
 
-    def retrieve(self, id, env=None):
+    @staticmethod
+    def retrieve(id, env=None):
         return request.send('get', '/events/%s' % id, env)

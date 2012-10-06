@@ -4,8 +4,10 @@ from chargebee import request
 
 class Plan(Model):
 
-    def list(self, params, env=None):
+    @staticmethod
+    def list(params, env=None):
         return request.send('get', '/plans', params, env)
 
-    def retrieve(self, id, env=None):
+    @staticmethod
+    def retrieve(id, env=None):
         return request.send('get', '/plans/%s' % id, {}, env)

@@ -1,8 +1,5 @@
 import json
 
-from chargebee.models import Addon, Address, Card, Coupon, Customer, Event, HostedPage, Invoice, \
-    Plan, Subscription, Transaction
-
 
 class Result(object):
 
@@ -58,6 +55,7 @@ class Result(object):
         return self._get('coupon', Coupon)
 
     def _get(self, type, cls, sub_types=None):
+        print self._response
         if not type in self._response:
             return None
 
@@ -68,3 +66,12 @@ class Result(object):
 
     def __str__(self):
         return json.dumps(self._response, indent=4)
+
+
+class Content(Result):
+    pass
+
+
+from chargebee.models import Addon, Address, Card, Coupon, Customer, Event, HostedPage, Invoice,\
+    Plan, Subscription, Transaction
+

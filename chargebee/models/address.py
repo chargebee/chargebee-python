@@ -4,8 +4,10 @@ from chargebee import request
 
 class Address(Model):
 
-    def update(self, params, env=None):
+    @staticmethod
+    def update(params, env=None):
         return request.send('post', '/addresses', params, env)
 
-    def retrieve(self, params, env=None):
+    @staticmethod
+    def retrieve(params, env=None):
         return request.send('get', '/addresses', params, env)
