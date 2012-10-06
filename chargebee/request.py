@@ -1,6 +1,5 @@
 from chargebee import util, http
 from chargebee.main import ChargeBee
-from chargebee.compat import json
 
 
 def send(method, url, params=None):
@@ -11,7 +10,7 @@ def send(method, url, params=None):
 
     ser_params = util.serialize(params)
 
-    response = json.loads(http.request(method, url, env, ser_params))
+    response = http.request(method, url, env, ser_params)
 
     from chargebee.result import Result
     from chargebee.list_result import ListResult
@@ -20,4 +19,3 @@ def send(method, url, params=None):
         return ListResult(response['list'])
 
     return Result(response)
-

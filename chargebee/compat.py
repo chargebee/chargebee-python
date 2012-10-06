@@ -1,4 +1,7 @@
+from __future__ import absolute_import
+
 import sys
+
 try:
     import simplejson as json
 except ImportError:
@@ -9,16 +12,10 @@ is_py3 = sys.version_info[0] == 3
 
 if is_py2:
     from urllib import urlencode
+    from urlparse import urlparse
     from urllib2 import urlopen as _urlopen, Request
+    from httplib import HTTPSConnection
 elif is_py3:
-    from urllib.parse import urlencode
+    from urllib.parse import urlencode, urlparse
     from urllib.request import urlopen as _urlopen, Request
-
-def urlopen(url):
-    if is_py2:
-        return _urlopen(url).read()
-
-    response = _urlopen(url)
-    encoding = response.headers.get_content_charset()
-
-    return response.readall().decode(encoding)
+    from http.client import HTTPSConnection

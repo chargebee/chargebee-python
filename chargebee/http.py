@@ -7,6 +7,7 @@ from chargebee import compat
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
 
+
 def request(method, url, env, params=None):
     if not env:
         raise APIError('No environment configured.')
@@ -19,17 +20,29 @@ def request(method, url, env, params=None):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
     else:
-        payload = params
+        payload = compat.urlencode(params)
+        headers['Content-type'] = 'application/x-www-form-urlencoded'
 
     headers.update({
         'User-Agent': 'ChargeBee-Python-Client',
-        'accept': 'json',
+        'Accept': 'json',
+        'Authorization': _basic_auth_str(env.api_key),
     })
 
-    request = compat.Request(url, payload, headers)
-    request.add_header('Authorization', _basic_auth_str(env.api_key))
+    meta = compat.urlparse(url)
+    connection = compat.HTTPSConnection(meta.netloc)
+    connection.request(method.upper(), meta.path + meta.query, payload, headers)
 
-    return compat.urlopen(request)
+    try:
+        response = connection.getresponse()
+        data = response.read()
+        if compat.is_py3:
+            data = data.decode('utf-8')
+
+        return process_response(data, response.status)
+
+    finally:
+        connection.close()
 
 
 def process_response(response, http_code):
@@ -37,6 +50,8 @@ def process_response(response, http_code):
 
     if http_code < 200 or http_code > 299:
         pass
+
+    return resp_json
 
 
 def handle_api_resp_error(http_code, resp_json):
