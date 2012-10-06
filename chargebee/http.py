@@ -31,7 +31,8 @@ def request(method, url, env, params=None):
 
     meta = compat.urlparse(url)
     connection = compat.HTTPSConnection(meta.netloc)
-    connection.request(method.upper(), meta.path + meta.query, payload, headers)
+
+    connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
 
     try:
         response = connection.getresponse()
