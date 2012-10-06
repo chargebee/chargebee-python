@@ -1,4 +1,4 @@
-import json
+from chargebee.compat import json
 
 
 class Model(object):
