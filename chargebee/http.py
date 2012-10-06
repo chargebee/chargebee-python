@@ -25,7 +25,7 @@ def request(method, url, env, params=None):
 
     headers.update({
         'User-Agent': 'ChargeBee-Python-Client',
-        'Accept': 'json',
+        'Accept': 'application/json',
         'Authorization': _basic_auth_str(env.api_key),
     })
 
@@ -49,7 +49,7 @@ def process_response(response, http_code):
     resp_json = compat.json.loads(response)
 
     if http_code < 200 or http_code > 299:
-        pass
+        handle_api_resp_error(http_code, resp_json)
 
     return resp_json
 
