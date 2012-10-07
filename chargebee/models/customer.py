@@ -5,13 +5,13 @@ from chargebee import request
 class Customer(Model):
 
     @staticmethod
-    def list(**params):
-        return request.send('get', '/customers', params)
+    def list(params=None, env=None):
+        return request.send('get', '/customers', params, env)
 
     @staticmethod
-    def retrieve(id, **params):
-        return request.send('get', '/customers/%s' % id, params)
+    def retrieve(id, env=None):
+        return request.send('get', '/customers/%s' % id, None, env)
 
     @staticmethod
-    def update(id, **params):
-        return request.send('post', '/customers/%s' % id, params)
+    def update(id, params=None, env=None):
+        return request.send('post', '/customers/%s' % id, params, env)
