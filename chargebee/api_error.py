@@ -8,12 +8,12 @@ class APIError(Exception):
 
         if json_obj is not None:
             self.error_code = json_obj['error_code']
-            self.param = json_obj['param']
+            self.param = json_obj.get('param')
         else:
             self.error_code = None
             self.param = None
 
-    def __repr__(self):
+    def __str__(self):
         hc = '' if not self.http_code else '(Http Code %s)' % self.http_code
 
-        return hc + self.message
+        return ' '.join([hc, self.message])
