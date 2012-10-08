@@ -1,7 +1,7 @@
 import base64
 
-from chargebee import APIError
-from chargebee import compat
+from chargebee import APIError, compat
+from chargebee.main import ChargeBee
 
 
 def _basic_auth_str(username):
@@ -24,7 +24,7 @@ def request(method, url, env, params=None):
         headers['Content-type'] = 'application/x-www-form-urlencoded'
 
     headers.update({
-        'User-Agent': 'ChargeBee-Python-Client',
+        'User-Agent': 'ChargeBee-Python-Client/%s' % ChargeBee.VERSION,
         'Accept': 'application/json',
         'Authorization': _basic_auth_str(env.api_key),
     })
