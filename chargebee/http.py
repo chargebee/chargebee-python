@@ -30,7 +30,11 @@ def request(method, url, env, params=None):
     })
 
     meta = compat.urlparse(url)
-    connection = compat.HTTPSConnection(meta.netloc)
+    if ChargeBee.verify_ca_certs:
+        connection = compat.VerifiedHTTPSConnection(meta.netloc)
+        connection.set_cert(ca_certs=ChargeBee.ca_cert_path)
+    else:
+        connection = compat.HTTPSConnection(meta.netloc)
 
     connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
 
@@ -41,13 +45,17 @@ def request(method, url, env, params=None):
             data = data.decode('utf-8')
 
         return process_response(data, response.status)
-
+    except compat.HTTPException:
+        raise APIError('Error while connecting to chargebee. If you see this repeatedly, contact us at support@chargebee.com')
     finally:
         connection.close()
 
 
 def process_response(response, http_code):
-    resp_json = compat.json.loads(response)
+    try:
+        resp_json = compat.json.loads(response)
+    except ValueError:
+        raise APIError('Invalid response object from API', http_code, response)
 
     if http_code < 200 or http_code > 299:
         handle_api_resp_error(http_code, resp_json)
