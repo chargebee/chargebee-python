@@ -61,7 +61,7 @@ class Result(object):
             return None
 
         if not type in self._response_obj:
-            self._response_obj[type] = cls(self._response[type], sub_types)
+            self._response_obj[type] = cls.construct(self._response[type], sub_types)
 
         return self._response_obj[type]
 

@@ -26,4 +26,11 @@ class Model(object):
             else:
                 set_val = v
 
-            setattr(self, v, set_val)
+            setattr(self, k, set_val)
+
+    @classmethod
+    def construct(cls, values, sub_types=None):
+        obj = cls(values, sub_types)
+        obj.load(values)
+
+        return obj
