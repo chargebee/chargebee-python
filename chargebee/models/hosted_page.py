@@ -4,6 +4,7 @@ from chargebee import request
 
 class HostedPage(Model):
 
+    @property
     def content(self):
         from chargebee import Content
         return Content(self.values['content'])

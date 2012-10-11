@@ -7,6 +7,7 @@ from chargebee import APIError
 
 class Event(Model):
 
+    @property
     def content(self):
         from chargebee import Content
         return Content(self.values['content'])
