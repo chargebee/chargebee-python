@@ -26,7 +26,8 @@ class Model(object):
             else:
                 set_val = v
 
-            setattr(self, k, set_val)
+            if k not in ('content',):  # Skipping models properties
+                setattr(self, k, set_val)
 
     @classmethod
     def construct(cls, values, sub_types=None):
