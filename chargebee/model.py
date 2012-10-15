@@ -11,7 +11,7 @@ class Model(object):
         self.sub_types = sub_types
 
     def __str__(self):
-        return json.dumps(self.values)
+        return json.dumps(self.values, indent=4)
 
     def load(self, values):
         for k, v in values.items():
