@@ -1,14 +1,14 @@
+import json
 from chargebee.model import Model
 from chargebee import request
-
+from chargebee import APIError
 
 class Invoice(Model):
-
     class LineItem(Model):
-        pass
-
+      pass
     class Discount(Model):
-        pass
+      pass
+
 
     @staticmethod
     def list(params=None, env=None):

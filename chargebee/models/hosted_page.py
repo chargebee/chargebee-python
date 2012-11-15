@@ -1,6 +1,7 @@
+import json
 from chargebee.model import Model
 from chargebee import request
-
+from chargebee import APIError
 
 class HostedPage(Model):
 
@@ -20,6 +21,14 @@ class HostedPage(Model):
     @staticmethod
     def update_card(params, env=None):
         return request.send('post', '/hosted_pages/update_card', params, env)
+
+    @staticmethod
+    def checkout_onetime_charge(params, env=None):
+        return request.send('post', '/hosted_pages/checkout_onetime_charge', params, env)
+
+    @staticmethod
+    def checkout_onetime_addons(params, env=None):
+        return request.send('post', '/hosted_pages/checkout_onetime_addons', params, env)
 
     @staticmethod
     def retrieve(id, env=None):
