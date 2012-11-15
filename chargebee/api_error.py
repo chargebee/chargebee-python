@@ -15,5 +15,4 @@ class APIError(Exception):
 
     def __str__(self):
         hc = '' if not self.http_code else '(Http Code %s)' % self.http_code
-
         return ' '.join([hc, self.message])

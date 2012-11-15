@@ -15,7 +15,6 @@ def request(method, url, env, params=None):
     headers = {}
 
     url = env.api_url(url)
-
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
@@ -35,7 +34,7 @@ def request(method, url, env, params=None):
         connection.set_cert(ca_certs=ChargeBee.ca_cert_path)
     else:
         connection = compat.HTTPSConnection(meta.netloc)
-
+        
     connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
 
     try:
