@@ -20,7 +20,7 @@ If you would prefer to install it from source:
   
 ## Documentation
 
-    * See our [python API reference](https://apidocs.chargebee.com/docs/api?lang=python "Python API Reference").
+    * See our <a href="https://apidocs.chargebee.com/docs/api?lang=python" target="_blank">Python API Reference</a>
 
 ## Usage
 
