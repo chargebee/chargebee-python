@@ -1,41 +1,41 @@
-= ChargeBee Python Client Library
+# ChargeBee Python Client Library
 
 The python library for integrating with ChargeBee Recurring Billing and Subscription Management solution.
 
-== Installation
+## Installation
 
-Install the latest version of the library with the following commands...
+Install the latest version of the library with the following commands:
 
-  $ pip install --upgrade chargebee
+    $ pip install --upgrade chargebee
   
-  or
+or
   
-  $ easy_install --upgrade chargebee
+    $ easy_install --upgrade chargebee
 
-If you would prefer to install it from source...
+If you would prefer to install it from source:
   
-  $ git clone git@github.com:chargebee/chargebee-python.git
+    $ git clone git@github.com:chargebee/chargebee-python.git
   
-  $ python setup.py install
+    $ python setup.py install
   
-== Documentation
+## Documentation
 
-For API reference see https://apidocs.chargebee.com/docs/api?lang=python
+    * See our [python API reference](https://apidocs.chargebee.com/docs/api?lang=python "Python API Reference").
 
-== Usage
+## Usage
 
 To create a new subscription:
   
-import chargebee
-chargebee.configure(api_key, site)
+    import chargebee
+    chargebee.configure(api_key, site)
 
-res = chargebee.Subscription.create({
-"plan_id" : "basic"
-})
+    res = chargebee.Subscription.create({
+    "plan_id" : "basic"
+    })
 
-print res.subscription
+    print res.subscription
 
-== License
+## License
 
 See the LICENSE file.
 
