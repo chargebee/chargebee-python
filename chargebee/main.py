@@ -5,7 +5,7 @@ from chargebee.environment import Environment
 
 class ChargeBee(object):
 
-    VERSION = '1.0.0'
+    VERSION = '1.0.1'
 
     default_env = None
 
