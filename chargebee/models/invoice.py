@@ -8,6 +8,8 @@ class Invoice(Model):
       pass
     class Discount(Model):
       pass
+    class Tax(Model):
+      pass
 
 
     @staticmethod
