@@ -1,6 +1,6 @@
 from chargebee.compat import json
-from chargebee.models import Addon, Address, Card, Coupon, Customer, Event, HostedPage, Invoice,\
-    Plan, Subscription, Transaction
+from chargebee.models import Addon, Address, Card, Coupon, Customer, Event, HostedPage,\
+    Invoice, Estimate, Plan, Subscription, Transaction
 
 
 class Result(object):
@@ -30,8 +30,17 @@ class Result(object):
         return self._get('invoice', Invoice, {
             'line_items': Invoice.LineItem,
             'discounts': Invoice.Discount,
+            'taxes': Invoice.Tax,
         })
 
+    @property
+    def estimate(self):
+        return self._get('estimate', Estimate, {
+            'line_items': Estimate.LineItem,
+            'discounts': Estimate.Discount,
+            'taxes': Estimate.Tax
+        })
+    
     @property
     def transaction(self):
         return self._get('transaction', Transaction)
