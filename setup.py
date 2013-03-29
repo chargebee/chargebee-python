@@ -13,7 +13,7 @@ except ImportError:
 
 setup(
     name='chargebee',
-    version='1.0.6',
+    version='1.0.7',
     author='ChargeBee',
     author_email='support@chargebee.com',
     url='https://apidocs.chargebee.com/docs/api?lang=python',
