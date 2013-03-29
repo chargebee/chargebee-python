@@ -5,6 +5,9 @@ from chargebee import APIError
 
 class Customer(Model):
 
+    fields = ["id", "first_name", "last_name", "email", "company", "vat_number", "created_at", \
+    "card_status"]
+
 
     @staticmethod
     def list(params=None, env=None):

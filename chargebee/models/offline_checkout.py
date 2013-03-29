@@ -5,6 +5,8 @@ from chargebee import APIError
 
 class OfflineCheckout(Model):
 
+    fields = ["id", "type", "amount", "status", "created_at", "updated_at"]
+
 
     @staticmethod
     def retrieve(id, env=None):

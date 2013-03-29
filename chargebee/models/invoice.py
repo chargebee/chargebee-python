@@ -5,11 +5,17 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
+      fields = ["date_from", "date_to", "unit_amount", "quantity", "tax", "tax_rate", "amount", "description"]
       pass
     class Discount(Model):
+      fields = ["amount", "description"]
       pass
     class Tax(Model):
+      fields = ["amount", "description"]
       pass
+
+    fields = ["id", "subscription_id", "recurring", "status", "vat_number", "start_date", "end_date", \
+    "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", "discounts", "taxes"]
 
 
     @staticmethod

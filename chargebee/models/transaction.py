@@ -5,6 +5,10 @@ from chargebee import APIError
 
 class Transaction(Model):
 
+    fields = ["id", "subscription_id", "payment_method", "gateway", "description", "type", \
+    "date", "amount", "id_at_gateway", "error_code", "error_text", "voided_at", "status", "masked_card_number", \
+    "refunded_txn_id"]
+
 
     @staticmethod
     def list(params=None, env=None):

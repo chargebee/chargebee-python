@@ -5,6 +5,8 @@ from chargebee import APIError
 
 class Event(Model):
 
+    fields = ["id", "occurred_at", "webhook_status", "webhook_failure_reason", "event_type", ]
+
     @property
     def content(self):
         from chargebee import Content

@@ -1,7 +1,6 @@
 from chargebee import util, http
 from chargebee.main import ChargeBee
 
-
 def send(method, url, params=None, env=None):
     if params is None:
         params = {}
@@ -14,8 +13,7 @@ def send(method, url, params=None, env=None):
 
     from chargebee.result import Result
     from chargebee.list_result import ListResult
-
     if 'list' in response:
-        return ListResult(response['list'])
+        return ListResult(response['list'], response.get('next_offset', None))
 
     return Result(response)

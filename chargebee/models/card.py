@@ -5,6 +5,10 @@ from chargebee import APIError
 
 class Card(Model):
 
+    fields = ["customer_id", "status", "gateway", "first_name", "last_name", "iin", "last4", \
+    "card_type", "expiry_month", "expiry_year", "billing_addr1", "billing_addr2", "billing_city", \
+    "billing_state", "billing_country", "billing_zip", "masked_number"]
+
 
     @staticmethod
     def retrieve(id, env=None):

@@ -5,6 +5,10 @@ from chargebee import APIError
 
 class Plan(Model):
 
+    fields = ["id", "name", "invoice_name", "price", "period", "period_unit", "trial_period", \
+    "trial_period_unit", "free_quantity", "setup_cost", "downgrade_penalty", "status", "archived_at", \
+    "billing_cycles", "redirect_url"]
+
 
     @staticmethod
     def list(params=None, env=None):

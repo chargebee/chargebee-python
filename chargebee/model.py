@@ -2,6 +2,8 @@ from chargebee.compat import json
 
 
 class Model(object):
+    
+    fields = []
 
     def __init__(self, values, sub_types=None):
         if sub_types is None:
@@ -9,6 +11,8 @@ class Model(object):
 
         self.values = values
         self.sub_types = sub_types
+        for field in self.fields:
+            setattr(self, field, None)
 
     def __str__(self):
         return json.dumps(self.values, indent=4)
