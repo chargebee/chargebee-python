@@ -5,8 +5,8 @@ from chargebee import APIError
 
 class Addon(Model):
 
-    fields = ["id", "name", "invoice_name", "type", "charge_type", "price", "unit", "status", \
-    "archived_at"]
+    fields = ["id", "name", "invoice_name", "type", "charge_type", "price", "period", "period_unit", \
+    "unit", "status", "archived_at"]
 
 
     @staticmethod
