@@ -33,6 +33,10 @@ class Subscription(Model):
         return request.send('post', '/subscriptions/%s' % id, params, env)
 
     @staticmethod
+    def change_term_end(id, params, env=None):
+        return request.send('post', '/subscriptions/%s/change_term_end' % id, params, env)
+
+    @staticmethod
     def cancel(id, params=None, env=None):
         return request.send('post', '/subscriptions/%s/cancel' % id, params, env)
 
