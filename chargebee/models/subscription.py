@@ -21,6 +21,10 @@ class Subscription(Model):
         return request.send('post', '/subscriptions', params, env)
 
     @staticmethod
+    def create_for_customer(id, params, env=None):
+        return request.send('post', '/customers/%s/subscriptions' % id, params, env)
+
+    @staticmethod
     def list(params=None, env=None):
         return request.send('get', '/subscriptions', params, env)
 
