@@ -19,12 +19,12 @@ class Invoice(Model):
 
 
     @staticmethod
-    def add_charge(id, params, env=None):
-        return request.send('post', '/invoices/%s/add_charge' % id, params, env)
+    def charge(params, env=None):
+        return request.send('post', '/invoices/charge', params, env)
 
     @staticmethod
-    def add_addon_charge(id, params, env=None):
-        return request.send('post', '/invoices/%s/add_addon_charge' % id, params, env)
+    def charge_addon(params, env=None):
+        return request.send('post', '/invoices/charge_addon', params, env)
 
     @staticmethod
     def list(params=None, env=None):
@@ -39,13 +39,13 @@ class Invoice(Model):
         return request.send('get', '/invoices/%s' % id, None, env)
 
     @staticmethod
+    def add_charge(id, params, env=None):
+        return request.send('post', '/invoices/%s/add_charge' % id, params, env)
+
+    @staticmethod
+    def add_addon_charge(id, params, env=None):
+        return request.send('post', '/invoices/%s/add_addon_charge' % id, params, env)
+
+    @staticmethod
     def collect(id, env=None):
         return request.send('post', '/invoices/%s/collect' % id, None, env)
-
-    @staticmethod
-    def charge(params, env=None):
-        return request.send('post', '/invoices/charge', params, env)
-
-    @staticmethod
-    def charge_addon(params, env=None):
-        return request.send('post', '/invoices/charge_addon', params, env)
