@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from chargebee.main import Environment
 
 import re
 import sys
@@ -23,14 +24,18 @@ elif is_py3:
 
 
 try:
-    HTTPSConnection = object
     SSLError = None
     ssl = None
-
-    if is_py2:
-        from httplib import HTTPSConnection, HTTPException
+    
+    if Environment.chargebee_domain is None:
+        HTTPSConnection = object
     else:
-        from http.client import HTTPSConnection, HTTPException
+        HTTPConnection = object
+            
+    if is_py2:
+        from httplib import HTTPConnection, HTTPSConnection, HTTPException
+    else:
+        from http.client import HTTPConnection, HTTPSConnection, HTTPException
 
     import ssl
     SSLError = ssl.SSLError

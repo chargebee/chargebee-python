@@ -2,7 +2,8 @@ import base64
 
 from chargebee import APIError, compat
 from chargebee.main import ChargeBee
-
+from chargebee.main import Environment
+from version import VERSION
 
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
@@ -23,7 +24,7 @@ def request(method, url, env, params=None):
         headers['Content-type'] = 'application/x-www-form-urlencoded'
 
     headers.update({
-        'User-Agent': 'ChargeBee-Python-Client/%s' % ChargeBee.VERSION,
+        'User-Agent': 'ChargeBee-Python-Client v%s' % VERSION,
         'Accept': 'application/json',
         'Authorization': _basic_auth_str(env.api_key),
     })
@@ -33,7 +34,10 @@ def request(method, url, env, params=None):
         connection = compat.VerifiedHTTPSConnection(meta.netloc)
         connection.set_cert(ca_certs=ChargeBee.ca_cert_path)
     else:
-        connection = compat.HTTPSConnection(meta.netloc)
+        if Environment.chargebee_domain is None:
+            connection = compat.HTTPSConnection(meta.netloc)
+        else:
+            connection = compat.HTTPConnection(meta.netloc)    
         
     connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
 

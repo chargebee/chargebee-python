@@ -5,8 +5,6 @@ from chargebee.environment import Environment
 
 class ChargeBee(object):
 
-    VERSION = '1.0.2'
-
     default_env = None
 
     verify_ca_certs = True

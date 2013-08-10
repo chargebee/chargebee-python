@@ -2,6 +2,9 @@
 
 from setuptools import setup, find_packages
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'chargebee'))
+import version
+
 requires = []
 try:
     import json
@@ -13,7 +16,7 @@ except ImportError:
 
 setup(
     name='chargebee',
-    version='1.1.1',
+    version=version.VERSION,
     author='ChargeBee',
     author_email='support@chargebee.com',
     url='https://apidocs.chargebee.com/docs/api?lang=python',
