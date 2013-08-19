@@ -47,3 +47,7 @@ class Subscription(Model):
     @staticmethod
     def reactivate(id, params=None, env=None):
         return request.send('post', '/subscriptions/%s/reactivate' % id, params, env)
+
+    @staticmethod
+    def add_credit(id, params, env=None):
+        return request.send('post', '/subscriptions/%s/add_credit' % id, params, env)
