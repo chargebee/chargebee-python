@@ -4,9 +4,12 @@ from chargebee import request
 from chargebee import APIError
 
 class Customer(Model):
+    class BillingAddress(Model):
+      fields = ["line1", "line2", "city", "state", "country", "zip"]
+      pass
 
-    fields = ["id", "first_name", "last_name", "email", "company", "vat_number", "auto_collection", \
-    "created_at", "card_status"]
+    fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
+    "created_at", "card_status", "billing_address"]
 
 
     @staticmethod
@@ -20,3 +23,7 @@ class Customer(Model):
     @staticmethod
     def update(id, params=None, env=None):
         return request.send('post', '/customers/%s' % id, params, env)
+
+    @staticmethod
+    def update_billing_info(id, params=None, env=None):
+        return request.send('post', '/customers/%s/update_billing_info' % id, params, env)

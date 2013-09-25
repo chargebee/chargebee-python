@@ -11,11 +11,11 @@ class Result(object):
 
     @property
     def subscription(self):
-        return self._get('subscription', Subscription, {'addons': Subscription.Addon})
+        return self._get('subscription', Subscription, {'addons': Subscription.Addon,'coupons':Subscription.Coupon})
 
     @property
     def customer(self):
-        return self._get('customer', Customer)
+        return self._get('customer', Customer,{'billing_address':Customer.BillingAddress})
 
     @property
     def card(self):
