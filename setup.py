@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
+import sys
+import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'chargebee'))
 import version

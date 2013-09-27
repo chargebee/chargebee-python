@@ -19,5 +19,9 @@ class Transaction(Model):
         return request.send('get', '/subscriptions/%s/transactions' % id, params, env)
 
     @staticmethod
+    def transactions_for_invoice(id, params=None, env=None):
+        return request.send('get', '/invoices/%s/transactions' % id, params, env)
+
+    @staticmethod
     def retrieve(id, env=None):
         return request.send('get', '/transactions/%s' % id, None, env)

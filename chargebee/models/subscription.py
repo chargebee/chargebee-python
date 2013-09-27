@@ -8,7 +8,7 @@ class Subscription(Model):
       fields = ["id", "quantity"]
       pass
     class Coupon(Model):
-      fields = ["coupon_id", "apply_till", "applied_count"]
+      fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
 
     fields = ["id", "plan_id", "plan_quantity", "status", "trial_start", "trial_end", "current_term_start", \

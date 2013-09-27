@@ -17,3 +17,7 @@ class Card(Model):
     @staticmethod
     def update_card_for_customer(id, params, env=None):
         return request.send('post', '/customers/%s/credit_card' % id, params, env)
+
+    @staticmethod
+    def delete_card_for_customer(id, env=None):
+        return request.send('post', '/customers/%s/delete_card' % id, None, env)
