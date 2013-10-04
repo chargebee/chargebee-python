@@ -5,10 +5,10 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["date_from", "date_to", "unit_amount", "quantity", "tax", "tax_rate", "amount", "description"]
+      fields = ["date_from", "date_to", "unit_amount", "quantity", "tax", "tax_rate", "amount", "description", "type", "entity_type", "entity_id"]
       pass
     class Discount(Model):
-      fields = ["amount", "description"]
+      fields = ["amount", "description", "type", "entity_id"]
       pass
     class Tax(Model):
       fields = ["amount", "description"]
