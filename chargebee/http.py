@@ -3,7 +3,7 @@ import base64
 from chargebee import APIError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
-from version import VERSION
+from chargebee.version import VERSION
 
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
