@@ -11,9 +11,10 @@ class Subscription(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
 
-    fields = ["id", "plan_id", "plan_quantity", "status", "trial_start", "trial_end", "current_term_start", \
-    "current_term_end", "remaining_billing_cycles", "created_at", "activated_at", "cancelled_at", \
-    "cancel_reason", "due_invoices_count", "due_since", "total_dues", "addons", "coupon", "coupons" ]
+    fields = ["id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", "trial_end", \
+    "current_term_start", "current_term_end", "remaining_billing_cycles", "created_at", "started_at", \
+    "activated_at", "cancelled_at", "cancel_reason", "due_invoices_count", "due_since", "total_dues", \
+    "addons", "coupon", "coupons"]
 
 
     @staticmethod
