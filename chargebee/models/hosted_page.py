@@ -11,7 +11,9 @@ class HostedPage(Model):
     @property
     def content(self):
         from chargebee import Content
-        return Content(self.values['content'])
+        if 'content' in self.values:
+            return Content(self.values['content'])
+        return None
 
     @staticmethod
     def checkout_new(params, env=None):
