@@ -30,6 +30,10 @@ class Subscription(Model):
         return request.send('get', '/subscriptions', params, env)
 
     @staticmethod
+    def subscriptions_for_customer(id, params=None, env=None):
+        return request.send('get', '/customers/%s/subscriptions' % id, params, env)
+
+    @staticmethod
     def retrieve(id, env=None):
         return request.send('get', '/subscriptions/%s' % id, None, env)
 

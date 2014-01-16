@@ -11,63 +11,64 @@ class Result(object):
 
     @property
     def subscription(self):
-        return self._get('subscription', Subscription, {'addons': Subscription.Addon,'coupons':Subscription.Coupon})
+        return self._get('subscription', Subscription, 
+        {'addons' : Subscription.Addon, 'coupons' : Subscription.Coupon});
 
     @property
     def customer(self):
-        return self._get('customer', Customer,{'billing_address':Customer.BillingAddress})
+        return self._get('customer', Customer, 
+        {'billing_address' : Customer.BillingAddress});
 
     @property
     def card(self):
-        return self._get('card', Card)
-
-    @property
-    def address(self):
-        return self._get('address', Address)
+        return self._get('card', Card);
 
     @property
     def invoice(self):
-        return self._get('invoice', Invoice, {
-            'line_items': Invoice.LineItem,
-            'discounts': Invoice.Discount,
-            'taxes': Invoice.Tax,
-        })
+        return self._get('invoice', Invoice, 
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax});
 
-    @property
-    def estimate(self):
-        return self._get('estimate', Estimate, {
-            'line_items': Estimate.LineItem,
-            'discounts': Estimate.Discount,
-            'taxes': Estimate.Tax
-        })
-    
     @property
     def transaction(self):
-        return self._get('transaction', Transaction)
-
-    @property
-    def event(self):
-        return self._get('event', Event)
+        return self._get('transaction', Transaction);
 
     @property
     def hosted_page(self):
-        return self._get('hosted_page', HostedPage)
+        return self._get('hosted_page', HostedPage);
+
+    @property
+    def estimate(self):
+        return self._get('estimate', Estimate, 
+        {'line_items' : Estimate.LineItem, 'discounts' : Estimate.Discount, 'taxes' : Estimate.Tax});
 
     @property
     def plan(self):
-        return self._get('plan', Plan)
+        return self._get('plan', Plan);
 
     @property
     def addon(self):
-        return self._get('addon', Addon)
+        return self._get('addon', Addon);
 
     @property
     def coupon(self):
-        return self._get('coupon', Coupon)
-        
+        return self._get('coupon', Coupon);
+
     @property
-    def coupon(self):
-        return self._get('coupon_code', CouponCode)
+    def coupon_code(self):
+        return self._get('coupon_code', CouponCode);
+
+    @property
+    def address(self):
+        return self._get('address', Address);
+
+    @property
+    def event(self):
+        return self._get('event', Event);
+
+    @property
+    def comment(self):
+        return self._get('comment', Comment);
+
 
     def _get(self, type, cls, sub_types=None):
         if not type in self._response:
@@ -77,7 +78,7 @@ class Result(object):
             self._response_obj[type] = cls.construct(self._response[type], sub_types)
 
         return self._response_obj[type]
-
+    
     def __str__(self):
         return json.dumps(self._response, indent=4)
 

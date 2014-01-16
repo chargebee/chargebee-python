@@ -11,4 +11,6 @@ from chargebee.models.estimate import Estimate
 from chargebee.models.plan import Plan
 from chargebee.models.subscription import Subscription
 from chargebee.models.transaction import Transaction
+from chargebee.models.comment import Comment
 from chargebee.models.content import Content
+
