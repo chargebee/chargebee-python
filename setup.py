@@ -22,7 +22,7 @@ setup(
     author='ChargeBee',
     author_email='support@chargebee.com',
     url='https://apidocs.chargebee.com/docs/api?lang=python',
-    description='Subscription Billing API',
+    description='Python wrapper for the ChargeBee Subscription Billing API',
     packages=find_packages(),
     package_data={'chargebee': ['ssl/*.crt']},
     install_requires=requires,
