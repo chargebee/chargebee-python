@@ -1,4 +1,8 @@
-### v1.1.8  (2014-01-16)  
+### v1.1.9  (2014-01-26) 
+* * *    
+Support for creating plans & addons on the fly via API.
+
+### v1.1.8  (2014-01-16) 
 * * *    
 * Adding object that represent comments resource. Now comments can be added to the entities - Subscription, Invoice, Transaction, Plan, Addon & Coupon. 
 
