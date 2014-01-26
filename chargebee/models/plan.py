@@ -11,6 +11,10 @@ class Plan(Model):
 
 
     @staticmethod
+    def create(params, env=None):
+        return request.send('post', '/plans', params, env)
+
+    @staticmethod
     def list(params=None, env=None):
         return request.send('get', '/plans', params, env)
 
