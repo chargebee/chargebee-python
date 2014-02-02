@@ -25,3 +25,7 @@ class Transaction(Model):
     @staticmethod
     def retrieve(id, env=None):
         return request.send('get', '/transactions/%s' % id, None, env)
+
+    @staticmethod
+    def refund(id, params=None, env=None):
+        return request.send('post', '/transactions/%s/refund' % id, params, env)

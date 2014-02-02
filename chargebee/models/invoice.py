@@ -49,3 +49,7 @@ class Invoice(Model):
     @staticmethod
     def collect(id, env=None):
         return request.send('post', '/invoices/%s/collect' % id, None, env)
+
+    @staticmethod
+    def refund(id, params=None, env=None):
+        return request.send('post', '/invoices/%s/refund' % id, params, env)
