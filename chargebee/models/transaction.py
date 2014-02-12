@@ -6,8 +6,8 @@ from chargebee import APIError
 class Transaction(Model):
 
     fields = ["id", "subscription_id", "payment_method", "gateway", "description", "type", \
-    "date", "amount", "id_at_gateway", "status", "error_code", "error_text", "voided_at", "masked_card_number", \
-    "refunded_txn_id"]
+    "date", "amount", "id_at_gateway", "status", "error_code", "error_text", "voided_at", "void_description", \
+    "masked_card_number", "refunded_txn_id"]
 
 
     @staticmethod

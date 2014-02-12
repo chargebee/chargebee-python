@@ -47,6 +47,10 @@ class Invoice(Model):
         return request.send('post', '/invoices/%s/add_addon_charge' % id, params, env)
 
     @staticmethod
+    def pdf(id, env=None):
+        return request.send('post', '/invoices/%s/pdf' % id, None, env)
+
+    @staticmethod
     def collect(id, env=None):
         return request.send('post', '/invoices/%s/collect' % id, None, env)
 

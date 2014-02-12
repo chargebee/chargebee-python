@@ -69,6 +69,10 @@ class Result(object):
     def comment(self):
         return self._get('comment', Comment);
 
+    @property
+    def download(self):
+        return self._get('download', Download);
+
 
     def _get(self, type, cls, sub_types=None):
         if not type in self._response:
