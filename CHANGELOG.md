@@ -1,3 +1,9 @@
+### v1.2.2  (2014-02-19)
+* * *
+* More attributes added for the address resource.
+
+* Support for passing shipping address for create subscription & update subscription API.
+    
 ### v1.2.1  (2014-02-12)
 * * *
 * New resource Download added to expose the URLs from which you can download resources like invoice PDFs.
