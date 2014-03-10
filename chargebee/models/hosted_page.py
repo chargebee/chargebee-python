@@ -6,7 +6,7 @@ from chargebee import APIError
 class HostedPage(Model):
 
     fields = ["id", "type", "url", "state", "failure_reason", "pass_thru_content", "embed", \
-    "created_at", "expires_at"]
+    "created_at", "expires_at", "iframe_messaging"]
 
     @property
     def content(self):

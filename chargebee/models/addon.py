@@ -14,6 +14,10 @@ class Addon(Model):
         return request.send('post', '/addons', params, env)
 
     @staticmethod
+    def update(id, params=None, env=None):
+        return request.send('post', '/addons/%s' % id, params, env)
+
+    @staticmethod
     def list(params=None, env=None):
         return request.send('get', '/addons', params, env)
 

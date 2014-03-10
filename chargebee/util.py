@@ -19,6 +19,10 @@ def serialize(value, prefix=None, idx=None):
             serialized.update(serialize(v, prefix, i))
 
     else:
-        raise TypeError("only hash or arrays are allowed as value")
+        if prefix is not None and idx is not None:
+            key = prefix + '[' + str(idx) +']'
+            serialized.update({key: value or ''})
+        else:
+            raise TypeError("only hash or arrays are allowed as value")
 
     return serialized

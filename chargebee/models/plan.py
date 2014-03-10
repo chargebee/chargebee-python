@@ -15,6 +15,10 @@ class Plan(Model):
         return request.send('post', '/plans', params, env)
 
     @staticmethod
+    def update(id, params=None, env=None):
+        return request.send('post', '/plans/%s' % id, params, env)
+
+    @staticmethod
     def list(params=None, env=None):
         return request.send('get', '/plans', params, env)
 
