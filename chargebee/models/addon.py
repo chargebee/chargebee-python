@@ -24,3 +24,7 @@ class Addon(Model):
     @staticmethod
     def retrieve(id, env=None):
         return request.send('get', '/addons/%s' % id, None, env)
+
+    @staticmethod
+    def delete(id, env=None):
+        return request.send('post', '/addons/%s/delete' % id, None, env)
