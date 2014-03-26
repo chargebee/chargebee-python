@@ -4,10 +4,13 @@ from chargebee import request
 from chargebee import APIError
 
 class Transaction(Model):
+    class LinkedInvoice(Model):
+      fields = ["invoice_id", "applied_amount", "invoice_date", "invoice_amount"]
+      pass
 
-    fields = ["id", "subscription_id", "payment_method", "gateway", "description", "type", \
-    "date", "amount", "id_at_gateway", "status", "error_code", "error_text", "voided_at", "void_description", \
-    "masked_card_number", "refunded_txn_id"]
+    fields = ["id", "subscription_id", "payment_method", "reference_number", "gateway", "description", \
+    "type", "date", "amount", "id_at_gateway", "status", "error_code", "error_text", "voided_at", \
+    "void_description", "masked_card_number", "refunded_txn_id", "linked_invoices"]
 
 
     @staticmethod
@@ -25,6 +28,10 @@ class Transaction(Model):
     @staticmethod
     def retrieve(id, env=None):
         return request.send('get', '/transactions/%s' % id, None, env)
+
+    @staticmethod
+    def record_payment(id, params, env=None):
+        return request.send('post', '/invoices/%s/record_payment' % id, params, env)
 
     @staticmethod
     def refund(id, params=None, env=None):

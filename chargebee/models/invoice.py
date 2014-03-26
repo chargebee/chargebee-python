@@ -13,9 +13,12 @@ class Invoice(Model):
     class Tax(Model):
       fields = ["amount", "description"]
       pass
+    class LinkedTransaction(Model):
+      fields = ["txn_id", "applied_amount", "txn_type", "txn_status", "txn_date", "txn_amount"]
+      pass
 
     fields = ["id", "subscription_id", "recurring", "status", "vat_number", "start_date", "end_date", \
-    "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", "discounts", "taxes"]
+    "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", "discounts", "taxes", "linked_transactions", ]
 
 
     @staticmethod
@@ -39,16 +42,16 @@ class Invoice(Model):
         return request.send('get', '/invoices/%s' % id, None, env)
 
     @staticmethod
+    def pdf(id, env=None):
+        return request.send('post', '/invoices/%s/pdf' % id, None, env)
+
+    @staticmethod
     def add_charge(id, params, env=None):
         return request.send('post', '/invoices/%s/add_charge' % id, params, env)
 
     @staticmethod
     def add_addon_charge(id, params, env=None):
         return request.send('post', '/invoices/%s/add_addon_charge' % id, params, env)
-
-    @staticmethod
-    def pdf(id, env=None):
-        return request.send('post', '/invoices/%s/pdf' % id, None, env)
 
     @staticmethod
     def collect(id, env=None):

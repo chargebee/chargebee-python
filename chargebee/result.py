@@ -26,11 +26,12 @@ class Result(object):
     @property
     def invoice(self):
         return self._get('invoice', Invoice, 
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction});
 
     @property
     def transaction(self):
-        return self._get('transaction', Transaction);
+        return self._get('transaction', Transaction, 
+        {'invoice_transactions' : Transaction.LinkedInvoice});
 
     @property
     def hosted_page(self):
