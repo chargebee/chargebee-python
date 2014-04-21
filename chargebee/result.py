@@ -12,7 +12,7 @@ class Result(object):
     @property
     def subscription(self):
         return self._get('subscription', Subscription, 
-        {'addons' : Subscription.Addon, 'coupons' : Subscription.Coupon});
+        {'addons' : Subscription.Addon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress});
 
     @property
     def customer(self):

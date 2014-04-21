@@ -18,7 +18,7 @@ class Invoice(Model):
       pass
 
     fields = ["id", "subscription_id", "recurring", "status", "vat_number", "start_date", "end_date", \
-    "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", "discounts", "taxes", "linked_transactions", ]
+    "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", "discounts", "taxes", "linked_transactions" ]
 
 
     @staticmethod

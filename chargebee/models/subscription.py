@@ -10,11 +10,14 @@ class Subscription(Model):
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
+    class ShippingAddress(Model):
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state", "country", "zip"]
+      pass
 
     fields = ["id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", "trial_end", \
     "current_term_start", "current_term_end", "remaining_billing_cycles", "created_at", "started_at", \
     "activated_at", "cancelled_at", "cancel_reason", "due_invoices_count", "due_since", "total_dues", \
-    "addons", "coupon", "coupons"]
+    "addons", "coupon", "coupons", "shipping_address"]
 
 
     @staticmethod
