@@ -1,5 +1,5 @@
 from chargebee.compat import json
-from chargebee.models import Addon, Address, Card, Coupon, CouponCode, Customer, Event, HostedPage,\
+from chargebee.models import Addon, Address, Card, Coupon, CouponCode, Customer, Download, Event, HostedPage,\
     Invoice, Estimate, Plan, Subscription, Transaction
 
 
