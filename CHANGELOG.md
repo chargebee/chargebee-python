@@ -1,3 +1,7 @@
+### v1.2.7  (2014-05-13)
+* * *
+Issue fix: Missing import Download in result.py.
+
 ### v1.2.6  (2014-04-22)
 * * *
 Support for returning shipping address as part of create/update subscription API.
