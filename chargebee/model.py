@@ -37,5 +37,5 @@ class Model(object):
     def construct(cls, values, sub_types=None):
         obj = cls(values, sub_types)
         obj.load(values)
-
         return obj
+    

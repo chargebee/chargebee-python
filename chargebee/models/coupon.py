@@ -13,12 +13,12 @@ class Coupon(Model):
 
     @staticmethod
     def create(params, env=None):
-        return request.send('post', '/coupons', params, env)
+        return request.send('post', request.uri_path("coupons"), params, env)
 
     @staticmethod
     def list(params=None, env=None):
-        return request.send('get', '/coupons', params, env)
+        return request.send('get', request.uri_path("coupons"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):
-        return request.send('get', '/coupons/%s' % id, None, env)
+        return request.send('get', request.uri_path("coupons",id), None, env)

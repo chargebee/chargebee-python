@@ -10,8 +10,8 @@ class CouponCode(Model):
 
     @staticmethod
     def create(params, env=None):
-        return request.send('post', '/coupon_codes', params, env)
+        return request.send('post', request.uri_path("coupon_codes"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):
-        return request.send('get', '/coupon_codes/%s' % id, None, env)
+        return request.send('get', request.uri_path("coupon_codes",id), None, env)

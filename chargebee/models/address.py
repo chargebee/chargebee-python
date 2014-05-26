@@ -11,8 +11,8 @@ class Address(Model):
 
     @staticmethod
     def retrieve(params, env=None):
-        return request.send('get', '/addresses', params, env)
+        return request.send('get', request.uri_path("addresses"), params, env)
 
     @staticmethod
     def update(params, env=None):
-        return request.send('post', '/addresses', params, env)
+        return request.send('post', request.uri_path("addresses"), params, env)
