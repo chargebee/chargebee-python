@@ -35,12 +35,12 @@ class Invoice(Model):
         return request.send('get', request.uri_path("invoices"), params, env)
 
     @staticmethod
-    def invoices_for_subscription(id, params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions",id,"invoices"), params, env)
-
-    @staticmethod
     def invoices_for_customer(id, params=None, env=None):
         return request.send('get', request.uri_path("customers",id,"invoices"), params, env)
+
+    @staticmethod
+    def invoices_for_subscription(id, params=None, env=None):
+        return request.send('get', request.uri_path("subscriptions",id,"invoices"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):

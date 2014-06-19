@@ -8,14 +8,18 @@ class Transaction(Model):
       fields = ["invoice_id", "applied_amount", "invoice_date", "invoice_amount"]
       pass
 
-    fields = ["id", "subscription_id", "payment_method", "reference_number", "gateway", "description", \
-    "type", "date", "amount", "id_at_gateway", "status", "error_code", "error_text", "voided_at", \
-    "void_description", "masked_card_number", "refunded_txn_id", "linked_invoices"]
+    fields = ["id", "customer_id", "subscription_id", "payment_method", "reference_number", \
+    "gateway", "description", "type", "date", "amount", "id_at_gateway", "status", "error_code", \
+    "error_text", "voided_at", "void_description", "masked_card_number", "refunded_txn_id", "linked_invoices"]
 
 
     @staticmethod
     def list(params=None, env=None):
         return request.send('get', request.uri_path("transactions"), params, env)
+
+    @staticmethod
+    def transactions_for_customer(id, params=None, env=None):
+        return request.send('get', request.uri_path("customers",id,"transactions"), params, env)
 
     @staticmethod
     def transactions_for_subscription(id, params=None, env=None):
