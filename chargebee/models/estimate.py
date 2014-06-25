@@ -20,8 +20,8 @@ class Estimate(Model):
 
     @staticmethod
     def create_subscription(params, env=None):
-        return request.send('post', '/estimates/create_subscription', params, env)
+        return request.send('post', request.uri_path("estimates","create_subscription"), params, env)
 
     @staticmethod
     def update_subscription(params, env=None):
-        return request.send('post', '/estimates/update_subscription', params, env)
+        return request.send('post', request.uri_path("estimates","update_subscription"), params, env)

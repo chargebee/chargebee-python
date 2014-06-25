@@ -1,6 +1,5 @@
 from chargebee.compat import json
-from chargebee.models import Addon, Address, Card, Coupon, CouponCode, Customer, Download, Event, HostedPage,\
-    Invoice, Estimate, Plan, Subscription, Transaction
+from chargebee.models import *
 
 
 class Result(object):
@@ -11,12 +10,12 @@ class Result(object):
 
     @property
     def subscription(self):
-        return self._get('subscription', Subscription, 
+        return self._get('subscription', Subscription,
         {'addons' : Subscription.Addon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress});
 
     @property
     def customer(self):
-        return self._get('customer', Customer, 
+        return self._get('customer', Customer,
         {'billing_address' : Customer.BillingAddress});
 
     @property
@@ -25,12 +24,12 @@ class Result(object):
 
     @property
     def invoice(self):
-        return self._get('invoice', Invoice, 
+        return self._get('invoice', Invoice,
         {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction});
 
     @property
     def transaction(self):
-        return self._get('transaction', Transaction, 
+        return self._get('transaction', Transaction,
         {'invoice_transactions' : Transaction.LinkedInvoice});
 
     @property
@@ -39,7 +38,7 @@ class Result(object):
 
     @property
     def estimate(self):
-        return self._get('estimate', Estimate, 
+        return self._get('estimate', Estimate,
         {'line_items' : Estimate.LineItem, 'discounts' : Estimate.Discount, 'taxes' : Estimate.Tax});
 
     @property
@@ -74,6 +73,10 @@ class Result(object):
     def download(self):
         return self._get('download', Download);
 
+    @property
+    def portal_session(self):
+        return self._get('portal_session', PortalSession);
+
 
     def _get(self, type, cls, sub_types=None):
         if not type in self._response:
@@ -83,7 +86,7 @@ class Result(object):
             self._response_obj[type] = cls.construct(self._response[type], sub_types)
 
         return self._response_obj[type]
-    
+
     def __str__(self):
         return json.dumps(self._response, indent=4)
 

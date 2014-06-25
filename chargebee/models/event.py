@@ -23,8 +23,8 @@ class Event(Model):
 
     @staticmethod
     def list(params=None, env=None):
-        return request.send('get', '/events', params, env)
+        return request.send('get', request.uri_path("events"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):
-        return request.send('get', '/events/%s' % id, None, env)
+        return request.send('get', request.uri_path("events",id), None, env)

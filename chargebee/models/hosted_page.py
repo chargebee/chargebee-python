@@ -17,24 +17,24 @@ class HostedPage(Model):
 
     @staticmethod
     def checkout_new(params, env=None):
-        return request.send('post', '/hosted_pages/checkout_new', params, env)
+        return request.send('post', request.uri_path("hosted_pages","checkout_new"), params, env)
 
     @staticmethod
     def checkout_existing(params, env=None):
-        return request.send('post', '/hosted_pages/checkout_existing', params, env)
+        return request.send('post', request.uri_path("hosted_pages","checkout_existing"), params, env)
 
     @staticmethod
     def update_card(params, env=None):
-        return request.send('post', '/hosted_pages/update_card', params, env)
+        return request.send('post', request.uri_path("hosted_pages","update_card"), params, env)
 
     @staticmethod
     def checkout_onetime_charge(params, env=None):
-        return request.send('post', '/hosted_pages/checkout_onetime_charge', params, env)
+        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_charge"), params, env)
 
     @staticmethod
     def checkout_onetime_addons(params, env=None):
-        return request.send('post', '/hosted_pages/checkout_onetime_addons', params, env)
+        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_addons"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):
-        return request.send('get', '/hosted_pages/%s' % id, None, env)
+        return request.send('get', request.uri_path("hosted_pages",id), None, env)

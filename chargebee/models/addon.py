@@ -11,20 +11,20 @@ class Addon(Model):
 
     @staticmethod
     def create(params, env=None):
-        return request.send('post', '/addons', params, env)
+        return request.send('post', request.uri_path("addons"), params, env)
 
     @staticmethod
     def update(id, params=None, env=None):
-        return request.send('post', '/addons/%s' % id, params, env)
+        return request.send('post', request.uri_path("addons",id), params, env)
 
     @staticmethod
     def list(params=None, env=None):
-        return request.send('get', '/addons', params, env)
+        return request.send('get', request.uri_path("addons"), params, env)
 
     @staticmethod
     def retrieve(id, env=None):
-        return request.send('get', '/addons/%s' % id, None, env)
+        return request.send('get', request.uri_path("addons",id), None, env)
 
     @staticmethod
     def delete(id, env=None):
-        return request.send('post', '/addons/%s/delete' % id, None, env)
+        return request.send('post', request.uri_path("addons",id,"delete"), None, env)

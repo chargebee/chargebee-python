@@ -12,6 +12,7 @@ from chargebee.models.plan import Plan
 from chargebee.models.subscription import Subscription
 from chargebee.models.transaction import Transaction
 from chargebee.models.comment import Comment
+from chargebee.models.portal_session import PortalSession
 from chargebee.models.download import Download
 from chargebee.models.content import Content
 
