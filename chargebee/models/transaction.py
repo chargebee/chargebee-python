@@ -36,7 +36,3 @@ class Transaction(Model):
     @staticmethod
     def record_payment(id, params, env=None):
         return request.send('post', request.uri_path("invoices",id,"record_payment"), params, env)
-
-    @staticmethod
-    def refund(id, params=None, env=None):
-        return request.send('post', request.uri_path("transactions",id,"refund"), params, env)

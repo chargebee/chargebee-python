@@ -17,7 +17,7 @@ class Subscription(Model):
     fields = ["id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", "trial_end", \
     "current_term_start", "current_term_end", "remaining_billing_cycles", "created_at", "started_at", \
     "activated_at", "cancelled_at", "cancel_reason", "due_invoices_count", "due_since", "total_dues", \
-    "addons", "coupon", "coupons", "shipping_address"]
+    "addons", "coupon", "coupons", "shipping_address", "has_scheduled_changes"]
 
 
     @staticmethod
@@ -39,6 +39,14 @@ class Subscription(Model):
     @staticmethod
     def retrieve(id, env=None):
         return request.send('get', request.uri_path("subscriptions",id), None, env)
+
+    @staticmethod
+    def retrieve_with_scheduled_changes(id, env=None):
+        return request.send('get', request.uri_path("subscriptions",id,"retrieve_with_scheduled_changes"), None, env)
+
+    @staticmethod
+    def remove_scheduled_changes(id, env=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_changes"), None, env)
 
     @staticmethod
     def update(id, params=None, env=None):
@@ -63,7 +71,3 @@ class Subscription(Model):
     @staticmethod
     def charge_addon_at_term_end(id, params, env=None):
         return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env)
-
-    @staticmethod
-    def add_credit(id, params, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"add_credit"), params, env)
