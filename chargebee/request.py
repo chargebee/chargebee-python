@@ -19,5 +19,5 @@ def send(method, url, params=None, env=None):
     return Result(response)
 
 def uri_path(*paths):
-    return "/" + "/".join(map(lambda path : urllib.quote_plus(str(path)), paths))
+    return "/" + "/".join(map(lambda path : urllib.quote(str(path)), paths))
         

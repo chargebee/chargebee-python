@@ -1,3 +1,7 @@
+### v1.3.3 (2014-08-21)
+* * *
+Fixing encoding issue for url path.
+
 ### v1.3.2 (2014-08-13)
 * * *
 Added properties:
