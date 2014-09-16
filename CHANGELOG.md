@@ -1,3 +1,23 @@
+### v1.3.5 (2014-09-16)
+* * *
+
+**Error Model**:
+
+New simpler model for error handling has been implemented. Please see below api document for more details
+
+https://apidocs.chargebee.com/docs/api?lang=python#error_handling 
+
+The following attributes in APIError have been deprecated.
+* error_code  (Use api_error_code instead).
+* http_code (Use http_status_code instead).
+* http_body 
+
+The changes are backward compatible. Ensure that  your error handling code is tested after you upgrade to this version.
+
+**APIs Updated**:
+
+Shipping Address support added to *create subscription for a customer* api call.
+
 ### v1.3.4 (2014-08-28)
 * * *
 * Customer id can be passed to the checkout new subscription operation.
