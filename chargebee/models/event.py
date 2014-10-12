@@ -16,8 +16,8 @@ class Event(Model):
     def deserialize(json_data):
         try:
             webhook_data = json.loads(json_data)
-        except (TypeError, ValueError):
-            raise APIError("Invalid webhook object to deserialize")
+        except (TypeError, ValueError) as ex:
+            raise Exception("The passed json_data is not JSON formatted . " + ex.message)
 
         return Event.construct(webhook_data)
 

@@ -1,3 +1,14 @@
+### v1.3.7 (2014-10-12)
+* * *
+
+**APIs Updated**:
+* Set auto colection to on/off via "Update a customer" API. See https://apidocs.chargebee.com/docs/api/customers#update_a_customer.
+
+### v1.3.6 (2014-10-12)
+* * *
+
+** No Changes **
+
 ### v1.3.5 (2014-09-16)
 * * *
 
