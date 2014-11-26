@@ -7,9 +7,12 @@ class Customer(Model):
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state", "country", "zip"]
       pass
+    class PaymentMethod(Model):
+      fields = ["type", "status", "reference_id"]
+      pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
-    "created_at", "card_status", "billing_address"]
+    "created_at", "card_status", "billing_address", "payment_method"]
 
 
     @staticmethod
