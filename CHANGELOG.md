@@ -1,4 +1,14 @@
-### v1.3.9 (2014-11-26)
+### v1.4.0 (2014-12-02)
+* * *
+
+**APIs added**:
+A new resource called Order is introduced. This can be used for integrating ChargeBee with any shipping/order management application (like ShipStation). Orders are not automatically generated or updated by ChargeBee currently. They have to be created/updated either via api or merchant web console (a.k.a admin console). An order can be created against an invoice irrespective of the status of the invoice and an invoice can have multiple orders associated with it.
+See https://apidocs.chargebee.com/docs/api/orders?lang=python for details.
+
+**API Updates**:
+Ability to filter Invoices with paid_on_after parameter. See https://apidocs.chargebee.com/docs/api/invoices?lang=python#list_invoices.
+
+### v1.3.9 (2014-11-24)
 * * *
 
 * Support for Amazon Payments
@@ -8,6 +18,7 @@
 * * *
 
 ** No Changes **
+
 ### v1.3.7 (2014-10-12)
 * * *
 

@@ -25,7 +25,11 @@ class Result(object):
     @property
     def invoice(self):
         return self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction, 'orders' : Invoice.LinkedOrder});
+
+    @property
+    def order(self):
+        return self._get('order', Order);
 
     @property
     def transaction(self):

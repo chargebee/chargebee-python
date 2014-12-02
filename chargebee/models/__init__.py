@@ -7,6 +7,7 @@ from chargebee.models.customer import Customer
 from chargebee.models.event import Event
 from chargebee.models.hosted_page import HostedPage
 from chargebee.models.invoice import Invoice
+from chargebee.models.order import Order
 from chargebee.models.estimate import Estimate
 from chargebee.models.plan import Plan
 from chargebee.models.subscription import Subscription
