@@ -3,7 +3,7 @@ def serialize(value, prefix=None, idx=None):
     serialized = {}
 
     if isinstance(value, dict):
-        for k, v in value.items():
+        for k, v in list(value.items()):
             if isinstance(v, (dict, list, tuple)):
                 serialized.update(serialize(v, k))
             else:

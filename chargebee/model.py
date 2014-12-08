@@ -18,7 +18,7 @@ class Model(object):
         return json.dumps(self.values, indent=4)
 
     def load(self, values):
-        for k, v in values.items():
+        for k, v in list(values.items()):
             set_val = None
             if isinstance(v, dict):
                 set_val = self.sub_types[k].construct(v) if k in self.sub_types else v

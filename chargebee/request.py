@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from chargebee import util, http
 from chargebee.main import ChargeBee
 
@@ -19,5 +19,5 @@ def send(method, url, params=None, env=None):
     return Result(response)
 
 def uri_path(*paths):
-    return "/" + "/".join(map(lambda path : urllib.quote(str(path)), paths))
+    return "/" + "/".join([urllib.parse.quote(str(path)) for path in paths])
         

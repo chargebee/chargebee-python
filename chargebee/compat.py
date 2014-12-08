@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+
 from chargebee.main import Environment
 
 import re
@@ -14,9 +14,9 @@ is_py2 = sys.version_info[0] == 2
 is_py3 = sys.version_info[0] == 3
 
 if is_py2:
-    from urllib import urlencode
-    from urlparse import urlparse
-    from urllib2 import urlopen as _urlopen, Request
+    from urllib.parse import urlencode
+    from urllib.parse import urlparse
+    from urllib.request import urlopen as _urlopen, Request
 elif is_py3:
     from urllib.parse import urlencode, urlparse
     from urllib.request import urlopen as _urlopen, Request
@@ -33,7 +33,7 @@ try:
         HTTPConnection = object
             
     if is_py2:
-        from httplib import HTTPConnection, HTTPSConnection, HTTPException
+        from http.client import HTTPConnection, HTTPSConnection, HTTPException
     else:
         from http.client import HTTPConnection, HTTPSConnection, HTTPException
 
