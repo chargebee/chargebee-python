@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Comment(Model):
 
-    fields = ["id", "entity_type", "added_by", "notes", "created_at", "type", "entity_id", ]
+    fields = ["id", "entity_type", "added_by", "notes", "created_at", "type", "entity_id"]
 
 
     @staticmethod

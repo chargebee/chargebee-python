@@ -28,6 +28,10 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","update_card"), params, env)
 
     @staticmethod
+    def update_payment_method(params, env=None):
+        return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env)
+
+    @staticmethod
     def checkout_onetime_charge(params, env=None):
         return request.send('post', request.uri_path("hosted_pages","checkout_onetime_charge"), params, env)
 
