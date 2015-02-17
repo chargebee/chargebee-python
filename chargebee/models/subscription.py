@@ -30,7 +30,7 @@ class Subscription(Model):
 
     @staticmethod
     def list(params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions"), params, env)
+        return request.send('get', request.uri_path("subscriptions"), params)
 
     @staticmethod
     def subscriptions_for_customer(id, params=None, env=None):
