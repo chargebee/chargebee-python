@@ -43,7 +43,7 @@ def request(method, url, env, params=None):
     try:
         response = connection.getresponse()
         data = response.read()
-        if compat.is_py3:
+        if compat.py_major_v >= 3:
             data = data.decode('utf-8')
 
         return process_response(url,data, response.status)

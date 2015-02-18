@@ -10,14 +10,14 @@ try:
 except ImportError:
     import json
 
-is_py2 = sys.version_info[0] == 2
-is_py3 = sys.version_info[0] == 3
+py_major_v = sys.version_info[0]
+py_minor_v = sys.version_info[1]
 
-if is_py2:
+if py_major_v < 3:
     from urllib import urlencode
     from urlparse import urlparse
     from urllib2 import urlopen as _urlopen, Request
-elif is_py3:
+elif py_major_v >= 3:
     from urllib.parse import urlencode, urlparse
     from urllib.request import urlopen as _urlopen, Request
 
@@ -32,7 +32,7 @@ try:
     else:
         HTTPConnection = object
             
-    if is_py2:
+    if py_major_v < 3:
         from httplib import HTTPConnection, HTTPSConnection, HTTPException
     else:
         from http.client import HTTPConnection, HTTPSConnection, HTTPException

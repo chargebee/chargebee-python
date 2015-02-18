@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Customer(Model):
     class BillingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state", "country", "zip"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
       pass
     class PaymentMethod(Model):
       fields = ["type", "status", "reference_id"]

@@ -20,7 +20,7 @@ def send(method, url, params=None, env=None):
     return Result(response)
 
 def uri_path(*paths):
-    if compat.is_py3: 
+    if compat.py_major_v >= 3: 
        return "/" + "/".join([urllib.parse.quote(str(path)) for path in paths]) 
     else:
        return "/" + "/".join(map(lambda path : urllib.quote(str(util.get_val(path))), paths))
