@@ -19,11 +19,21 @@ class Invoice(Model):
     class LinkedOrder(Model):
       fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
       pass
+    class ShippingAddress(Model):
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
+      pass
+    class BillingAddress(Model):
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
+      pass
 
     fields = ["id", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "start_date", "end_date", "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", \
-    "discounts", "taxes", "linked_transactions", "linked_orders"]
+    "discounts", "taxes", "linked_transactions", "linked_orders", "shipping_address", "billing_address"]
 
+
+    @staticmethod
+    def create(params, env=None):
+        return request.send('post', request.uri_path("invoices"), params, env)
 
     @staticmethod
     def charge(params, env=None):
