@@ -78,3 +78,7 @@ class Invoice(Model):
     @staticmethod
     def refund(id, params=None, env=None):
         return request.send('post', request.uri_path("invoices",id,"refund"), params, env)
+
+    @staticmethod
+    def delete(id, params=None, env=None):
+        return request.send('post', request.uri_path("invoices",id,"delete"), params, env)
