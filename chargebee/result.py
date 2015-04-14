@@ -25,7 +25,7 @@ class Result(object):
     @property
     def invoice(self):
         return self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction, 'orders' : Invoice.LinkedOrder, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction, 'orders' : Invoice.LinkedOrder, 'invoice_notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
 
     @property
     def order(self):

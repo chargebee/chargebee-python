@@ -15,9 +15,10 @@ class Subscription(Model):
       pass
 
     fields = ["id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", "trial_end", \
-    "current_term_start", "current_term_end", "remaining_billing_cycles", "created_at", "started_at", \
-    "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "due_invoices_count", \
-    "due_since", "total_dues", "addons", "coupon", "coupons", "shipping_address", "has_scheduled_changes"]
+    "current_term_start", "current_term_end", "remaining_billing_cycles", "po_number", "created_at", \
+    "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", \
+    "due_invoices_count", "due_since", "total_dues", "addons", "coupon", "coupons", "shipping_address", \
+    "has_scheduled_changes", "invoice_notes"]
 
 
     @staticmethod

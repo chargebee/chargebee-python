@@ -12,7 +12,7 @@ class Customer(Model):
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
-    "created_at", "created_from_ip", "card_status", "billing_address", "payment_method"]
+    "created_at", "created_from_ip", "card_status", "billing_address", "payment_method", "invoice_notes"]
 
 
     @staticmethod

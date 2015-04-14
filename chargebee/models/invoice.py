@@ -19,6 +19,9 @@ class Invoice(Model):
     class LinkedOrder(Model):
       fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
       pass
+    class Note(Model):
+      fields = ["entity_type", "note", "entity_id"]
+      pass
     class ShippingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
       pass
@@ -26,9 +29,10 @@ class Invoice(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
       pass
 
-    fields = ["id", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
-    "start_date", "end_date", "amount", "paid_on", "next_retry", "sub_total", "tax", "line_items", \
-    "discounts", "taxes", "linked_transactions", "linked_orders", "shipping_address", "billing_address"]
+    fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
+    "start_date", "end_date", "amount", "amount_due", "paid_on", "next_retry", "sub_total", "tax", \
+    "line_items", "discounts", "taxes", "linked_transactions", "linked_orders", "notes", "shipping_address", \
+    "billing_address"]
 
 
     @staticmethod
