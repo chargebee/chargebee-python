@@ -32,5 +32,9 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id), params, env)
 
     @staticmethod
+    def update_payment_method(id, params, env=None):
+        return request.send('post', request.uri_path("customers",id,"update_payment_method"), params, env)
+
+    @staticmethod
     def update_billing_info(id, params=None, env=None):
         return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env)

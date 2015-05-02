@@ -80,6 +80,10 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"collect"), None, env)
 
     @staticmethod
+    def collect_payment(id, env=None):
+        return request.send('post', request.uri_path("invoices",id,"collect_payment"), None, env)
+
+    @staticmethod
     def refund(id, params=None, env=None):
         return request.send('post', request.uri_path("invoices",id,"refund"), params, env)
 
