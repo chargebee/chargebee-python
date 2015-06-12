@@ -19,13 +19,13 @@ class Estimate(Model):
 
 
     @staticmethod
-    def create_subscription(params, env=None):
-        return request.send('post', request.uri_path("estimates","create_subscription"), params, env)
+    def create_subscription(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","create_subscription"), params, env, headers)
 
     @staticmethod
-    def update_subscription(params, env=None):
-        return request.send('post', request.uri_path("estimates","update_subscription"), params, env)
+    def update_subscription(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","update_subscription"), params, env, headers)
 
     @staticmethod
-    def renewal_estimate(id, params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions",id,"renewal_estimate"), params, env)
+    def renewal_estimate(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions",id,"renewal_estimate"), params, env, headers)

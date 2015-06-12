@@ -14,25 +14,25 @@ class Transaction(Model):
 
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("transactions"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("transactions"), params, env, headers)
 
     @staticmethod
-    def transactions_for_customer(id, params=None, env=None):
-        return request.send('get', request.uri_path("customers",id,"transactions"), params, env)
+    def transactions_for_customer(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"transactions"), params, env, headers)
 
     @staticmethod
-    def transactions_for_subscription(id, params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions",id,"transactions"), params, env)
+    def transactions_for_subscription(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions",id,"transactions"), params, env, headers)
 
     @staticmethod
-    def transactions_for_invoice(id, params=None, env=None):
-        return request.send('get', request.uri_path("invoices",id,"transactions"), params, env)
+    def transactions_for_invoice(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices",id,"transactions"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("transactions",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("transactions",id), None, env, headers)
 
     @staticmethod
-    def record_payment(id, params, env=None):
-        return request.send('post', request.uri_path("invoices",id,"record_payment"), params, env)
+    def record_payment(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"record_payment"), params, env, headers)

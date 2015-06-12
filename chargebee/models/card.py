@@ -11,13 +11,13 @@ class Card(Model):
 
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("cards",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("cards",id), None, env, headers)
 
     @staticmethod
-    def update_card_for_customer(id, params, env=None):
-        return request.send('post', request.uri_path("customers",id,"credit_card"), params, env)
+    def update_card_for_customer(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"credit_card"), params, env, headers)
 
     @staticmethod
-    def delete_card_for_customer(id, env=None):
-        return request.send('post', request.uri_path("customers",id,"delete_card"), None, env)
+    def delete_card_for_customer(id, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"delete_card"), None, env, headers)

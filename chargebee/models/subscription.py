@@ -22,57 +22,57 @@ class Subscription(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("subscriptions"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions"), params, env, headers)
 
     @staticmethod
-    def create_for_customer(id, params, env=None):
-        return request.send('post', request.uri_path("customers",id,"subscriptions"), params, env)
+    def create_for_customer(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"subscriptions"), params, env, headers)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions"), params, env, headers)
 
     @staticmethod
-    def subscriptions_for_customer(id, params=None, env=None):
-        return request.send('get', request.uri_path("customers",id,"subscriptions"), params, env)
+    def subscriptions_for_customer(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"subscriptions"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("subscriptions",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions",id), None, env, headers)
 
     @staticmethod
-    def retrieve_with_scheduled_changes(id, env=None):
-        return request.send('get', request.uri_path("subscriptions",id,"retrieve_with_scheduled_changes"), None, env)
+    def retrieve_with_scheduled_changes(id, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions",id,"retrieve_with_scheduled_changes"), None, env, headers)
 
     @staticmethod
-    def remove_scheduled_changes(id, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_changes"), None, env)
+    def remove_scheduled_changes(id, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_changes"), None, env, headers)
 
     @staticmethod
-    def remove_scheduled_cancellation(id, params=None, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_cancellation"), params, env)
+    def remove_scheduled_cancellation(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_cancellation"), params, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None):
-        return request.send('post', request.uri_path("subscriptions",id), params, env)
+    def update(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id), params, env, headers)
 
     @staticmethod
-    def change_term_end(id, params, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"change_term_end"), params, env)
+    def change_term_end(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"change_term_end"), params, env, headers)
 
     @staticmethod
-    def cancel(id, params=None, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env)
+    def cancel(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env, headers)
 
     @staticmethod
-    def reactivate(id, params=None, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"reactivate"), params, env)
+    def reactivate(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"reactivate"), params, env, headers)
 
     @staticmethod
-    def add_charge_at_term_end(id, params, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"add_charge_at_term_end"), params, env)
+    def add_charge_at_term_end(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"add_charge_at_term_end"), params, env, headers)
 
     @staticmethod
-    def charge_addon_at_term_end(id, params, env=None):
-        return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env)
+    def charge_addon_at_term_end(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env, headers)

@@ -10,21 +10,21 @@ class Addon(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("addons"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("addons"), params, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None):
-        return request.send('post', request.uri_path("addons",id), params, env)
+    def update(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("addons",id), params, env, headers)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("addons"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("addons"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("addons",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("addons",id), None, env, headers)
 
     @staticmethod
-    def delete(id, env=None):
-        return request.send('post', request.uri_path("addons",id,"delete"), None, env)
+    def delete(id, env=None, headers=None):
+        return request.send('post', request.uri_path("addons",id,"delete"), None, env, headers)

@@ -16,29 +16,29 @@ class HostedPage(Model):
         return None
 
     @staticmethod
-    def checkout_new(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_new"), params, env)
+    def checkout_new(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_new"), params, env, headers)
 
     @staticmethod
-    def checkout_existing(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_existing"), params, env)
+    def checkout_existing(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_existing"), params, env, headers)
 
     @staticmethod
-    def update_card(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","update_card"), params, env)
+    def update_card(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","update_card"), params, env, headers)
 
     @staticmethod
-    def update_payment_method(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env)
+    def update_payment_method(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env, headers)
 
     @staticmethod
-    def checkout_onetime_charge(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_charge"), params, env)
+    def checkout_onetime_charge(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_charge"), params, env, headers)
 
     @staticmethod
-    def checkout_onetime_addons(params, env=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_addons"), params, env)
+    def checkout_onetime_addons(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_addons"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("hosted_pages",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("hosted_pages",id), None, env, headers)

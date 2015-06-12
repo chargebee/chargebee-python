@@ -10,9 +10,9 @@ class Address(Model):
 
 
     @staticmethod
-    def retrieve(params, env=None):
-        return request.send('get', request.uri_path("addresses"), params, env)
+    def retrieve(params, env=None, headers=None):
+        return request.send('get', request.uri_path("addresses"), params, env, headers)
 
     @staticmethod
-    def update(params, env=None):
-        return request.send('post', request.uri_path("addresses"), params, env)
+    def update(params, env=None, headers=None):
+        return request.send('post', request.uri_path("addresses"), params, env, headers)

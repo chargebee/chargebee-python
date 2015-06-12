@@ -9,17 +9,17 @@ class Comment(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("comments"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("comments"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("comments",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("comments",id), None, env, headers)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("comments"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("comments"), params, env, headers)
 
     @staticmethod
-    def delete(id, env=None):
-        return request.send('post', request.uri_path("comments",id,"delete"), None, env)
+    def delete(id, env=None, headers=None):
+        return request.send('post', request.uri_path("comments",id,"delete"), None, env, headers)

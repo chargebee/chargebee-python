@@ -3,7 +3,7 @@ from chargebee import util, http
 from chargebee.main import ChargeBee
 from chargebee import compat
 
-def send(method, url, params=None, env=None):
+def send(method, url, params=None, env=None, headers=None):
     if params is None:
         params = {}
 
@@ -11,7 +11,7 @@ def send(method, url, params=None, env=None):
 
     ser_params = util.serialize(params)
 
-    response = http.request(method, url, env, ser_params)
+    response = http.request(method, url, env, ser_params, headers)
 
     from chargebee.result import Result
     from chargebee.list_result import ListResult

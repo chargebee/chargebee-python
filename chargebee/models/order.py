@@ -10,21 +10,21 @@ class Order(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("orders"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("orders"), params, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None):
-        return request.send('post', request.uri_path("orders",id), params, env)
+    def update(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("orders",id), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("orders",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("orders",id), None, env, headers)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("orders"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("orders"), params, env, headers)
 
     @staticmethod
-    def orders_for_invoice(id, params=None, env=None):
-        return request.send('get', request.uri_path("invoices",id,"orders"), params, env)
+    def orders_for_invoice(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices",id,"orders"), params, env, headers)

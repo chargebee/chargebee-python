@@ -13,17 +13,17 @@ class PortalSession(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("portal_sessions"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("portal_sessions"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("portal_sessions",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("portal_sessions",id), None, env, headers)
 
     @staticmethod
-    def logout(id, env=None):
-        return request.send('post', request.uri_path("portal_sessions",id,"logout"), None, env)
+    def logout(id, env=None, headers=None):
+        return request.send('post', request.uri_path("portal_sessions",id,"logout"), None, env, headers)
 
     @staticmethod
-    def activate(id, params, env=None):
-        return request.send('post', request.uri_path("portal_sessions",id,"activate"), params, env)
+    def activate(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("portal_sessions",id,"activate"), params, env, headers)

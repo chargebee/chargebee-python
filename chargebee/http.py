@@ -9,11 +9,11 @@ def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
 
 
-def request(method, url, env, params=None):
+def request(method, url, env, params=None, headers=None):
     if not env:
         raise Exception('No environment configured.')
-
-    headers = {}
+    if headers is None:
+        headers = {}
 
     url = env.api_url(url)
     if method.lower() in ('get', 'head', 'delete'):

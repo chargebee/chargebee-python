@@ -36,57 +36,57 @@ class Invoice(Model):
 
 
     @staticmethod
-    def create(params, env=None):
-        return request.send('post', request.uri_path("invoices"), params, env)
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod
-    def charge(params, env=None):
-        return request.send('post', request.uri_path("invoices","charge"), params, env)
+    def charge(params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices","charge"), params, env, headers)
 
     @staticmethod
-    def charge_addon(params, env=None):
-        return request.send('post', request.uri_path("invoices","charge_addon"), params, env)
+    def charge_addon(params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices","charge_addon"), params, env, headers)
 
     @staticmethod
-    def list(params=None, env=None):
-        return request.send('get', request.uri_path("invoices"), params, env)
+    def list(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod
-    def invoices_for_customer(id, params=None, env=None):
-        return request.send('get', request.uri_path("customers",id,"invoices"), params, env)
+    def invoices_for_customer(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"invoices"), params, env, headers)
 
     @staticmethod
-    def invoices_for_subscription(id, params=None, env=None):
-        return request.send('get', request.uri_path("subscriptions",id,"invoices"), params, env)
+    def invoices_for_subscription(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("subscriptions",id,"invoices"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None):
-        return request.send('get', request.uri_path("invoices",id), None, env)
+    def retrieve(id, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices",id), None, env, headers)
 
     @staticmethod
-    def pdf(id, env=None):
-        return request.send('post', request.uri_path("invoices",id,"pdf"), None, env)
+    def pdf(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"pdf"), None, env, headers)
 
     @staticmethod
-    def add_charge(id, params, env=None):
-        return request.send('post', request.uri_path("invoices",id,"add_charge"), params, env)
+    def add_charge(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"add_charge"), params, env, headers)
 
     @staticmethod
-    def add_addon_charge(id, params, env=None):
-        return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env)
+    def add_addon_charge(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env, headers)
 
     @staticmethod
-    def collect(id, env=None):
-        return request.send('post', request.uri_path("invoices",id,"collect"), None, env)
+    def collect(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"collect"), None, env, headers)
 
     @staticmethod
-    def collect_payment(id, env=None):
-        return request.send('post', request.uri_path("invoices",id,"collect_payment"), None, env)
+    def collect_payment(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"collect_payment"), None, env, headers)
 
     @staticmethod
-    def refund(id, params=None, env=None):
-        return request.send('post', request.uri_path("invoices",id,"refund"), params, env)
+    def refund(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"refund"), params, env, headers)
 
     @staticmethod
-    def delete(id, params=None, env=None):
-        return request.send('post', request.uri_path("invoices",id,"delete"), params, env)
+    def delete(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"delete"), params, env, headers)
