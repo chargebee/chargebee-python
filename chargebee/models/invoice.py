@@ -88,5 +88,9 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"refund"), params, env, headers)
 
     @staticmethod
+    def void_invoice(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"void"), params, env, headers)
+
+    @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"delete"), params, env, headers)
