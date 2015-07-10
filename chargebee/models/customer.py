@@ -8,7 +8,7 @@ class Customer(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
       pass
     class PaymentMethod(Model):
-      fields = ["type", "status", "reference_id"]
+      fields = ["type", "gateway", "status", "reference_id"]
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
