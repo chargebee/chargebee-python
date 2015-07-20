@@ -30,9 +30,9 @@ class Invoice(Model):
       pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
-    "start_date", "end_date", "amount", "amount_due", "paid_on", "next_retry", "sub_total", "tax", \
-    "line_items", "discounts", "taxes", "linked_transactions", "linked_orders", "notes", "shipping_address", \
-    "billing_address"]
+    "start_date", "end_date", "amount", "amount_due", "paid_on", "dunning_status", "next_retry", \
+    "sub_total", "tax", "line_items", "discounts", "taxes", "linked_transactions", "linked_orders", \
+    "notes", "shipping_address", "billing_address"]
 
 
     @staticmethod
@@ -46,6 +46,10 @@ class Invoice(Model):
     @staticmethod
     def charge_addon(params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices","charge_addon"), params, env, headers)
+
+    @staticmethod
+    def stop_dunning(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"stop_dunning"), None, env, headers)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
