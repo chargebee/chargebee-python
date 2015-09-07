@@ -4,8 +4,12 @@ from chargebee import request
 from chargebee import APIError
 
 class Event(Model):
+    class Webhook(Model):
+      fields = ["id", "webhook_status"]
+      pass
 
-    fields = ["id", "occurred_at", "source", "webhook_status", "webhook_failure_reason", "event_type"]
+    fields = ["id", "occurred_at", "source", "user", "webhook_status", "webhook_failure_reason", \
+    "webhooks", "event_type"]
 
     @property
     def content(self):

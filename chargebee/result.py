@@ -67,7 +67,8 @@ class Result(object):
 
     @property
     def event(self):
-        return self._get('event', Event);
+        return self._get('event', Event,
+        {'webhooks' : Event.Webhook});
 
     @property
     def comment(self):
