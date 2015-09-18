@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Estimate(Model):
     class LineItem(Model):
-      fields = ["date_from", "date_to", "unit_amount", "quantity", "tax", "tax_rate", "amount", "description", "type", "entity_type", "entity_id"]
+      fields = ["date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax", "tax_rate", "amount", "description", "type", "entity_type", "entity_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "type", "entity_id"]
