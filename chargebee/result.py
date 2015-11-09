@@ -34,7 +34,7 @@ class Result(object):
     @property
     def transaction(self):
         return self._get('transaction', Transaction,
-        {'invoice_transactions' : Transaction.LinkedInvoice});
+        {'invoice_transactions' : Transaction.LinkedInvoice, 'txn_refunds_and_reversals' : Transaction.LinkedRefund});
 
     @property
     def hosted_page(self):

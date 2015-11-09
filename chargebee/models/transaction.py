@@ -5,13 +5,16 @@ from chargebee import APIError
 
 class Transaction(Model):
     class LinkedInvoice(Model):
-      fields = ["invoice_id", "applied_amount", "invoice_date", "invoice_amount"]
+      fields = ["invoice_id", "applied_amount", "applied_at", "invoice_date", "invoice_amount"]
+      pass
+    class LinkedRefund(Model):
+      fields = ["txn_amount", "txn_date", "txn_id", "txn_status"]
       pass
 
     fields = ["id", "customer_id", "subscription_id", "payment_method", "reference_number", \
     "gateway", "description", "type", "date", "amount", "id_at_gateway", "status", "error_code", \
-    "error_text", "voided_at", "void_description", "masked_card_number", "refunded_txn_id", "linked_invoices", \
-    "currency_code"]
+    "error_text", "voided_at", "void_description", "amount_unused", "masked_card_number", "reference_transaction_id", \
+    "refunded_txn_id", "reversal_transaction_id", "linked_invoices", "linked_refunds", "currency_code"]
 
 
     @staticmethod

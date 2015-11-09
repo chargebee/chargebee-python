@@ -14,7 +14,7 @@ class Invoice(Model):
       fields = ["amount", "description"]
       pass
     class LinkedTransaction(Model):
-      fields = ["txn_id", "applied_amount", "txn_type", "txn_status", "txn_date", "txn_amount"]
+      fields = ["txn_id", "applied_amount", "applied_at", "txn_type", "txn_status", "txn_date", "txn_amount"]
       pass
     class LinkedOrder(Model):
       fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
