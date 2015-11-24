@@ -8,7 +8,7 @@ class Transaction(Model):
       fields = ["invoice_id", "applied_amount", "applied_at", "invoice_date", "invoice_amount"]
       pass
     class LinkedRefund(Model):
-      fields = ["txn_amount", "txn_date", "txn_id", "txn_status"]
+      fields = ["txn_id", "txn_status", "txn_date", "txn_amount"]
       pass
 
     fields = ["id", "customer_id", "subscription_id", "payment_method", "reference_number", \
