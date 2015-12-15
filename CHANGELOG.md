@@ -1,3 +1,10 @@
+### v1.5.7(2015-12-15)
+* * *
+
+** APIs updated**:
+
+Wrong API invocation issue if empty/null value passed instead of resource id, is fixed.
+
 ### v1.5.6 (2015-11-24)
 * * *
 

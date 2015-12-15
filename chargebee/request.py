@@ -20,8 +20,13 @@ def send(method, url, params=None, env=None, headers=None):
     return Result(response)
 
 def uri_path(*paths):
-    if compat.py_major_v >= 3: 
-       return "/" + "/".join([urllib.parse.quote(str(path)) for path in paths]) 
-    else:
-       return "/" + "/".join(map(lambda path : urllib.quote(str(util.get_val(path))), paths))
+    url = ""
+    for path in paths:
+        if path == None or len(str(path).strip()) < 1 :
+             raise Exception("Id is None or empty")
+        if compat.py_major_v >= 3:          
+             url = url + "/" +  urllib.parse.quote(str(path).strip()) 
+        else:
+             url =  url + "/" + urllib.quote(str(util.get_val(path)))
+    return url    
        
