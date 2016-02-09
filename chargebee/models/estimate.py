@@ -15,7 +15,8 @@ class Estimate(Model):
       pass
 
     fields = ["created_at", "recurring", "subscription_id", "subscription_status", "term_ends_at", \
-    "collect_now", "amount", "price_type", "sub_total", "line_items", "discounts", "taxes"]
+    "collect_now", "price_type", "amount", "credits_applied", "amount_due", "sub_total", "line_items", \
+    "discounts", "taxes"]
 
 
     @staticmethod

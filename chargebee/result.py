@@ -16,7 +16,7 @@ class Result(object):
     @property
     def customer(self):
         return self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'payment_method' : Customer.PaymentMethod});
+        {'billing_address' : Customer.BillingAddress, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod});
 
     @property
     def card(self):

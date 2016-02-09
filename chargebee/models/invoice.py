@@ -30,9 +30,10 @@ class Invoice(Model):
       pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
-    "price_type", "start_date", "end_date", "amount", "amount_due", "paid_on", "dunning_status", \
-    "next_retry", "sub_total", "tax", "first_invoice", "currency_code", "line_items", "discounts", \
-    "taxes", "linked_transactions", "linked_orders", "notes", "shipping_address", "billing_address"]
+    "price_type", "start_date", "end_date", "amount", "amount_paid", "amount_adjusted", "credits_applied", \
+    "amount_due", "paid_on", "dunning_status", "next_retry", "sub_total", "tax", "first_invoice", \
+    "currency_code", "line_items", "discounts", "taxes", "linked_transactions", "linked_orders", \
+    "notes", "shipping_address", "billing_address"]
 
 
     @staticmethod
@@ -84,8 +85,8 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"collect"), None, env, headers)
 
     @staticmethod
-    def collect_payment(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"collect_payment"), None, env, headers)
+    def collect_payment(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"collect_payment"), params, env, headers)
 
     @staticmethod
     def refund(id, params=None, env=None, headers=None):
