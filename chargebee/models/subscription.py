@@ -17,8 +17,8 @@ class Subscription(Model):
     fields = ["id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", "trial_end", \
     "current_term_start", "current_term_end", "remaining_billing_cycles", "po_number", "created_at", \
     "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", \
-    "due_invoices_count", "due_since", "total_dues", "addons", "coupon", "coupons", "shipping_address", \
-    "has_scheduled_changes", "invoice_notes"]
+    "has_scheduled_changes", "due_invoices_count", "due_since", "total_dues", "addons", "coupon", \
+    "coupons", "shipping_address", "invoice_notes"]
 
 
     @staticmethod
@@ -76,3 +76,7 @@ class Subscription(Model):
     @staticmethod
     def charge_addon_at_term_end(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env, headers)
+
+    @staticmethod
+    def delete(id, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"delete"), None, env, headers)
