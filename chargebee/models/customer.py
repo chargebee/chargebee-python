@@ -68,5 +68,5 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id,"set_account_credits"), params, env, headers)
 
     @staticmethod
-    def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"delete"), None, env, headers)
+    def delete(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"delete"), params, env, headers)
