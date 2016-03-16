@@ -1,3 +1,10 @@
+### v1.6.1 (2016-03-16)
+* * *
+
+** Dependency issue fixed**:
+
+Namespace collision for 'http' with Python dependency setuptools is fixed. See pull request: https://github.com/chargebee/chargebee-python/pull/9
+
 ### v1.6.0 (2016-03-10)
 * * *
 
