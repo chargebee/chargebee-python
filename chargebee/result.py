@@ -25,7 +25,7 @@ class Result(object):
     @property
     def invoice(self):
         return self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'invoice_transactions' : Invoice.LinkedTransaction, 'orders' : Invoice.LinkedOrder, 'invoice_notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'linked_transactions' : Invoice.LinkedTransaction, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
 
     @property
     def order(self):
@@ -34,7 +34,7 @@ class Result(object):
     @property
     def transaction(self):
         return self._get('transaction', Transaction,
-        {'invoice_transactions' : Transaction.LinkedInvoice, 'txn_refunds_and_reversals' : Transaction.LinkedRefund});
+        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_refunds' : Transaction.LinkedRefund});
 
     @property
     def hosted_page(self):
@@ -82,6 +82,7 @@ class Result(object):
     def portal_session(self):
         return self._get('portal_session', PortalSession,
         {'linked_customers' : PortalSession.LinkedCustomer});
+
 
 
     def _get(self, type, cls, sub_types=None):
