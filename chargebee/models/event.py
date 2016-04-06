@@ -2,6 +2,7 @@ import json
 from chargebee.model import Model
 from chargebee import request
 from chargebee import APIError
+from chargebee.main import Environment
 
 class Event(Model):
     class Webhook(Model):
@@ -9,7 +10,7 @@ class Event(Model):
       pass
 
     fields = ["id", "occurred_at", "source", "user", "webhook_status", "webhook_failure_reason", \
-    "webhooks", "event_type"]
+    "webhooks", "event_type", "api_version"]
 
     @property
     def content(self):
@@ -22,7 +23,12 @@ class Event(Model):
             webhook_data = json.loads(json_data)
         except (TypeError, ValueError) as ex:
             raise Exception("The passed json_data is not JSON formatted . " + ex.message)
-
+        
+        api_version = webhook_data.get('api_version', None)
+        env_version = Environment.API_VERSION
+        if api_version != None and api_version.upper() != env_version.upper(): 
+            raise Exception("API version [" + api_version.upper() + "] in response does not match "
+                    + "with client library API version [" + env_version.upper() + "]")  
         return Event.construct(webhook_data)
 
     @staticmethod
