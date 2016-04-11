@@ -16,8 +16,8 @@ class Customer(Model):
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "allow_direct_debit", "created_at", "created_from_ip", "taxability", "card_status", "billing_address", \
-    "contacts", "payment_method", "invoice_notes", "account_credits", "refundable_credits", "excess_payments", \
-    "meta_data"]
+    "contacts", "payment_method", "invoice_notes", "promotional_credits", "refundable_credits", \
+    "excess_payments", "meta_data"]
 
 
     @staticmethod
@@ -57,16 +57,16 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id,"delete_contact"), params, env, headers)
 
     @staticmethod
-    def add_account_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"add_account_credits"), params, env, headers)
+    def add_promotional_credits(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"add_promotional_credits"), params, env, headers)
 
     @staticmethod
-    def deduct_account_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"deduct_account_credits"), params, env, headers)
+    def deduct_promotional_credits(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"deduct_promotional_credits"), params, env, headers)
 
     @staticmethod
-    def set_account_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"set_account_credits"), params, env, headers)
+    def set_promotional_credits(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"set_promotional_credits"), params, env, headers)
 
     @staticmethod
     def delete(id, params=None, env=None, headers=None):

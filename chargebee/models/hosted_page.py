@@ -32,13 +32,5 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env, headers)
 
     @staticmethod
-    def checkout_onetime_charge(params, env=None, headers=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_charge"), params, env, headers)
-
-    @staticmethod
-    def checkout_onetime_addons(params, env=None, headers=None):
-        return request.send('post', request.uri_path("hosted_pages","checkout_onetime_addons"), params, env, headers)
-
-    @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("hosted_pages",id), None, env, headers)

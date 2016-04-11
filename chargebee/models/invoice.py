@@ -5,16 +5,25 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax", "tax_rate", "amount", "description", "type", "entity_type", "entity_id"]
+      fields = ["date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax_amount", "tax_rate", "amount", "discount_amount", "item_level_discount_amount", "description", "entity_type", "entity_id"]
       pass
     class Discount(Model):
-      fields = ["amount", "description", "type", "entity_id"]
+      fields = ["amount", "description", "entity_type", "entity_id"]
       pass
     class Tax(Model):
       fields = ["amount", "description"]
       pass
-    class LinkedTransaction(Model):
-      fields = ["txn_id", "applied_amount", "applied_at", "txn_type", "txn_status", "txn_date", "txn_amount"]
+    class LinkedPayment(Model):
+      fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
+      pass
+    class AppliedCredit(Model):
+      fields = ["cn_id", "applied_amount", "applied_at", "cn_reason_code", "cn_date", "cn_status"]
+      pass
+    class AdjustmentCreditNote(Model):
+      fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
+      pass
+    class IssuedCreditNote(Model):
+      fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
       pass
     class LinkedOrder(Model):
       fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
@@ -30,10 +39,10 @@ class Invoice(Model):
       pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
-    "price_type", "start_date", "end_date", "amount", "amount_paid", "amount_adjusted", "credits_applied", \
-    "amount_due", "paid_on", "dunning_status", "next_retry", "sub_total", "tax", "first_invoice", \
-    "currency_code", "line_items", "discounts", "taxes", "linked_transactions", "linked_orders", \
-    "notes", "shipping_address", "billing_address"]
+    "price_type", "date", "total", "amount_paid", "amount_adjusted", "write_off_amount", "credits_applied", \
+    "amount_due", "paid_at", "dunning_status", "next_retry_at", "sub_total", "tax", "first_invoice", \
+    "currency_code", "line_items", "discounts", "taxes", "linked_payments", "applied_credits", "adjustment_credit_notes", \
+    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address"]
 
 
     @staticmethod
@@ -81,12 +90,16 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env, headers)
 
     @staticmethod
-    def collect(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"collect"), None, env, headers)
+    def close(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"close"), None, env, headers)
 
     @staticmethod
     def collect_payment(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"collect_payment"), params, env, headers)
+
+    @staticmethod
+    def record_payment(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"record_payment"), params, env, headers)
 
     @staticmethod
     def refund(id, params=None, env=None, headers=None):

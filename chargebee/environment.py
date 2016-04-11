@@ -2,7 +2,7 @@ class Environment(object):
 
     chargebee_domain = None
     protocol= "https"
-    API_VERSION = "v1"
+    API_VERSION = "v2"
 
     def __init__(self, options):
         self.api_key = options['api_key']
