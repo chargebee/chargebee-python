@@ -51,13 +51,13 @@ class Model(object):
         return obj
     
     def init_dependant(self, obj, type, sub_types={}):
-        if obj[type] != None:
+        if obj.get(type) != None:
             if isinstance(obj, dict) and type in self.dependant_types:
                 dependant_obj = self.dependant_types[type].construct(obj[type], sub_types)
                 setattr(self, type, dependant_obj)
 
     def init_dependant_list(self, obj, type, sub_types={}):
-        if obj[type] != None:
+        if obj.get(type) != None:
             if isinstance(obj[type],(list, tuple)) and type in self.dependant_types:
                 if(self.dependant_types != None):
                     set_val = [self.dependant_types[type].construct(dt, sub_types) for dt in obj[type]]
