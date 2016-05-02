@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class CouponCode(Model):
 
-    fields = ["code", "coupon_id", "coupon_set_name"]
+    fields = ["code", "status", "coupon_id", "coupon_set_name"]
 
 
     @staticmethod
@@ -15,3 +15,7 @@ class CouponCode(Model):
     @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("coupon_codes",id), None, env, headers)
+
+    @staticmethod
+    def archive(id, env=None, headers=None):
+        return request.send('post', request.uri_path("coupon_codes",id,"archive"), None, env, headers)
