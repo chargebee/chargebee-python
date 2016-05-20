@@ -5,13 +5,16 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax_amount", "tax_rate", "amount", "discount_amount", "item_level_discount_amount", "description", "entity_type", "entity_id"]
+      fields = ["id", "date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax_amount", "tax_rate", "amount", "discount_amount", "item_level_discount_amount", "description", "entity_type", "entity_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
       pass
     class Tax(Model):
-      fields = ["amount", "description"]
+      fields = ["name", "amount", "description"]
+      pass
+    class LineItemTax(Model):
+      fields = ["line_item_id", "tax_name", "tax_rate", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
       pass
     class LinkedPayment(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
@@ -41,8 +44,9 @@ class Invoice(Model):
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "total", "amount_paid", "amount_adjusted", "write_off_amount", "credits_applied", \
     "amount_due", "paid_at", "dunning_status", "next_retry_at", "sub_total", "tax", "first_invoice", \
-    "currency_code", "line_items", "discounts", "taxes", "linked_payments", "applied_credits", "adjustment_credit_notes", \
-    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address"]
+    "currency_code", "line_items", "discounts", "taxes", "line_item_taxes", "linked_payments", "applied_credits", \
+    "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", "shipping_address", \
+    "billing_address"]
 
 
     @staticmethod
@@ -63,7 +67,7 @@ class Invoice(Model):
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("invoices"), params, env, headers)
+        return request.send_list_request('get', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod
     def invoices_for_customer(id, params=None, env=None, headers=None):

@@ -22,7 +22,7 @@ class Transaction(Model):
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("transactions"), params, env, headers)
+        return request.send_list_request('get', request.uri_path("transactions"), params, env, headers)
 
     @staticmethod
     def transactions_for_customer(id, params=None, env=None, headers=None):

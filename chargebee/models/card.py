@@ -23,5 +23,9 @@ class Card(Model):
         return request.send('post', request.uri_path("customers",id,"switch_gateway"), params, env, headers)
 
     @staticmethod
+    def copy_card_for_customer(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"copy_card"), params, env, headers)
+
+    @staticmethod
     def delete_card_for_customer(id, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"delete_card"), None, env, headers)

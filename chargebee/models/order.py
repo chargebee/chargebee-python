@@ -23,7 +23,7 @@ class Order(Model):
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("orders"), params, env, headers)
+        return request.send_list_request('get', request.uri_path("orders"), params, env, headers)
 
     @staticmethod
     def orders_for_invoice(id, params=None, env=None, headers=None):
