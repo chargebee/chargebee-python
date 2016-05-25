@@ -7,9 +7,9 @@ import json
 def send_list_request(method, url, params=None, env=None, headers=None):
     serialized = {}
     for k, v in list(params.items()):
-	if isinstance(v, (list)):
-		v = json.dumps(v)
-    	serialized.update({k:v})
+        if isinstance(v, (list)):
+            v = json.dumps(v)
+        serialized.update({k:v})
     return send(method,url,serialized,env,headers)
 
 def send(method, url, params=None, env=None, headers=None):
@@ -32,10 +32,10 @@ def uri_path(*paths):
     url = ""
     for path in paths:
         if path == None or len(str(path).strip()) < 1 :
-             raise Exception("Id is None or empty")
+            raise Exception("Id is None or empty")
         if compat.py_major_v >= 3:          
-             url = url + "/" +  urllib.parse.quote(str(path).strip()) 
+            url = url + "/" +  urllib.parse.quote(str(path).strip()) 
         else:
-             url =  url + "/" + urllib.quote(str(util.get_val(path)))
+            url =  url + "/" + urllib.quote(str(util.get_val(path)))
     return url    
        

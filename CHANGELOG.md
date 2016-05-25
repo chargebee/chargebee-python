@@ -1,3 +1,8 @@
+### v2.0.7 (2016-05-25)
+* * *
+
+Fixed indentation issue in request file.
+
 ### v2.0.6 (2016-05-24)
 * * *
 
