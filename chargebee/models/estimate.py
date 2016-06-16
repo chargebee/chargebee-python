@@ -5,7 +5,8 @@ from chargebee import APIError
 
 class Estimate(Model):
 
-    fields = ["created_at", "subscription_estimate", "invoice_estimate", "credit_note_estimates"]
+    fields = ["created_at", "subscription_estimate", "invoice_estimate", "next_invoice_estimate", \
+    "credit_note_estimates"]
 
 
     @staticmethod

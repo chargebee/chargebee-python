@@ -1,3 +1,10 @@
+### v2.0.8 (2016-06-16)
+* * *
+
+** APIs updated**:
+New subresource "next_invoice_estimate" is returned as part of Estimate resource.
+See : https://apidocs.chargebee.com/docs/api/estimates#estimate_attributes
+
 ### v2.0.7 (2016-05-25)
 * * *
 
@@ -6,7 +13,7 @@ Fixed indentation issue in request file.
 ### v2.0.6 (2016-05-24)
 * * *
 
-#** APIs updated**:
+** APIs updated**:
 
 New attribute "currency_code" is returned as part of Credit Note resource.
 See: https://apidocs.chargebee.com/docs/api/credit_notes#credit_note_attributes

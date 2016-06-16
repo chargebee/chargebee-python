@@ -56,10 +56,12 @@ class Result(object):
     @property
     def estimate(self):
         estimate = self._get('estimate', Estimate, {},
-        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate});
+        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate});
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
         {});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
+        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax});
+        estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax});
         estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
         {'line_items' : CreditNoteEstimate.LineItem, 'discounts' : CreditNoteEstimate.Discount, 'taxes' : CreditNoteEstimate.Tax, 'line_item_taxes' : CreditNoteEstimate.LineItemTax});
