@@ -19,5 +19,5 @@ from chargebee.models.transaction import Transaction
 from chargebee.models.comment import Comment
 from chargebee.models.portal_session import PortalSession
 from chargebee.models.download import Download
+from chargebee.models.third_party_payment_method import ThirdPartyPaymentMethod
 from chargebee.models.content import Content
-

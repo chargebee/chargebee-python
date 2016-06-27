@@ -26,6 +26,11 @@ class Result(object):
         return card;
 
     @property
+    def third_party_payment_method(self):
+        third_party_payment_method = self._get('third_party_payment_method', ThirdPartyPaymentMethod);
+        return third_party_payment_method;
+
+    @property
     def invoice(self):
         invoice = self._get('invoice', Invoice,
         {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'linked_payments' : Invoice.LinkedPayment, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
