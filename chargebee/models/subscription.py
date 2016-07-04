@@ -14,9 +14,9 @@ class Subscription(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
       pass
 
-    fields = ["id", "customer_id", "plan_id", "plan_quantity", "status", "start_date", "trial_start", \
-    "trial_end", "current_term_start", "current_term_end", "remaining_billing_cycles", "po_number", \
-    "created_at", "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", \
+    fields = ["id", "customer_id", "currency_code", "plan_id", "plan_quantity", "status", "start_date", \
+    "trial_start", "trial_end", "current_term_start", "current_term_end", "remaining_billing_cycles", \
+    "po_number", "created_at", "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", \
     "created_from_ip", "has_scheduled_changes", "due_invoices_count", "due_since", "total_dues", \
     "addons", "coupon", "coupons", "shipping_address", "invoice_notes", "meta_data"]
 

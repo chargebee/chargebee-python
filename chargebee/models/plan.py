@@ -5,10 +5,10 @@ from chargebee import APIError
 
 class Plan(Model):
 
-    fields = ["id", "name", "invoice_name", "description", "price", "period", "period_unit", \
-    "trial_period", "trial_period_unit", "charge_model", "free_quantity", "setup_cost", "downgrade_penalty", \
-    "status", "archived_at", "billing_cycles", "redirect_url", "enabled_in_hosted_pages", "enabled_in_portal", \
-    "tax_code", "invoice_notes", "taxable", "meta_data"]
+    fields = ["id", "name", "invoice_name", "description", "price", "currency_code", "period", \
+    "period_unit", "trial_period", "trial_period_unit", "charge_model", "free_quantity", "setup_cost", \
+    "downgrade_penalty", "status", "archived_at", "billing_cycles", "redirect_url", "enabled_in_hosted_pages", \
+    "enabled_in_portal", "tax_code", "invoice_notes", "taxable", "meta_data"]
 
 
     @staticmethod

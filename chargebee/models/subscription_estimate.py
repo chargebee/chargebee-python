@@ -5,5 +5,5 @@ from chargebee import APIError
 
 class SubscriptionEstimate(Model):
 
-    fields = ["id", "status", "next_billing_at"]
+    fields = ["id", "currency_code", "status", "next_billing_at"]
 
