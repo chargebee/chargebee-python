@@ -1,3 +1,8 @@
+###v2.1.1 (2016-07-06)
+* * * 
+** APIs added**:
+A new endpoint to delete a coupon added. See : https://apidocs.chargebee.com/docs/api/coupons#delete_a_coupon
+
 ###v2.1.0 (2016-07-04)
 * * * 
 ** APIs updated**:
