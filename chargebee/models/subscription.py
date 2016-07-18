@@ -54,6 +54,10 @@ class Subscription(Model):
         return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_cancellation"), params, env, headers)
 
     @staticmethod
+    def remove_coupons(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_coupons"), params, env, headers)
+
+    @staticmethod
     def update(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id), params, env, headers)
 
