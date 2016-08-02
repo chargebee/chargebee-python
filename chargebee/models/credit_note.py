@@ -34,6 +34,10 @@ class CreditNote(Model):
         return request.send('get', request.uri_path("credit_notes",id), None, env, headers)
 
     @staticmethod
+    def pdf(id, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"pdf"), None, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("credit_notes"), params, env, headers)
 
