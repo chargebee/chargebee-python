@@ -11,7 +11,7 @@ class Subscription(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
     class ShippingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
 
     fields = ["id", "customer_id", "currency_code", "plan_id", "plan_quantity", "status", "start_date", \

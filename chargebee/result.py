@@ -63,7 +63,7 @@ class Result(object):
         estimate = self._get('estimate', Estimate, {},
         {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate});
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
-        {});
+        {'shipping_address' : SubscriptionEstimate.ShippingAddress});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',

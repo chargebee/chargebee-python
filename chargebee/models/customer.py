@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Customer(Model):
     class BillingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class Contact(Model):
       fields = ["id", "first_name", "last_name", "email", "phone", "label", "enabled", "send_account_email", "send_billing_email"]
@@ -16,8 +16,8 @@ class Customer(Model):
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "allow_direct_debit", "created_at", "created_from_ip", "taxability", "entity_code", "exempt_number", \
-    "card_status", "billing_address", "contacts", "payment_method", "invoice_notes", "promotional_credits", \
-    "refundable_credits", "excess_payments", "meta_data"]
+    "card_status", "fraud_flag", "billing_address", "contacts", "payment_method", "invoice_notes", \
+    "promotional_credits", "refundable_credits", "excess_payments", "meta_data"]
 
 
     @staticmethod
