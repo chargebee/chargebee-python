@@ -7,7 +7,7 @@ class Addon(Model):
 
     fields = ["id", "name", "invoice_name", "description", "type", "charge_type", "price", \
     "currency_code", "period", "period_unit", "unit", "status", "archived_at", "enabled_in_portal", \
-    "tax_code", "invoice_notes", "taxable", "meta_data"]
+    "tax_code", "resource_version", "updated_at", "invoice_notes", "taxable", "meta_data"]
 
 
     @staticmethod

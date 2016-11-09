@@ -8,7 +8,8 @@ class Coupon(Model):
     fields = ["id", "name", "invoice_name", "discount_type", "discount_percentage", "discount_amount", \
     "discount_quantity", "currency_code", "duration_type", "duration_month", "valid_till", "max_redemptions", \
     "status", "apply_discount_on", "apply_on", "plan_constraint", "addon_constraint", "created_at", \
-    "archived_at", "plan_ids", "addon_ids", "redemptions", "invoice_notes", "meta_data"]
+    "archived_at", "resource_version", "updated_at", "plan_ids", "addon_ids", "redemptions", "invoice_notes", \
+    "meta_data"]
 
 
     @staticmethod
