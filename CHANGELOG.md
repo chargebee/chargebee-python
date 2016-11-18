@@ -1,3 +1,17 @@
+###v2.1.9 (2016-11-18)
+* * * 
+
+** APIs updated**:
+A new attribute, 'tax_profile_id' has been added to Addon and Plan resource.
+See : https://apidocs.chargebee.com/docs/api/plans#plan_attributes
+
+The new input parameter 'tax_profile_id' has been added in Create and Update Addon and Plan APIs.
+See : https://apidocs.chargebee.com/docs/api/plans#create_a_plan
+
+The new cancel reason type 'non_compliant_customer' has been added to the Subscription resource.
+See : https://apidocs.chargebee.com/docs/api/subscriptions#subscription_attributes
+
+
 ###v2.1.8 (2016-11-09)
 * * * 
 
