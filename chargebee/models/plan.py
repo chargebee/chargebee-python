@@ -31,3 +31,7 @@ class Plan(Model):
     @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("plans",id,"delete"), None, env, headers)
+
+    @staticmethod
+    def copy(params, env=None, headers=None):
+        return request.send('post', request.uri_path("plans","copy"), params, env, headers)

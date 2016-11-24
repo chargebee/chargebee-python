@@ -17,5 +17,9 @@ class CouponCode(Model):
         return request.send('get', request.uri_path("coupon_codes",id), None, env, headers)
 
     @staticmethod
+    def list(params=None, env=None, headers=None):
+        return request.send_list_request('get', request.uri_path("coupon_codes"), params, env, headers)
+
+    @staticmethod
     def archive(id, env=None, headers=None):
         return request.send('post', request.uri_path("coupon_codes",id,"archive"), None, env, headers)

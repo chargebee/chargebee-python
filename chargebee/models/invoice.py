@@ -66,6 +66,10 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"stop_dunning"), None, env, headers)
 
     @staticmethod
+    def import_invoice(params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices","import_invoice"), params, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("invoices"), params, env, headers)
 

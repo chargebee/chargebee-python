@@ -30,3 +30,7 @@ class Addon(Model):
     @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("addons",id,"delete"), None, env, headers)
+
+    @staticmethod
+    def copy(params, env=None, headers=None):
+        return request.send('post', request.uri_path("addons","copy"), params, env, headers)
