@@ -25,8 +25,9 @@ class CreditNote(Model):
 
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
-    "amount_refunded", "amount_available", "refunded_at", "resource_version", "updated_at", "sub_total", \
-    "line_items", "discounts", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted"]
+    "amount_refunded", "amount_available", "refunded_at", "voided_at", "resource_version", "updated_at", \
+    "sub_total", "line_items", "discounts", "taxes", "line_item_taxes", "linked_refunds", "allocations", \
+    "deleted"]
 
 
     @staticmethod

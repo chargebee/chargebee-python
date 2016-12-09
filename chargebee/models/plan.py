@@ -8,8 +8,8 @@ class Plan(Model):
     fields = ["id", "name", "invoice_name", "description", "price", "currency_code", "period", \
     "period_unit", "trial_period", "trial_period_unit", "charge_model", "free_quantity", "setup_cost", \
     "downgrade_penalty", "status", "archived_at", "billing_cycles", "redirect_url", "enabled_in_hosted_pages", \
-    "enabled_in_portal", "tax_code", "resource_version", "updated_at", "invoice_notes", "taxable", \
-    "tax_profile_id", "meta_data"]
+    "enabled_in_portal", "tax_code", "sku", "accounting_code", "accounting_category1", "accounting_category2", \
+    "resource_version", "updated_at", "invoice_notes", "taxable", "tax_profile_id", "meta_data"]
 
 
     @staticmethod

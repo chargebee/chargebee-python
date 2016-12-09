@@ -18,8 +18,8 @@ class Subscription(Model):
     "trial_start", "trial_end", "current_term_start", "current_term_end", "remaining_billing_cycles", \
     "po_number", "created_at", "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", \
     "created_from_ip", "resource_version", "updated_at", "has_scheduled_changes", "due_invoices_count", \
-    "due_since", "total_dues", "addons", "coupon", "coupons", "shipping_address", "invoice_notes", \
-    "meta_data", "deleted"]
+    "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "coupon", \
+    "coupons", "shipping_address", "invoice_notes", "meta_data", "deleted"]
 
 
     @staticmethod
