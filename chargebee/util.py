@@ -1,3 +1,6 @@
+import calendar
+from datetime import datetime
+
 from chargebee import compat
 
 def serialize(value, prefix=None, idx=None):
@@ -34,6 +37,8 @@ def get_val(val):
         return ''
     elif isinstance(val, bool):
         return str(val).lower()
+    elif isinstance(val, datetime):
+        return calendar.timegm(val.utctimetuple())
     else:
         if compat.py_major_v < 3 and isinstance(val, unicode): 
               return val.encode("utf-8")
