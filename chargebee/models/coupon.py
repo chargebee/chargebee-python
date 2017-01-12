@@ -31,3 +31,7 @@ class Coupon(Model):
     @staticmethod
     def copy(params, env=None, headers=None):
         return request.send('post', request.uri_path("coupons","copy"), params, env, headers)
+
+    @staticmethod
+    def unarchive(id, env=None, headers=None):
+        return request.send('post', request.uri_path("coupons",id,"unarchive"), None, env, headers)

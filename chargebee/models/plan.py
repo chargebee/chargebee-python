@@ -35,3 +35,7 @@ class Plan(Model):
     @staticmethod
     def copy(params, env=None, headers=None):
         return request.send('post', request.uri_path("plans","copy"), params, env, headers)
+
+    @staticmethod
+    def unarchive(id, env=None, headers=None):
+        return request.send('post', request.uri_path("plans",id,"unarchive"), None, env, headers)
