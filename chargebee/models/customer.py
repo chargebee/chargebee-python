@@ -11,7 +11,7 @@ class Customer(Model):
       fields = ["id", "first_name", "last_name", "email", "phone", "label", "enabled", "send_account_email", "send_billing_email"]
       pass
     class PaymentMethod(Model):
-      fields = ["type", "gateway", "status", "reference_id"]
+      fields = ["type", "gateway", "gateway_account_id", "status", "reference_id"]
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \

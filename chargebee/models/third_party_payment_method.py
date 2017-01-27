@@ -5,5 +5,5 @@ from chargebee import APIError
 
 class ThirdPartyPaymentMethod(Model):
 
-    fields = ["type", "gateway", "reference_id"]
+    fields = ["type", "gateway", "gateway_account_id", "reference_id"]
 

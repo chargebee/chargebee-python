@@ -14,6 +14,10 @@ class Estimate(Model):
         return request.send('post', request.uri_path("estimates","create_subscription"), params, env, headers)
 
     @staticmethod
+    def create_sub_for_customer_estimate(id, params, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"create_subscription_estimate"), params, env, headers)
+
+    @staticmethod
     def update_subscription(params, env=None, headers=None):
         return request.send('post', request.uri_path("estimates","update_subscription"), params, env, headers)
 
