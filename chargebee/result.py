@@ -119,6 +119,16 @@ class Result(object):
         {'linked_customers' : PortalSession.LinkedCustomer});
         return portal_session;
 
+    @property
+    def site_migration_detail(self):
+        site_migration_detail = self._get('site_migration_detail', SiteMigrationDetail);
+        return site_migration_detail;
+
+    @property
+    def resource_migration(self):
+        resource_migration = self._get('resource_migration', ResourceMigration);
+        return resource_migration;
+
 
     @property
     def credit_notes(self):

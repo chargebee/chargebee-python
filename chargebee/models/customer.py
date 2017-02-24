@@ -76,3 +76,7 @@ class Customer(Model):
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"delete"), params, env, headers)
+
+    @staticmethod
+    def move(params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers","move"), params, env, headers)

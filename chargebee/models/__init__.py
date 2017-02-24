@@ -20,4 +20,6 @@ from chargebee.models.comment import Comment
 from chargebee.models.portal_session import PortalSession
 from chargebee.models.download import Download
 from chargebee.models.third_party_payment_method import ThirdPartyPaymentMethod
+from chargebee.models.site_migration_detail import SiteMigrationDetail
+from chargebee.models.resource_migration import ResourceMigration
 from chargebee.models.content import Content
