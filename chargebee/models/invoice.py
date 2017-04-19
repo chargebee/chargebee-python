@@ -10,6 +10,9 @@ class Invoice(Model):
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
       pass
+    class LineItemDiscount(Model):
+      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      pass
     class Tax(Model):
       fields = ["name", "amount", "description"]
       pass
@@ -45,9 +48,9 @@ class Invoice(Model):
     "price_type", "date", "due_date", "net_term_days", "currency_code", "total", "amount_paid", \
     "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", "dunning_status", \
     "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "tax", "first_invoice", \
-    "has_advance_charges", "line_items", "discounts", "taxes", "line_item_taxes", "linked_payments", \
-    "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", \
-    "shipping_address", "billing_address", "deleted"]
+    "has_advance_charges", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
+    "linked_payments", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", \
+    "notes", "shipping_address", "billing_address", "deleted"]
 
 
     @staticmethod

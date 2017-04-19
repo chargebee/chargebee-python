@@ -16,7 +16,11 @@ class CreditNoteEstimate(Model):
     class LineItemTax(Model):
       fields = ["line_item_id", "tax_name", "tax_rate", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
       pass
+    class LineItemDiscount(Model):
+      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      pass
 
     fields = ["reference_invoice_id", "type", "price_type", "currency_code", "sub_total", "total", \
-    "amount_allocated", "amount_available", "line_items", "discounts", "taxes", "line_item_taxes"]
+    "amount_allocated", "amount_available", "line_items", "discounts", "taxes", "line_item_taxes", \
+    "line_item_discounts"]
 

@@ -16,7 +16,10 @@ class InvoiceEstimate(Model):
     class LineItemTax(Model):
       fields = ["line_item_id", "tax_name", "tax_rate", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
       pass
+    class LineItemDiscount(Model):
+      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      pass
 
     fields = ["recurring", "price_type", "currency_code", "sub_total", "total", "credits_applied", \
-    "amount_paid", "amount_due", "line_items", "discounts", "taxes", "line_item_taxes"]
+    "amount_paid", "amount_due", "line_items", "discounts", "taxes", "line_item_taxes", "line_item_discounts"]
 

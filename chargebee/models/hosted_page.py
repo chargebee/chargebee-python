@@ -6,7 +6,7 @@ from chargebee import APIError
 class HostedPage(Model):
 
     fields = ["id", "type", "url", "state", "failure_reason", "pass_thru_content", "embed", \
-    "created_at", "expires_at"]
+    "created_at", "expires_at", "updated_at", "resource_version", "checkout_info"]
 
     @property
     def content(self):
@@ -32,5 +32,13 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env, headers)
 
     @staticmethod
+    def acknowledge(id, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages",id,"acknowledge"), None, env, headers)
+
+    @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("hosted_pages",id), None, env, headers)
+
+    @staticmethod
+    def list(params=None, env=None, headers=None):
+        return request.send_list_request('get', request.uri_path("hosted_pages"), params, env, headers)
