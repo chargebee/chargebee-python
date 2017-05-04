@@ -7,6 +7,9 @@ class Customer(Model):
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
+    class ReferralUrl(Model):
+      fields = ["external_customer_id", "referral_sharing_url", "created_at", "updated_at", "referral_campaign_id", "referral_account_id", "referral_external_campaign_id", "referral_system"]
+      pass
     class Contact(Model):
       fields = ["id", "first_name", "last_name", "email", "phone", "label", "enabled", "send_account_email", "send_billing_email"]
       pass
@@ -16,7 +19,8 @@ class Customer(Model):
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "net_term_days", "allow_direct_debit", "created_at", "created_from_ip", "taxability", "entity_code", \
-    "exempt_number", "resource_version", "updated_at", "locale", "card_status", "fraud_flag", "billing_address", \
+    "exempt_number", "resource_version", "updated_at", "locale", "consolidated_invoicing", "card_status", \
+    "fraud_flag", "primary_payment_source_id", "backup_payment_source_id", "billing_address", "referral_urls", \
     "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
     "refundable_credits", "excess_payments", "meta_data", "deleted"]
 
@@ -44,6 +48,10 @@ class Customer(Model):
     @staticmethod
     def update_billing_info(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env, headers)
+
+    @staticmethod
+    def assign_payment_role(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"assign_payment_role"), params, env, headers)
 
     @staticmethod
     def add_contact(id, params, env=None, headers=None):
