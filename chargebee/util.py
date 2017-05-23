@@ -1,8 +1,9 @@
 from chargebee import compat
+from collections import OrderedDict
 
 def serialize(value, prefix=None, idx=None):
 
-    serialized = {}
+    serialized = OrderedDict()
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
