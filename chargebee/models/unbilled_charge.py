@@ -21,3 +21,7 @@ class UnbilledCharge(Model):
     @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("unbilled_charges"), params, env, headers)
+
+    @staticmethod
+    def invoice_now_estimate(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("unbilled_charges","invoice_now_estimate"), params, env, headers)
