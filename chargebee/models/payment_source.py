@@ -18,7 +18,7 @@ class PaymentSource(Model):
       pass
 
     fields = ["id", "customer_id", "type", "reference_id", "status", "gateway", "gateway_account_id", \
-    "ip_address", "card", "bank_account", "amazon_payment", "paypal"]
+    "ip_address", "issuing_country", "card", "bank_account", "amazon_payment", "paypal"]
 
 
     @staticmethod
