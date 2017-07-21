@@ -24,3 +24,11 @@ class Estimate(Model):
     @staticmethod
     def renewal_estimate(id, params=None, env=None, headers=None):
         return request.send('get', request.uri_path("subscriptions",id,"renewal_estimate"), params, env, headers)
+
+    @staticmethod
+    def upcoming_invoices_estimate(id, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"upcoming_invoices_estimate"), None, env, headers)
+
+    @staticmethod
+    def change_term_end(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"change_term_end_estimate"), params, env, headers)
