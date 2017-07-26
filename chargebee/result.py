@@ -144,6 +144,11 @@ class Result(object):
         resource_migration = self._get('resource_migration', ResourceMigration);
         return resource_migration;
 
+    @property
+    def time_machine(self):
+        time_machine = self._get('time_machine', TimeMachine);
+        return time_machine;
+
 
     @property
     def unbilled_charges(self):
