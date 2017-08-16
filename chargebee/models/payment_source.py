@@ -34,6 +34,10 @@ class PaymentSource(Model):
         return request.send('post', request.uri_path("payment_sources","create_card"), params, env, headers)
 
     @staticmethod
+    def update_card(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("payment_sources",id,"update_card"), params, env, headers)
+
+    @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("payment_sources",id), None, env, headers)
 
