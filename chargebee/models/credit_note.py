@@ -46,9 +46,17 @@ class CreditNote(Model):
         return request.send('post', request.uri_path("credit_notes",id,"pdf"), None, env, headers)
 
     @staticmethod
+    def void_credit_note(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"void"), params, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("credit_notes"), params, env, headers)
 
     @staticmethod
     def credit_notes_for_customer(id, params=None, env=None, headers=None):
         return request.send('get', request.uri_path("customers",id,"credit_notes"), params, env, headers)
+
+    @staticmethod
+    def delete(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers)

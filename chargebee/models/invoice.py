@@ -74,6 +74,14 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices","import_invoice"), params, env, headers)
 
     @staticmethod
+    def apply_payments(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"apply_payments"), params, env, headers)
+
+    @staticmethod
+    def apply_credits(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"apply_credits"), params, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("invoices"), params, env, headers)
 
@@ -120,6 +128,14 @@ class Invoice(Model):
     @staticmethod
     def record_refund(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"record_refund"), params, env, headers)
+
+    @staticmethod
+    def remove_payment(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"remove_payment"), params, env, headers)
+
+    @staticmethod
+    def remove_credit_note(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"remove_credit_note"), params, env, headers)
 
     @staticmethod
     def void_invoice(id, params=None, env=None, headers=None):
