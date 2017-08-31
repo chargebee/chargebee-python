@@ -32,3 +32,7 @@ class Estimate(Model):
     @staticmethod
     def change_term_end(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"change_term_end_estimate"), params, env, headers)
+
+    @staticmethod
+    def cancel_subscription(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"cancel_subscription_estimate"), params, env, headers)

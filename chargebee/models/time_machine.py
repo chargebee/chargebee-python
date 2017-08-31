@@ -3,7 +3,6 @@ from chargebee.model import Model
 from chargebee import request
 from chargebee import APIError
 from chargebee import OperationFailedError
-
 class TimeMachine(Model):
 
     fields = ["name", "time_travel_status", "genesis_time", "destination_time", "failure_code", \
