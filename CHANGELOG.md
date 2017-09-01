@@ -990,7 +990,7 @@ A new API called Activate a portal session method(Portal session) added to suppo
 
 ** APIs updated**:
 
-Shipping and Billing Address are returned as part of Invoice resource attributes. This returns the shiping & billing address that was present at the time of invoice generation.
+Shipping and Billing Address are returned as part of Invoice resource attributes. This returns the shipping & billing address that was present at the time of invoice generation.
 
 Linked Customers as part of Portal session resource attributes.
 
