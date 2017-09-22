@@ -83,6 +83,10 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id,"record_excess_payment"), params, env, headers)
 
     @staticmethod
+    def collect_payment(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"collect_payment"), params, env, headers)
+
+    @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"delete"), params, env, headers)
 
