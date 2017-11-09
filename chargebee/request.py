@@ -6,7 +6,7 @@ import json
 
 def send_list_request(method, url, params=None, env=None, headers=None):
     serialized = {}
-    for k, v in list(params.items()):
+    for k, v in list((params or {}).items()):
         if isinstance(v, (list)):
             v = json.dumps(v)
         serialized.update({k:v})
