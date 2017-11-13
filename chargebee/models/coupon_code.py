@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class CouponCode(Model):
 
-    fields = ["code", "status", "coupon_id", "coupon_set_name"]
+    fields = ["code", "status", "coupon_id", "coupon_set_id", "coupon_set_name"]
 
 
     @staticmethod

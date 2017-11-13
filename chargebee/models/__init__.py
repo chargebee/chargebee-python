@@ -3,6 +3,7 @@ from chargebee.models.address import Address
 from chargebee.models.card import Card
 from chargebee.models.coupon import Coupon
 from chargebee.models.coupon_code import CouponCode
+from chargebee.models.coupon_set import CouponSet
 from chargebee.models.customer import Customer
 from chargebee.models.event import Event
 from chargebee.models.hosted_page import HostedPage

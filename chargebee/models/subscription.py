@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Subscription(Model):
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "trial_end"]
+      fields = ["id", "quantity", "unit_price", "trial_end", "remaining_billing_cycles"]
       pass
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]

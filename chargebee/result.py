@@ -103,6 +103,11 @@ class Result(object):
         return coupon;
 
     @property
+    def coupon_set(self):
+        coupon_set = self._get('coupon_set', CouponSet);
+        return coupon_set;
+
+    @property
     def coupon_code(self):
         coupon_code = self._get('coupon_code', CouponCode);
         return coupon_code;
