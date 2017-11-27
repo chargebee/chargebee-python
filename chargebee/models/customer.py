@@ -16,6 +16,9 @@ class Customer(Model):
     class PaymentMethod(Model):
       fields = ["type", "gateway", "gateway_account_id", "status", "reference_id"]
       pass
+    class Balance(Model):
+      fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "balance_currency_code"]
+      pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "net_term_days", "allow_direct_debit", "created_at", "created_from_ip", "taxability", "entity_code", \
@@ -23,7 +26,8 @@ class Customer(Model):
     "billing_date_mode", "billing_day_of_week", "billing_day_of_week_mode", "card_status", "fraud_flag", \
     "primary_payment_source_id", "backup_payment_source_id", "billing_address", "referral_urls", \
     "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
-    "unbilled_charges", "refundable_credits", "excess_payments", "meta_data", "deleted", "registered_for_gst"]
+    "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
+    "registered_for_gst"]
 
 
     @staticmethod

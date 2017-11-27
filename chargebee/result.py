@@ -17,7 +17,7 @@ class Result(object):
     @property
     def customer(self):
         customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod});
+        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance});
         return customer;
 
     @property
@@ -35,6 +35,11 @@ class Result(object):
     def card(self):
         card = self._get('card', Card);
         return card;
+
+    @property
+    def promotional_credit(self):
+        promotional_credit = self._get('promotional_credit', PromotionalCredit);
+        return promotional_credit;
 
     @property
     def invoice(self):
