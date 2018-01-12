@@ -148,3 +148,7 @@ class Invoice(Model):
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"delete"), params, env, headers)
+
+    @staticmethod
+    def update_details(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"update_details"), params, env, headers)
