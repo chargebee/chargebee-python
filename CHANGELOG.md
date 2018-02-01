@@ -1,4 +1,16 @@
-### v2.4.4 (2017-01-12)
+### v2.4.5 (2018-02-01)
+* * * 
+
+The attribute 'round_off_amount' have been added in Invoice an Credit note resources.
+See : https://apidocs.chargebee.com/docs/api/invoices#invoice_attributes
+
+The attribute 'settled_at' has been added to transaction resource.
+See : https://apidocs.chargebee.com/docs/api/transactions#transaction_attributes
+
+'Collect now' API in Hosted pages resource has been undeprecated.
+See : https://apidocs.chargebee.com/docs/api/hosted_pages#collect_now
+
+### v2.4.4 (2018-01-12)
 * New endpoint "Update invoice details" has been added to Invoice resource.
 
 ### v2.4.3 (2017-11-27)
