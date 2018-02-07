@@ -29,8 +29,8 @@ class CreditNote(Model):
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
     "amount_refunded", "amount_available", "refunded_at", "voided_at", "resource_version", "updated_at", \
-    "sub_total", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", "linked_refunds", \
-    "allocations", "deleted"]
+    "sub_total", "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", \
+    "line_item_taxes", "linked_refunds", "allocations", "deleted"]
 
 
     @staticmethod
@@ -46,9 +46,21 @@ class CreditNote(Model):
         return request.send('post', request.uri_path("credit_notes",id,"pdf"), None, env, headers)
 
     @staticmethod
+    def record_refund(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"record_refund"), params, env, headers)
+
+    @staticmethod
+    def void_credit_note(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"void"), params, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("credit_notes"), params, env, headers)
 
     @staticmethod
     def credit_notes_for_customer(id, params=None, env=None, headers=None):
         return request.send('get', request.uri_path("customers",id,"credit_notes"), params, env, headers)
+
+    @staticmethod
+    def delete(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers)

@@ -3,6 +3,7 @@ from chargebee.models.address import Address
 from chargebee.models.card import Card
 from chargebee.models.coupon import Coupon
 from chargebee.models.coupon_code import CouponCode
+from chargebee.models.coupon_set import CouponSet
 from chargebee.models.customer import Customer
 from chargebee.models.event import Event
 from chargebee.models.hosted_page import HostedPage
@@ -24,4 +25,6 @@ from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.resource_migration import ResourceMigration
 from chargebee.models.payment_source import PaymentSource
 from chargebee.models.unbilled_charge import UnbilledCharge
+from chargebee.models.time_machine import TimeMachine
+from chargebee.models.promotional_credit import PromotionalCredit
 from chargebee.models.content import Content

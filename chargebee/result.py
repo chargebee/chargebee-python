@@ -17,7 +17,7 @@ class Result(object):
     @property
     def customer(self):
         customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod});
+        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance});
         return customer;
 
     @property
@@ -35,6 +35,11 @@ class Result(object):
     def card(self):
         card = self._get('card', Card);
         return card;
+
+    @property
+    def promotional_credit(self):
+        promotional_credit = self._get('promotional_credit', PromotionalCredit);
+        return promotional_credit;
 
     @property
     def invoice(self):
@@ -72,12 +77,14 @@ class Result(object):
     @property
     def estimate(self):
         estimate = self._get('estimate', Estimate, {},
-        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
+        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'invoice_estimates' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
+        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
+        estimate.init_dependant_list(self._response['estimate'], 'invoice_estimates',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
         {'line_items' : CreditNoteEstimate.LineItem, 'discounts' : CreditNoteEstimate.Discount, 'taxes' : CreditNoteEstimate.Tax, 'line_item_taxes' : CreditNoteEstimate.LineItemTax, 'line_item_discounts' : CreditNoteEstimate.LineItemDiscount});
@@ -99,6 +106,11 @@ class Result(object):
     def coupon(self):
         coupon = self._get('coupon', Coupon);
         return coupon;
+
+    @property
+    def coupon_set(self):
+        coupon_set = self._get('coupon_set', CouponSet);
+        return coupon_set;
 
     @property
     def coupon_code(self):
@@ -141,6 +153,11 @@ class Result(object):
     def resource_migration(self):
         resource_migration = self._get('resource_migration', ResourceMigration);
         return resource_migration;
+
+    @property
+    def time_machine(self):
+        time_machine = self._get('time_machine', TimeMachine);
+        return time_machine;
 
 
     @property

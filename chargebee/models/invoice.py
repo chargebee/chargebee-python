@@ -48,9 +48,9 @@ class Invoice(Model):
     "price_type", "date", "due_date", "net_term_days", "currency_code", "total", "amount_paid", \
     "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", "dunning_status", \
     "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "tax", "first_invoice", \
-    "has_advance_charges", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
-    "linked_payments", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", \
-    "notes", "shipping_address", "billing_address", "deleted"]
+    "has_advance_charges", "amount_to_collect", "round_off_amount", "line_items", "discounts", "line_item_discounts", \
+    "taxes", "line_item_taxes", "linked_payments", "applied_credits", "adjustment_credit_notes", \
+    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address", "deleted"]
 
 
     @staticmethod
@@ -72,6 +72,14 @@ class Invoice(Model):
     @staticmethod
     def import_invoice(params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices","import_invoice"), params, env, headers)
+
+    @staticmethod
+    def apply_payments(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"apply_payments"), params, env, headers)
+
+    @staticmethod
+    def apply_credits(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"apply_credits"), params, env, headers)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
@@ -122,6 +130,14 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"record_refund"), params, env, headers)
 
     @staticmethod
+    def remove_payment(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"remove_payment"), params, env, headers)
+
+    @staticmethod
+    def remove_credit_note(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"remove_credit_note"), params, env, headers)
+
+    @staticmethod
     def void_invoice(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"void"), params, env, headers)
 
@@ -132,3 +148,7 @@ class Invoice(Model):
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"delete"), params, env, headers)
+
+    @staticmethod
+    def update_details(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"update_details"), params, env, headers)

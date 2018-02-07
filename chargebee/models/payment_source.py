@@ -18,7 +18,7 @@ class PaymentSource(Model):
       pass
 
     fields = ["id", "customer_id", "type", "reference_id", "status", "gateway", "gateway_account_id", \
-    "ip_address", "card", "bank_account", "amazon_payment", "paypal"]
+    "ip_address", "issuing_country", "card", "bank_account", "amazon_payment", "paypal"]
 
 
     @staticmethod
@@ -32,6 +32,10 @@ class PaymentSource(Model):
     @staticmethod
     def create_card(params, env=None, headers=None):
         return request.send('post', request.uri_path("payment_sources","create_card"), params, env, headers)
+
+    @staticmethod
+    def update_card(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("payment_sources",id,"update_card"), params, env, headers)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):

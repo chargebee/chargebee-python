@@ -32,6 +32,14 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","update_payment_method"), params, env, headers)
 
     @staticmethod
+    def manage_payment_sources(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","manage_payment_sources"), params, env, headers)
+
+    @staticmethod
+    def collect_now(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","collect_now"), params, env, headers)
+
+    @staticmethod
     def acknowledge(id, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages",id,"acknowledge"), None, env, headers)
 
