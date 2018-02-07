@@ -2,20 +2,24 @@ from chargebee.compat import json
 
 
 class Model(object):
-    
-    fields = []
+    fields = []           # field list
+    repr_field = None     # field to use for repr(), default is fields[0]
 
     def __init__(self, values, sub_types=None, dependant_types=None):
         if sub_types is None:
             sub_types = {}
         if dependant_types is None:
             dependant_types = {}
-            
+
         self.values = values
         self.sub_types = sub_types
         self.dependant_types = dependant_types
         for field in self.fields:
             setattr(self, field, None)
+
+    def __repr__(self):
+        repr_field = self.repr_field or self.fields[0]
+        return "<chargebee.{}: {}={}>".format(self.__class__.__name__, repr_field, getattr(self, repr_field))
 
     def __str__(self):
         return json.dumps(self.values, indent=4)
@@ -40,16 +44,16 @@ class Model(object):
 
     # Returns null for any attribute that starts with cf_ to access the custom fields.
     def __getattr__(self, name):
-        if( name[0:3] == "cf_"): 
+        if( name[0:3] == "cf_"):
             return None
-        raise AttributeError("Attribute %s not found " % name) 
+        raise AttributeError("Attribute %s not found " % name)
 
     @classmethod
     def construct(cls, values, sub_types=None, dependant_types=None):
         obj = cls(values, sub_types, dependant_types)
         obj.load(values)
         return obj
-    
+
     def init_dependant(self, obj, type, sub_types={}):
         if obj.get(type) != None:
             if isinstance(obj, dict) and type in self.dependant_types:
@@ -63,4 +67,3 @@ class Model(object):
                     set_val = [self.dependant_types[type].construct(dt, sub_types) for dt in obj[type]]
                     setattr(self, type, set_val)
 
-                    
