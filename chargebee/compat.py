@@ -15,10 +15,10 @@ py_minor_v = sys.version_info[1]
 
 if py_major_v < 3:
     from urllib import urlencode
-    from urlparse import urlparse
+    from urlparse import urlparse, urlsplit, parse_qs
     from urllib2 import urlopen as _urlopen, Request
 elif py_major_v >= 3:
-    from urllib.parse import urlencode, urlparse
+    from urllib.parse import urlencode, urlparse, urlsplit, parse_qs
     from urllib.request import urlopen as _urlopen, Request
 
 
@@ -26,12 +26,12 @@ elif py_major_v >= 3:
 try:
     SSLError = None
     ssl = None
-    
+
     if Environment.chargebee_domain is None:
         HTTPSConnection = object
     else:
         HTTPConnection = object
-            
+
     if py_major_v < 3:
         from httplib import HTTPConnection, HTTPSConnection, HTTPException
     else:
