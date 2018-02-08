@@ -12,6 +12,11 @@ class Event(Model):
     fields = ["id", "occurred_at", "source", "user", "webhook_status", "webhook_failure_reason", \
     "webhooks", "event_type", "api_version"]
 
+    sub_types = {
+        'webhooks': Webhook,
+    }
+
+
     @property
     def content(self):
         from chargebee import Content
@@ -23,12 +28,12 @@ class Event(Model):
             webhook_data = json.loads(json_data)
         except (TypeError, ValueError) as ex:
             raise Exception("The passed json_data is not JSON formatted . " + ex.message)
-        
+
         api_version = webhook_data.get('api_version', None)
         env_version = Environment.API_VERSION
-        if api_version != None and api_version.upper() != env_version.upper(): 
+        if api_version != None and api_version.upper() != env_version.upper():
             raise Exception("API version [" + api_version.upper() + "] in response does not match "
-                    + "with client library API version [" + env_version.upper() + "]")  
+                    + "with client library API version [" + env_version.upper() + "]")
         return Event.construct(webhook_data)
 
     @staticmethod

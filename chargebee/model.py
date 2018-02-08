@@ -4,16 +4,11 @@ from chargebee.compat import json
 class Model(object):
     fields = []           # field list
     repr_field = None     # field to use for repr(), default is fields[0]
+    sub_types = {}        # mapping {attr: type}
+    dependant_types = {}  # mapping {attr: type}. If type is a 1-tuple, indicates it's a list.
 
-    def __init__(self, values, sub_types=None, dependant_types=None):
-        if sub_types is None:
-            sub_types = {}
-        if dependant_types is None:
-            dependant_types = {}
-
+    def __init__(self, values):
         self.values = values
-        self.sub_types = sub_types
-        self.dependant_types = dependant_types
         for field in self.fields:
             setattr(self, field, None)
 
@@ -49,21 +44,15 @@ class Model(object):
         raise AttributeError("Attribute %s not found " % name)
 
     @classmethod
-    def construct(cls, values, sub_types=None, dependant_types=None):
-        obj = cls(values, sub_types, dependant_types)
+    def construct(cls, values):
+        obj = cls(values)
         obj.load(values)
+        for k, dependent_type in cls.dependant_types.items():
+            if values.get(k) is not None:
+                if isinstance(dependent_type, tuple):
+                    # dependent type being a 1-tuple indicates a list
+                    set_val = [dependent_type[0].construct(v) for v in values[k]]
+                else:
+                    set_val = dependent_type.construct(values[k])
+                setattr(obj, k, set_val)
         return obj
-
-    def init_dependant(self, obj, type, sub_types={}):
-        if obj.get(type) != None:
-            if isinstance(obj, dict) and type in self.dependant_types:
-                dependant_obj = self.dependant_types[type].construct(obj[type], sub_types)
-                setattr(self, type, dependant_obj)
-
-    def init_dependant_list(self, obj, type, sub_types={}):
-        if obj.get(type) != None:
-            if isinstance(obj[type],(list, tuple)) and type in self.dependant_types:
-                if(self.dependant_types != None):
-                    set_val = [self.dependant_types[type].construct(dt, sub_types) for dt in obj[type]]
-                    setattr(self, type, set_val)
-

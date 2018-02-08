@@ -11,6 +11,9 @@ class PaymentIntent(Model):
     fields = ["id", "status", "currency_code", "amount", "gateway_account_id", "expires_at", \
     "reference_id", "created_at", "modified_at", "customer_id", "gateway", "active_payment_attempt"]
 
+    sub_types = {
+        'payment_attempt': PaymentAttempt,
+    }
 
     @staticmethod
     def create(params, env=None, headers=None):

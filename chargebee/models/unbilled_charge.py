@@ -12,6 +12,9 @@ class UnbilledCharge(Model):
     "pricing_model", "quantity", "amount", "currency_code", "discount_amount", "description", "entity_type", \
     "entity_id", "is_voided", "voided_at", "tiers", "deleted"]
 
+    sub_types = {
+        'tiers' : Tier,
+    }
 
     @staticmethod
     def invoice_unbilled_charges(params=None, env=None, headers=None):

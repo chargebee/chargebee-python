@@ -35,6 +35,14 @@ class Customer(Model):
     "registered_for_gst", "business_customer_without_vat_number", "customer_type", "client_profile_id", \
     "relationship"]
 
+    sub_types = {
+        'billing_address': BillingAddress,
+        'referral_urls': ReferralUrl,
+        'contacts': Contact,
+        'payment_method': PaymentMethod,
+        'balances': Balance,
+        'relationship': Relationship,
+    }
 
     @staticmethod
     def create(params=None, env=None, headers=None):

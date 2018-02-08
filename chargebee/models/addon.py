@@ -15,6 +15,9 @@ class Addon(Model):
     "shipping_frequency_period_unit", "resource_version", "updated_at", "invoice_notes", "taxable", \
     "tax_profile_id", "meta_data", "tiers"]
 
+    sub_types = {
+        'tiers' : Tier,
+    }
 
     @staticmethod
     def create(params, env=None, headers=None):

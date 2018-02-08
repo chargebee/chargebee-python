@@ -9,6 +9,11 @@ class Export(Model):
       pass
 
     fields = ["id", "operation_type", "mime_type", "status", "created_at", "download"]
+
+    sub_types = {
+        'download': Download,
+    }
+
     def wait_for_export_completion(self):
         return wait_for_export_completion()
 

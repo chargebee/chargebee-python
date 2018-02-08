@@ -25,6 +25,13 @@ class Transaction(Model):
     "amount_capturable", "reversal_transaction_id", "linked_invoices", "linked_credit_notes", "linked_refunds", \
     "linked_payments", "deleted"]
 
+    sub_types = {
+        'linked_invoices': LinkedInvoice,
+        'linked_credit_notes': LinkedCreditNote,
+        'linked_refunds': LinkedRefund,
+        'linked_payments': LinkedPayment,
+    }
+
 
     @staticmethod
     def create_authorization(params, env=None, headers=None):

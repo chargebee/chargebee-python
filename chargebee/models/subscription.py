@@ -34,6 +34,15 @@ class Subscription(Model):
     "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", "coupon", \
     "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted"]
 
+    sub_types = {
+        'addons': Addon,
+        'event_based_addons' : EventBasedAddon,
+        'charged_event_based_addons' : ChargedEventBasedAddon,
+        'coupons': Coupon,
+        'shipping_address': ShippingAddress,
+        'referral_info': ReferralInfo,
+    }
+
 
     @staticmethod
     def create(params, env=None, headers=None):

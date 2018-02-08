@@ -17,6 +17,11 @@ class Gift(Model):
     fields = ["id", "status", "scheduled_at", "auto_claim", "no_expiry", "claim_expiry_date", \
     "resource_version", "updated_at", "gifter", "gift_receiver", "gift_timelines"]
 
+    sub_types = {
+        'gifter': Gifter,
+        'gift_receiver': GiftReceiver,
+        'gift_timelines': GiftTimeline,
+    }
 
     @staticmethod
     def create(params, env=None, headers=None):
