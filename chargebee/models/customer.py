@@ -17,7 +17,7 @@ class Customer(Model):
       fields = ["type", "gateway", "gateway_account_id", "status", "reference_id"]
       pass
     class Balance(Model):
-      fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "balance_currency_code"]
+      fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "currency_code", "balance_currency_code"]
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
