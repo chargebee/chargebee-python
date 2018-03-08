@@ -98,8 +98,8 @@ class Invoice(Model):
         return request.send('get', request.uri_path("invoices",id), None, env, headers)
 
     @staticmethod
-    def pdf(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"pdf"), None, env, headers)
+    def pdf(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"pdf"), params, env, headers)
 
     @staticmethod
     def add_charge(id, params, env=None, headers=None):
