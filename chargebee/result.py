@@ -32,6 +32,11 @@ class Result(object):
         return third_party_payment_method;
 
     @property
+    def virtual_bank_account(self):
+        virtual_bank_account = self._get('virtual_bank_account', VirtualBankAccount);
+        return virtual_bank_account;
+
+    @property
     def card(self):
         card = self._get('card', Card);
         return card;
