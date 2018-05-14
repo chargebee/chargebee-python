@@ -55,6 +55,10 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env, headers)
 
     @staticmethod
+    def contacts_for_customer(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"contacts"), params, env, headers)
+
+    @staticmethod
     def assign_payment_role(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"assign_payment_role"), params, env, headers)
 

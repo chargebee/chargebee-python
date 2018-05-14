@@ -21,6 +21,11 @@ class Result(object):
         return customer;
 
     @property
+    def contact(self):
+        contact = self._get('contact', Contact);
+        return contact;
+
+    @property
     def payment_source(self):
         payment_source = self._get('payment_source', PaymentSource,
         {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'amazon_payment' : PaymentSource.AmazonPayment, 'paypal' : PaymentSource.Paypal});
