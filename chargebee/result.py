@@ -169,6 +169,12 @@ class Result(object):
         time_machine = self._get('time_machine', TimeMachine);
         return time_machine;
 
+    @property
+    def export(self):
+        export = self._get('export', Export,
+        {'download' : Export.Download});
+        return export;
+
 
     @property
     def unbilled_charges(self):

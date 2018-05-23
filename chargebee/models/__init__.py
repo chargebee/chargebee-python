@@ -29,4 +29,5 @@ from chargebee.models.time_machine import TimeMachine
 from chargebee.models.promotional_credit import PromotionalCredit
 from chargebee.models.virtual_bank_account import VirtualBankAccount
 from chargebee.models.contact import Contact
+from chargebee.models.export import Export
 from chargebee.models.content import Content
