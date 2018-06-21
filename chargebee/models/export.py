@@ -18,7 +18,7 @@ class Export(Model):
         sleep_time_millis = (10000 if env == None else env.export_sleep_millis)/1000.0
 
         while self.status == 'in_process':
-            if count > 30:
+            if count > 50:
                 raise RuntimeError('Export is taking too long')
             count+=1
             time.sleep(sleep_time_millis);

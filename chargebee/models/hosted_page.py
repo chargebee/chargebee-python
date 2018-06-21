@@ -40,6 +40,10 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","collect_now"), params, env, headers)
 
     @staticmethod
+    def retrieve_agreement_pdf(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","retrieve_agreement_pdf"), params, env, headers)
+
+    @staticmethod
     def acknowledge(id, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages",id,"acknowledge"), None, env, headers)
 
