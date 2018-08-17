@@ -8,7 +8,7 @@ class Export(Model):
       fields = ["download_url", "valid_till"]
       pass
 
-    fields = ["operation_type", "mime_type", "status", "created_at", "id", "download"]
+    fields = ["id", "operation_type", "mime_type", "status", "created_at", "download"]
     def wait_for_export_completion(self):
         return wait_for_export_completion()
 
