@@ -7,6 +7,12 @@ class Subscription(Model):
     class Addon(Model):
       fields = ["id", "quantity", "unit_price", "trial_end", "remaining_billing_cycles"]
       pass
+    class EventBasedAddon(Model):
+      fields = ["id", "quantity", "unit_price", "on_event", "charge_once"]
+      pass
+    class ChargedEventBasedAddon(Model):
+      fields = ["id", "last_charged_at"]
+      pass
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
@@ -23,8 +29,8 @@ class Subscription(Model):
     "po_number", "created_at", "started_at", "activated_at", "pause_date", "resume_date", "cancelled_at", \
     "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", "has_scheduled_changes", \
     "payment_source_id", "auto_collection", "due_invoices_count", "due_since", "total_dues", "mrr", \
-    "exchange_rate", "base_currency_code", "addons", "coupon", "coupons", "shipping_address", "referral_info", \
-    "invoice_notes", "meta_data", "deleted"]
+    "exchange_rate", "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", \
+    "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted"]
 
 
     @staticmethod

@@ -11,7 +11,7 @@ class Result(object):
     @property
     def subscription(self):
         subscription = self._get('subscription', Subscription,
-        {'addons' : Subscription.Addon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo});
+        {'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo});
         return subscription;
 
     @property
@@ -104,7 +104,8 @@ class Result(object):
 
     @property
     def plan(self):
-        plan = self._get('plan', Plan);
+        plan = self._get('plan', Plan,
+        {'applicable_addons' : Plan.ApplicableAddon, 'attached_addons' : Plan.AttachedAddon, 'event_based_addons' : Plan.EventBasedAddon});
         return plan;
 
     @property
