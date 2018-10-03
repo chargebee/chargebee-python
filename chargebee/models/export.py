@@ -38,3 +38,35 @@ class Export(Model):
     @staticmethod
     def deferred_revenue(params, env=None, headers=None):
         return request.send('post', request.uri_path("exports","deferred_revenue"), params, env, headers)
+
+    @staticmethod
+    def plans(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","plans"), params, env, headers)
+
+    @staticmethod
+    def addons(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","addons"), params, env, headers)
+
+    @staticmethod
+    def coupons(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","coupons"), params, env, headers)
+
+    @staticmethod
+    def customers(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","customers"), params, env, headers)
+
+    @staticmethod
+    def subscriptions(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","subscriptions"), params, env, headers)
+
+    @staticmethod
+    def invoices(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","invoices"), params, env, headers)
+
+    @staticmethod
+    def credit_notes(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","credit_notes"), params, env, headers)
+
+    @staticmethod
+    def transactions(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","transactions"), params, env, headers)

@@ -21,13 +21,13 @@ class Customer(Model):
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
-    "net_term_days", "allow_direct_debit", "created_at", "created_from_ip", "taxability", "entity_code", \
-    "exempt_number", "resource_version", "updated_at", "locale", "consolidated_invoicing", "billing_date", \
-    "billing_date_mode", "billing_day_of_week", "billing_day_of_week_mode", "pii_cleared", "card_status", \
-    "fraud_flag", "primary_payment_source_id", "backup_payment_source_id", "billing_address", "referral_urls", \
-    "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
-    "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
-    "registered_for_gst"]
+    "net_term_days", "vat_number_validated_time", "vat_number_status", "allow_direct_debit", "is_location_valid", \
+    "created_at", "created_from_ip", "taxability", "entity_code", "exempt_number", "resource_version", \
+    "updated_at", "locale", "consolidated_invoicing", "billing_date", "billing_date_mode", "billing_day_of_week", \
+    "billing_day_of_week_mode", "pii_cleared", "card_status", "fraud_flag", "primary_payment_source_id", \
+    "backup_payment_source_id", "billing_address", "referral_urls", "contacts", "payment_method", \
+    "invoice_notes", "preferred_currency_code", "promotional_credits", "unbilled_charges", "refundable_credits", \
+    "excess_payments", "balances", "meta_data", "deleted", "registered_for_gst"]
 
 
     @staticmethod

@@ -32,7 +32,7 @@ class Invoice(Model):
       fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
       pass
     class LinkedOrder(Model):
-      fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
+      fields = ["id", "document_number", "status", "order_type", "reference_id", "fulfillment_status", "batch_id", "created_at"]
       pass
     class Note(Model):
       fields = ["entity_type", "note", "entity_id"]

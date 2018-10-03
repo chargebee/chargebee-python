@@ -70,7 +70,8 @@ class Result(object):
 
     @property
     def order(self):
-        order = self._get('order', Order);
+        order = self._get('order', Order,
+        {'order_line_items' : Order.OrderLineItem, 'shipping_address' : Order.ShippingAddress, 'billing_address' : Order.BillingAddress, 'line_item_taxes' : Order.LineItemTax, 'line_item_discounts' : Order.LineItemDiscount, 'linked_credit_notes' : Order.LinkedCreditNote});
         return order;
 
     @property
