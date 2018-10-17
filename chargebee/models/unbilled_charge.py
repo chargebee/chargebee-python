@@ -4,10 +4,13 @@ from chargebee import request
 from chargebee import APIError
 
 class UnbilledCharge(Model):
+    class Tier(Model):
+      fields = ["starting_unit", "ending_unit", "quantity_used", "unit_amount"]
+      pass
 
     fields = ["id", "customer_id", "subscription_id", "date_from", "date_to", "unit_amount", \
-    "quantity", "amount", "currency_code", "discount_amount", "description", "entity_type", "entity_id", \
-    "is_voided", "voided_at", "deleted"]
+    "pricing_model", "quantity", "amount", "currency_code", "discount_amount", "description", "entity_type", \
+    "entity_id", "is_voided", "voided_at", "tiers", "deleted"]
 
 
     @staticmethod

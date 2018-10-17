@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Subscription(Model):
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "trial_end", "remaining_billing_cycles"]
+      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles"]
       pass
     class EventBasedAddon(Model):
       fields = ["id", "quantity", "unit_price", "on_event", "charge_once"]
@@ -24,13 +24,14 @@ class Subscription(Model):
       pass
 
     fields = ["id", "customer_id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", \
-    "setup_fee", "billing_period", "billing_period_unit", "plan_free_quantity", "status", "start_date", \
-    "trial_start", "trial_end", "current_term_start", "current_term_end", "next_billing_at", "remaining_billing_cycles", \
-    "po_number", "created_at", "started_at", "activated_at", "pause_date", "resume_date", "cancelled_at", \
-    "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", "has_scheduled_changes", \
-    "payment_source_id", "auto_collection", "due_invoices_count", "due_since", "total_dues", "mrr", \
-    "exchange_rate", "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", \
-    "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted"]
+    "setup_fee", "plan_amount", "billing_period", "billing_period_unit", "plan_free_quantity", "status", \
+    "start_date", "trial_start", "trial_end", "current_term_start", "current_term_end", "next_billing_at", \
+    "remaining_billing_cycles", "po_number", "created_at", "started_at", "activated_at", "pause_date", \
+    "resume_date", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", \
+    "updated_at", "has_scheduled_changes", "payment_source_id", "auto_collection", "due_invoices_count", \
+    "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
+    "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
+    "meta_data", "deleted"]
 
 
     @staticmethod

@@ -4,12 +4,15 @@ from chargebee import request
 from chargebee import APIError
 
 class Addon(Model):
+    class Tier(Model):
+      fields = ["starting_unit", "ending_unit", "price"]
+      pass
 
-    fields = ["id", "name", "invoice_name", "description", "type", "charge_type", "price", \
-    "currency_code", "period", "period_unit", "unit", "status", "archived_at", "enabled_in_portal", \
+    fields = ["id", "name", "invoice_name", "description", "pricing_model", "type", "charge_type", \
+    "price", "currency_code", "period", "period_unit", "unit", "status", "archived_at", "enabled_in_portal", \
     "tax_code", "sku", "accounting_code", "accounting_category1", "accounting_category2", "is_shippable", \
     "shipping_frequency_period", "shipping_frequency_period_unit", "resource_version", "updated_at", \
-    "invoice_notes", "taxable", "tax_profile_id", "meta_data"]
+    "invoice_notes", "taxable", "tax_profile_id", "meta_data", "tiers"]
 
 
     @staticmethod
