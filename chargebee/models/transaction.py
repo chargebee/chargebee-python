@@ -13,14 +13,26 @@ class Transaction(Model):
     class LinkedRefund(Model):
       fields = ["txn_id", "txn_status", "txn_date", "txn_amount"]
       pass
+    class LinkedPayment(Model):
+      fields = ["id", "status", "amount", "date"]
+      pass
 
     fields = ["id", "customer_id", "subscription_id", "gateway_account_id", "payment_source_id", \
     "payment_method", "reference_number", "gateway", "type", "date", "settled_at", "currency_code", \
-    "amount", "id_at_gateway", "status", "fraud_flag", "error_code", "error_text", "voided_at", \
-    "resource_version", "updated_at", "fraud_reason", "amount_unused", "masked_card_number", "reference_transaction_id", \
-    "refunded_txn_id", "reversal_transaction_id", "linked_invoices", "linked_credit_notes", "linked_refunds", \
+    "amount", "id_at_gateway", "status", "fraud_flag", "authorization_reason", "error_code", "error_text", \
+    "voided_at", "resource_version", "updated_at", "fraud_reason", "amount_unused", "masked_card_number", \
+    "reference_transaction_id", "refunded_txn_id", "reference_authorization_id", "amount_capturable", \
+    "reversal_transaction_id", "linked_invoices", "linked_credit_notes", "linked_refunds", "linked_payments", \
     "deleted"]
 
+
+    @staticmethod
+    def create_authorization(params, env=None, headers=None):
+        return request.send('post', request.uri_path("transactions","create_authorization"), params, env, headers)
+
+    @staticmethod
+    def void_transaction(id, env=None, headers=None):
+        return request.send('post', request.uri_path("transactions",id,"void"), None, env, headers)
 
     @staticmethod
     def list(params=None, env=None, headers=None):

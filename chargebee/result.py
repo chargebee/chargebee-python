@@ -78,7 +78,7 @@ class Result(object):
     @property
     def transaction(self):
         transaction = self._get('transaction', Transaction,
-        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund});
+        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund, 'linked_payments' : Transaction.LinkedPayment});
         return transaction;
 
     @property
