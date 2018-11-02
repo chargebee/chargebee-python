@@ -44,6 +44,14 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","extend_subscription"), params, env, headers)
 
     @staticmethod
+    def checkout_gift(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_gift"), params, env, headers)
+
+    @staticmethod
+    def claim_gift(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","claim_gift"), params, env, headers)
+
+    @staticmethod
     def retrieve_agreement_pdf(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","retrieve_agreement_pdf"), params, env, headers)
 

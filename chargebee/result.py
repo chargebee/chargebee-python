@@ -76,6 +76,12 @@ class Result(object):
         return order;
 
     @property
+    def gift(self):
+        gift = self._get('gift', Gift,
+        {'gifter' : Gift.Gifter, 'gift_receiver' : Gift.GiftReceiver, 'gift_timelines' : Gift.GiftTimeline});
+        return gift;
+
+    @property
     def transaction(self):
         transaction = self._get('transaction', Transaction,
         {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund, 'linked_payments' : Transaction.LinkedPayment});
