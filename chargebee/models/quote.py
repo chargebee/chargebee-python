@@ -37,6 +37,14 @@ class Quote(Model):
         return request.send('get', request.uri_path("quotes",id), None, env, headers)
 
     @staticmethod
+    def create_sub_for_customer_quote(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"create_subscription_quote"), params, env, headers)
+
+    @staticmethod
+    def update_subscription_quote(params, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes","update_subscription_quote"), params, env, headers)
+
+    @staticmethod
     def create_for_onetime_charges(params, env=None, headers=None):
         return request.send('post', request.uri_path("quotes","create_for_onetime_charges"), params, env, headers)
 
@@ -47,6 +55,10 @@ class Quote(Model):
     @staticmethod
     def update_status(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("quotes",id,"update_status"), params, env, headers)
+
+    @staticmethod
+    def delete(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"delete"), params, env, headers)
 
     @staticmethod
     def pdf(id, params=None, env=None, headers=None):
