@@ -70,3 +70,7 @@ class Export(Model):
     @staticmethod
     def transactions(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("exports","transactions"), params, env, headers)
+
+    @staticmethod
+    def orders(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","orders"), params, env, headers)

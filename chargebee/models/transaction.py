@@ -53,3 +53,7 @@ class Transaction(Model):
     @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("transactions",id), None, env, headers)
+
+    @staticmethod
+    def delete_offline_transaction(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("transactions",id,"delete_offline_transaction"), params, env, headers)

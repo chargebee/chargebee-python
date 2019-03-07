@@ -40,6 +40,10 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","collect_now"), params, env, headers)
 
     @staticmethod
+    def accept_quote(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","accept_quote"), params, env, headers)
+
+    @staticmethod
     def extend_subscription(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","extend_subscription"), params, env, headers)
 
