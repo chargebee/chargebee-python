@@ -25,3 +25,7 @@ class VirtualBankAccount(Model):
     @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("virtual_bank_accounts"), params, env, headers)
+
+    @staticmethod
+    def delete_local(id, env=None, headers=None):
+        return request.send('post', request.uri_path("virtual_bank_accounts",id,"delete_local"), None, env, headers)

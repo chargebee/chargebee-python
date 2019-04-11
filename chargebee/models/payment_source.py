@@ -65,3 +65,7 @@ class PaymentSource(Model):
     @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("payment_sources",id,"delete"), None, env, headers)
+
+    @staticmethod
+    def delete_local(id, env=None, headers=None):
+        return request.send('post', request.uri_path("payment_sources",id,"delete_local"), None, env, headers)
