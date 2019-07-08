@@ -19,6 +19,9 @@ class Customer(Model):
     class Balance(Model):
       fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "currency_code", "balance_currency_code"]
       pass
+    class Relationship(Model):
+      fields = ["parent_id", "payment_owner_id", "invoice_owner_id"]
+      pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "net_term_days", "vat_number_validated_time", "vat_number_status", "allow_direct_debit", "is_location_valid", \
@@ -28,7 +31,7 @@ class Customer(Model):
     "primary_payment_source_id", "backup_payment_source_id", "billing_address", "referral_urls", \
     "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
     "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
-    "registered_for_gst", "customer_type"]
+    "registered_for_gst", "business_customer_without_vat_number", "customer_type", "relationship"]
 
 
     @staticmethod
@@ -114,3 +117,15 @@ class Customer(Model):
     @staticmethod
     def clear_personal_data(id, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"clear_personal_data"), None, env, headers)
+
+    @staticmethod
+    def relationships(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"relationships"), params, env, headers)
+
+    @staticmethod
+    def delete_relationship(id, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"delete_relationship"), None, env, headers)
+
+    @staticmethod
+    def hierarchy(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers)

@@ -17,13 +17,23 @@ class Result(object):
     @property
     def customer(self):
         customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance});
+        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'relationship' : Customer.Relationship});
         return customer;
+
+    @property
+    def hierarchy(self):
+        hierarchy = self._get('hierarchy', Hierarchy);
+        return hierarchy;
 
     @property
     def contact(self):
         contact = self._get('contact', Contact);
         return contact;
+
+    @property
+    def token(self):
+        token = self._get('token', Token);
+        return token;
 
     @property
     def payment_source(self):
@@ -203,6 +213,12 @@ class Result(object):
         credit_notes = self._get_list('credit_notes', CreditNote,
         {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
         return credit_notes;
+
+    @property
+    def hierarchies(self):
+        hierarchies = self._get_list('hierarchies', Hierarchy,
+        {});
+        return hierarchies;
 
     @property
     def invoices(self):

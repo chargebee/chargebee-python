@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
@@ -54,7 +54,7 @@ class Invoice(Model):
     "has_advance_charges", "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", \
     "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
     "line_item_tiers", "linked_payments", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", \
-    "linked_orders", "notes", "shipping_address", "billing_address", "deleted"]
+    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "deleted"]
 
 
     @staticmethod
@@ -70,8 +70,8 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices","charge_addon"), params, env, headers)
 
     @staticmethod
-    def stop_dunning(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"stop_dunning"), None, env, headers)
+    def stop_dunning(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"stop_dunning"), params, env, headers)
 
     @staticmethod
     def import_invoice(params, env=None, headers=None):
@@ -114,8 +114,8 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env, headers)
 
     @staticmethod
-    def close(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"close"), None, env, headers)
+    def close(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"close"), params, env, headers)
 
     @staticmethod
     def collect_payment(id, params=None, env=None, headers=None):
