@@ -49,6 +49,10 @@ class Quote(Model):
         return request.send('post', request.uri_path("quotes","create_for_onetime_charges"), params, env, headers)
 
     @staticmethod
+    def list(params=None, env=None, headers=None):
+        return request.send_list_request('get', request.uri_path("quotes"), params, env, headers)
+
+    @staticmethod
     def convert(id, env=None, headers=None):
         return request.send('post', request.uri_path("quotes",id,"convert"), None, env, headers)
 

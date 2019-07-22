@@ -25,5 +25,5 @@ class InvoiceEstimate(Model):
 
     fields = ["recurring", "price_type", "currency_code", "sub_total", "total", "credits_applied", \
     "amount_paid", "amount_due", "line_items", "discounts", "taxes", "line_item_taxes", "line_item_tiers", \
-    "line_item_discounts", "round_off_amount"]
+    "line_item_discounts", "round_off_amount", "customer_id"]
 

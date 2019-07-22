@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class VirtualBankAccount(Model):
 
-    fields = ["id", "customer_id", "email", "bank_name", "account_number", "routing_number", \
+    fields = ["id", "customer_id", "email", "scheme", "bank_name", "account_number", "routing_number", \
     "swift_code", "gateway", "gateway_account_id", "resource_version", "updated_at", "created_at", \
     "reference_id", "deleted"]
 

@@ -35,6 +35,10 @@ class PaymentSource(Model):
         return request.send('post', request.uri_path("payment_sources","create_using_token"), params, env, headers)
 
     @staticmethod
+    def create_using_payment_intent(params, env=None, headers=None):
+        return request.send('post', request.uri_path("payment_sources","create_using_payment_intent"), params, env, headers)
+
+    @staticmethod
     def create_card(params, env=None, headers=None):
         return request.send('post', request.uri_path("payment_sources","create_card"), params, env, headers)
 
