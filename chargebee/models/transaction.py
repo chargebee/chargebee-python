@@ -12,9 +12,10 @@ class Transaction(Model):
       pass
 
     fields = ["id", "customer_id", "subscription_id", "payment_method", "reference_number", \
-    "gateway", "description", "type", "date", "amount", "id_at_gateway", "status", "error_code", \
-    "error_text", "voided_at", "void_description", "amount_unused", "masked_card_number", "reference_transaction_id", \
-    "refunded_txn_id", "reversal_transaction_id", "linked_invoices", "linked_refunds", "currency_code"]
+    "gateway", "description", "type", "date", "currency_code", "amount", "id_at_gateway", "status", \
+    "initiator_type", "three_d_secure", "error_code", "error_text", "voided_at", "void_description", \
+    "amount_unused", "masked_card_number", "reference_transaction_id", "refunded_txn_id", "reversal_transaction_id", \
+    "linked_invoices", "linked_refunds"]
 
 
     @staticmethod

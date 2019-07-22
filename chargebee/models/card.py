@@ -5,9 +5,10 @@ from chargebee import APIError
 
 class Card(Model):
 
-    fields = ["customer_id", "status", "gateway", "first_name", "last_name", "iin", "last4", \
+    fields = ["status", "gateway", "reference_id", "first_name", "last_name", "iin", "last4", \
     "card_type", "expiry_month", "expiry_year", "billing_addr1", "billing_addr2", "billing_city", \
-    "billing_state_code", "billing_state", "billing_country", "billing_zip", "ip_address", "masked_number"]
+    "billing_state_code", "billing_state", "billing_country", "billing_zip", "ip_address", "customer_id", \
+    "masked_number"]
 
 
     @staticmethod
@@ -17,6 +18,10 @@ class Card(Model):
     @staticmethod
     def update_card_for_customer(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"credit_card"), params, env, headers)
+
+    @staticmethod
+    def update_card_for_customer_using_payment_intent(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"credit_card_using_payment_intent"), params, env, headers)
 
     @staticmethod
     def switch_gateway_for_customer(id, params, env=None, headers=None):
