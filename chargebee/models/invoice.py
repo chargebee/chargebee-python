@@ -17,7 +17,7 @@ class Invoice(Model):
       fields = ["name", "amount", "description"]
       pass
     class LineItemTax(Model):
-      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
+      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
     class LineItemTier(Model):
       fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount"]
@@ -53,12 +53,12 @@ class Invoice(Model):
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "due_date", "net_term_days", "currency_code", "total", "amount_paid", \
     "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", "dunning_status", \
-    "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "tax", "first_invoice", \
-    "has_advance_charges", "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", \
-    "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
-    "line_item_tiers", "linked_payments", "dunning_attempts", "applied_credits", "adjustment_credit_notes", \
-    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", \
-    "deleted"]
+    "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "sub_total_in_local_currency", \
+    "total_in_local_currency", "local_currency_code", "tax", "first_invoice", "has_advance_charges", \
+    "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", "round_off_amount", \
+    "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", "line_item_tiers", \
+    "linked_payments", "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", \
+    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "deleted"]
 
 
     @staticmethod

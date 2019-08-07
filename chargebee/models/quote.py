@@ -17,7 +17,7 @@ class Quote(Model):
       fields = ["name", "amount", "description"]
       pass
     class LineItemTax(Model):
-      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
+      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
     class ShippingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
@@ -26,10 +26,11 @@ class Quote(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
 
-    fields = ["id", "po_number", "customer_id", "subscription_id", "status", "operation_type", \
-    "vat_number", "price_type", "valid_till", "date", "sub_total", "total", "credits_applied", "amount_paid", \
-    "amount_due", "resource_version", "updated_at", "currency_code", "line_items", "discounts", \
-    "line_item_discounts", "taxes", "line_item_taxes", "shipping_address", "billing_address"]
+    fields = ["id", "name", "po_number", "customer_id", "subscription_id", "invoice_id", "status", \
+    "operation_type", "vat_number", "price_type", "valid_till", "date", "sub_total", "total", "credits_applied", \
+    "amount_paid", "amount_due", "resource_version", "updated_at", "currency_code", "line_items", \
+    "discounts", "line_item_discounts", "taxes", "line_item_taxes", "notes", "shipping_address", \
+    "billing_address"]
 
 
     @staticmethod
@@ -53,8 +54,8 @@ class Quote(Model):
         return request.send_list_request('get', request.uri_path("quotes"), params, env, headers)
 
     @staticmethod
-    def convert(id, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"convert"), None, env, headers)
+    def convert(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"convert"), params, env, headers)
 
     @staticmethod
     def update_status(id, params, env=None, headers=None):

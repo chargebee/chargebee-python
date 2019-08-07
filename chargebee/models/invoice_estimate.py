@@ -14,7 +14,7 @@ class InvoiceEstimate(Model):
       fields = ["name", "amount", "description"]
       pass
     class LineItemTax(Model):
-      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
+      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
     class LineItemTier(Model):
       fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount"]
