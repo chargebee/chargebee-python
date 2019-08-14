@@ -20,7 +20,7 @@ class Card(Model):
         return request.send('post', request.uri_path("customers",id,"credit_card"), params, env, headers)
 
     @staticmethod
-    def update_card_for_customer_using_payment_intent(id, params, env=None, headers=None):
+    def update_card_for_customer_using_payment_intent(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"credit_card_using_payment_intent"), params, env, headers)
 
     @staticmethod

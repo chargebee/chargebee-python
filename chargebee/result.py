@@ -83,6 +83,11 @@ class Result(object):
         return self._get('portal_session', PortalSession,
         {'linked_customers' : PortalSession.LinkedCustomer});
 
+    @property
+    def payment_intent(self):
+        return self._get('payment_intent', PaymentIntent,
+        {'payment_attempt' : PaymentIntent.PaymentAttempt});
+
 
 
     def _get(self, type, cls, sub_types=None):
