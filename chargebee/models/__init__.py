@@ -33,3 +33,5 @@ from chargebee.models.export import Export
 from chargebee.models.gift import Gift
 from chargebee.models.quote import Quote
 from chargebee.models.content import Content
+from chargebee.models.hierarchy import Hierarchy
+from chargebee.models.payment_intent import PaymentIntent

@@ -201,6 +201,12 @@ class Result(object):
         {'download' : Export.Download});
         return export;
 
+    @property
+    def payment_intent(self):
+        payment_intent = self._get('payment_intent', PaymentIntent,
+        {'payment_attempt' : PaymentIntent.PaymentAttempt});
+        return payment_intent;
+
 
     @property
     def unbilled_charges(self):
