@@ -5,7 +5,13 @@ from chargebee import APIError
 
 class Subscription(Model):
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "trial_end", "remaining_billing_cycles"]
+      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles"]
+      pass
+    class EventBasedAddon(Model):
+      fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once"]
+      pass
+    class ChargedEventBasedAddon(Model):
+      fields = ["id", "last_charged_at"]
       pass
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
@@ -18,13 +24,14 @@ class Subscription(Model):
       pass
 
     fields = ["id", "customer_id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", \
-    "setup_fee", "billing_period", "billing_period_unit", "plan_free_quantity", "status", "start_date", \
-    "trial_start", "trial_end", "current_term_start", "current_term_end", "next_billing_at", "remaining_billing_cycles", \
-    "po_number", "created_at", "started_at", "activated_at", "cancelled_at", "cancel_reason", "affiliate_token", \
+    "setup_fee", "plan_amount", "billing_period", "billing_period_unit", "plan_free_quantity", "status", \
+    "start_date", "trial_start", "trial_end", "current_term_start", "current_term_end", "next_billing_at", \
+    "remaining_billing_cycles", "po_number", "created_at", "started_at", "activated_at", "gift_id", \
+    "override_relationship", "pause_date", "resume_date", "cancelled_at", "cancel_reason", "affiliate_token", \
     "created_from_ip", "resource_version", "updated_at", "has_scheduled_changes", "payment_source_id", \
     "auto_collection", "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", \
-    "base_currency_code", "addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "deleted"]
+    "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", "coupon", \
+    "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted"]
 
 
     @staticmethod
@@ -106,3 +113,19 @@ class Subscription(Model):
     @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"delete"), None, env, headers)
+
+    @staticmethod
+    def pause(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"pause"), params, env, headers)
+
+    @staticmethod
+    def resume(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"resume"), params, env, headers)
+
+    @staticmethod
+    def remove_scheduled_pause(id, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_pause"), None, env, headers)
+
+    @staticmethod
+    def remove_scheduled_resumption(id, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_resumption"), None, env, headers)

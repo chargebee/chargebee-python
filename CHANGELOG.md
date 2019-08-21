@@ -1,3 +1,290 @@
+### v2.6.8 (2019-08-14)
+* * *
+
+* New resource payment_intent has been added.
+* New input parameter 'id' in payment_intent sub-param has been added in create_a_customer, collect_payment_for_customer, create_using_payment_intent, create_a_subscription, create_subscription_for_customer and update_a_subscription .
+* New event_types PAYMENT_INTENT_CREATED and PAYMENT_INTENT_UPDATED have been added.
+
+### v2.6.7 (2019-08-07)
+* * *
+
+* New attributes tax_amount_in_local_currency and local_currency_code have been added in line_item_tax sub-resource of credit_note, credit_note_estimate, invoice, invoice_estimate, order and quote resources.
+* New attributes sub_total_in_local_currency, total_in_local_currency and local_currency_code have been added in credit_note and invoice resources.
+* New input parameter gw_payment_method_id has been added in create_a_customer, collect_payment_for_customer, create_using_payment_intent, create_a_subscription, create_subscription_for_customer and update_a_subscription api.
+* New attributes name, invoice_id and notes have been added in quote resource.
+* New input parameters name, notes and expires_at have been added in create_a_quote_for_a_new_subscription, create_a_quote_for_update_subscription and create_a_quote_for_one-time_charges api.
+* New input parameters id, auto_collection and po_number have been added in convert_a_quote api.
+
+### v2.6.6 (2019-07-22)
+* * *
+
+* The attribute ref_tx_id has been added in card resource.
+* The attribute custmer_id has been added in credit_note_estimate and invoice_estimate resource.
+* The input parameters payment_intent with gateway_account_id and gw_token have been added in create a customer, collect payment for customer, create subscription and create subscription for customer API.
+* New enum dunning_type has been added.
+* New value vantiv has been added in the gateway enum.
+* New value sepa_credit has been added in payment method enum. 
+* The attribute dunning_attempts has been added in invoice resource.
+* New enpoint create_using_payment_intent has been added in payment_source resouce.
+* The input parameter reference_transaction has been added in update card payment source API.
+* New endpoint list quote has been added in qoutes resource.
+* The attributes initiator_type and three_d_secure have been added in transaction resource.
+* New attribute scheme has been added in virtual_bank_account resource.
+* New input parameter scheme has been added in create a virtual bank account using permanent token and create a virtual bank account API.
+
+### v2.6.5 (2019-07-08)
+* * *
+
+* The resources hierarchy and token are added.
+* Value ‘day’ is added in period_unit and shipping_frequency_period_unit .
+* The parameters fractional_correction, comment, date_from and date_to are added in Create credit note API.
+* The attribute customer_id is added to line_item sub resource of Credit note, Credit note estimate, Invoice, Invoice estimate and Quote.
+* Endpoints Link a customer, Delink a customer, Get hierarchy, CreateUsingToken are added.
+* The attributes business_customer_without_vat_number and relationship are added to customer resource.
+* The filter parameters parent_id, payment_owner_id, invoice_owner_id are added in List customers, Export revenue recognition reports, Export Deferred Revenue Reports and Export customers APIs.
+* The parameter token_id is added in Collect payment API.
+* Event types hierarchy_created, hierarchy_deleted, token_created, token_consumed and token_expired are added.
+* The parameter service_period_in_days is added in Create subscription estimate, Create subscription for customer estimate, Update subscription estimate, Checkout new, Checkout existing, Create subscription for customer quote, Update subscription quote, Create subscription, Create subscription for customer, Update subscription, Import subscription and Import subscription for customer.
+* The filter parameter payment_owner is added in Export revenue recognition reports,Export Deferred Revenue Reports, Export Invoice and List Invoice APIs.
+* The attribute payment_owner is added to invoice.
+* The attributes date_from and date_to are added to Create an invoice, create a invoice for add-on and create a invoice for charge,Create a quote for one-time charges, Add charge at term end and Add add-on at term end.
+* The parameter comment is added to Stop dunning, Apply payments, Apply credits, Add charge, Add add-on charge, Update details and Close Invoice APIs.
+* The parameter ‘claim_credits’ is added to delete invoice API.
+* The attribute override_relationship is added to subscription resource.
+* The parameter token_id is added to Create subscription API.
+* The parameter override_relationship is added to Create subscription for customer and Update subscription APIs.
+* The attribute service_period_in_days is added to event add ons sub resource.
+
+### v2.6.4 (2019-04-11)
+* * *
+
+* The attributes avalara_sale_type, avalara_transaction_type and avalara_service_type are added in Addon and plan resource.
+* The input parameters avalara_sale_type, avalara_transaction_type , avalara_service_type are added in create addon , update addon  ,create plan , update  plan, create invoice  , create invoice for charge, add_charge , add_charge_at_term_end and create_for_onetime_charges api endpoints.
+* The attributes is_partial_tax_applied, is_non_compliance_tax and taxable_amount are added in line_item_taxes of credit_note ,credit_note_estimate , invoice, invoice_estimate , quote and order resources.
+* The attributes exemption_details and customer_type are added in customer resource .
+* The input parameters exemption_details and customer_type are added in create customer, update customer , create subscription estimate, create subscription and import subscription api endpoints.
+* The enum values federal and unincorporated are added in tax_juris_type.
+* The enum value export is added in tax_override_reason .
+* The input parameter cancelled_at is added in cancel order api endpoint.
+* New endpoint delete_local is added in payment_source and virtual_bank_account resources.
+
+### v2.6.3 (2019-03-07)
+* * *
+
+* The attributes created_at, resource_version and updated_at are added in card, payment_source and virtual_bank_account resources.
+* The input filter parameter sort_by with updated_at attribute is added in list customer and list subscription api endpoints.
+* New endpoint export orders is added in export resource.
+* New endpoint accept quote is added in hosted_pages resource.
+* The input filter parameters updated_at and created_at are added in list payment_source api endpoint and list virtual_bank_accounts endpoint .
+* New endpoint delete an offline transaction is added in transaction resource.
+
+### v2.6.2 (2019-01-10)
+* * *
+
+* New event type 'quote_deleted' has been added
+* New gateway type 'cybersource' has been added.
+* New filter parameters 'subscription_id' and 'order_type' have been added in List Order API.
+* New endpoints Create subscription for customer quote, Update subscription quote and Delete have been added to Quote resource.
+
+### v2.6.2 (2019-01-10)
+* * *
+
+* New event type 'quote_deleted' has been added
+* New gateway type 'cybersource' has been added.
+* New filter parameters 'subscription_id' and 'order_type' have been added in List Order API.
+* New endpoints Create subscription for customer quote, Update subscription quote and Delete have been added to Quote resource.
+
+### v2.6.1 (2018-11-09)
+* * *
+
+* New resource 'Quote' with endpoints 'Retrieve a quote', 'Create a quote for one-time charges', 'Convert a quote', 'Update quote status', 'Retrieve quote as PDF' has been added. See : https://apidocs.chargebee.com/docs/api/quotes
+* Entity type 'quote' has been added.
+* Event types 'quote_created' and 'quote_updated' have been added.
+
+
+### v2.6.0 (2018-11-02)
+* * *
+
+* New resource 'Gift' with endpoints 'Create a gift', 'Retrieve a gift', 'Claim a gift',  'Cancel a gift' and  'List gifts' has been added.
+* New event types gift_scheduled, gift_unclaimed, gift_claimed, gift_expired and gift_cancelled have been added.
+* New endpoints 'Checkout gift' and 'Claim gift' have been added to Hosted page resource.
+* Input param 'redirect_url' has been added in 'Manage payment sources' and 'Collect now' APIs.
+* Hosted page types 'checkout_gift' and 'claim_gift' have been added.
+* The attributes 'term_finalized' and 'is_gifted' have been added in Invoice attributes.
+* The attributes 'is_gifted', 'gift_note' and 'gift_id' have been added in Orders attributes.
+* The attribute 'sku' has been added in Gift attributes.
+* The input parameter 'sku' has been added in Update orders API.
+* The order status 'cancelled' has been added.
+* The attributes 'giftable' and 'claim_url' have been added in Plan resource.
+* The input parameters 'giftable' and 'claim_url' have been added in Create a plan API.
+* List filter parameter 'giftable' has been added in List Plans API.
+* The attribute 'gift_id' has been added to Subscription resource.
+
+### v2.5.9 (2018-10-26)
+* * *
+
+* The attributes authorization_reason, reference_authorization_id, amount_capturable and linked_payments have been added in Transaction resource.
+* The input parameter transaction amount_capturable has been added in export transaction API.
+* The input parameters authorization_transaction_id and auto_collection have been added in create invoice API.
+* The input parameter authorization_transaction_id has been added in Collect payment for invoice API.
+* Type authorization_reason with values blocking_funds and verification has been added in Transaction resource.
+* New endpoints "Create an authorization payment " and "Void an authorization transaction" have been in added in Transaction API.
+* The input filter parameter amount_capturable has been added in list transactions API.
+* The Event types authorization_succeeded, authorization_voided, order_ready_to_process, order_ready_to_ship have been added.
+
+### v2.5.8 (2018-10-17)
+* * *
+
+* The attributes pricing_model and tiers has been added in Addon , Plan and UnbilledCharge resources.
+* The attribute price is made optional in Plan and Addon resource.
+* The input parameters pricing_model, tier_starting_unit, tier_ending_unit and tier_price have been added in Create addon , Update addon , Create Plan and Update Plan APIs.
+* The attributes line_item_tiers would be added in creditNote , Invoice , InvoiceEstimate and CreditNoteEstimate resources.
+* The attribute pricing_model have been added to line_tem sub-resource of CreditNote , Invoice , InvoiceEstimate and CreditNoteEstimate resources.
+* The input parameter line_item_amount has been added in Create credit note API.
+* The input parameters line_item_unit_amount and line_item_quantity have been changed to optional parameters in Create Credit Note API.
+* The input parameter line_item_id, line_item_tier_line_item_id, line_item_tier_starting_unit, line_item_tier_ending_unit, line_item_tier_quantity_used, line_item_tier_unit_amount have been added in Import invoice API.
+* The attribute amount has been added to Addon subResource attributes of Subscription API.
+* The attribute plan_amount has been added to Subscription API.
+* The type pricing_model with values flat_fee, per_unit, tiered, volume and stairstep have been added.
+* The values tiered, volume and stairstep  have been added the attribute type of Addon resource.
+* The values tiered, volume and stairstep have been added to the attribute charge_model of Plan resource.
+* The input parameter type has been deprecated in Create Addon and Update Addon APIs.
+* The input parameter charge_model has been deprecated in Create Plan and Update Plan APIs.
+* The filter parameter type has been deprecated in List Addon API.
+* The filter parameter charge_model has been deprecated in List Plan API.
+* The filter parameter pricing_model has been added to List Plan and List Addon APIs.
+
+### v2.5.7 (2018-10-03)
+* * *
+
+* The attributes `is_shippable`, `shipping_frequency_period` and`shipping_frequency_period_unit` has been added in Plan and Addon resource.
+* The input parameters `is_shippable`, `shipping_frequency_period` and`shipping_frequency_period_unit` has been added in Create plan , Update plan , Create addonand Update addon APIs.
+* The attributes `vat_number_validated_time`, `vat_number_status` and `is_location_valid`has been added in Customer resource.
+* The event types `order_created`, `order_updated`, `order_cancelled`, `order_delivered`and `order_returned` has been added.
+* New order status `queued`, `awaiting_shipment`, `on_hold`, `delivered`, `shipped`,`partially_delivered` and `returned` has been added.
+* New endpoints Export plans , Export addons , Export coupons , Export customers , Export subscriptions , Export invoices , Export creditnotes and Export transactions has been added to Exportst API.
+* The input parameter `subscription_affiliate_token` has been added to Checkout New Hosted Pages API.
+* The attributes `document_number` and `order_type` has been added to Invoice resource.
+* The attributes `document_number`, `customer_id`, `subscription_id`,`cancellation_reason`, `payment_status`, `order_type`, `price_type`, `order_date`,`shipping_date`, `shipment_carrier`, `invoice_round_off_amount`, `tax`, `amount_paid`,`amount_adjusted`, `refundable_credits_issued`, `refundable_credits`,`rounding_adjustement`, `paid_on`, `shipping_cut_off_date`, `delivered_at`,`shipped_at`, `resource_verison`, `updated_at`, `cancelled_at`, `order_line_items`,`shipping_address`, `billing_address`, `discount`, `sub_total`, `total`,`line_item_taxes`, `line_item_discounts`, `linked_credit_notes`, `deleted` and`currency_code` has been added in Order resource.
+* The input parameters `shipping_date`, `order_date`, `cancelled_at`,`cancellation_reason`, `shipped_at`, `delivered_at`, `shipment_carrier`,`shipping_address`, `order_line_item` has been added in Update order API.
+* The filters `include_deleted`, `shipping_date`, `order_date`, `paid_on` and `updated_at` has been added in List Orders API.
+* New endpoints Assign order number , Cancel an order , Create a refundable credit note and Reopen a cancelled order has been added to Orders API.
+
+### v2.5.6 (2018-09-12)
+* * *
+
+* The attributes addon_applicability, applicable_addons, attached_addons and event_based_addons has been added to Plan resource.
+* The input parameters addon_applicability, applicable_addons, attached_addons and event_based_addons has been added in Create and Update plan APIs.
+* The attributes event_based_addons and charged_event_based_addons has been added to Subscription resource.
+* The input parameters mandatory_addons_to_remove, event_based_addons and charged_event_based_addons has been added in Create subscription, Create subscription for customer, Update subscription, Create subscription estimate, create subscription for customer estimate, update subscription estimate, checkout new subscription and checkout existing subscription APIs.
+
+### v2.5.5 (2018-08-17)
+* * *
+
+* New endpoint 'Clear Personal Data of a customer' has been added to Customer resource.
+* New endpoint 'Merge customers' has been added to Customer resource.
+* New endpoint 'Extend subscription' has been added to Hosted page resource.
+* The input parameter 'charges_handling' has been added to Resume a subscription and Resume a subscription estimate APIs.
+* The input parameters 'pause_date' and 'resume_date' has been added to Import subscription and Import subscription for customer APIs.
+* New tax_exempt_reason 'high_value_physical_goods' has been be added.
+
+### v2.5.4 (2018-06-21)
+* * *
+
+* New attribute round_off_amount is added in Credit Note Estimate, Invoice Estimate Object
+* Sort List Invoice API results based on invoice updated_at attribute.
+* Create Customer and Create Subscription additionally take bank account details as input parameter.
+* New API end point in Hosted Page resource to retrieve direct debit agreement payment PDF
+* New Enum AccountHolderType, AccountType, Echeck Type has been added in  Payment Source
+* New attribute echeck, account_holder_type, last4 has been added
+* New API end points create bank account payment source and verify bank account payment source has been added
+
+
+### v2.5.3 (2018-05-23)
+* * *
+
+* New Resource [Export](https://apidocs.chargebee.com/docs/api/exports) has been added
+* New payment gateway bluesnap has been added
+
+### v2.5.2 (2018-05-14)
+* * * 
+
+New endpoint 'List contacts for a customer' has been added to Customer resource.
+See : https://apidocs.chargebee.com/docs/api/customers#list_of_contacts_for_a_customer
+
+### v2.5.1 (2018-05-03)
+* * * 
+
+New endpoint 'Update a coupon' has been added.
+See : https://apidocs.chargebee.com/docs/api/coupons#update_a_coupon
+
+### v2.5.0 (2018-04-27)
+* * * 
+
+New resource 'Virtual Bank Account' has been added.
+See : https://apidocs.chargebee.com/docs/api/virtual_bank_accounts
+
+New event types virtual_bank_account_added, virtual_bank_account_updated and virtual_bank_account_deleted has been added.
+See : https://apidocs.chargebee.com/docs/api/events#event_types
+
+The payment method ach_credit has been added.
+See : https://apidocs.chargebee.com/docs/api/transactions#transaction_attributes
+
+
+### v2.4.9 (2018-03-29)
+* * * 
+
+New status 'Pause' has been added to subscription.
+See : https://apidocs.chargebee.com/docs/api/subscriptions#subscription_status
+
+The attribues 'pause_date' and 'resume_date' have been added to subscription and estimate resources.
+See : https://apidocs.chargebee.com/docs/api/subscriptions#subscription_attributes
+
+The input params 'create_current_term_invoice', transaction amount, payment method, reference number and date have been added to Import a subscription and Import subscription for customer APIs.
+See : https://apidocs.chargebee.com/docs/api/subscriptions#import_a_subscription
+
+The attribute 'expected_payment_date' has been added to Invoice attributes.
+See : https://apidocs.chargebee.com/docs/api/invoices#invoice_attributes
+
+The reason code 'subscription_pause' has been added to Credit note attributes.
+See : https://apidocs.chargebee.com/docs/api/credit_notes#credit_note_reason_code
+
+New event types subscription_paused, subscription_pause_scheduled, subscription_scheduled_pause_removed, subscription_resumed, subscription_resumption_scheduled and subscription_scheduled_resumption_removed have been added.
+See : https://apidocs.chargebee.com/docs/api/events#event_types
+
+New endpoints 'Pause a subscription', 'Resume a subscription', 'Remove scheduled pause' and 'Remove scheduled resumption' have been added to Subscription resource.
+See : https://apidocs.chargebee.com/docs/api/subscriptions
+
+New endpoints 'Pause subscription estimate' and 'Resume subscription estimate' have been added to Estimate resource.
+See : https://apidocs.chargebee.com/docs/api/estimates
+
+### v2.4.8 (2018-03-20)
+* * * 
+
+New attribute 'deleted' has been added to Payment source resource.
+See : https://apidocs.chargebee.com/docs/api/payment_sources#payment_source_attributes
+
+### v2.4.7 (2018-03-08)
+* * * 
+
+The input parameter disposition_type has been added to 'Retrieve Invoice as PDF' and 'Retrieve Credit Note as PDF' APIs.
+See : https://apidocs.chargebee.com/docs/api/invoices#retrieve_invoice_as_pdf
+
+### v2.4.6 (2018-03-02)
+* * * 
+
+The attribute 'balance_currency_code' has been deprecated and attribute 'currency_code' has been added to Balances sub-resource in Customer resource.
+See : https://apidocs.chargebee.com/docs/api/customers#customer_attributes
+
+The attribute done_by has been added to Promotional credits resource.
+See : https://apidocs.chargebee.com/docs/api/promotional_credits
+
+New payment method wechat_pay has been added.
+See : https://apidocs.chargebee.com/docs/api/customers#customer_attributes
+
+The endpoint Manage Payment Sources has been undeprecated in Hosted pages resource.
+See : https://apidocs.chargebee.com/docs/api/hosted_pages
+
 ### v2.4.5 (2018-02-01)
 * * * 
 

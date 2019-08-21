@@ -17,17 +17,21 @@ class Customer(Model):
       fields = ["type", "gateway", "gateway_account_id", "status", "reference_id"]
       pass
     class Balance(Model):
-      fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "balance_currency_code"]
+      fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "currency_code", "balance_currency_code"]
+      pass
+    class Relationship(Model):
+      fields = ["parent_id", "payment_owner_id", "invoice_owner_id"]
       pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
-    "net_term_days", "allow_direct_debit", "created_at", "created_from_ip", "taxability", "entity_code", \
-    "exempt_number", "resource_version", "updated_at", "locale", "consolidated_invoicing", "billing_date", \
-    "billing_date_mode", "billing_day_of_week", "billing_day_of_week_mode", "card_status", "fraud_flag", \
+    "net_term_days", "vat_number_validated_time", "vat_number_status", "allow_direct_debit", "is_location_valid", \
+    "created_at", "created_from_ip", "exemption_details", "taxability", "entity_code", "exempt_number", \
+    "resource_version", "updated_at", "locale", "consolidated_invoicing", "billing_date", "billing_date_mode", \
+    "billing_day_of_week", "billing_day_of_week_mode", "pii_cleared", "card_status", "fraud_flag", \
     "primary_payment_source_id", "backup_payment_source_id", "billing_address", "referral_urls", \
     "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
     "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
-    "registered_for_gst"]
+    "registered_for_gst", "business_customer_without_vat_number", "customer_type", "relationship"]
 
 
     @staticmethod
@@ -53,6 +57,10 @@ class Customer(Model):
     @staticmethod
     def update_billing_info(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env, headers)
+
+    @staticmethod
+    def contacts_for_customer(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"contacts"), params, env, headers)
 
     @staticmethod
     def assign_payment_role(id, params, env=None, headers=None):
@@ -101,3 +109,23 @@ class Customer(Model):
     @staticmethod
     def change_billing_date(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id,"change_billing_date"), params, env, headers)
+
+    @staticmethod
+    def merge(params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers","merge"), params, env, headers)
+
+    @staticmethod
+    def clear_personal_data(id, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"clear_personal_data"), None, env, headers)
+
+    @staticmethod
+    def relationships(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"relationships"), params, env, headers)
+
+    @staticmethod
+    def delete_relationship(id, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"delete_relationship"), None, env, headers)
+
+    @staticmethod
+    def hierarchy(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers)

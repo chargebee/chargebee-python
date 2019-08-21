@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "is_taxed", "tax_amount", "tax_rate", "amount", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
@@ -17,10 +17,16 @@ class Invoice(Model):
       fields = ["name", "amount", "description"]
       pass
     class LineItemTax(Model):
-      fields = ["line_item_id", "tax_name", "tax_rate", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code"]
+      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
+      pass
+    class LineItemTier(Model):
+      fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount"]
       pass
     class LinkedPayment(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
+      pass
+    class DunningAttempt(Model):
+      fields = ["attempt", "transaction_id", "dunning_type", "created_at", "txn_status", "txn_amount"]
       pass
     class AppliedCredit(Model):
       fields = ["cn_id", "applied_amount", "applied_at", "cn_reason_code", "cn_date", "cn_status"]
@@ -32,7 +38,7 @@ class Invoice(Model):
       fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
       pass
     class LinkedOrder(Model):
-      fields = ["id", "status", "reference_id", "fulfillment_status", "batch_id", "created_at"]
+      fields = ["id", "document_number", "status", "order_type", "reference_id", "fulfillment_status", "batch_id", "created_at"]
       pass
     class Note(Model):
       fields = ["entity_type", "note", "entity_id"]
@@ -47,10 +53,12 @@ class Invoice(Model):
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "due_date", "net_term_days", "currency_code", "total", "amount_paid", \
     "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", "dunning_status", \
-    "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "tax", "first_invoice", \
-    "has_advance_charges", "amount_to_collect", "round_off_amount", "line_items", "discounts", "line_item_discounts", \
-    "taxes", "line_item_taxes", "linked_payments", "applied_credits", "adjustment_credit_notes", \
-    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address", "deleted"]
+    "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "sub_total_in_local_currency", \
+    "total_in_local_currency", "local_currency_code", "tax", "first_invoice", "has_advance_charges", \
+    "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", "round_off_amount", \
+    "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", "line_item_tiers", \
+    "linked_payments", "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", \
+    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "deleted"]
 
 
     @staticmethod
@@ -66,8 +74,8 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices","charge_addon"), params, env, headers)
 
     @staticmethod
-    def stop_dunning(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"stop_dunning"), None, env, headers)
+    def stop_dunning(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"stop_dunning"), params, env, headers)
 
     @staticmethod
     def import_invoice(params, env=None, headers=None):
@@ -98,8 +106,8 @@ class Invoice(Model):
         return request.send('get', request.uri_path("invoices",id), None, env, headers)
 
     @staticmethod
-    def pdf(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"pdf"), None, env, headers)
+    def pdf(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"pdf"), params, env, headers)
 
     @staticmethod
     def add_charge(id, params, env=None, headers=None):
@@ -110,8 +118,8 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env, headers)
 
     @staticmethod
-    def close(id, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"close"), None, env, headers)
+    def close(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"close"), params, env, headers)
 
     @staticmethod
     def collect_payment(id, params=None, env=None, headers=None):

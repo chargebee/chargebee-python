@@ -27,4 +27,11 @@ from chargebee.models.payment_source import PaymentSource
 from chargebee.models.unbilled_charge import UnbilledCharge
 from chargebee.models.time_machine import TimeMachine
 from chargebee.models.promotional_credit import PromotionalCredit
+from chargebee.models.virtual_bank_account import VirtualBankAccount
+from chargebee.models.contact import Contact
+from chargebee.models.export import Export
+from chargebee.models.gift import Gift
+from chargebee.models.quote import Quote
 from chargebee.models.content import Content
+from chargebee.models.hierarchy import Hierarchy
+from chargebee.models.payment_intent import PaymentIntent

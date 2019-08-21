@@ -1,5 +1,5 @@
 import base64
-
+import platform
 from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
@@ -27,6 +27,8 @@ def request(method, url, env, params=None, headers=None):
         'User-Agent': 'ChargeBee-Python-Client v%s' % VERSION,
         'Accept': 'application/json',
         'Authorization': _basic_auth_str(env.api_key),
+        'Lang-Version': str(compat.py_major_v) + "." + str(compat.py_minor_v),
+        'OS-Version': platform.platform()
     })
 
     meta = compat.urlparse(url)

@@ -25,6 +25,10 @@ class Coupon(Model):
         return request.send('get', request.uri_path("coupons",id), None, env, headers)
 
     @staticmethod
+    def update(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("coupons",id), params, env, headers)
+
+    @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("coupons",id,"delete"), None, env, headers)
 
