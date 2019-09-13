@@ -44,3 +44,11 @@ class Estimate(Model):
     @staticmethod
     def resume_subscription(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"resume_subscription_estimate"), params, env, headers)
+
+    @staticmethod
+    def gift_subscription(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","gift_subscription"), params, env, headers)
+
+    @staticmethod
+    def create_invoice(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","create_invoice"), params, env, headers)
