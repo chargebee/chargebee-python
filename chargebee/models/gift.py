@@ -14,8 +14,8 @@ class Gift(Model):
       fields = ["status", "occurred_at"]
       pass
 
-    fields = ["id", "status", "scheduled_at", "auto_claim", "claim_expiry_date", "resource_version", \
-    "updated_at", "gifter", "gift_receiver", "gift_timelines"]
+    fields = ["id", "status", "scheduled_at", "auto_claim", "no_expiry", "claim_expiry_date", \
+    "resource_version", "updated_at", "gifter", "gift_receiver", "gift_timelines"]
 
 
     @staticmethod
@@ -37,3 +37,7 @@ class Gift(Model):
     @staticmethod
     def cancel(id, env=None, headers=None):
         return request.send('post', request.uri_path("gifts",id,"cancel"), None, env, headers)
+
+    @staticmethod
+    def update_gift(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("gifts",id,"update_gift"), params, env, headers)
