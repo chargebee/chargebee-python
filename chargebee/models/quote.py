@@ -28,9 +28,9 @@ class Quote(Model):
 
     fields = ["id", "name", "po_number", "customer_id", "subscription_id", "invoice_id", "status", \
     "operation_type", "vat_number", "price_type", "valid_till", "date", "sub_total", "total", "credits_applied", \
-    "amount_paid", "amount_due", "resource_version", "updated_at", "currency_code", "line_items", \
-    "discounts", "line_item_discounts", "taxes", "line_item_taxes", "notes", "shipping_address", \
-    "billing_address"]
+    "amount_paid", "amount_due", "total_payable", "charge_on_acceptance", "resource_version", "updated_at", \
+    "currency_code", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
+    "notes", "shipping_address", "billing_address"]
 
 
     @staticmethod
