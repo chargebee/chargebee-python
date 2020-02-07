@@ -11,6 +11,10 @@ class PortalSession(Model):
     fields = ["id", "token", "access_url", "redirect_url", "status", "created_at", "expires_at", \
     "customer_id", "login_at", "logout_at", "login_ipaddress", "logout_ipaddress", "linked_customers"]
 
+    sub_types = {
+        'linked_customers': LinkedCustomer
+    }
+
 
     @staticmethod
     def create(params, env=None, headers=None):

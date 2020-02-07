@@ -27,6 +27,12 @@ class Plan(Model):
     "invoice_notes", "taxable", "tax_profile_id", "meta_data", "tiers", "applicable_addons", "attached_addons", \
     "event_based_addons"]
 
+    sub_types = {
+        'tiers': Tier,
+        'applicable_addons': ApplicableAddon,
+        'attached_addons': AttachedAddon,
+        'event_based_addons': EventBasedAddon,
+    }
 
     @staticmethod
     def create(params, env=None, headers=None):

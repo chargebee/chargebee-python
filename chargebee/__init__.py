@@ -8,3 +8,5 @@ def configure(api_key, site):
         'api_key': api_key,
         'site': site,
     })
+
+mock = ChargeBee.mock

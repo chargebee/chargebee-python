@@ -6,6 +6,7 @@ from chargebee import APIError
 class PaymentSource(Model):
     class Card(Model):
       fields = ["first_name", "last_name", "iin", "last4", "brand", "funding_type", "expiry_month", "expiry_year", "billing_addr1", "billing_addr2", "billing_city", "billing_state_code", "billing_state", "billing_country", "billing_zip", "masked_number"]
+      repr_field = "last4"
       pass
     class BankAccount(Model):
       fields = ["last4", "name_on_account", "bank_name", "mandate_id", "account_type", "echeck_type", "account_holder_type"]
@@ -20,6 +21,13 @@ class PaymentSource(Model):
     fields = ["id", "resource_version", "updated_at", "created_at", "customer_id", "type", \
     "reference_id", "status", "gateway", "gateway_account_id", "ip_address", "issuing_country", \
     "card", "bank_account", "amazon_payment", "paypal", "deleted"]
+
+    sub_types = {
+      'card': Card,
+      'bank_account': BankAccount,
+      'amazon_payment': AmazonPayment,
+      'paypal': Paypal,
+    }
 
 
     @staticmethod

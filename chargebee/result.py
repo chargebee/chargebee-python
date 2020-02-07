@@ -10,14 +10,12 @@ class Result(object):
 
     @property
     def subscription(self):
-        subscription = self._get('subscription', Subscription,
-        {'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo});
+        subscription = self._get('subscription', Subscription)
         return subscription;
 
     @property
     def customer(self):
-        customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'relationship' : Customer.Relationship});
+        customer = self._get('customer', Customer)
         return customer;
 
     @property
@@ -37,13 +35,12 @@ class Result(object):
 
     @property
     def payment_source(self):
-        payment_source = self._get('payment_source', PaymentSource,
-        {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'amazon_payment' : PaymentSource.AmazonPayment, 'paypal' : PaymentSource.Paypal});
+        payment_source = self._get('payment_source', PaymentSource)
         return payment_source;
 
     @property
     def third_party_payment_method(self):
-        third_party_payment_method = self._get('third_party_payment_method', ThirdPartyPaymentMethod);
+        third_party_payment_method = self._get('third_party_payment_method', ThirdPartyPaymentMethod)
         return third_party_payment_method;
 
     @property
@@ -53,212 +50,181 @@ class Result(object):
 
     @property
     def card(self):
-        card = self._get('card', Card);
+        card = self._get('card', Card)
         return card;
 
     @property
     def promotional_credit(self):
-        promotional_credit = self._get('promotional_credit', PromotionalCredit);
+        promotional_credit = self._get('promotional_credit', PromotionalCredit)
         return promotional_credit;
 
     @property
     def invoice(self):
-        invoice = self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        invoice = self._get('invoice', Invoice)
         return invoice;
 
     @property
     def credit_note(self):
-        credit_note = self._get('credit_note', CreditNote,
-        {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
+        credit_note = self._get('credit_note', CreditNote)
         return credit_note;
 
     @property
     def unbilled_charge(self):
-        unbilled_charge = self._get('unbilled_charge', UnbilledCharge,
-        {'tiers' : UnbilledCharge.Tier});
+        unbilled_charge = self._get('unbilled_charge', UnbilledCharge)
         return unbilled_charge;
 
     @property
     def order(self):
-        order = self._get('order', Order,
-        {'order_line_items' : Order.OrderLineItem, 'shipping_address' : Order.ShippingAddress, 'billing_address' : Order.BillingAddress, 'line_item_taxes' : Order.LineItemTax, 'line_item_discounts' : Order.LineItemDiscount, 'linked_credit_notes' : Order.LinkedCreditNote});
+        order = self._get('order', Order)
         return order;
 
     @property
     def gift(self):
-        gift = self._get('gift', Gift,
-        {'gifter' : Gift.Gifter, 'gift_receiver' : Gift.GiftReceiver, 'gift_timelines' : Gift.GiftTimeline});
+        gift = self._get('gift', Gift)
         return gift;
 
     @property
     def transaction(self):
-        transaction = self._get('transaction', Transaction,
-        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund, 'linked_payments' : Transaction.LinkedPayment});
+        transaction = self._get('transaction', Transaction)
         return transaction;
 
     @property
     def hosted_page(self):
-        hosted_page = self._get('hosted_page', HostedPage);
+        hosted_page = self._get('hosted_page', HostedPage)
         return hosted_page;
 
     @property
     def estimate(self):
-        estimate = self._get('estimate', Estimate, {},
-        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'invoice_estimates' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
-        estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
-        {'shipping_address' : SubscriptionEstimate.ShippingAddress});
-        estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
-        estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
-        estimate.init_dependant_list(self._response['estimate'], 'invoice_estimates',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
-        estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
-        {'line_items' : CreditNoteEstimate.LineItem, 'discounts' : CreditNoteEstimate.Discount, 'taxes' : CreditNoteEstimate.Tax, 'line_item_taxes' : CreditNoteEstimate.LineItemTax, 'line_item_discounts' : CreditNoteEstimate.LineItemDiscount, 'line_item_tiers' : CreditNoteEstimate.LineItemTier});
-        estimate.init_dependant_list(self._response['estimate'], 'unbilled_charge_estimates',
-        {'tiers' : UnbilledCharge.Tier});
+        estimate = self._get('estimate', Estimate)
         return estimate;
 
     @property
     def quote(self):
-        quote = self._get('quote', Quote,
-        {'line_items' : Quote.LineItem, 'discounts' : Quote.Discount, 'line_item_discounts' : Quote.LineItemDiscount, 'taxes' : Quote.Tax, 'line_item_taxes' : Quote.LineItemTax, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
+        quote = self._get('quote', Quote)
         return quote;
 
     @property
     def plan(self):
-        plan = self._get('plan', Plan,
-        {'tiers' : Plan.Tier, 'applicable_addons' : Plan.ApplicableAddon, 'attached_addons' : Plan.AttachedAddon, 'event_based_addons' : Plan.EventBasedAddon});
+        plan = self._get('plan', Plan)
         return plan;
 
     @property
     def addon(self):
-        addon = self._get('addon', Addon,
-        {'tiers' : Addon.Tier});
+        addon = self._get('addon', Addon)
         return addon;
 
     @property
     def coupon(self):
-        coupon = self._get('coupon', Coupon);
+        coupon = self._get('coupon', Coupon)
         return coupon;
 
     @property
     def coupon_set(self):
-        coupon_set = self._get('coupon_set', CouponSet);
+        coupon_set = self._get('coupon_set', CouponSet)
         return coupon_set;
 
     @property
     def coupon_code(self):
-        coupon_code = self._get('coupon_code', CouponCode);
+        coupon_code = self._get('coupon_code', CouponCode)
         return coupon_code;
 
     @property
     def address(self):
-        address = self._get('address', Address);
+        address = self._get('address', Address)
         return address;
 
     @property
     def event(self):
-        event = self._get('event', Event,
-        {'webhooks' : Event.Webhook});
+        event = self._get('event', Event)
         return event;
 
     @property
     def comment(self):
-        comment = self._get('comment', Comment);
+        comment = self._get('comment', Comment)
         return comment;
 
     @property
     def download(self):
-        download = self._get('download', Download);
+        download = self._get('download', Download)
         return download;
 
     @property
     def portal_session(self):
-        portal_session = self._get('portal_session', PortalSession,
-        {'linked_customers' : PortalSession.LinkedCustomer});
+        portal_session = self._get('portal_session', PortalSession)
         return portal_session;
 
     @property
     def site_migration_detail(self):
-        site_migration_detail = self._get('site_migration_detail', SiteMigrationDetail);
+        site_migration_detail = self._get('site_migration_detail', SiteMigrationDetail)
         return site_migration_detail;
 
     @property
     def resource_migration(self):
-        resource_migration = self._get('resource_migration', ResourceMigration);
+        resource_migration = self._get('resource_migration', ResourceMigration)
         return resource_migration;
 
     @property
     def time_machine(self):
-        time_machine = self._get('time_machine', TimeMachine);
+        time_machine = self._get('time_machine', TimeMachine)
         return time_machine;
 
     @property
     def export(self):
-        export = self._get('export', Export,
-        {'download' : Export.Download});
+        export = self._get('export', Export)
         return export;
 
     @property
     def payment_intent(self):
-        payment_intent = self._get('payment_intent', PaymentIntent,
-        {'payment_attempt' : PaymentIntent.PaymentAttempt});
+        payment_intent = self._get('payment_intent', PaymentIntent)
         return payment_intent;
-
 
     @property
     def unbilled_charges(self):
-        unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge,
-        {'tiers' : UnbilledCharge.Tier});
+        unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge)
         return unbilled_charges;
 
     @property
     def credit_notes(self):
-        credit_notes = self._get_list('credit_notes', CreditNote,
-        {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
+        credit_notes = self._get_list('credit_notes', CreditNote)
         return credit_notes;
 
     @property
     def hierarchies(self):
-        hierarchies = self._get_list('hierarchies', Hierarchy,
-        {});
+        hierarchies = self._get_list('hierarchies', Hierarchy)
         return hierarchies;
 
     @property
     def invoices(self):
-        invoices = self._get_list('invoices', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        invoices = self._get_list('invoices', Invoice)
         return invoices;
 
-
-    def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):
+    def _get_list(self, type, cls):
         if not type in self._response:
             return None
-        
+
         set_val = []
         for obj in self._response[type]:
             if isinstance(obj, dict):
-                model = cls.construct(obj, sub_types, dependant_types)
-                for k in dependant_sub_types:
-                    model.init_dependant(obj, k, dependant_sub_types[k])
+                model = cls.construct(obj)
                 set_val.append(model)
 
         self._response_obj[type] = set_val
         return self._response_obj[type]
 
-    def _get(self, type, cls, sub_types=None, dependant_types=None):
+    def _get(self, type, cls):
         if not type in self._response:
             return None
 
         if not type in self._response_obj:
-            self._response_obj[type] = cls.construct(self._response[type], sub_types, dependant_types)
+            self._response_obj[type] = cls.construct(self._response[type])
 
         return self._response_obj[type]
 
     def __str__(self):
         return json.dumps(self._response, indent=4)
+
+    def __repr__(self):
+        return "<chargebee.Result: {}>".format(";".join(self._response.keys()))
 
 
 class Content(Result):

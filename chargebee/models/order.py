@@ -33,6 +33,14 @@ class Order(Model):
     "line_item_taxes", "line_item_discounts", "linked_credit_notes", "deleted", "currency_code", \
     "is_gifted", "gift_note", "gift_id"]
 
+    sub_types = {
+        'order_line_items': OrderLineItem,
+        'shipping_address': ShippingAddress,
+        'billing_address': BillingAddress,
+        'line_item_taxes': LineItemTax,
+        'line_item_discounts': LineItemDiscount,
+        'linked_credit_notes': LinkedCreditNote,
+    }
 
     @staticmethod
     def create(params, env=None, headers=None):

@@ -6,8 +6,12 @@ from chargebee import APIError
 class SubscriptionEstimate(Model):
     class ShippingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
+      repr_field = "zip"
       pass
 
     fields = ["id", "currency_code", "status", "next_billing_at", "pause_date", "resume_date", \
     "shipping_address"]
 
+    sub_types = {
+        'shipping_address': ShippingAddress,
+    }

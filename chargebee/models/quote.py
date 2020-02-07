@@ -32,6 +32,15 @@ class Quote(Model):
     "currency_code", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
     "notes", "shipping_address", "billing_address"]
 
+    sub_types = {
+        'line_items': LineItem,
+        'discounts': Discount,
+        'line_item_discounts': LineItemDiscount,
+        'taxes': Tax,
+        'line_item_taxes': LineItemTax,
+        'shipping_address': ShippingAddress,
+        'billing_address': BillingAddress,
+    }
 
     @staticmethod
     def retrieve(id, env=None, headers=None):

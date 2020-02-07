@@ -27,3 +27,11 @@ class InvoiceEstimate(Model):
     "amount_paid", "amount_due", "line_items", "discounts", "taxes", "line_item_taxes", "line_item_tiers", \
     "line_item_discounts", "round_off_amount", "customer_id"]
 
+    sub_types = {
+      'line_items': LineItem,
+      'discounts': Discount,
+      'taxes': Tax,
+      'line_item_taxes': LineItemTax,
+      'line_item_tiers' : LineItemTier,
+      'line_item_discounts': LineItemDiscount,
+    }

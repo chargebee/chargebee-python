@@ -3,10 +3,25 @@ from chargebee.model import Model
 from chargebee import request
 from chargebee import APIError
 
+from chargebee.models.credit_note_estimate import CreditNoteEstimate
+from chargebee.models.invoice_estimate import InvoiceEstimate
+from chargebee.models.subscription_estimate import SubscriptionEstimate
+from chargebee.models.unbilled_charge import UnbilledCharge
+
+
 class Estimate(Model):
 
     fields = ["created_at", "subscription_estimate", "invoice_estimate", "invoice_estimates", \
     "next_invoice_estimate", "credit_note_estimates", "unbilled_charge_estimates"]
+
+    dependant_types = {
+        'subscription_estimate': SubscriptionEstimate,
+        'invoice_estimate': InvoiceEstimate,
+        'next_invoice_estimate': InvoiceEstimate,
+        'invoice_estimates': (InvoiceEstimate,),
+        'credit_note_estimates': (CreditNoteEstimate,),
+        'unbilled_charge_estimates': (UnbilledCharge,),
+    }
 
 
     @staticmethod
