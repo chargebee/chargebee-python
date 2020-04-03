@@ -50,6 +50,10 @@ class CreditNote(Model):
         return request.send('post', request.uri_path("credit_notes",id,"pdf"), params, env, headers)
 
     @staticmethod
+    def refund(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"refund"), params, env, headers)
+
+    @staticmethod
     def record_refund(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"record_refund"), params, env, headers)
 

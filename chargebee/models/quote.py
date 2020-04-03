@@ -54,6 +54,10 @@ class Quote(Model):
         return request.send_list_request('get', request.uri_path("quotes"), params, env, headers)
 
     @staticmethod
+    def quote_line_groups_for_quote(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("quotes",id,"quote_line_groups"), params, env, headers)
+
+    @staticmethod
     def convert(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("quotes",id,"convert"), params, env, headers)
 

@@ -11,8 +11,13 @@ class Result(object):
     @property
     def subscription(self):
         subscription = self._get('subscription', Subscription,
-        {'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo});
+        {'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo, 'contract_term' : Subscription.ContractTerm});
         return subscription;
+
+    @property
+    def contract_term(self):
+        contract_term = self._get('contract_term', ContractTerm);
+        return contract_term;
 
     @property
     def customer(self):
@@ -107,7 +112,7 @@ class Result(object):
         estimate = self._get('estimate', Estimate, {},
         {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'invoice_estimates' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
-        {'shipping_address' : SubscriptionEstimate.ShippingAddress});
+        {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
@@ -125,6 +130,12 @@ class Result(object):
         quote = self._get('quote', Quote,
         {'line_items' : Quote.LineItem, 'discounts' : Quote.Discount, 'line_item_discounts' : Quote.LineItemDiscount, 'taxes' : Quote.Tax, 'line_item_taxes' : Quote.LineItemTax, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
         return quote;
+
+    @property
+    def quote_line_group(self):
+        quote_line_group = self._get('quote_line_group', QuoteLineGroup,
+        {'line_items' : QuoteLineGroup.LineItem, 'discounts' : QuoteLineGroup.Discount, 'line_item_discounts' : QuoteLineGroup.LineItemDiscount, 'taxes' : QuoteLineGroup.Tax, 'line_item_taxes' : QuoteLineGroup.LineItemTax});
+        return quote_line_group;
 
     @property
     def plan(self):
