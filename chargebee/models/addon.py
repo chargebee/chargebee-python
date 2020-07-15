@@ -13,7 +13,7 @@ class Addon(Model):
     "tax_code", "taxjar_product_code", "avalara_sale_type", "avalara_transaction_type", "avalara_service_type", \
     "sku", "accounting_code", "accounting_category1", "accounting_category2", "is_shippable", "shipping_frequency_period", \
     "shipping_frequency_period_unit", "resource_version", "updated_at", "invoice_notes", "taxable", \
-    "tax_profile_id", "meta_data", "tiers"]
+    "tax_profile_id", "meta_data", "tiers", "show_description_in_invoices", "show_description_in_quotes"]
 
 
     @staticmethod

@@ -35,7 +35,7 @@ class Subscription(Model):
     "has_scheduled_changes", "payment_source_id", "auto_collection", "due_invoices_count", "due_since", \
     "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
     "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "deleted", "contract_term"]
+    "meta_data", "deleted", "contract_term", "cancel_reason_code"]
 
 
     @staticmethod

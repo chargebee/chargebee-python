@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Quote(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
@@ -27,10 +27,11 @@ class Quote(Model):
       pass
 
     fields = ["id", "name", "po_number", "customer_id", "subscription_id", "invoice_id", "status", \
-    "operation_type", "vat_number", "price_type", "valid_till", "date", "sub_total", "total", "credits_applied", \
-    "amount_paid", "amount_due", "total_payable", "charge_on_acceptance", "resource_version", "updated_at", \
-    "currency_code", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
-    "notes", "shipping_address", "billing_address"]
+    "operation_type", "vat_number", "price_type", "valid_till", "date", "total_payable", "charge_on_acceptance", \
+    "sub_total", "total", "credits_applied", "amount_paid", "amount_due", "version", "resource_version", \
+    "updated_at", "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", \
+    "currency_code", "notes", "shipping_address", "billing_address", "contract_term_start", "contract_term_end", \
+    "contract_term_termination_fee"]
 
 
     @staticmethod
@@ -42,12 +43,24 @@ class Quote(Model):
         return request.send('post', request.uri_path("customers",id,"create_subscription_quote"), params, env, headers)
 
     @staticmethod
+    def edit_create_sub_for_customer_quote(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"edit_create_subscription_quote"), params, env, headers)
+
+    @staticmethod
     def update_subscription_quote(params, env=None, headers=None):
         return request.send('post', request.uri_path("quotes","update_subscription_quote"), params, env, headers)
 
     @staticmethod
+    def edit_update_subscription_quote(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"edit_update_subscription_quote"), params, env, headers)
+
+    @staticmethod
     def create_for_onetime_charges(params, env=None, headers=None):
         return request.send('post', request.uri_path("quotes","create_for_onetime_charges"), params, env, headers)
+
+    @staticmethod
+    def edit_one_time_quote(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"edit_one_time_quote"), params, env, headers)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
@@ -64,6 +77,10 @@ class Quote(Model):
     @staticmethod
     def update_status(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("quotes",id,"update_status"), params, env, headers)
+
+    @staticmethod
+    def extend_expiry_date(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("quotes",id,"extend_expiry_date"), params, env, headers)
 
     @staticmethod
     def delete(id, params=None, env=None, headers=None):

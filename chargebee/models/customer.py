@@ -22,6 +22,12 @@ class Customer(Model):
     class Relationship(Model):
       fields = ["parent_id", "payment_owner_id", "invoice_owner_id"]
       pass
+    class ParentAccountAccess(Model):
+      fields = ["portal_edit_child_subscriptions", "portal_download_child_invoices", "send_subscription_emails", "send_invoice_emails", "send_payment_emails"]
+      pass
+    class ChildAccountAccess(Model):
+      fields = ["portal_edit_subscriptions", "portal_download_invoices", "send_subscription_emails", "send_invoice_emails", "send_payment_emails"]
+      pass
 
     fields = ["id", "first_name", "last_name", "email", "phone", "company", "vat_number", "auto_collection", \
     "net_term_days", "vat_number_validated_time", "vat_number_status", "allow_direct_debit", "is_location_valid", \
@@ -32,7 +38,7 @@ class Customer(Model):
     "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
     "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
     "registered_for_gst", "customer_type", "business_customer_without_vat_number", "client_profile_id", \
-    "relationship"]
+    "relationship", "use_default_hierarchy_settings", "parent_account_access", "child_account_access"]
 
 
     @staticmethod
@@ -130,3 +136,7 @@ class Customer(Model):
     @staticmethod
     def hierarchy(id, params=None, env=None, headers=None):
         return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers)
+
+    @staticmethod
+    def update_hierarchy_settings(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"update_hierarchy_settings"), params, env, headers)

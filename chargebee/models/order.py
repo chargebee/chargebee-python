@@ -43,6 +43,10 @@ class Order(Model):
         return request.send('post', request.uri_path("orders",id), params, env, headers)
 
     @staticmethod
+    def import_order(params, env=None, headers=None):
+        return request.send('post', request.uri_path("orders","import_order"), params, env, headers)
+
+    @staticmethod
     def assign_order_number(id, env=None, headers=None):
         return request.send('post', request.uri_path("orders",id,"assign_order_number"), None, env, headers)
 
@@ -61,6 +65,10 @@ class Order(Model):
     @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("orders",id), None, env, headers)
+
+    @staticmethod
+    def delete(id, env=None, headers=None):
+        return request.send('post', request.uri_path("orders",id,"delete"), None, env, headers)
 
     @staticmethod
     def list(params=None, env=None, headers=None):

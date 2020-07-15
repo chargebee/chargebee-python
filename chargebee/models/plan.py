@@ -25,7 +25,7 @@ class Plan(Model):
     "accounting_category1", "accounting_category2", "is_shippable", "shipping_frequency_period", \
     "shipping_frequency_period_unit", "resource_version", "updated_at", "giftable", "claim_url", \
     "invoice_notes", "taxable", "tax_profile_id", "meta_data", "tiers", "applicable_addons", "attached_addons", \
-    "event_based_addons"]
+    "event_based_addons", "show_description_in_invoices", "show_description_in_quotes"]
 
 
     @staticmethod

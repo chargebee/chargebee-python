@@ -5,11 +5,12 @@ from chargebee import APIError
 
 class PaymentIntent(Model):
     class PaymentAttempt(Model):
-      fields = ["id", "status", "id_at_gateway", "error_code", "error_text", "created_at", "modified_at"]
+      fields = ["id", "status", "payment_method_type", "id_at_gateway", "error_code", "error_text", "created_at", "modified_at"]
       pass
 
     fields = ["id", "status", "currency_code", "amount", "gateway_account_id", "expires_at", \
-    "reference_id", "created_at", "modified_at", "customer_id", "gateway", "active_payment_attempt"]
+    "reference_id", "payment_method_type", "created_at", "modified_at", "customer_id", "gateway", \
+    "active_payment_attempt"]
 
 
     @staticmethod

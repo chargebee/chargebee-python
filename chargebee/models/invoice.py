@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
@@ -29,13 +29,13 @@ class Invoice(Model):
       fields = ["attempt", "transaction_id", "dunning_type", "created_at", "txn_status", "txn_amount"]
       pass
     class AppliedCredit(Model):
-      fields = ["cn_id", "applied_amount", "applied_at", "cn_reason_code", "cn_date", "cn_status"]
+      fields = ["cn_id", "applied_amount", "applied_at", "cn_reason_code", "cn_create_reason_code", "cn_date", "cn_status"]
       pass
     class AdjustmentCreditNote(Model):
-      fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
+      fields = ["cn_id", "cn_reason_code", "cn_create_reason_code", "cn_date", "cn_total", "cn_status"]
       pass
     class IssuedCreditNote(Model):
-      fields = ["cn_id", "cn_reason_code", "cn_date", "cn_total", "cn_status"]
+      fields = ["cn_id", "cn_reason_code", "cn_create_reason_code", "cn_date", "cn_total", "cn_status"]
       pass
     class LinkedOrder(Model):
       fields = ["id", "document_number", "status", "order_type", "reference_id", "fulfillment_status", "batch_id", "created_at"]
@@ -58,7 +58,8 @@ class Invoice(Model):
     "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", "round_off_amount", \
     "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", "line_item_tiers", \
     "linked_payments", "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", \
-    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "deleted"]
+    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "void_reason_code", \
+    "deleted"]
 
 
     @staticmethod

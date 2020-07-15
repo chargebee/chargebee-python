@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class CreditNote(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "discount_amount", "item_level_discount_amount", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
@@ -23,7 +23,7 @@ class CreditNote(Model):
       fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
     class LinkedRefund(Model):
-      fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
+      fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount", "refund_reason_code"]
       pass
     class Allocation(Model):
       fields = ["invoice_id", "allocated_amount", "allocated_at", "invoice_date", "invoice_status"]
@@ -34,7 +34,7 @@ class CreditNote(Model):
     "amount_refunded", "amount_available", "refunded_at", "voided_at", "resource_version", "updated_at", \
     "sub_total", "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", \
     "round_off_amount", "fractional_correction", "line_items", "discounts", "line_item_discounts", \
-    "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted"]
+    "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted", "create_reason_code"]
 
 
     @staticmethod
