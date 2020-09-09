@@ -50,5 +50,5 @@ class Estimate(Model):
         return request.send('post', request.uri_path("estimates","gift_subscription"), params, env, headers)
 
     @staticmethod
-    def create_invoice(params, env=None, headers=None):
+    def create_invoice(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("estimates","create_invoice"), params, env, headers)

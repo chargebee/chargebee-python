@@ -63,7 +63,7 @@ class Invoice(Model):
 
 
     @staticmethod
-    def create(params, env=None, headers=None):
+    def create(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod

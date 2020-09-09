@@ -5,5 +5,5 @@ from chargebee import APIError
 
 class Hierarchy(Model):
 
-    fields = ["parent_id", "payment_owner_id", "invoice_owner_id", "customer_id", "children_ids"]
+    fields = ["customer_id", "parent_id", "payment_owner_id", "invoice_owner_id", "children_ids"]
 

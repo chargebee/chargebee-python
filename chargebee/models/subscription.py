@@ -35,7 +35,7 @@ class Subscription(Model):
     "has_scheduled_changes", "payment_source_id", "auto_collection", "due_invoices_count", "due_since", \
     "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
     "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "deleted", "contract_term", "cancel_reason_code"]
+    "meta_data", "deleted", "contract_term", "cancel_reason_code", "free_period", "free_period_unit"]
 
 
     @staticmethod
@@ -87,10 +87,6 @@ class Subscription(Model):
         return request.send('post', request.uri_path("subscriptions",id,"change_term_end"), params, env, headers)
 
     @staticmethod
-    def cancel(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env, headers)
-
-    @staticmethod
     def reactivate(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"reactivate"), params, env, headers)
 
@@ -115,6 +111,10 @@ class Subscription(Model):
         return request.send('post', request.uri_path("customers",id,"import_subscription"), params, env, headers)
 
     @staticmethod
+    def import_contract_term(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"import_contract_term"), params, env, headers)
+
+    @staticmethod
     def override_billing_profile(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"override_billing_profile"), params, env, headers)
 
@@ -125,6 +125,10 @@ class Subscription(Model):
     @staticmethod
     def pause(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"pause"), params, env, headers)
+
+    @staticmethod
+    def cancel(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env, headers)
 
     @staticmethod
     def resume(id, params=None, env=None, headers=None):
