@@ -32,10 +32,11 @@ class Subscription(Model):
     "remaining_billing_cycles", "po_number", "created_at", "started_at", "activated_at", "gift_id", \
     "contract_term_billing_cycle_on_renewal", "override_relationship", "pause_date", "resume_date", \
     "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", \
-    "has_scheduled_changes", "payment_source_id", "auto_collection", "due_invoices_count", "due_since", \
-    "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
-    "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "deleted", "contract_term", "cancel_reason_code", "free_period", "free_period_unit"]
+    "has_scheduled_changes", "payment_source_id", "auto_collection", "offline_payment_method", \
+    "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", \
+    "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", "coupon", \
+    "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted", "contract_term", \
+    "cancel_reason_code", "free_period", "free_period_unit"]
 
 
     @staticmethod
