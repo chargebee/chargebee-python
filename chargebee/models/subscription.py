@@ -26,17 +26,17 @@ class Subscription(Model):
       fields = ["id", "status", "contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "cancellation_cutoff_period", "created_at", "subscription_id", "remaining_billing_cycles"]
       pass
 
-    fields = ["id", "customer_id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", \
-    "setup_fee", "plan_amount", "billing_period", "billing_period_unit", "plan_free_quantity", "status", \
-    "start_date", "trial_start", "trial_end", "current_term_start", "current_term_end", "next_billing_at", \
-    "remaining_billing_cycles", "po_number", "created_at", "started_at", "activated_at", "gift_id", \
-    "contract_term_billing_cycle_on_renewal", "override_relationship", "pause_date", "resume_date", \
-    "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", \
-    "has_scheduled_changes", "payment_source_id", "auto_collection", "offline_payment_method", \
-    "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", \
-    "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", "coupon", \
-    "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "deleted", "contract_term", \
-    "cancel_reason_code", "free_period", "free_period_unit"]
+    fields = ["id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", "setup_fee", \
+    "billing_period", "billing_period_unit", "start_date", "trial_end", "remaining_billing_cycles", \
+    "po_number", "auto_collection", "customer_id", "plan_amount", "plan_free_quantity", "status", \
+    "trial_start", "current_term_start", "current_term_end", "next_billing_at", "created_at", "started_at", \
+    "activated_at", "gift_id", "contract_term_billing_cycle_on_renewal", "override_relationship", \
+    "pause_date", "resume_date", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", \
+    "resource_version", "updated_at", "has_scheduled_changes", "payment_source_id", "offline_payment_method", \
+    "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", \
+    "addons", "event_based_addons", "charged_event_based_addons", "coupon", "coupons", "shipping_address", \
+    "referral_info", "invoice_notes", "meta_data", "deleted", "contract_term", "cancel_reason_code", \
+    "free_period", "free_period_unit"]
 
 
     @staticmethod

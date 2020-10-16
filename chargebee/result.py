@@ -20,6 +20,12 @@ class Result(object):
         return contract_term;
 
     @property
+    def advance_invoice_schedule(self):
+        advance_invoice_schedule = self._get('advance_invoice_schedule', AdvanceInvoiceSchedule,
+        {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
+        return advance_invoice_schedule;
+
+    @property
     def customer(self):
         customer = self._get('customer', Customer,
         {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'relationship' : Customer.Relationship, 'parent_account_access' : Customer.ParentAccountAccess, 'child_account_access' : Customer.ChildAccountAccess});
@@ -132,6 +138,12 @@ class Result(object):
         return quote;
 
     @property
+    def quoted_subscription(self):
+        quoted_subscription = self._get('quoted_subscription', QuotedSubscription,
+        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon});
+        return quoted_subscription;
+
+    @property
     def quote_line_group(self):
         quote_line_group = self._get('quote_line_group', QuoteLineGroup,
         {'line_items' : QuoteLineGroup.LineItem, 'discounts' : QuoteLineGroup.Discount, 'line_item_discounts' : QuoteLineGroup.LineItemDiscount, 'taxes' : QuoteLineGroup.Tax, 'line_item_taxes' : QuoteLineGroup.LineItemTax});
@@ -230,6 +242,12 @@ class Result(object):
         credit_notes = self._get_list('credit_notes', CreditNote,
         {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
         return credit_notes;
+
+    @property
+    def advance_invoice_schedules(self):
+        advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
+        {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
+        return advance_invoice_schedules;
 
     @property
     def hierarchies(self):
