@@ -5,10 +5,10 @@ from chargebee import APIError
 
 class QuotedSubscription(Model):
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles"]
+      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles", "quantity_in_decimal", "unit_price_in_decimal", "amount_in_decimal"]
       pass
     class EventBasedAddon(Model):
-      fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once"]
+      fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once", "quantity_in_decimal", "unit_price_in_decimal"]
       pass
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]

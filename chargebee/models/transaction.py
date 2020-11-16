@@ -39,6 +39,10 @@ class Transaction(Model):
         return request.send('post', request.uri_path("transactions",id,"record_refund"), params, env, headers)
 
     @staticmethod
+    def refund(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("transactions",id,"refund"), params, env, headers)
+
+    @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("transactions"), params, env, headers)
 

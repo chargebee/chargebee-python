@@ -5,10 +5,10 @@ from chargebee import APIError
 
 class Subscription(Model):
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles"]
+      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles", "quantity_in_decimal", "unit_price_in_decimal", "amount_in_decimal"]
       pass
     class EventBasedAddon(Model):
-      fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once"]
+      fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once", "quantity_in_decimal", "unit_price_in_decimal"]
       pass
     class ChargedEventBasedAddon(Model):
       fields = ["id", "last_charged_at"]
@@ -32,7 +32,8 @@ class Subscription(Model):
     "trial_start", "current_term_start", "current_term_end", "next_billing_at", "created_at", "started_at", \
     "activated_at", "gift_id", "contract_term_billing_cycle_on_renewal", "override_relationship", \
     "pause_date", "resume_date", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", \
-    "resource_version", "updated_at", "has_scheduled_changes", "payment_source_id", "offline_payment_method", \
+    "resource_version", "updated_at", "has_scheduled_changes", "payment_source_id", "plan_free_quantity_in_decimal", \
+    "plan_quantity_in_decimal", "plan_unit_price_in_decimal", "plan_amount_in_decimal", "offline_payment_method", \
     "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", \
     "addons", "event_based_addons", "charged_event_based_addons", "coupon", "coupons", "shipping_address", \
     "referral_info", "invoice_notes", "meta_data", "deleted", "contract_term", "cancel_reason_code", \

@@ -5,8 +5,8 @@ from chargebee import APIError
 
 class PromotionalCredit(Model):
 
-    fields = ["id", "customer_id", "type", "amount", "currency_code", "description", "credit_type", \
-    "reference", "closing_balance", "done_by", "created_at"]
+    fields = ["id", "customer_id", "type", "amount_in_decimal", "amount", "currency_code", \
+    "description", "credit_type", "reference", "closing_balance", "done_by", "created_at"]
 
 
     @staticmethod
