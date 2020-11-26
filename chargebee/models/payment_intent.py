@@ -9,8 +9,8 @@ class PaymentIntent(Model):
       pass
 
     fields = ["id", "status", "currency_code", "amount", "gateway_account_id", "expires_at", \
-    "reference_id", "payment_method_type", "created_at", "modified_at", "resource_version", "updated_at", \
-    "customer_id", "gateway", "active_payment_attempt"]
+    "reference_id", "payment_method_type", "success_url", "failure_url", "created_at", "modified_at", \
+    "resource_version", "updated_at", "customer_id", "gateway", "active_payment_attempt"]
 
 
     @staticmethod

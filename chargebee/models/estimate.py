@@ -18,12 +18,24 @@ class Estimate(Model):
         return request.send('get', request.uri_path("customers",id,"create_subscription_estimate"), params, env, headers)
 
     @staticmethod
+    def create_sub_item_for_customer_estimate(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("customers",id,"create_subscription_for_items_estimate"), params, env, headers)
+
+    @staticmethod
     def update_subscription(params, env=None, headers=None):
         return request.send('post', request.uri_path("estimates","update_subscription"), params, env, headers)
 
     @staticmethod
+    def update_subscription_for_items(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","update_subscription_for_items"), params, env, headers)
+
+    @staticmethod
     def renewal_estimate(id, params=None, env=None, headers=None):
         return request.send('get', request.uri_path("subscriptions",id,"renewal_estimate"), params, env, headers)
+
+    @staticmethod
+    def advance_invoice_estimate(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"advance_invoice_estimate"), params, env, headers)
 
     @staticmethod
     def upcoming_invoices_estimate(id, env=None, headers=None):
@@ -52,3 +64,7 @@ class Estimate(Model):
     @staticmethod
     def create_invoice(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("estimates","create_invoice"), params, env, headers)
+
+    @staticmethod
+    def create_invoice_for_items(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","create_invoice_for_items"), params, env, headers)

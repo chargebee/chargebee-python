@@ -15,6 +15,10 @@ class UnbilledCharge(Model):
 
 
     @staticmethod
+    def create(params, env=None, headers=None):
+        return request.send('post', request.uri_path("unbilled_charges"), params, env, headers)
+
+    @staticmethod
     def invoice_unbilled_charges(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("unbilled_charges","invoice_unbilled_charges"), params, env, headers)
 

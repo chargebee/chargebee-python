@@ -74,3 +74,23 @@ class Export(Model):
     @staticmethod
     def orders(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("exports","orders"), params, env, headers)
+
+    @staticmethod
+    def item_families(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","item_families"), params, env, headers)
+
+    @staticmethod
+    def items(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","items"), params, env, headers)
+
+    @staticmethod
+    def item_prices(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","item_prices"), params, env, headers)
+
+    @staticmethod
+    def attached_items(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","attached_items"), params, env, headers)
+
+    @staticmethod
+    def differential_prices(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","differential_prices"), params, env, headers)

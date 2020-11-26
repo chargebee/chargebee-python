@@ -11,7 +11,7 @@ class Result(object):
     @property
     def subscription(self):
         subscription = self._get('subscription', Subscription,
-        {'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo, 'contract_term' : Subscription.ContractTerm});
+        {'subscription_items' : Subscription.SubscriptionItem, 'item_tiers' : Subscription.ItemTier, 'charged_items' : Subscription.ChargedItem, 'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo, 'contract_term' : Subscription.ContractTerm});
         return subscription;
 
     @property
@@ -140,7 +140,7 @@ class Result(object):
     @property
     def quoted_subscription(self):
         quoted_subscription = self._get('quoted_subscription', QuotedSubscription,
-        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon});
+        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon, 'subscription_items' : QuotedSubscription.SubscriptionItem, 'item_tiers' : QuotedSubscription.ItemTier});
         return quoted_subscription;
 
     @property
@@ -163,7 +163,8 @@ class Result(object):
 
     @property
     def coupon(self):
-        coupon = self._get('coupon', Coupon);
+        coupon = self._get('coupon', Coupon,
+        {'item_constraints' : Coupon.ItemConstraint, 'item_constraint_criteria' : Coupon.ItemConstraintCriteria});
         return coupon;
 
     @property
@@ -232,6 +233,34 @@ class Result(object):
 
 
     @property
+    def item_family(self):
+        item_family = self._get('item_family', ItemFamily);
+        return item_family;
+
+    @property
+    def item(self):
+        item = self._get('item', Item,
+        {'applicable_items' : Item.ApplicableItem});
+        return item;
+
+    @property
+    def item_price(self):
+        item_price = self._get('item_price', ItemPrice,
+        {'tiers' : ItemPrice.Tier, 'tax_detail' : ItemPrice.TaxDetail, 'accounting_detail' : ItemPrice.AccountingDetail});
+        return item_price;
+
+    @property
+    def attached_item(self):
+        attached_item = self._get('attached_item', AttachedItem);
+        return attached_item;
+
+    @property
+    def differential_price(self):
+        differential_price = self._get('differential_price', DifferentialPrice,
+        {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
+        return differential_price;
+
+    @property
     def unbilled_charges(self):
         unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge,
         {'tiers' : UnbilledCharge.Tier});
@@ -260,6 +289,12 @@ class Result(object):
         invoices = self._get_list('invoices', Invoice,
         {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
         return invoices;
+
+    @property
+    def differential_prices(self):
+        differential_prices = self._get_list('differential_prices', DifferentialPrice,
+        {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
+        return differential_prices;
 
 
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):

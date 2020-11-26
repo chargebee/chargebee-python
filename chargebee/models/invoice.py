@@ -67,12 +67,20 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod
+    def create_for_charge_items_and_charges(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices","create_for_charge_items_and_charges"), params, env, headers)
+
+    @staticmethod
     def charge(params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices","charge"), params, env, headers)
 
     @staticmethod
     def charge_addon(params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices","charge_addon"), params, env, headers)
+
+    @staticmethod
+    def create_for_charge_item(params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices","create_for_charge_item"), params, env, headers)
 
     @staticmethod
     def stop_dunning(id, params=None, env=None, headers=None):
@@ -117,6 +125,10 @@ class Invoice(Model):
     @staticmethod
     def add_addon_charge(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"add_addon_charge"), params, env, headers)
+
+    @staticmethod
+    def add_charge_item(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"add_charge_item"), params, env, headers)
 
     @staticmethod
     def close(id, params=None, env=None, headers=None):

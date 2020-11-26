@@ -1,0 +1,36 @@
+import json
+from chargebee.model import Model
+from chargebee import request
+from chargebee import APIError
+
+class DifferentialPrice(Model):
+    class Tier(Model):
+      fields = ["starting_unit", "ending_unit", "price"]
+      pass
+    class ParentPeriod(Model):
+      fields = ["period_unit", "period"]
+      pass
+
+    fields = ["id", "item_price_id", "parent_item_id", "price", "status", "resource_version", \
+    "updated_at", "created_at", "modified_at", "tiers", "currency_code", "parent_periods"]
+
+
+    @staticmethod
+    def create(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("item_prices",id,"differential_prices"), params, env, headers)
+
+    @staticmethod
+    def retrieve(id, params, env=None, headers=None):
+        return request.send('get', request.uri_path("differential_prices",id), params, env, headers)
+
+    @staticmethod
+    def update(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("differential_prices",id), params, env, headers)
+
+    @staticmethod
+    def delete(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("differential_prices",id,"delete"), params, env, headers)
+
+    @staticmethod
+    def list(params=None, env=None, headers=None):
+        return request.send_list_request('get', request.uri_path("differential_prices"), params, env, headers)
