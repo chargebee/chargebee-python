@@ -8,7 +8,7 @@ class Subscription(Model):
       fields = ["item_price_id", "item_type", "quantity", "unit_price", "amount", "free_quantity", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
       pass
     class ChargedItem(Model):
       fields = ["item_price_id", "last_charged_at"]
@@ -133,6 +133,10 @@ class Subscription(Model):
     @staticmethod
     def remove_advance_invoice_schedule(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"remove_advance_invoice_schedule"), params, env, headers)
+
+    @staticmethod
+    def regenerate_invoice(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"regenerate_invoice"), params, env, headers)
 
     @staticmethod
     def import_subscription(params, env=None, headers=None):
