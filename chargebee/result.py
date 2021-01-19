@@ -183,6 +183,11 @@ class Result(object):
         return address;
 
     @property
+    def usage(self):
+        usage = self._get('usage', Usage);
+        return usage;
+
+    @property
     def event(self):
         event = self._get('event', Event,
         {'webhooks' : Event.Webhook});

@@ -10,8 +10,8 @@ class Item(Model):
 
     fields = ["id", "name", "description", "status", "resource_version", "updated_at", "item_family_id", \
     "type", "is_shippable", "is_giftable", "redirect_url", "enabled_for_checkout", "enabled_in_portal", \
-    "included_in_mrr", "item_applicability", "gift_claim_redirect_url", "unit", "applicable_items", \
-    "metadata"]
+    "included_in_mrr", "item_applicability", "gift_claim_redirect_url", "unit", "metered", "usage_calculation", \
+    "applicable_items", "metadata"]
 
 
     @staticmethod
