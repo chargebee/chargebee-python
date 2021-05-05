@@ -2,8 +2,9 @@ import base64
 import platform
 from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
 from chargebee.main import ChargeBee
-from chargebee.main import Environment
+from chargebee.main import Environment, MockEnvironment
 from chargebee.version import VERSION
+
 
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
@@ -23,6 +24,11 @@ def request(method, url, env, params=None, headers=None):
         payload = compat.urlencode(params)
         headers['Content-type'] = 'application/x-www-form-urlencoded'
 
+    if isinstance(env, MockEnvironment):
+        # we're running in a testing environment. It will provide responses
+        data, resp_status = env.request(method.upper(), url, payload)
+        return process_response(url, data, resp_status)
+
     headers.update({
         'User-Agent': 'ChargeBee-Python-Client v%s' % VERSION,
         'Accept': 'application/json',
@@ -39,8 +45,8 @@ def request(method, url, env, params=None, headers=None):
         if Environment.protocol == "https":
             connection = compat.HTTPSConnection(meta.netloc)
         else:
-            connection = compat.HTTPConnection(meta.netloc)    
-        
+            connection = compat.HTTPConnection(meta.netloc)
+
     connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
     try:
         response = connection.getresponse()
@@ -56,7 +62,7 @@ def request(method, url, env, params=None, headers=None):
 def process_response(url,response, http_code):
     try:
         resp_json = compat.json.loads(response)
-    except Exception as ex:     
+    except Exception as ex:
         raise Exception("Response not in JSON format. Probably not a chargebee error. \n URL is " + url + "\n Content is \n" + response)
     if http_code < 200 or http_code > 299:
         handle_api_resp_error(url,http_code, resp_json)

@@ -305,7 +305,7 @@ class Result(object):
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):
         if not type in self._response:
             return None
-        
+
         set_val = []
         for obj in self._response[type]:
             if isinstance(obj, dict):
@@ -329,6 +329,8 @@ class Result(object):
     def __str__(self):
         return json.dumps(self._response, indent=4)
 
+    def __repr__(self):
+        return "<chargebee.Result: {}>".format(";".join(self._response.keys()))
 
 class Content(Result):
     pass
