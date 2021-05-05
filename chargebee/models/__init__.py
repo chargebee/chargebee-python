@@ -7,7 +7,12 @@ from chargebee.models.coupon_set import CouponSet
 from chargebee.models.customer import Customer
 from chargebee.models.event import Event
 from chargebee.models.hosted_page import HostedPage
+from chargebee.models.item import Item
+from chargebee.models.item_family import ItemFamily
+from chargebee.models.item_price import ItemPrice
 from chargebee.models.invoice import Invoice
+from chargebee.models.attached_item import AttachedItem
+from chargebee.models.differential_price import DifferentialPrice
 from chargebee.models.credit_note import CreditNote
 from chargebee.models.order import Order
 from chargebee.models.estimate import Estimate
