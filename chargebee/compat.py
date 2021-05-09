@@ -63,6 +63,13 @@ class VerifiedHTTPSConnection(HTTPSConnection):
 
         # Wrap socket using verification with the root certs in
         # trusted_root_certs
+
+        # Use modern SSL wrapper when available
+        if hasattr(ssl, 'create_default_context'):
+            ctx = ssl.create_default_context()
+            self.sock = ctx.wrap_socket(sock, server_hostname=self.host)
+            return
+
         self.sock = ssl.wrap_socket(sock, cert_reqs=self.cert_reqs, ca_certs=self.ca_certs)
 
         if self.ca_certs:
