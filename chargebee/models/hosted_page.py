@@ -36,6 +36,10 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","checkout_existing_for_items"), params, env, headers)
 
     @staticmethod
+    def checkout_one_time_for_item(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","checkout_one_time_for_item"), params, env, headers)
+    
+    @staticmethod
     def update_card(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","update_card"), params, env, headers)
 
