@@ -40,3 +40,4 @@ from chargebee.models.quote import Quote
 from chargebee.models.content import Content
 from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.payment_intent import PaymentIntent
+from chargebee.models.usage import Usage
