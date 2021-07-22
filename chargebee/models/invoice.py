@@ -11,7 +11,7 @@ class Invoice(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
       pass
     class LineItemDiscount(Model):
-      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
     class Tax(Model):
       fields = ["name", "amount", "description"]
@@ -51,15 +51,15 @@ class Invoice(Model):
       pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
-    "price_type", "date", "due_date", "net_term_days", "currency_code", "total", "amount_paid", \
-    "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", "dunning_status", \
-    "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", "sub_total_in_local_currency", \
-    "total_in_local_currency", "local_currency_code", "tax", "first_invoice", "has_advance_charges", \
-    "term_finalized", "is_gifted", "expected_payment_date", "amount_to_collect", "round_off_amount", \
-    "line_items", "discounts", "line_item_discounts", "taxes", "line_item_taxes", "line_item_tiers", \
-    "linked_payments", "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", \
-    "linked_orders", "notes", "shipping_address", "billing_address", "payment_owner", "void_reason_code", \
-    "deleted"]
+    "price_type", "date", "due_date", "net_term_days", "exchange_rate", "currency_code", "total", \
+    "amount_paid", "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", \
+    "dunning_status", "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", \
+    "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", "tax", "first_invoice", \
+    "new_sales_amount", "has_advance_charges", "term_finalized", "is_gifted", "expected_payment_date", \
+    "amount_to_collect", "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", \
+    "line_item_taxes", "line_item_tiers", "linked_payments", "dunning_attempts", "applied_credits", \
+    "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", "shipping_address", \
+    "billing_address", "payment_owner", "void_reason_code", "deleted", "vat_number_prefix"]
 
 
     @staticmethod
@@ -67,7 +67,7 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices"), params, env, headers)
 
     @staticmethod
-    def create_for_charge_items_and_charges(params=None, env=None, headers=None):
+    def create_for_charge_items_and_charges(params, env=None, headers=None):
         return request.send('post', request.uri_path("invoices","create_for_charge_items_and_charges"), params, env, headers)
 
     @staticmethod

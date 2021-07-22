@@ -1,9 +1,14 @@
 import base64
+import logging
 import platform
+import requests
+
 from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
 from chargebee.version import VERSION
+
+_logger = logging.getLogger(__name__)
 
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
@@ -32,25 +37,41 @@ def request(method, url, env, params=None, headers=None):
     })
 
     meta = compat.urlparse(url)
+    request_args = {
+        'method': method.upper(),
+        'data': payload,
+        'headers': headers,
+    }
+
+    uri = meta.netloc + meta.path + '?' + meta.query
+
     if ChargeBee.verify_ca_certs:
-        connection = compat.VerifiedHTTPSConnection(meta.netloc)
-        connection.set_cert(ca_certs=ChargeBee.ca_cert_path)
+        request_args.update({
+            'verify': ChargeBee.ca_cert_path,
+            'url': 'https://' + uri,
+        })
     else:
         if Environment.protocol == "https":
-            connection = compat.HTTPSConnection(meta.netloc)
+            request_args.update({
+                'url': 'https://' + uri,
+            })
         else:
-            connection = compat.HTTPConnection(meta.netloc)    
-        
-    connection.request(method.upper(), meta.path + '?' + meta.query, payload, headers)
-    try:
-        response = connection.getresponse()
-        data = response.read()
-        if compat.py_major_v >= 3:
-            data = data.decode('utf-8')
+            request_args.update({
+                'url': 'http://' + uri,
+            })
 
-        return process_response(url,data, response.status)
-    finally:
-        connection.close()
+    _logger.debug('{method} Request: {url}'.format(**request_args))
+    _logger.debug('HEADERS: {0}'.format({k: v for k, v in headers.items() if k.lower() != "authorization"}))
+    if payload:
+        _logger.debug('PAYLOAD: {data}'.format(**request_args))
+
+    response = requests.request(**request_args)
+
+    _logger.debug('{method} Response: {status_code} - {text}'.format(
+        method=request_args['method'], status_code=response.status_code, text=response.text
+    ))
+
+    return process_response(url, response.text, response.status_code)
 
 
 def process_response(url,response, http_code):

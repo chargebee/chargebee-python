@@ -93,7 +93,7 @@ class Result(object):
     @property
     def order(self):
         order = self._get('order', Order,
-        {'order_line_items' : Order.OrderLineItem, 'shipping_address' : Order.ShippingAddress, 'billing_address' : Order.BillingAddress, 'line_item_taxes' : Order.LineItemTax, 'line_item_discounts' : Order.LineItemDiscount, 'linked_credit_notes' : Order.LinkedCreditNote});
+        {'order_line_items' : Order.OrderLineItem, 'shipping_address' : Order.ShippingAddress, 'billing_address' : Order.BillingAddress, 'line_item_taxes' : Order.LineItemTax, 'line_item_discounts' : Order.LineItemDiscount, 'linked_credit_notes' : Order.LinkedCreditNote, 'resent_orders' : Order.ResentOrder});
         return order;
 
     @property
@@ -134,13 +134,13 @@ class Result(object):
     @property
     def quote(self):
         quote = self._get('quote', Quote,
-        {'line_items' : Quote.LineItem, 'discounts' : Quote.Discount, 'line_item_discounts' : Quote.LineItemDiscount, 'taxes' : Quote.Tax, 'line_item_taxes' : Quote.LineItemTax, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
+        {'line_items' : Quote.LineItem, 'discounts' : Quote.Discount, 'line_item_discounts' : Quote.LineItemDiscount, 'taxes' : Quote.Tax, 'line_item_taxes' : Quote.LineItemTax, 'line_item_tiers' : Quote.LineItemTier, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
         return quote;
 
     @property
     def quoted_subscription(self):
         quoted_subscription = self._get('quoted_subscription', QuotedSubscription,
-        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon, 'subscription_items' : QuotedSubscription.SubscriptionItem, 'item_tiers' : QuotedSubscription.ItemTier});
+        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon, 'discounts' : QuotedSubscription.Discount, 'subscription_items' : QuotedSubscription.SubscriptionItem, 'item_tiers' : QuotedSubscription.ItemTier, 'quoted_contract_term' : QuotedSubscription.QuotedContractTerm});
         return quoted_subscription;
 
     @property
@@ -300,7 +300,6 @@ class Result(object):
         differential_prices = self._get_list('differential_prices', DifferentialPrice,
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_prices;
-
 
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):
         if not type in self._response:

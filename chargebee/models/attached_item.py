@@ -5,8 +5,8 @@ from chargebee import APIError
 
 class AttachedItem(Model):
 
-    fields = ["id", "parent_item_id", "item_id", "type", "status", "quantity", "billing_cycles", \
-    "charge_on_event", "charge_once", "created_at", "resource_version", "updated_at"]
+    fields = ["id", "parent_item_id", "item_id", "type", "status", "quantity", "quantity_in_decimal", \
+    "billing_cycles", "charge_on_event", "charge_once", "created_at", "resource_version", "updated_at"]
 
 
     @staticmethod

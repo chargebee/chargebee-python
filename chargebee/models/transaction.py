@@ -18,12 +18,12 @@ class Transaction(Model):
       pass
 
     fields = ["id", "customer_id", "subscription_id", "gateway_account_id", "payment_source_id", \
-    "payment_method", "reference_number", "gateway", "type", "date", "settled_at", "currency_code", \
-    "amount", "id_at_gateway", "status", "fraud_flag", "initiator_type", "three_d_secure", "authorization_reason", \
-    "error_code", "error_text", "voided_at", "resource_version", "updated_at", "fraud_reason", "amount_unused", \
-    "masked_card_number", "reference_transaction_id", "refunded_txn_id", "reference_authorization_id", \
-    "amount_capturable", "reversal_transaction_id", "linked_invoices", "linked_credit_notes", "linked_refunds", \
-    "linked_payments", "deleted"]
+    "payment_method", "reference_number", "gateway", "type", "date", "settled_at", "exchange_rate", \
+    "currency_code", "amount", "id_at_gateway", "status", "fraud_flag", "initiator_type", "three_d_secure", \
+    "authorization_reason", "error_code", "error_text", "voided_at", "resource_version", "updated_at", \
+    "fraud_reason", "amount_unused", "masked_card_number", "reference_transaction_id", "refunded_txn_id", \
+    "reference_authorization_id", "amount_capturable", "reversal_transaction_id", "linked_invoices", \
+    "linked_credit_notes", "linked_refunds", "linked_payments", "deleted", "merchant_reference_id"]
 
 
     @staticmethod

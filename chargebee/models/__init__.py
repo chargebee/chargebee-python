@@ -37,6 +37,12 @@ from chargebee.models.contact import Contact
 from chargebee.models.export import Export
 from chargebee.models.gift import Gift
 from chargebee.models.quote import Quote
-from chargebee.models.content import Content
 from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.payment_intent import PaymentIntent
+from chargebee.models.usage import Usage
+from chargebee.models.contract_term import ContractTerm
+from chargebee.models.advance_invoice_schedule import AdvanceInvoiceSchedule
+from chargebee.models.token import Token
+from chargebee.models.quoted_subscription import QuotedSubscription
+from chargebee.models.quote_line_group import QuoteLineGroup
+from chargebee.models.content import Content

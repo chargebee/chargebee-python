@@ -20,7 +20,7 @@ class InvoiceEstimate(Model):
       fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal"]
       pass
     class LineItemDiscount(Model):
-      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
 
     fields = ["recurring", "price_type", "currency_code", "sub_total", "total", "credits_applied", \

@@ -15,7 +15,7 @@ class Usage(Model):
 
     @staticmethod
     def retrieve(id, params, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"usage"), params, env, headers)
+        return request.send('get', request.uri_path("subscriptions",id,"usages"), params, env, headers)
 
     @staticmethod
     def delete(id, params, env=None, headers=None):

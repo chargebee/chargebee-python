@@ -7,7 +7,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'chargebee'))
 import version
 
-requires = []
+requires = ['requests']
 try:
     import json
 except ImportError:

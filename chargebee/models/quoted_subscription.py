@@ -13,14 +13,22 @@ class QuotedSubscription(Model):
     class Coupon(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
+    class Discount(Model):
+      fields = ["id", "invoice_name", "type", "percentage", "amount", "currency_code", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at", "apply_till", "applied_count"]
+      pass
     class SubscriptionItem(Model):
-      fields = ["item_price_id", "item_type", "quantity", "unit_price", "amount", "free_quantity", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
+      fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "amount_in_decimal", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
+      pass
+    class QuotedContractTerm(Model):
+      fields = ["contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "cancellation_cutoff_period"]
       pass
 
     fields = ["id", "plan_id", "plan_quantity", "plan_unit_price", "setup_fee", "billing_period", \
     "billing_period_unit", "start_date", "trial_end", "remaining_billing_cycles", "po_number", "auto_collection", \
-    "addons", "event_based_addons", "coupons", "subscription_items", "item_tiers"]
+    "plan_quantity_in_decimal", "plan_unit_price_in_decimal", "contract_term_billing_cycle_on_renewal", \
+    "addons", "event_based_addons", "coupons", "discounts", "subscription_items", "item_tiers", \
+    "quoted_contract_term"]
 

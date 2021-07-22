@@ -11,7 +11,7 @@ class CreditNote(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
       pass
     class LineItemDiscount(Model):
-      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
     class LineItemTier(Model):
       fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal"]
@@ -34,7 +34,8 @@ class CreditNote(Model):
     "amount_refunded", "amount_available", "refunded_at", "voided_at", "resource_version", "updated_at", \
     "sub_total", "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", \
     "round_off_amount", "fractional_correction", "line_items", "discounts", "line_item_discounts", \
-    "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted", "create_reason_code"]
+    "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted", "create_reason_code", \
+    "vat_number_prefix"]
 
 
     @staticmethod

@@ -50,7 +50,7 @@ class Estimate(Model):
         return request.send('get', request.uri_path("customers",id,"upcoming_invoices_estimate"), None, env, headers)
 
     @staticmethod
-    def change_term_end(id, params=None, env=None, headers=None):
+    def change_term_end(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"change_term_end_estimate"), params, env, headers)
 
     @staticmethod

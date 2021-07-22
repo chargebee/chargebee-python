@@ -11,8 +11,8 @@ class DifferentialPrice(Model):
       fields = ["period_unit", "period"]
       pass
 
-    fields = ["id", "item_price_id", "parent_item_id", "price", "status", "resource_version", \
-    "updated_at", "created_at", "modified_at", "tiers", "currency_code", "parent_periods"]
+    fields = ["id", "item_price_id", "parent_item_id", "price", "price_in_decimal", "status", \
+    "resource_version", "updated_at", "created_at", "modified_at", "tiers", "currency_code", "parent_periods"]
 
 
     @staticmethod

@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Subscription(Model):
     class SubscriptionItem(Model):
-      fields = ["item_price_id", "item_type", "quantity", "metered_quantity", "last_calculated_at", "unit_price", "amount", "free_quantity", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
+      fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "amount_in_decimal", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
       pass
     class ItemTier(Model):
       fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
@@ -37,17 +37,18 @@ class Subscription(Model):
 
     fields = ["id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", "setup_fee", \
     "billing_period", "billing_period_unit", "start_date", "trial_end", "remaining_billing_cycles", \
-    "po_number", "auto_collection", "customer_id", "plan_amount", "plan_free_quantity", "status", \
-    "trial_start", "current_term_start", "current_term_end", "next_billing_at", "created_at", "started_at", \
-    "activated_at", "gift_id", "contract_term_billing_cycle_on_renewal", "override_relationship", \
-    "pause_date", "resume_date", "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", \
-    "resource_version", "updated_at", "has_scheduled_advance_invoices", "has_scheduled_changes", \
-    "payment_source_id", "plan_free_quantity_in_decimal", "plan_quantity_in_decimal", "plan_unit_price_in_decimal", \
-    "plan_amount_in_decimal", "offline_payment_method", "subscription_items", "item_tiers", "charged_items", \
-    "due_invoices_count", "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", \
-    "addons", "event_based_addons", "charged_event_based_addons", "coupon", "coupons", "shipping_address", \
-    "referral_info", "invoice_notes", "meta_data", "metadata", "deleted", "contract_term", "cancel_reason_code", \
-    "free_period", "free_period_unit", "create_pending_invoices", "auto_close_invoices"]
+    "po_number", "auto_collection", "plan_quantity_in_decimal", "plan_unit_price_in_decimal", "customer_id", \
+    "plan_amount", "plan_free_quantity", "status", "trial_start", "trial_end_action", "current_term_start", \
+    "current_term_end", "next_billing_at", "created_at", "started_at", "activated_at", "gift_id", \
+    "contract_term_billing_cycle_on_renewal", "override_relationship", "pause_date", "resume_date", \
+    "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", \
+    "has_scheduled_advance_invoices", "has_scheduled_changes", "payment_source_id", "plan_free_quantity_in_decimal", \
+    "plan_amount_in_decimal", "cancel_schedule_created_at", "offline_payment_method", "channel", \
+    "subscription_items", "item_tiers", "charged_items", "due_invoices_count", "due_since", "total_dues", \
+    "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", \
+    "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "metadata", \
+    "deleted", "contract_term", "cancel_reason_code", "free_period", "free_period_unit", "create_pending_invoices", \
+    "auto_close_invoices"]
 
 
     @staticmethod

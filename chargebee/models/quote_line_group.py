@@ -11,7 +11,7 @@ class QuoteLineGroup(Model):
       fields = ["amount", "description", "entity_type", "entity_id"]
       pass
     class LineItemDiscount(Model):
-      fields = ["line_item_id", "discount_type", "coupon_id", "discount_amount"]
+      fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
     class Tax(Model):
       fields = ["name", "amount", "description"]
