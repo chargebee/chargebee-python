@@ -17,7 +17,7 @@ _logger = logging.getLogger(__name__)
 retry_strategy = Retry(
     total=3,
     backoff_factor=1,
-    status_forcelist=[500, 502, 503, 504],
+    status_forcelist=[429, 500, 502, 503, 504],
     method_whitelist=["HEAD", "GET", "OPTIONS"]
 )
 
@@ -33,8 +33,13 @@ def request(method, url, env, params=None, headers=None):
 
     url = env.api_url(url)
     timeout = env.http_timeout
-    adapter = HTTPAdapter(max_retries=retry_strategy)
-    http = requests.Session()
+    if env.retries:
+        adapter = HTTPAdapter(max_retries=retry_strategy)
+        http = requests.Session()
+        http.mount("https://", adapter)
+    else:
+        http = requests.Session()
+
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
@@ -65,18 +70,15 @@ def request(method, url, env, params=None, headers=None):
             'verify': ChargeBee.ca_cert_path,
             'url': 'https://' + uri,
         })
-        http.mount("https://", adapter)
     else:
         if Environment.protocol == "https":
             request_args.update({
                 'url': 'https://' + uri,
             })
-            http.mount("https://", adapter)
         else:
             request_args.update({
                 'url': 'http://' + uri,
             })
-            http.mount("http://", adapter)
 
     _logger.debug('{method} Request: {url}'.format(**request_args))
     _logger.debug('HEADERS: {0}'.format({k: v for k, v in headers.items() if k.lower() != "authorization"}))
