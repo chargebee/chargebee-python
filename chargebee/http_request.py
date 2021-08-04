@@ -3,12 +3,23 @@ import logging
 import platform
 import requests
 
-from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+from chargebee import (APIError,PaymentError,InvalidRequestError,
+OperationFailedError,compat)
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
 from chargebee.version import VERSION
 
 _logger = logging.getLogger(__name__)
+
+
+retry_strategy = Retry(
+    total=3,
+    backoff_factor=1,
+    status_forcelist=[500, 502, 503, 504],
+    method_whitelist=["HEAD", "GET", "OPTIONS"]
+)
 
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
@@ -21,6 +32,9 @@ def request(method, url, env, params=None, headers=None):
         headers = {}
 
     url = env.api_url(url)
+    timeout = env.http_timeout
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    http = requests.Session()
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
@@ -41,6 +55,7 @@ def request(method, url, env, params=None, headers=None):
         'method': method.upper(),
         'data': payload,
         'headers': headers,
+        'timeout': timeout,
     }
 
     uri = meta.netloc + meta.path + '?' + meta.query
@@ -50,22 +65,25 @@ def request(method, url, env, params=None, headers=None):
             'verify': ChargeBee.ca_cert_path,
             'url': 'https://' + uri,
         })
+        http.mount("https://", adapter)
     else:
         if Environment.protocol == "https":
             request_args.update({
                 'url': 'https://' + uri,
             })
+            http.mount("https://", adapter)
         else:
             request_args.update({
                 'url': 'http://' + uri,
             })
+            http.mount("http://", adapter)
 
     _logger.debug('{method} Request: {url}'.format(**request_args))
     _logger.debug('HEADERS: {0}'.format({k: v for k, v in headers.items() if k.lower() != "authorization"}))
     if payload:
         _logger.debug('PAYLOAD: {data}'.format(**request_args))
 
-    response = requests.request(**request_args)
+    response = http.request(**request_args)
 
     _logger.debug('{method} Response: {status_code} - {text}'.format(
         method=request_args['method'], status_code=response.status_code, text=response.text
