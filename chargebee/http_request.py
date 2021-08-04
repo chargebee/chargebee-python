@@ -3,10 +3,7 @@ import logging
 import platform
 import requests
 
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-from chargebee import (APIError,PaymentError,InvalidRequestError,
-OperationFailedError,compat)
+from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
 from chargebee.version import VERSION
