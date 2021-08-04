@@ -22,8 +22,6 @@ def request(method, url, env, params=None, headers=None, session=None):
         headers = {}
 
     url = env.api_url(url)
-    timeout = env.http_timeout
-
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
