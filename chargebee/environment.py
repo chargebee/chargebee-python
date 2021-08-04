@@ -3,8 +3,6 @@ class Environment(object):
     chargebee_domain = None
     protocol= "https"
     API_VERSION = "v2"
-    http_timeout = 20
-    retries = False
 
     def __init__(self, options):
         self.api_key = options['api_key']

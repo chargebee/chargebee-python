@@ -14,18 +14,11 @@ from chargebee.version import VERSION
 _logger = logging.getLogger(__name__)
 
 
-retry_strategy = Retry(
-    total=3,
-    backoff_factor=1,
-    status_forcelist=[429, 500, 502, 503, 504],
-    method_whitelist=["HEAD", "GET", "OPTIONS"]
-)
-
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
 
 
-def request(method, url, env, params=None, headers=None):
+def request(method, url, env, params=None, headers=None, session=None):
     if not env:
         raise Exception('No environment configured.')
     if headers is None:
@@ -33,12 +26,6 @@ def request(method, url, env, params=None, headers=None):
 
     url = env.api_url(url)
     timeout = env.http_timeout
-    if env.retries:
-        adapter = HTTPAdapter(max_retries=retry_strategy)
-        http = requests.Session()
-        http.mount("https://", adapter)
-    else:
-        http = requests.Session()
 
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
@@ -60,7 +47,6 @@ def request(method, url, env, params=None, headers=None):
         'method': method.upper(),
         'data': payload,
         'headers': headers,
-        'timeout': timeout,
     }
 
     uri = meta.netloc + meta.path + '?' + meta.query
@@ -85,7 +71,10 @@ def request(method, url, env, params=None, headers=None):
     if payload:
         _logger.debug('PAYLOAD: {data}'.format(**request_args))
 
-    response = http.request(**request_args)
+    if session:
+        response = session.request(**request_args)
+    else:
+        response = requests.request(**request_args)
 
     _logger.debug('{method} Response: {status_code} - {text}'.format(
         method=request_args['method'], status_code=response.status_code, text=response.text
