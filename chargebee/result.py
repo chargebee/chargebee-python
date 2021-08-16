@@ -140,8 +140,14 @@ class Result(object):
     @property
     def quoted_subscription(self):
         quoted_subscription = self._get('quoted_subscription', QuotedSubscription,
-        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon, 'discounts' : QuotedSubscription.Discount, 'subscription_items' : QuotedSubscription.SubscriptionItem, 'item_tiers' : QuotedSubscription.ItemTier, 'quoted_contract_term' : QuotedSubscription.QuotedContractTerm});
+        {'addons' : QuotedSubscription.Addon, 'event_based_addons' : QuotedSubscription.EventBasedAddon, 'coupons' : QuotedSubscription.Coupon, 'subscription_items' : QuotedSubscription.SubscriptionItem, 'item_tiers' : QuotedSubscription.ItemTier, 'quoted_contract_term' : QuotedSubscription.QuotedContractTerm});
         return quoted_subscription;
+
+    @property
+    def quoted_charge(self):
+        quoted_charge = self._get('quoted_charge', QuotedCharge,
+        {'charges' : QuotedCharge.Charge, 'addons' : QuotedCharge.Addon, 'invoice_items' : QuotedCharge.InvoiceItem, 'item_tiers' : QuotedCharge.ItemTier, 'coupons' : QuotedCharge.Coupon});
+        return quoted_charge;
 
     @property
     def quote_line_group(self):
@@ -236,7 +242,6 @@ class Result(object):
         {'payment_attempt' : PaymentIntent.PaymentAttempt});
         return payment_intent;
 
-
     @property
     def item_family(self):
         item_family = self._get('item_family', ItemFamily);
@@ -264,6 +269,7 @@ class Result(object):
         differential_price = self._get('differential_price', DifferentialPrice,
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_price;
+
 
     @property
     def unbilled_charges(self):
@@ -300,6 +306,7 @@ class Result(object):
         differential_prices = self._get_list('differential_prices', DifferentialPrice,
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_prices;
+
 
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):
         if not type in self._response:

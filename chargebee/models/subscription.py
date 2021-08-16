@@ -47,8 +47,8 @@ class Subscription(Model):
     "subscription_items", "item_tiers", "charged_items", "due_invoices_count", "due_since", "total_dues", \
     "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", "charged_event_based_addons", \
     "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", "meta_data", "metadata", \
-    "deleted", "contract_term", "cancel_reason_code", "free_period", "free_period_unit", "create_pending_invoices", \
-    "auto_close_invoices"]
+    "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", "free_period", "free_period_unit", \
+    "create_pending_invoices", "auto_close_invoices"]
 
 
     @staticmethod

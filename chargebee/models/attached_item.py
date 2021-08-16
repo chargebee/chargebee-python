@@ -28,7 +28,3 @@ class AttachedItem(Model):
     @staticmethod
     def list(id, params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("items",id,"attached_items"), params, env, headers)
-
-    @staticmethod
-    def list_internal(params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("attached_items","list_internal"), params, env, headers)

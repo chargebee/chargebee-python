@@ -11,10 +11,7 @@ class QuotedSubscription(Model):
       fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once", "quantity_in_decimal", "unit_price_in_decimal"]
       pass
     class Coupon(Model):
-      fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
-      pass
-    class Discount(Model):
-      fields = ["id", "invoice_name", "type", "percentage", "amount", "currency_code", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at", "apply_till", "applied_count"]
+      fields = ["coupon_id"]
       pass
     class SubscriptionItem(Model):
       fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "amount_in_decimal", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
@@ -28,7 +25,7 @@ class QuotedSubscription(Model):
 
     fields = ["id", "plan_id", "plan_quantity", "plan_unit_price", "setup_fee", "billing_period", \
     "billing_period_unit", "start_date", "trial_end", "remaining_billing_cycles", "po_number", "auto_collection", \
-    "plan_quantity_in_decimal", "plan_unit_price_in_decimal", "contract_term_billing_cycle_on_renewal", \
-    "addons", "event_based_addons", "coupons", "discounts", "subscription_items", "item_tiers", \
-    "quoted_contract_term"]
+    "plan_quantity_in_decimal", "plan_unit_price_in_decimal", "changes_scheduled_at", "change_option", \
+    "contract_term_billing_cycle_on_renewal", "addons", "event_based_addons", "coupons", "subscription_items", \
+    "item_tiers", "quoted_contract_term"]
 
