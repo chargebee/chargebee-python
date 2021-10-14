@@ -6,6 +6,7 @@ import requests
 from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
+from chargebee import compat
 from chargebee.version import VERSION
 
 _logger = logging.getLogger(__name__)
@@ -67,9 +68,14 @@ def request(method, url, env, params=None, headers=None):
 
     response = requests.request(**request_args)
 
-    _logger.debug('{method} Response: {status_code} - {text}'.format(
-        method=request_args['method'], status_code=response.status_code, text=response.text
-    ))
+    if compat.py_major_v >= 3:
+        _logger.debug('{method} Response: {status_code} - {text}'.format(
+            method=request_args['method'], status_code=response.status_code, text=response.text
+        ))
+    elif compat.py_major_v < 3:
+        _logger.debug('{method} Response: {status_code} - {text}'.format(
+            method=request_args['method'], status_code=response.status_code, text=response.text.encode("utf 8")
+        ))
 
     return process_response(url, response.text, response.status_code)
 
