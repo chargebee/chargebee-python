@@ -8,7 +8,7 @@ class ItemPrice(Model):
       fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
       pass
     class TaxDetail(Model):
-      fields = ["tax_profile_id", "avalara_sale_type", "avalara_transaction_type", "avalara_service_type", "avalara_tax_code", "taxjar_product_code"]
+      fields = ["tax_profile_id", "avalara_sale_type", "avalara_transaction_type", "avalara_service_type", "avalara_tax_code", "hsn_code", "taxjar_product_code"]
       pass
     class AccountingDetail(Model):
       fields = ["sku", "accounting_code", "accounting_category1", "accounting_category2", "accounting_category3", "accounting_category4"]
@@ -41,3 +41,11 @@ class ItemPrice(Model):
     @staticmethod
     def delete(id, env=None, headers=None):
         return request.send('post', request.uri_path("item_prices",id,"delete"), None, env, headers)
+
+    @staticmethod
+    def find_applicable_items(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("item_prices",id,"applicable_items"), params, env, headers)
+
+    @staticmethod
+    def find_applicable_item_prices(id, params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("item_prices",id,"applicable_item_prices"), params, env, headers)

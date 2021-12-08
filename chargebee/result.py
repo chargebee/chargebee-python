@@ -79,6 +79,11 @@ class Result(object):
         return invoice;
 
     @property
+    def tax_withheld(self):
+        tax_withheld = self._get('tax_withheld', TaxWithheld);
+        return tax_withheld;
+
+    @property
     def credit_note(self):
         credit_note = self._get('credit_note', CreditNote,
         {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});

@@ -40,6 +40,7 @@ def request(method, url, env, params=None, headers=None):
     meta = compat.urlparse(url)
     request_args = {
         'method': method.upper(),
+        'timeout': (env.connect_timeout,env.read_timeout),
         'data': payload,
         'headers': headers,
     }

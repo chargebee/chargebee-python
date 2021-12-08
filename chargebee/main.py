@@ -13,3 +13,11 @@ class ChargeBee(object):
     @classmethod
     def configure(cls, options):
         cls.default_env = Environment(options)
+
+    @classmethod
+    def update_connect_timeout_secs(cls,connect_timeout):
+         cls.default_env.connect_timeout = connect_timeout
+
+    @classmethod
+    def update_read_timeout_secs(cls,read_timeout):
+         cls.default_env.read_timeout = read_timeout

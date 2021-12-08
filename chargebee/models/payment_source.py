@@ -8,7 +8,7 @@ class PaymentSource(Model):
       fields = ["first_name", "last_name", "iin", "last4", "brand", "funding_type", "expiry_month", "expiry_year", "billing_addr1", "billing_addr2", "billing_city", "billing_state_code", "billing_state", "billing_country", "billing_zip", "masked_number"]
       pass
     class BankAccount(Model):
-      fields = ["last4", "name_on_account", "bank_name", "mandate_id", "account_type", "echeck_type", "account_holder_type"]
+      fields = ["last4", "name_on_account", "first_name", "last_name", "bank_name", "mandate_id", "account_type", "echeck_type", "account_holder_type", "email"]
       pass
     class AmazonPayment(Model):
       fields = ["email", "agreement_id"]
@@ -49,6 +49,10 @@ class PaymentSource(Model):
     @staticmethod
     def update_card(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("payment_sources",id,"update_card"), params, env, headers)
+
+    @staticmethod
+    def update_bank_account(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("payment_sources",id,"update_bank_account"), params, env, headers)
 
     @staticmethod
     def verify_bank_account(id, params, env=None, headers=None):
