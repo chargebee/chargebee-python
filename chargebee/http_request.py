@@ -84,8 +84,14 @@ def request(method, url, env, params=None, headers=None):
 def process_response(url,response, http_code):
     try:
         resp_json = compat.json.loads(response)
-    except Exception as ex:     
-        raise Exception("Response not in JSON format. Probably not a chargebee error. \n URL is " + url + "\n Content is \n" + response)
+    except Exception as ex:
+        if "503" in response:
+            raise Exception("Sorry, the server is currently unable to handle the request due to a temporary overload or scheduled maintenance. Please retry after sometime. \n type: internal_temporary_error, \n http_status_code: 503, \n error_code: internal_temporary_error,\n content:" + response)
+        elif "504" in response:
+            raise Exception("The server did not receive a timely response from an upstream server, request aborted. If this problem persists, contact us at support@chargebee.com. \n type: gateway_timeout, \n http_status_code: 504, \n error_code: gateway_timeout,\n content:" + response)
+        else:
+            raise Exception("Sorry, something went wrong when trying to process the request. If this problem persists, contact us at support@chargebee.com. \n type: internal_error, \n http_status_code: 500, \n error_code: internal_error,\n content:" + response)
+
     if http_code < 200 or http_code > 299:
         handle_api_resp_error(url,http_code, resp_json)
 
