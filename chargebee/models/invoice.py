@@ -49,6 +49,9 @@ class Invoice(Model):
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
+    class Einvoice(Model):
+      fields = ["id", "status", "message"]
+      pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "due_date", "net_term_days", "exchange_rate", "currency_code", "total", \
@@ -59,7 +62,7 @@ class Invoice(Model):
     "amount_to_collect", "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", \
     "line_item_taxes", "line_item_tiers", "linked_payments", "dunning_attempts", "applied_credits", \
     "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", "shipping_address", \
-    "billing_address", "payment_owner", "void_reason_code", "deleted", "vat_number_prefix"]
+    "billing_address", "einvoice", "payment_owner", "void_reason_code", "deleted", "vat_number_prefix"]
 
 
     @staticmethod
@@ -117,6 +120,10 @@ class Invoice(Model):
     @staticmethod
     def pdf(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"pdf"), params, env, headers)
+
+    @staticmethod
+    def download_einvoice(id, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices",id,"download_einvoice"), None, env, headers)
 
     @staticmethod
     def add_charge(id, params, env=None, headers=None):

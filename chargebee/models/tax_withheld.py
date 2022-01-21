@@ -5,5 +5,6 @@ from chargebee import APIError
 
 class TaxWithheld(Model):
 
-    fields = ["id", "reference_number", "description", "date", "currency_code", "amount"]
+    fields = ["id", "user", "reference_number", "description", "type", "payment_method", "date", \
+    "currency_code", "amount", "exchange_rate"]
 

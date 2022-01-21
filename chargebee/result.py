@@ -28,7 +28,7 @@ class Result(object):
     @property
     def customer(self):
         customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'relationship' : Customer.Relationship, 'parent_account_access' : Customer.ParentAccountAccess, 'child_account_access' : Customer.ChildAccountAccess});
+        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'entity_identifiers' : Customer.EntityIdentifier, 'relationship' : Customer.Relationship, 'parent_account_access' : Customer.ParentAccountAccess, 'child_account_access' : Customer.ChildAccountAccess});
         return customer;
 
     @property
@@ -75,7 +75,7 @@ class Result(object):
     @property
     def invoice(self):
         invoice = self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice});
         return invoice;
 
     @property
@@ -86,7 +86,7 @@ class Result(object):
     @property
     def credit_note(self):
         credit_note = self._get('credit_note', CreditNote,
-        {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
+        {'einvoice' : CreditNote.Einvoice, 'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
         return credit_note;
 
     @property
@@ -285,7 +285,7 @@ class Result(object):
     @property
     def credit_notes(self):
         credit_notes = self._get_list('credit_notes', CreditNote,
-        {'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
+        {'einvoice' : CreditNote.Einvoice, 'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation});
         return credit_notes;
 
     @property
@@ -301,9 +301,15 @@ class Result(object):
         return hierarchies;
 
     @property
+    def downloads(self):
+        downloads = self._get_list('downloads', Download,
+        {});
+        return downloads;
+
+    @property
     def invoices(self):
         invoices = self._get_list('invoices', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice});
         return invoices;
 
     @property

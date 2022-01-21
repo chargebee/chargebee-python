@@ -4,6 +4,9 @@ from chargebee import request
 from chargebee import APIError
 
 class CreditNote(Model):
+    class Einvoice(Model):
+      fields = ["id", "status", "message"]
+      pass
     class LineItem(Model):
       fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
@@ -32,10 +35,10 @@ class CreditNote(Model):
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
     "amount_refunded", "amount_available", "refunded_at", "voided_at", "generated_at", "resource_version", \
-    "updated_at", "sub_total", "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", \
-    "round_off_amount", "fractional_correction", "line_items", "discounts", "line_item_discounts", \
-    "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", "deleted", "create_reason_code", \
-    "vat_number_prefix"]
+    "updated_at", "einvoice", "sub_total", "sub_total_in_local_currency", "total_in_local_currency", \
+    "local_currency_code", "round_off_amount", "fractional_correction", "line_items", "discounts", \
+    "line_item_discounts", "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", \
+    "deleted", "create_reason_code", "vat_number_prefix"]
 
 
     @staticmethod
@@ -49,6 +52,10 @@ class CreditNote(Model):
     @staticmethod
     def pdf(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"pdf"), params, env, headers)
+
+    @staticmethod
+    def download_einvoice(id, env=None, headers=None):
+        return request.send('get', request.uri_path("credit_notes",id,"download_einvoice"), None, env, headers)
 
     @staticmethod
     def refund(id, params=None, env=None, headers=None):

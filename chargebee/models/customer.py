@@ -19,6 +19,9 @@ class Customer(Model):
     class Balance(Model):
       fields = ["promotional_credits", "excess_payments", "refundable_credits", "unbilled_charges", "currency_code", "balance_currency_code"]
       pass
+    class EntityIdentifier(Model):
+      fields = ["id", "value", "scheme", "standard"]
+      pass
     class Relationship(Model):
       fields = ["parent_id", "payment_owner_id", "invoice_owner_id"]
       pass
@@ -36,10 +39,11 @@ class Customer(Model):
     "billing_date_mode", "billing_day_of_week", "billing_day_of_week_mode", "pii_cleared", "auto_close_invoices", \
     "card_status", "fraud_flag", "primary_payment_source_id", "backup_payment_source_id", "billing_address", \
     "referral_urls", "contacts", "payment_method", "invoice_notes", "preferred_currency_code", "promotional_credits", \
-    "unbilled_charges", "refundable_credits", "excess_payments", "balances", "meta_data", "deleted", \
-    "registered_for_gst", "consolidated_invoicing", "customer_type", "business_customer_without_vat_number", \
-    "client_profile_id", "relationship", "use_default_hierarchy_settings", "parent_account_access", \
-    "child_account_access", "vat_number_prefix"]
+    "unbilled_charges", "refundable_credits", "excess_payments", "balances", "entity_identifiers", \
+    "is_einvoice_enabled", "meta_data", "deleted", "registered_for_gst", "consolidated_invoicing", \
+    "customer_type", "business_customer_without_vat_number", "client_profile_id", "relationship", \
+    "use_default_hierarchy_settings", "parent_account_access", "child_account_access", "vat_number_prefix", \
+    "entity_identifier_scheme", "entity_identifier_standard"]
 
 
     @staticmethod
@@ -135,7 +139,7 @@ class Customer(Model):
         return request.send('post', request.uri_path("customers",id,"delete_relationship"), None, env, headers)
 
     @staticmethod
-    def hierarchy(id, params=None, env=None, headers=None):
+    def hierarchy(id, params, env=None, headers=None):
         return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers)
 
     @staticmethod

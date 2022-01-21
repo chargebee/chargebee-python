@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Export(Model):
     class Download(Model):
-      fields = ["download_url", "valid_till"]
+      fields = ["download_url", "valid_till", "mime_type"]
       pass
 
     fields = ["id", "operation_type", "mime_type", "status", "created_at", "download"]
