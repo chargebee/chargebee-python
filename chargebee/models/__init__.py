@@ -45,4 +45,6 @@ from chargebee.models.advance_invoice_schedule import AdvanceInvoiceSchedule
 from chargebee.models.token import Token
 from chargebee.models.quoted_subscription import QuotedSubscription
 from chargebee.models.quote_line_group import QuoteLineGroup
+from chargebee.models.quoted_charge import QuotedCharge
+from chargebee.models.tax_withheld import TaxWithheld
 from chargebee.models.content import Content
