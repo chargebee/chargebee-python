@@ -13,13 +13,19 @@ class PaymentSource(Model):
     class AmazonPayment(Model):
       fields = ["email", "agreement_id"]
       pass
+    class Upi(Model):
+      fields = ["vpa"]
+      pass
     class Paypal(Model):
       fields = ["email", "agreement_id"]
+      pass
+    class Mandate(Model):
+      fields = ["id", "subscription_id", "created_at"]
       pass
 
     fields = ["id", "resource_version", "updated_at", "created_at", "customer_id", "type", \
     "reference_id", "status", "gateway", "gateway_account_id", "ip_address", "issuing_country", \
-    "card", "bank_account", "amazon_payment", "paypal", "deleted"]
+    "card", "bank_account", "amazon_payment", "upi", "paypal", "mandates", "deleted"]
 
 
     @staticmethod
