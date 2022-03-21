@@ -17,12 +17,8 @@ def serialize(value, prefix=None, idx=None):
                     else:
                         arrayContainsValue = True
                 if arrayContainsValue == True:
-                    key = ''.join([
-                        prefix or '',
-                        '[%s]' % k if prefix is not None else k,
-                        '[%s]' % idx if idx is not None else '',
-                    ])
-                    serialized.update({key: get_val(v)})
+                    for i1, v1 in enumerate(v):
+                        serialized.update(serialize(v1, k, i1))
             else:
                 key = ''.join([
                     prefix or '',

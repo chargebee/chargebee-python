@@ -25,7 +25,8 @@ class UtilTest(unittest.TestCase):
                 'expiry_month': '1',
                 'expiry_year': '2024',
                 'cvv': '007',
-            }
+            },
+            'coupon_ids': ["coupon_1", "coupon_2"]
         }
 
         after = {
@@ -40,6 +41,8 @@ class UtilTest(unittest.TestCase):
             'card[expiry_month]': '1',
             'card[expiry_year]': '2024',
             'card[cvv]': '007',
+            'coupon_ids[0]': 'coupon_1',
+            'coupon_ids[1]': 'coupon_2',
         }
 
         self.assertEqual(after, util.serialize(before))
