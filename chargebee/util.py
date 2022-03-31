@@ -7,22 +7,8 @@ def serialize(value, prefix=None, idx=None):
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            if isinstance(v, (dict)):
+            if isinstance(v, (dict, list, tuple)):
                 serialized.update(serialize(v, k))
-            elif isinstance(v, (list, tuple)):
-                arrayContainsValue = False
-                for i1, v1 in enumerate(v):
-                    if isinstance(v1, (dict)):
-                        serialized.update(serialize(v1, k, i1))
-                    else:
-                        arrayContainsValue = True
-                if arrayContainsValue == True:
-                    key = ''.join([
-                        prefix or '',
-                        '[%s]' % k if prefix is not None else k,
-                        '[%s]' % idx if idx is not None else '',
-                    ])
-                    serialized.update({key: get_val(v)})
             else:
                 key = ''.join([
                     prefix or '',
