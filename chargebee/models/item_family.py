@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class ItemFamily(Model):
 
-    fields = ["id", "name", "description", "status", "resource_version", "updated_at"]
+    fields = ["id", "name", "description", "status", "resource_version", "updated_at", "channel"]
 
 
     @staticmethod

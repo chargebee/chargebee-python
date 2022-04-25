@@ -43,7 +43,7 @@ class Subscription(Model):
     "contract_term_billing_cycle_on_renewal", "override_relationship", "pause_date", "resume_date", \
     "cancelled_at", "cancel_reason", "affiliate_token", "created_from_ip", "resource_version", "updated_at", \
     "has_scheduled_advance_invoices", "has_scheduled_changes", "payment_source_id", "plan_free_quantity_in_decimal", \
-    "plan_amount_in_decimal", "cancel_schedule_created_at", "offline_payment_method", \
+    "plan_amount_in_decimal", "cancel_schedule_created_at", "offline_payment_method", "channel", \
     "net_term_days", "subscription_items", "item_tiers", "charged_items", "due_invoices_count", \
     "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
     "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
