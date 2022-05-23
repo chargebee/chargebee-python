@@ -80,3 +80,7 @@ class CreditNote(Model):
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers)
+
+    @staticmethod
+    def resend_einvoice(id, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers)

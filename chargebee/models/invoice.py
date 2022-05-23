@@ -99,6 +99,10 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"apply_payments"), params, env, headers)
 
     @staticmethod
+    def sync_usages(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"sync_usages"), None, env, headers)
+
+    @staticmethod
     def apply_credits(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"apply_credits"), params, env, headers)
 
@@ -181,3 +185,7 @@ class Invoice(Model):
     @staticmethod
     def update_details(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"update_details"), params, env, headers)
+
+    @staticmethod
+    def resend_einvoice(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"resend_einvoice"), None, env, headers)

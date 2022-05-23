@@ -275,6 +275,30 @@ class Result(object):
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_price;
 
+    @property
+    def feature(self):
+        feature = self._get('feature', Feature,
+        {'levels' : Feature.Level});
+        return feature;
+
+    @property
+    def subscription_entitlement(self):
+        subscription_entitlement = self._get('subscription_entitlement', SubscriptionEntitlement,
+        {'component' : SubscriptionEntitlement.Component, 'embedded_resource' : SubscriptionEntitlement.EmbeddedResource});
+        return subscription_entitlement;
+
+    @property
+    def item_entitlement(self):
+        item_entitlement = self._get('item_entitlement', ItemEntitlement,
+        {'embedded_resource' : ItemEntitlement.EmbeddedResource});
+        return item_entitlement;
+
+    @property
+    def entitlement_override(self):
+        entitlement_override = self._get('entitlement_override', EntitlementOverride,
+        {'embedded_resource' : EntitlementOverride.EmbeddedResource});
+        return entitlement_override;
+
 
     @property
     def unbilled_charges(self):
