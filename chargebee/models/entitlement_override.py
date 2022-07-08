@@ -4,12 +4,9 @@ from chargebee import request
 from chargebee import APIError
 
 class EntitlementOverride(Model):
-    class EmbeddedResource(Model):
-      fields = [""]
-      pass
 
     fields = ["id", "entity_id", "entity_type", "feature_id", "feature_name", "value", "name", \
-    "expires_at", "embedded"]
+    "expires_at"]
 
 
     @staticmethod

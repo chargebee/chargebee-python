@@ -121,13 +121,15 @@ class Result(object):
     @property
     def estimate(self):
         estimate = self._get('estimate', Estimate, {},
-        {'subscription_estimate' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'invoice_estimates' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
+        {'subscription_estimate' : SubscriptionEstimate, 'subscription_estimates' : SubscriptionEstimate, 'invoice_estimate' : InvoiceEstimate, 'invoice_estimates' : InvoiceEstimate, 'next_invoice_estimate' : InvoiceEstimate, 'credit_note_estimates' : CreditNoteEstimate, 'unbilled_charge_estimates' : UnbilledCharge});
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
+        estimate.init_dependant_list(self._response['estimate'], 'subscription_estimates',
+        {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant_list(self._response['estimate'], 'invoice_estimates',
         {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
@@ -282,22 +284,37 @@ class Result(object):
         return feature;
 
     @property
+    def impacted_subscription(self):
+        impacted_subscription = self._get('impacted_subscription', ImpactedSubscription,
+        {'download' : ImpactedSubscription.Download});
+        return impacted_subscription;
+
+    @property
+    def impacted_item(self):
+        impacted_item = self._get('impacted_item', ImpactedItem,
+        {'download' : ImpactedItem.Download});
+        return impacted_item;
+
+    @property
     def subscription_entitlement(self):
         subscription_entitlement = self._get('subscription_entitlement', SubscriptionEntitlement,
-        {'component' : SubscriptionEntitlement.Component, 'embedded_resource' : SubscriptionEntitlement.EmbeddedResource});
+        {'component' : SubscriptionEntitlement.Component});
         return subscription_entitlement;
 
     @property
     def item_entitlement(self):
-        item_entitlement = self._get('item_entitlement', ItemEntitlement,
-        {'embedded_resource' : ItemEntitlement.EmbeddedResource});
+        item_entitlement = self._get('item_entitlement', ItemEntitlement);
         return item_entitlement;
 
     @property
     def entitlement_override(self):
-        entitlement_override = self._get('entitlement_override', EntitlementOverride,
-        {'embedded_resource' : EntitlementOverride.EmbeddedResource});
+        entitlement_override = self._get('entitlement_override', EntitlementOverride);
         return entitlement_override;
+
+    @property
+    def purchase(self):
+        purchase = self._get('purchase', Purchase);
+        return purchase;
 
 
     @property

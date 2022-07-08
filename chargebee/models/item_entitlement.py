@@ -4,12 +4,8 @@ from chargebee import request
 from chargebee import APIError
 
 class ItemEntitlement(Model):
-    class EmbeddedResource(Model):
-      fields = [""]
-      pass
 
-    fields = ["id", "item_id", "item_type", "feature_id", "feature_name", "value", "name", \
-    "embedded"]
+    fields = ["id", "item_id", "item_type", "feature_id", "feature_name", "value", "name"]
 
 
     @staticmethod

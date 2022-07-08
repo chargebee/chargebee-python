@@ -5,14 +5,11 @@ from chargebee import APIError
 
 class SubscriptionEntitlement(Model):
     class Component(Model):
-      fields = [""]
-      pass
-    class EmbeddedResource(Model):
-      fields = [""]
+      fields = ["entitlement_overrides"]
       pass
 
     fields = ["id", "subscription_id", "feature_id", "feature_name", "feature_unit", "value", \
-    "name", "is_overridden", "is_enabled", "expires_at", "components", "embedded"]
+    "name", "is_overridden", "is_enabled", "expires_at", "components"]
 
 
     @staticmethod

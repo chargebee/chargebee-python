@@ -23,7 +23,7 @@ class Addon(Model):
         return request.send('post', request.uri_path("addons"), params, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None, headers=None):
+    def update(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("addons",id), params, env, headers)
 
     @staticmethod

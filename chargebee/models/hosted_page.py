@@ -6,7 +6,7 @@ from chargebee import APIError
 class HostedPage(Model):
 
     fields = ["id", "type", "url", "state", "failure_reason", "pass_thru_content", "embed", \
-    "created_at", "expires_at", "updated_at", "resource_version", "checkout_info"]
+    "created_at", "expires_at", "updated_at", "resource_version", "checkout_info", "business_entity_id"]
 
     @property
     def content(self):
@@ -24,7 +24,7 @@ class HostedPage(Model):
         return request.send('post', request.uri_path("hosted_pages","checkout_one_time"), params, env, headers)
 
     @staticmethod
-    def checkout_one_time_for_items(params=None, env=None, headers=None):
+    def checkout_one_time_for_items(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","checkout_one_time_for_items"), params, env, headers)
 
     @staticmethod
@@ -90,3 +90,7 @@ class HostedPage(Model):
     @staticmethod
     def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("hosted_pages"), params, env, headers)
+
+    @staticmethod
+    def pre_cancel(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","pre_cancel"), params, env, headers)
