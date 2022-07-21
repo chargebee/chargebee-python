@@ -11,11 +11,12 @@ from chargebee.version import VERSION
 
 _logger = logging.getLogger(__name__)
 
+
 def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
 
 
-def request(method, url, env, params=None, headers=None):
+def request(method, url, env, params=None, headers=None, session=None):
     if not env:
         raise Exception('No environment configured.')
     if headers is None:
@@ -67,7 +68,10 @@ def request(method, url, env, params=None, headers=None):
     if payload:
         _logger.debug('PAYLOAD: {data}'.format(**request_args))
 
-    response = requests.request(**request_args)
+    if session:
+        response = session.request(**request_args)
+    else:
+        response = requests.request(**request_args)
 
     if compat.py_major_v >= 3:
         _logger.debug('{method} Response: {status_code} - {text}'.format(
