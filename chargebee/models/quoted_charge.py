@@ -14,7 +14,7 @@ class QuotedCharge(Model):
       fields = ["item_price_id", "quantity", "quantity_in_decimal", "unit_price", "unit_price_in_decimal", "service_period_days"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
       pass
     class Coupon(Model):
       fields = ["coupon_id"]

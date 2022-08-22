@@ -24,7 +24,7 @@ class Transaction(Model):
     "fraud_reason", "amount_unused", "masked_card_number", "reference_transaction_id", "refunded_txn_id", \
     "reference_authorization_id", "amount_capturable", "reversal_transaction_id", "linked_invoices", \
     "linked_credit_notes", "linked_refunds", "linked_payments", "deleted", "iin", "last4", "merchant_reference_id", \
-    "business_entity_id"]
+    "business_entity_id", "payment_method_details"]
 
 
     @staticmethod

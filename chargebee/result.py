@@ -307,6 +307,11 @@ class Result(object):
         return item_entitlement;
 
     @property
+    def in_app_subscription(self):
+        in_app_subscription = self._get('in_app_subscription', InAppSubscription);
+        return in_app_subscription;
+
+    @property
     def entitlement_override(self):
         entitlement_override = self._get('entitlement_override', EntitlementOverride);
         return entitlement_override;
@@ -358,6 +363,12 @@ class Result(object):
         differential_prices = self._get_list('differential_prices', DifferentialPrice,
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_prices;
+
+    @property
+    def in_app_subscriptions(self):
+        in_app_subscriptions = self._get_list('in_app_subscriptions', InAppSubscription,
+        {});
+        return in_app_subscriptions;
 
 
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):

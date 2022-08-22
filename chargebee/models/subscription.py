@@ -8,7 +8,7 @@ class Subscription(Model):
       fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "amount_in_decimal", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
       pass
     class ChargedItem(Model):
       fields = ["item_price_id", "last_charged_at"]
@@ -26,7 +26,7 @@ class Subscription(Model):
       fields = ["coupon_id", "apply_till", "applied_count", "coupon_code"]
       pass
     class ShippingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
       pass
     class ReferralInfo(Model):
       fields = ["referral_code", "coupon_code", "referrer_id", "external_reference_id", "reward_status", "referral_system", "account_id", "campaign_id", "external_campaign_id", "friend_offer_type", "referrer_reward_type", "notify_referral_system", "destination_url", "post_purchase_widget_enabled"]

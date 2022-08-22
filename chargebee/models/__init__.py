@@ -24,6 +24,7 @@ from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.hosted_page import HostedPage
 from chargebee.models.impacted_item import ImpactedItem
 from chargebee.models.impacted_subscription import ImpactedSubscription
+from chargebee.models.in_app_subscription import InAppSubscription
 from chargebee.models.invoice import Invoice
 from chargebee.models.invoice_estimate import InvoiceEstimate
 from chargebee.models.item import Item

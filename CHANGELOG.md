@@ -1,10 +1,25 @@
-### v2.17.1 (2022-08-02)
+### v2.18.0 (2022-08-22)
 * * *
 
-### Fixes:
-* Fixed missing import for Content
+#### New endpoints:
+* Purchase#Retrieve has been added to the Purchase resource.
 
-### v2.17.0 (2022-07-18)
+#### New attributes:
+* ResourceVersion has been added to the Token resource.
+* UpdatedAt has been added to the Token and UnbilledCharge resources.
+* ReferenceLineItemId has been added to the CreditNote#LineItem, CreditNoteEstimate#LineItem, Quote#LineItem, QuoteLineGroup#LineItem, InvoiceEstimate#LineItem and Invoice#LineItem subResources.
+* Index has been added to the Order#ShippingAddress, Invoice#ShippingAddress, Quote#ShippingAddress, QuotedCharge#ItemTier, QuotedSubscription#ItemTier, Subscription#ItemTier, Subscription#ShippingAddress and SubscriptionEstimate#ShippingAddress subResources.
+* VoidWithCreditNote has been added to the Invoice#VoidInvoiceRequest subresources.
+* PaymentMethodDetails has been added to the Transaction resource.
+
+#### New Resource:
+* InAppSubscription have been added.
+
+### Removed input parameters:
+* BusinessEntityId has been removed from Purchase#CreateRequest and Purchase#EstimateRequest.
+
+
+### v2.17.0 (2022-07-08)
 * * *
 
 ### Fixes:
