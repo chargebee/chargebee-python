@@ -13,9 +13,5 @@ class Purchase(Model):
         return request.send('post', request.uri_path("purchases"), params, env, headers)
 
     @staticmethod
-    def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("purchases",id), None, env, headers)
-
-    @staticmethod
     def estimate(params, env=None, headers=None):
         return request.send('post', request.uri_path("purchases","estimate"), params, env, headers)
