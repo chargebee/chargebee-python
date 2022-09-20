@@ -13,6 +13,7 @@ from chargebee.models.credit_note import CreditNote
 from chargebee.models.credit_note_estimate import CreditNoteEstimate
 from chargebee.models.customer import Customer
 from chargebee.models.differential_price import DifferentialPrice
+from chargebee.models.discount import Discount
 from chargebee.models.download import Download
 from chargebee.models.entitlement_override import EntitlementOverride
 from chargebee.models.estimate import Estimate

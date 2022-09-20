@@ -20,6 +20,11 @@ class Result(object):
         return contract_term;
 
     @property
+    def discount(self):
+        discount = self._get('discount', Discount);
+        return discount;
+
+    @property
     def advance_invoice_schedule(self):
         advance_invoice_schedule = self._get('advance_invoice_schedule', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
