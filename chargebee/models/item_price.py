@@ -31,7 +31,7 @@ class ItemPrice(Model):
         return request.send('get', request.uri_path("item_prices",id), None, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None, headers=None):
+    def update(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("item_prices",id), params, env, headers)
 
     @staticmethod

@@ -34,7 +34,8 @@ class Order(Model):
     "status_update_at", "delivered_at", "shipped_at", "resource_version", "updated_at", "cancelled_at", \
     "resent_status", "is_resent", "original_order_id", "order_line_items", "shipping_address", "billing_address", \
     "discount", "sub_total", "total", "line_item_taxes", "line_item_discounts", "linked_credit_notes", \
-    "deleted", "currency_code", "is_gifted", "gift_note", "gift_id", "resend_reason", "resent_orders"]
+    "deleted", "currency_code", "is_gifted", "gift_note", "gift_id", "resend_reason", "resent_orders", \
+    "business_entity_id"]
 
 
     @staticmethod

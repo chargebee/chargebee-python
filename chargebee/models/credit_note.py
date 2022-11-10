@@ -84,3 +84,7 @@ class CreditNote(Model):
     @staticmethod
     def resend_einvoice(id, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers)
+
+    @staticmethod
+    def import_credit_note(params, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes","import_credit_note"), params, env, headers)
