@@ -103,6 +103,10 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"sync_usages"), None, env, headers)
 
     @staticmethod
+    def delete_line_items(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"delete_line_items"), params, env, headers)
+
+    @staticmethod
     def apply_credits(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"apply_credits"), params, env, headers)
 

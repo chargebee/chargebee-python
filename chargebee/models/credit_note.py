@@ -31,6 +31,12 @@ class CreditNote(Model):
     class Allocation(Model):
       fields = ["invoice_id", "allocated_amount", "allocated_at", "invoice_date", "invoice_status"]
       pass
+    class ShippingAddress(Model):
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
+      pass
+    class BillingAddress(Model):
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
+      pass
 
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
@@ -38,7 +44,8 @@ class CreditNote(Model):
     "updated_at", "channel", "einvoice", "sub_total", "sub_total_in_local_currency", "total_in_local_currency", \
     "local_currency_code", "round_off_amount", "fractional_correction", "line_items", "discounts", \
     "line_item_discounts", "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", \
-    "deleted", "create_reason_code", "vat_number_prefix", "business_entity_id"]
+    "deleted", "create_reason_code", "vat_number_prefix", "business_entity_id", "shipping_address", \
+    "billing_address"]
 
 
     @staticmethod
