@@ -159,6 +159,14 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"record_payment"), params, env, headers)
 
     @staticmethod
+    def record_tax_withheld(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"record_tax_withheld"), params, env, headers)
+
+    @staticmethod
+    def remove_tax_withheld(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"remove_tax_withheld"), params, env, headers)
+
+    @staticmethod
     def refund(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"refund"), params, env, headers)
 

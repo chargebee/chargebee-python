@@ -1,3 +1,28 @@
+### v2.23.0 (2023-02-17)
+
+#### New Attributes:
+* resource_version and updated_at parameter has been added to the tax_withheld resource.
+
+#### Added input parameters:
+* ListRequestParams#updated_at parameter has been added to attached_item resource.
+* AttachedItemsAttachedItemParams#updated_at parameter has been added to export resource.
+* CheckoutGiftRequestParams#coupon_ids parameter has been added to hosted_page resource.
+* ProcessReceiptCustomerParams#email, ProcessReceiptCustomerParams#first_name and  ProcessReceiptCustomerParams#last_name parameters has been added to in_app_subscription resource.
+
+#### New endpoints:
+* invoice#record_tax_withheld and invoice#remove_tax_withheld has been added to the invoice resource.
+* credit_note#remove_tax_withheld_refund has been added to the credit_note resource.
+
+#### New Enum values:
+* custom has been added to payment_method Enum.
+* ecentric has been added to gateway Enum.
+
+#### Removed input parameters:
+* EstimateRequestParams#EstimateInvoiceInfoParams parameter has been removed from purchase resource.
+
+#### Deprecated input parameters:
+* CheckoutGiftRequest#coupon parameter have been deprecated in hosted_page resource.
+
 ### v2.22.0 (2023-01-13)
 * * *
 

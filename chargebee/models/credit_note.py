@@ -89,6 +89,10 @@ class CreditNote(Model):
         return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers)
 
     @staticmethod
+    def remove_tax_withheld_refund(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"remove_tax_withheld_refund"), params, env, headers)
+
+    @staticmethod
     def resend_einvoice(id, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers)
 
