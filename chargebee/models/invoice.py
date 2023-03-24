@@ -50,7 +50,7 @@ class Invoice(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class Einvoice(Model):
-      fields = ["id", "status", "message"]
+      fields = ["id", "reference_number", "status", "message"]
       pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
@@ -201,3 +201,7 @@ class Invoice(Model):
     @staticmethod
     def resend_einvoice(id, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"resend_einvoice"), None, env, headers)
+
+    @staticmethod
+    def send_einvoice(id, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"send_einvoice"), None, env, headers)

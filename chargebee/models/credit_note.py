@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class CreditNote(Model):
     class Einvoice(Model):
-      fields = ["id", "status", "message"]
+      fields = ["id", "reference_number", "status", "message"]
       pass
     class LineItem(Model):
       fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
@@ -95,6 +95,10 @@ class CreditNote(Model):
     @staticmethod
     def resend_einvoice(id, env=None, headers=None):
         return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers)
+
+    @staticmethod
+    def send_einvoice(id, env=None, headers=None):
+        return request.send('post', request.uri_path("credit_notes",id,"send_einvoice"), None, env, headers)
 
     @staticmethod
     def import_credit_note(params, env=None, headers=None):
