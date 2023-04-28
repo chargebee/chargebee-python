@@ -32,7 +32,7 @@ class Subscription(Model):
       fields = ["referral_code", "coupon_code", "referrer_id", "external_reference_id", "reward_status", "referral_system", "account_id", "campaign_id", "external_campaign_id", "friend_offer_type", "referrer_reward_type", "notify_referral_system", "destination_url", "post_purchase_widget_enabled"]
       pass
     class ContractTerm(Model):
-      fields = ["id", "status", "contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "cancellation_cutoff_period", "created_at", "subscription_id", "remaining_billing_cycles"]
+      fields = ["id", "status", "contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "total_contract_value_before_tax", "cancellation_cutoff_period", "created_at", "subscription_id", "remaining_billing_cycles"]
       pass
     class Discount(Model):
       fields = ["id", "invoice_name", "type", "percentage", "amount", "currency_code", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at", "apply_till", "applied_count", "coupon_id", "index"]
