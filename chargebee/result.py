@@ -3,10 +3,25 @@ from chargebee.models import *
 
 
 class Result(object):
-
-    def __init__(self, response):
+    
+    IDEMPOTENCY_REPLAYED_HEADER = 'chargebee-idempotency-replayed'
+        
+    def __init__(self, response, response_header=None):
         self._response = response
         self._response_obj = {}
+        self._response_header = response_header
+        
+    @property
+    def get_response_headers(self):
+        return self._response_header
+    
+    @property
+    def is_idempotency_replayed(self):
+        value = self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER)
+        if value is not None:
+            return bool(value)
+        else:
+            return False
 
     @property
     def subscription(self):
@@ -315,7 +330,7 @@ class Result(object):
     def in_app_subscription(self):
         in_app_subscription = self._get('in_app_subscription', InAppSubscription);
         return in_app_subscription;
-
+    
     @property
     def non_subscription(self):
         non_subscription = self._get('non_subscription', NonSubscription);

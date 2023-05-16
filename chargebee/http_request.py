@@ -78,10 +78,10 @@ def request(method, url, env, params=None, headers=None):
             method=request_args['method'], status_code=response.status_code, text=response.text.encode("utf 8")
         ))
 
-    return process_response(url, response.text, response.status_code)
+    return process_response(url, response.text, response.status_code, response.headers)
 
 
-def process_response(url,response, http_code):
+def process_response(url,response, http_code, response_headers):
     try:
         resp_json = compat.json.loads(response)
     except Exception as ex:
@@ -95,7 +95,7 @@ def process_response(url,response, http_code):
     if http_code < 200 or http_code > 299:
         handle_api_resp_error(url,http_code, resp_json)
 
-    return resp_json
+    return resp_json, response_headers
 
 
 def handle_api_resp_error(url,http_code, resp_json):

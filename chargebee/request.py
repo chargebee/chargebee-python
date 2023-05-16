@@ -26,13 +26,13 @@ def send(method, url, params=None, env=None, headers=None):
 
     ser_params = util.serialize(params)
 
-    response = http_request.request(method, url, env, ser_params, headers)
+    response, response_headers = http_request.request(method, url, env, ser_params, headers)
 
     from chargebee.result import Result
     from chargebee.list_result import ListResult
     if 'list' in response:
-        return ListResult(response['list'], response.get('next_offset', None))
-    return Result(response)
+        return ListResult(response['list'], response.get('next_offset', None), response_headers)
+    return Result(response, response_headers)
 
 
 def uri_path(*paths):

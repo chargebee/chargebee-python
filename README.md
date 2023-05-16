@@ -29,16 +29,53 @@ See our [Python API Reference](https://apidocs.chargebee.com/docs/api?lang=pytho
 
 ## Usage
 
-To create a new subscription:
-  
-    import chargebee
-    chargebee.configure(api_key, site)
+### To create a new subscription:
 
-    res = chargebee.Subscription.create({
-    "plan_id" : "basic"
-    })
+```python  
+import chargebee
+import json
+chargebee.configure(api_key, site)
+result = chargebee.Subscription.create({
+"plan_id" : "basic"
+})
 
-    print res.subscription
+print result.subscription
+```
+
+### Create an idempotent request:
+
+[Idempotency keys](https://apidocs.chargebee.com/docs/api) are passed along with request headers to allow a safe retry of POST requests. 
+
+```python
+import chargebee
+import json
+chargebee.configure(api_key, site)
+result = chargebee.Customer.create({
+    "first_name" : "John",
+    "last_name" : "Doe",
+    "email" : "john@test.com",
+    "locale" : "fr-CA",
+    "billing_address" : {
+        "first_name" : "John",
+        "last_name" : "Doe",
+        "line1" : "PO Box 9999",
+        "city" : "Walnut",
+        "state" : "California",
+        "zip" : "91789",
+        "country" : "US"
+        }
+    },
+    None,
+    {"chargebee-idempotency-key" : "<<UUID>>"}  # Replace <<UUID>> with a unique string
+    )
+customer = result.customer
+card = result.card
+responseHeaders = result.get_response_headers # Retrieves response headers
+print(responseHeaders) 
+idempotencyReplayedValue = result.is_idempotency_replayed # Retrieves Idempotency replayed header value
+print(idempotencyReplayedValue) 
+```
+`isIdempotencyReplayed()` method can be accessed to differentiate between original and replayed requests.
 
 ## License
 
