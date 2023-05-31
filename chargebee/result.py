@@ -69,7 +69,7 @@ class Result(object):
     @property
     def payment_source(self):
         payment_source = self._get('payment_source', PaymentSource,
-        {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'amazon_payment' : PaymentSource.AmazonPayment, 'upi' : PaymentSource.Upi, 'paypal' : PaymentSource.Paypal, 'mandates' : PaymentSource.Mandate});
+        {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'cust_voucher_source' : PaymentSource.CustVoucherSource, 'billing_address' : PaymentSource.BillingAddress, 'amazon_payment' : PaymentSource.AmazonPayment, 'upi' : PaymentSource.Upi, 'paypal' : PaymentSource.Paypal, 'mandates' : PaymentSource.Mandate});
         return payment_source;
 
     @property
@@ -345,6 +345,13 @@ class Result(object):
     def purchase(self):
         purchase = self._get('purchase', Purchase);
         return purchase;
+
+
+    @property
+    def payment_voucher(self):
+        payment_voucher = self._get('payment_voucher', PaymentVoucher,
+        {'linked_invoices' : PaymentVoucher.LinkedInvoice});
+        return payment_voucher;
 
 
     @property

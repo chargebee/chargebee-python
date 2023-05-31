@@ -48,7 +48,7 @@ class Customer(Model):
 
 
     @staticmethod
-    def create(params=None, env=None, headers=None):
+    def create(params, env=None, headers=None):
         return request.send('post', request.uri_path("customers"), params, env, headers)
 
     @staticmethod
@@ -60,7 +60,7 @@ class Customer(Model):
         return request.send('get', request.uri_path("customers",id), None, env, headers)
 
     @staticmethod
-    def update(id, params=None, env=None, headers=None):
+    def update(id, params, env=None, headers=None):
         return request.send('post', request.uri_path("customers",id), params, env, headers)
 
     @staticmethod

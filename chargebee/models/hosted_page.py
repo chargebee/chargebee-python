@@ -94,3 +94,7 @@ class HostedPage(Model):
     @staticmethod
     def pre_cancel(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","pre_cancel"), params, env, headers)
+
+    @staticmethod
+    def events(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","events"), params, env, headers)

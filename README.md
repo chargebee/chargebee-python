@@ -44,7 +44,7 @@ print result.subscription
 
 ### Create an idempotent request:
 
-[Idempotency keys](https://apidocs.chargebee.com/docs/api) are passed along with request headers to allow a safe retry of POST requests. 
+[Idempotency keys](https://apidocs.chargebee.com/docs/api/idempotency?prod_cat_ver=2) are passed along with request headers to allow a safe retry of POST requests. 
 
 ```python
 import chargebee

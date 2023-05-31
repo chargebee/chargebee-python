@@ -36,6 +36,7 @@ from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
 from chargebee.models.payment_source import PaymentSource
+from chargebee.models.payment_voucher import PaymentVoucher
 from chargebee.models.plan import Plan
 from chargebee.models.portal_session import PortalSession
 from chargebee.models.promotional_credit import PromotionalCredit
