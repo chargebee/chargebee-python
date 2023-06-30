@@ -35,6 +35,7 @@ from chargebee.models.item_price import ItemPrice
 from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
+from chargebee.models.payment_reference_number import PaymentReferenceNumber
 from chargebee.models.payment_source import PaymentSource
 from chargebee.models.payment_voucher import PaymentVoucher
 from chargebee.models.plan import Plan

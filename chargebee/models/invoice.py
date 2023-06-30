@@ -57,13 +57,13 @@ class Invoice(Model):
     "price_type", "date", "due_date", "net_term_days", "exchange_rate", "currency_code", "total", \
     "amount_paid", "amount_adjusted", "write_off_amount", "credits_applied", "amount_due", "paid_at", \
     "dunning_status", "next_retry_at", "voided_at", "resource_version", "updated_at", "sub_total", \
-    "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", "tax", "first_invoice", \
-    "new_sales_amount", "has_advance_charges", "term_finalized", "is_gifted", "generated_at", "expected_payment_date", \
-    "amount_to_collect", "round_off_amount", "line_items", "discounts", "line_item_discounts", "taxes", \
-    "line_item_taxes", "line_item_tiers", "linked_payments", "dunning_attempts", "applied_credits", \
-    "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", "shipping_address", \
-    "billing_address", "einvoice", "payment_owner", "void_reason_code", "deleted", "vat_number_prefix", \
-    "channel", "business_entity_id"]
+    "sub_total_in_local_currency", "total_in_local_currency", "local_currency_code", "tax", "local_currency_exchange_rate", \
+    "first_invoice", "new_sales_amount", "has_advance_charges", "term_finalized", "is_gifted", "generated_at", \
+    "expected_payment_date", "amount_to_collect", "round_off_amount", "line_items", "discounts", \
+    "line_item_discounts", "taxes", "line_item_taxes", "line_item_tiers", "linked_payments", "dunning_attempts", \
+    "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", \
+    "shipping_address", "billing_address", "einvoice", "payment_owner", "void_reason_code", "deleted", \
+    "vat_number_prefix", "channel", "business_entity_id"]
 
 
     @staticmethod
@@ -133,6 +133,10 @@ class Invoice(Model):
     @staticmethod
     def download_einvoice(id, env=None, headers=None):
         return request.send('get', request.uri_path("invoices",id,"download_einvoice"), None, env, headers)
+
+    @staticmethod
+    def list_payment_reference_numbers(params=None, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices","payment_reference_numbers"), params, env, headers)
 
     @staticmethod
     def add_charge(id, params, env=None, headers=None):

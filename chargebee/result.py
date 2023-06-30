@@ -99,6 +99,11 @@ class Result(object):
         return invoice;
 
     @property
+    def payment_reference_number(self):
+        payment_reference_number = self._get('payment_reference_number', PaymentReferenceNumber);
+        return payment_reference_number;
+
+    @property
     def tax_withheld(self):
         tax_withheld = self._get('tax_withheld', TaxWithheld);
         return tax_withheld;

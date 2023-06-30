@@ -98,3 +98,7 @@ class HostedPage(Model):
     @staticmethod
     def events(params, env=None, headers=None):
         return request.send('post', request.uri_path("hosted_pages","events"), params, env, headers)
+
+    @staticmethod
+    def view_voucher(params, env=None, headers=None):
+        return request.send('post', request.uri_path("hosted_pages","view_voucher"), params, env, headers)

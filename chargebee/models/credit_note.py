@@ -44,8 +44,8 @@ class CreditNote(Model):
     "updated_at", "channel", "einvoice", "sub_total", "sub_total_in_local_currency", "total_in_local_currency", \
     "local_currency_code", "round_off_amount", "fractional_correction", "line_items", "discounts", \
     "line_item_discounts", "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", \
-    "deleted", "create_reason_code", "vat_number_prefix", "business_entity_id", "shipping_address", \
-    "billing_address"]
+    "deleted", "local_currency_exchange_rate", "create_reason_code", "vat_number_prefix", "business_entity_id", \
+    "shipping_address", "billing_address"]
 
 
     @staticmethod
