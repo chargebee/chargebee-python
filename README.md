@@ -1,7 +1,7 @@
 # Chargebee Python Client Library - API V2
 
-[![PyPI](https://img.shields.io/pypi/v/chargebee.svg?maxAge=29)](https://pypi.python.org/pypi/chargebee)
-[![PyPI](https://img.shields.io/pypi/dm/chargebee.svg?maxAge=29)](https://pypi.python.org/pypi/chargebee)
+[![PyPI](https://img.shields.io/pypi/v/chargebee.svg?maxAge=2)](https://pypi.python.org/pypi/chargebee)
+[![PyPI](https://img.shields.io/pypi/dm/chargebee.svg?maxAge=2)](https://pypi.python.org/pypi/chargebee)
 
 This is the Python Library for integrating with Chargebee. Sign up for a Chargebee account [here](https://www.chargebee.com).
 

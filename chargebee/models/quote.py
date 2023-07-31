@@ -33,8 +33,9 @@ class Quote(Model):
     "operation_type", "vat_number", "price_type", "valid_till", "date", "total_payable", "charge_on_acceptance", \
     "sub_total", "total", "credits_applied", "amount_paid", "amount_due", "version", "resource_version", \
     "updated_at", "vat_number_prefix", "line_items", "discounts", "line_item_discounts", "taxes", \
-    "line_item_taxes", "line_item_tiers", "currency_code", "notes", "shipping_address", "billing_address", \
-    "contract_term_start", "contract_term_end", "contract_term_termination_fee", "business_entity_id"]
+    "line_item_taxes", "line_item_tiers", "tax_category", "currency_code", "notes", "shipping_address", \
+    "billing_address", "contract_term_start", "contract_term_end", "contract_term_termination_fee", \
+    "business_entity_id"]
 
 
     @staticmethod
