@@ -11,6 +11,7 @@ from chargebee.models.coupon_code import CouponCode
 from chargebee.models.coupon_set import CouponSet
 from chargebee.models.credit_note import CreditNote
 from chargebee.models.credit_note_estimate import CreditNoteEstimate
+from chargebee.models.csv_tax_rule import CsvTaxRule
 from chargebee.models.customer import Customer
 from chargebee.models.differential_price import DifferentialPrice
 from chargebee.models.discount import Discount

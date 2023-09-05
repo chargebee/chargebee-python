@@ -8,7 +8,7 @@ class PaymentSource(Model):
       fields = ["first_name", "last_name", "iin", "last4", "brand", "funding_type", "expiry_month", "expiry_year", "billing_addr1", "billing_addr2", "billing_city", "billing_state_code", "billing_state", "billing_country", "billing_zip", "masked_number"]
       pass
     class BankAccount(Model):
-      fields = ["last4", "name_on_account", "first_name", "last_name", "bank_name", "mandate_id", "account_type", "echeck_type", "account_holder_type", "email"]
+      fields = ["last4", "name_on_account", "first_name", "last_name", "direct_debit_scheme", "bank_name", "mandate_id", "account_type", "echeck_type", "account_holder_type", "email"]
       pass
     class CustVoucherSource(Model):
       fields = ["last4", "first_name", "last_name", "email"]

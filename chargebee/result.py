@@ -358,6 +358,11 @@ class Result(object):
         {'linked_invoices' : PaymentVoucher.LinkedInvoice});
         return payment_voucher;
 
+    @property
+    def csv_tax_rule(self):
+        csv_tax_rule = self._get('csv_tax_rule', CsvTaxRule);
+        return csv_tax_rule;
+
 
     @property
     def unbilled_charges(self):
