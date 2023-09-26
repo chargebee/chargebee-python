@@ -25,14 +25,17 @@ class PaymentSource(Model):
     class Paypal(Model):
       fields = ["email", "agreement_id"]
       pass
+    class Venmo(Model):
+      fields = ["user_name"]
+      pass
     class Mandate(Model):
       fields = ["id", "subscription_id", "created_at"]
       pass
 
     fields = ["id", "resource_version", "updated_at", "created_at", "customer_id", "type", \
     "reference_id", "status", "gateway", "gateway_account_id", "ip_address", "issuing_country", \
-    "card", "bank_account", "boleto", "billing_address", "amazon_payment", "upi", "paypal", "mandates", \
-    "deleted", "business_entity_id"]
+    "card", "bank_account", "boleto", "billing_address", "amazon_payment", "upi", "paypal", "venmo", \
+    "mandates", "deleted", "business_entity_id"]
 
 
     @staticmethod

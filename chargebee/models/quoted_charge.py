@@ -8,7 +8,7 @@ class QuotedCharge(Model):
       fields = ["amount", "amount_in_decimal", "description", "service_period_in_days", "avalara_sale_type", "avalara_transaction_type", "avalara_service_type"]
       pass
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "quantity_in_decimal", "unit_price_in_decimal", "service_period"]
+      fields = ["id", "quantity", "unit_price", "quantity_in_decimal", "unit_price_in_decimal", "proration_type", "service_period"]
       pass
     class InvoiceItem(Model):
       fields = ["item_price_id", "quantity", "quantity_in_decimal", "unit_price", "unit_price_in_decimal", "service_period_days"]

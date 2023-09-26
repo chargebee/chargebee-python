@@ -14,7 +14,7 @@ class Subscription(Model):
       fields = ["item_price_id", "last_charged_at"]
       pass
     class Addon(Model):
-      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles", "quantity_in_decimal", "unit_price_in_decimal", "amount_in_decimal"]
+      fields = ["id", "quantity", "unit_price", "amount", "trial_end", "remaining_billing_cycles", "quantity_in_decimal", "unit_price_in_decimal", "amount_in_decimal", "proration_type"]
       pass
     class EventBasedAddon(Model):
       fields = ["id", "quantity", "unit_price", "service_period_in_days", "on_event", "charge_once", "quantity_in_decimal", "unit_price_in_decimal"]
