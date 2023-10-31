@@ -359,12 +359,6 @@ class Result(object):
         return payment_voucher;
 
     @property
-    def csv_tax_rule(self):
-        csv_tax_rule = self._get('csv_tax_rule', CsvTaxRule);
-        return csv_tax_rule;
-
-
-    @property
     def unbilled_charges(self):
         unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge,
         {'tiers' : UnbilledCharge.Tier});
