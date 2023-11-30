@@ -1,3 +1,17 @@
+* * * 
+
+### v2.33.0 (2023-11-30)
+* * *
+
+#### New Enum values:
+* swiss_reference has been added to PaymentReferenceNumber#TypeEnum.
+
+#### New Input parameters:
+* subscription[po_number] has been added to Quote#EditCreateSubForCustomerQuoteRequest in Quote resource. 
+* subscription[po_number] has been added to Quote#EditCreateSubCustomerQuoteForItemsRequest in Quote resource.
+
+* * * 
+
 ### v2.32.0 (2023-10-31)
 * * *
 
