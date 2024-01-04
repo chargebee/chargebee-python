@@ -37,7 +37,7 @@ class Customer(Model):
     "allow_direct_debit", "is_location_valid", "created_at", "created_from_ip", "exemption_details", \
     "taxability", "entity_code", "exempt_number", "resource_version", "updated_at", "locale", "billing_date", \
     "billing_month", "billing_date_mode", "billing_day_of_week", "billing_day_of_week_mode", "pii_cleared", \
-    "auto_close_invoices", "channel", "card_status", "fraud_flag", "primary_payment_source_id", \
+    "auto_close_invoices", "channel", "active_id", "card_status", "fraud_flag", "primary_payment_source_id", \
     "backup_payment_source_id", "billing_address", "referral_urls", "contacts", "payment_method", \
     "invoice_notes", "business_entity_id", "preferred_currency_code", "promotional_credits", "unbilled_charges", \
     "refundable_credits", "excess_payments", "balances", "entity_identifiers", "is_einvoice_enabled", \

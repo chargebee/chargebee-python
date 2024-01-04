@@ -135,7 +135,7 @@ class Result(object):
     @property
     def transaction(self):
         transaction = self._get('transaction', Transaction,
-        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund, 'linked_payments' : Transaction.LinkedPayment});
+        {'linked_invoices' : Transaction.LinkedInvoice, 'linked_credit_notes' : Transaction.LinkedCreditNote, 'linked_refunds' : Transaction.LinkedRefund, 'linked_payments' : Transaction.LinkedPayment, 'gateway_error_detail' : Transaction.GatewayErrorDetail});
         return transaction;
 
     @property
@@ -330,6 +330,11 @@ class Result(object):
     def item_entitlement(self):
         item_entitlement = self._get('item_entitlement', ItemEntitlement);
         return item_entitlement;
+
+    @property
+    def entitlement(self):
+        entitlement = self._get('entitlement', Entitlement);
+        return entitlement;
 
     @property
     def in_app_subscription(self):

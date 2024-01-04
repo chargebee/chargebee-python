@@ -23,7 +23,7 @@ class CreditNote(Model):
       fields = ["name", "amount", "description"]
       pass
     class LineItemTax(Model):
-      fields = ["line_item_id", "tax_name", "tax_rate", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
+      fields = ["line_item_id", "tax_name", "tax_rate", "date_to", "date_from", "prorated_taxable_amount", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
     class LinkedRefund(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount", "refund_reason_code"]

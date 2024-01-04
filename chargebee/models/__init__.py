@@ -15,6 +15,7 @@ from chargebee.models.customer import Customer
 from chargebee.models.differential_price import DifferentialPrice
 from chargebee.models.discount import Discount
 from chargebee.models.download import Download
+from chargebee.models.entitlement import Entitlement
 from chargebee.models.entitlement_override import EntitlementOverride
 from chargebee.models.estimate import Estimate
 from chargebee.models.event import Event
