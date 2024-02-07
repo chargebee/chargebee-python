@@ -22,7 +22,7 @@ class Event(Model):
         try:
             webhook_data = json.loads(json_data)
         except (TypeError, ValueError) as ex:
-            raise Exception("The passed json_data is not JSON formatted . " + ex.message)
+            raise Exception("The passed json_data is not JSON formatted . {}".format(str(ex)))
         
         api_version = webhook_data.get('api_version', None)
         env_version = Environment.API_VERSION
