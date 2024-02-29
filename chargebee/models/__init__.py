@@ -21,6 +21,7 @@ from chargebee.models.estimate import Estimate
 from chargebee.models.event import Event
 from chargebee.models.export import Export
 from chargebee.models.feature import Feature
+from chargebee.models.gateway_error_detail import GatewayErrorDetail
 from chargebee.models.gift import Gift
 from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.hosted_page import HostedPage
@@ -33,7 +34,6 @@ from chargebee.models.item import Item
 from chargebee.models.item_entitlement import ItemEntitlement
 from chargebee.models.item_family import ItemFamily
 from chargebee.models.item_price import ItemPrice
-from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
 from chargebee.models.payment_reference_number import PaymentReferenceNumber
@@ -59,5 +59,5 @@ from chargebee.models.token import Token
 from chargebee.models.transaction import Transaction
 from chargebee.models.unbilled_charge import UnbilledCharge
 from chargebee.models.usage import Usage
-from chargebee.models.content import Content
 from chargebee.models.virtual_bank_account import VirtualBankAccount
+from chargebee.models.content import Content

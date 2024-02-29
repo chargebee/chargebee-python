@@ -9,6 +9,7 @@ class Export(Model):
       pass
 
     fields = ["id", "operation_type", "mime_type", "status", "created_at", "download"]
+
     def wait_for_export_completion(self):
         return wait_for_export_completion()
 
@@ -25,7 +26,6 @@ class Export(Model):
             self.values = Export.retrieve(self.id, env, headers).export.values
             self.load(self.values)
         return self
-
 
     @staticmethod
     def retrieve(id, env=None, headers=None):

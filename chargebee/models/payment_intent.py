@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class PaymentIntent(Model):
     class PaymentAttempt(Model):
-      fields = ["id", "status", "payment_method_type", "id_at_gateway", "error_code", "error_text", "created_at", "modified_at"]
+      fields = ["id", "status", "payment_method_type", "id_at_gateway", "error_code", "error_text", "created_at", "modified_at", "error_detail"]
       pass
 
     fields = ["id", "status", "currency_code", "amount", "gateway_account_id", "expires_at", \

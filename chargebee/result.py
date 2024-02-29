@@ -3,18 +3,18 @@ from chargebee.models import *
 
 
 class Result(object):
-    
+
     IDEMPOTENCY_REPLAYED_HEADER = 'chargebee-idempotency-replayed'
-        
+
     def __init__(self, response, response_header=None):
         self._response = response
         self._response_obj = {}
         self._response_header = response_header
-        
+
     @property
     def get_response_headers(self):
         return self._response_header
-    
+
     @property
     def is_idempotency_replayed(self):
         value = self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER)
@@ -275,6 +275,11 @@ class Result(object):
         return payment_intent;
 
     @property
+    def gateway_error_detail(self):
+        gateway_error_detail = self._get('gateway_error_detail', GatewayErrorDetail);
+        return gateway_error_detail;
+
+    @property
     def item_family(self):
         item_family = self._get('item_family', ItemFamily);
         return item_family;
@@ -340,11 +345,6 @@ class Result(object):
     def in_app_subscription(self):
         in_app_subscription = self._get('in_app_subscription', InAppSubscription);
         return in_app_subscription;
-    
-    @property
-    def non_subscription(self):
-        non_subscription = self._get('non_subscription', NonSubscription);
-        return non_subscription;
 
     @property
     def entitlement_override(self):
@@ -356,24 +356,11 @@ class Result(object):
         purchase = self._get('purchase', Purchase);
         return purchase;
 
-
     @property
     def payment_voucher(self):
         payment_voucher = self._get('payment_voucher', PaymentVoucher,
         {'linked_invoices' : PaymentVoucher.LinkedInvoice});
         return payment_voucher;
-
-    @property
-    def unbilled_charges(self):
-        unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge,
-        {'tiers' : UnbilledCharge.Tier});
-        return unbilled_charges;
-
-    @property
-    def credit_notes(self):
-        credit_notes = self._get_list('credit_notes', CreditNote,
-        {'einvoice' : CreditNote.Einvoice, 'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation, 'shipping_address' : CreditNote.ShippingAddress, 'billing_address' : CreditNote.BillingAddress});
-        return credit_notes;
 
     @property
     def advance_invoice_schedules(self):
@@ -388,12 +375,6 @@ class Result(object):
         return hierarchies;
 
     @property
-    def downloads(self):
-        downloads = self._get_list('downloads', Download,
-        {});
-        return downloads;
-
-    @property
     def invoices(self):
         invoices = self._get_list('invoices', Invoice,
         {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice});
@@ -406,6 +387,24 @@ class Result(object):
         return differential_prices;
 
     @property
+    def credit_notes(self):
+        credit_notes = self._get_list('credit_notes', CreditNote,
+        {'einvoice' : CreditNote.Einvoice, 'line_items' : CreditNote.LineItem, 'discounts' : CreditNote.Discount, 'line_item_discounts' : CreditNote.LineItemDiscount, 'line_item_tiers' : CreditNote.LineItemTier, 'taxes' : CreditNote.Tax, 'line_item_taxes' : CreditNote.LineItemTax, 'linked_refunds' : CreditNote.LinkedRefund, 'allocations' : CreditNote.Allocation, 'shipping_address' : CreditNote.ShippingAddress, 'billing_address' : CreditNote.BillingAddress});
+        return credit_notes;
+
+    @property
+    def unbilled_charges(self):
+        unbilled_charges = self._get_list('unbilled_charges', UnbilledCharge,
+        {'tiers' : UnbilledCharge.Tier});
+        return unbilled_charges;
+
+    @property
+    def downloads(self):
+        downloads = self._get_list('downloads', Download,
+        {});
+        return downloads;
+
+    @property
     def in_app_subscriptions(self):
         in_app_subscriptions = self._get_list('in_app_subscriptions', InAppSubscription,
         {});
@@ -415,7 +414,7 @@ class Result(object):
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):
         if not type in self._response:
             return None
-        
+
         set_val = []
         for obj in self._response[type]:
             if isinstance(obj, dict):
