@@ -345,6 +345,11 @@ class Result(object):
     def in_app_subscription(self):
         in_app_subscription = self._get('in_app_subscription', InAppSubscription);
         return in_app_subscription;
+    
+    @property
+    def non_subscription(self):
+        non_subscription = self._get('non_subscription', NonSubscription);
+        return non_subscription;
 
     @property
     def entitlement_override(self):
