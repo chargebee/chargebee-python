@@ -291,6 +291,11 @@ class Result(object):
         return item;
 
     @property
+    def attribute(self):
+        attribute = self._get('attribute', Attribute);
+        return attribute;
+
+    @property
     def item_price(self):
         item_price = self._get('item_price', ItemPrice,
         {'tiers' : ItemPrice.Tier, 'tax_detail' : ItemPrice.TaxDetail, 'accounting_detail' : ItemPrice.AccountingDetail});
@@ -326,6 +331,12 @@ class Result(object):
         return impacted_item;
 
     @property
+    def impacted_item_price(self):
+        impacted_item_price = self._get('impacted_item_price', ImpactedItemPrice,
+        {'download' : ImpactedItemPrice.Download});
+        return impacted_item_price;
+
+    @property
     def subscription_entitlement(self):
         subscription_entitlement = self._get('subscription_entitlement', SubscriptionEntitlement,
         {'component' : SubscriptionEntitlement.Component});
@@ -345,7 +356,7 @@ class Result(object):
     def in_app_subscription(self):
         in_app_subscription = self._get('in_app_subscription', InAppSubscription);
         return in_app_subscription;
-    
+
     @property
     def non_subscription(self):
         non_subscription = self._get('non_subscription', NonSubscription);
@@ -366,6 +377,17 @@ class Result(object):
         payment_voucher = self._get('payment_voucher', PaymentVoucher,
         {'linked_invoices' : PaymentVoucher.LinkedInvoice});
         return payment_voucher;
+
+    @property
+    def installment_config(self):
+        installment_config = self._get('installment_config', InstallmentConfig,
+        {'installments' : InstallmentConfig.Installment});
+        return installment_config;
+
+    @property
+    def installment(self):
+        installment = self._get('installment', Installment);
+        return installment;
 
     @property
     def advance_invoice_schedules(self):

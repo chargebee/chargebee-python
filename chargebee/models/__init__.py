@@ -2,6 +2,7 @@ from chargebee.models.addon import Addon
 from chargebee.models.address import Address
 from chargebee.models.advance_invoice_schedule import AdvanceInvoiceSchedule
 from chargebee.models.attached_item import AttachedItem
+from chargebee.models.attribute import Attribute
 from chargebee.models.card import Card
 from chargebee.models.comment import Comment
 from chargebee.models.contact import Contact
@@ -26,8 +27,11 @@ from chargebee.models.gift import Gift
 from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.hosted_page import HostedPage
 from chargebee.models.impacted_item import ImpactedItem
+from chargebee.models.impacted_item_price import ImpactedItemPrice
 from chargebee.models.impacted_subscription import ImpactedSubscription
 from chargebee.models.in_app_subscription import InAppSubscription
+from chargebee.models.installment import Installment
+from chargebee.models.installment_config import InstallmentConfig
 from chargebee.models.invoice import Invoice
 from chargebee.models.invoice_estimate import InvoiceEstimate
 from chargebee.models.item import Item

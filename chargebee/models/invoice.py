@@ -206,6 +206,10 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"update_details"), params, env, headers)
 
     @staticmethod
+    def installments(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"installments"), params, env, headers)
+
+    @staticmethod
     def resend_einvoice(id, env=None, headers=None):
         return request.send('post', request.uri_path("invoices",id,"resend_einvoice"), None, env, headers)
 
