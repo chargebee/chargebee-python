@@ -7,7 +7,11 @@ def serialize(value, prefix=None, idx=None):
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            if isinstance(v, (dict, list, tuple)):
+            if k in ('meta_data', 'metaData', 'checkout_info') and isinstance(v, dict):
+                serialized.update({k: v})
+            elif k in ('exemption_details', 'item_family_ids', 'item_price_periods', 'currencies') and isinstance(v, list):
+                serialized.update({k: v})
+            elif isinstance(v, (dict, list, tuple)):
                 serialized.update(serialize(v, k))
             else:
                 key = ''.join([

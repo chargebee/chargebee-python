@@ -198,3 +198,7 @@ class Subscription(Model):
     @staticmethod
     def remove_scheduled_resumption(id, env=None, headers=None):
         return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_resumption"), None, env, headers)
+
+    @staticmethod
+    def move(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("subscriptions",id,"move"), params, env, headers)
