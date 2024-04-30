@@ -5,7 +5,8 @@ from chargebee import APIError
 
 class Installment(Model):
 
-    fields = ["id", "invoice_id", "date", "amount", "status", "created_at", "updated_at"]
+    fields = ["id", "invoice_id", "date", "amount", "status", "created_at", "resource_version", \
+    "updated_at"]
 
 
     @staticmethod

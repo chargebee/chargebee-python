@@ -28,6 +28,9 @@ class PaymentSource(Model):
     class Venmo(Model):
       fields = ["user_name"]
       pass
+    class KlarnaPayNow(Model):
+      fields = ["email"]
+      pass
     class Mandate(Model):
       fields = ["id", "subscription_id", "created_at"]
       pass
@@ -35,7 +38,7 @@ class PaymentSource(Model):
     fields = ["id", "resource_version", "updated_at", "created_at", "customer_id", "type", \
     "reference_id", "status", "gateway", "gateway_account_id", "ip_address", "issuing_country", \
     "card", "bank_account", "boleto", "billing_address", "amazon_payment", "upi", "paypal", "venmo", \
-    "mandates", "deleted", "business_entity_id"]
+    "klarna_pay_now", "mandates", "deleted", "business_entity_id"]
 
 
     @staticmethod

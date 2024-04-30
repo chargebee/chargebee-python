@@ -32,6 +32,7 @@ from chargebee.models.impacted_subscription import ImpactedSubscription
 from chargebee.models.in_app_subscription import InAppSubscription
 from chargebee.models.installment import Installment
 from chargebee.models.installment_config import InstallmentConfig
+from chargebee.models.installment_detail import InstallmentDetail
 from chargebee.models.invoice import Invoice
 from chargebee.models.invoice_estimate import InvoiceEstimate
 from chargebee.models.item import Item
@@ -46,13 +47,16 @@ from chargebee.models.payment_source import PaymentSource
 from chargebee.models.payment_voucher import PaymentVoucher
 from chargebee.models.plan import Plan
 from chargebee.models.portal_session import PortalSession
+from chargebee.models.price_variant import PriceVariant
 from chargebee.models.promotional_credit import PromotionalCredit
 from chargebee.models.purchase import Purchase
 from chargebee.models.quote import Quote
 from chargebee.models.quote_line_group import QuoteLineGroup
 from chargebee.models.quoted_charge import QuotedCharge
 from chargebee.models.quoted_subscription import QuotedSubscription
+from chargebee.models.ramp import Ramp
 from chargebee.models.resource_migration import ResourceMigration
+from chargebee.models.session import Session
 from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.subscription import Subscription
 from chargebee.models.subscription_entitlement import SubscriptionEntitlement

@@ -47,7 +47,7 @@ class Invoice(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
       pass
     class StatementDescriptor(Model):
-      fields = ["id", "descriptor", "additional_info"]
+      fields = ["id", "descriptor"]
       pass
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]

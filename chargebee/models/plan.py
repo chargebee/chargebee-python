@@ -7,6 +7,9 @@ class Plan(Model):
     class Tier(Model):
       fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
       pass
+    class TaxProvidersField(Model):
+      fields = ["provider_name", "field_id", "field_value"]
+      pass
     class ApplicableAddon(Model):
       fields = ["id"]
       pass
@@ -25,8 +28,9 @@ class Plan(Model):
     "sku", "accounting_code", "accounting_category1", "accounting_category2", "accounting_category3", \
     "accounting_category4", "is_shippable", "shipping_frequency_period", "shipping_frequency_period_unit", \
     "resource_version", "updated_at", "giftable", "claim_url", "free_quantity_in_decimal", "price_in_decimal", \
-    "channel", "invoice_notes", "taxable", "tax_profile_id", "meta_data", "tiers", "applicable_addons", \
-    "attached_addons", "event_based_addons", "show_description_in_invoices", "show_description_in_quotes"]
+    "channel", "invoice_notes", "taxable", "tax_profile_id", "meta_data", "tiers", "tax_providers_fields", \
+    "applicable_addons", "attached_addons", "event_based_addons", "show_description_in_invoices", \
+    "show_description_in_quotes"]
 
 
     @staticmethod

@@ -48,7 +48,7 @@ class Result(object):
     @property
     def customer(self):
         customer = self._get('customer', Customer,
-        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'entity_identifiers' : Customer.EntityIdentifier, 'relationship' : Customer.Relationship, 'parent_account_access' : Customer.ParentAccountAccess, 'child_account_access' : Customer.ChildAccountAccess});
+        {'billing_address' : Customer.BillingAddress, 'referral_urls' : Customer.ReferralUrl, 'contacts' : Customer.Contact, 'payment_method' : Customer.PaymentMethod, 'balances' : Customer.Balance, 'entity_identifiers' : Customer.EntityIdentifier, 'tax_providers_fields' : Customer.TaxProvidersField, 'relationship' : Customer.Relationship, 'parent_account_access' : Customer.ParentAccountAccess, 'child_account_access' : Customer.ChildAccountAccess});
         return customer;
 
     @property
@@ -69,7 +69,7 @@ class Result(object):
     @property
     def payment_source(self):
         payment_source = self._get('payment_source', PaymentSource,
-        {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'cust_voucher_source' : PaymentSource.CustVoucherSource, 'billing_address' : PaymentSource.BillingAddress, 'amazon_payment' : PaymentSource.AmazonPayment, 'upi' : PaymentSource.Upi, 'paypal' : PaymentSource.Paypal, 'venmo' : PaymentSource.Venmo, 'mandates' : PaymentSource.Mandate});
+        {'card' : PaymentSource.Card, 'bank_account' : PaymentSource.BankAccount, 'cust_voucher_source' : PaymentSource.CustVoucherSource, 'billing_address' : PaymentSource.BillingAddress, 'amazon_payment' : PaymentSource.AmazonPayment, 'upi' : PaymentSource.Upi, 'paypal' : PaymentSource.Paypal, 'venmo' : PaymentSource.Venmo, 'klarna_pay_now' : PaymentSource.KlarnaPayNow, 'mandates' : PaymentSource.Mandate});
         return payment_source;
 
     @property
@@ -190,13 +190,13 @@ class Result(object):
     @property
     def plan(self):
         plan = self._get('plan', Plan,
-        {'tiers' : Plan.Tier, 'applicable_addons' : Plan.ApplicableAddon, 'attached_addons' : Plan.AttachedAddon, 'event_based_addons' : Plan.EventBasedAddon});
+        {'tiers' : Plan.Tier, 'tax_providers_fields' : Plan.TaxProvidersField, 'applicable_addons' : Plan.ApplicableAddon, 'attached_addons' : Plan.AttachedAddon, 'event_based_addons' : Plan.EventBasedAddon});
         return plan;
 
     @property
     def addon(self):
         addon = self._get('addon', Addon,
-        {'tiers' : Addon.Tier});
+        {'tiers' : Addon.Tier, 'tax_providers_fields' : Addon.TaxProvidersField});
         return addon;
 
     @property
@@ -291,6 +291,12 @@ class Result(object):
         return item;
 
     @property
+    def price_variant(self):
+        price_variant = self._get('price_variant', PriceVariant,
+        {'attributes' : PriceVariant.Attribute});
+        return price_variant;
+
+    @property
     def attribute(self):
         attribute = self._get('attribute', Attribute);
         return attribute;
@@ -298,7 +304,7 @@ class Result(object):
     @property
     def item_price(self):
         item_price = self._get('item_price', ItemPrice,
-        {'tiers' : ItemPrice.Tier, 'tax_detail' : ItemPrice.TaxDetail, 'accounting_detail' : ItemPrice.AccountingDetail});
+        {'tiers' : ItemPrice.Tier, 'tax_detail' : ItemPrice.TaxDetail, 'tax_providers_fields' : ItemPrice.TaxProvidersField, 'accounting_detail' : ItemPrice.AccountingDetail});
         return item_price;
 
     @property
@@ -379,6 +385,12 @@ class Result(object):
         return payment_voucher;
 
     @property
+    def ramp(self):
+        ramp = self._get('ramp', Ramp,
+        {'items_to_add' : Ramp.ItemsToAdd, 'items_to_update' : Ramp.ItemsToUpdate, 'coupons_to_add' : Ramp.CouponsToAdd, 'discounts_to_add' : Ramp.DiscountsToAdd, 'item_tiers' : Ramp.ItemTier});
+        return ramp;
+
+    @property
     def installment_config(self):
         installment_config = self._get('installment_config', InstallmentConfig,
         {'installments' : InstallmentConfig.Installment});
@@ -388,6 +400,17 @@ class Result(object):
     def installment(self):
         installment = self._get('installment', Installment);
         return installment;
+
+    @property
+    def installment_detail(self):
+        installment_detail = self._get('installment_detail', InstallmentDetail,
+        {'installments' : InstallmentDetail.Installment});
+        return installment_detail;
+
+    @property
+    def session(self):
+        session = self._get('session', Session);
+        return session;
 
     @property
     def advance_invoice_schedules(self):

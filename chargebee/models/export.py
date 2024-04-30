@@ -9,7 +9,6 @@ class Export(Model):
       pass
 
     fields = ["id", "operation_type", "mime_type", "status", "created_at", "download"]
-
     def wait_for_export_completion(self):
         return wait_for_export_completion()
 
@@ -26,6 +25,7 @@ class Export(Model):
             self.values = Export.retrieve(self.id, env, headers).export.values
             self.load(self.values)
         return self
+
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
@@ -94,3 +94,7 @@ class Export(Model):
     @staticmethod
     def differential_prices(params=None, env=None, headers=None):
         return request.send('post', request.uri_path("exports","differential_prices"), params, env, headers)
+
+    @staticmethod
+    def price_variants(params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("exports","price_variants"), params, env, headers)
