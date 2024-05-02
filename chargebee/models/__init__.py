@@ -56,7 +56,6 @@ from chargebee.models.quoted_charge import QuotedCharge
 from chargebee.models.quoted_subscription import QuotedSubscription
 from chargebee.models.ramp import Ramp
 from chargebee.models.resource_migration import ResourceMigration
-from chargebee.models.session import Session
 from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.subscription import Subscription
 from chargebee.models.subscription_entitlement import SubscriptionEntitlement

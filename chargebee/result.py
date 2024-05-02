@@ -408,11 +408,6 @@ class Result(object):
         return installment_detail;
 
     @property
-    def session(self):
-        session = self._get('session', Session);
-        return session;
-
-    @property
     def advance_invoice_schedules(self):
         advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
