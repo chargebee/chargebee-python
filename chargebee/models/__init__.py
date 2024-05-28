@@ -3,6 +3,8 @@ from chargebee.models.address import Address
 from chargebee.models.advance_invoice_schedule import AdvanceInvoiceSchedule
 from chargebee.models.attached_item import AttachedItem
 from chargebee.models.attribute import Attribute
+from chargebee.models.business_entity import BusinessEntity
+from chargebee.models.business_entity_transfer import BusinessEntityTransfer
 from chargebee.models.card import Card
 from chargebee.models.comment import Comment
 from chargebee.models.contact import Contact
