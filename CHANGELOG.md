@@ -1,3 +1,7 @@
+### v2.39.1 (2024-05-29)
+* * *
+* Python HostedPage Content - bugfix
+
 ### v2.39.0 (2024-05-28)
 * * *
 
