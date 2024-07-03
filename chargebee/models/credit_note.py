@@ -40,6 +40,9 @@ class CreditNote(Model):
     class SiteDetailsAtCreation(Model):
       fields = ["timezone", "organization_address"]
       pass
+    class TaxOrigin(Model):
+      fields = ["country", "registration_number"]
+      pass
 
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
@@ -48,7 +51,7 @@ class CreditNote(Model):
     "local_currency_code", "round_off_amount", "fractional_correction", "line_items", "discounts", \
     "line_item_discounts", "line_item_tiers", "taxes", "line_item_taxes", "linked_refunds", "allocations", \
     "deleted", "tax_category", "local_currency_exchange_rate", "create_reason_code", "vat_number_prefix", \
-    "business_entity_id", "shipping_address", "billing_address", "site_details_at_creation"]
+    "business_entity_id", "shipping_address", "billing_address", "site_details_at_creation", "tax_origin"]
 
 
     @staticmethod

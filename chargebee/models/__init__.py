@@ -14,6 +14,7 @@ from chargebee.models.coupon_code import CouponCode
 from chargebee.models.coupon_set import CouponSet
 from chargebee.models.credit_note import CreditNote
 from chargebee.models.credit_note_estimate import CreditNoteEstimate
+from chargebee.models.currency import Currency
 from chargebee.models.customer import Customer
 from chargebee.models.differential_price import DifferentialPrice
 from chargebee.models.discount import Discount
@@ -50,6 +51,7 @@ from chargebee.models.payment_voucher import PaymentVoucher
 from chargebee.models.plan import Plan
 from chargebee.models.portal_session import PortalSession
 from chargebee.models.price_variant import PriceVariant
+from chargebee.models.pricing_page_session import PricingPageSession
 from chargebee.models.promotional_credit import PromotionalCredit
 from chargebee.models.purchase import Purchase
 from chargebee.models.quote import Quote

@@ -58,6 +58,9 @@ class Invoice(Model):
     class SiteDetailsAtCreation(Model):
       fields = ["timezone", "organization_address"]
       pass
+    class TaxOrigin(Model):
+      fields = ["country", "registration_number"]
+      pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "due_date", "net_term_days", "exchange_rate", "currency_code", "total", \
@@ -70,7 +73,7 @@ class Invoice(Model):
     "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", "notes", \
     "shipping_address", "statement_descriptor", "billing_address", "einvoice", "payment_owner", \
     "void_reason_code", "deleted", "tax_category", "vat_number_prefix", "channel", "business_entity_id", \
-    "site_details_at_creation"]
+    "site_details_at_creation", "tax_origin"]
 
 
     @staticmethod
