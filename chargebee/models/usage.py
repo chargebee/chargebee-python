@@ -22,7 +22,7 @@ class Usage(Model):
         return request.send('post', request.uri_path("subscriptions",id,"delete_usage"), params, env, headers)
 
     @staticmethod
-    def list(params, env=None, headers=None):
+    def list(params=None, env=None, headers=None):
         return request.send_list_request('get', request.uri_path("usages"), params, env, headers)
 
     @staticmethod

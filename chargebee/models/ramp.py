@@ -19,10 +19,13 @@ class Ramp(Model):
     class ItemTier(Model):
       fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
       pass
+    class StatusTransitionReason(Model):
+      fields = ["code", "message"]
+      pass
 
     fields = ["id", "description", "subscription_id", "effective_from", "status", "created_at", \
     "resource_version", "updated_at", "items_to_add", "items_to_update", "coupons_to_add", "discounts_to_add", \
-    "item_tiers", "items_to_remove", "coupons_to_remove", "discounts_to_remove", "deleted"]
+    "item_tiers", "items_to_remove", "coupons_to_remove", "discounts_to_remove", "deleted", "status_transition_reason"]
 
 
     @staticmethod

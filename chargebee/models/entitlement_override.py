@@ -6,7 +6,7 @@ from chargebee import APIError
 class EntitlementOverride(Model):
 
     fields = ["id", "entity_id", "entity_type", "feature_id", "feature_name", "value", "name", \
-    "expires_at"]
+    "expires_at", "effective_from", "schedule_status"]
 
 
     @staticmethod

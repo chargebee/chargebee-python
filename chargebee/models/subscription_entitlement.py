@@ -9,7 +9,7 @@ class SubscriptionEntitlement(Model):
       pass
 
     fields = ["subscription_id", "feature_id", "feature_name", "feature_unit", "value", "name", \
-    "is_overridden", "is_enabled", "expires_at", "components"]
+    "is_overridden", "is_enabled", "effective_from", "schedule_status", "expires_at", "components"]
 
 
     @staticmethod

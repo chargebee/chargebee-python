@@ -348,6 +348,11 @@ class Result(object):
         return impacted_item_price;
 
     @property
+    def metadata(self):
+        metadata = self._get('metadata', Metadata);
+        return metadata;
+
+    @property
     def subscription_entitlement(self):
         subscription_entitlement = self._get('subscription_entitlement', SubscriptionEntitlement,
         {'component' : SubscriptionEntitlement.Component});
@@ -402,7 +407,7 @@ class Result(object):
     @property
     def ramp(self):
         ramp = self._get('ramp', Ramp,
-        {'items_to_add' : Ramp.ItemsToAdd, 'items_to_update' : Ramp.ItemsToUpdate, 'coupons_to_add' : Ramp.CouponsToAdd, 'discounts_to_add' : Ramp.DiscountsToAdd, 'item_tiers' : Ramp.ItemTier});
+        {'items_to_add' : Ramp.ItemsToAdd, 'items_to_update' : Ramp.ItemsToUpdate, 'coupons_to_add' : Ramp.CouponsToAdd, 'discounts_to_add' : Ramp.DiscountsToAdd, 'item_tiers' : Ramp.ItemTier, 'status_transition_reason' : Ramp.StatusTransitionReason});
         return ramp;
 
     @property

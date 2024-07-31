@@ -8,8 +8,8 @@ class PriceVariant(Model):
       fields = ["name", "value"]
       pass
 
-    fields = ["id", "name", "external_name", "description", "status", "created_at", "resource_version", \
-    "updated_at", "archived_at", "attributes"]
+    fields = ["id", "name", "external_name", "variant_group", "description", "status", "created_at", \
+    "resource_version", "updated_at", "archived_at", "attributes"]
 
 
     @staticmethod
