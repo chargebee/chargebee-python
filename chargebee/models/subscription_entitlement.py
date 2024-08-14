@@ -8,8 +8,9 @@ class SubscriptionEntitlement(Model):
       fields = ["entitlement_overrides"]
       pass
 
-    fields = ["subscription_id", "feature_id", "feature_name", "feature_unit", "value", "name", \
-    "is_overridden", "is_enabled", "effective_from", "schedule_status", "expires_at", "components"]
+    fields = ["subscription_id", "feature_id", "feature_name", "feature_unit", "feature_type", \
+    "value", "name", "is_overridden", "is_enabled", "effective_from", "schedule_status", "expires_at", \
+    "components"]
 
 
     @staticmethod
