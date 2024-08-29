@@ -359,6 +359,11 @@ class Result(object):
         return subscription_entitlement;
 
     @property
+    def customer_entitlement(self):
+        customer_entitlement = self._get('customer_entitlement', CustomerEntitlement);
+        return customer_entitlement;
+
+    @property
     def item_entitlement(self):
         item_entitlement = self._get('item_entitlement', ItemEntitlement);
         return item_entitlement;

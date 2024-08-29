@@ -16,6 +16,7 @@ from chargebee.models.credit_note import CreditNote
 from chargebee.models.credit_note_estimate import CreditNoteEstimate
 from chargebee.models.currency import Currency
 from chargebee.models.customer import Customer
+from chargebee.models.customer_entitlement import CustomerEntitlement
 from chargebee.models.differential_price import DifferentialPrice
 from chargebee.models.discount import Discount
 from chargebee.models.download import Download

@@ -33,6 +33,10 @@ class Ramp(Model):
         return request.send('post', request.uri_path("subscriptions",id,"create_ramp"), params, env, headers)
 
     @staticmethod
+    def update(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("ramps",id,"update"), params, env, headers)
+
+    @staticmethod
     def retrieve(id, env=None, headers=None):
         return request.send('get', request.uri_path("ramps",id), None, env, headers)
 

@@ -48,7 +48,7 @@ class Subscription(Model):
     "has_scheduled_advance_invoices", "has_scheduled_changes", "payment_source_id", "plan_free_quantity_in_decimal", \
     "plan_amount_in_decimal", "cancel_schedule_created_at", "offline_payment_method", "channel", \
     "net_term_days", "active_id", "subscription_items", "item_tiers", "charged_items", "due_invoices_count", \
-    "due_since", "total_dues", "mrr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
+    "due_since", "total_dues", "mrr", "arr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
     "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
     "meta_data", "metadata", "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", \
     "free_period", "free_period_unit", "create_pending_invoices", "auto_close_invoices", "discounts", \

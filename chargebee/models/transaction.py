@@ -44,6 +44,10 @@ class Transaction(Model):
         return request.send('post', request.uri_path("transactions",id,"record_refund"), params, env, headers)
 
     @staticmethod
+    def reconcile(id, params=None, env=None, headers=None):
+        return request.send('post', request.uri_path("transactions",id,"reconcile"), params, env, headers)
+
+    @staticmethod
     def refund(id, params=None, env=None, headers=None):
         return request.send('post', request.uri_path("transactions",id,"refund"), params, env, headers)
 
