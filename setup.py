@@ -9,7 +9,7 @@ if sys.version_info < (3,11):
     sys.exit('Sorry, Python < 3.11 is not supported')
 from chargebee import version
 
-requires = ['requests', 'typing']
+requires = ['requests']
 
 setup(
     name='chargebee',
