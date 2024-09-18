@@ -7,7 +7,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'chargebee'))
 if sys.version_info < (3,11):
     sys.exit('Sorry, Python < 3.11 is not supported')
-from chargebee import version
+import version
 
 requires = ['requests']
 
