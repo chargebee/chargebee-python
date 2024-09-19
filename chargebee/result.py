@@ -109,6 +109,12 @@ class Result(object):
         return payment_reference_number;
 
     @property
+    def payment_schedule(self):
+        payment_schedule = self._get('payment_schedule', PaymentSchedule,
+        {'schedule_entries' : PaymentSchedule.ScheduleEntry});
+        return payment_schedule;
+
+    @property
     def tax_withheld(self):
         tax_withheld = self._get('tax_withheld', TaxWithheld);
         return tax_withheld;
@@ -292,7 +298,7 @@ class Result(object):
     @property
     def item(self):
         item = self._get('item', Item,
-        {'applicable_items' : Item.ApplicableItem});
+        {'applicable_items' : Item.ApplicableItem, 'bundle_items' : Item.BundleItem, 'bundle_configuration' : Item.BundleConfiguration});
         return item;
 
     @property
@@ -416,21 +422,10 @@ class Result(object):
         return ramp;
 
     @property
-    def installment_config(self):
-        installment_config = self._get('installment_config', InstallmentConfig,
-        {'installments' : InstallmentConfig.Installment});
-        return installment_config;
-
-    @property
-    def installment(self):
-        installment = self._get('installment', Installment);
-        return installment;
-
-    @property
-    def installment_detail(self):
-        installment_detail = self._get('installment_detail', InstallmentDetail,
-        {'installments' : InstallmentDetail.Installment});
-        return installment_detail;
+    def payment_schedule_scheme(self):
+        payment_schedule_scheme = self._get('payment_schedule_scheme', PaymentScheduleScheme,
+        {'preferred_schedules' : PaymentScheduleScheme.PreferredSchedule});
+        return payment_schedule_scheme;
 
     @property
     def pricing_page_session(self):
@@ -460,6 +455,12 @@ class Result(object):
         differential_prices = self._get_list('differential_prices', DifferentialPrice,
         {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
         return differential_prices;
+
+    @property
+    def payment_schedules(self):
+        payment_schedules = self._get_list('payment_schedules', PaymentSchedule,
+        {'schedule_entries' : PaymentSchedule.ScheduleEntry});
+        return payment_schedules;
 
     @property
     def credit_notes(self):

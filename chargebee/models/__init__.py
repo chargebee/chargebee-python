@@ -34,9 +34,6 @@ from chargebee.models.impacted_item import ImpactedItem
 from chargebee.models.impacted_item_price import ImpactedItemPrice
 from chargebee.models.impacted_subscription import ImpactedSubscription
 from chargebee.models.in_app_subscription import InAppSubscription
-from chargebee.models.installment import Installment
-from chargebee.models.installment_config import InstallmentConfig
-from chargebee.models.installment_detail import InstallmentDetail
 from chargebee.models.invoice import Invoice
 from chargebee.models.invoice_estimate import InvoiceEstimate
 from chargebee.models.item import Item
@@ -48,6 +45,8 @@ from chargebee.models.metadata import Metadata
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
 from chargebee.models.payment_reference_number import PaymentReferenceNumber
+from chargebee.models.payment_schedule import PaymentSchedule
+from chargebee.models.payment_schedule_scheme import PaymentScheduleScheme
 from chargebee.models.payment_source import PaymentSource
 from chargebee.models.payment_voucher import PaymentVoucher
 from chargebee.models.plan import Plan

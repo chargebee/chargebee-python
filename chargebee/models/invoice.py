@@ -213,8 +213,12 @@ class Invoice(Model):
         return request.send('post', request.uri_path("invoices",id,"update_details"), params, env, headers)
 
     @staticmethod
-    def installments(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("invoices",id,"installments"), params, env, headers)
+    def apply_payment_schedule_scheme(id, params, env=None, headers=None):
+        return request.send('post', request.uri_path("invoices",id,"apply_payment_schedule_scheme"), params, env, headers)
+
+    @staticmethod
+    def payment_schedules(id, env=None, headers=None):
+        return request.send('get', request.uri_path("invoices",id,"payment_schedules"), None, env, headers)
 
     @staticmethod
     def resend_einvoice(id, env=None, headers=None):
