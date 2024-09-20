@@ -34,22 +34,6 @@ class ParentPeriod(TypedDict):
     period: NotRequired[List[Dict[Any, Any]]]
 
 
-class DifferentialPrices(TypedDict):
-    id: Required[str]
-    item_price_id: Required[str]
-    parent_item_id: Required[str]
-    price: NotRequired[int]
-    price_in_decimal: NotRequired[str]
-    status: NotRequired[Status]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    created_at: Required[int]
-    modified_at: Required[int]
-    tiers: NotRequired[List[Tier]]
-    currency_code: Required[str]
-    parent_periods: NotRequired[List[ParentPeriod]]
-
-
 class CreateParentPeriodParams(TypedDict):
     period_unit: Required[ParentPeriodPeriodUnit]
     period: NotRequired[List[Dict[Any, Any]]]

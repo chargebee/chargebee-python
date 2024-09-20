@@ -16,19 +16,6 @@ class Installment(TypedDict):
     amount_percentage: NotRequired[float]
 
 
-class InstallmentConfigs(TypedDict):
-    id: Required[str]
-    description: NotRequired[str]
-    number_of_installments: Required[int]
-    period_unit: Required[PeriodUnit]
-    period: NotRequired[int]
-    preferred_day: NotRequired[int]
-    created_at: Required[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    installments: NotRequired[List[Installment]]
-
-
 class CreateInstallmentParams(TypedDict):
     period: NotRequired[int]
     amount_percentage: NotRequired[float]

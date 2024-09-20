@@ -1,3 +1,3 @@
 from .operations import InstallmentDetail
 from .responses import InstallmentDetailResponse
-from .types import InstallmentDetails, Installment
+from .types import Installment

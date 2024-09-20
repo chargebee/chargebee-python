@@ -19,18 +19,3 @@ class PaymentMethod(Enum):
 
     def __str__(self):
         return self.value
-
-
-class TaxWithhelds(TypedDict):
-    id: Required[str]
-    user: NotRequired[str]
-    reference_number: NotRequired[str]
-    description: NotRequired[str]
-    type: Required[Type]
-    payment_method: Required[PaymentMethod]
-    date: NotRequired[int]
-    currency_code: Required[str]
-    amount: NotRequired[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    exchange_rate: NotRequired[float]

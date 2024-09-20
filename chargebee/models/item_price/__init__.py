@@ -1,7 +1,6 @@
 from .operations import ItemPrice
 from .responses import ItemPriceResponse
 from .types import (
-    ItemPrices,
     Tier,
     TaxDetail,
     TaxProvidersField,

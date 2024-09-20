@@ -27,33 +27,6 @@ class Tier(TypedDict):
     unit_amount_in_decimal: NotRequired[str]
 
 
-class UnbilledCharges(TypedDict):
-    id: NotRequired[str]
-    customer_id: NotRequired[str]
-    subscription_id: NotRequired[str]
-    date_from: NotRequired[int]
-    date_to: NotRequired[int]
-    unit_amount: NotRequired[int]
-    pricing_model: NotRequired[enums.PricingModel]
-    quantity: NotRequired[int]
-    amount: NotRequired[int]
-    currency_code: Required[str]
-    discount_amount: NotRequired[int]
-    description: NotRequired[str]
-    entity_type: Required[EntityType]
-    entity_id: NotRequired[str]
-    is_voided: Required[bool]
-    voided_at: NotRequired[int]
-    unit_amount_in_decimal: NotRequired[str]
-    quantity_in_decimal: NotRequired[str]
-    amount_in_decimal: NotRequired[str]
-    updated_at: Required[int]
-    tiers: NotRequired[List[Tier]]
-    is_advance_charge: NotRequired[bool]
-    business_entity_id: NotRequired[str]
-    deleted: Required[bool]
-
-
 class CreateUnbilledChargeAddonParams(TypedDict):
     id: NotRequired[str]
     quantity: NotRequired[int]

@@ -67,15 +67,3 @@ class ContractTerm(TypedDict):
     created_at: Required[int]
     subscription_id: Required[str]
     remaining_billing_cycles: NotRequired[int]
-
-
-class SubscriptionEstimates(TypedDict):
-    id: NotRequired[str]
-    currency_code: Required[str]
-    status: NotRequired[Status]
-    trial_end_action: NotRequired[enums.TrialEndAction]
-    next_billing_at: NotRequired[int]
-    pause_date: NotRequired[int]
-    resume_date: NotRequired[int]
-    shipping_address: NotRequired[ShippingAddress]
-    contract_term: NotRequired[ContractTerm]

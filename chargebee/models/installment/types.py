@@ -9,14 +9,3 @@ class Status(Enum):
 
     def __str__(self):
         return self.value
-
-
-class Installments(TypedDict):
-    id: Required[str]
-    invoice_id: Required[str]
-    date: Required[int]
-    amount: Required[int]
-    status: Required[Status]
-    created_at: Required[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]

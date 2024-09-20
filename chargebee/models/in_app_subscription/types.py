@@ -12,15 +12,6 @@ class StoreStatus(Enum):
         return self.value
 
 
-class InAppSubscriptions(TypedDict):
-    app_id: Required[str]
-    subscription_id: Required[str]
-    customer_id: NotRequired[str]
-    plan_id: NotRequired[str]
-    store_status: NotRequired[StoreStatus]
-    invoice_id: NotRequired[str]
-
-
 class ProcessReceiptProductParams(TypedDict):
     id: Required[str]
     currency_code: Required[str]

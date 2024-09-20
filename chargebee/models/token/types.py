@@ -18,18 +18,3 @@ class Vault(Enum):
 
     def __str__(self):
         return self.value
-
-
-class Tokens(TypedDict):
-    id: Required[str]
-    gateway: Required[enums.Gateway]
-    gateway_account_id: Required[str]
-    payment_method_type: Required[enums.PaymentMethodType]
-    status: Required[Status]
-    id_at_vault: Required[str]
-    vault: Required[Vault]
-    ip_address: NotRequired[str]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    created_at: Required[int]
-    expired_at: NotRequired[int]

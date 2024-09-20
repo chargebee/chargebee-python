@@ -11,10 +11,3 @@ class Type(Enum):
 
     def __str__(self):
         return self.value
-
-
-class PaymentReferenceNumbers(TypedDict):
-    id: Required[str]
-    type: Required[Type]
-    number: Required[str]
-    invoice_id: NotRequired[str]

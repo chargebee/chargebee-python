@@ -39,23 +39,6 @@ class FailureReason(Enum):
         return self.value
 
 
-class HostedPages(TypedDict):
-    id: NotRequired[str]
-    type: NotRequired[Type]
-    url: NotRequired[str]
-    state: NotRequired[State]
-    failure_reason: NotRequired[FailureReason]
-    pass_thru_content: NotRequired[str]
-    embed: Required[bool]
-    created_at: NotRequired[int]
-    expires_at: NotRequired[int]
-    content: Required[Dict[Any, Any]]
-    updated_at: NotRequired[int]
-    resource_version: NotRequired[int]
-    checkout_info: NotRequired[Dict[Any, Any]]
-    business_entity_id: NotRequired[str]
-
-
 class CheckoutNewSubscriptionParams(TypedDict):
     id: NotRequired[str]
     plan_id: Required[str]

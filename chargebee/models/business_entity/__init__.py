@@ -1,3 +1,3 @@
 from .operations import BusinessEntity
 from .responses import BusinessEntityResponse
-from .types import BusinessEntities, Status
+from .types import Status

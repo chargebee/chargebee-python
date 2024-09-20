@@ -14,7 +14,7 @@ class PaymentAttemptResponse(Model):
     error_text: str = None
     created_at: int = None
     modified_at: int = None
-    error_detail: gateway_error_detail.GatewayErrorDetails = None
+    error_detail: gateway_error_detail.GatewayErrorDetailResponse = None
 
 
 @dataclass

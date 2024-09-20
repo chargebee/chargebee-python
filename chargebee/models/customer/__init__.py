@@ -1,7 +1,6 @@
 from .operations import Customer
 from .responses import CustomerResponse
 from .types import (
-    Customers,
     BillingAddress,
     ReferralUrl,
     Contact,

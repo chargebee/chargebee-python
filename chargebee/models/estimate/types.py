@@ -24,19 +24,6 @@ class UnbilledChargeEntityType(Enum):
         return self.value
 
 
-class Estimates(TypedDict):
-    created_at: Required[int]
-    subscription_estimate: NotRequired[subscription_estimate.SubscriptionEstimates]
-    subscription_estimates: NotRequired[
-        List[subscription_estimate.SubscriptionEstimates]
-    ]
-    invoice_estimate: NotRequired[invoice_estimate.InvoiceEstimates]
-    invoice_estimates: NotRequired[List[invoice_estimate.InvoiceEstimates]]
-    next_invoice_estimate: NotRequired[invoice_estimate.InvoiceEstimates]
-    credit_note_estimates: NotRequired[List[credit_note_estimate.CreditNoteEstimate]]
-    unbilled_charge_estimates: NotRequired[List[unbilled_charge.UnbilledCharge]]
-
-
 class CreateSubscriptionSubscriptionParams(TypedDict):
     id: NotRequired[str]
     plan_id: Required[str]

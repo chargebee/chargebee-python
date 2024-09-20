@@ -24,10 +24,3 @@ class SpecificDatesSchedule(TypedDict):
     terms_to_charge: NotRequired[int]
     date: NotRequired[int]
     created_at: Required[int]
-
-
-class AdvanceInvoiceSchedules(TypedDict):
-    id: Required[str]
-    schedule_type: NotRequired[ScheduleType]
-    fixed_interval_schedule: NotRequired[FixedIntervalSchedule]
-    specific_dates_schedule: NotRequired[SpecificDatesSchedule]

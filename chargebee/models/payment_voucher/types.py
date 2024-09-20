@@ -19,29 +19,6 @@ class LinkedInvoice(TypedDict):
     applied_at: Required[int]
 
 
-class PaymentVouchers(TypedDict):
-    id: Required[str]
-    id_at_gateway: NotRequired[str]
-    payment_voucher_type: Required[enums.PaymentVoucherType]
-    expires_at: NotRequired[int]
-    status: NotRequired[Status]
-    subscription_id: NotRequired[str]
-    currency_code: Required[str]
-    amount: NotRequired[int]
-    gateway_account_id: NotRequired[str]
-    payment_source_id: NotRequired[str]
-    gateway: Required[enums.Gateway]
-    payload: NotRequired[str]
-    error_code: NotRequired[str]
-    error_text: NotRequired[str]
-    url: NotRequired[str]
-    date: NotRequired[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    customer_id: Required[str]
-    linked_invoices: NotRequired[List[LinkedInvoice]]
-
-
 class CreateVoucherPaymentSourceParams(TypedDict):
     voucher_type: Required[enums.VoucherType]
 

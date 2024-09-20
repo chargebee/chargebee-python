@@ -20,18 +20,3 @@ class ActionAtTermEnd(Enum):
 
     def __str__(self):
         return self.value
-
-
-class ContractTerms(TypedDict):
-    id: Required[str]
-    status: Required[Status]
-    contract_start: Required[int]
-    contract_end: Required[int]
-    billing_cycle: Required[int]
-    action_at_term_end: Required[ActionAtTermEnd]
-    total_contract_value: Required[int]
-    total_contract_value_before_tax: Required[int]
-    cancellation_cutoff_period: NotRequired[int]
-    created_at: Required[int]
-    subscription_id: Required[str]
-    remaining_billing_cycles: NotRequired[int]

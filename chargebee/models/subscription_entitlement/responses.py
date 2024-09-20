@@ -6,7 +6,7 @@ from chargebee.models import entitlement_override
 
 @dataclass
 class ComponentResponse(Model):
-    entitlement_overrides: entitlement_override.EntitlementOverrides = None
+    entitlement_overrides: entitlement_override.EntitlementOverrideResponse = None
 
 
 @dataclass

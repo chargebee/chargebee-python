@@ -117,20 +117,3 @@ class LineItemTax(TypedDict):
     tax_juris_code: NotRequired[str]
     tax_amount_in_local_currency: NotRequired[int]
     local_currency_code: NotRequired[str]
-
-
-class QuoteLineGroups(TypedDict):
-    version: NotRequired[int]
-    id: NotRequired[str]
-    sub_total: Required[int]
-    total: NotRequired[int]
-    credits_applied: NotRequired[int]
-    amount_paid: NotRequired[int]
-    amount_due: NotRequired[int]
-    charge_event: NotRequired[ChargeEvent]
-    billing_cycle_number: NotRequired[int]
-    line_items: NotRequired[List[LineItem]]
-    discounts: NotRequired[List[Discount]]
-    line_item_discounts: NotRequired[List[LineItemDiscount]]
-    taxes: NotRequired[List[Tax]]
-    line_item_taxes: NotRequired[List[LineItemTax]]

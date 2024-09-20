@@ -40,30 +40,3 @@ class UsageCalculation(Enum):
 
 class ApplicableItem(TypedDict):
     id: NotRequired[str]
-
-
-class Items(TypedDict):
-    id: Required[str]
-    name: Required[str]
-    external_name: NotRequired[str]
-    description: NotRequired[str]
-    status: NotRequired[Status]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    item_family_id: NotRequired[str]
-    type: Required[Type]
-    is_shippable: NotRequired[bool]
-    is_giftable: Required[bool]
-    redirect_url: NotRequired[str]
-    enabled_for_checkout: Required[bool]
-    enabled_in_portal: Required[bool]
-    included_in_mrr: NotRequired[bool]
-    item_applicability: Required[ItemApplicability]
-    gift_claim_redirect_url: NotRequired[str]
-    unit: NotRequired[str]
-    metered: Required[bool]
-    usage_calculation: NotRequired[UsageCalculation]
-    archived_at: NotRequired[int]
-    channel: NotRequired[enums.Channel]
-    applicable_items: NotRequired[List[ApplicableItem]]
-    metadata: NotRequired[Dict[Any, Any]]

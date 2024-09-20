@@ -136,33 +136,6 @@ class Mandate(TypedDict):
     created_at: Required[int]
 
 
-class PaymentSources(TypedDict):
-    id: Required[str]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    created_at: Required[int]
-    customer_id: Required[str]
-    type: Required[enums.Type]
-    reference_id: Required[str]
-    status: Required[Status]
-    gateway: Required[enums.Gateway]
-    gateway_account_id: NotRequired[str]
-    ip_address: NotRequired[str]
-    issuing_country: NotRequired[str]
-    card: NotRequired[Card]
-    bank_account: NotRequired[BankAccount]
-    boleto: NotRequired[CustVoucherSource]
-    billing_address: NotRequired[BillingAddress]
-    amazon_payment: NotRequired[AmazonPayment]
-    upi: NotRequired[Upi]
-    paypal: NotRequired[Paypal]
-    venmo: NotRequired[Venmo]
-    klarna_pay_now: NotRequired[KlarnaPayNow]
-    mandates: NotRequired[List[Mandate]]
-    deleted: Required[bool]
-    business_entity_id: NotRequired[str]
-
-
 class CreateUsingPermanentTokenCardParams(TypedDict):
     last4: NotRequired[str]
     iin: NotRequired[str]

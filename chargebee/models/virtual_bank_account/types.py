@@ -14,21 +14,3 @@ class Scheme(Enum):
 
     def __str__(self):
         return self.value
-
-
-class VirtualBankAccounts(TypedDict):
-    id: Required[str]
-    customer_id: Required[str]
-    email: Required[str]
-    scheme: NotRequired[Scheme]
-    bank_name: NotRequired[str]
-    account_number: Required[str]
-    routing_number: NotRequired[str]
-    swift_code: Required[str]
-    gateway: Required[enums.Gateway]
-    gateway_account_id: Required[str]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    created_at: Required[int]
-    reference_id: Required[str]
-    deleted: Required[bool]

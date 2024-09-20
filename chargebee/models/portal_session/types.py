@@ -21,21 +21,5 @@ class LinkedCustomer(TypedDict):
     has_active_subscription: Required[bool]
 
 
-class PortalSessions(TypedDict):
-    id: Required[str]
-    token: Required[str]
-    access_url: Required[str]
-    redirect_url: NotRequired[str]
-    status: Required[Status]
-    created_at: Required[int]
-    expires_at: NotRequired[int]
-    customer_id: Required[str]
-    login_at: NotRequired[int]
-    logout_at: NotRequired[int]
-    login_ipaddress: NotRequired[str]
-    logout_ipaddress: NotRequired[str]
-    linked_customers: NotRequired[List[LinkedCustomer]]
-
-
 class CreateCustomerParams(TypedDict):
     id: Required[str]

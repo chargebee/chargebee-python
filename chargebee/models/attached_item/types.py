@@ -19,20 +19,3 @@ class Status(Enum):
 
     def __str__(self):
         return self.value
-
-
-class AttachedItems(TypedDict):
-    id: Required[str]
-    parent_item_id: Required[str]
-    item_id: Required[str]
-    type: Required[Type]
-    status: NotRequired[Status]
-    quantity: NotRequired[int]
-    quantity_in_decimal: NotRequired[str]
-    billing_cycles: NotRequired[int]
-    charge_on_event: Required[enums.ChargeOnEvent]
-    charge_once: Required[bool]
-    created_at: Required[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    channel: NotRequired[enums.Channel]

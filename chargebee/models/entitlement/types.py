@@ -13,16 +13,6 @@ class EntityType(Enum):
         return self.value
 
 
-class Entitlements(TypedDict):
-    id: Required[str]
-    entity_id: NotRequired[str]
-    entity_type: NotRequired[EntityType]
-    feature_id: NotRequired[str]
-    feature_name: NotRequired[str]
-    value: NotRequired[str]
-    name: NotRequired[str]
-
-
 class CreateEntitlementParams(TypedDict):
     entity_id: Required[str]
     feature_id: Required[str]

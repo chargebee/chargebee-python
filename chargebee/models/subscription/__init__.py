@@ -1,7 +1,6 @@
 from .operations import Subscription
 from .responses import SubscriptionResponse
 from .types import (
-    Subscriptions,
     SubscriptionItem,
     ItemTier,
     ChargedItem,

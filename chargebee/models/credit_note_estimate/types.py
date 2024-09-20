@@ -125,22 +125,3 @@ class LineItemTier(TypedDict):
     ending_unit_in_decimal: NotRequired[str]
     quantity_used_in_decimal: NotRequired[str]
     unit_amount_in_decimal: NotRequired[str]
-
-
-class CreditNoteEstimates(TypedDict):
-    reference_invoice_id: Required[str]
-    type: Required[Type]
-    price_type: Required[enums.PriceType]
-    currency_code: Required[str]
-    sub_total: Required[int]
-    total: Required[int]
-    amount_allocated: Required[int]
-    amount_available: Required[int]
-    line_items: NotRequired[List[LineItem]]
-    discounts: NotRequired[List[Discount]]
-    taxes: NotRequired[List[Tax]]
-    line_item_taxes: NotRequired[List[LineItemTax]]
-    line_item_discounts: NotRequired[List[LineItemDiscount]]
-    line_item_tiers: NotRequired[List[LineItemTier]]
-    round_off_amount: NotRequired[int]
-    customer_id: NotRequired[str]

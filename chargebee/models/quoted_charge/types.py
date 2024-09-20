@@ -44,11 +44,3 @@ class Addon(TypedDict):
     unit_price_in_decimal: NotRequired[str]
     proration_type: NotRequired[enums.ProrationType]
     service_period: NotRequired[int]
-
-
-class QuotedCharges(TypedDict):
-    charges: NotRequired[List[Charge]]
-    addons: NotRequired[List[Addon]]
-    invoice_items: NotRequired[List[InvoiceItem]]
-    item_tiers: NotRequired[List[ItemTier]]
-    coupons: NotRequired[List[Coupon]]

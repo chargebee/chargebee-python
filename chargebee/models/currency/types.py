@@ -8,12 +8,3 @@ class ForexType(Enum):
 
     def __str__(self):
         return self.value
-
-
-class Currencies(TypedDict):
-    id: NotRequired[str]
-    enabled: Required[bool]
-    forex_type: NotRequired[ForexType]
-    currency_code: NotRequired[str]
-    is_base_currency: NotRequired[bool]
-    manual_exchange_rate: NotRequired[str]

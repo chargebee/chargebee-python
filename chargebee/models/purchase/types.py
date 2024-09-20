@@ -2,15 +2,6 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any
 from chargebee.models import enums, contract_term
 
 
-class Purchases(TypedDict):
-    id: NotRequired[str]
-    customer_id: Required[str]
-    created_at: NotRequired[int]
-    modified_at: NotRequired[int]
-    subscription_ids: NotRequired[List[str]]
-    invoice_ids: NotRequired[List[str]]
-
-
 class CreatePurchaseItemParams(TypedDict):
     index: Required[int]
     item_price_id: Required[str]

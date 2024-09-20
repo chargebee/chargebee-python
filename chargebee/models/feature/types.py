@@ -28,19 +28,6 @@ class Level(TypedDict):
     is_unlimited: Required[bool]
 
 
-class Features(TypedDict):
-    id: Required[str]
-    name: Required[str]
-    description: NotRequired[str]
-    status: NotRequired[Status]
-    type: NotRequired[Type]
-    unit: NotRequired[str]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    created_at: Required[int]
-    levels: NotRequired[List[Level]]
-
-
 class CreateLevelParams(TypedDict):
     name: NotRequired[str]
     value: NotRequired[str]

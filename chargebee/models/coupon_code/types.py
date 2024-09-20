@@ -9,11 +9,3 @@ class Status(Enum):
 
     def __str__(self):
         return self.value
-
-
-class CouponCodes(TypedDict):
-    code: Required[str]
-    status: Required[Status]
-    coupon_id: Required[str]
-    coupon_set_id: Required[str]
-    coupon_set_name: Required[str]

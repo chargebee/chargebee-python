@@ -117,22 +117,3 @@ class LineItemDiscount(TypedDict):
     coupon_id: NotRequired[str]
     entity_id: NotRequired[str]
     discount_amount: Required[int]
-
-
-class InvoiceEstimates(TypedDict):
-    recurring: Required[bool]
-    price_type: Required[enums.PriceType]
-    currency_code: Required[str]
-    sub_total: Required[int]
-    total: NotRequired[int]
-    credits_applied: NotRequired[int]
-    amount_paid: NotRequired[int]
-    amount_due: NotRequired[int]
-    line_items: NotRequired[List[LineItem]]
-    discounts: NotRequired[List[Discount]]
-    taxes: NotRequired[List[Tax]]
-    line_item_taxes: NotRequired[List[LineItemTax]]
-    line_item_tiers: NotRequired[List[LineItemTier]]
-    line_item_discounts: NotRequired[List[LineItemDiscount]]
-    round_off_amount: NotRequired[int]
-    customer_id: NotRequired[str]

@@ -10,13 +10,3 @@ class TimeTravelStatus(Enum):
 
     def __str__(self):
         return self.value
-
-
-class TimeMachines(TypedDict):
-    name: Required[str]
-    time_travel_status: Required[TimeTravelStatus]
-    genesis_time: Required[int]
-    destination_time: Required[int]
-    failure_code: NotRequired[str]
-    failure_reason: NotRequired[str]
-    error_json: NotRequired[str]

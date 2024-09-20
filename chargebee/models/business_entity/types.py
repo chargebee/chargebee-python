@@ -8,13 +8,3 @@ class Status(Enum):
 
     def __str__(self):
         return self.value
-
-
-class BusinessEntities(TypedDict):
-    id: Required[str]
-    name: Required[str]
-    status: Required[Status]
-    deleted: Required[bool]
-    created_at: Required[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]

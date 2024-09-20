@@ -20,10 +20,3 @@ class Installment(TypedDict):
     created_at: Required[int]
     resource_version: NotRequired[int]
     updated_at: NotRequired[int]
-
-
-class InstallmentDetails(TypedDict):
-    id: NotRequired[str]
-    invoice_id: NotRequired[str]
-    amount: NotRequired[int]
-    installments: NotRequired[List[Installment]]

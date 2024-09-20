@@ -1,3 +1,3 @@
 from .operations import Feature
 from .responses import FeatureResponse
-from .types import Features, Level, Status, Type
+from .types import Level, Status, Type

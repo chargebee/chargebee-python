@@ -2,13 +2,6 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any
 from chargebee.models import enums
 
 
-class PricingPageSessions(TypedDict):
-    id: NotRequired[str]
-    url: NotRequired[str]
-    created_at: NotRequired[int]
-    expires_at: NotRequired[int]
-
-
 class CreateForNewSubscriptionPricingPageParams(TypedDict):
     id: Required[str]
 

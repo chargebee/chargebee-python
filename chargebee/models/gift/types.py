@@ -35,20 +35,6 @@ class GiftTimeline(TypedDict):
     occurred_at: NotRequired[int]
 
 
-class Gifts(TypedDict):
-    id: Required[str]
-    status: Required[Status]
-    scheduled_at: NotRequired[int]
-    auto_claim: Required[bool]
-    no_expiry: Required[bool]
-    claim_expiry_date: NotRequired[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    gifter: Required[Gifter]
-    gift_receiver: Required[GiftReceiver]
-    gift_timelines: NotRequired[List[GiftTimeline]]
-
-
 class CreateGifterParams(TypedDict):
     customer_id: Required[str]
     signature: Required[str]

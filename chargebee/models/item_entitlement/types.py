@@ -13,16 +13,6 @@ class ItemType(Enum):
         return self.value
 
 
-class ItemEntitlements(TypedDict):
-    id: Required[str]
-    item_id: NotRequired[str]
-    item_type: NotRequired[ItemType]
-    feature_id: NotRequired[str]
-    feature_name: NotRequired[str]
-    value: NotRequired[str]
-    name: NotRequired[str]
-
-
 class AddItemEntitlementsItemEntitlementParams(TypedDict):
     item_id: Required[str]
     item_type: NotRequired[ItemType]

@@ -1,7 +1,6 @@
 from .operations import Order
 from .responses import OrderResponse
 from .types import (
-    Orders,
     OrderLineItem,
     ShippingAddress,
     BillingAddress,

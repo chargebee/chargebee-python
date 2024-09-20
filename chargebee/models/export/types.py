@@ -26,15 +26,6 @@ class Download(TypedDict):
     mime_type: NotRequired[str]
 
 
-class Exports(TypedDict):
-    id: Required[str]
-    operation_type: Required[str]
-    mime_type: Required[MimeType]
-    status: Required[Status]
-    created_at: Required[int]
-    download: NotRequired[Download]
-
-
 class RevenueRecognitionInvoiceParams(TypedDict):
     Id: NotRequired[Filters.StringFilter]
     Recurring: NotRequired[Filters.BooleanFilter]

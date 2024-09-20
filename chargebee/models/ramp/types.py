@@ -89,27 +89,6 @@ class StatusTransitionReason(TypedDict):
     message: NotRequired[str]
 
 
-class Ramps(TypedDict):
-    id: Required[str]
-    description: NotRequired[str]
-    subscription_id: Required[str]
-    effective_from: Required[int]
-    status: Required[Status]
-    created_at: Required[int]
-    resource_version: NotRequired[int]
-    updated_at: NotRequired[int]
-    items_to_add: NotRequired[List[ItemsToAdd]]
-    items_to_update: NotRequired[List[ItemsToUpdate]]
-    coupons_to_add: NotRequired[List[CouponsToAdd]]
-    discounts_to_add: NotRequired[List[DiscountsToAdd]]
-    item_tiers: NotRequired[List[ItemTier]]
-    items_to_remove: NotRequired[List[str]]
-    coupons_to_remove: NotRequired[List[str]]
-    discounts_to_remove: NotRequired[List[str]]
-    deleted: Required[bool]
-    status_transition_reason: NotRequired[StatusTransitionReason]
-
-
 class CreateForSubscriptionItemsToAddParams(TypedDict):
     item_price_id: Required[str]
     quantity: NotRequired[int]

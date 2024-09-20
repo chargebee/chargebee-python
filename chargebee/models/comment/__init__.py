@@ -1,3 +1,3 @@
 from .operations import Comment
 from .responses import CommentResponse
-from .types import Comments, Type
+from .types import Type

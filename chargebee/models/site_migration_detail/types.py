@@ -10,12 +10,3 @@ class Status(Enum):
 
     def __str__(self):
         return self.value
-
-
-class SiteMigrationDetails(TypedDict):
-    entity_id: Required[str]
-    other_site_name: Required[str]
-    entity_id_at_other_site: Required[str]
-    migrated_at: Required[int]
-    entity_type: Required[enums.EntityType]
-    status: Required[Status]

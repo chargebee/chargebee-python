@@ -32,17 +32,3 @@ class WebhookWebhookStatus(Enum):
 class Webhook(TypedDict):
     id: Required[str]
     webhook_status: Required[WebhookWebhookStatus]
-
-
-class Events(TypedDict):
-    id: Required[str]
-    occurred_at: Required[int]
-    source: Required[enums.Source]
-    user: NotRequired[str]
-    webhook_status: Required[WebhookStatus]
-    webhook_failure_reason: NotRequired[str]
-    webhooks: NotRequired[List[Webhook]]
-    event_type: NotRequired[enums.EventType]
-    api_version: NotRequired[enums.ApiVersion]
-    content: Required[Dict[Any, Any]]
-    origin_user: NotRequired[str]
