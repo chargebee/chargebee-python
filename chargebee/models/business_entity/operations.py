@@ -1,11 +1,17 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class BusinessEntity:
+    class Status(Enum):
+        ACTIVE = "active"
+        INACTIVE = "inactive"
+
+        def __str__(self):
+            return self.value
 
     class CreateTransfersParams(TypedDict):
         active_resource_ids: Required[List[str]]

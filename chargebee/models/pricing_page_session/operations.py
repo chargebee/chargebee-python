@@ -1,24 +1,91 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from chargebee.models import enums
 
 
 class PricingPageSession:
 
+    class CreateForNewSubscriptionPricingPageParams(TypedDict):
+        id: Required[str]
+
+    class CreateForNewSubscriptionSubscriptionParams(TypedDict):
+        id: NotRequired[str]
+
+    class CreateForNewSubscriptionCustomerParams(TypedDict):
+        id: NotRequired[str]
+        email: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        locale: NotRequired[str]
+
+    class CreateForNewSubscriptionBillingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class CreateForNewSubscriptionShippingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class CreateForExistingSubscriptionPricingPageParams(TypedDict):
+        id: Required[str]
+
+    class CreateForExistingSubscriptionSubscriptionParams(TypedDict):
+        id: Required[str]
+
     class CreateForNewSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
-        pricing_page: Required[CreateForNewSubscriptionPricingPageParams]
-        subscription: NotRequired[CreateForNewSubscriptionSubscriptionParams]
+        pricing_page: Required[
+            "PricingPageSession.CreateForNewSubscriptionPricingPageParams"
+        ]
+        subscription: NotRequired[
+            "PricingPageSession.CreateForNewSubscriptionSubscriptionParams"
+        ]
         business_entity_id: NotRequired[str]
-        customer: NotRequired[CreateForNewSubscriptionCustomerParams]
-        billing_address: NotRequired[CreateForNewSubscriptionBillingAddressParams]
-        shipping_address: NotRequired[CreateForNewSubscriptionShippingAddressParams]
+        customer: NotRequired[
+            "PricingPageSession.CreateForNewSubscriptionCustomerParams"
+        ]
+        billing_address: NotRequired[
+            "PricingPageSession.CreateForNewSubscriptionBillingAddressParams"
+        ]
+        shipping_address: NotRequired[
+            "PricingPageSession.CreateForNewSubscriptionShippingAddressParams"
+        ]
 
     class CreateForExistingSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
-        pricing_page: Required[CreateForExistingSubscriptionPricingPageParams]
-        subscription: Required[CreateForExistingSubscriptionSubscriptionParams]
+        pricing_page: Required[
+            "PricingPageSession.CreateForExistingSubscriptionPricingPageParams"
+        ]
+        subscription: Required[
+            "PricingPageSession.CreateForExistingSubscriptionSubscriptionParams"
+        ]
 
     @staticmethod
     def create_for_new_subscription(

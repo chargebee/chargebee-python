@@ -1,11 +1,18 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class CouponCode:
+    class Status(Enum):
+        NOT_REDEEMED = "not_redeemed"
+        REDEEMED = "redeemed"
+        ARCHIVED = "archived"
+
+        def __str__(self):
+            return self.value
 
     class CreateParams(TypedDict):
         coupon_id: Required[str]

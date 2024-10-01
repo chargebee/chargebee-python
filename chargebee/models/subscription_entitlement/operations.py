@@ -1,10 +1,28 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
+from chargebee.models import entitlement_override
 
 
 class SubscriptionEntitlement:
+    class ScheduleStatus(Enum):
+        ACTIVATED = "activated"
+        SCHEDULED = "scheduled"
+        FAILED = "failed"
+
+        def __str__(self):
+            return self.value
+
+    class Component(TypedDict):
+        entitlement_overrides: NotRequired[
+            entitlement_override.EntitlementOverrideResponse
+        ]
+
+    class SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementParams(
+        TypedDict
+    ):
+        feature_id: Required[str]
 
     class SubscriptionEntitlementsForSubscriptionParams(TypedDict):
         limit: NotRequired[int]
@@ -16,7 +34,9 @@ class SubscriptionEntitlement:
     class SetSubscriptionEntitlementAvailabilityParams(TypedDict):
         is_enabled: Required[bool]
         subscription_entitlements: Required[
-            List[SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementParams]
+            List[
+                "SubscriptionEntitlement.SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementParams"
+            ]
         ]
 
     @staticmethod

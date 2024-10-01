@@ -1,11 +1,18 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class SiteMigrationDetail:
+    class Status(Enum):
+        MOVED_IN = "moved_in"
+        MOVED_OUT = "moved_out"
+        MOVING_OUT = "moving_out"
+
+        def __str__(self):
+            return self.value
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

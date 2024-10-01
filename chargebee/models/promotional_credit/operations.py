@@ -1,12 +1,18 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class PromotionalCredit:
+    class Type(Enum):
+        INCREMENT = "increment"
+        DECREMENT = "decrement"
+
+        def __str__(self):
+            return self.value
 
     class AddParams(TypedDict):
         customer_id: Required[str]

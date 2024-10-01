@@ -1,18 +1,24 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 
 
 class Currency:
+    class ForexType(Enum):
+        MANUAL = "manual"
+        AUTO = "auto"
+
+        def __str__(self):
+            return self.value
 
     class CreateParams(TypedDict):
         currency_code: Required[str]
-        forex_type: Required[ForexType]
+        forex_type: Required["Currency.ForexType"]
         manual_exchange_rate: NotRequired[str]
 
     class UpdateParams(TypedDict):
-        forex_type: Required[ForexType]
+        forex_type: Required["Currency.ForexType"]
         manual_exchange_rate: NotRequired[str]
 
     class AddScheduleParams(TypedDict):

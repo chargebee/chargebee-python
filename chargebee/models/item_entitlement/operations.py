@@ -1,11 +1,29 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.models import enums
 
 
 class ItemEntitlement:
+    class ItemType(Enum):
+        PLAN = "plan"
+        ADDON = "addon"
+        CHARGE = "charge"
+        SUBSCRIPTION = "subscription"
+        ITEM = "item"
+
+        def __str__(self):
+            return self.value
+
+    class AddItemEntitlementsItemEntitlementParams(TypedDict):
+        item_id: Required[str]
+        item_type: NotRequired["ItemEntitlement.ItemType"]
+        value: NotRequired[str]
+
+    class UpsertOrRemoveItemEntitlementsForItemItemEntitlementParams(TypedDict):
+        feature_id: Required[str]
+        value: NotRequired[str]
 
     class ItemEntitlementsForItemParams(TypedDict):
         limit: NotRequired[int]
@@ -20,12 +38,16 @@ class ItemEntitlement:
 
     class AddItemEntitlementsParams(TypedDict):
         action: Required[enums.Action]
-        item_entitlements: Required[List[AddItemEntitlementsItemEntitlementParams]]
+        item_entitlements: Required[
+            List["ItemEntitlement.AddItemEntitlementsItemEntitlementParams"]
+        ]
 
     class UpsertOrRemoveItemEntitlementsForItemParams(TypedDict):
         action: Required[enums.Action]
         item_entitlements: Required[
-            List[UpsertOrRemoveItemEntitlementsForItemItemEntitlementParams]
+            List[
+                "ItemEntitlement.UpsertOrRemoveItemEntitlementsForItemItemEntitlementParams"
+            ]
         ]
 
     @staticmethod

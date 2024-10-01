@@ -1,12 +1,27 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class Entitlement:
+    class EntityType(Enum):
+        PLAN = "plan"
+        ADDON = "addon"
+        CHARGE = "charge"
+        PLAN_PRICE = "plan_price"
+        ADDON_PRICE = "addon_price"
+
+        def __str__(self):
+            return self.value
+
+    class CreateEntitlementParams(TypedDict):
+        entity_id: Required[str]
+        feature_id: Required[str]
+        entity_type: NotRequired["Entitlement.EntityType"]
+        value: NotRequired[str]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
@@ -19,7 +34,7 @@ class Entitlement:
 
     class CreateParams(TypedDict):
         action: Required[enums.Action]
-        entitlements: Required[List[CreateEntitlementParams]]
+        entitlements: Required[List["Entitlement.CreateEntitlementParams"]]
 
     @staticmethod
     def list(params: ListParams = None, env=None, headers=None) -> ListResponse:

@@ -1,5 +1,6 @@
 from chargebee import compat
 from collections import OrderedDict
+from enum import Enum
 
 
 def serialize(value, prefix=None, idx=None):
@@ -8,7 +9,12 @@ def serialize(value, prefix=None, idx=None):
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            if k in ("meta_data", "metaData", "checkout_info") and isinstance(v, dict):
+            if k in (
+                "meta_data",
+                "metaData",
+                "metadata",
+                "checkout_info",
+            ) and isinstance(v, dict):
                 serialized.update({k: v})
             elif k in (
                 "exemption_details",
@@ -17,9 +23,21 @@ def serialize(value, prefix=None, idx=None):
                 "currencies",
             ) and isinstance(v, list):
                 serialized.update({k: v})
+            elif k in ("in", "not_in", "between") and isinstance(v, list):
+                v = [str(i) for i in v]
+                key = "".join(
+                    [
+                        prefix or "",
+                        "[%s]" % k if prefix is not None else k,
+                        "[%s]" % idx if idx is not None else "",
+                    ]
+                )
+                serialized.update({key: str(v)})
             elif isinstance(v, (dict, list, tuple)):
                 serialized.update(serialize(v, k))
             else:
+                if isinstance(v, Enum):
+                    v = str(v)
                 key = "".join(
                     [
                         prefix or "",

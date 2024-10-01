@@ -1,12 +1,14 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class Usage:
+
+    class PdfInvoiceParams(TypedDict):
+        id: Required[str]
 
     class CreateParams(TypedDict):
         id: NotRequired[str]
@@ -35,7 +37,7 @@ class Usage:
         sort_by: NotRequired[Filters.SortFilter]
 
     class PdfParams(TypedDict):
-        invoice: Required[PdfInvoiceParams]
+        invoice: Required["Usage.PdfInvoiceParams"]
         disposition_type: NotRequired[enums.DispositionType]
 
     @staticmethod

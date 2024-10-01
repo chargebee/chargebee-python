@@ -1,3 +1,4 @@
+import importlib
 from dataclasses import fields
 from typing import Type, TypeVar
 
@@ -6,6 +7,13 @@ T = TypeVar("T")
 
 def _is_primitive(field_type):
     return field_type in (int, str, float, bool)
+
+
+def get_class_from_string(class_path: str):
+    module_name, class_name = class_path.rsplit(".", 1)
+    module_path = "chargebee.models." + module_name + ".responses"
+    module = importlib.import_module(module_path)
+    return getattr(module, class_name)
 
 
 class Response(object):
@@ -43,6 +51,10 @@ class Response(object):
                                 if _is_primitive(inner_field_type):
                                     data[inner_field_name] = response[inner_field_name]
                                 else:
+                                    if type(inner_field_type) == str:
+                                        inner_field_type = get_class_from_string(
+                                            inner_field_type
+                                        )
                                     data[inner_field_name] = inner_field_type.construct(
                                         response[inner_field_name]
                                     )
@@ -51,6 +63,8 @@ class Response(object):
                 elif _is_primitive(field_type):
                     init_data[field_name] = self._response[field_name]
                 else:
+                    if type(field_type) == str:
+                        field_type = get_class_from_string(field_type)
                     init_data[field_name] = field_type.construct(
                         self._response[field_name]
                     )
@@ -75,6 +89,10 @@ class Response(object):
                             if _is_primitive(inner_field_type):
                                 data[inner_field_name] = response[inner_field_name]
                             else:
+                                if type(inner_field_type) == str:
+                                    inner_field_type = get_class_from_string(
+                                        inner_field_type
+                                    )
                                 data[inner_field_name] = inner_field_type.construct(
                                     response[inner_field_name]
                                 )

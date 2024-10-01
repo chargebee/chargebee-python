@@ -1,26 +1,116 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class Addon:
+    class Type(Enum):
+        ON_OFF = "on_off"
+        QUANTITY = "quantity"
+        TIERED = "tiered"
+        VOLUME = "volume"
+        STAIRSTEP = "stairstep"
+
+        def __str__(self):
+            return self.value
+
+    class ChargeType(Enum):
+        RECURRING = "recurring"
+        NON_RECURRING = "non_recurring"
+
+        def __str__(self):
+            return self.value
+
+    class PeriodUnit(Enum):
+        DAY = "day"
+        WEEK = "week"
+        MONTH = "month"
+        YEAR = "year"
+        NOT_APPLICABLE = "not_applicable"
+
+        def __str__(self):
+            return self.value
+
+    class Status(Enum):
+        ACTIVE = "active"
+        ARCHIVED = "archived"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
+
+    class ShippingFrequencyPeriodUnit(Enum):
+        YEAR = "year"
+        MONTH = "month"
+        WEEK = "week"
+        DAY = "day"
+
+        def __str__(self):
+            return self.value
+
+    class ProrationType(Enum):
+        SITE_DEFAULT = "site_default"
+        PARTIAL_TERM = "partial_term"
+        FULL_TERM = "full_term"
+
+        def __str__(self):
+            return self.value
+
+    class Tier(TypedDict):
+        starting_unit: Required[int]
+        ending_unit: NotRequired[int]
+        price: Required[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
+
+    class TaxProvidersField(TypedDict):
+        provider_name: Required[str]
+        field_id: Required[str]
+        field_value: Required[str]
+
+    class CreateTierParams(TypedDict):
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
+
+    class CreateTaxProvidersFieldParams(TypedDict):
+        provider_name: Required[str]
+        field_id: Required[str]
+        field_value: Required[str]
+
+    class UpdateTierParams(TypedDict):
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
+
+    class UpdateTaxProvidersFieldParams(TypedDict):
+        provider_name: Required[str]
+        field_id: Required[str]
+        field_value: Required[str]
 
     class CreateParams(TypedDict):
         id: Required[str]
         name: Required[str]
         invoice_name: NotRequired[str]
         description: NotRequired[str]
-        charge_type: Required[ChargeType]
+        charge_type: Required["Addon.ChargeType"]
         price: NotRequired[int]
-        tiers: NotRequired[List[CreateTierParams]]
+        tiers: NotRequired[List["Addon.CreateTierParams"]]
         currency_code: NotRequired[str]
         period: NotRequired[int]
-        period_unit: NotRequired[PeriodUnit]
+        period_unit: NotRequired["Addon.PeriodUnit"]
         pricing_model: NotRequired[enums.PricingModel]
-        type: NotRequired[Type]
+        type: NotRequired["Addon.Type"]
         unit: NotRequired[str]
         enabled_in_portal: NotRequired[bool]
         taxable: NotRequired[bool]
@@ -41,27 +131,27 @@ class Addon:
         accounting_category4: NotRequired[str]
         is_shippable: NotRequired[bool]
         shipping_frequency_period: NotRequired[int]
-        shipping_frequency_period_unit: NotRequired[ShippingFrequencyPeriodUnit]
+        shipping_frequency_period_unit: NotRequired["Addon.ShippingFrequencyPeriodUnit"]
         included_in_mrr: NotRequired[bool]
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
         price_in_decimal: NotRequired[str]
-        tax_providers_fields: Required[List[CreateTaxProvidersFieldParams]]
-        proration_type: NotRequired[ProrationType]
-        status: NotRequired[Status]
+        tax_providers_fields: Required[List["Addon.CreateTaxProvidersFieldParams"]]
+        proration_type: NotRequired["Addon.ProrationType"]
+        status: NotRequired["Addon.Status"]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
         invoice_name: NotRequired[str]
         description: NotRequired[str]
-        charge_type: NotRequired[ChargeType]
+        charge_type: NotRequired["Addon.ChargeType"]
         price: NotRequired[int]
-        tiers: NotRequired[List[UpdateTierParams]]
+        tiers: NotRequired[List["Addon.UpdateTierParams"]]
         currency_code: NotRequired[str]
         period: NotRequired[int]
-        period_unit: NotRequired[PeriodUnit]
+        period_unit: NotRequired["Addon.PeriodUnit"]
         pricing_model: NotRequired[enums.PricingModel]
-        type: NotRequired[Type]
+        type: NotRequired["Addon.Type"]
         unit: NotRequired[str]
         enabled_in_portal: NotRequired[bool]
         taxable: NotRequired[bool]
@@ -82,13 +172,13 @@ class Addon:
         accounting_category4: NotRequired[str]
         is_shippable: NotRequired[bool]
         shipping_frequency_period: NotRequired[int]
-        shipping_frequency_period_unit: NotRequired[ShippingFrequencyPeriodUnit]
+        shipping_frequency_period_unit: NotRequired["Addon.ShippingFrequencyPeriodUnit"]
         included_in_mrr: NotRequired[bool]
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
         price_in_decimal: NotRequired[str]
-        tax_providers_fields: Required[List[UpdateTaxProvidersFieldParams]]
-        proration_type: NotRequired[ProrationType]
+        tax_providers_fields: Required[List["Addon.UpdateTaxProvidersFieldParams"]]
+        proration_type: NotRequired["Addon.ProrationType"]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

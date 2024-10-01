@@ -1,11 +1,30 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class PriceVariant:
+    class Status(Enum):
+        ACTIVE = "active"
+        ARCHIVED = "archived"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
+
+    class Attribute(TypedDict):
+        name: Required[str]
+        value: Required[str]
+
+    class CreateAttributeParams(TypedDict):
+        name: Required[str]
+        value: Required[str]
+
+    class UpdateAttributeParams(TypedDict):
+        name: Required[str]
+        value: Required[str]
 
     class CreateParams(TypedDict):
         id: Required[str]
@@ -13,15 +32,15 @@ class PriceVariant:
         external_name: NotRequired[str]
         description: NotRequired[str]
         variant_group: NotRequired[str]
-        attributes: Required[List[CreateAttributeParams]]
+        attributes: Required[List["PriceVariant.CreateAttributeParams"]]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
         external_name: NotRequired[str]
         description: NotRequired[str]
         variant_group: NotRequired[str]
-        status: NotRequired[Status]
-        attributes: Required[List[UpdateAttributeParams]]
+        status: NotRequired["PriceVariant.Status"]
+        attributes: Required[List["PriceVariant.UpdateAttributeParams"]]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

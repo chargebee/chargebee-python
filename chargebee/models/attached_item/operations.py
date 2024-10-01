@@ -1,16 +1,31 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class AttachedItem:
+    class Type(Enum):
+        RECOMMENDED = "recommended"
+        MANDATORY = "mandatory"
+        OPTIONAL = "optional"
+
+        def __str__(self):
+            return self.value
+
+    class Status(Enum):
+        ACTIVE = "active"
+        ARCHIVED = "archived"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
 
     class CreateParams(TypedDict):
         item_id: Required[str]
-        type: NotRequired[Type]
+        type: NotRequired["AttachedItem.Type"]
         billing_cycles: NotRequired[int]
         quantity: NotRequired[int]
         quantity_in_decimal: NotRequired[str]
@@ -19,7 +34,7 @@ class AttachedItem:
 
     class UpdateParams(TypedDict):
         parent_item_id: Required[str]
-        type: NotRequired[Type]
+        type: NotRequired["AttachedItem.Type"]
         billing_cycles: NotRequired[int]
         quantity: NotRequired[int]
         quantity_in_decimal: NotRequired[str]

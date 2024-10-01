@@ -1,11 +1,18 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class Installment:
+    class Status(Enum):
+        POSTED = "posted"
+        PAYMENT_DUE = "payment_due"
+        PAID = "paid"
+
+        def __str__(self):
+            return self.value
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

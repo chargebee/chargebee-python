@@ -1,24 +1,167 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
-from chargebee.models import enums
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class Coupon:
+    class DiscountType(Enum):
+        FIXED_AMOUNT = "fixed_amount"
+        PERCENTAGE = "percentage"
+
+        def __str__(self):
+            return self.value
+
+    class DurationType(Enum):
+        ONE_TIME = "one_time"
+        FOREVER = "forever"
+        LIMITED_PERIOD = "limited_period"
+
+        def __str__(self):
+            return self.value
+
+    class Status(Enum):
+        ACTIVE = "active"
+        EXPIRED = "expired"
+        ARCHIVED = "archived"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
+
+    class ApplyDiscountOn(Enum):
+        PLANS = "plans"
+        PLANS_AND_ADDONS = "plans_and_addons"
+        PLANS_WITH_QUANTITY = "plans_with_quantity"
+        NOT_APPLICABLE = "not_applicable"
+
+        def __str__(self):
+            return self.value
+
+    class ApplyOn(Enum):
+        INVOICE_AMOUNT = "invoice_amount"
+        EACH_SPECIFIED_ITEM = "each_specified_item"
+
+        def __str__(self):
+            return self.value
+
+    class AddonConstraint(Enum):
+        NONE = "none"
+        ALL = "all"
+        SPECIFIC = "specific"
+        NOT_APPLICABLE = "not_applicable"
+
+        def __str__(self):
+            return self.value
+
+    class PlanConstraint(Enum):
+        NONE = "none"
+        ALL = "all"
+        SPECIFIC = "specific"
+        NOT_APPLICABLE = "not_applicable"
+
+        def __str__(self):
+            return self.value
+
+    class ItemConstraintItemType(Enum):
+        PLAN = "plan"
+        ADDON = "addon"
+        CHARGE = "charge"
+
+        def __str__(self):
+            return self.value
+
+    class ItemConstraintConstraint(Enum):
+        NONE = "none"
+        ALL = "all"
+        SPECIFIC = "specific"
+        CRITERIA = "criteria"
+
+        def __str__(self):
+            return self.value
+
+    class ItemConstraintCriteriaItemType(Enum):
+        PLAN = "plan"
+        ADDON = "addon"
+        CHARGE = "charge"
+
+        def __str__(self):
+            return self.value
+
+    class CouponConstraintEntityType(Enum):
+        CUSTOMER = "customer"
+
+        def __str__(self):
+            return self.value
+
+    class CouponConstraintType(Enum):
+        MAX_REDEMPTIONS = "max_redemptions"
+        UNIQUE_BY = "unique_by"
+
+        def __str__(self):
+            return self.value
+
+    class ItemConstraint(TypedDict):
+        item_type: Required["Coupon.ItemConstraintItemType"]
+        constraint: Required["Coupon.ItemConstraintConstraint"]
+        item_price_ids: NotRequired[List[Dict[Any, Any]]]
+
+    class ItemConstraintCriteria(TypedDict):
+        item_type: Required["Coupon.ItemConstraintCriteriaItemType"]
+        currencies: NotRequired[List[Dict[Any, Any]]]
+        item_family_ids: NotRequired[List[Dict[Any, Any]]]
+        item_price_periods: NotRequired[List[Dict[Any, Any]]]
+
+    class CouponConstraint(TypedDict):
+        entity_type: Required["Coupon.CouponConstraintEntityType"]
+        type: Required["Coupon.CouponConstraintType"]
+        value: NotRequired[str]
+
+    class CreateForItemsItemConstraintParams(TypedDict):
+        constraint: Required["Coupon.ItemConstraintConstraint"]
+        item_type: Required["Coupon.ItemConstraintItemType"]
+        item_price_ids: NotRequired[List[Dict[Any, Any]]]
+
+    class CreateForItemsItemConstraintCriteriaParams(TypedDict):
+        item_type: NotRequired["Coupon.ItemConstraintCriteriaItemType"]
+        item_family_ids: NotRequired[List[Dict[Any, Any]]]
+        currencies: NotRequired[List[Dict[Any, Any]]]
+        item_price_periods: NotRequired[List[Dict[Any, Any]]]
+
+    class CreateForItemsCouponConstraintParams(TypedDict):
+        entity_type: Required["Coupon.CouponConstraintEntityType"]
+        type: Required["Coupon.CouponConstraintType"]
+        value: NotRequired[str]
+
+    class UpdateForItemsItemConstraintParams(TypedDict):
+        constraint: Required["Coupon.ItemConstraintConstraint"]
+        item_type: Required["Coupon.ItemConstraintItemType"]
+        item_price_ids: NotRequired[List[Dict[Any, Any]]]
+
+    class UpdateForItemsItemConstraintCriteriaParams(TypedDict):
+        item_type: NotRequired["Coupon.ItemConstraintCriteriaItemType"]
+        item_family_ids: NotRequired[List[Dict[Any, Any]]]
+        currencies: NotRequired[List[Dict[Any, Any]]]
+        item_price_periods: NotRequired[List[Dict[Any, Any]]]
+
+    class UpdateForItemsCouponConstraintParams(TypedDict):
+        entity_type: Required["Coupon.CouponConstraintEntityType"]
+        type: Required["Coupon.CouponConstraintType"]
+        value: NotRequired[str]
 
     class CreateParams(TypedDict):
         id: Required[str]
         name: Required[str]
         invoice_name: NotRequired[str]
-        discount_type: NotRequired[DiscountType]
+        discount_type: NotRequired["Coupon.DiscountType"]
         discount_amount: NotRequired[int]
         currency_code: NotRequired[str]
         discount_percentage: NotRequired[float]
         discount_quantity: NotRequired[int]
-        apply_on: Required[ApplyOn]
-        duration_type: NotRequired[DurationType]
+        apply_on: Required["Coupon.ApplyOn"]
+        duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
@@ -27,23 +170,23 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        plan_constraint: NotRequired[PlanConstraint]
-        addon_constraint: NotRequired[AddonConstraint]
+        plan_constraint: NotRequired["Coupon.PlanConstraint"]
+        addon_constraint: NotRequired["Coupon.AddonConstraint"]
         plan_ids: NotRequired[List[str]]
         addon_ids: NotRequired[List[str]]
-        status: NotRequired[Status]
+        status: NotRequired["Coupon.Status"]
 
     class CreateForItemsParams(TypedDict):
         id: Required[str]
         name: Required[str]
         invoice_name: NotRequired[str]
-        discount_type: NotRequired[DiscountType]
+        discount_type: NotRequired["Coupon.DiscountType"]
         discount_amount: NotRequired[int]
         currency_code: NotRequired[str]
         discount_percentage: NotRequired[float]
         discount_quantity: NotRequired[int]
-        apply_on: Required[ApplyOn]
-        duration_type: NotRequired[DurationType]
+        apply_on: Required["Coupon.ApplyOn"]
+        duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
@@ -52,23 +195,25 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        item_constraints: Required[List[CreateForItemsItemConstraintParams]]
+        item_constraints: Required[List["Coupon.CreateForItemsItemConstraintParams"]]
         item_constraint_criteria: NotRequired[
-            List[CreateForItemsItemConstraintCriteriaParams]
+            List["Coupon.CreateForItemsItemConstraintCriteriaParams"]
         ]
-        status: NotRequired[Status]
-        coupon_constraints: Required[List[CreateForItemsCouponConstraintParams]]
+        status: NotRequired["Coupon.Status"]
+        coupon_constraints: Required[
+            List["Coupon.CreateForItemsCouponConstraintParams"]
+        ]
 
     class UpdateForItemsParams(TypedDict):
         name: NotRequired[str]
         invoice_name: NotRequired[str]
-        discount_type: NotRequired[DiscountType]
+        discount_type: NotRequired["Coupon.DiscountType"]
         discount_amount: NotRequired[int]
         currency_code: NotRequired[str]
         discount_percentage: NotRequired[float]
         discount_quantity: NotRequired[int]
-        apply_on: NotRequired[ApplyOn]
-        duration_type: NotRequired[DurationType]
+        apply_on: NotRequired["Coupon.ApplyOn"]
+        duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
@@ -77,11 +222,13 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        item_constraints: Required[List[UpdateForItemsItemConstraintParams]]
+        item_constraints: Required[List["Coupon.UpdateForItemsItemConstraintParams"]]
         item_constraint_criteria: NotRequired[
-            List[UpdateForItemsItemConstraintCriteriaParams]
+            List["Coupon.UpdateForItemsItemConstraintCriteriaParams"]
         ]
-        coupon_constraints: Required[List[UpdateForItemsCouponConstraintParams]]
+        coupon_constraints: Required[
+            List["Coupon.UpdateForItemsCouponConstraintParams"]
+        ]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
@@ -100,13 +247,13 @@ class Coupon:
     class UpdateParams(TypedDict):
         name: NotRequired[str]
         invoice_name: NotRequired[str]
-        discount_type: NotRequired[DiscountType]
+        discount_type: NotRequired["Coupon.DiscountType"]
         discount_amount: NotRequired[int]
         currency_code: NotRequired[str]
         discount_percentage: NotRequired[float]
         discount_quantity: NotRequired[int]
-        apply_on: NotRequired[ApplyOn]
-        duration_type: NotRequired[DurationType]
+        apply_on: NotRequired["Coupon.ApplyOn"]
+        duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
@@ -115,8 +262,8 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        plan_constraint: NotRequired[PlanConstraint]
-        addon_constraint: NotRequired[AddonConstraint]
+        plan_constraint: NotRequired["Coupon.PlanConstraint"]
+        addon_constraint: NotRequired["Coupon.AddonConstraint"]
         plan_ids: NotRequired[List[str]]
         addon_ids: NotRequired[List[str]]
 

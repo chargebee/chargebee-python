@@ -1,16 +1,49 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class Item:
+    class Status(Enum):
+        ACTIVE = "active"
+        ARCHIVED = "archived"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
+
+    class Type(Enum):
+        PLAN = "plan"
+        ADDON = "addon"
+        CHARGE = "charge"
+
+        def __str__(self):
+            return self.value
+
+    class ItemApplicability(Enum):
+        ALL = "all"
+        RESTRICTED = "restricted"
+
+        def __str__(self):
+            return self.value
+
+    class UsageCalculation(Enum):
+        SUM_OF_USAGES = "sum_of_usages"
+        LAST_USAGE = "last_usage"
+        MAX_USAGE = "max_usage"
+
+        def __str__(self):
+            return self.value
+
+    class ApplicableItem(TypedDict):
+        id: NotRequired[str]
 
     class CreateParams(TypedDict):
         id: Required[str]
         name: Required[str]
-        type: Required[Type]
+        type: Required["Item.Type"]
         description: NotRequired[str]
         item_family_id: Required[str]
         is_giftable: NotRequired[bool]
@@ -19,13 +52,13 @@ class Item:
         enabled_in_portal: NotRequired[bool]
         redirect_url: NotRequired[str]
         enabled_for_checkout: NotRequired[bool]
-        item_applicability: NotRequired[ItemApplicability]
+        item_applicability: NotRequired["Item.ItemApplicability"]
         applicable_items: NotRequired[List[str]]
         unit: NotRequired[str]
         gift_claim_redirect_url: NotRequired[str]
         included_in_mrr: NotRequired[bool]
         metered: NotRequired[bool]
-        usage_calculation: NotRequired[UsageCalculation]
+        usage_calculation: NotRequired["Item.UsageCalculation"]
         metadata: NotRequired[Dict[Any, Any]]
 
     class UpdateParams(TypedDict):
@@ -37,14 +70,14 @@ class Item:
         enabled_in_portal: NotRequired[bool]
         redirect_url: NotRequired[str]
         enabled_for_checkout: NotRequired[bool]
-        item_applicability: NotRequired[ItemApplicability]
+        item_applicability: NotRequired["Item.ItemApplicability"]
         clear_applicable_items: NotRequired[bool]
         applicable_items: NotRequired[List[str]]
         unit: NotRequired[str]
         gift_claim_redirect_url: NotRequired[str]
         metadata: NotRequired[Dict[Any, Any]]
         included_in_mrr: NotRequired[bool]
-        status: NotRequired[Status]
+        status: NotRequired["Item.Status"]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

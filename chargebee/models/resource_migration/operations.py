@@ -1,11 +1,18 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.models import enums
 
 
 class ResourceMigration:
+    class Status(Enum):
+        SCHEDULED = "scheduled"
+        FAILED = "failed"
+        SUCCEEDED = "succeeded"
+
+        def __str__(self):
+            return self.value
 
     class RetrieveLatestParams(TypedDict):
         from_site: Required[str]

@@ -1,18 +1,69 @@
-from .types import *
 from .responses import *
 from chargebee import request
-from typing import cast, Any
+from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 
 
 class DifferentialPrice:
+    class Status(Enum):
+        ACTIVE = "active"
+        DELETED = "deleted"
+
+        def __str__(self):
+            return self.value
+
+    class ParentPeriodPeriodUnit(Enum):
+        DAY = "day"
+        WEEK = "week"
+        MONTH = "month"
+        YEAR = "year"
+
+        def __str__(self):
+            return self.value
+
+    class Tier(TypedDict):
+        starting_unit: Required[int]
+        ending_unit: NotRequired[int]
+        price: Required[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
+
+    class ParentPeriod(TypedDict):
+        period_unit: Required["DifferentialPrice.ParentPeriodPeriodUnit"]
+        period: NotRequired[List[Dict[Any, Any]]]
+
+    class CreateParentPeriodParams(TypedDict):
+        period_unit: Required["DifferentialPrice.ParentPeriodPeriodUnit"]
+        period: NotRequired[List[Dict[Any, Any]]]
+
+    class CreateTierParams(TypedDict):
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
+
+    class UpdateParentPeriodParams(TypedDict):
+        period_unit: Required["DifferentialPrice.ParentPeriodPeriodUnit"]
+        period: NotRequired[List[Dict[Any, Any]]]
+
+    class UpdateTierParams(TypedDict):
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
 
     class CreateParams(TypedDict):
         parent_item_id: Required[str]
         price: NotRequired[int]
         price_in_decimal: NotRequired[str]
-        parent_periods: Required[List[CreateParentPeriodParams]]
-        tiers: NotRequired[List[CreateTierParams]]
+        parent_periods: Required[List["DifferentialPrice.CreateParentPeriodParams"]]
+        tiers: NotRequired[List["DifferentialPrice.CreateTierParams"]]
 
     class RetrieveParams(TypedDict):
         item_price_id: Required[str]
@@ -21,8 +72,8 @@ class DifferentialPrice:
         item_price_id: Required[str]
         price: NotRequired[int]
         price_in_decimal: NotRequired[str]
-        parent_periods: Required[List[UpdateParentPeriodParams]]
-        tiers: NotRequired[List[UpdateTierParams]]
+        parent_periods: Required[List["DifferentialPrice.UpdateParentPeriodParams"]]
+        tiers: NotRequired[List["DifferentialPrice.UpdateTierParams"]]
 
     class DeleteParams(TypedDict):
         item_price_id: Required[str]
