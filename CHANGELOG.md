@@ -1,3 +1,10 @@
+### v2.44.1 (2024-10-03)
+* * *
+
+#### Bug Fixes:
+* metadata field not working bug fixed. 
+* meta_data field not working bug fixed.
+
 ### v2.44.0 (2024-09-19)
 * * *
 

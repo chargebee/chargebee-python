@@ -7,7 +7,8 @@ def serialize(value, prefix=None, idx=None):
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            if k in ('meta_data', 'metaData', 'checkout_info') and isinstance(v, dict):
+            # these fields are encoded as a JSON string instead of URL-encoded.
+            if k in ('meta_data', 'metaData', 'checkout_info', 'metadata') and isinstance(v, dict):
                 serialized.update({k: v})
             elif k in ('exemption_details', 'item_family_ids', 'item_price_periods', 'currencies') and isinstance(v, list):
                 serialized.update({k: v})
