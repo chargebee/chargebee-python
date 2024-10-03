@@ -29,7 +29,7 @@ class Response(object):
         self.is_idempotency_replayed()
 
     def is_idempotency_replayed(self):
-        self._response_header[self.IDEMPOTENCY_REPLAYED_HEADER] = bool(
+        self._response_header["is_idempotency_replayed"] = bool(
             self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER, False)
         )
 

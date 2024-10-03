@@ -67,7 +67,4 @@ def get_val(val):
     elif isinstance(val, bool):
         return str(val).lower()
     else:
-        if compat.py_major_v < 3 and isinstance(val, unicode):
-            return val.encode("utf-8")
-        else:
-            return val
+        return val

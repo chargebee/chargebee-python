@@ -1106,8 +1106,8 @@ class Invoice:
         po_number: NotRequired[str]
         comment: NotRequired[str]
 
-    class InstallmentsParams(TypedDict):
-        config_id: Required[str]
+    class ApplyPaymentScheduleSchemeParams(TypedDict):
+        scheme_id: Required[str]
         amount: NotRequired[int]
 
     @staticmethod
@@ -1537,16 +1537,27 @@ class Invoice:
         )
 
     @staticmethod
-    def installments(
-        id, params: InstallmentsParams, env=None, headers=None
-    ) -> InstallmentsResponse:
+    def apply_payment_schedule_scheme(
+        id, params: ApplyPaymentScheduleSchemeParams, env=None, headers=None
+    ) -> ApplyPaymentScheduleSchemeResponse:
         return request.send(
             "post",
-            request.uri_path("invoices", id, "installments"),
+            request.uri_path("invoices", id, "apply_payment_schedule_scheme"),
             cast(Dict[Any, Any], params),
             env,
             headers,
-            InstallmentsResponse,
+            ApplyPaymentScheduleSchemeResponse,
+        )
+
+    @staticmethod
+    def payment_schedules(id, env=None, headers=None) -> PaymentSchedulesResponse:
+        return request.send(
+            "get",
+            request.uri_path("invoices", id, "payment_schedules"),
+            None,
+            env,
+            headers,
+            PaymentSchedulesResponse,
         )
 
     @staticmethod

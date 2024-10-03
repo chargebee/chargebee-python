@@ -4,8 +4,14 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 
 
-class InstallmentDetail:
-    class InstallmentStatus(Enum):
+class PaymentSchedule:
+    class EntityType(Enum):
+        INVOICE = "invoice"
+
+        def __str__(self):
+            return self.value
+
+    class ScheduleEntryStatus(Enum):
         POSTED = "posted"
         PAYMENT_DUE = "payment_due"
         PAID = "paid"
@@ -13,14 +19,10 @@ class InstallmentDetail:
         def __str__(self):
             return self.value
 
-    class Installment(TypedDict):
+    class ScheduleEntry(TypedDict):
         id: Required[str]
-        invoice_id: Required[str]
         date: Required[int]
         amount: Required[int]
-        status: Required["InstallmentDetail.InstallmentStatus"]
-        created_at: Required[int]
-        resource_version: NotRequired[int]
-        updated_at: NotRequired[int]
+        status: Required["PaymentSchedule.ScheduleEntryStatus"]
 
     pass

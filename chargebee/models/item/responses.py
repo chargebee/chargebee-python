@@ -9,6 +9,19 @@ class ApplicableItemResponse(Model):
 
 
 @dataclass
+class BundleItemResponse(Model):
+    item_id: str = None
+    item_type: str = None
+    quantity: int = None
+    price_allocation: float = None
+
+
+@dataclass
+class BundleConfigurationResponse(Model):
+    type: str = None
+
+
+@dataclass
 class ItemResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -34,6 +47,8 @@ class ItemResponse(Model):
     archived_at: int = None
     channel: str = None
     applicable_items: List[ApplicableItemResponse] = None
+    bundle_items: List[BundleItemResponse] = None
+    bundle_configuration: BundleConfigurationResponse = None
     metadata: Dict[Any, Any] = None
 
 

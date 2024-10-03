@@ -8,6 +8,7 @@ from chargebee.models import (
     transaction,
     credit_note,
     transaction,
+    payment_schedule,
     payment_reference_number,
     download,
 )
@@ -542,8 +543,14 @@ class UpdateDetailsResponse:
 
 
 @dataclass
-class InstallmentsResponse:
+class ApplyPaymentScheduleSchemeResponse:
     invoice: InvoiceResponse
+    response_headers: Dict[Any, Any] = None
+
+
+@dataclass
+class PaymentSchedulesResponse:
+    payment_schedules: List["payment_schedule.PaymentScheduleResponse"]
     response_headers: Dict[Any, Any] = None
 
 

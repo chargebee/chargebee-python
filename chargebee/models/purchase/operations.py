@@ -63,12 +63,12 @@ class Purchase:
         po_number: NotRequired[str]
         notes: NotRequired[str]
 
+    class CreatePaymentScheduleParams(TypedDict):
+        scheme_id: NotRequired[str]
+        amount: NotRequired[int]
+
     class CreateStatementDescriptorParams(TypedDict):
         descriptor: NotRequired[str]
-
-    class CreateInstallmentInfoParams(TypedDict):
-        config_id: NotRequired[str]
-        amount: NotRequired[int]
 
     class EstimatePurchaseItemParams(TypedDict):
         index: Required[int]
@@ -150,8 +150,8 @@ class Purchase:
         subscription_info: Required[List["Purchase.CreateSubscriptionInfoParams"]]
         contract_terms: Required[List["Purchase.CreateContractTermParams"]]
         invoice_info: NotRequired["Purchase.CreateInvoiceInfoParams"]
+        payment_schedule: NotRequired["Purchase.CreatePaymentScheduleParams"]
         statement_descriptor: NotRequired["Purchase.CreateStatementDescriptorParams"]
-        installment_info: NotRequired["Purchase.CreateInstallmentInfoParams"]
         customer_id: Required[str]
         payment_source_id: NotRequired[str]
 

@@ -162,9 +162,6 @@ class ItemPrice:
         metadata: NotRequired[Dict[Any, Any]]
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
-        usage_accumulation_reset_frequency: NotRequired[
-            enums.UsageAccumulationResetFrequency
-        ]
         pricing_model: NotRequired[enums.PricingModel]
         tiers: NotRequired[List["ItemPrice.CreateTierParams"]]
         price: NotRequired[int]
@@ -188,9 +185,6 @@ class ItemPrice:
         price_variant_id: NotRequired[str]
         status: NotRequired["ItemPrice.Status"]
         external_name: NotRequired[str]
-        usage_accumulation_reset_frequency: NotRequired[
-            enums.UsageAccumulationResetFrequency
-        ]
         currency_code: NotRequired[str]
         invoice_notes: NotRequired[str]
         is_taxable: NotRequired[bool]

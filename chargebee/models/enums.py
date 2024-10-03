@@ -415,10 +415,10 @@ class EventType(Enum):
     CREDIT_NOTE_CREATED_WITH_BACKDATING = "credit_note_created_with_backdating"
     CREDIT_NOTE_UPDATED = "credit_note_updated"
     CREDIT_NOTE_DELETED = "credit_note_deleted"
-    INVOICE_INSTALLMENTS_CREATED = "invoice_installments_created"
-    INVOICE_INSTALLMENT_UPDATED = "invoice_installment_updated"
-    INSTALLMENT_CONFIG_CREATED = "installment_config_created"
-    INSTALLMENT_CONFIG_DELETED = "installment_config_deleted"
+    PAYMENT_SCHEDULES_CREATED = "payment_schedules_created"
+    PAYMENT_SCHEDULES_UPDATED = "payment_schedules_updated"
+    PAYMENT_SCHEDULE_SCHEME_CREATED = "payment_schedule_scheme_created"
+    PAYMENT_SCHEDULE_SCHEME_DELETED = "payment_schedule_scheme_deleted"
     SUBSCRIPTION_RENEWAL_REMINDER = "subscription_renewal_reminder"
     ADD_USAGES_REMINDER = "add_usages_reminder"
     TRANSACTION_CREATED = "transaction_created"
@@ -1044,14 +1044,6 @@ class UnbilledChargesOption(Enum):
 class UnpaidInvoicesHandling(Enum):
     NO_ACTION = "no_action"
     SCHEDULE_PAYMENT_COLLECTION = "schedule_payment_collection"
-
-    def __str__(self):
-        return self.value
-
-
-class UsageAccumulationResetFrequency(Enum):
-    NEVER = "never"
-    SUBSCRIPTION_BILLING_FREQUENCY = "subscription_billing_frequency"
 
     def __str__(self):
         return self.value

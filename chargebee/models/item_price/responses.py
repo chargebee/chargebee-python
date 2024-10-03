@@ -72,7 +72,6 @@ class ItemPriceResponse(Model):
     resource_version: int = None
     updated_at: int = None
     created_at: int = None
-    usage_accumulation_reset_frequency: str = None
     archived_at: int = None
     invoice_notes: str = None
     tiers: List[TierResponse] = None

@@ -3,6 +3,7 @@ from chargebee import request
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 class Item:
@@ -37,8 +38,54 @@ class Item:
         def __str__(self):
             return self.value
 
+    class BundleConfigurationType(Enum):
+        FIXED = "fixed"
+
+        def __str__(self):
+            return self.value
+
     class ApplicableItem(TypedDict):
         id: NotRequired[str]
+
+    class BundleItem(TypedDict):
+        item_id: Required[str]
+        item_type: NotRequired[enums.ItemType]
+        quantity: NotRequired[int]
+        price_allocation: NotRequired[float]
+
+    class BundleConfiguration(TypedDict):
+        type: NotRequired["Item.BundleConfigurationType"]
+
+    class CreateBundleConfigurationParams(TypedDict):
+        type: NotRequired["Item.BundleConfigurationType"]
+
+    class CreateBundleItemsToAddParams(TypedDict):
+        item_id: NotRequired[str]
+        item_type: NotRequired[enums.ItemType]
+        quantity: NotRequired[int]
+        price_allocation: NotRequired[float]
+
+    class UpdateBundleConfigurationParams(TypedDict):
+        type: NotRequired["Item.BundleConfigurationType"]
+
+    class UpdateBundleItemsToAddParams(TypedDict):
+        item_id: NotRequired[str]
+        item_type: NotRequired[enums.ItemType]
+        quantity: NotRequired[int]
+        price_allocation: NotRequired[float]
+
+    class UpdateBundleItemsToUpdateParams(TypedDict):
+        item_id: NotRequired[str]
+        item_type: NotRequired[enums.ItemType]
+        quantity: NotRequired[int]
+        price_allocation: NotRequired[float]
+
+    class UpdateBundleItemsToRemoveParams(TypedDict):
+        item_id: NotRequired[str]
+        item_type: NotRequired[enums.ItemType]
+
+    class ListBundleConfigurationParams(TypedDict):
+        type: NotRequired[Filters.EnumFilter]
 
     class CreateParams(TypedDict):
         id: Required[str]
@@ -54,12 +101,14 @@ class Item:
         enabled_for_checkout: NotRequired[bool]
         item_applicability: NotRequired["Item.ItemApplicability"]
         applicable_items: NotRequired[List[str]]
+        bundle_configuration: NotRequired["Item.CreateBundleConfigurationParams"]
         unit: NotRequired[str]
         gift_claim_redirect_url: NotRequired[str]
         included_in_mrr: NotRequired[bool]
         metered: NotRequired[bool]
         usage_calculation: NotRequired["Item.UsageCalculation"]
         metadata: NotRequired[Dict[Any, Any]]
+        bundle_items_to_add: NotRequired[List["Item.CreateBundleItemsToAddParams"]]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
@@ -73,15 +122,24 @@ class Item:
         item_applicability: NotRequired["Item.ItemApplicability"]
         clear_applicable_items: NotRequired[bool]
         applicable_items: NotRequired[List[str]]
+        bundle_configuration: NotRequired["Item.UpdateBundleConfigurationParams"]
         unit: NotRequired[str]
         gift_claim_redirect_url: NotRequired[str]
         metadata: NotRequired[Dict[Any, Any]]
         included_in_mrr: NotRequired[bool]
         status: NotRequired["Item.Status"]
+        bundle_items_to_add: NotRequired[List["Item.UpdateBundleItemsToAddParams"]]
+        bundle_items_to_update: NotRequired[
+            List["Item.UpdateBundleItemsToUpdateParams"]
+        ]
+        bundle_items_to_remove: NotRequired[
+            List["Item.UpdateBundleItemsToRemoveParams"]
+        ]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+        bundle_configuration: NotRequired["Item.ListBundleConfigurationParams"]
         id: NotRequired[Filters.StringFilter]
         item_family_id: NotRequired[Filters.StringFilter]
         type: NotRequired[Filters.EnumFilter]

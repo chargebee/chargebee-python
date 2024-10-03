@@ -73,7 +73,6 @@ from chargebee.models.enums import (
     UnbilledChargesHandling,
     UnbilledChargesOption,
     UnpaidInvoicesHandling,
-    UsageAccumulationResetFrequency,
     ValidationStatus,
     VoucherType,
     ChargeOn,
@@ -151,12 +150,6 @@ from chargebee.models.impacted_subscription.operations import ImpactedSubscripti
 
 from chargebee.models.in_app_subscription.operations import InAppSubscription
 
-from chargebee.models.installment.operations import Installment
-
-from chargebee.models.installment_config.operations import InstallmentConfig
-
-from chargebee.models.installment_detail.operations import InstallmentDetail
-
 from chargebee.models.invoice.operations import Invoice
 
 from chargebee.models.invoice_estimate.operations import InvoiceEstimate
@@ -176,6 +169,10 @@ from chargebee.models.order.operations import Order
 from chargebee.models.payment_intent.operations import PaymentIntent
 
 from chargebee.models.payment_reference_number.operations import PaymentReferenceNumber
+
+from chargebee.models.payment_schedule.operations import PaymentSchedule
+
+from chargebee.models.payment_schedule_scheme.operations import PaymentScheduleScheme
 
 from chargebee.models.payment_source.operations import PaymentSource
 
