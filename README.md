@@ -1,10 +1,10 @@
 # Chargebee Python Client Library v3 (Beta)
 
-This is the Python Library for integrating with Chargebee. Sign up for a Chargebee account [here](https://www.chargebee.com).
+The Chargebee Python library streamlines integration with the Chargebee API in Python applications. It offers built-in type annotations and enhanced IDE autocompletion for API resources and responses, which improves the developer experience. To get started, please sign up for a Chargebee account [here](https://www.chargebee.com).
 
 ## Requirements
 
-Python 3.11 or higher.
+- Python 3.11+
 
 ## Installation
 Install the latest beta version of the library with pip:
@@ -12,7 +12,7 @@ Install the latest beta version of the library with pip:
 ```sh
 pip install chargebee --pre
 ```
-If you preferred to install it from source, just checkout the latest version for 3.x.x by ```git checkout [latest 3.x.x release tag]``` and install with the following command:
+Install from source with:
 
 ```sh
 python setup.py install
@@ -25,6 +25,8 @@ See our [Python API Reference](https://apidocs.chargebee.com/docs/api?lang=pytho
 ## Usage
 
 The package needs to be configured with your site's API key, which is available under Configure Chargebee Section. Refer [here](https://www.chargebee.com/docs/2.0/api_keys.html) for more details.
+
+### Configuring chargebee
 ```python
 import chargebee
 chargebee.configure("api_key", "site")
@@ -38,9 +40,10 @@ chargebee.update_read_timeout_secs(3000)
 chargebee.update_connect_timeout_secs(5000)
 ```
 
-### Creating a new customer:
+### Making API Request:
 
 ```python  
+# Create a Customer
 import chargebee
 
 response = chargebee.Customer.create(
@@ -64,7 +67,7 @@ customer = response.customer
 card = response.card
 ```
 
-### Using filters with the List API
+### List API Request With Filter
 
 For pagination, `offset` is the parameter that is being used. The value used for this parameter must be the value returned in `next_offset` parameter from the previous API call.
 
@@ -173,7 +176,7 @@ from chargebee import Filters
 response = chargebee.Export.customers(
     chargebee.Export.CustomersParams(
         customer=chargebee.Export.CustomersCustomerParams(
-            first_name=Filters.StringFilter(IS="198OeJUMpANxQlhO")
+            first_name=Filters.StringFilter(IS="John")
         )
     )
 )

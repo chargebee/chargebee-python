@@ -2,7 +2,7 @@
 * * *
 
 - **Minimum Python Version**: Python 3.11 or higher is now required.
-- **Type Hinting**: Introduced to improve IDE suggestions.
+- **Type Hinting**: Introduced to enhance IDE autocompletion and provide more accurate suggestions during development.
 - **Data Type Support**: Added support for `int`, `float`, `bool`, and `enum` data types.
 - **Enums**: Global and resource-specific enums have been introduced.
 - **Filter Params**: Filter parameters have been introduced.
