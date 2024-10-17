@@ -46,6 +46,7 @@ from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
 from chargebee.models.payment_reference_number import PaymentReferenceNumber
 from chargebee.models.payment_schedule import PaymentSchedule
+from chargebee.models.payment_schedule_estimate import PaymentScheduleEstimate
 from chargebee.models.payment_schedule_scheme import PaymentScheduleScheme
 from chargebee.models.payment_source import PaymentSource
 from chargebee.models.payment_voucher import PaymentVoucher

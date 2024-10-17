@@ -6,7 +6,8 @@ from chargebee import APIError
 class Estimate(Model):
 
     fields = ["created_at", "subscription_estimate", "subscription_estimates", "invoice_estimate", \
-    "invoice_estimates", "next_invoice_estimate", "credit_note_estimates", "unbilled_charge_estimates"]
+    "invoice_estimates", "payment_schedule_estimates", "next_invoice_estimate", "credit_note_estimates", \
+    "unbilled_charge_estimates"]
 
 
     @staticmethod
@@ -84,3 +85,7 @@ class Estimate(Model):
     @staticmethod
     def create_invoice_for_items(params, env=None, headers=None):
         return request.send('post', request.uri_path("estimates","create_invoice_for_items"), params, env, headers)
+
+    @staticmethod
+    def payment_schedules(params, env=None, headers=None):
+        return request.send('post', request.uri_path("estimates","payment_schedules"), params, env, headers)

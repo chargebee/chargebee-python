@@ -8,8 +8,8 @@ class PaymentScheduleScheme(Model):
       fields = ["period", "amount_percentage"]
       pass
 
-    fields = ["id", "description", "number_of_schedules", "period_unit", "period", "created_at", \
-    "resource_version", "updated_at", "preferred_schedules"]
+    fields = ["id", "name", "description", "number_of_schedules", "period_unit", "period", \
+    "created_at", "resource_version", "updated_at", "preferred_schedules"]
 
 
     @staticmethod
