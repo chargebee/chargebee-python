@@ -1,10 +1,13 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.models import enums
 
 
+@dataclass
 class QuotedCharge:
+
+    env: environment.Environment
 
     class Charge(TypedDict):
         amount: NotRequired[int]

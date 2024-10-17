@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class EntitlementOverride:
+
+    env: environment.Environment
+
     class ScheduleStatus(Enum):
         ACTIVATED = "activated"
         SCHEDULED = "scheduled"
@@ -35,31 +39,29 @@ class EntitlementOverride:
         include_drafts: NotRequired[bool]
         include_scheduled_overrides: NotRequired[bool]
 
-    @staticmethod
     def add_entitlement_override_for_subscription(
-        id, params: AddEntitlementOverrideForSubscriptionParams, env=None, headers=None
+        self, id, params: AddEntitlementOverrideForSubscriptionParams, headers=None
     ) -> AddEntitlementOverrideForSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddEntitlementOverrideForSubscriptionResponse,
         )
 
-    @staticmethod
     def list_entitlement_override_for_subscription(
+        self,
         id,
         params: ListEntitlementOverrideForSubscriptionParams = None,
-        env=None,
         headers=None,
     ) -> ListEntitlementOverrideForSubscriptionResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListEntitlementOverrideForSubscriptionResponse,
         )

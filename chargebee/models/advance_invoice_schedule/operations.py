@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class AdvanceInvoiceSchedule:
+
+    env: environment.Environment
+
     class ScheduleType(Enum):
         FIXED_INTERVALS = "fixed_intervals"
         SPECIFIC_DATES = "specific_dates"

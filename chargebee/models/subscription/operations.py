@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, unbilled_charge, payment_intent, invoice
 
 
+@dataclass
 class Subscription:
+
+    env: environment.Environment
+
     class Status(Enum):
         FUTURE = "future"
         IN_TRIAL = "in_trial"
@@ -95,6 +99,9 @@ class Subscription:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         proration_type: NotRequired[enums.ProrationType]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
 
     class ItemTier(TypedDict):
         item_price_id: Required[str]
@@ -440,6 +447,9 @@ class Subscription:
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
 
     class CreateWithItemsDiscountParams(TypedDict):
         apply_on: Required[enums.ApplyOn]
@@ -627,6 +637,9 @@ class Subscription:
         charge_on_option: NotRequired[enums.ChargeOnOption]
         item_type: NotRequired[enums.ItemType]
         proration_type: NotRequired[enums.ProrationType]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
 
     class UpdateForItemsDiscountParams(TypedDict):
         apply_on: Required[enums.ApplyOn]
@@ -1682,471 +1695,426 @@ class Subscription:
         to_customer_id: Required[str]
         copy_payment_source: NotRequired[bool]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
     def create_for_customer(
-        id, params: CreateForCustomerParams, env=None, headers=None
+        self, id, params: CreateForCustomerParams, headers=None
     ) -> CreateForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "subscriptions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForCustomerResponse,
         )
 
-    @staticmethod
     def create_with_items(
-        id, params: CreateWithItemsParams, env=None, headers=None
+        self, id, params: CreateWithItemsParams, headers=None
     ) -> CreateWithItemsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "subscription_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateWithItemsResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("subscriptions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def subscriptions_for_customer(
-        id, params: SubscriptionsForCustomerParams = None, env=None, headers=None
+        self, id, params: SubscriptionsForCustomerParams = None, headers=None
     ) -> SubscriptionsForCustomerResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "subscriptions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SubscriptionsForCustomerResponse,
         )
 
-    @staticmethod
     def contract_terms_for_subscription(
-        id, params: ContractTermsForSubscriptionParams = None, env=None, headers=None
+        self, id, params: ContractTermsForSubscriptionParams = None, headers=None
     ) -> ContractTermsForSubscriptionResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "contract_terms"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ContractTermsForSubscriptionResponse,
         )
 
-    @staticmethod
     def list_discounts(
-        id, params: ListDiscountsParams = None, env=None, headers=None
+        self, id, params: ListDiscountsParams = None, headers=None
     ) -> ListDiscountsResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "discounts"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListDiscountsResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
     def retrieve_with_scheduled_changes(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> RetrieveWithScheduledChangesResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_with_scheduled_changes"),
+            self.env,
             None,
-            env,
             headers,
             RetrieveWithScheduledChangesResponse,
         )
 
-    @staticmethod
     def remove_scheduled_changes(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> RemoveScheduledChangesResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_changes"),
+            self.env,
             None,
-            env,
             headers,
             RemoveScheduledChangesResponse,
         )
 
-    @staticmethod
     def remove_scheduled_cancellation(
-        id, params: RemoveScheduledCancellationParams = None, env=None, headers=None
+        self, id, params: RemoveScheduledCancellationParams = None, headers=None
     ) -> RemoveScheduledCancellationResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_cancellation"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemoveScheduledCancellationResponse,
         )
 
-    @staticmethod
     def remove_coupons(
-        id, params: RemoveCouponsParams = None, env=None, headers=None
+        self, id, params: RemoveCouponsParams = None, headers=None
     ) -> RemoveCouponsResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_coupons"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemoveCouponsResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
     def update_for_items(
-        id, params: UpdateForItemsParams, env=None, headers=None
+        self, id, params: UpdateForItemsParams, headers=None
     ) -> UpdateForItemsResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "update_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateForItemsResponse,
         )
 
-    @staticmethod
     def change_term_end(
-        id, params: ChangeTermEndParams, env=None, headers=None
+        self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChangeTermEndResponse,
         )
 
-    @staticmethod
     def reactivate(
-        id, params: ReactivateParams = None, env=None, headers=None
+        self, id, params: ReactivateParams = None, headers=None
     ) -> ReactivateResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "reactivate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ReactivateResponse,
         )
 
-    @staticmethod
     def add_charge_at_term_end(
-        id, params: AddChargeAtTermEndParams, env=None, headers=None
+        self, id, params: AddChargeAtTermEndParams, headers=None
     ) -> AddChargeAtTermEndResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "add_charge_at_term_end"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddChargeAtTermEndResponse,
         )
 
-    @staticmethod
     def charge_addon_at_term_end(
-        id, params: ChargeAddonAtTermEndParams, env=None, headers=None
+        self, id, params: ChargeAddonAtTermEndParams, headers=None
     ) -> ChargeAddonAtTermEndResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_addon_at_term_end"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChargeAddonAtTermEndResponse,
         )
 
-    @staticmethod
     def charge_future_renewals(
-        id, params: ChargeFutureRenewalsParams = None, env=None, headers=None
+        self, id, params: ChargeFutureRenewalsParams = None, headers=None
     ) -> ChargeFutureRenewalsResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_future_renewals"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChargeFutureRenewalsResponse,
         )
 
-    @staticmethod
     def edit_advance_invoice_schedule(
-        id, params: EditAdvanceInvoiceScheduleParams = None, env=None, headers=None
+        self, id, params: EditAdvanceInvoiceScheduleParams = None, headers=None
     ) -> EditAdvanceInvoiceScheduleResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "edit_advance_invoice_schedule"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditAdvanceInvoiceScheduleResponse,
         )
 
-    @staticmethod
     def retrieve_advance_invoice_schedule(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> RetrieveAdvanceInvoiceScheduleResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_advance_invoice_schedule"),
+            self.env,
             None,
-            env,
             headers,
             RetrieveAdvanceInvoiceScheduleResponse,
         )
 
-    @staticmethod
     def remove_advance_invoice_schedule(
-        id, params: RemoveAdvanceInvoiceScheduleParams = None, env=None, headers=None
+        self, id, params: RemoveAdvanceInvoiceScheduleParams = None, headers=None
     ) -> RemoveAdvanceInvoiceScheduleResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_advance_invoice_schedule"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemoveAdvanceInvoiceScheduleResponse,
         )
 
-    @staticmethod
     def regenerate_invoice(
-        id, params: RegenerateInvoiceParams = None, env=None, headers=None
+        self, id, params: RegenerateInvoiceParams = None, headers=None
     ) -> RegenerateInvoiceResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RegenerateInvoiceResponse,
         )
 
-    @staticmethod
     def import_subscription(
-        params: ImportSubscriptionParams, env=None, headers=None
+        self, params: ImportSubscriptionParams, headers=None
     ) -> ImportSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", "import_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportSubscriptionResponse,
         )
 
-    @staticmethod
     def import_for_customer(
-        id, params: ImportForCustomerParams, env=None, headers=None
+        self, id, params: ImportForCustomerParams, headers=None
     ) -> ImportForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "import_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportForCustomerResponse,
         )
 
-    @staticmethod
     def import_contract_term(
-        id, params: ImportContractTermParams = None, env=None, headers=None
+        self, id, params: ImportContractTermParams = None, headers=None
     ) -> ImportContractTermResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_contract_term"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportContractTermResponse,
         )
 
-    @staticmethod
     def import_unbilled_charges(
-        id, params: ImportUnbilledChargesParams, env=None, headers=None
+        self, id, params: ImportUnbilledChargesParams, headers=None
     ) -> ImportUnbilledChargesResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_unbilled_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportUnbilledChargesResponse,
         )
 
-    @staticmethod
     def import_for_items(
-        id, params: ImportForItemsParams, env=None, headers=None
+        self, id, params: ImportForItemsParams, headers=None
     ) -> ImportForItemsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "import_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportForItemsResponse,
         )
 
-    @staticmethod
     def override_billing_profile(
-        id, params: OverrideBillingProfileParams = None, env=None, headers=None
+        self, id, params: OverrideBillingProfileParams = None, headers=None
     ) -> OverrideBillingProfileResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "override_billing_profile"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             OverrideBillingProfileResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def pause(id, params: PauseParams = None, env=None, headers=None) -> PauseResponse:
+    def pause(self, id, params: PauseParams = None, headers=None) -> PauseResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PauseResponse,
         )
 
-    @staticmethod
-    def cancel(
-        id, params: CancelParams = None, env=None, headers=None
-    ) -> CancelResponse:
+    def cancel(self, id, params: CancelParams = None, headers=None) -> CancelResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CancelResponse,
         )
 
-    @staticmethod
     def cancel_for_items(
-        id, params: CancelForItemsParams = None, env=None, headers=None
+        self, id, params: CancelForItemsParams = None, headers=None
     ) -> CancelForItemsResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CancelForItemsResponse,
         )
 
-    @staticmethod
-    def resume(
-        id, params: ResumeParams = None, env=None, headers=None
-    ) -> ResumeResponse:
+    def resume(self, id, params: ResumeParams = None, headers=None) -> ResumeResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "resume"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ResumeResponse,
         )
 
-    @staticmethod
-    def remove_scheduled_pause(
-        id, env=None, headers=None
-    ) -> RemoveScheduledPauseResponse:
+    def remove_scheduled_pause(self, id, headers=None) -> RemoveScheduledPauseResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_pause"),
+            self.env,
             None,
-            env,
             headers,
             RemoveScheduledPauseResponse,
         )
 
-    @staticmethod
     def remove_scheduled_resumption(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> RemoveScheduledResumptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_resumption"),
+            self.env,
             None,
-            env,
             headers,
             RemoveScheduledResumptionResponse,
         )
 
-    @staticmethod
-    def move(id, params: MoveParams, env=None, headers=None) -> MoveResponse:
+    def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "move"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             MoveResponse,
         )

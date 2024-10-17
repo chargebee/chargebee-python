@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -24,7 +25,7 @@ class ItemEntitlementsForItemItemEntitlementResponse:
 class ItemEntitlementsForItemResponse:
     list: List[ItemEntitlementsForItemItemEntitlementResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -36,16 +37,16 @@ class ItemEntitlementsForFeatureItemEntitlementResponse:
 class ItemEntitlementsForFeatureResponse:
     list: List[ItemEntitlementsForFeatureItemEntitlementResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddItemEntitlementsResponse:
+class AddItemEntitlementsResponse(Response):
     item_entitlement: ItemEntitlementResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpsertOrRemoveItemEntitlementsForItemResponse:
+class UpsertOrRemoveItemEntitlementsForItemResponse(Response):
     item_entitlement: ItemEntitlementResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

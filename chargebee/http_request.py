@@ -1,6 +1,7 @@
 import base64
 import logging
 import platform
+
 import requests
 
 from chargebee import (
@@ -8,11 +9,10 @@ from chargebee import (
     PaymentError,
     InvalidRequestError,
     OperationFailedError,
-    compat,
 )
-from chargebee.main import ChargeBee
-from chargebee.main import Environment
 from chargebee import compat
+from chargebee.main import Chargebee
+from chargebee.main import Environment
 from chargebee.version import VERSION
 
 _logger = logging.getLogger(__name__)
@@ -40,7 +40,7 @@ def request(method, url, env, params=None, headers=None):
 
     headers.update(
         {
-            "User-Agent": "ChargeBee-Python-Client v%s" % VERSION,
+            "User-Agent": "Chargebee-Python-Client v%s" % VERSION,
             "Accept": "application/json",
             "Authorization": _basic_auth_str(env.api_key),
             "Lang-Version": str(compat.py_major_v) + "." + str(compat.py_minor_v),
@@ -58,10 +58,10 @@ def request(method, url, env, params=None, headers=None):
 
     uri = meta.netloc + meta.path + "?" + meta.query
 
-    if ChargeBee.verify_ca_certs:
+    if Chargebee.verify_ca_certs:
         request_args.update(
             {
-                "verify": ChargeBee.ca_cert_path,
+                "verify": Chargebee.ca_cert_path,
                 "url": "https://" + uri,
             }
         )

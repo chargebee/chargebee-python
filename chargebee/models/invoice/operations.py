@@ -1,5 +1,5 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
@@ -12,7 +12,11 @@ from chargebee.models import (
 )
 
 
+@dataclass
 class Invoice:
+
+    env: environment.Environment
+
     class Status(Enum):
         PAID = "paid"
         POSTED = "posted"
@@ -1110,474 +1114,432 @@ class Invoice:
         scheme_id: Required[str]
         amount: NotRequired[int]
 
-    @staticmethod
-    def create(params: CreateParams = None, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams = None, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("invoices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
     def create_for_charge_items_and_charges(
-        params: CreateForChargeItemsAndChargesParams, env=None, headers=None
+        self, params: CreateForChargeItemsAndChargesParams, headers=None
     ) -> CreateForChargeItemsAndChargesResponse:
         return request.send(
             "post",
             request.uri_path("invoices", "create_for_charge_items_and_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForChargeItemsAndChargesResponse,
         )
 
-    @staticmethod
-    def charge(params: ChargeParams, env=None, headers=None) -> ChargeResponse:
+    def charge(self, params: ChargeParams, headers=None) -> ChargeResponse:
         return request.send(
             "post",
             request.uri_path("invoices", "charge"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChargeResponse,
         )
 
-    @staticmethod
     def charge_addon(
-        params: ChargeAddonParams, env=None, headers=None
+        self, params: ChargeAddonParams, headers=None
     ) -> ChargeAddonResponse:
         return request.send(
             "post",
             request.uri_path("invoices", "charge_addon"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChargeAddonResponse,
         )
 
-    @staticmethod
     def create_for_charge_item(
-        params: CreateForChargeItemParams, env=None, headers=None
+        self, params: CreateForChargeItemParams, headers=None
     ) -> CreateForChargeItemResponse:
         return request.send(
             "post",
             request.uri_path("invoices", "create_for_charge_item"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForChargeItemResponse,
         )
 
-    @staticmethod
     def stop_dunning(
-        id, params: StopDunningParams = None, env=None, headers=None
+        self, id, params: StopDunningParams = None, headers=None
     ) -> StopDunningResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "stop_dunning"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             StopDunningResponse,
         )
 
-    @staticmethod
     def import_invoice(
-        params: ImportInvoiceParams, env=None, headers=None
+        self, params: ImportInvoiceParams, headers=None
     ) -> ImportInvoiceResponse:
         return request.send(
             "post",
             request.uri_path("invoices", "import_invoice"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportInvoiceResponse,
         )
 
-    @staticmethod
     def apply_payments(
-        id, params: ApplyPaymentsParams = None, env=None, headers=None
+        self, id, params: ApplyPaymentsParams = None, headers=None
     ) -> ApplyPaymentsResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payments"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ApplyPaymentsResponse,
         )
 
-    @staticmethod
-    def sync_usages(id, env=None, headers=None) -> SyncUsagesResponse:
+    def sync_usages(self, id, headers=None) -> SyncUsagesResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "sync_usages"),
+            self.env,
             None,
-            env,
             headers,
             SyncUsagesResponse,
         )
 
-    @staticmethod
     def delete_line_items(
-        id, params: DeleteLineItemsParams = None, env=None, headers=None
+        self, id, params: DeleteLineItemsParams = None, headers=None
     ) -> DeleteLineItemsResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete_line_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteLineItemsResponse,
         )
 
-    @staticmethod
     def apply_credits(
-        id, params: ApplyCreditsParams = None, env=None, headers=None
+        self, id, params: ApplyCreditsParams = None, headers=None
     ) -> ApplyCreditsResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_credits"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ApplyCreditsResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("invoices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def invoices_for_customer(
-        id, params: InvoicesForCustomerParams = None, env=None, headers=None
+        self, id, params: InvoicesForCustomerParams = None, headers=None
     ) -> InvoicesForCustomerResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "invoices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             InvoicesForCustomerResponse,
         )
 
-    @staticmethod
     def invoices_for_subscription(
-        id, params: InvoicesForSubscriptionParams = None, env=None, headers=None
+        self, id, params: InvoicesForSubscriptionParams = None, headers=None
     ) -> InvoicesForSubscriptionResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "invoices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             InvoicesForSubscriptionResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def pdf(id, params: PdfParams = None, env=None, headers=None) -> PdfResponse:
+    def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "pdf"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PdfResponse,
         )
 
-    @staticmethod
-    def download_einvoice(id, env=None, headers=None) -> DownloadEinvoiceResponse:
+    def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id, "download_einvoice"),
+            self.env,
             None,
-            env,
             headers,
             DownloadEinvoiceResponse,
         )
 
-    @staticmethod
     def list_payment_reference_numbers(
-        params: ListPaymentReferenceNumbersParams = None, env=None, headers=None
+        self, params: ListPaymentReferenceNumbersParams = None, headers=None
     ) -> ListPaymentReferenceNumbersResponse:
         return request.send(
             "get",
             request.uri_path("invoices", "payment_reference_numbers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListPaymentReferenceNumbersResponse,
         )
 
-    @staticmethod
     def add_charge(
-        id, params: AddChargeParams, env=None, headers=None
+        self, id, params: AddChargeParams, headers=None
     ) -> AddChargeResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddChargeResponse,
         )
 
-    @staticmethod
     def add_addon_charge(
-        id, params: AddAddonChargeParams, env=None, headers=None
+        self, id, params: AddAddonChargeParams, headers=None
     ) -> AddAddonChargeResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_addon_charge"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddAddonChargeResponse,
         )
 
-    @staticmethod
     def add_charge_item(
-        id, params: AddChargeItemParams, env=None, headers=None
+        self, id, params: AddChargeItemParams, headers=None
     ) -> AddChargeItemResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge_item"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddChargeItemResponse,
         )
 
-    @staticmethod
-    def close(id, params: CloseParams = None, env=None, headers=None) -> CloseResponse:
+    def close(self, id, params: CloseParams = None, headers=None) -> CloseResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "close"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CloseResponse,
         )
 
-    @staticmethod
     def collect_payment(
-        id, params: CollectPaymentParams = None, env=None, headers=None
+        self, id, params: CollectPaymentParams = None, headers=None
     ) -> CollectPaymentResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "collect_payment"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CollectPaymentResponse,
         )
 
-    @staticmethod
     def record_payment(
-        id, params: RecordPaymentParams, env=None, headers=None
+        self, id, params: RecordPaymentParams, headers=None
     ) -> RecordPaymentResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_payment"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RecordPaymentResponse,
         )
 
-    @staticmethod
     def record_tax_withheld(
-        id, params: RecordTaxWithheldParams, env=None, headers=None
+        self, id, params: RecordTaxWithheldParams, headers=None
     ) -> RecordTaxWithheldResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_tax_withheld"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RecordTaxWithheldResponse,
         )
 
-    @staticmethod
     def remove_tax_withheld(
-        id, params: RemoveTaxWithheldParams, env=None, headers=None
+        self, id, params: RemoveTaxWithheldParams, headers=None
     ) -> RemoveTaxWithheldResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_tax_withheld"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemoveTaxWithheldResponse,
         )
 
-    @staticmethod
-    def refund(
-        id, params: RefundParams = None, env=None, headers=None
-    ) -> RefundResponse:
+    def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "refund"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RefundResponse,
         )
 
-    @staticmethod
     def record_refund(
-        id, params: RecordRefundParams, env=None, headers=None
+        self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_refund"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RecordRefundResponse,
         )
 
-    @staticmethod
     def remove_payment(
-        id, params: RemovePaymentParams, env=None, headers=None
+        self, id, params: RemovePaymentParams, headers=None
     ) -> RemovePaymentResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_payment"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemovePaymentResponse,
         )
 
-    @staticmethod
     def remove_credit_note(
-        id, params: RemoveCreditNoteParams, env=None, headers=None
+        self, id, params: RemoveCreditNoteParams, headers=None
     ) -> RemoveCreditNoteResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_credit_note"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RemoveCreditNoteResponse,
         )
 
-    @staticmethod
     def void_invoice(
-        id, params: VoidInvoiceParams = None, env=None, headers=None
+        self, id, params: VoidInvoiceParams = None, headers=None
     ) -> VoidInvoiceResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "void"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             VoidInvoiceResponse,
         )
 
-    @staticmethod
     def write_off(
-        id, params: WriteOffParams = None, env=None, headers=None
+        self, id, params: WriteOffParams = None, headers=None
     ) -> WriteOffResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "write_off"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             WriteOffResponse,
         )
 
-    @staticmethod
-    def delete(
-        id, params: DeleteParams = None, env=None, headers=None
-    ) -> DeleteResponse:
+    def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
     def update_details(
-        id, params: UpdateDetailsParams = None, env=None, headers=None
+        self, id, params: UpdateDetailsParams = None, headers=None
     ) -> UpdateDetailsResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "update_details"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateDetailsResponse,
         )
 
-    @staticmethod
     def apply_payment_schedule_scheme(
-        id, params: ApplyPaymentScheduleSchemeParams, env=None, headers=None
+        self, id, params: ApplyPaymentScheduleSchemeParams, headers=None
     ) -> ApplyPaymentScheduleSchemeResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payment_schedule_scheme"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ApplyPaymentScheduleSchemeResponse,
         )
 
-    @staticmethod
-    def payment_schedules(id, env=None, headers=None) -> PaymentSchedulesResponse:
+    def payment_schedules(self, id, headers=None) -> PaymentSchedulesResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_schedules"),
+            self.env,
             None,
-            env,
             headers,
             PaymentSchedulesResponse,
         )
 
-    @staticmethod
-    def resend_einvoice(id, env=None, headers=None) -> ResendEinvoiceResponse:
+    def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "resend_einvoice"),
+            self.env,
             None,
-            env,
             headers,
             ResendEinvoiceResponse,
         )
 
-    @staticmethod
-    def send_einvoice(id, env=None, headers=None) -> SendEinvoiceResponse:
+    def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
         return request.send(
             "post",
             request.uri_path("invoices", id, "send_einvoice"),
+            self.env,
             None,
-            env,
             headers,
             SendEinvoiceResponse,
         )

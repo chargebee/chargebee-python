@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -13,6 +14,7 @@ class PreferredScheduleResponse(Model):
 class PaymentScheduleSchemeResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
+    name: str = None
     description: str = None
     number_of_schedules: int = None
     period_unit: str = None
@@ -24,18 +26,18 @@ class PaymentScheduleSchemeResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

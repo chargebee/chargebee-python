@@ -34,10 +34,10 @@ class ListEventResponse:
 class ListResponse:
     list: List[ListEventResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     event: EventResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

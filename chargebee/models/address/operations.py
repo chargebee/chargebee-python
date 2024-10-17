@@ -1,10 +1,13 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.models import enums
 
 
+@dataclass
 class Address:
+
+    env: environment.Environment
 
     class RetrieveParams(TypedDict):
         subscription_id: Required[str]
@@ -28,24 +31,22 @@ class Address:
         country: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
 
-    @staticmethod
-    def retrieve(params: RetrieveParams, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, params: RetrieveParams, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("addresses"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def update(params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("addresses"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )

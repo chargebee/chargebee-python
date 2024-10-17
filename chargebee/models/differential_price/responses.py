@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -38,27 +39,27 @@ class DifferentialPriceResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     differential_price: DifferentialPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     differential_price: DifferentialPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     differential_price: DifferentialPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     differential_price: DifferentialPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -70,4 +71,4 @@ class ListDifferentialPriceResponse:
 class ListResponse:
     list: List[ListDifferentialPriceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import credit_note, invoice, transaction
 
 
@@ -112,33 +113,33 @@ class TransactionResponse(Model):
 
 
 @dataclass
-class CreateAuthorizationResponse:
+class CreateAuthorizationResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class VoidTransactionResponse:
+class VoidTransactionResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RecordRefundResponse:
+class RecordRefundResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ReconcileResponse:
+class ReconcileResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RefundResponse:
+class RefundResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -150,7 +151,7 @@ class ListTransactionResponse:
 class ListResponse:
     list: List[ListTransactionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -162,7 +163,7 @@ class TransactionsForCustomerTransactionResponse:
 class TransactionsForCustomerResponse:
     list: List[TransactionsForCustomerTransactionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -174,7 +175,7 @@ class TransactionsForSubscriptionTransactionResponse:
 class TransactionsForSubscriptionResponse:
     list: List[TransactionsForSubscriptionTransactionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -186,16 +187,16 @@ class PaymentsForInvoiceTransactionResponse:
 class PaymentsForInvoiceResponse:
     list: List[PaymentsForInvoiceTransactionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteOfflineTransactionResponse:
+class DeleteOfflineTransactionResponse(Response):
     transaction: TransactionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, contract_term
 
 
+@dataclass
 class HostedPage:
+
+    env: environment.Environment
+
     class Type(Enum):
         CHECKOUT_NEW = "checkout_new"
         CHECKOUT_EXISTING = "checkout_existing"
@@ -853,280 +857,250 @@ class HostedPage:
         payment_voucher: Required["HostedPage.ViewVoucherPaymentVoucherParams"]
         customer: NotRequired["HostedPage.ViewVoucherCustomerParams"]
 
-    @staticmethod
     def checkout_new(
-        params: CheckoutNewParams, env=None, headers=None
+        self, params: CheckoutNewParams, headers=None
     ) -> CheckoutNewResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutNewResponse,
         )
 
-    @staticmethod
     def checkout_one_time(
-        params: CheckoutOneTimeParams = None, env=None, headers=None
+        self, params: CheckoutOneTimeParams = None, headers=None
     ) -> CheckoutOneTimeResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutOneTimeResponse,
         )
 
-    @staticmethod
     def checkout_one_time_for_items(
-        params: CheckoutOneTimeForItemsParams, env=None, headers=None
+        self, params: CheckoutOneTimeForItemsParams, headers=None
     ) -> CheckoutOneTimeForItemsResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutOneTimeForItemsResponse,
         )
 
-    @staticmethod
     def checkout_new_for_items(
-        params: CheckoutNewForItemsParams, env=None, headers=None
+        self, params: CheckoutNewForItemsParams, headers=None
     ) -> CheckoutNewForItemsResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutNewForItemsResponse,
         )
 
-    @staticmethod
     def checkout_existing(
-        params: CheckoutExistingParams, env=None, headers=None
+        self, params: CheckoutExistingParams, headers=None
     ) -> CheckoutExistingResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutExistingResponse,
         )
 
-    @staticmethod
     def checkout_existing_for_items(
-        params: CheckoutExistingForItemsParams, env=None, headers=None
+        self, params: CheckoutExistingForItemsParams, headers=None
     ) -> CheckoutExistingForItemsResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutExistingForItemsResponse,
         )
 
-    @staticmethod
-    def update_card(
-        params: UpdateCardParams, env=None, headers=None
-    ) -> UpdateCardResponse:
+    def update_card(self, params: UpdateCardParams, headers=None) -> UpdateCardResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_card"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateCardResponse,
         )
 
-    @staticmethod
     def update_payment_method(
-        params: UpdatePaymentMethodParams, env=None, headers=None
+        self, params: UpdatePaymentMethodParams, headers=None
     ) -> UpdatePaymentMethodResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_payment_method"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdatePaymentMethodResponse,
         )
 
-    @staticmethod
     def manage_payment_sources(
-        params: ManagePaymentSourcesParams, env=None, headers=None
+        self, params: ManagePaymentSourcesParams, headers=None
     ) -> ManagePaymentSourcesResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "manage_payment_sources"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ManagePaymentSourcesResponse,
         )
 
-    @staticmethod
-    def collect_now(
-        params: CollectNowParams, env=None, headers=None
-    ) -> CollectNowResponse:
+    def collect_now(self, params: CollectNowParams, headers=None) -> CollectNowResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "collect_now"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CollectNowResponse,
         )
 
-    @staticmethod
     def accept_quote(
-        params: AcceptQuoteParams, env=None, headers=None
+        self, params: AcceptQuoteParams, headers=None
     ) -> AcceptQuoteResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "accept_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AcceptQuoteResponse,
         )
 
-    @staticmethod
     def extend_subscription(
-        params: ExtendSubscriptionParams, env=None, headers=None
+        self, params: ExtendSubscriptionParams, headers=None
     ) -> ExtendSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "extend_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ExtendSubscriptionResponse,
         )
 
-    @staticmethod
     def checkout_gift(
-        params: CheckoutGiftParams, env=None, headers=None
+        self, params: CheckoutGiftParams, headers=None
     ) -> CheckoutGiftResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutGiftResponse,
         )
 
-    @staticmethod
     def checkout_gift_for_items(
-        params: CheckoutGiftForItemsParams = None, env=None, headers=None
+        self, params: CheckoutGiftForItemsParams = None, headers=None
     ) -> CheckoutGiftForItemsResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CheckoutGiftForItemsResponse,
         )
 
-    @staticmethod
-    def claim_gift(
-        params: ClaimGiftParams, env=None, headers=None
-    ) -> ClaimGiftResponse:
+    def claim_gift(self, params: ClaimGiftParams, headers=None) -> ClaimGiftResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "claim_gift"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ClaimGiftResponse,
         )
 
-    @staticmethod
     def retrieve_agreement_pdf(
-        params: RetrieveAgreementPdfParams, env=None, headers=None
+        self, params: RetrieveAgreementPdfParams, headers=None
     ) -> RetrieveAgreementPdfResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "retrieve_agreement_pdf"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RetrieveAgreementPdfResponse,
         )
 
-    @staticmethod
-    def acknowledge(id, env=None, headers=None) -> AcknowledgeResponse:
+    def acknowledge(self, id, headers=None) -> AcknowledgeResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", id, "acknowledge"),
+            self.env,
             None,
-            env,
             headers,
             AcknowledgeResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("hosted_pages", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("hosted_pages"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def pre_cancel(
-        params: PreCancelParams, env=None, headers=None
-    ) -> PreCancelResponse:
+    def pre_cancel(self, params: PreCancelParams, headers=None) -> PreCancelResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "pre_cancel"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PreCancelResponse,
         )
 
-    @staticmethod
-    def events(params: EventsParams, env=None, headers=None) -> EventsResponse:
+    def events(self, params: EventsParams, headers=None) -> EventsResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "events"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EventsResponse,
         )
 
-    @staticmethod
     def view_voucher(
-        params: ViewVoucherParams, env=None, headers=None
+        self, params: ViewVoucherParams, headers=None
     ) -> ViewVoucherResponse:
         return request.send(
             "post",
             request.uri_path("hosted_pages", "view_voucher"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ViewVoucherResponse,
         )

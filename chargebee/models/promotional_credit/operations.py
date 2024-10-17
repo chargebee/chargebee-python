@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class PromotionalCredit:
+
+    env: environment.Environment
+
     class Type(Enum):
         INCREMENT = "increment"
         DECREMENT = "decrement"
@@ -49,57 +53,52 @@ class PromotionalCredit:
         type: NotRequired[Filters.EnumFilter]
         customer_id: NotRequired[Filters.StringFilter]
 
-    @staticmethod
-    def add(params: AddParams, env=None, headers=None) -> AddResponse:
+    def add(self, params: AddParams, headers=None) -> AddResponse:
         return request.send(
             "post",
             request.uri_path("promotional_credits", "add"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddResponse,
         )
 
-    @staticmethod
-    def deduct(params: DeductParams, env=None, headers=None) -> DeductResponse:
+    def deduct(self, params: DeductParams, headers=None) -> DeductResponse:
         return request.send(
             "post",
             request.uri_path("promotional_credits", "deduct"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeductResponse,
         )
 
-    @staticmethod
-    def set(params: SetParams, env=None, headers=None) -> SetResponse:
+    def set(self, params: SetParams, headers=None) -> SetResponse:
         return request.send(
             "post",
             request.uri_path("promotional_credits", "set"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SetResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("promotional_credits"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("promotional_credits", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )

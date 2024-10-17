@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -24,106 +25,106 @@ class ExportResponse(Model):
 @dataclass
 class RetrieveResponse:
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RevenueRecognitionResponse:
+class RevenueRecognitionResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeferredRevenueResponse:
+class DeferredRevenueResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PlansResponse:
+class PlansResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddonsResponse:
+class AddonsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CouponsResponse:
+class CouponsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CustomersResponse:
+class CustomersResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SubscriptionsResponse:
+class SubscriptionsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class InvoicesResponse:
+class InvoicesResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreditNotesResponse:
+class CreditNotesResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class TransactionsResponse:
+class TransactionsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class OrdersResponse:
+class OrdersResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ItemFamiliesResponse:
+class ItemFamiliesResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ItemsResponse:
+class ItemsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ItemPricesResponse:
+class ItemPricesResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AttachedItemsResponse:
+class AttachedItemsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DifferentialPricesResponse:
+class DifferentialPricesResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PriceVariantsResponse:
+class PriceVariantsResponse(Response):
     export: ExportResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

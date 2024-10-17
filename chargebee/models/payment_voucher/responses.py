@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -36,15 +37,15 @@ class PaymentVoucherResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     payment_voucher: PaymentVoucherResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     payment_voucher: PaymentVoucherResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -56,7 +57,7 @@ class PaymentVouchersForInvoicePaymentVoucherResponse:
 class PaymentVouchersForInvoiceResponse:
     list: List[PaymentVouchersForInvoicePaymentVoucherResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -68,4 +69,4 @@ class PaymentVouchersForCustomerPaymentVoucherResponse:
 class PaymentVouchersForCustomerResponse:
     list: List[PaymentVouchersForCustomerPaymentVoucherResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

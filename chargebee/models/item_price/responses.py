@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import item
 
 
@@ -72,6 +73,7 @@ class ItemPriceResponse(Model):
     resource_version: int = None
     updated_at: int = None
     created_at: int = None
+    usage_accumulation_reset_frequency: str = None
     archived_at: int = None
     invoice_notes: str = None
     tiers: List[TierResponse] = None
@@ -88,21 +90,21 @@ class ItemPriceResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     item_price: ItemPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     item_price: ItemPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     item_price: ItemPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -114,13 +116,13 @@ class ListItemPriceResponse:
 class ListResponse:
     list: List[ListItemPriceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     item_price: ItemPriceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -132,7 +134,7 @@ class FindApplicableItemsItemPriceResponse:
 class FindApplicableItemsResponse:
     list: List[FindApplicableItemsItemPriceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -144,4 +146,4 @@ class FindApplicableItemPricesItemPriceResponse:
 class FindApplicableItemPricesResponse:
     list: List[FindApplicableItemPricesItemPriceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

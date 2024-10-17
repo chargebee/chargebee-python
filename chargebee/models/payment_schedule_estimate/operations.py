@@ -5,7 +5,7 @@ from enum import Enum
 
 
 @dataclass
-class PaymentSchedule:
+class PaymentScheduleEstimate:
 
     env: environment.Environment
 
@@ -27,6 +27,6 @@ class PaymentSchedule:
         id: Required[str]
         date: Required[int]
         amount: Required[int]
-        status: Required["PaymentSchedule.ScheduleEntryStatus"]
+        status: Required["PaymentScheduleEstimate.ScheduleEntryStatus"]
 
     pass

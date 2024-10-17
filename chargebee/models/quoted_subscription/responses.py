@@ -31,6 +31,7 @@ class SubscriptionItemResponse(Model):
     charge_once: bool = None
     charge_on_option: str = None
     proration_type: str = None
+    usage_accumulation_reset_frequency: str = None
 
 
 @dataclass

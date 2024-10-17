@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class SubscriptionEstimate:
+
+    env: environment.Environment
+
     class Status(Enum):
         FUTURE = "future"
         IN_TRIAL = "in_trial"

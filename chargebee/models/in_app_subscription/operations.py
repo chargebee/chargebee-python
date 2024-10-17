@@ -1,10 +1,14 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 
 
+@dataclass
 class InAppSubscription:
+
+    env: environment.Environment
+
     class StoreStatus(Enum):
         IN_TRIAL = "in_trial"
         ACTIVE = "active"
@@ -67,54 +71,50 @@ class InAppSubscription:
     class RetrieveStoreSubsParams(TypedDict):
         receipt: Required[str]
 
-    @staticmethod
     def process_receipt(
-        id, params: ProcessReceiptParams, env=None, headers=None
+        self, id, params: ProcessReceiptParams, headers=None
     ) -> ProcessReceiptResponse:
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "process_purchase_command"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ProcessReceiptResponse,
         )
 
-    @staticmethod
     def import_receipt(
-        id, params: ImportReceiptParams, env=None, headers=None
+        self, id, params: ImportReceiptParams, headers=None
     ) -> ImportReceiptResponse:
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_receipt"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportReceiptResponse,
         )
 
-    @staticmethod
     def import_subscription(
-        id, params: ImportSubscriptionParams, env=None, headers=None
+        self, id, params: ImportSubscriptionParams, headers=None
     ) -> ImportSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportSubscriptionResponse,
         )
 
-    @staticmethod
     def retrieve_store_subs(
-        id, params: RetrieveStoreSubsParams, env=None, headers=None
+        self, id, params: RetrieveStoreSubsParams, headers=None
     ) -> RetrieveStoreSubsResponse:
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "retrieve"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RetrieveStoreSubsResponse,
         )

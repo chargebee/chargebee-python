@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, payment_intent
 
 
+@dataclass
 class Customer:
+
+    env: environment.Environment
+
     class VatNumberStatus(Enum):
         VALID = "valid"
         INVALID = "invalid"
@@ -659,313 +663,282 @@ class Customer:
             "Customer.UpdateHierarchySettingsChildAccountAccessParams"
         ]
 
-    @staticmethod
-    def create(params: CreateParams = None, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams = None, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("customers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("customers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("customers", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("customers", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
     def update_payment_method(
-        id, params: UpdatePaymentMethodParams, env=None, headers=None
+        self, id, params: UpdatePaymentMethodParams, headers=None
     ) -> UpdatePaymentMethodResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "update_payment_method"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdatePaymentMethodResponse,
         )
 
-    @staticmethod
     def update_billing_info(
-        id, params: UpdateBillingInfoParams = None, env=None, headers=None
+        self, id, params: UpdateBillingInfoParams = None, headers=None
     ) -> UpdateBillingInfoResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "update_billing_info"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateBillingInfoResponse,
         )
 
-    @staticmethod
     def contacts_for_customer(
-        id, params: ContactsForCustomerParams = None, env=None, headers=None
+        self, id, params: ContactsForCustomerParams = None, headers=None
     ) -> ContactsForCustomerResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "contacts"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ContactsForCustomerResponse,
         )
 
-    @staticmethod
     def assign_payment_role(
-        id, params: AssignPaymentRoleParams, env=None, headers=None
+        self, id, params: AssignPaymentRoleParams, headers=None
     ) -> AssignPaymentRoleResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "assign_payment_role"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AssignPaymentRoleResponse,
         )
 
-    @staticmethod
     def add_contact(
-        id, params: AddContactParams, env=None, headers=None
+        self, id, params: AddContactParams, headers=None
     ) -> AddContactResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "add_contact"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddContactResponse,
         )
 
-    @staticmethod
     def update_contact(
-        id, params: UpdateContactParams, env=None, headers=None
+        self, id, params: UpdateContactParams, headers=None
     ) -> UpdateContactResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "update_contact"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateContactResponse,
         )
 
-    @staticmethod
     def delete_contact(
-        id, params: DeleteContactParams, env=None, headers=None
+        self, id, params: DeleteContactParams, headers=None
     ) -> DeleteContactResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_contact"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteContactResponse,
         )
 
-    @staticmethod
     def add_promotional_credits(
-        id, params: AddPromotionalCreditsParams, env=None, headers=None
+        self, id, params: AddPromotionalCreditsParams, headers=None
     ) -> AddPromotionalCreditsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "add_promotional_credits"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddPromotionalCreditsResponse,
         )
 
-    @staticmethod
     def deduct_promotional_credits(
-        id, params: DeductPromotionalCreditsParams, env=None, headers=None
+        self, id, params: DeductPromotionalCreditsParams, headers=None
     ) -> DeductPromotionalCreditsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "deduct_promotional_credits"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeductPromotionalCreditsResponse,
         )
 
-    @staticmethod
     def set_promotional_credits(
-        id, params: SetPromotionalCreditsParams, env=None, headers=None
+        self, id, params: SetPromotionalCreditsParams, headers=None
     ) -> SetPromotionalCreditsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "set_promotional_credits"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SetPromotionalCreditsResponse,
         )
 
-    @staticmethod
     def record_excess_payment(
-        id, params: RecordExcessPaymentParams, env=None, headers=None
+        self, id, params: RecordExcessPaymentParams, headers=None
     ) -> RecordExcessPaymentResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "record_excess_payment"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RecordExcessPaymentResponse,
         )
 
-    @staticmethod
     def collect_payment(
-        id, params: CollectPaymentParams, env=None, headers=None
+        self, id, params: CollectPaymentParams, headers=None
     ) -> CollectPaymentResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "collect_payment"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CollectPaymentResponse,
         )
 
-    @staticmethod
-    def delete(
-        id, params: DeleteParams = None, env=None, headers=None
-    ) -> DeleteResponse:
+    def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "delete"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def move(params: MoveParams, env=None, headers=None) -> MoveResponse:
+    def move(self, params: MoveParams, headers=None) -> MoveResponse:
         return request.send(
             "post",
             request.uri_path("customers", "move"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             MoveResponse,
         )
 
-    @staticmethod
     def change_billing_date(
-        id, params: ChangeBillingDateParams = None, env=None, headers=None
+        self, id, params: ChangeBillingDateParams = None, headers=None
     ) -> ChangeBillingDateResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "change_billing_date"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChangeBillingDateResponse,
         )
 
-    @staticmethod
-    def merge(params: MergeParams, env=None, headers=None) -> MergeResponse:
+    def merge(self, params: MergeParams, headers=None) -> MergeResponse:
         return request.send(
             "post",
             request.uri_path("customers", "merge"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             MergeResponse,
         )
 
-    @staticmethod
-    def clear_personal_data(id, env=None, headers=None) -> ClearPersonalDataResponse:
+    def clear_personal_data(self, id, headers=None) -> ClearPersonalDataResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "clear_personal_data"),
+            self.env,
             None,
-            env,
             headers,
             ClearPersonalDataResponse,
         )
 
-    @staticmethod
     def relationships(
-        id, params: RelationshipsParams = None, env=None, headers=None
+        self, id, params: RelationshipsParams = None, headers=None
     ) -> RelationshipsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "relationships"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RelationshipsResponse,
         )
 
-    @staticmethod
-    def delete_relationship(id, env=None, headers=None) -> DeleteRelationshipResponse:
+    def delete_relationship(self, id, headers=None) -> DeleteRelationshipResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_relationship"),
+            self.env,
             None,
-            env,
             headers,
             DeleteRelationshipResponse,
         )
 
-    @staticmethod
-    def hierarchy(
-        id, params: HierarchyParams, env=None, headers=None
-    ) -> HierarchyResponse:
+    def hierarchy(self, id, params: HierarchyParams, headers=None) -> HierarchyResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "hierarchy"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             HierarchyResponse,
         )
 
-    @staticmethod
     def update_hierarchy_settings(
-        id, params: UpdateHierarchySettingsParams = None, env=None, headers=None
+        self, id, params: UpdateHierarchySettingsParams = None, headers=None
     ) -> UpdateHierarchySettingsResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "update_hierarchy_settings"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateHierarchySettingsResponse,
         )

@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import gateway_error_detail
 
 
+@dataclass
 class PaymentIntent:
+
+    env: environment.Environment
+
     class Status(Enum):
         INITED = "inited"
         IN_PROGRESS = "in_progress"
@@ -83,37 +87,32 @@ class PaymentIntent:
         success_url: NotRequired[str]
         failure_url: NotRequired[str]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("payment_intents"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("payment_intents", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("payment_intents", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import estimate, invoice
 
 
@@ -46,27 +47,27 @@ class UnbilledChargeResponse(Model):
 
 
 @dataclass
-class CreateUnbilledChargeResponse:
+class CreateUnbilledChargeResponse(Response):
     unbilled_charges: List[UnbilledChargeResponse]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     unbilled_charges: List[UnbilledChargeResponse]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class InvoiceUnbilledChargesResponse:
+class InvoiceUnbilledChargesResponse(Response):
     invoices: List["invoice.InvoiceResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     unbilled_charge: UnbilledChargeResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -78,10 +79,10 @@ class ListUnbilledChargeResponse:
 class ListResponse:
     list: List[ListUnbilledChargeResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class InvoiceNowEstimateResponse:
+class InvoiceNowEstimateResponse(Response):
     estimate: "estimate.EstimateResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

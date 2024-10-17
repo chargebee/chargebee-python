@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import gateway_error_detail
 
 
@@ -41,18 +42,18 @@ class PaymentIntentResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     payment_intent: PaymentIntentResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     payment_intent: PaymentIntentResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     payment_intent: PaymentIntentResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

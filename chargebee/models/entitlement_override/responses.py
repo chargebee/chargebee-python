@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -19,9 +20,9 @@ class EntitlementOverrideResponse(Model):
 
 
 @dataclass
-class AddEntitlementOverrideForSubscriptionResponse:
+class AddEntitlementOverrideForSubscriptionResponse(Response):
     entitlement_override: EntitlementOverrideResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -33,4 +34,4 @@ class ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse:
 class ListEntitlementOverrideForSubscriptionResponse:
     list: List[ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

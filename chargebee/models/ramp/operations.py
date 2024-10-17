@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class Ramp:
+
+    env: environment.Environment
+
     class Status(Enum):
         SCHEDULED = "scheduled"
         SUCCEEDED = "succeeded"
@@ -205,54 +209,54 @@ class Ramp:
         updated_at: NotRequired[Filters.TimestampFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
-    @staticmethod
     def create_for_subscription(
-        id, params: CreateForSubscriptionParams, env=None, headers=None
+        self, id, params: CreateForSubscriptionParams, headers=None
     ) -> CreateForSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "create_ramp"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForSubscriptionResponse,
         )
 
-    @staticmethod
-    def update(id, params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("ramps", id, "update"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("ramps", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("ramps", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("ramps", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("ramps"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )

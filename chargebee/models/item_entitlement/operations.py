@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class ItemEntitlement:
+
+    env: environment.Environment
+
     class ItemType(Enum):
         PLAN = "plan"
         ADDON = "addon"
@@ -50,54 +54,50 @@ class ItemEntitlement:
             ]
         ]
 
-    @staticmethod
     def item_entitlements_for_item(
-        id, params: ItemEntitlementsForItemParams = None, env=None, headers=None
+        self, id, params: ItemEntitlementsForItemParams = None, headers=None
     ) -> ItemEntitlementsForItemResponse:
         return request.send(
             "get",
             request.uri_path("items", id, "item_entitlements"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ItemEntitlementsForItemResponse,
         )
 
-    @staticmethod
     def item_entitlements_for_feature(
-        id, params: ItemEntitlementsForFeatureParams = None, env=None, headers=None
+        self, id, params: ItemEntitlementsForFeatureParams = None, headers=None
     ) -> ItemEntitlementsForFeatureResponse:
         return request.send(
             "get",
             request.uri_path("features", id, "item_entitlements"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ItemEntitlementsForFeatureResponse,
         )
 
-    @staticmethod
     def add_item_entitlements(
-        id, params: AddItemEntitlementsParams, env=None, headers=None
+        self, id, params: AddItemEntitlementsParams, headers=None
     ) -> AddItemEntitlementsResponse:
         return request.send(
             "post",
             request.uri_path("features", id, "item_entitlements"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddItemEntitlementsResponse,
         )
 
-    @staticmethod
     def upsert_or_remove_item_entitlements_for_item(
-        id, params: UpsertOrRemoveItemEntitlementsForItemParams, env=None, headers=None
+        self, id, params: UpsertOrRemoveItemEntitlementsForItemParams, headers=None
     ) -> UpsertOrRemoveItemEntitlementsForItemResponse:
         return request.send(
             "post",
             request.uri_path("items", id, "item_entitlements"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpsertOrRemoveItemEntitlementsForItemResponse,
         )

@@ -1,10 +1,14 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 
 
+@dataclass
 class Currency:
+
+    env: environment.Environment
+
     class ForexType(Enum):
         MANUAL = "manual"
         AUTO = "auto"
@@ -25,70 +29,64 @@ class Currency:
         manual_exchange_rate: Required[str]
         schedule_at: Required[int]
 
-    @staticmethod
-    def list(env=None, headers=None) -> ListResponse:
+    def list(self, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("currencies", "list"),
+            self.env,
             None,
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("currencies", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("currencies"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(id, params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("currencies", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
     def add_schedule(
-        id, params: AddScheduleParams, env=None, headers=None
+        self, id, params: AddScheduleParams, headers=None
     ) -> AddScheduleResponse:
         return request.send(
             "post",
             request.uri_path("currencies", id, "add_schedule"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddScheduleResponse,
         )
 
-    @staticmethod
-    def remove_schedule(id, env=None, headers=None) -> RemoveScheduleResponse:
+    def remove_schedule(self, id, headers=None) -> RemoveScheduleResponse:
         return request.send(
             "post",
             request.uri_path("currencies", id, "remove_schedule"),
+            self.env,
             None,
-            env,
             headers,
             RemoveScheduleResponse,
         )

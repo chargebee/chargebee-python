@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import customer, transaction
 
 
@@ -25,23 +26,23 @@ class VirtualBankAccountResponse(Model):
 
 
 @dataclass
-class CreateUsingPermanentTokenResponse:
+class CreateUsingPermanentTokenResponse(Response):
     virtual_bank_account: VirtualBankAccountResponse
     customer: "customer.CustomerResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     virtual_bank_account: VirtualBankAccountResponse
     customer: "customer.CustomerResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     virtual_bank_account: VirtualBankAccountResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -53,16 +54,16 @@ class ListVirtualBankAccountResponse:
 class ListResponse:
     list: List[ListVirtualBankAccountResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     virtual_bank_account: VirtualBankAccountResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteLocalResponse:
+class DeleteLocalResponse(Response):
     virtual_bank_account: VirtualBankAccountResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

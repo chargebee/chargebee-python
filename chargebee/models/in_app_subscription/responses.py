@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -15,24 +16,24 @@ class InAppSubscriptionResponse(Model):
 
 
 @dataclass
-class ProcessReceiptResponse:
+class ProcessReceiptResponse(Response):
     in_app_subscription: InAppSubscriptionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportReceiptResponse:
+class ImportReceiptResponse(Response):
     in_app_subscriptions: List[InAppSubscriptionResponse]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportSubscriptionResponse:
+class ImportSubscriptionResponse(Response):
     in_app_subscription: InAppSubscriptionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveStoreSubsResponse:
+class RetrieveStoreSubsResponse(Response):
     in_app_subscriptions: List[InAppSubscriptionResponse]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

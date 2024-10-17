@@ -73,6 +73,7 @@ from chargebee.models.enums import (
     UnbilledChargesHandling,
     UnbilledChargesOption,
     UnpaidInvoicesHandling,
+    UsageAccumulationResetFrequency,
     ValidationStatus,
     VoucherType,
     ChargeOn,
@@ -171,6 +172,10 @@ from chargebee.models.payment_intent.operations import PaymentIntent
 from chargebee.models.payment_reference_number.operations import PaymentReferenceNumber
 
 from chargebee.models.payment_schedule.operations import PaymentSchedule
+
+from chargebee.models.payment_schedule_estimate.operations import (
+    PaymentScheduleEstimate,
+)
 
 from chargebee.models.payment_schedule_scheme.operations import PaymentScheduleScheme
 

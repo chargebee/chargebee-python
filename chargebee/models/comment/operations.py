@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class Comment:
+
+    env: environment.Environment
+
     class Type(Enum):
         USER = "user"
         SYSTEM = "system"
@@ -28,46 +32,42 @@ class Comment:
         created_at: NotRequired[Filters.TimestampFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("comments"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("comments", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("comments"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("comments", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )

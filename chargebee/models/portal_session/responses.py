@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -31,24 +32,24 @@ class PortalSessionResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     portal_session: PortalSessionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     portal_session: PortalSessionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class LogoutResponse:
+class LogoutResponse(Response):
     portal_session: PortalSessionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ActivateResponse:
+class ActivateResponse(Response):
     portal_session: PortalSessionResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

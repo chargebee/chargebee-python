@@ -1,10 +1,13 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.models import enums, contract_term
 
 
+@dataclass
 class Purchase:
+
+    env: environment.Environment
 
     class CreatePurchaseItemParams(TypedDict):
         index: Required[int]
@@ -167,24 +170,22 @@ class Purchase:
         client_profile_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("purchases"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def estimate(params: EstimateParams, env=None, headers=None) -> EstimateResponse:
+    def estimate(self, params: EstimateParams, headers=None) -> EstimateResponse:
         return request.send(
             "post",
             request.uri_path("purchases", "estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EstimateResponse,
         )

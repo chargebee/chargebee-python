@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class QuotedSubscription:
+
+    env: environment.Environment
+
     class ChangeOption(Enum):
         END_OF_TERM = "end_of_term"
         SPECIFIC_DATE = "specific_date"
@@ -57,6 +61,9 @@ class QuotedSubscription:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         proration_type: NotRequired[enums.ProrationType]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
 
     class ItemTier(TypedDict):
         item_price_id: Required[str]

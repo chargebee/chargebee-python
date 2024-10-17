@@ -1,5 +1,5 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 import json
@@ -7,7 +7,11 @@ from chargebee.main import Environment
 from chargebee.filters import Filters
 
 
+@dataclass
 class Event:
+
+    env: environment.Environment
+
     class WebhookStatus(Enum):
         NOT_CONFIGURED = "not_configured"
         SCHEDULED = "scheduled"
@@ -36,8 +40,7 @@ class Event:
         id: Required[str]
         webhook_status: Required["Event.WebhookWebhookStatus"]
 
-    @staticmethod
-    def deserialize(json_data) -> EventResponse:
+    def deserialize(self, json_data) -> EventResponse:
         try:
             webhook_data = json.loads(json_data)
         except (TypeError, ValueError) as ex:
@@ -46,8 +49,8 @@ class Event:
             )
 
         api_version = webhook_data.get("api_version", None)
-        env_version = Environment.API_VERSION
-        if api_version != None and api_version.upper() != env_version.upper():
+        env_version = self.env.API_VERSION
+        if api_version is not None and api_version.upper() != env_version.upper():
             raise Exception(
                 "API version ["
                 + api_version.upper()
@@ -70,19 +73,22 @@ class Event:
         occurred_at: NotRequired[Filters.TimestampFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("events"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("events", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("events", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )

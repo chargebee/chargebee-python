@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -16,15 +17,15 @@ class CouponSetResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddCouponCodesResponse:
+class AddCouponCodesResponse(Response):
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -36,28 +37,28 @@ class ListCouponSetResponse:
 class ListResponse:
     list: List[ListCouponSetResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteUnusedCouponCodesResponse:
+class DeleteUnusedCouponCodesResponse(Response):
     coupon_set: CouponSetResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

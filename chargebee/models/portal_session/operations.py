@@ -1,10 +1,14 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 
 
+@dataclass
 class PortalSession:
+
+    env: environment.Environment
+
     class Status(Enum):
         CREATED = "created"
         LOGGED_IN = "logged_in"
@@ -33,48 +37,42 @@ class PortalSession:
     class ActivateParams(TypedDict):
         token: Required[str]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("portal_sessions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("portal_sessions", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def logout(id, env=None, headers=None) -> LogoutResponse:
+    def logout(self, id, headers=None) -> LogoutResponse:
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "logout"),
+            self.env,
             None,
-            env,
             headers,
             LogoutResponse,
         )
 
-    @staticmethod
-    def activate(
-        id, params: ActivateParams, env=None, headers=None
-    ) -> ActivateResponse:
+    def activate(self, id, params: ActivateParams, headers=None) -> ActivateResponse:
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "activate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ActivateResponse,
         )

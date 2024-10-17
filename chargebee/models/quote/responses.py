@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     contract_term,
     quoted_subscription,
@@ -185,91 +186,91 @@ class RetrieveResponse:
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateSubForCustomerQuoteResponse:
+class CreateSubForCustomerQuoteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditCreateSubForCustomerQuoteResponse:
+class EditCreateSubForCustomerQuoteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateSubscriptionQuoteResponse:
+class UpdateSubscriptionQuoteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditUpdateSubscriptionQuoteResponse:
+class EditUpdateSubscriptionQuoteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForOnetimeChargesResponse:
+class CreateForOnetimeChargesResponse(Response):
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditOneTimeQuoteResponse:
+class EditOneTimeQuoteResponse(Response):
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateSubItemsForCustomerQuoteResponse:
+class CreateSubItemsForCustomerQuoteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditCreateSubCustomerQuoteForItemsResponse:
+class EditCreateSubCustomerQuoteForItemsResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateSubscriptionQuoteForItemsResponse:
+class UpdateSubscriptionQuoteForItemsResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditUpdateSubscriptionQuoteForItemsResponse:
+class EditUpdateSubscriptionQuoteForItemsResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForChargeItemsAndChargesResponse:
+class CreateForChargeItemsAndChargesResponse(Response):
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditForChargeItemsAndChargesResponse:
+class EditForChargeItemsAndChargesResponse(Response):
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -282,7 +283,7 @@ class ListQuoteResponse:
 class ListResponse:
     list: List[ListQuoteResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -294,11 +295,11 @@ class QuoteLineGroupsForQuoteQuoteResponse:
 class QuoteLineGroupsForQuoteResponse:
     list: List[QuoteLineGroupsForQuoteQuoteResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ConvertResponse:
+class ConvertResponse(Response):
     quote: QuoteResponse
     customer: "customer.CustomerResponse"
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
@@ -307,34 +308,34 @@ class ConvertResponse:
     invoice: "invoice.InvoiceResponse" = None
     credit_note: "credit_note.CreditNoteResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateStatusResponse:
+class UpdateStatusResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ExtendExpiryDateResponse:
+class ExtendExpiryDateResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PdfResponse:
+class PdfResponse(Response):
     download: "download.DownloadResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

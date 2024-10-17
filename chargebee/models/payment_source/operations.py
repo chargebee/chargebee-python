@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, payment_intent
 
 
+@dataclass
 class PaymentSource:
+
+    env: environment.Environment
+
     class Status(Enum):
         VALID = "valid"
         EXPIRING = "expiring"
@@ -37,6 +41,8 @@ class PaymentSource:
         CARNET = "carnet"
         RUPAY = "rupay"
         MAESTRO = "maestro"
+        DANKORT = "dankort"
+        CARTES_BANCAIRES = "cartes_bancaires"
         NOT_APPLICABLE = "not_applicable"
 
         def __str__(self):
@@ -305,202 +311,184 @@ class PaymentSource:
     class ExportPaymentSourceParams(TypedDict):
         gateway_account_id: Required[str]
 
-    @staticmethod
     def create_using_temp_token(
-        params: CreateUsingTempTokenParams, env=None, headers=None
+        self, params: CreateUsingTempTokenParams, headers=None
     ) -> CreateUsingTempTokenResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_temp_token"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateUsingTempTokenResponse,
         )
 
-    @staticmethod
     def create_using_permanent_token(
-        params: CreateUsingPermanentTokenParams, env=None, headers=None
+        self, params: CreateUsingPermanentTokenParams, headers=None
     ) -> CreateUsingPermanentTokenResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_permanent_token"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateUsingPermanentTokenResponse,
         )
 
-    @staticmethod
     def create_using_token(
-        params: CreateUsingTokenParams, env=None, headers=None
+        self, params: CreateUsingTokenParams, headers=None
     ) -> CreateUsingTokenResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_token"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateUsingTokenResponse,
         )
 
-    @staticmethod
     def create_using_payment_intent(
-        params: CreateUsingPaymentIntentParams, env=None, headers=None
+        self, params: CreateUsingPaymentIntentParams, headers=None
     ) -> CreateUsingPaymentIntentResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_payment_intent"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateUsingPaymentIntentResponse,
         )
 
-    @staticmethod
     def create_voucher_payment_source(
-        params: CreateVoucherPaymentSourceParams, env=None, headers=None
+        self, params: CreateVoucherPaymentSourceParams, headers=None
     ) -> CreateVoucherPaymentSourceResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_voucher_payment_source"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateVoucherPaymentSourceResponse,
         )
 
-    @staticmethod
-    def create_card(
-        params: CreateCardParams, env=None, headers=None
-    ) -> CreateCardResponse:
+    def create_card(self, params: CreateCardParams, headers=None) -> CreateCardResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_card"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateCardResponse,
         )
 
-    @staticmethod
     def create_bank_account(
-        params: CreateBankAccountParams, env=None, headers=None
+        self, params: CreateBankAccountParams, headers=None
     ) -> CreateBankAccountResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_bank_account"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateBankAccountResponse,
         )
 
-    @staticmethod
     def update_card(
-        id, params: UpdateCardParams = None, env=None, headers=None
+        self, id, params: UpdateCardParams = None, headers=None
     ) -> UpdateCardResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "update_card"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateCardResponse,
         )
 
-    @staticmethod
     def update_bank_account(
-        id, params: UpdateBankAccountParams = None, env=None, headers=None
+        self, id, params: UpdateBankAccountParams = None, headers=None
     ) -> UpdateBankAccountResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "update_bank_account"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateBankAccountResponse,
         )
 
-    @staticmethod
     def verify_bank_account(
-        id, params: VerifyBankAccountParams, env=None, headers=None
+        self, id, params: VerifyBankAccountParams, headers=None
     ) -> VerifyBankAccountResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "verify_bank_account"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             VerifyBankAccountResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("payment_sources", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("payment_sources"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def switch_gateway_account(
-        id, params: SwitchGatewayAccountParams, env=None, headers=None
+        self, id, params: SwitchGatewayAccountParams, headers=None
     ) -> SwitchGatewayAccountResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "switch_gateway_account"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SwitchGatewayAccountResponse,
         )
 
-    @staticmethod
     def export_payment_source(
-        id, params: ExportPaymentSourceParams, env=None, headers=None
+        self, id, params: ExportPaymentSourceParams, headers=None
     ) -> ExportPaymentSourceResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "export_payment_source"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ExportPaymentSourceResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def delete_local(id, env=None, headers=None) -> DeleteLocalResponse:
+    def delete_local(self, id, headers=None) -> DeleteLocalResponse:
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete_local"),
+            self.env,
             None,
-            env,
             headers,
             DeleteLocalResponse,
         )

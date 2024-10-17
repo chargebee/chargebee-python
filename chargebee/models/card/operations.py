@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class Card:
+
+    env: environment.Environment
+
     class Status(Enum):
         VALID = "valid"
         EXPIRING = "expiring"
@@ -33,6 +37,8 @@ class Card:
         CARNET = "carnet"
         RUPAY = "rupay"
         MAESTRO = "maestro"
+        DANKORT = "dankort"
+        CARTES_BANCAIRES = "cartes_bancaires"
         OTHER = "other"
         NOT_APPLICABLE = "not_applicable"
 
@@ -91,60 +97,60 @@ class Card:
     class CopyCardForCustomerParams(TypedDict):
         gateway_account_id: Required[str]
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("cards", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("cards", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
     def update_card_for_customer(
-        id, params: UpdateCardForCustomerParams, env=None, headers=None
+        self, id, params: UpdateCardForCustomerParams, headers=None
     ) -> UpdateCardForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "credit_card"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateCardForCustomerResponse,
         )
 
-    @staticmethod
     def switch_gateway_for_customer(
-        id, params: SwitchGatewayForCustomerParams, env=None, headers=None
+        self, id, params: SwitchGatewayForCustomerParams, headers=None
     ) -> SwitchGatewayForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "switch_gateway"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SwitchGatewayForCustomerResponse,
         )
 
-    @staticmethod
     def copy_card_for_customer(
-        id, params: CopyCardForCustomerParams, env=None, headers=None
+        self, id, params: CopyCardForCustomerParams, headers=None
     ) -> CopyCardForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "copy_card"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CopyCardForCustomerResponse,
         )
 
-    @staticmethod
     def delete_card_for_customer(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> DeleteCardForCustomerResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_card"),
+            self.env,
             None,
-            env,
             headers,
             DeleteCardForCustomerResponse,
         )

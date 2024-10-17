@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 
 
+@dataclass
 class SiteMigrationDetail:
+
+    env: environment.Environment
+
     class Status(Enum):
         MOVED_IN = "moved_in"
         MOVED_OUT = "moved_out"
@@ -23,13 +27,12 @@ class SiteMigrationDetail:
         entity_type: NotRequired[Filters.EnumFilter]
         status: NotRequired[Filters.EnumFilter]
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("site_migration_details"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )

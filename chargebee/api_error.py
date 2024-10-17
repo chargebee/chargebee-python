@@ -9,6 +9,7 @@ class APIError(Exception):
         self.param = json_obj.get("param")
 
         self.error_code = json_obj["error_code"]
+        self.error_cause = json_obj.get('error_cause', None)
         self.http_code = http_code
         self.http_body = None
 

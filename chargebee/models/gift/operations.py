@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, payment_intent
 
 
+@dataclass
 class Gift:
+
+    env: environment.Environment
+
     class Status(Enum):
         SCHEDULED = "scheduled"
         UNCLAIMED = "unclaimed"
@@ -172,78 +176,76 @@ class Gift:
         scheduled_at: Required[int]
         comment: NotRequired[str]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("gifts"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
     def create_for_items(
-        params: CreateForItemsParams, env=None, headers=None
+        self, params: CreateForItemsParams, headers=None
     ) -> CreateForItemsResponse:
         return request.send(
             "post",
             request.uri_path("gifts", "create_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForItemsResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("gifts", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("gifts", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("gifts"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def claim(id, env=None, headers=None) -> ClaimResponse:
+    def claim(self, id, headers=None) -> ClaimResponse:
         return request.send(
             "post",
             request.uri_path("gifts", id, "claim"),
+            self.env,
             None,
-            env,
             headers,
             ClaimResponse,
         )
 
-    @staticmethod
-    def cancel(id, env=None, headers=None) -> CancelResponse:
+    def cancel(self, id, headers=None) -> CancelResponse:
         return request.send(
             "post",
             request.uri_path("gifts", id, "cancel"),
+            self.env,
             None,
-            env,
             headers,
             CancelResponse,
         )
 
-    @staticmethod
     def update_gift(
-        id, params: UpdateGiftParams, env=None, headers=None
+        self, id, params: UpdateGiftParams, headers=None
     ) -> UpdateGiftResponse:
         return request.send(
             "post",
             request.uri_path("gifts", id, "update_gift"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateGiftResponse,
         )

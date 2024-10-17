@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -24,10 +25,10 @@ class ListEntitlementResponse:
 class ListResponse:
     list: List[ListEntitlementResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     entitlement: EntitlementResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

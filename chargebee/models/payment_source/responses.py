@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     payment_intent,
     customer,
@@ -134,78 +135,78 @@ class PaymentSourceResponse(Model):
 
 
 @dataclass
-class CreateUsingTempTokenResponse:
+class CreateUsingTempTokenResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateUsingPermanentTokenResponse:
+class CreateUsingPermanentTokenResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateUsingTokenResponse:
+class CreateUsingTokenResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateUsingPaymentIntentResponse:
+class CreateUsingPaymentIntentResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateVoucherPaymentSourceResponse:
+class CreateVoucherPaymentSourceResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateCardResponse:
+class CreateCardResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateBankAccountResponse:
+class CreateBankAccountResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateCardResponse:
+class UpdateCardResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateBankAccountResponse:
+class UpdateBankAccountResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class VerifyBankAccountResponse:
+class VerifyBankAccountResponse(Response):
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -217,33 +218,33 @@ class ListPaymentSourceResponse:
 class ListResponse:
     list: List[ListPaymentSourceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SwitchGatewayAccountResponse:
+class SwitchGatewayAccountResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ExportPaymentSourceResponse:
+class ExportPaymentSourceResponse(Response):
     third_party_payment_method: (
         "third_party_payment_method.ThirdPartyPaymentMethodResponse"
     )
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteLocalResponse:
+class DeleteLocalResponse(Response):
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

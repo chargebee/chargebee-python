@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class UnbilledCharge:
+
+    env: environment.Environment
+
     class EntityType(Enum):
         ADHOC = "adhoc"
         PLAN_ITEM_PRICE = "plan_item_price"
@@ -131,74 +135,68 @@ class UnbilledCharge:
         subscription_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    @staticmethod
     def create_unbilled_charge(
-        params: CreateUnbilledChargeParams, env=None, headers=None
+        self, params: CreateUnbilledChargeParams, headers=None
     ) -> CreateUnbilledChargeResponse:
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "create"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateUnbilledChargeResponse,
         )
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("unbilled_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
     def invoice_unbilled_charges(
-        params: InvoiceUnbilledChargesParams = None, env=None, headers=None
+        self, params: InvoiceUnbilledChargesParams = None, headers=None
     ) -> InvoiceUnbilledChargesResponse:
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "invoice_unbilled_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             InvoiceUnbilledChargesResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("unbilled_charges", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("unbilled_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def invoice_now_estimate(
-        params: InvoiceNowEstimateParams = None, env=None, headers=None
+        self, params: InvoiceNowEstimateParams = None, headers=None
     ) -> InvoiceNowEstimateResponse:
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "invoice_now_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             InvoiceNowEstimateResponse,
         )
