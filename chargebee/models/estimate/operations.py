@@ -1,5 +1,5 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import (
@@ -8,12 +8,23 @@ from chargebee.models import (
     contract_term,
     subscription_estimate,
     invoice_estimate,
+    payment_schedule_estimate,
     credit_note_estimate,
     unbilled_charge,
 )
 
 
+@dataclass
 class Estimate:
+
+    env: environment.Environment
+
+    class PaymentScheduleEstimateEntityType(Enum):
+        INVOICE = "invoice"
+
+        def __str__(self):
+            return self.value
+
     class UnbilledChargeEntityType(Enum):
         ADHOC = "adhoc"
         PLAN_ITEM_PRICE = "plan_item_price"
@@ -1014,251 +1025,250 @@ class Estimate:
         ]
         invoice_date: NotRequired[int]
 
-    @staticmethod
+    class PaymentSchedulesParams(TypedDict):
+        scheme_id: Required[str]
+        amount: NotRequired[int]
+        invoice_id: NotRequired[str]
+        payment_schedule_start_date: NotRequired[int]
+
     def create_subscription(
-        params: CreateSubscriptionParams, env=None, headers=None
+        self, params: CreateSubscriptionParams, headers=None
     ) -> CreateSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubscriptionResponse,
         )
 
-    @staticmethod
     def create_sub_item_estimate(
-        params: CreateSubItemEstimateParams, env=None, headers=None
+        self, params: CreateSubItemEstimateParams, headers=None
     ) -> CreateSubItemEstimateResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubItemEstimateResponse,
         )
 
-    @staticmethod
     def create_sub_for_customer_estimate(
-        id, params: CreateSubForCustomerEstimateParams, env=None, headers=None
+        self, id, params: CreateSubForCustomerEstimateParams, headers=None
     ) -> CreateSubForCustomerEstimateResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "create_subscription_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubForCustomerEstimateResponse,
         )
 
-    @staticmethod
     def create_sub_item_for_customer_estimate(
-        id, params: CreateSubItemForCustomerEstimateParams, env=None, headers=None
+        self, id, params: CreateSubItemForCustomerEstimateParams, headers=None
     ) -> CreateSubItemForCustomerEstimateResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_for_items_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubItemForCustomerEstimateResponse,
         )
 
-    @staticmethod
     def update_subscription(
-        params: UpdateSubscriptionParams, env=None, headers=None
+        self, params: UpdateSubscriptionParams, headers=None
     ) -> UpdateSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateSubscriptionResponse,
         )
 
-    @staticmethod
     def update_subscription_for_items(
-        params: UpdateSubscriptionForItemsParams, env=None, headers=None
+        self, params: UpdateSubscriptionForItemsParams, headers=None
     ) -> UpdateSubscriptionForItemsResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateSubscriptionForItemsResponse,
         )
 
-    @staticmethod
     def renewal_estimate(
-        id, params: RenewalEstimateParams = None, env=None, headers=None
+        self, id, params: RenewalEstimateParams = None, headers=None
     ) -> RenewalEstimateResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "renewal_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RenewalEstimateResponse,
         )
 
-    @staticmethod
     def advance_invoice_estimate(
-        id, params: AdvanceInvoiceEstimateParams = None, env=None, headers=None
+        self, id, params: AdvanceInvoiceEstimateParams = None, headers=None
     ) -> AdvanceInvoiceEstimateResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "advance_invoice_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AdvanceInvoiceEstimateResponse,
         )
 
-    @staticmethod
     def regenerate_invoice_estimate(
-        id, params: RegenerateInvoiceEstimateParams = None, env=None, headers=None
+        self, id, params: RegenerateInvoiceEstimateParams = None, headers=None
     ) -> RegenerateInvoiceEstimateResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RegenerateInvoiceEstimateResponse,
         )
 
-    @staticmethod
     def upcoming_invoices_estimate(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> UpcomingInvoicesEstimateResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "upcoming_invoices_estimate"),
+            self.env,
             None,
-            env,
             headers,
             UpcomingInvoicesEstimateResponse,
         )
 
-    @staticmethod
     def change_term_end(
-        id, params: ChangeTermEndParams, env=None, headers=None
+        self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ChangeTermEndResponse,
         )
 
-    @staticmethod
     def cancel_subscription(
-        id, params: CancelSubscriptionParams = None, env=None, headers=None
+        self, id, params: CancelSubscriptionParams = None, headers=None
     ) -> CancelSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_subscription_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CancelSubscriptionResponse,
         )
 
-    @staticmethod
     def cancel_subscription_for_items(
-        id, params: CancelSubscriptionForItemsParams = None, env=None, headers=None
+        self, id, params: CancelSubscriptionForItemsParams = None, headers=None
     ) -> CancelSubscriptionForItemsResponse:
         return request.send(
             "post",
             request.uri_path(
                 "subscriptions", id, "cancel_subscription_for_items_estimate"
             ),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CancelSubscriptionForItemsResponse,
         )
 
-    @staticmethod
     def pause_subscription(
-        id, params: PauseSubscriptionParams = None, env=None, headers=None
+        self, id, params: PauseSubscriptionParams = None, headers=None
     ) -> PauseSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause_subscription_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PauseSubscriptionResponse,
         )
 
-    @staticmethod
     def resume_subscription(
-        id, params: ResumeSubscriptionParams = None, env=None, headers=None
+        self, id, params: ResumeSubscriptionParams = None, headers=None
     ) -> ResumeSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "resume_subscription_estimate"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ResumeSubscriptionResponse,
         )
 
-    @staticmethod
     def gift_subscription(
-        params: GiftSubscriptionParams, env=None, headers=None
+        self, params: GiftSubscriptionParams, headers=None
     ) -> GiftSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             GiftSubscriptionResponse,
         )
 
-    @staticmethod
     def gift_subscription_for_items(
-        params: GiftSubscriptionForItemsParams, env=None, headers=None
+        self, params: GiftSubscriptionForItemsParams, headers=None
     ) -> GiftSubscriptionForItemsResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             GiftSubscriptionForItemsResponse,
         )
 
-    @staticmethod
     def create_invoice(
-        params: CreateInvoiceParams = None, env=None, headers=None
+        self, params: CreateInvoiceParams = None, headers=None
     ) -> CreateInvoiceResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateInvoiceResponse,
         )
 
-    @staticmethod
     def create_invoice_for_items(
-        params: CreateInvoiceForItemsParams, env=None, headers=None
+        self, params: CreateInvoiceForItemsParams, headers=None
     ) -> CreateInvoiceForItemsResponse:
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateInvoiceForItemsResponse,
+        )
+
+    def payment_schedules(
+        self, params: PaymentSchedulesParams, headers=None
+    ) -> PaymentSchedulesResponse:
+        return request.send(
+            "post",
+            request.uri_path("estimates", "payment_schedules"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            PaymentSchedulesResponse,
         )

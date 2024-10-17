@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class Addon:
+
+    env: environment.Environment
+
     class Type(Enum):
         ON_OFF = "on_off"
         QUANTITY = "quantity"
@@ -203,74 +207,72 @@ class Addon:
         id: NotRequired[str]
         for_site_merging: NotRequired[bool]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("addons"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(id, params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("addons", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("addons"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("addons", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("addons", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("addons", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def copy(params: CopyParams, env=None, headers=None) -> CopyResponse:
+    def copy(self, params: CopyParams, headers=None) -> CopyResponse:
         return request.send(
             "post",
             request.uri_path("addons", "copy"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CopyResponse,
         )
 
-    @staticmethod
-    def unarchive(id, env=None, headers=None) -> UnarchiveResponse:
+    def unarchive(self, id, headers=None) -> UnarchiveResponse:
         return request.send(
             "post",
             request.uri_path("addons", id, "unarchive"),
+            self.env,
             None,
-            env,
             headers,
             UnarchiveResponse,
         )

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import download
 
 
@@ -22,21 +23,21 @@ class UsageResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     usage: UsageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     usage: UsageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     usage: UsageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -48,10 +49,10 @@ class ListUsageResponse:
 class ListResponse:
     list: List[ListUsageResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PdfResponse:
+class PdfResponse(Response):
     download: "download.DownloadResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import invoice, transaction, transaction, invoice, download
 
 
@@ -218,48 +219,48 @@ class CreditNoteResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     credit_note: CreditNoteResponse
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PdfResponse:
+class PdfResponse(Response):
     download: "download.DownloadResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class DownloadEinvoiceResponse:
     downloads: List["download.DownloadResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RefundResponse:
+class RefundResponse(Response):
     credit_note: CreditNoteResponse
     transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RecordRefundResponse:
+class RecordRefundResponse(Response):
     credit_note: CreditNoteResponse
     transaction: "transaction.TransactionResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class VoidCreditNoteResponse:
+class VoidCreditNoteResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -271,7 +272,7 @@ class ListCreditNoteResponse:
 class ListResponse:
     list: List[ListCreditNoteResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -283,34 +284,34 @@ class CreditNotesForCustomerCreditNoteResponse:
 class CreditNotesForCustomerResponse:
     list: List[CreditNotesForCustomerCreditNoteResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveTaxWithheldRefundResponse:
+class RemoveTaxWithheldRefundResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ResendEinvoiceResponse:
+class ResendEinvoiceResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SendEinvoiceResponse:
+class SendEinvoiceResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportCreditNoteResponse:
+class ImportCreditNoteResponse(Response):
     credit_note: CreditNoteResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

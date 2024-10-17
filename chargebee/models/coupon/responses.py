@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -63,21 +64,21 @@ class CouponResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForItemsResponse:
+class CreateForItemsResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateForItemsResponse:
+class UpdateForItemsResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -89,34 +90,34 @@ class ListCouponResponse:
 class ListResponse:
     list: List[ListCouponResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CopyResponse:
+class CopyResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UnarchiveResponse:
+class UnarchiveResponse(Response):
     coupon: CouponResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class AttachedItem:
+
+    env: environment.Environment
+
     class Type(Enum):
         RECOMMENDED = "recommended"
         MANDATORY = "mandatory"
@@ -57,59 +61,52 @@ class AttachedItem:
         charge_on_event: NotRequired[Filters.EnumFilter]
         updated_at: NotRequired[Filters.TimestampFilter]
 
-    @staticmethod
-    def create(id, params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("items", id, "attached_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(id, params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("attached_items", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def retrieve(
-        id, params: RetrieveParams, env=None, headers=None
-    ) -> RetrieveResponse:
+    def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("attached_items", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, params: DeleteParams, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("attached_items", id, "delete"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def list(id, params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, id, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("items", id, "attached_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )

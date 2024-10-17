@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import contract_term, estimate
 
 
@@ -16,12 +17,12 @@ class PurchaseResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     purchase: PurchaseResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EstimateResponse:
+class EstimateResponse(Response):
     estimate: "estimate.EstimateResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class PaymentVoucher:
+
+    env: environment.Environment
+
     class Status(Enum):
         ACTIVE = "active"
         CONSUMED = "consumed"
@@ -49,50 +53,46 @@ class PaymentVoucher:
         status: NotRequired[Filters.EnumFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("payment_vouchers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("payment_vouchers", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
     def payment_vouchers_for_invoice(
-        id, params: PaymentVouchersForInvoiceParams = None, env=None, headers=None
+        self, id, params: PaymentVouchersForInvoiceParams = None, headers=None
     ) -> PaymentVouchersForInvoiceResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_vouchers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PaymentVouchersForInvoiceResponse,
         )
 
-    @staticmethod
     def payment_vouchers_for_customer(
-        id, params: PaymentVouchersForCustomerParams = None, env=None, headers=None
+        self, id, params: PaymentVouchersForCustomerParams = None, headers=None
     ) -> PaymentVouchersForCustomerResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "payment_vouchers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PaymentVouchersForCustomerResponse,
         )

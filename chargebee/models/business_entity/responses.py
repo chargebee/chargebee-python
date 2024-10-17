@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import business_entity_transfer
 
 
@@ -17,9 +18,9 @@ class BusinessEntityResponse(Model):
 
 
 @dataclass
-class CreateTransfersResponse:
+class CreateTransfersResponse(Response):
     business_entity_transfer: "business_entity_transfer.BusinessEntityTransferResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -31,4 +32,4 @@ class GetTransfersBusinessEntityResponse:
 class GetTransfersResponse:
     list: List[GetTransfersBusinessEntityResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

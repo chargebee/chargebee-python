@@ -1,10 +1,13 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.models import enums
 
 
+@dataclass
 class PricingPageSession:
+
+    env: environment.Environment
 
     class CreateForNewSubscriptionPricingPageParams(TypedDict):
         id: Required[str]
@@ -20,6 +23,17 @@ class PricingPageSession:
         company: NotRequired[str]
         phone: NotRequired[str]
         locale: NotRequired[str]
+
+    class CreateForNewSubscriptionDiscountParams(TypedDict):
+        apply_on: Required[enums.ApplyOn]
+        duration_type: Required[enums.DurationType]
+        percentage: NotRequired[float]
+        amount: NotRequired[int]
+        period: NotRequired[int]
+        period_unit: NotRequired[enums.PeriodUnit]
+        included_in_mrr: NotRequired[bool]
+        item_price_id: NotRequired[str]
+        label: NotRequired[str]
 
     class CreateForNewSubscriptionBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -59,6 +73,17 @@ class PricingPageSession:
     class CreateForExistingSubscriptionSubscriptionParams(TypedDict):
         id: Required[str]
 
+    class CreateForExistingSubscriptionDiscountParams(TypedDict):
+        apply_on: Required[enums.ApplyOn]
+        duration_type: Required[enums.DurationType]
+        percentage: NotRequired[float]
+        amount: NotRequired[int]
+        period: NotRequired[int]
+        period_unit: NotRequired[enums.PeriodUnit]
+        included_in_mrr: NotRequired[bool]
+        item_price_id: NotRequired[str]
+        label: NotRequired[str]
+
     class CreateForNewSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
         pricing_page: Required[
@@ -70,6 +95,9 @@ class PricingPageSession:
         business_entity_id: NotRequired[str]
         customer: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionCustomerParams"
+        ]
+        discounts: Required[
+            List["PricingPageSession.CreateForNewSubscriptionDiscountParams"]
         ]
         billing_address: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionBillingAddressParams"
@@ -86,31 +114,32 @@ class PricingPageSession:
         subscription: Required[
             "PricingPageSession.CreateForExistingSubscriptionSubscriptionParams"
         ]
+        discounts: Required[
+            List["PricingPageSession.CreateForExistingSubscriptionDiscountParams"]
+        ]
 
-    @staticmethod
     def create_for_new_subscription(
-        params: CreateForNewSubscriptionParams, env=None, headers=None
+        self, params: CreateForNewSubscriptionParams, headers=None
     ) -> CreateForNewSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path("pricing_page_sessions", "create_for_new_subscription"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForNewSubscriptionResponse,
         )
 
-    @staticmethod
     def create_for_existing_subscription(
-        params: CreateForExistingSubscriptionParams, env=None, headers=None
+        self, params: CreateForExistingSubscriptionParams, headers=None
     ) -> CreateForExistingSubscriptionResponse:
         return request.send(
             "post",
             request.uri_path(
                 "pricing_page_sessions", "create_for_existing_subscription"
             ),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForExistingSubscriptionResponse,
         )

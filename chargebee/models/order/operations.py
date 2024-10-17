@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, credit_note
 
 
+@dataclass
 class Order:
+
+    env: environment.Environment
+
     class Status(Enum):
         NEW = "new"
         PROCESSING = "processing"
@@ -373,141 +377,128 @@ class Order:
         resend_reason: NotRequired[str]
         order_line_items: NotRequired[List["Order.ResendOrderLineItemParams"]]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("orders"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("orders", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
     def import_order(
-        params: ImportOrderParams, env=None, headers=None
+        self, params: ImportOrderParams, headers=None
     ) -> ImportOrderResponse:
         return request.send(
             "post",
             request.uri_path("orders", "import_order"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ImportOrderResponse,
         )
 
-    @staticmethod
-    def assign_order_number(id, env=None, headers=None) -> AssignOrderNumberResponse:
+    def assign_order_number(self, id, headers=None) -> AssignOrderNumberResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "assign_order_number"),
+            self.env,
             None,
-            env,
             headers,
             AssignOrderNumberResponse,
         )
 
-    @staticmethod
-    def cancel(id, params: CancelParams, env=None, headers=None) -> CancelResponse:
+    def cancel(self, id, params: CancelParams, headers=None) -> CancelResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "cancel"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CancelResponse,
         )
 
-    @staticmethod
     def create_refundable_credit_note(
-        id, params: CreateRefundableCreditNoteParams, env=None, headers=None
+        self, id, params: CreateRefundableCreditNoteParams, headers=None
     ) -> CreateRefundableCreditNoteResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "create_refundable_credit_note"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateRefundableCreditNoteResponse,
         )
 
-    @staticmethod
-    def reopen(
-        id, params: ReopenParams = None, env=None, headers=None
-    ) -> ReopenResponse:
+    def reopen(self, id, params: ReopenParams = None, headers=None) -> ReopenResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "reopen"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ReopenResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("orders", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("orders", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("orders"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def orders_for_invoice(
-        id, params: OrdersForInvoiceParams = None, env=None, headers=None
+        self, id, params: OrdersForInvoiceParams = None, headers=None
     ) -> OrdersForInvoiceResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id, "orders"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             OrdersForInvoiceResponse,
         )
 
-    @staticmethod
-    def resend(
-        id, params: ResendParams = None, env=None, headers=None
-    ) -> ResendResponse:
+    def resend(self, id, params: ResendParams = None, headers=None) -> ResendResponse:
         return request.send(
             "post",
             request.uri_path("orders", id, "resend"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ResendResponse,
         )

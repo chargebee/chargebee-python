@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import contract_term
 
 
@@ -24,111 +25,111 @@ class HostedPageResponse(Model):
 
 
 @dataclass
-class CheckoutNewResponse:
+class CheckoutNewResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutOneTimeResponse:
+class CheckoutOneTimeResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutOneTimeForItemsResponse:
+class CheckoutOneTimeForItemsResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutNewForItemsResponse:
+class CheckoutNewForItemsResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutExistingResponse:
+class CheckoutExistingResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutExistingForItemsResponse:
+class CheckoutExistingForItemsResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateCardResponse:
+class UpdateCardResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdatePaymentMethodResponse:
+class UpdatePaymentMethodResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ManagePaymentSourcesResponse:
+class ManagePaymentSourcesResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CollectNowResponse:
+class CollectNowResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AcceptQuoteResponse:
+class AcceptQuoteResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ExtendSubscriptionResponse:
+class ExtendSubscriptionResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutGiftResponse:
+class CheckoutGiftResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CheckoutGiftForItemsResponse:
+class CheckoutGiftForItemsResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ClaimGiftResponse:
+class ClaimGiftResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveAgreementPdfResponse:
+class RetrieveAgreementPdfResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AcknowledgeResponse:
+class AcknowledgeResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -140,22 +141,22 @@ class ListHostedPageResponse:
 class ListResponse:
     list: List[ListHostedPageResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PreCancelResponse:
+class PreCancelResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EventsResponse:
+class EventsResponse(Response):
     success: bool
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ViewVoucherResponse:
+class ViewVoucherResponse(Response):
     hosted_page: HostedPageResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

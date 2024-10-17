@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, credit_note, invoice, transaction
 
 
+@dataclass
 class Transaction:
+
+    env: environment.Environment
+
     class Type(Enum):
         AUTHORIZATION = "authorization"
         PAYMENT = "payment"
@@ -165,139 +169,126 @@ class Transaction:
     class DeleteOfflineTransactionParams(TypedDict):
         comment: NotRequired[str]
 
-    @staticmethod
     def create_authorization(
-        params: CreateAuthorizationParams, env=None, headers=None
+        self, params: CreateAuthorizationParams, headers=None
     ) -> CreateAuthorizationResponse:
         return request.send(
             "post",
             request.uri_path("transactions", "create_authorization"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateAuthorizationResponse,
         )
 
-    @staticmethod
-    def void_transaction(id, env=None, headers=None) -> VoidTransactionResponse:
+    def void_transaction(self, id, headers=None) -> VoidTransactionResponse:
         return request.send(
             "post",
             request.uri_path("transactions", id, "void"),
+            self.env,
             None,
-            env,
             headers,
             VoidTransactionResponse,
         )
 
-    @staticmethod
     def record_refund(
-        id, params: RecordRefundParams, env=None, headers=None
+        self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
         return request.send(
             "post",
             request.uri_path("transactions", id, "record_refund"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RecordRefundResponse,
         )
 
-    @staticmethod
     def reconcile(
-        id, params: ReconcileParams = None, env=None, headers=None
+        self, id, params: ReconcileParams = None, headers=None
     ) -> ReconcileResponse:
         return request.send(
             "post",
             request.uri_path("transactions", id, "reconcile"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ReconcileResponse,
         )
 
-    @staticmethod
-    def refund(
-        id, params: RefundParams = None, env=None, headers=None
-    ) -> RefundResponse:
+    def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
         return request.send(
             "post",
             request.uri_path("transactions", id, "refund"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RefundResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("transactions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def transactions_for_customer(
-        id, params: TransactionsForCustomerParams = None, env=None, headers=None
+        self, id, params: TransactionsForCustomerParams = None, headers=None
     ) -> TransactionsForCustomerResponse:
         return request.send(
             "get",
             request.uri_path("customers", id, "transactions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             TransactionsForCustomerResponse,
         )
 
-    @staticmethod
     def transactions_for_subscription(
-        id, params: TransactionsForSubscriptionParams = None, env=None, headers=None
+        self, id, params: TransactionsForSubscriptionParams = None, headers=None
     ) -> TransactionsForSubscriptionResponse:
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "transactions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             TransactionsForSubscriptionResponse,
         )
 
-    @staticmethod
     def payments_for_invoice(
-        id, params: PaymentsForInvoiceParams = None, env=None, headers=None
+        self, id, params: PaymentsForInvoiceParams = None, headers=None
     ) -> PaymentsForInvoiceResponse:
         return request.send(
             "get",
             request.uri_path("invoices", id, "payments"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PaymentsForInvoiceResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("transactions", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
     def delete_offline_transaction(
-        id, params: DeleteOfflineTransactionParams = None, env=None, headers=None
+        self, id, params: DeleteOfflineTransactionParams = None, headers=None
     ) -> DeleteOfflineTransactionResponse:
         return request.send(
             "post",
             request.uri_path("transactions", id, "delete_offline_transaction"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteOfflineTransactionResponse,
         )

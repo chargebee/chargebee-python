@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -105,15 +106,15 @@ class PlanResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -125,28 +126,28 @@ class ListPlanResponse:
 class ListResponse:
     list: List[ListPlanResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CopyResponse:
+class CopyResponse(Response):
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UnarchiveResponse:
+class UnarchiveResponse(Response):
     plan: PlanResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

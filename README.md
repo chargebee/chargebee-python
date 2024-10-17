@@ -26,33 +26,42 @@ See our [Python API Reference](https://apidocs.chargebee.com/docs/api?lang=pytho
 
 The package needs to be configured with your site's API key, which is available under Configure Chargebee Section. Refer [here](https://www.chargebee.com/docs/2.0/api_keys.html) for more details.
 
-### Configuring chargebee
+### Configuring chargebee client
 ```python
-import chargebee
-chargebee.configure("api_key", "site")
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="", site="")
 ```
 
 ### Configuring Timeouts
 
 ```python
-import chargebee
-chargebee.update_read_timeout_secs(3000)
-chargebee.update_connect_timeout_secs(5000)
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_read_timeout_secs(3000)
+cb_client.update_connect_timeout_secs(5000)
+```
+
+### Configuring Retry Delays
+
+```python
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_export_retry_delay_ms(3000)
+cb_client.update_time_travel_retry_delay_ms(5000)
 ```
 
 ### Making API Request:
 
 ```python  
 # Create a Customer
-import chargebee
 
-response = chargebee.Customer.create(
-    chargebee.Customer.CreateParams(
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
         first_name="John",
         last_name="Doe",
         email="john@test.com",
         locale="fr-CA",
-        billing_address=chargebee.Customer.BillingAddress(
+        billing_address=cb_client.Customer.BillingAddress(
             first_name="John",
             last_name=" Doe",
             line1="PO Box 9999",
@@ -72,11 +81,10 @@ card = response.card
 For pagination, `offset` is the parameter that is being used. The value used for this parameter must be the value returned in `next_offset` parameter from the previous API call.
 
 ```python
-import chargebee
 from chargebee import Filters
 
-response = chargebee.Customer.list(
-    chargebee.Customer.ListParams(
+response = cb_client.Customer.list(
+    cb_client.Customer.ListParams(
         first_name=Filters.StringFilter(IS="John")
     )
 )
@@ -94,8 +102,8 @@ There are two variants of enums in chargebee,
 # Global Enum
 import chargebee
 
-response = chargebee.Customer.create(
-    chargebee.Customer.CreateParams(
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
         first_name="John",
         auto_collection=chargebee.AutoCollection.ON,  # global enum
     )
@@ -104,12 +112,11 @@ print(response.customer.cf_host_url)
 ```
 ```python
 # Resource Specific Enum
-import chargebee
 
-response = chargebee.Customer.change_billing_date(
-    chargebee.Customer.ChangeBillingDateParams(
+response = cb_client.Customer.change_billing_date(
+    cb_client.Customer.ChangeBillingDateParams(
         first_name="John",
-        billing_day_of_week=chargebee.Customer.BillingDayOfWeek.MONDAY,  # resource specific enum
+        billing_day_of_week=cb_client.Customer.BillingDayOfWeek.MONDAY,  # resource specific enum
     )
 )
 print(response.customer.cf_host_url)
@@ -118,10 +125,8 @@ print(response.customer.cf_host_url)
 ### Using custom fields
 
 ```python
-import chargebee
-
-response = chargebee.Customer.create(
-    chargebee.Customer.CreateParams(
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
         first_name="John",
         cf_host_url="https://john.com",  # `cf_host_url` is a custom field in Customer object
     )
@@ -134,15 +139,13 @@ print(response.customer.cf_host_url)
 [Idempotency keys](https://apidocs.chargebee.com/docs/api/idempotency?prod_cat_ver=2) are passed along with request headers to allow a safe retry of POST requests. 
 
 ```python
-import chargebee
-
-response = chargebee.Customer.create(
-    chargebee.Customer.CreateParams(
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
         first_name="John",
         last_name="Doe",
         email="john@test.com",
         locale="fr-CA",
-        billing_address=chargebee.Customer.BillingAddress(
+        billing_address=cb_client.Customer.BillingAddress(
             first_name="John",
             last_name=" Doe",
             line1="PO Box 9999",
@@ -159,9 +162,9 @@ response = chargebee.Customer.create(
 )
 customer = response.customer
 card = response.card
-responseHeaders = response.response_headers  # Retrieves response headers
+responseHeaders = response.headers  # Retrieves response headers
 print(responseHeaders)
-idempotencyReplayedValue = response.response_headers["is_idempotency_replayed"]  # Retrieves Idempotency replayed header value
+idempotencyReplayedValue = response.is_idempotency_replayed  # Retrieves Idempotency replayed header value
 print(idempotencyReplayedValue)
 ```
 
@@ -171,16 +174,17 @@ The response from the previous API call must be passed as an argument for `wait_
 
 ```python
 # Wait For Export Completion
-import chargebee
+
 from chargebee import Filters
-response = chargebee.Export.customers(
-    chargebee.Export.CustomersParams(
-        customer=chargebee.Export.CustomersCustomerParams(
+
+response = cb_client.Export.customers(
+    cb_client.Export.CustomersParams(
+        customer=cb_client.Export.CustomersCustomerParams(
             first_name=Filters.StringFilter(IS="John")
         )
     )
 )
-print(chargebee.Export.wait_for_export_completion(response.export))
+print(cb_client.Export.wait_for_export_completion(response.export))
 ```
 
 ## Feedback

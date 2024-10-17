@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums, contract_term
 
 
+@dataclass
 class Quote:
+
+    env: environment.Environment
+
     class Status(Enum):
         OPEN = "open"
         ACCEPTED = "accepted"
@@ -1230,6 +1234,7 @@ class Quote:
     class ConvertParams(TypedDict):
         subscription: NotRequired["Quote.ConvertSubscriptionParams"]
         invoice_date: NotRequired[int]
+        invoice_immediately: NotRequired[bool]
         create_pending_invoices: NotRequired[bool]
         first_invoice_pending: NotRequired[bool]
 
@@ -1247,251 +1252,234 @@ class Quote:
         consolidated_view: NotRequired[bool]
         disposition_type: NotRequired[enums.DispositionType]
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("quotes", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("quotes", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
     def create_sub_for_customer_quote(
-        id, params: CreateSubForCustomerQuoteParams, env=None, headers=None
+        self, id, params: CreateSubForCustomerQuoteParams, headers=None
     ) -> CreateSubForCustomerQuoteResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubForCustomerQuoteResponse,
         )
 
-    @staticmethod
     def edit_create_sub_for_customer_quote(
-        id, params: EditCreateSubForCustomerQuoteParams, env=None, headers=None
+        self, id, params: EditCreateSubForCustomerQuoteParams, headers=None
     ) -> EditCreateSubForCustomerQuoteResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_create_subscription_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditCreateSubForCustomerQuoteResponse,
         )
 
-    @staticmethod
     def update_subscription_quote(
-        params: UpdateSubscriptionQuoteParams, env=None, headers=None
+        self, params: UpdateSubscriptionQuoteParams, headers=None
     ) -> UpdateSubscriptionQuoteResponse:
         return request.send(
             "post",
             request.uri_path("quotes", "update_subscription_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateSubscriptionQuoteResponse,
         )
 
-    @staticmethod
     def edit_update_subscription_quote(
-        id, params: EditUpdateSubscriptionQuoteParams = None, env=None, headers=None
+        self, id, params: EditUpdateSubscriptionQuoteParams = None, headers=None
     ) -> EditUpdateSubscriptionQuoteResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_update_subscription_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditUpdateSubscriptionQuoteResponse,
         )
 
-    @staticmethod
     def create_for_onetime_charges(
-        params: CreateForOnetimeChargesParams, env=None, headers=None
+        self, params: CreateForOnetimeChargesParams, headers=None
     ) -> CreateForOnetimeChargesResponse:
         return request.send(
             "post",
             request.uri_path("quotes", "create_for_onetime_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForOnetimeChargesResponse,
         )
 
-    @staticmethod
     def edit_one_time_quote(
-        id, params: EditOneTimeQuoteParams = None, env=None, headers=None
+        self, id, params: EditOneTimeQuoteParams = None, headers=None
     ) -> EditOneTimeQuoteResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_one_time_quote"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditOneTimeQuoteResponse,
         )
 
-    @staticmethod
     def create_sub_items_for_customer_quote(
-        id, params: CreateSubItemsForCustomerQuoteParams, env=None, headers=None
+        self, id, params: CreateSubItemsForCustomerQuoteParams, headers=None
     ) -> CreateSubItemsForCustomerQuoteResponse:
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_quote_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateSubItemsForCustomerQuoteResponse,
         )
 
-    @staticmethod
     def edit_create_sub_customer_quote_for_items(
-        id, params: EditCreateSubCustomerQuoteForItemsParams, env=None, headers=None
+        self, id, params: EditCreateSubCustomerQuoteForItemsParams, headers=None
     ) -> EditCreateSubCustomerQuoteForItemsResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_create_subscription_quote_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditCreateSubCustomerQuoteForItemsResponse,
         )
 
-    @staticmethod
     def update_subscription_quote_for_items(
-        params: UpdateSubscriptionQuoteForItemsParams, env=None, headers=None
+        self, params: UpdateSubscriptionQuoteForItemsParams, headers=None
     ) -> UpdateSubscriptionQuoteForItemsResponse:
         return request.send(
             "post",
             request.uri_path("quotes", "update_subscription_quote_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateSubscriptionQuoteForItemsResponse,
         )
 
-    @staticmethod
     def edit_update_subscription_quote_for_items(
-        id, params: EditUpdateSubscriptionQuoteForItemsParams, env=None, headers=None
+        self, id, params: EditUpdateSubscriptionQuoteForItemsParams, headers=None
     ) -> EditUpdateSubscriptionQuoteForItemsResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_update_subscription_quote_for_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditUpdateSubscriptionQuoteForItemsResponse,
         )
 
-    @staticmethod
     def create_for_charge_items_and_charges(
-        params: CreateForChargeItemsAndChargesParams, env=None, headers=None
+        self, params: CreateForChargeItemsAndChargesParams, headers=None
     ) -> CreateForChargeItemsAndChargesResponse:
         return request.send(
             "post",
             request.uri_path("quotes", "create_for_charge_items_and_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateForChargeItemsAndChargesResponse,
         )
 
-    @staticmethod
     def edit_for_charge_items_and_charges(
-        id, params: EditForChargeItemsAndChargesParams, env=None, headers=None
+        self, id, params: EditForChargeItemsAndChargesParams, headers=None
     ) -> EditForChargeItemsAndChargesResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_for_charge_items_and_charges"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             EditForChargeItemsAndChargesResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("quotes"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
     def quote_line_groups_for_quote(
-        id, params: QuoteLineGroupsForQuoteParams = None, env=None, headers=None
+        self, id, params: QuoteLineGroupsForQuoteParams = None, headers=None
     ) -> QuoteLineGroupsForQuoteResponse:
         return request.send(
             "get",
             request.uri_path("quotes", id, "quote_line_groups"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             QuoteLineGroupsForQuoteResponse,
         )
 
-    @staticmethod
     def convert(
-        id, params: ConvertParams = None, env=None, headers=None
+        self, id, params: ConvertParams = None, headers=None
     ) -> ConvertResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "convert"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ConvertResponse,
         )
 
-    @staticmethod
     def update_status(
-        id, params: UpdateStatusParams, env=None, headers=None
+        self, id, params: UpdateStatusParams, headers=None
     ) -> UpdateStatusResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "update_status"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateStatusResponse,
         )
 
-    @staticmethod
     def extend_expiry_date(
-        id, params: ExtendExpiryDateParams, env=None, headers=None
+        self, id, params: ExtendExpiryDateParams, headers=None
     ) -> ExtendExpiryDateResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "extend_expiry_date"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ExtendExpiryDateResponse,
         )
 
-    @staticmethod
-    def delete(
-        id, params: DeleteParams = None, env=None, headers=None
-    ) -> DeleteResponse:
+    def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "delete"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def pdf(id, params: PdfParams = None, env=None, headers=None) -> PdfResponse:
+    def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
         return request.send(
             "post",
             request.uri_path("quotes", id, "pdf"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PdfResponse,
         )

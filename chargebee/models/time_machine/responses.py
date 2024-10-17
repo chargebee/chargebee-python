@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -18,16 +19,16 @@ class TimeMachineResponse(Model):
 @dataclass
 class RetrieveResponse:
     time_machine: TimeMachineResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class StartAfreshResponse:
+class StartAfreshResponse(Response):
     time_machine: TimeMachineResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class TravelForwardResponse:
+class TravelForwardResponse(Response):
     time_machine: TimeMachineResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import credit_note
 
 
@@ -172,57 +173,57 @@ class OrderResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportOrderResponse:
+class ImportOrderResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AssignOrderNumberResponse:
+class AssignOrderNumberResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CancelResponse:
+class CancelResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateRefundableCreditNoteResponse:
+class CreateRefundableCreditNoteResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ReopenResponse:
+class ReopenResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -234,7 +235,7 @@ class ListOrderResponse:
 class ListResponse:
     list: List[ListOrderResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -246,10 +247,10 @@ class OrdersForInvoiceOrderResponse:
 class OrdersForInvoiceResponse:
     list: List[OrdersForInvoiceOrderResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ResendResponse:
+class ResendResponse(Response):
     order: OrderResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

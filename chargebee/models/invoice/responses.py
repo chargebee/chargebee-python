@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     credit_note,
     payment_reference_number,
@@ -304,70 +305,70 @@ class InvoiceResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForChargeItemsAndChargesResponse:
+class CreateForChargeItemsAndChargesResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChargeResponse:
+class ChargeResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChargeAddonResponse:
+class ChargeAddonResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForChargeItemResponse:
+class CreateForChargeItemResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class StopDunningResponse:
+class StopDunningResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportInvoiceResponse:
+class ImportInvoiceResponse(Response):
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ApplyPaymentsResponse:
+class ApplyPaymentsResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SyncUsagesResponse:
+class SyncUsagesResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteLineItemsResponse:
+class DeleteLineItemsResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ApplyCreditsResponse:
+class ApplyCreditsResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -379,7 +380,7 @@ class ListInvoiceResponse:
 class ListResponse:
     list: List[ListInvoiceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -391,7 +392,7 @@ class InvoicesForCustomerInvoiceResponse:
 class InvoicesForCustomerResponse:
     list: List[InvoicesForCustomerInvoiceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -403,25 +404,25 @@ class InvoicesForSubscriptionInvoiceResponse:
 class InvoicesForSubscriptionResponse:
     list: List[InvoicesForSubscriptionInvoiceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PdfResponse:
+class PdfResponse(Response):
     download: "download.DownloadResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class DownloadEinvoiceResponse:
     downloads: List["download.DownloadResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -433,134 +434,134 @@ class ListPaymentReferenceNumbersInvoiceResponse:
 class ListPaymentReferenceNumbersResponse:
     list: List[ListPaymentReferenceNumbersInvoiceResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddChargeResponse:
+class AddChargeResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddAddonChargeResponse:
+class AddAddonChargeResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddChargeItemResponse:
+class AddChargeItemResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CloseResponse:
+class CloseResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CollectPaymentResponse:
-    invoice: InvoiceResponse
-    transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
-
-
-@dataclass
-class RecordPaymentResponse:
+class CollectPaymentResponse(Response):
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RecordTaxWithheldResponse:
+class RecordPaymentResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    transaction: "transaction.TransactionResponse"
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveTaxWithheldResponse:
+class RecordTaxWithheldResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RefundResponse:
+class RemoveTaxWithheldResponse(Response):
+    invoice: InvoiceResponse
+    headers: Dict[str, str] = None
+
+
+@dataclass
+class RefundResponse(Response):
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
     credit_note: "credit_note.CreditNoteResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RecordRefundResponse:
+class RecordRefundResponse(Response):
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse" = None
     credit_note: "credit_note.CreditNoteResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemovePaymentResponse:
+class RemovePaymentResponse(Response):
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveCreditNoteResponse:
+class RemoveCreditNoteResponse(Response):
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class VoidInvoiceResponse:
+class VoidInvoiceResponse(Response):
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class WriteOffResponse:
+class WriteOffResponse(Response):
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateDetailsResponse:
+class UpdateDetailsResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ApplyPaymentScheduleSchemeResponse:
+class ApplyPaymentScheduleSchemeResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class PaymentSchedulesResponse:
     payment_schedules: List["payment_schedule.PaymentScheduleResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ResendEinvoiceResponse:
+class ResendEinvoiceResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SendEinvoiceResponse:
+class SendEinvoiceResponse(Response):
     invoice: InvoiceResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

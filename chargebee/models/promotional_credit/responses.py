@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import customer
 
 
@@ -22,24 +23,24 @@ class PromotionalCreditResponse(Model):
 
 
 @dataclass
-class AddResponse:
+class AddResponse(Response):
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeductResponse:
+class DeductResponse(Response):
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SetResponse:
+class SetResponse(Response):
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -51,10 +52,10 @@ class ListPromotionalCreditResponse:
 class ListResponse:
     list: List[ListPromotionalCreditResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     promotional_credit: PromotionalCreditResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

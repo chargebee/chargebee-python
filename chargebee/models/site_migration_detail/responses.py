@@ -23,4 +23,4 @@ class ListSiteMigrationDetailResponse:
 class ListResponse:
     list: List[ListSiteMigrationDetailResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

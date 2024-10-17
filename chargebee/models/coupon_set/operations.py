@@ -1,10 +1,13 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from chargebee.filters import Filters
 
 
+@dataclass
 class CouponSet:
+
+    env: environment.Environment
 
     class CreateParams(TypedDict):
         coupon_id: Required[str]
@@ -29,85 +32,76 @@ class CouponSet:
         name: NotRequired[str]
         meta_data: NotRequired[Dict[Any, Any]]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("coupon_sets"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
     def add_coupon_codes(
-        id, params: AddCouponCodesParams = None, env=None, headers=None
+        self, id, params: AddCouponCodesParams = None, headers=None
     ) -> AddCouponCodesResponse:
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "add_coupon_codes"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddCouponCodesResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("coupon_sets"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("coupon_sets", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "update"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
     def delete_unused_coupon_codes(
-        id, env=None, headers=None
+        self, id, headers=None
     ) -> DeleteUnusedCouponCodesResponse:
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete_unused_coupon_codes"),
+            self.env,
             None,
-            env,
             headers,
             DeleteUnusedCouponCodesResponse,
         )

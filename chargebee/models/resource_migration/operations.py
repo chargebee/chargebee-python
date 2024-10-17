@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.models import enums
 
 
+@dataclass
 class ResourceMigration:
+
+    env: environment.Environment
+
     class Status(Enum):
         SCHEDULED = "scheduled"
         FAILED = "failed"
@@ -19,15 +23,14 @@ class ResourceMigration:
         entity_type: Required[enums.EntityType]
         entity_id: Required[str]
 
-    @staticmethod
     def retrieve_latest(
-        params: RetrieveLatestParams, env=None, headers=None
+        self, params: RetrieveLatestParams, headers=None
     ) -> RetrieveLatestResponse:
         return request.send(
             "get",
             request.uri_path("resource_migrations", "retrieve_latest"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RetrieveLatestResponse,
         )

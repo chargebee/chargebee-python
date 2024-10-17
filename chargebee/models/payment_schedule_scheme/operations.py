@@ -1,10 +1,14 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 
 
+@dataclass
 class PaymentScheduleScheme:
+
+    env: environment.Environment
+
     class PeriodUnit(Enum):
         DAY = "day"
         WEEK = "week"
@@ -23,35 +27,32 @@ class PaymentScheduleScheme:
         period: NotRequired[int]
         description: NotRequired[str]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("payment_schedule_schemes", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )

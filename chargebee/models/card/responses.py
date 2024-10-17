@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import third_party_payment_method, customer
 
 
@@ -40,32 +41,32 @@ class CardResponse(Model):
 @dataclass
 class RetrieveResponse:
     card: CardResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateCardForCustomerResponse:
+class UpdateCardForCustomerResponse(Response):
     customer: "customer.CustomerResponse"
     card: CardResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SwitchGatewayForCustomerResponse:
+class SwitchGatewayForCustomerResponse(Response):
     customer: "customer.CustomerResponse"
     card: CardResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CopyCardForCustomerResponse:
+class CopyCardForCustomerResponse(Response):
     third_party_payment_method: (
         "third_party_payment_method.ThirdPartyPaymentMethodResponse"
     )
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteCardForCustomerResponse:
+class DeleteCardForCustomerResponse(Response):
     customer: "customer.CustomerResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

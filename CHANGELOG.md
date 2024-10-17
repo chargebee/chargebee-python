@@ -1,3 +1,30 @@
+### v3.0.0b2 (2024-10-17)
+* * *
+
+- **Chargebee Client**: Support for multiple clients has been introduced.  
+- **Response Headers**: `response_headers` has been renamed to `headers` inside the response object.
+- **Idempotency Headers**: `is_idempotency_replayed` is now a direct attribute of the response object, no longer part of `response_headers`.
+
+#### New Resource:
+* PaymentScheduleEstimate has been added. 
+
+#### New Attributes: 
+* payment_schedule_estimates has been added to Estimate. 
+* usage_accumulation_reset_frequency has been added to ItemPrice.
+* name has been added to PaymentScheduleScheme.
+* usage_accumulation_reset_frequency has been added to QuotedSubscription#SubscriptionItem.
+* usage_accumulation_reset_frequency has been added to Subscription#SubscriptionItem.
+
+#### New Endpoints: 
+* Estimate#PaymentSchedule has been added. 
+
+#### New Input Params: 
+* usage_accumulation_reset_frequency has been added to ItemPrice#CreateParams. 
+* usage_accumulation_reset_frequency has been added to ItemPrice#UpdateParams. 
+* discounts has been added to PricingPageSession#CreateForNewSubscriptionParams.
+* discounts has been added to PricingPageSession#CreateForExistingSubscriptionParams.
+* invoice_immediately has been added to Quote#ConvertParams.
+
 ### v3.0.0b1 (2024-10-03)
 * * *
 
@@ -10,7 +37,6 @@
 - **List Responses**: List-type responses are now accessible via the `list` entry to align with the API contract.
 - **Idempotency Headers**: `is_idempotency_replayed` is now a JSON entry inside `response_headers` instead of a method (`is_idempotency_replayed()`).
 - **Wait For Process Completion**: Response from previous API calls must be passed as arguments for `wait_for_export_completion()` and `wait_for_time_travel_completion()`.
-
 
 ### v2.44.1 (2024-10-03)
 * * *

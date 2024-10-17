@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     payment_intent,
     contract_term,
     subscription_estimate,
     invoice_estimate,
+    payment_schedule_estimate,
     credit_note_estimate,
     unbilled_charge,
 )
@@ -21,6 +23,9 @@ class EstimateResponse(Model):
     ] = None
     invoice_estimate: "invoice_estimate.InvoiceEstimatesResponse" = None
     invoice_estimates: List["invoice_estimate.InvoiceEstimatesResponse"] = None
+    payment_schedule_estimates: List[
+        "payment_schedule_estimate.PaymentScheduleEstimateResponse"
+    ] = None
     next_invoice_estimate: "invoice_estimate.InvoiceEstimatesResponse" = None
     credit_note_estimates: List["credit_note_estimate.CreditNoteEstimateResponse"] = (
         None
@@ -29,114 +34,120 @@ class EstimateResponse(Model):
 
 
 @dataclass
-class CreateSubscriptionResponse:
+class CreateSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateSubItemEstimateResponse:
+class CreateSubItemEstimateResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateSubForCustomerEstimateResponse:
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateSubItemForCustomerEstimateResponse:
+class CreateSubItemForCustomerEstimateResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateSubscriptionResponse:
+class UpdateSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateSubscriptionForItemsResponse:
+class UpdateSubscriptionForItemsResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RenewalEstimateResponse:
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AdvanceInvoiceEstimateResponse:
+class AdvanceInvoiceEstimateResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RegenerateInvoiceEstimateResponse:
+class RegenerateInvoiceEstimateResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpcomingInvoicesEstimateResponse:
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChangeTermEndResponse:
+class ChangeTermEndResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CancelSubscriptionResponse:
+class CancelSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CancelSubscriptionForItemsResponse:
+class CancelSubscriptionForItemsResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PauseSubscriptionResponse:
+class PauseSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ResumeSubscriptionResponse:
+class ResumeSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class GiftSubscriptionResponse:
+class GiftSubscriptionResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class GiftSubscriptionForItemsResponse:
+class GiftSubscriptionForItemsResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateInvoiceResponse:
+class CreateInvoiceResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateInvoiceForItemsResponse:
+class CreateInvoiceForItemsResponse(Response):
     estimate: EstimateResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
+
+
+@dataclass
+class PaymentSchedulesResponse(Response):
+    estimate: EstimateResponse
+    headers: Dict[str, str] = None

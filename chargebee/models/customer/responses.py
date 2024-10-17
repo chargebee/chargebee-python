@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     payment_intent,
     card,
@@ -186,10 +187,10 @@ class CustomerResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -202,35 +203,35 @@ class ListCustomerResponse:
 class ListResponse:
     list: List[ListCustomerResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdatePaymentMethodResponse:
+class UpdatePaymentMethodResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateBillingInfoResponse:
+class UpdateBillingInfoResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -242,119 +243,119 @@ class ContactsForCustomerCustomerResponse:
 class ContactsForCustomerResponse:
     list: List[ContactsForCustomerCustomerResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AssignPaymentRoleResponse:
+class AssignPaymentRoleResponse(Response):
     customer: CustomerResponse
     payment_source: "payment_source.PaymentSourceResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddContactResponse:
+class AddContactResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateContactResponse:
+class UpdateContactResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteContactResponse:
+class DeleteContactResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddPromotionalCreditsResponse:
+class AddPromotionalCreditsResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeductPromotionalCreditsResponse:
+class DeductPromotionalCreditsResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class SetPromotionalCreditsResponse:
+class SetPromotionalCreditsResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RecordExcessPaymentResponse:
+class RecordExcessPaymentResponse(Response):
     customer: CustomerResponse
     transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CollectPaymentResponse:
+class CollectPaymentResponse(Response):
     customer: CustomerResponse
     transaction: "transaction.TransactionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class MoveResponse:
+class MoveResponse(Response):
     resource_migration: "resource_migration.ResourceMigrationResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChangeBillingDateResponse:
+class ChangeBillingDateResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class MergeResponse:
+class MergeResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ClearPersonalDataResponse:
+class ClearPersonalDataResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RelationshipsResponse:
+class RelationshipsResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteRelationshipResponse:
+class DeleteRelationshipResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class HierarchyResponse:
     hierarchies: List["hierarchy.HierarchyResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateHierarchySettingsResponse:
+class UpdateHierarchySettingsResponse(Response):
     customer: CustomerResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 import json
 from chargebee import OperationFailedError
 
 
+@dataclass
 class TimeMachine:
+
+    env: environment.Environment
+
     class TimeTravelStatus(Enum):
         NOT_ENABLED = "not_enabled"
         IN_PROGRESS = "in_progress"
@@ -17,21 +21,22 @@ class TimeMachine:
             return self.value
 
     def wait_for_time_travel_completion(
-        time_machine: TimeMachineResponse, env=None
+        self, time_machine: TimeMachineResponse
     ) -> RetrieveResponse:
         import time
 
+        response: RetrieveResponse = None
         count = 0
-        sleep_time_millis = (
-            3000 if env == None else env.time_travel_sleep_millis
+        retry_delay_ms = (
+            3000 if self.env is None else self.env.time_travel_retry_delay_ms
         ) / 1000.0
 
         while time_machine.time_travel_status == "in_progress":
             if count > 30:
                 raise RuntimeError("Time travel is taking too much time")
             count += 1
-            time.sleep(sleep_time_millis)
-            response = TimeMachine.retrieve(time_machine.name, env)
+            time.sleep(retry_delay_ms)
+            response = self.retrieve(time_machine.name)
             time_machine = response.time_machine
 
         if time_machine.time_travel_status == "failed":
@@ -53,39 +58,36 @@ class TimeMachine:
     class TravelForwardParams(TypedDict):
         destination_time: NotRequired[int]
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("time_machines", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
     def start_afresh(
-        id, params: StartAfreshParams = None, env=None, headers=None
+        self, id, params: StartAfreshParams = None, headers=None
     ) -> StartAfreshResponse:
         return request.send(
             "post",
             request.uri_path("time_machines", id, "start_afresh"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             StartAfreshResponse,
         )
 
-    @staticmethod
     def travel_forward(
-        id, params: TravelForwardParams = None, env=None, headers=None
+        self, id, params: TravelForwardParams = None, headers=None
     ) -> TravelForwardResponse:
         return request.send(
             "post",
             request.uri_path("time_machines", id, "travel_forward"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             TravelForwardResponse,
         )

@@ -18,4 +18,4 @@ class ResourceMigrationResponse(Model):
 @dataclass
 class RetrieveLatestResponse:
     resource_migration: ResourceMigrationResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

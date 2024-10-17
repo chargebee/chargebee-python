@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import payment_intent, subscription, invoice
 
 
@@ -44,26 +45,26 @@ class GiftResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForItemsResponse:
+class CreateForItemsResponse(Response):
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -76,25 +77,25 @@ class ListGiftResponse:
 class ListResponse:
     list: List[ListGiftResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ClaimResponse:
+class ClaimResponse(Response):
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CancelResponse:
+class CancelResponse(Response):
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateGiftResponse:
+class UpdateGiftResponse(Response):
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

@@ -520,9 +520,9 @@ class EventType(Enum):
     VOUCHER_CREATE_FAILED = "voucher_create_failed"
     ITEM_PRICE_ENTITLEMENTS_UPDATED = "item_price_entitlements_updated"
     ITEM_PRICE_ENTITLEMENTS_REMOVED = "item_price_entitlements_removed"
-    RAMP_CREATED = "ramp_created"
-    RAMP_DELETED = "ramp_deleted"
-    RAMP_APPLIED = "ramp_applied"
+    SUBSCRIPTION_RAMP_CREATED = "subscription_ramp_created"
+    SUBSCRIPTION_RAMP_DELETED = "subscription_ramp_deleted"
+    SUBSCRIPTION_RAMP_APPLIED = "subscription_ramp_applied"
     SUBSCRIPTION_RAMP_DRAFTED = "subscription_ramp_drafted"
     SUBSCRIPTION_RAMP_UPDATED = "subscription_ramp_updated"
     PRICE_VARIANT_CREATED = "price_variant_created"
@@ -1044,6 +1044,14 @@ class UnbilledChargesOption(Enum):
 class UnpaidInvoicesHandling(Enum):
     NO_ACTION = "no_action"
     SCHEDULE_PAYMENT_COLLECTION = "schedule_payment_collection"
+
+    def __str__(self):
+        return self.value
+
+
+class UsageAccumulationResetFrequency(Enum):
+    NEVER = "never"
+    SUBSCRIPTION_BILLING_FREQUENCY = "subscription_billing_frequency"
 
     def __str__(self):
         return self.value

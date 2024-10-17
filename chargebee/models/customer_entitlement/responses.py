@@ -23,4 +23,4 @@ class EntitlementsForCustomerCustomerEntitlementResponse:
 class EntitlementsForCustomerResponse:
     list: List[EntitlementsForCustomerCustomerEntitlementResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

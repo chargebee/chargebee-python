@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -17,36 +18,36 @@ class CurrencyResponse(Model):
 @dataclass
 class ListResponse:
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveResponse:
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddScheduleResponse:
+class AddScheduleResponse(Response):
     scheduled_at: int
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveScheduleResponse:
+class RemoveScheduleResponse(Response):
     scheduled_at: int
     currency: CurrencyResponse
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None

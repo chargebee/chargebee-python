@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import (
     unbilled_charge,
     payment_intent,
@@ -41,6 +42,7 @@ class SubscriptionItemResponse(Model):
     charge_once: bool = None
     charge_on_option: str = None
     proration_type: str = None
+    usage_accumulation_reset_frequency: str = None
 
 
 @dataclass
@@ -259,33 +261,33 @@ class SubscriptionResponse(Model):
 
 
 @dataclass
-class CreateResponse:
+class CreateResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateForCustomerResponse:
+class CreateForCustomerResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateWithItemsResponse:
+class CreateWithItemsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -299,7 +301,7 @@ class ListSubscriptionResponse:
 class ListResponse:
     list: List[ListSubscriptionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -311,7 +313,7 @@ class SubscriptionsForCustomerSubscriptionResponse:
 class SubscriptionsForCustomerResponse:
     list: List[SubscriptionsForCustomerSubscriptionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -323,7 +325,7 @@ class ContractTermsForSubscriptionSubscriptionResponse:
 class ContractTermsForSubscriptionResponse:
     list: List[ContractTermsForSubscriptionSubscriptionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -335,7 +337,7 @@ class ListDiscountsSubscriptionResponse:
 class ListDiscountsResponse:
     list: List[ListDiscountsSubscriptionResponse]
     next_offset: str = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -343,7 +345,7 @@ class RetrieveResponse:
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -351,91 +353,91 @@ class RetrieveWithScheduledChangesResponse:
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveScheduledChangesResponse:
+class RemoveScheduledChangesResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveScheduledCancellationResponse:
+class RemoveScheduledCancellationResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveCouponsResponse:
+class RemoveCouponsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateResponse:
+class UpdateResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpdateForItemsResponse:
+class UpdateForItemsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChangeTermEndResponse:
+class ChangeTermEndResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ReactivateResponse:
+class ReactivateResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class AddChargeAtTermEndResponse:
+class AddChargeAtTermEndResponse(Response):
     estimate: "estimate.EstimateResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChargeAddonAtTermEndResponse:
+class ChargeAddonAtTermEndResponse(Response):
     estimate: "estimate.EstimateResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ChargeFutureRenewalsResponse:
+class ChargeFutureRenewalsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
@@ -443,15 +445,15 @@ class ChargeFutureRenewalsResponse:
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class EditAdvanceInvoiceScheduleResponse:
+class EditAdvanceInvoiceScheduleResponse(Response):
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -459,139 +461,139 @@ class RetrieveAdvanceInvoiceScheduleResponse:
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveAdvanceInvoiceScheduleResponse:
+class RemoveAdvanceInvoiceScheduleResponse(Response):
     subscription: SubscriptionResponse
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RegenerateInvoiceResponse:
+class RegenerateInvoiceResponse(Response):
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportSubscriptionResponse:
+class ImportSubscriptionResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportForCustomerResponse:
+class ImportForCustomerResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportContractTermResponse:
+class ImportContractTermResponse(Response):
     contract_term: "contract_term.ContractTermResponse"
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportUnbilledChargesResponse:
+class ImportUnbilledChargesResponse(Response):
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"]
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ImportForItemsResponse:
+class ImportForItemsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class OverrideBillingProfileResponse:
+class OverrideBillingProfileResponse(Response):
     subscription: SubscriptionResponse
     payment_source: "payment_source.PaymentSourceResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class DeleteResponse:
+class DeleteResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class PauseResponse:
-    subscription: SubscriptionResponse
-    customer: "customer.CustomerResponse"
-    card: "card.CardResponse" = None
-    invoice: "invoice.InvoiceResponse" = None
-    unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
-
-
-@dataclass
-class CancelResponse:
+class PauseResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class CancelForItemsResponse:
+class CancelResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class ResumeResponse:
+class CancelForItemsResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    response_headers: Dict[Any, Any] = None
+    credit_notes: List["credit_note.CreditNoteResponse"] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveScheduledPauseResponse:
+class ResumeResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    invoice: "invoice.InvoiceResponse" = None
+    unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class RemoveScheduledResumptionResponse:
+class RemoveScheduledPauseResponse(Response):
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    response_headers: Dict[Any, Any] = None
+    headers: Dict[str, str] = None
 
 
 @dataclass
-class MoveResponse:
+class RemoveScheduledResumptionResponse(Response):
     subscription: SubscriptionResponse
-    response_headers: Dict[Any, Any] = None
+    customer: "customer.CustomerResponse"
+    card: "card.CardResponse" = None
+    headers: Dict[str, str] = None
+
+
+@dataclass
+class MoveResponse(Response):
+    subscription: SubscriptionResponse
+    headers: Dict[str, str] = None

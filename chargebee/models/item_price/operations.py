@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class ItemPrice:
+
+    env: environment.Environment
+
     class Status(Enum):
         ACTIVE = "active"
         ARCHIVED = "archived"
@@ -162,6 +166,9 @@ class ItemPrice:
         metadata: NotRequired[Dict[Any, Any]]
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
         pricing_model: NotRequired[enums.PricingModel]
         tiers: NotRequired[List["ItemPrice.CreateTierParams"]]
         price: NotRequired[int]
@@ -185,6 +192,9 @@ class ItemPrice:
         price_variant_id: NotRequired[str]
         status: NotRequired["ItemPrice.Status"]
         external_name: NotRequired[str]
+        usage_accumulation_reset_frequency: NotRequired[
+            enums.UsageAccumulationResetFrequency
+        ]
         currency_code: NotRequired[str]
         invoice_notes: NotRequired[str]
         is_taxable: NotRequired[bool]
@@ -240,83 +250,76 @@ class ItemPrice:
         item_id: NotRequired[str]
         sort_by: NotRequired[Filters.SortFilter]
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("item_prices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("item_prices", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def update(id, params: UpdateParams, env=None, headers=None) -> UpdateResponse:
+    def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("item_prices", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("item_prices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("item_prices", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
     def find_applicable_items(
-        id, params: FindApplicableItemsParams = None, env=None, headers=None
+        self, id, params: FindApplicableItemsParams = None, headers=None
     ) -> FindApplicableItemsResponse:
         return request.send(
             "get",
             request.uri_path("item_prices", id, "applicable_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             FindApplicableItemsResponse,
         )
 
-    @staticmethod
     def find_applicable_item_prices(
-        id, params: FindApplicableItemPricesParams = None, env=None, headers=None
+        self, id, params: FindApplicableItemPricesParams = None, headers=None
     ) -> FindApplicableItemPricesResponse:
         return request.send(
             "get",
             request.uri_path("item_prices", id, "applicable_item_prices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             FindApplicableItemPricesResponse,
         )

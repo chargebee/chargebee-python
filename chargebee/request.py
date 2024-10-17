@@ -1,8 +1,8 @@
-import urllib
-from chargebee import util, http_request
-from chargebee.main import ChargeBee
-from chargebee import compat
 import json
+import urllib
+
+from chargebee import compat
+from chargebee import util, http_request
 
 
 def lowercase_keys(data):
@@ -14,9 +14,7 @@ def lowercase_keys(data):
         return data
 
 
-def send_list_request(
-    method, url, params=None, env=None, headers=None, response_type=None
-):
+def send_list_request(method, url, env, params=None, headers=None, response_type=None):
     serialized = {}
 
     if params is None:
@@ -26,16 +24,14 @@ def send_list_request(
         if isinstance(v, list):
             v = json.dumps(v)
         serialized.update({k: v})
-    return send(method, url, serialized, env, headers, response_type)
+    return send(method, url, env, serialized, headers, response_type)
 
 
-def send(method, url, params=None, env=None, headers=None, response_type=None):
+def send(method, url, env, params=None, headers=None, response_type=None):
     params = lowercase_keys(params)
 
     if params is None:
         params = {}
-
-    env = env or ChargeBee.default_env
 
     ser_params = util.serialize(params)
 

@@ -26,10 +26,9 @@ class Response(object):
             self._next_offset = response.get("next_offset", None)
         self._response_header = response_header
         self._response_type = response_type
-        self.is_idempotency_replayed()
 
-    def is_idempotency_replayed(self):
-        self._response_header["is_idempotency_replayed"] = bool(
+    def is_idempotency_replayed(self) -> bool:
+        return bool(
             self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER, False)
         )
 
@@ -38,7 +37,8 @@ class Response(object):
         for field in fields(self._response_type):
             field_name = field.name
             field_type = field.type
-
+            if field_name == "is_idempotency_replayed":
+                init_data["is_idempotency_replayed"] = self.is_idempotency_replayed()
             if field_name in self._response:
                 if hasattr(field_type, "__origin__") and field_type.__origin__ == list:
                     list_data = []
@@ -69,7 +69,7 @@ class Response(object):
                         self._response[field_name]
                     )
 
-            init_data["response_headers"] = self._response_header
+            init_data["headers"] = self._response_header
         return self._response_type(**init_data)
 
     def parse_list_response(self) -> T:
@@ -100,6 +100,6 @@ class Response(object):
 
                 result[field_name] = list_data
                 result["next_offset"] = self._next_offset
-                result["response_headers"] = self._response_header
+                result["headers"] = self._response_header
 
         return self._response_type(**result)

@@ -1,9 +1,12 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 
+@dataclass
 class ImpactedItemPrice:
+
+    env: environment.Environment
 
     class Download(TypedDict):
         download_url: Required[str]

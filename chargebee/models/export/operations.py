@@ -1,12 +1,16 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
 
+@dataclass
 class Export:
+
+    env: environment.Environment
+
     class MimeType(Enum):
         PDF = "pdf"
         ZIP = "zip"
@@ -333,19 +337,22 @@ class Export:
         created_at: NotRequired[Filters.TimestampFilter]
 
     def wait_for_export_completion(
-        export: ExportResponse, env=None, headers=None
+        self, export: ExportResponse, headers=None
     ) -> RetrieveResponse:
         import time
 
+        response: RetrieveResponse = None
         count = 0
-        sleep_time_millis = (10000 if env == None else env.export_sleep_millis) / 1000.0
+        retry_delay_ms = (
+            10000 if self.env is None else self.env.export_retry_delay_ms
+        ) / 1000.0
 
         while export.status == "in_process":
             if count > 50:
                 raise RuntimeError("Export is taking too long")
             count += 1
-            time.sleep(sleep_time_millis)
-            response = Export.retrieve(export.id, env, headers)
+            time.sleep(retry_delay_ms)
+            response = self.retrieve(export.id, headers)
             export = response.export
         return response
 
@@ -449,221 +456,204 @@ class Export:
     class PriceVariantsParams(TypedDict):
         price_variant: NotRequired["Export.PriceVariantsPriceVariantParams"]
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
-            "get", request.uri_path("exports", id), None, env, headers, RetrieveResponse
+            "get",
+            request.uri_path("exports", id),
+            self.env,
+            None,
+            headers,
+            RetrieveResponse,
         )
 
-    @staticmethod
     def revenue_recognition(
-        params: RevenueRecognitionParams, env=None, headers=None
+        self, params: RevenueRecognitionParams, headers=None
     ) -> RevenueRecognitionResponse:
         return request.send(
             "post",
             request.uri_path("exports", "revenue_recognition"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             RevenueRecognitionResponse,
         )
 
-    @staticmethod
     def deferred_revenue(
-        params: DeferredRevenueParams, env=None, headers=None
+        self, params: DeferredRevenueParams, headers=None
     ) -> DeferredRevenueResponse:
         return request.send(
             "post",
             request.uri_path("exports", "deferred_revenue"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DeferredRevenueResponse,
         )
 
-    @staticmethod
-    def plans(params: PlansParams = None, env=None, headers=None) -> PlansResponse:
+    def plans(self, params: PlansParams = None, headers=None) -> PlansResponse:
         return request.send(
             "post",
             request.uri_path("exports", "plans"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PlansResponse,
         )
 
-    @staticmethod
-    def addons(params: AddonsParams = None, env=None, headers=None) -> AddonsResponse:
+    def addons(self, params: AddonsParams = None, headers=None) -> AddonsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "addons"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AddonsResponse,
         )
 
-    @staticmethod
-    def coupons(
-        params: CouponsParams = None, env=None, headers=None
-    ) -> CouponsResponse:
+    def coupons(self, params: CouponsParams = None, headers=None) -> CouponsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "coupons"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CouponsResponse,
         )
 
-    @staticmethod
     def customers(
-        params: CustomersParams = None, env=None, headers=None
+        self, params: CustomersParams = None, headers=None
     ) -> CustomersResponse:
         return request.send(
             "post",
             request.uri_path("exports", "customers"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CustomersResponse,
         )
 
-    @staticmethod
     def subscriptions(
-        params: SubscriptionsParams = None, env=None, headers=None
+        self, params: SubscriptionsParams = None, headers=None
     ) -> SubscriptionsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "subscriptions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             SubscriptionsResponse,
         )
 
-    @staticmethod
-    def invoices(
-        params: InvoicesParams = None, env=None, headers=None
-    ) -> InvoicesResponse:
+    def invoices(self, params: InvoicesParams = None, headers=None) -> InvoicesResponse:
         return request.send(
             "post",
             request.uri_path("exports", "invoices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             InvoicesResponse,
         )
 
-    @staticmethod
     def credit_notes(
-        params: CreditNotesParams = None, env=None, headers=None
+        self, params: CreditNotesParams = None, headers=None
     ) -> CreditNotesResponse:
         return request.send(
             "post",
             request.uri_path("exports", "credit_notes"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreditNotesResponse,
         )
 
-    @staticmethod
     def transactions(
-        params: TransactionsParams = None, env=None, headers=None
+        self, params: TransactionsParams = None, headers=None
     ) -> TransactionsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "transactions"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             TransactionsResponse,
         )
 
-    @staticmethod
-    def orders(params: OrdersParams = None, env=None, headers=None) -> OrdersResponse:
+    def orders(self, params: OrdersParams = None, headers=None) -> OrdersResponse:
         return request.send(
             "post",
             request.uri_path("exports", "orders"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             OrdersResponse,
         )
 
-    @staticmethod
     def item_families(
-        params: ItemFamiliesParams = None, env=None, headers=None
+        self, params: ItemFamiliesParams = None, headers=None
     ) -> ItemFamiliesResponse:
         return request.send(
             "post",
             request.uri_path("exports", "item_families"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ItemFamiliesResponse,
         )
 
-    @staticmethod
-    def items(params: ItemsParams = None, env=None, headers=None) -> ItemsResponse:
+    def items(self, params: ItemsParams = None, headers=None) -> ItemsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ItemsResponse,
         )
 
-    @staticmethod
     def item_prices(
-        params: ItemPricesParams = None, env=None, headers=None
+        self, params: ItemPricesParams = None, headers=None
     ) -> ItemPricesResponse:
         return request.send(
             "post",
             request.uri_path("exports", "item_prices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ItemPricesResponse,
         )
 
-    @staticmethod
     def attached_items(
-        params: AttachedItemsParams = None, env=None, headers=None
+        self, params: AttachedItemsParams = None, headers=None
     ) -> AttachedItemsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "attached_items"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             AttachedItemsResponse,
         )
 
-    @staticmethod
     def differential_prices(
-        params: DifferentialPricesParams = None, env=None, headers=None
+        self, params: DifferentialPricesParams = None, headers=None
     ) -> DifferentialPricesResponse:
         return request.send(
             "post",
             request.uri_path("exports", "differential_prices"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             DifferentialPricesResponse,
         )
 
-    @staticmethod
     def price_variants(
-        params: PriceVariantsParams = None, env=None, headers=None
+        self, params: PriceVariantsParams = None, headers=None
     ) -> PriceVariantsResponse:
         return request.send(
             "post",
             request.uri_path("exports", "price_variants"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             PriceVariantsResponse,
         )

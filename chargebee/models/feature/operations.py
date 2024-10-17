@@ -1,11 +1,15 @@
 from .responses import *
-from chargebee import request
+from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
 
 
+@dataclass
 class Feature:
+
+    env: environment.Environment
+
     class Status(Enum):
         ACTIVE = "active"
         ARCHIVED = "archived"
@@ -63,92 +67,82 @@ class Feature:
         unit: NotRequired[str]
         levels: NotRequired[List["Feature.UpdateLevelParams"]]
 
-    @staticmethod
-    def list(params: ListParams = None, env=None, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         return request.send_list_request(
             "get",
             request.uri_path("features"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             ListResponse,
         )
 
-    @staticmethod
-    def create(params: CreateParams, env=None, headers=None) -> CreateResponse:
+    def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(
             "post",
             request.uri_path("features"),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             CreateResponse,
         )
 
-    @staticmethod
-    def update(
-        id, params: UpdateParams = None, env=None, headers=None
-    ) -> UpdateResponse:
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         return request.send(
             "post",
             request.uri_path("features", id),
+            self.env,
             cast(Dict[Any, Any], params),
-            env,
             headers,
             UpdateResponse,
         )
 
-    @staticmethod
-    def retrieve(id, env=None, headers=None) -> RetrieveResponse:
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
             "get",
             request.uri_path("features", id),
+            self.env,
             None,
-            env,
             headers,
             RetrieveResponse,
         )
 
-    @staticmethod
-    def delete(id, env=None, headers=None) -> DeleteResponse:
+    def delete(self, id, headers=None) -> DeleteResponse:
         return request.send(
             "post",
             request.uri_path("features", id, "delete"),
+            self.env,
             None,
-            env,
             headers,
             DeleteResponse,
         )
 
-    @staticmethod
-    def activate(id, env=None, headers=None) -> ActivateResponse:
+    def activate(self, id, headers=None) -> ActivateResponse:
         return request.send(
             "post",
             request.uri_path("features", id, "activate_command"),
+            self.env,
             None,
-            env,
             headers,
             ActivateResponse,
         )
 
-    @staticmethod
-    def archive(id, env=None, headers=None) -> ArchiveResponse:
+    def archive(self, id, headers=None) -> ArchiveResponse:
         return request.send(
             "post",
             request.uri_path("features", id, "archive_command"),
+            self.env,
             None,
-            env,
             headers,
             ArchiveResponse,
         )
 
-    @staticmethod
-    def reactivate(id, env=None, headers=None) -> ReactivateResponse:
+    def reactivate(self, id, headers=None) -> ReactivateResponse:
         return request.send(
             "post",
             request.uri_path("features", id, "reactivate_command"),
+            self.env,
             None,
-            env,
             headers,
             ReactivateResponse,
         )
