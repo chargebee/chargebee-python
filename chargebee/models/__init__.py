@@ -42,6 +42,8 @@ from chargebee.models.item_family import ItemFamily
 from chargebee.models.item_price import ItemPrice
 from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.metadata import Metadata
+from chargebee.models.omnichannel_subscription import OmnichannelSubscription
+from chargebee.models.omnichannel_transaction import OmnichannelTransaction
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent
 from chargebee.models.payment_reference_number import PaymentReferenceNumber
@@ -61,6 +63,7 @@ from chargebee.models.quote_line_group import QuoteLineGroup
 from chargebee.models.quoted_charge import QuotedCharge
 from chargebee.models.quoted_subscription import QuotedSubscription
 from chargebee.models.ramp import Ramp
+from chargebee.models.recorded_purchase import RecordedPurchase
 from chargebee.models.resource_migration import ResourceMigration
 from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.subscription import Subscription

@@ -435,6 +435,23 @@ class Result(object):
         return pricing_page_session;
 
     @property
+    def omnichannel_subscription(self):
+        omnichannel_subscription = self._get('omnichannel_subscription', OmnichannelSubscription,
+        {'omnichannel_subscription_items' : OmnichannelSubscription.OmnichannelSubscriptionItem});
+        return omnichannel_subscription;
+
+    @property
+    def omnichannel_transaction(self):
+        omnichannel_transaction = self._get('omnichannel_transaction', OmnichannelTransaction);
+        return omnichannel_transaction;
+
+    @property
+    def recorded_purchase(self):
+        recorded_purchase = self._get('recorded_purchase', RecordedPurchase,
+        {'linked_omnichannel_subscriptions' : RecordedPurchase.LinkedOmnichannelSubscription, 'error_detail' : RecordedPurchase.ErrorDetail});
+        return recorded_purchase;
+
+    @property
     def advance_invoice_schedules(self):
         advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});

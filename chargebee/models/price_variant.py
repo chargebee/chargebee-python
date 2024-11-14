@@ -9,7 +9,7 @@ class PriceVariant(Model):
       pass
 
     fields = ["id", "name", "external_name", "variant_group", "description", "status", "created_at", \
-    "resource_version", "updated_at", "archived_at", "attributes"]
+    "resource_version", "updated_at", "archived_at", "attributes", "business_entity_id"]
 
 
     @staticmethod

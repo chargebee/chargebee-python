@@ -15,11 +15,11 @@ class Coupon(Model):
       pass
 
     fields = ["id", "name", "invoice_name", "discount_type", "discount_percentage", "discount_amount", \
-    "discount_quantity", "currency_code", "duration_type", "duration_month", "valid_till", "max_redemptions", \
-    "status", "apply_discount_on", "apply_on", "plan_constraint", "addon_constraint", "created_at", \
-    "archived_at", "resource_version", "updated_at", "included_in_mrr", "period", "period_unit", \
-    "plan_ids", "addon_ids", "item_constraints", "item_constraint_criteria", "redemptions", "invoice_notes", \
-    "meta_data", "coupon_constraints"]
+    "discount_quantity", "currency_code", "duration_type", "duration_month", "valid_from", "valid_till", \
+    "max_redemptions", "status", "apply_discount_on", "apply_on", "plan_constraint", "addon_constraint", \
+    "created_at", "archived_at", "resource_version", "updated_at", "included_in_mrr", "period", \
+    "period_unit", "plan_ids", "addon_ids", "item_constraints", "item_constraint_criteria", "redemptions", \
+    "invoice_notes", "meta_data", "coupon_constraints"]
 
 
     @staticmethod

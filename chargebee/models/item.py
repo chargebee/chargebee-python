@@ -18,7 +18,7 @@ class Item(Model):
     "item_family_id", "type", "is_shippable", "is_giftable", "redirect_url", "enabled_for_checkout", \
     "enabled_in_portal", "included_in_mrr", "item_applicability", "gift_claim_redirect_url", "unit", \
     "metered", "usage_calculation", "archived_at", "channel", "applicable_items", "bundle_items", \
-    "bundle_configuration", "metadata"]
+    "bundle_configuration", "metadata", "business_entity_id"]
 
 
     @staticmethod

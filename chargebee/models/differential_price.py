@@ -12,7 +12,8 @@ class DifferentialPrice(Model):
       pass
 
     fields = ["id", "item_price_id", "parent_item_id", "price", "price_in_decimal", "status", \
-    "resource_version", "updated_at", "created_at", "modified_at", "tiers", "currency_code", "parent_periods"]
+    "resource_version", "updated_at", "created_at", "modified_at", "tiers", "currency_code", "parent_periods", \
+    "business_entity_id"]
 
 
     @staticmethod

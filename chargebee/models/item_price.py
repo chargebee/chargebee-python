@@ -23,7 +23,8 @@ class ItemPrice(Model):
     "shipping_period_unit", "billing_cycles", "free_quantity", "free_quantity_in_decimal", "channel", \
     "resource_version", "updated_at", "created_at", "usage_accumulation_reset_frequency", "archived_at", \
     "invoice_notes", "tiers", "is_taxable", "tax_detail", "tax_providers_fields", "accounting_detail", \
-    "metadata", "item_type", "archivable", "parent_item_id", "show_description_in_invoices", "show_description_in_quotes"]
+    "metadata", "item_type", "archivable", "parent_item_id", "show_description_in_invoices", "show_description_in_quotes", \
+    "business_entity_id"]
 
 
     @staticmethod
