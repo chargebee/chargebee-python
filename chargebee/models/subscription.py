@@ -2,6 +2,8 @@ import json
 from chargebee.model import Model
 from chargebee import request
 from chargebee import APIError
+import warnings
+
 
 class Subscription(Model):
     class SubscriptionItem(Model):
@@ -50,9 +52,26 @@ class Subscription(Model):
     "net_term_days", "active_id", "subscription_items", "item_tiers", "charged_items", "due_invoices_count", \
     "due_since", "total_dues", "mrr", "arr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
     "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "metadata", "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", \
-    "free_period", "free_period_unit", "create_pending_invoices", "auto_close_invoices", "discounts", \
-    "business_entity_id"]
+    "meta_data", "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", "free_period", \
+    "free_period_unit", "create_pending_invoices", "auto_close_invoices", "discounts", "business_entity_id", "metadata" ]
+    @property
+    def metadata(self):
+        warnings.warn(
+        "`metadata` please use meta_data instead",
+        DeprecationWarning,
+        stacklevel=2
+        )
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, value):
+        warnings.warn(
+        "`metadata` please use meta_data instead",
+        DeprecationWarning,
+        stacklevel=2
+        )
+        self._metadata = value
+
 
 
     @staticmethod

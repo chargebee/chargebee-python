@@ -43,6 +43,7 @@ from chargebee.models.item_price import ItemPrice
 from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.metadata import Metadata
 from chargebee.models.omnichannel_subscription import OmnichannelSubscription
+from chargebee.models.omnichannel_subscription_item import OmnichannelSubscriptionItem
 from chargebee.models.omnichannel_transaction import OmnichannelTransaction
 from chargebee.models.order import Order
 from chargebee.models.payment_intent import PaymentIntent

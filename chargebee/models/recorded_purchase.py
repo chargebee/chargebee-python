@@ -12,7 +12,7 @@ class RecordedPurchase(Model):
       pass
 
     fields = ["id", "customer_id", "app_id", "source", "status", "omnichannel_transaction_id", \
-    "created_at", "linked_omnichannel_subscriptions", "error_detail"]
+    "created_at", "resource_version", "linked_omnichannel_subscriptions", "error_detail"]
 
 
     @staticmethod

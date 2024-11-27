@@ -436,14 +436,21 @@ class Result(object):
 
     @property
     def omnichannel_subscription(self):
-        omnichannel_subscription = self._get('omnichannel_subscription', OmnichannelSubscription,
-        {'omnichannel_subscription_items' : OmnichannelSubscription.OmnichannelSubscriptionItem});
+        omnichannel_subscription = self._get('omnichannel_subscription', OmnichannelSubscription, {},
+        {'omnichannel_subscription_items' : OmnichannelSubscriptionItem});
+        omnichannel_subscription.init_dependant_list(self._response['omnichannel_subscription'], 'omnichannel_subscription_items',
+        {});
         return omnichannel_subscription;
 
     @property
     def omnichannel_transaction(self):
         omnichannel_transaction = self._get('omnichannel_transaction', OmnichannelTransaction);
         return omnichannel_transaction;
+
+    @property
+    def omnichannel_subscription_item(self):
+        omnichannel_subscription_item = self._get('omnichannel_subscription_item', OmnichannelSubscriptionItem);
+        return omnichannel_subscription_item;
 
     @property
     def recorded_purchase(self):
