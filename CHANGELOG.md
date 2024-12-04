@@ -1,3 +1,8 @@
+###  v2.47.1 (2024-12-04)
+
+#### Bug Fixes: 
+* Fixed issue preventing access to response headers during exceptions.
+
 ###  v2.47.0 (2024-11-27)
 
 #### New Resource: 
