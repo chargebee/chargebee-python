@@ -1,3 +1,8 @@
+###  v2.47.2 (2024-12-11)
+
+#### Bug Fixes: 
+* Updated the `api_error` class to make response headers an optional parameter, ensuring backward compatibility.
+
 ###  v2.47.1 (2024-12-04)
 
 #### Bug Fixes: 

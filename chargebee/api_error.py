@@ -1,6 +1,6 @@
 class APIError(Exception):
 
-    def __init__(self, http_code,json_obj,headers):
+    def __init__(self, http_code,json_obj,headers=None):
         Exception.__init__(self, json_obj.get('message'))
         self.json_obj = json_obj
         self.http_status_code = http_code
@@ -14,15 +14,15 @@ class APIError(Exception):
         self.http_body = None
 
 class PaymentError(APIError):
-    def __init__(self, http_code,json_obj,headers):
+    def __init__(self, http_code,json_obj,headers=None):
         APIError.__init__(self, http_code,json_obj,headers)
 
 class InvalidRequestError(APIError):
-    def __init__(self, http_code,json_obj,headers):
+    def __init__(self, http_code,json_obj,headers=None):
         APIError.__init__(self, http_code,json_obj,headers)
 
 class OperationFailedError(APIError):
-    def __init__(self, http_code,json_obj,headers):
+    def __init__(self, http_code,json_obj,headers=None):
         APIError.__init__(self, http_code,json_obj,headers)
 
 
