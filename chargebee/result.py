@@ -26,7 +26,7 @@ class Result(object):
     @property
     def subscription(self):
         subscription = self._get('subscription', Subscription,
-        {'subscription_items' : Subscription.SubscriptionItem, 'item_tiers' : Subscription.ItemTier, 'charged_items' : Subscription.ChargedItem, 'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo, 'contract_term' : Subscription.ContractTerm, 'discounts' : Subscription.Discount});
+        {'subscription_items' : Subscription.SubscriptionItem, 'item_tiers' : Subscription.ItemTier, 'charged_items' : Subscription.ChargedItem, 'addons' : Subscription.Addon, 'event_based_addons' : Subscription.EventBasedAddon, 'charged_event_based_addons' : Subscription.ChargedEventBasedAddon, 'coupons' : Subscription.Coupon, 'shipping_address' : Subscription.ShippingAddress, 'referral_info' : Subscription.ReferralInfo, 'billing_override' : Subscription.BillingOverride, 'contract_term' : Subscription.ContractTerm, 'discounts' : Subscription.Discount});
         return subscription;
 
     @property
@@ -332,6 +332,11 @@ class Result(object):
         return differential_price;
 
     @property
+    def configuration(self):
+        configuration = self._get('configuration', Configuration);
+        return configuration;
+
+    @property
     def feature(self):
         feature = self._get('feature', Feature,
         {'levels' : Feature.Level});
@@ -505,6 +510,12 @@ class Result(object):
         downloads = self._get_list('downloads', Download,
         {});
         return downloads;
+
+    @property
+    def configurations(self):
+        configurations = self._get_list('configurations', Configuration,
+        {});
+        return configurations;
 
     @property
     def in_app_subscriptions(self):

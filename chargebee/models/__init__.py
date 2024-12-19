@@ -7,6 +7,7 @@ from chargebee.models.business_entity import BusinessEntity
 from chargebee.models.business_entity_transfer import BusinessEntityTransfer
 from chargebee.models.card import Card
 from chargebee.models.comment import Comment
+from chargebee.models.configuration import Configuration
 from chargebee.models.contact import Contact
 from chargebee.models.contract_term import ContractTerm
 from chargebee.models.coupon import Coupon

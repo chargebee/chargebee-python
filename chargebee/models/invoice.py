@@ -8,7 +8,7 @@ class Invoice(Model):
       fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "usage_percentage", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
-      fields = ["amount", "description", "entity_type", "entity_id", "coupon_set_code"]
+      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
       pass
     class LineItemDiscount(Model):
       fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]

@@ -7,7 +7,7 @@ import warnings
 
 class Subscription(Model):
     class SubscriptionItem(Model):
-      fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "amount_in_decimal", "billing_period", "billing_period_unit", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option", "proration_type", "usage_accumulation_reset_frequency"]
+      fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "current_term_start", "current_term_end", "next_billing_at", "amount_in_decimal", "billing_period", "billing_period_unit", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option", "proration_type", "usage_accumulation_reset_frequency"]
       pass
     class ItemTier(Model):
       fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
@@ -33,6 +33,9 @@ class Subscription(Model):
     class ReferralInfo(Model):
       fields = ["referral_code", "coupon_code", "referrer_id", "external_reference_id", "reward_status", "referral_system", "account_id", "campaign_id", "external_campaign_id", "friend_offer_type", "referrer_reward_type", "notify_referral_system", "destination_url", "post_purchase_widget_enabled"]
       pass
+    class BillingOverride(Model):
+      fields = ["max_excess_payment_usage", "max_refundable_credits_usage"]
+      pass
     class ContractTerm(Model):
       fields = ["id", "status", "contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "total_contract_value_before_tax", "cancellation_cutoff_period", "created_at", "subscription_id", "remaining_billing_cycles"]
       pass
@@ -51,9 +54,10 @@ class Subscription(Model):
     "plan_amount_in_decimal", "cancel_schedule_created_at", "offline_payment_method", "channel", \
     "net_term_days", "active_id", "subscription_items", "item_tiers", "charged_items", "due_invoices_count", \
     "due_since", "total_dues", "mrr", "arr", "exchange_rate", "base_currency_code", "addons", "event_based_addons", \
-    "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "invoice_notes", \
-    "meta_data", "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", "free_period", \
-    "free_period_unit", "create_pending_invoices", "auto_close_invoices", "discounts", "business_entity_id", "metadata" ]
+    "charged_event_based_addons", "coupon", "coupons", "shipping_address", "referral_info", "billing_override", \
+    "invoice_notes", "meta_data", "deleted", "changes_scheduled_at", "contract_term", "cancel_reason_code", \
+    "free_period", "free_period_unit", "create_pending_invoices", "auto_close_invoices", "discounts", \
+    "business_entity_id", "metadata" ]
     @property
     def metadata(self):
         warnings.warn(

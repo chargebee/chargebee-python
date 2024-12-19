@@ -8,7 +8,7 @@ class Quote(Model):
       fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "usage_percentage", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
-      fields = ["amount", "description", "entity_type", "entity_id", "coupon_set_code"]
+      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
       pass
     class LineItemDiscount(Model):
       fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
@@ -35,7 +35,7 @@ class Quote(Model):
     "updated_at", "vat_number_prefix", "line_items", "discounts", "line_item_discounts", "taxes", \
     "line_item_taxes", "line_item_tiers", "tax_category", "currency_code", "notes", "shipping_address", \
     "billing_address", "contract_term_start", "contract_term_end", "contract_term_termination_fee", \
-    "business_entity_id"]
+    "business_entity_id", "deleted"]
 
 
     @staticmethod
