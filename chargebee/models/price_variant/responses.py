@@ -24,6 +24,7 @@ class PriceVariantResponse(Model):
     updated_at: int = None
     archived_at: int = None
     attributes: List[AttributeResponse] = None
+    business_entity_id: str = None
 
 
 @dataclass

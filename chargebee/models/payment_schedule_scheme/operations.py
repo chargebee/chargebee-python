@@ -21,11 +21,18 @@ class PaymentScheduleScheme:
         period: NotRequired[int]
         amount_percentage: NotRequired[float]
 
+    class CreateFlexibleScheduleParams(TypedDict):
+        period: NotRequired[int]
+        amount_percentage: NotRequired[float]
+
     class CreateParams(TypedDict):
         number_of_schedules: Required[int]
         period_unit: Required["PaymentScheduleScheme.PeriodUnit"]
         period: NotRequired[int]
-        description: NotRequired[str]
+        name: Required[str]
+        flexible_schedules: NotRequired[
+            List["PaymentScheduleScheme.CreateFlexibleScheduleParams"]
+        ]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         return request.send(

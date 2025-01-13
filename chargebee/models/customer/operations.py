@@ -3,7 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import enums, payment_intent
+from chargebee.models import enums, payment_intent, card
 
 
 @dataclass
@@ -200,6 +200,7 @@ class Customer:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -375,6 +376,7 @@ class Customer:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]

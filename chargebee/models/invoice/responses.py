@@ -7,6 +7,7 @@ from chargebee.models import (
     payment_reference_number,
     payment_intent,
     transaction,
+    card,
     credit_note,
     transaction,
     payment_schedule,
@@ -48,6 +49,7 @@ class DiscountResponse(Model):
     amount: int = None
     description: str = None
     entity_type: str = None
+    discount_type: str = None
     entity_id: str = None
     coupon_set_code: str = None
 

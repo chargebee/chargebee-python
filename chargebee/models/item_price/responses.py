@@ -87,6 +87,7 @@ class ItemPriceResponse(Model):
     parent_item_id: str = None
     show_description_in_invoices: bool = None
     show_description_in_quotes: bool = None
+    business_entity_id: str = None
 
 
 @dataclass

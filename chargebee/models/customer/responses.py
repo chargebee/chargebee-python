@@ -5,6 +5,7 @@ from chargebee.response import Response
 from chargebee.models import (
     payment_intent,
     card,
+    card,
     payment_source,
     resource_migration,
     hierarchy,

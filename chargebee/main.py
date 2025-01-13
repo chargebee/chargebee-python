@@ -41,6 +41,7 @@ class Chargebee:
         self.BusinessEntityTransfer = chargebee.BusinessEntityTransfer(self.env)
         self.Card = chargebee.Card(self.env)
         self.Comment = chargebee.Comment(self.env)
+        self.Configuration = chargebee.Configuration(self.env)
         self.Contact = chargebee.Contact(self.env)
         self.ContractTerm = chargebee.ContractTerm(self.env)
         self.Coupon = chargebee.Coupon(self.env)
@@ -75,6 +76,11 @@ class Chargebee:
         self.ItemFamily = chargebee.ItemFamily(self.env)
         self.ItemPrice = chargebee.ItemPrice(self.env)
         self.Metadata = chargebee.Metadata(self.env)
+        self.OmnichannelSubscription = chargebee.OmnichannelSubscription(self.env)
+        self.OmnichannelSubscriptionItem = chargebee.OmnichannelSubscriptionItem(
+            self.env
+        )
+        self.OmnichannelTransaction = chargebee.OmnichannelTransaction(self.env)
         self.Order = chargebee.Order(self.env)
         self.PaymentIntent = chargebee.PaymentIntent(self.env)
         self.PaymentReferenceNumber = chargebee.PaymentReferenceNumber(self.env)
@@ -94,6 +100,7 @@ class Chargebee:
         self.QuotedCharge = chargebee.QuotedCharge(self.env)
         self.QuotedSubscription = chargebee.QuotedSubscription(self.env)
         self.Ramp = chargebee.Ramp(self.env)
+        self.RecordedPurchase = chargebee.RecordedPurchase(self.env)
         self.ResourceMigration = chargebee.ResourceMigration(self.env)
         self.SiteMigrationDetail = chargebee.SiteMigrationDetail(self.env)
         self.Subscription = chargebee.Subscription(self.env)

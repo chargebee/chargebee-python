@@ -9,6 +9,7 @@ from chargebee.models import (
     payment_reference_number,
     payment_intent,
     transaction,
+    card,
 )
 
 
@@ -56,6 +57,13 @@ class Invoice:
         PRORATED_CREDITS = "prorated_credits"
         ITEM_LEVEL_DISCOUNT = "item_level_discount"
         DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
+
+        def __str__(self):
+            return self.value
+
+    class DiscountDiscountType(Enum):
+        FIXED_AMOUNT = "fixed_amount"
+        PERCENTAGE = "percentage"
 
         def __str__(self):
             return self.value
@@ -150,6 +158,7 @@ class Invoice:
         amount: Required[int]
         description: NotRequired[str]
         entity_type: Required["Invoice.DiscountEntityType"]
+        discount_type: NotRequired["Invoice.DiscountDiscountType"]
         entity_id: NotRequired[str]
         coupon_set_code: NotRequired[str]
 
@@ -362,6 +371,7 @@ class Invoice:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -488,6 +498,7 @@ class Invoice:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]

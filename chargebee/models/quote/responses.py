@@ -49,6 +49,7 @@ class DiscountResponse(Model):
     amount: int = None
     description: str = None
     entity_type: str = None
+    discount_type: str = None
     entity_id: str = None
     coupon_set_code: str = None
 
@@ -179,6 +180,7 @@ class QuoteResponse(Model):
     contract_term_end: int = None
     contract_term_termination_fee: int = None
     business_entity_id: str = None
+    deleted: bool = None
 
 
 @dataclass

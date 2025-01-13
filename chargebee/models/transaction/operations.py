@@ -27,6 +27,7 @@ class Transaction:
         FAILURE = "failure"
         TIMEOUT = "timeout"
         NEEDS_ATTENTION = "needs_attention"
+        LATE_FAILURE = "late_failure"
 
         def __str__(self):
             return self.value
@@ -60,6 +61,7 @@ class Transaction:
         FAILURE = "failure"
         TIMEOUT = "timeout"
         NEEDS_ATTENTION = "needs_attention"
+        LATE_FAILURE = "late_failure"
 
         def __str__(self):
             return self.value
@@ -81,7 +83,7 @@ class Transaction:
         cn_date: NotRequired[int]
         cn_total: NotRequired[int]
         cn_status: Required["credit_note.CreditNote.Status"]
-        cn_reference_invoice_id: Required[str]
+        cn_reference_invoice_id: NotRequired[str]
 
     class LinkedRefund(TypedDict):
         txn_id: Required[str]
@@ -109,6 +111,7 @@ class Transaction:
         recommendation_message: NotRequired[str]
         processor_error_code: NotRequired[str]
         processor_error_message: NotRequired[str]
+        error_cause_id: NotRequired[str]
 
     class CreateAuthorizationParams(TypedDict):
         customer_id: Required[str]

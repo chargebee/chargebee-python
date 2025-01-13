@@ -28,9 +28,7 @@ class Response(object):
         self._response_type = response_type
 
     def is_idempotency_replayed(self) -> bool:
-        return bool(
-            self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER, False)
-        )
+        return bool(self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER, False))
 
     def parse_response(self) -> T:
         init_data = {}

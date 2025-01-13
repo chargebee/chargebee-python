@@ -14,6 +14,7 @@ class ItemFamilyResponse(Model):
     resource_version: int = None
     updated_at: int = None
     channel: str = None
+    business_entity_id: str = None
 
 
 @dataclass

@@ -68,6 +68,7 @@ class DifferentialPrice:
         price_in_decimal: NotRequired[str]
         parent_periods: Required[List["DifferentialPrice.CreateParentPeriodParams"]]
         tiers: NotRequired[List["DifferentialPrice.CreateTierParams"]]
+        business_entity_id: NotRequired[str]
 
     class RetrieveParams(TypedDict):
         item_price_id: Required[str]

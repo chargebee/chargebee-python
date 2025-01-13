@@ -35,6 +35,7 @@ class AttachedItem:
         quantity_in_decimal: NotRequired[str]
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
+        business_entity_id: NotRequired[str]
 
     class UpdateParams(TypedDict):
         parent_item_id: Required[str]

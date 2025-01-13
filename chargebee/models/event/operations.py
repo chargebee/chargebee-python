@@ -20,6 +20,7 @@ class Event:
         FAILED = "failed"
         SKIPPED = "skipped"
         NOT_APPLICABLE = "not_applicable"
+        DISABLED = "disabled"
 
         def __str__(self):
             return self.value
@@ -32,6 +33,7 @@ class Event:
         FAILED = "failed"
         SKIPPED = "skipped"
         NOT_APPLICABLE = "not_applicable"
+        DISABLED = "disabled"
 
         def __str__(self):
             return self.value

@@ -36,6 +36,7 @@ class DifferentialPriceResponse(Model):
     tiers: List[TierResponse] = None
     currency_code: str = None
     parent_periods: List[ParentPeriodResponse] = None
+    business_entity_id: str = None
 
 
 @dataclass

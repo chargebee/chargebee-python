@@ -6,6 +6,7 @@ from chargebee.models import (
     unbilled_charge,
     payment_intent,
     invoice,
+    card,
     advance_invoice_schedule,
     customer,
     card,
@@ -30,6 +31,9 @@ class SubscriptionItemResponse(Model):
     unit_price: int = None
     unit_price_in_decimal: str = None
     amount: int = None
+    current_term_start: int = None
+    current_term_end: int = None
+    next_billing_at: int = None
     amount_in_decimal: str = None
     billing_period: int = None
     billing_period_unit: str = None
@@ -106,6 +110,12 @@ class ReferralInfoResponse(Model):
     notify_referral_system: str = None
     destination_url: str = None
     post_purchase_widget_enabled: bool = None
+
+
+@dataclass
+class BillingOverrideResponse(Model):
+    max_excess_payment_usage: int = None
+    max_refundable_credits_usage: int = None
 
 
 @dataclass
@@ -245,9 +255,9 @@ class SubscriptionResponse(Model):
     coupons: List[CouponResponse] = None
     shipping_address: ShippingAddressResponse = None
     referral_info: ReferralInfoResponse = None
+    billing_override: BillingOverrideResponse = None
     invoice_notes: str = None
     meta_data: Dict[Any, Any] = None
-    metadata: Dict[Any, Any] = None
     deleted: bool = None
     changes_scheduled_at: int = None
     contract_term: ContractTermResponse = None

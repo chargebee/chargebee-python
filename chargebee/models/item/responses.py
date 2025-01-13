@@ -51,6 +51,7 @@ class ItemResponse(Model):
     bundle_items: List[BundleItemResponse] = None
     bundle_configuration: BundleConfigurationResponse = None
     metadata: Dict[Any, Any] = None
+    business_entity_id: str = None
 
 
 @dataclass
