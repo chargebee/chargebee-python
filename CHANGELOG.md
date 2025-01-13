@@ -98,8 +98,8 @@
 #### Removed Subresource: 
 * OmnichannelSubscriptionItem subresource has been removed from OmnichannelSubscription and is now a standalone resource.
 
-#### Deprecated Attribute: 
-* metadata has been deprecated from subscription.
+#### Removed Attribute: 
+* metadata has been removed from subscription.
 
 #### Bug Fixes:
 * Fixed issue preventing access to response headers during exceptions.
