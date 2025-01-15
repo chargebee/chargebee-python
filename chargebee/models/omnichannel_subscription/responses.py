@@ -32,7 +32,7 @@ class OmnichannelSubscriptionResponse(Model):
         "omnichannel_subscription_item.OmnichannelSubscriptionItemResponse"
     ] = None
     initial_purchase_transaction: (
-        "omnichannel_transaction.OmnichannelTransactionsResponse"
+        "omnichannel_transaction.OmnichannelTransactionResponse"
     ) = None
 
 

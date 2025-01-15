@@ -17,16 +17,16 @@ from chargebee.models import (
 class EstimateResponse(Model):
     raw_data: Dict[Any, Any] = None
     created_at: int = None
-    subscription_estimate: "subscription_estimate.SubscriptionEstimatesResponse" = None
+    subscription_estimate: "subscription_estimate.SubscriptionEstimateResponse" = None
     subscription_estimates: List[
-        "subscription_estimate.SubscriptionEstimatesResponse"
+        "subscription_estimate.SubscriptionEstimateResponse"
     ] = None
-    invoice_estimate: "invoice_estimate.InvoiceEstimatesResponse" = None
-    invoice_estimates: List["invoice_estimate.InvoiceEstimatesResponse"] = None
+    invoice_estimate: "invoice_estimate.InvoiceEstimateResponse" = None
+    invoice_estimates: List["invoice_estimate.InvoiceEstimateResponse"] = None
     payment_schedule_estimates: List[
         "payment_schedule_estimate.PaymentScheduleEstimateResponse"
     ] = None
-    next_invoice_estimate: "invoice_estimate.InvoiceEstimatesResponse" = None
+    next_invoice_estimate: "invoice_estimate.InvoiceEstimateResponse" = None
     credit_note_estimates: List["credit_note_estimate.CreditNoteEstimateResponse"] = (
         None
     )
