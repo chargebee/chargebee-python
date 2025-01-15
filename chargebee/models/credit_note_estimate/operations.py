@@ -40,6 +40,13 @@ class CreditNoteEstimate:
         def __str__(self):
             return self.value
 
+    class DiscountDiscountType(Enum):
+        FIXED_AMOUNT = "fixed_amount"
+        PERCENTAGE = "percentage"
+
+        def __str__(self):
+            return self.value
+
     class LineItemDiscountDiscountType(Enum):
         ITEM_LEVEL_COUPON = "item_level_coupon"
         DOCUMENT_LEVEL_COUPON = "document_level_coupon"
@@ -81,6 +88,7 @@ class CreditNoteEstimate:
         amount: Required[int]
         description: NotRequired[str]
         entity_type: Required["CreditNoteEstimate.DiscountEntityType"]
+        discount_type: NotRequired["CreditNoteEstimate.DiscountDiscountType"]
         entity_id: NotRequired[str]
         coupon_set_code: NotRequired[str]
 

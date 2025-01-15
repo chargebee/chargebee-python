@@ -54,6 +54,7 @@ from chargebee.models.enums import (
     PeriodUnit,
     PriceType,
     PricingModel,
+    ProductCatalogVersion,
     ProrationType,
     ReferralSystem,
     ReferrerRewardType,
@@ -96,6 +97,8 @@ from chargebee.models.business_entity_transfer.operations import BusinessEntityT
 from chargebee.models.card.operations import Card
 
 from chargebee.models.comment.operations import Comment
+
+from chargebee.models.configuration.operations import Configuration
 
 from chargebee.models.contact.operations import Contact
 
@@ -165,6 +168,14 @@ from chargebee.models.item_price.operations import ItemPrice
 
 from chargebee.models.metadata.operations import Metadata
 
+from chargebee.models.omnichannel_subscription.operations import OmnichannelSubscription
+
+from chargebee.models.omnichannel_subscription_item.operations import (
+    OmnichannelSubscriptionItem,
+)
+
+from chargebee.models.omnichannel_transaction.operations import OmnichannelTransaction
+
 from chargebee.models.order.operations import Order
 
 from chargebee.models.payment_intent.operations import PaymentIntent
@@ -204,6 +215,8 @@ from chargebee.models.quoted_charge.operations import QuotedCharge
 from chargebee.models.quoted_subscription.operations import QuotedSubscription
 
 from chargebee.models.ramp.operations import Ramp
+
+from chargebee.models.recorded_purchase.operations import RecordedPurchase
 
 from chargebee.models.resource_migration.operations import ResourceMigration
 

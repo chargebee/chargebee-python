@@ -112,6 +112,7 @@ class Item:
         metered: NotRequired[bool]
         usage_calculation: NotRequired["Item.UsageCalculation"]
         metadata: NotRequired[Dict[Any, Any]]
+        business_entity_id: NotRequired[str]
         bundle_items_to_add: NotRequired[List["Item.CreateBundleItemsToAddParams"]]
 
     class UpdateParams(TypedDict):
@@ -157,6 +158,8 @@ class Item:
         metered: NotRequired[Filters.BooleanFilter]
         usage_calculation: NotRequired[Filters.EnumFilter]
         channel: NotRequired[Filters.EnumFilter]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:

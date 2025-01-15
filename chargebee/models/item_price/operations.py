@@ -169,6 +169,7 @@ class ItemPrice:
         usage_accumulation_reset_frequency: NotRequired[
             enums.UsageAccumulationResetFrequency
         ]
+        business_entity_id: NotRequired[str]
         pricing_model: NotRequired[enums.PricingModel]
         tiers: NotRequired[List["ItemPrice.CreateTierParams"]]
         price: NotRequired[int]
@@ -234,6 +235,8 @@ class ItemPrice:
         trial_period_unit: NotRequired[Filters.EnumFilter]
         status: NotRequired[Filters.EnumFilter]
         updated_at: NotRequired[Filters.TimestampFilter]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
         period_unit: NotRequired[Filters.EnumFilter]
         period: NotRequired[Filters.NumberFilter]
         channel: NotRequired[Filters.EnumFilter]

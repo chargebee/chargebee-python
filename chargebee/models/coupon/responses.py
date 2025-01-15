@@ -39,6 +39,7 @@ class CouponResponse(Model):
     currency_code: str = None
     duration_type: str = None
     duration_month: int = None
+    valid_from: int = None
     valid_till: int = None
     max_redemptions: int = None
     status: str = None

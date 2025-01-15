@@ -332,6 +332,9 @@ class EntityType(Enum):
     ITEM_ENTITLEMENT = "item_entitlement"
     BUSINESS_ENTITY = "business_entity"
     PRICE_VARIANT = "price_variant"
+    OMNICHANNEL_SUBSCRIPTION = "omnichannel_subscription"
+    OMNICHANNEL_SUBSCRIPTION_ITEM = "omnichannel_subscription_item"
+    OMNICHANNEL_TRANSACTION = "omnichannel_transaction"
 
     def __str__(self):
         return self.value
@@ -532,6 +535,42 @@ class EventType(Enum):
     SUBSCRIPTION_MOVED_IN = "subscription_moved_in"
     SUBSCRIPTION_MOVED_OUT = "subscription_moved_out"
     SUBSCRIPTION_MOVEMENT_FAILED = "subscription_movement_failed"
+    OMNICHANNEL_SUBSCRIPTION_CREATED = "omnichannel_subscription_created"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_RENEWED = "omnichannel_subscription_item_renewed"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADE_SCHEDULED = (
+        "omnichannel_subscription_item_downgrade_scheduled"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_DOWNGRADE_REMOVED = (
+        "omnichannel_subscription_item_scheduled_downgrade_removed"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADED = (
+        "omnichannel_subscription_item_downgraded"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_EXPIRED = "omnichannel_subscription_item_expired"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_CANCELLATION_SCHEDULED = (
+        "omnichannel_subscription_item_cancellation_scheduled"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_CANCELLATION_REMOVED = (
+        "omnichannel_subscription_item_scheduled_cancellation_removed"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_RESUBSCRIBED = (
+        "omnichannel_subscription_item_resubscribed"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_UPGRADED = "omnichannel_subscription_item_upgraded"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_CANCELLED = "omnichannel_subscription_item_cancelled"
+    OMNICHANNEL_SUBSCRIPTION_IMPORTED = "omnichannel_subscription_imported"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_GRACE_PERIOD_STARTED = (
+        "omnichannel_subscription_item_grace_period_started"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_GRACE_PERIOD_EXPIRED = (
+        "omnichannel_subscription_item_grace_period_expired"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_DUNNING_STARTED = (
+        "omnichannel_subscription_item_dunning_started"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_DUNNING_EXPIRED = (
+        "omnichannel_subscription_item_dunning_expired"
+    )
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -835,6 +874,14 @@ class PricingModel(Enum):
     TIERED = "tiered"
     VOLUME = "volume"
     STAIRSTEP = "stairstep"
+
+    def __str__(self):
+        return self.value
+
+
+class ProductCatalogVersion(Enum):
+    V1 = "v1"
+    V2 = "v2"
 
     def __str__(self):
         return self.value

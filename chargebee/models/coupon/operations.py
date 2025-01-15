@@ -32,6 +32,7 @@ class Coupon:
         EXPIRED = "expired"
         ARCHIVED = "archived"
         DELETED = "deleted"
+        FUTURE = "future"
 
         def __str__(self):
             return self.value
@@ -104,6 +105,8 @@ class Coupon:
     class CouponConstraintType(Enum):
         MAX_REDEMPTIONS = "max_redemptions"
         UNIQUE_BY = "unique_by"
+        EXISTING_CUSTOMER = "existing_customer"
+        NEW_CUSTOMER = "new_customer"
 
         def __str__(self):
             return self.value
@@ -193,6 +196,7 @@ class Coupon:
         apply_on: Required["Coupon.ApplyOn"]
         duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
+        valid_from: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
         invoice_notes: NotRequired[str]
@@ -220,6 +224,7 @@ class Coupon:
         apply_on: NotRequired["Coupon.ApplyOn"]
         duration_type: NotRequired["Coupon.DurationType"]
         duration_month: NotRequired[int]
+        valid_from: NotRequired[int]
         valid_till: NotRequired[int]
         max_redemptions: NotRequired[int]
         invoice_notes: NotRequired[str]

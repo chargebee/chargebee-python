@@ -10,6 +10,14 @@ class Card:
 
     env: environment.Environment
 
+    class PreferredScheme(Enum):
+        CARTES_BANCAIRES = "cartes_bancaires"
+        MASTERCARD = "mastercard"
+        VISA = "visa"
+
+        def __str__(self):
+            return self.value
+
     class Status(Enum):
         VALID = "valid"
         EXPIRING = "expiring"
@@ -80,6 +88,7 @@ class Card:
         expiry_month: Required[int]
         expiry_year: Required[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]

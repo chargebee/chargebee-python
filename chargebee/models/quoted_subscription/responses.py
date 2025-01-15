@@ -19,6 +19,9 @@ class SubscriptionItemResponse(Model):
     unit_price: int = None
     unit_price_in_decimal: str = None
     amount: int = None
+    current_term_start: int = None
+    current_term_end: int = None
+    next_billing_at: int = None
     amount_in_decimal: str = None
     billing_period: int = None
     billing_period_unit: str = None

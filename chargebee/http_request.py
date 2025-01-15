@@ -131,12 +131,12 @@ def process_response(url, response, http_code, response_headers):
             )
 
     if http_code < 200 or http_code > 299:
-        handle_api_resp_error(url, http_code, resp_json)
+        handle_api_resp_error(url, http_code, resp_json, response_headers)
 
     return resp_json, response_headers
 
 
-def handle_api_resp_error(url, http_code, resp_json):
+def handle_api_resp_error(url, http_code, resp_json, response_headers=None):
     if "api_error_code" not in resp_json:
         raise Exception(
             "The api_error_code is not present. Probably not a chargebee error. \n URL is "
@@ -146,10 +146,10 @@ def handle_api_resp_error(url, http_code, resp_json):
         )
 
     if "payment" == resp_json.get("type"):
-        raise PaymentError(http_code, resp_json)
+        raise PaymentError(http_code, resp_json, response_headers)
     elif "operation_failed" == resp_json.get("type"):
-        raise OperationFailedError(http_code, resp_json)
+        raise OperationFailedError(http_code, resp_json, response_headers)
     elif "invalid_request" == resp_json.get("type"):
-        raise InvalidRequestError(http_code, resp_json)
+        raise InvalidRequestError(http_code, resp_json, response_headers)
     else:
-        raise APIError(http_code, resp_json)
+        raise APIError(http_code, resp_json, response_headers)

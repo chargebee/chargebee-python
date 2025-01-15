@@ -21,6 +21,7 @@ class ItemFamily:
         id: Required[str]
         name: Required[str]
         description: NotRequired[str]
+        business_entity_id: NotRequired[str]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
@@ -28,6 +29,8 @@ class ItemFamily:
         id: NotRequired[Filters.StringFilter]
         name: NotRequired[Filters.StringFilter]
         updated_at: NotRequired[Filters.TimestampFilter]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]

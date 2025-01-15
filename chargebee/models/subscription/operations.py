@@ -3,7 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import enums, unbilled_charge, payment_intent, invoice
+from chargebee.models import enums, unbilled_charge, payment_intent, invoice, card
 
 
 @dataclass
@@ -87,6 +87,9 @@ class Subscription:
         unit_price: NotRequired[int]
         unit_price_in_decimal: NotRequired[str]
         amount: NotRequired[int]
+        current_term_start: NotRequired[int]
+        current_term_end: NotRequired[int]
+        next_billing_at: NotRequired[int]
         amount_in_decimal: NotRequired[str]
         billing_period: NotRequired[int]
         billing_period_unit: NotRequired["Subscription.BillingPeriodUnit"]
@@ -155,6 +158,10 @@ class Subscription:
         notify_referral_system: NotRequired[enums.NotifyReferralSystem]
         destination_url: NotRequired[str]
         post_purchase_widget_enabled: Required[bool]
+
+    class BillingOverride(TypedDict):
+        max_excess_payment_usage: NotRequired[int]
+        max_refundable_credits_usage: NotRequired[int]
 
     class ContractTerm(TypedDict):
         id: Required[str]
@@ -284,6 +291,7 @@ class Subscription:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -509,6 +517,10 @@ class Subscription:
         coupon_id: NotRequired[str]
         apply_till: NotRequired[int]
 
+    class CreateWithItemsBillingOverrideParams(TypedDict):
+        max_excess_payment_usage: NotRequired[int]
+        max_refundable_credits_usage: NotRequired[int]
+
     class UpdateAddonParams(TypedDict):
         id: NotRequired[str]
         quantity: NotRequired[int]
@@ -540,6 +552,7 @@ class Subscription:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -672,6 +685,7 @@ class Subscription:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -755,6 +769,10 @@ class Subscription:
     class UpdateForItemsCouponParams(TypedDict):
         coupon_id: NotRequired[str]
         apply_till: NotRequired[int]
+
+    class UpdateForItemsBillingOverrideParams(TypedDict):
+        max_excess_payment_usage: NotRequired[int]
+        max_refundable_credits_usage: NotRequired[int]
 
     class ReactivateContractTermParams(TypedDict):
         action_at_term_end: NotRequired["Subscription.ContractTermActionAtTermEnd"]
@@ -859,6 +877,7 @@ class Subscription:
         expiry_month: NotRequired[int]
         expiry_year: NotRequired[int]
         cvv: NotRequired[str]
+        preferred_scheme: NotRequired["card.Card.PreferredScheme"]
         billing_addr1: NotRequired[str]
         billing_addr2: NotRequired[str]
         billing_city: NotRequired[str]
@@ -1266,6 +1285,9 @@ class Subscription:
         trial_end_action: NotRequired[enums.TrialEndAction]
         payment_initiator: NotRequired[enums.PaymentInitiator]
         coupons: NotRequired[List["Subscription.CreateWithItemsCouponParams"]]
+        billing_override: NotRequired[
+            "Subscription.CreateWithItemsBillingOverrideParams"
+        ]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
@@ -1419,6 +1441,9 @@ class Subscription:
         payment_initiator: NotRequired[enums.PaymentInitiator]
         coupons: NotRequired[List["Subscription.UpdateForItemsCouponParams"]]
         invoice_usages: NotRequired[bool]
+        billing_override: NotRequired[
+            "Subscription.UpdateForItemsBillingOverrideParams"
+        ]
 
     class ChangeTermEndParams(TypedDict):
         term_ends_at: Required[int]

@@ -319,6 +319,7 @@ class HostedPage:
         coupon: NotRequired[str]
         auto_collection: NotRequired[enums.AutoCollection]
         invoice_notes: NotRequired[str]
+        po_number: NotRequired[str]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class CheckoutNewForItemsCustomerParams(TypedDict):
@@ -724,6 +725,7 @@ class HostedPage:
         reactivate_from: NotRequired[int]
         billing_alignment_mode: NotRequired[enums.BillingAlignmentMode]
         coupon_ids: NotRequired[List[str]]
+        replace_coupon_list: NotRequired[bool]
         reactivate: NotRequired[bool]
         force_term_reset: NotRequired[bool]
         customer: NotRequired["HostedPage.CheckoutExistingCustomerParams"]
@@ -754,6 +756,7 @@ class HostedPage:
         reactivate_from: NotRequired[int]
         billing_alignment_mode: NotRequired[enums.BillingAlignmentMode]
         coupon_ids: NotRequired[List[str]]
+        replace_coupon_list: NotRequired[bool]
         reactivate: NotRequired[bool]
         force_term_reset: NotRequired[bool]
         change_option: NotRequired[enums.ChangeOption]

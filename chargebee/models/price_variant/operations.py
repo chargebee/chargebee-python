@@ -36,6 +36,7 @@ class PriceVariant:
         external_name: NotRequired[str]
         description: NotRequired[str]
         variant_group: NotRequired[str]
+        business_entity_id: NotRequired[str]
         attributes: Required[List["PriceVariant.CreateAttributeParams"]]
 
     class UpdateParams(TypedDict):
@@ -54,6 +55,8 @@ class PriceVariant:
         status: NotRequired[Filters.EnumFilter]
         updated_at: NotRequired[Filters.TimestampFilter]
         created_at: NotRequired[Filters.TimestampFilter]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
         sort_by: NotRequired[Filters.SortFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:

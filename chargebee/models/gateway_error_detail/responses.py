@@ -19,3 +19,4 @@ class GatewayErrorDetailResponse(Model):
     recommendation_message: str = None
     processor_error_code: str = None
     processor_error_message: str = None
+    error_cause_id: str = None

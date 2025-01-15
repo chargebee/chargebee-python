@@ -4,6 +4,7 @@ from typing import Dict, List, Any
 from chargebee.response import Response
 from chargebee.models import (
     payment_intent,
+    card,
     customer,
     third_party_payment_method,
     download,

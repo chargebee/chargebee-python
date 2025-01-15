@@ -433,15 +433,21 @@ class Export:
 
     class ItemFamiliesParams(TypedDict):
         item_family: NotRequired["Export.ItemFamiliesItemFamilyParams"]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     class ItemsParams(TypedDict):
         item: NotRequired["Export.ItemsItemParams"]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     class ItemPricesParams(TypedDict):
         item_price: NotRequired["Export.ItemPricesItemPriceParams"]
         item_family_id: NotRequired[Filters.StringFilter]
         item_type: NotRequired[Filters.EnumFilter]
         currency_code: NotRequired[Filters.StringFilter]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     class AttachedItemsParams(TypedDict):
         attached_item: NotRequired["Export.AttachedItemsAttachedItemParams"]
@@ -455,6 +461,8 @@ class Export:
 
     class PriceVariantsParams(TypedDict):
         price_variant: NotRequired["Export.PriceVariantsPriceVariantParams"]
+        business_entity_id: NotRequired[Filters.StringFilter]
+        include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         return request.send(
