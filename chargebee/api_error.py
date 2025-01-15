@@ -8,10 +8,9 @@ class APIError(Exception):
         self.api_error_code = json_obj.get("api_error_code")
         self.param = json_obj.get("param")
 
-        self.error_cause_id = json_obj.get('error_cause_id', None)
+        self.error_cause_id = json_obj.get("error_cause_id", None)
         self.http_headers = headers
         self.error_code = json_obj["error_code"]
-        self.error_cause = json_obj.get("error_cause", None)
         self.http_code = http_code
         self.http_body = None
 

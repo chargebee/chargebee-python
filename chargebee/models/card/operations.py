@@ -10,6 +10,14 @@ class Card:
 
     env: environment.Environment
 
+    class PreferredScheme(Enum):
+        CARTES_BANCAIRES = "cartes_bancaires"
+        MASTERCARD = "mastercard"
+        VISA = "visa"
+
+        def __str__(self):
+            return self.value
+
     class Status(Enum):
         VALID = "valid"
         EXPIRING = "expiring"
