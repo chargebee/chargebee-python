@@ -1,11 +1,20 @@
-import urllib
-from chargebee import util, http_request
-from chargebee.main import ChargeBee
-from chargebee import compat
 import json
+import urllib
+
+from chargebee import compat
+from chargebee import util, http_request
 
 
-def send_list_request(method, url, params=None, env=None, headers=None):
+def lowercase_keys(data):
+    if isinstance(data, dict):
+        return {k.lower(): lowercase_keys(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [lowercase_keys(item) for item in data]
+    else:
+        return data
+
+
+def send_list_request(method, url, env, params=None, headers=None, response_type=None):
     serialized = {}
 
     if params is None:
@@ -15,24 +24,26 @@ def send_list_request(method, url, params=None, env=None, headers=None):
         if isinstance(v, list):
             v = json.dumps(v)
         serialized.update({k: v})
-    return send(method, url, serialized, env, headers)
+    return send(method, url, env, serialized, headers, response_type)
 
 
-def send(method, url, params=None, env=None, headers=None):
+def send(method, url, env, params=None, headers=None, response_type=None):
+    params = lowercase_keys(params)
+
     if params is None:
         params = {}
 
-    env = env or ChargeBee.default_env
-
     ser_params = util.serialize(params)
 
-    response, response_headers = http_request.request(method, url, env, ser_params, headers)
+    response, response_headers = http_request.request(
+        method, url, env, ser_params, headers
+    )
 
-    from chargebee.result import Result
-    from chargebee.list_result import ListResult
-    if 'list' in response:
-        return ListResult(response['list'], response.get('next_offset', None), response_headers)
-    return Result(response, response_headers)
+    from chargebee.responses import Response
+
+    if "list" in response:
+        return Response(response_type, response, response_headers).parse_list_response()
+    return Response(response_type, response, response_headers).parse_response()
 
 
 def uri_path(*paths):
