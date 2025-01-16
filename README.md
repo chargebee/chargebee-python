@@ -1,27 +1,22 @@
-# Chargebee Python Client Library - API V2
+# Chargebee Python Client Library v3
 
-[![PyPI](https://img.shields.io/pypi/v/chargebee.svg?maxAge=2)](https://pypi.python.org/pypi/chargebee)
-[![PyPI](https://img.shields.io/pypi/dm/chargebee.svg?maxAge=2)](https://pypi.python.org/pypi/chargebee)
+The Chargebee Python library streamlines integration with the Chargebee API in Python applications. It offers built-in type annotations and enhanced IDE autocompletion for API resources and responses, which improves the developer experience. To get started, please sign up for a Chargebee account [here](https://www.chargebee.com).
 
-This is the Python Library for integrating with Chargebee. Sign up for a Chargebee account [here](https://www.chargebee.com).
+## Requirements
 
-Chargebee now supports two API versions - [V1](https://apidocs.chargebee.com/docs/api/v1) and [V2](https://apidocs.chargebee.com/docs/api), of which V2 is the latest release and all future developments will happen in V2. This library is for <b>API version V2</b>. If you’re looking for V1, head to [chargebee-v1 branch](https://github.com/chargebee/chargebee-python/tree/chargebee-v1).
+- Python 3.11+
 
 ## Installation
+Install the latest version of the library with pip:
 
-Install the latest version 2.x.x of the library with the following commands:
+```sh
+pip install chargebee
+```
+Install from source with:
 
-    $ pip install 'chargebee>=2,<3'
-  
-or
-  
-    $ easy_install --upgrade 'chargebee>=2,<3'
-
-
-
-If you would prefer to install it from source, just checkout the latest version for 2.x.x by ```git checkout [latest 2.x.x release tag]``` and install with the following command:
-  
-    $ python setup.py install
+```sh
+python setup.py install
+```
   
 ## Documentation
 
@@ -29,54 +24,173 @@ See our [Python API Reference](https://apidocs.chargebee.com/docs/api?lang=pytho
 
 ## Usage
 
-### To create a new subscription:
+The package needs to be configured with your site's API key, which is available under Configure Chargebee Section. Refer [here](https://www.chargebee.com/docs/2.0/api_keys.html) for more details.
 
-```python  
-import chargebee
-import json
-chargebee.configure(api_key, site)
-result = chargebee.Subscription.create({
-"plan_id" : "basic"
-})
-
-print result.subscription
+### Configuring chargebee client
+```python
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="", site="")
 ```
 
-### Create an idempotent request:
+### Configuring Timeouts
+
+```python
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_read_timeout_secs(3000)
+cb_client.update_connect_timeout_secs(5000)
+```
+
+### Configuring Retry Delays
+
+```python
+from chargebee import Chargebee
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_export_retry_delay_ms(3000)
+cb_client.update_time_travel_retry_delay_ms(5000)
+```
+
+### Making API Request:
+
+```python  
+# Create a Customer
+
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
+        first_name="John",
+        last_name="Doe",
+        email="john@test.com",
+        locale="fr-CA",
+        billing_address=cb_client.Customer.BillingAddress(
+            first_name="John",
+            last_name=" Doe",
+            line1="PO Box 9999",
+            city="Walnut",
+            state="California",
+            zip="91789",
+            country="US",
+        ),
+    )
+)
+customer = response.customer
+card = response.card
+```
+
+### List API Request With Filter
+
+For pagination, `offset` is the parameter that is being used. The value used for this parameter must be the value returned in `next_offset` parameter from the previous API call.
+
+```python
+from chargebee import Filters
+
+response = cb_client.Customer.list(
+    cb_client.Customer.ListParams(
+        first_name=Filters.StringFilter(IS="John")
+    )
+)
+offset = response.next_offset
+print(offset)
+```
+
+### Using enums
+
+There are two variants of enums in chargebee, 
+- Global enums - These are defined globally and can be accessed across resources.
+- Resource specific enums - These are defined within a resource and can be accessed using the resource class name.
+
+```python
+# Global Enum
+import chargebee
+
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
+        first_name="John",
+        auto_collection=chargebee.AutoCollection.ON,  # global enum
+    )
+)
+print(response.customer)
+```
+```python
+# Resource Specific Enum
+
+response = cb_client.Customer.change_billing_date(
+    cb_client.Customer.ChangeBillingDateParams(
+        first_name="John",
+        billing_day_of_week=cb_client.Customer.BillingDayOfWeek.MONDAY,  # resource specific enum
+    )
+)
+print(response.customer)
+```
+
+### Using custom fields
+
+```python
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
+        first_name="John",
+        cf_host_url="https://john.com",  # `cf_host_url` is a custom field in Customer object
+    )
+)
+print(response.customer.cf_host_url)
+```
+
+### Creating an idempotent request:
 
 [Idempotency keys](https://apidocs.chargebee.com/docs/api/idempotency?prod_cat_ver=2) are passed along with request headers to allow a safe retry of POST requests. 
 
 ```python
-import chargebee
-import json
-chargebee.configure(api_key, site)
-result = chargebee.Customer.create({
-    "first_name" : "John",
-    "last_name" : "Doe",
-    "email" : "john@test.com",
-    "locale" : "fr-CA",
-    "billing_address" : {
-        "first_name" : "John",
-        "last_name" : "Doe",
-        "line1" : "PO Box 9999",
-        "city" : "Walnut",
-        "state" : "California",
-        "zip" : "91789",
-        "country" : "US"
-        }
-    },
+response = cb_client.Customer.create(
+    cb_client.Customer.CreateParams(
+        first_name="John",
+        last_name="Doe",
+        email="john@test.com",
+        locale="fr-CA",
+        billing_address=cb_client.Customer.BillingAddress(
+            first_name="John",
+            last_name=" Doe",
+            line1="PO Box 9999",
+            city="Walnut",
+            state="California",
+            zip="91789",
+            country="US",
+        ),
+    ),
     None,
-    {"chargebee-idempotency-key" : "<<UUID>>"}  # Replace <<UUID>> with a unique string
-    )
-customer = result.customer
-card = result.card
-responseHeaders = result.get_response_headers # Retrieves response headers
-print(responseHeaders) 
-idempotencyReplayedValue = result.is_idempotency_replayed # Retrieves Idempotency replayed header value
-print(idempotencyReplayedValue) 
+    {
+        "chargebee-idempotency-key": "<<UUID>>"
+    },  # Replace <<UUID>> with a unique string
+)
+customer = response.customer
+card = response.card
+responseHeaders = response.headers  # Retrieves response headers
+print(responseHeaders)
+idempotencyReplayedValue = response.is_idempotency_replayed  # Retrieves Idempotency replayed header value
+print(idempotencyReplayedValue)
 ```
-`isIdempotencyReplayed()` method can be accessed to differentiate between original and replayed requests.
+
+### Waiting for Process Completion 
+
+The response from the previous API call must be passed as an argument for `wait_for_export_completion()` or `wait_for_time_travel_completion()`
+
+```python
+# Wait For Export Completion
+
+from chargebee import Filters
+
+response = cb_client.Export.customers(
+    cb_client.Export.CustomersParams(
+        customer=cb_client.Export.CustomersCustomerParams(
+            first_name=Filters.StringFilter(IS="John")
+        )
+    )
+)
+print(cb_client.Export.wait_for_export_completion(response.export))
+```
+
+## Feedback
+
+If you find any bugs or have any feedback, open an issue in this repository or email it to dx@chargebee.com
 
 ## License
 
-See the LICENSE file.
+See the [LICENSE](./LICENSE) file.

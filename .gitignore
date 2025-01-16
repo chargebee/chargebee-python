@@ -13,6 +13,7 @@ sdist
 develop-eggs
 .installed.cfg
 .DS_Store
+
 # Installer logs
 pip-log.txt
 
@@ -25,3 +26,6 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+.idea
+venv

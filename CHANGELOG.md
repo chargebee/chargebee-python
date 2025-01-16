@@ -1,3 +1,152 @@
+### v3.0.0 (2025-01-16)
+Releasing v3 version of Python SDK.
+
+### v3.0.0b3 (2025-01-15)
+* * * 
+
+#### New Resource: 
+* Configuration has been added. 
+* OmnichannelSubscriptionItem has been added.
+* OmnichannelTransaction has been added. 
+* OmnichannelSubscription has been added.
+* RecordedPurchase has been added.
+
+#### New Attribute:
+* discount_type has been added to CreditNote#Discount.
+* discount_type has been added to CreditNoteEstimate#Discount.
+* discount_type has been added to Invoice#Discount.
+* discount_type has been added to InvoiceEstimate#Discount.
+* discount_type has been added to QuoteLineGroup#Discount.
+* initial_purchase_transaction has been added to OmnichannelSubscription.
+* error_cause_id has been added to GatewayErrorDetail.
+* error_cause_id has been added to Transaction#GatewayErrorDetail.
+* error_cause_id has been added to APIError.
+* deleted has been added to Quote. 
+* current_term_start has been added to QuotedSubscripiton#SubscriptionItem.
+* current_term_end has been added to QuotedSubscripiton#SubscriptionItem.
+* next_billing_at has been added to QuotedSubscripiton#SubscriptionItem.
+* current_term_start has been added to Subscription#SubscriptionItem.
+* current_term_end has been added to Subscription#SubscriptionItem.
+* next_billing_at has been added to Subscription#SubscriptionItem.
+* billing_override has been added to Subscription. 
+* grace_period_expires_at has been added to OmnichannelSubscriptionItem. 
+* resource_version has been added to OmnichannelSubscription.
+* resource_version has been added to OmnichannelTransaction.
+* resource_version has been added to RecordedPurchase.
+* business_entity_id has been added to AttachedItem.
+* business_entity_id has been added to DifferentialPrice.
+* business_entity_id has been added to Items.
+* business_entity_id has been added to ItemFamily.
+* business_entity_id has been added to ItemPrice.
+* business_entity_id has been added to PriceVariant.
+* valid_from has been added to coupon.
+
+#### New Input Params:
+* billing_override has been added to Subscription#CreateWithItemsInputParam.
+* billing_override has been added to Subscription#UpdateForItemsInputParam.
+* limit has been added to OmnichannelSubscription#ListRequest.
+* offset has been added to OmnichannelSubscription#ListRequest.
+* customer_id has been added to OmnichannelSubscription#ListRequest.
+* replace_coupon_list has been added to HostedPage#CheckoutExistingRequest.
+* replace_coupon_list has been added to HostedPage#CheckoutExistingForItemsRequest.
+* subscription[po_number] has been added to HostedPage#CheckoutNewForItemsRequest.
+* business_entity_id has been added to AttachedItem#CreateRequest.
+* preferred_scheme has been added to Card#UpdateCardForCustomerRequest.
+* valid_from has been added to Coupon#CreateForItem &  Coupon#UpdateForItemsRequest.
+* preferred_scheme has been added to Customer#CreateRequest & Customer#CollectPaymentRequest.
+* business_entity_id has been added to DifferentialPrice#CreateRequest.
+* preferred_scheme has been added to Invoice#CreateRequest & Invoice#CreateForChargeItemsAndChargesRequest.
+* business_entity_id has been added to Items#CreateRequest.
+* business_entity_id & include_site_level_resources have been added to Items#ListItemParams.
+* business_entity_id has been added to ItemFamily#CreateRequest.
+* business_entity_id & include_site_level_resources have been added to ItemFamily#ListItemFamilyParams.
+* business_entity_id has been added to ItemPrice#CreateRequest.
+* business_entity_id & include_site_level_resources have been added to ItemPrice#ListItemPriceParams.
+* business_entity_id & include_site_level_resources have been added to PriceVariant#ListItemFamilyParams.
+* business_entity_id has been added to PriceVariant#CreateRequest.
+* business_entity_id & include_site_level_resources have been added to PriceVariant#ListPriceVariantParams.
+* preferred_scheme has been added to Subscription#CreateRequest, Subscription#UpdateRequest.
+* preferred_scheme Subscription#UpdateForItemsRequest, & Subscription#ImportSubscriptionRequest.
+* business_entity_id & include_site_level_resources have been added to Export#ItemFamiliesRequest & Export#ItemsRequest.
+* business_entity_id & include_site_level_resources have been added to Export#ItemPricesRequest Export#PriceVariantsRequest
+* name & flexible_schedules[period] have been added to PaymentScheduleScheme#CreateRequest.
+
+#### New Enum Values:
+* OMNICHANNEL_SUBSCRIPTION_IMPORTED has been added to EventTypeEnum.
+* DISABLED has been added to Event#WebhookStatus.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_GRACE_PERIOD_STARTED has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_GRACE_PERIOD_EXPIRED has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_DUNNING_STARTED has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_DUNNING_EXPIRED has been added to EventTypeEnum. 
+* IGNORED has been added to RecordedPurchase#StatusEnum.
+* IN_DUNNING & IN_GRACE_PERIOD have been added to OmnichannelSubscriptionItem#StatusEnum.
+* FUTURE has been added to Coupon#StatusEnum.
+* EXISTING_CUSTOMER & NEW_CUSTOMER have been added to Coupon#TypeEnum.
+* LATE_FAILURE has added to Transation#LinkedPaymentEnum & Transation#StatusEnum.
+* OMNICHANNEL_SUBSCRIPTION, has been added to EntityTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM, has been added to EntityTypeEnum.
+* OMNICHANNEL_TRANSACTION, has been added to EntityTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_RENEWED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_CREATED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADE_SCHEDULED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_DOWNGRADE_REMOVED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_EXPIRED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_CANCELLATION_SCHEDULED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_CANCELLATION_REMOVED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_RESUBSCRIBED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_UPGRADED, has been added to EventTypeEnum.
+* OMNICHANNEL_SUBSCRIPTION_ITEM_CANCELLED, has been added to EventTypeEnum.
+
+#### Removed Subresource: 
+* OmnichannelSubscriptionItem subresource has been removed from OmnichannelSubscription and is now a standalone resource.
+
+#### Removed Attribute: 
+* metadata has been removed from subscription.
+
+#### Bug Fixes:
+* Fixed issue preventing access to response headers during exceptions.
+
+### v3.0.0b2 (2024-10-17)
+* * *
+
+- **Chargebee Client**: Support for multiple clients has been introduced.  
+- **Response Headers**: `response_headers` has been renamed to `headers` inside the response object.
+- **Idempotency Headers**: `is_idempotency_replayed` is now a direct attribute of the response object, no longer part of `response_headers`.
+
+#### New Resource:
+* PaymentScheduleEstimate has been added. 
+
+#### New Attributes: 
+* payment_schedule_estimates has been added to Estimate. 
+* usage_accumulation_reset_frequency has been added to ItemPrice.
+* name has been added to PaymentScheduleScheme.
+* usage_accumulation_reset_frequency has been added to QuotedSubscription#SubscriptionItem.
+* usage_accumulation_reset_frequency has been added to Subscription#SubscriptionItem.
+
+#### New Endpoints: 
+* Estimate#PaymentSchedule has been added. 
+
+#### New Input Params: 
+* usage_accumulation_reset_frequency has been added to ItemPrice#CreateParams. 
+* usage_accumulation_reset_frequency has been added to ItemPrice#UpdateParams. 
+* discounts has been added to PricingPageSession#CreateForNewSubscriptionParams.
+* discounts has been added to PricingPageSession#CreateForExistingSubscriptionParams.
+* invoice_immediately has been added to Quote#ConvertParams.
+
+### v3.0.0b1 (2024-10-03)
+* * *
+
+- **Minimum Python Version**: Python 3.11 or higher is now required.
+- **Type Hinting**: Introduced to enhance IDE autocompletion and provide more accurate suggestions during development.
+- **Data Type Support**: Added support for `int`, `float`, `bool`, and `enum` data types.
+- **Enums**: Global and resource-specific enums have been introduced.
+- **Filter Params**: Filter parameters have been introduced.
+- **Response Classes**: Each API endpoint now has a specific response class defining the return type, replacing the previous generic response object access.
+- **List Responses**: List-type responses are now accessible via the `list` entry to align with the API contract.
+- **Idempotency Headers**: `is_idempotency_replayed` is now a JSON entry inside `response_headers` instead of a method (`is_idempotency_replayed()`).
+- **Wait For Process Completion**: Response from previous API calls must be passed as arguments for `wait_for_export_completion()` and `wait_for_time_travel_completion()`.
+
 ### v2.48.0 (2024-12-19)
 * * * 
 
