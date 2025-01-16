@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This branch contains the code for Chargebee Python SDK v2 which is deprecated. v2 will continue to receive updates till December 31, 2025. If you are using v2, we request you to upgrade to v3 by following [this migration guide](https://github.com/chargebee/chargebee-python/wiki/Migration-guide-for-v3) before December 31, 2025.
+
 # Chargebee Python Client Library - API V2
 
 [![PyPI](https://img.shields.io/pypi/v/chargebee.svg?maxAge=2)](https://pypi.python.org/pypi/chargebee)
