@@ -11,20 +11,30 @@ class Usage(Model):
 
     @staticmethod
     def create(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"usages"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"usages"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, params, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"usages"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"usages"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"delete_usage"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"delete_usage"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("usages"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("usages"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def pdf(params, env=None, headers=None):
-        return request.send('post', request.uri_path("usages","pdf"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("usages","pdf"), params, env, headers, None, False,json_keys)

@@ -15,19 +15,23 @@ def _basic_auth_str(username):
     return 'Basic ' + base64.b64encode(('%s:' % username).encode('latin1')).strip().decode('latin1')
 
 
-def request(method, url, env, params=None, headers=None):
+def request(method, url, env, params=None, headers=None, subDomain=None, isJsonRequest=None):
     if not env:
         raise Exception('No environment configured.')
     if headers is None:
         headers = {}
 
-    url = env.api_url(url)
+    url = env.api_url(url,subDomain)
     if method.lower() in ('get', 'head', 'delete'):
         url = '%s?%s' % (url, compat.urlencode(params))
         payload = None
     else:
-        payload = compat.urlencode(params)
-        headers['Content-type'] = 'application/x-www-form-urlencoded'
+        if isJsonRequest:
+            payload = params
+            headers['Content-type'] = 'application/json;charset=UTF-8'
+        else:
+            payload = compat.urlencode(params)
+            headers['Content-type'] = 'application/x-www-form-urlencoded'
 
     headers.update({
         'User-Agent': 'ChargeBee-Python-Client v%s' % VERSION,
@@ -36,7 +40,6 @@ def request(method, url, env, params=None, headers=None):
         'Lang-Version': str(compat.py_major_v) + "." + str(compat.py_minor_v),
         'OS-Version': platform.platform()
     })
-
     meta = compat.urlparse(url)
     request_args = {
         'method': method.upper(),
@@ -44,7 +47,6 @@ def request(method, url, env, params=None, headers=None):
         'data': payload,
         'headers': headers,
     }
-
     uri = meta.netloc + meta.path + '?' + meta.query
 
     if ChargeBee.verify_ca_certs:
@@ -95,7 +97,7 @@ def process_response(url,response, http_code, response_headers):
     if http_code < 200 or http_code > 299:
         handle_api_resp_error(url,http_code, resp_json, response_headers)
 
-    return resp_json, response_headers
+    return resp_json, response_headers, http_code
 
 
 def handle_api_resp_error(url,http_code, resp_json, response_headers=None):

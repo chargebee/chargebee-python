@@ -16,16 +16,24 @@ class PaymentVoucher(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_vouchers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_vouchers"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("payment_vouchers",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("payment_vouchers",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def payment_vouchers_for_invoice(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("invoices",id,"payment_vouchers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("invoices",id,"payment_vouchers"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def payment_vouchers_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"payment_vouchers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"payment_vouchers"), params, env, headers, None, False,json_keys)

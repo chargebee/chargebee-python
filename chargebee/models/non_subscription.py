@@ -10,4 +10,6 @@ class NonSubscription(Model):
 
     @staticmethod
     def process_receipt(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("non_subscriptions",id,"one_time_purchase"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("non_subscriptions",id,"one_time_purchase"), params, env, headers, None, False,json_keys)

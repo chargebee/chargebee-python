@@ -15,12 +15,18 @@ class PaymentIntent(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_intents"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_intents"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_intents",id), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_intents",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("payment_intents",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("payment_intents",id), None, env, headers, None, False,json_keys)

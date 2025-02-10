@@ -1,19 +1,24 @@
 from chargebee import compat
 from collections import OrderedDict
 
-def serialize(value, prefix=None, idx=None):
+def serialize(value, prefix=None, idx=None, json_keys = None, level = 0):
 
+    if level is None:
+        level = 0
+        
+    if json_keys is None:
+        json_keys = {}
+        
     serialized = OrderedDict()
-
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            # these fields are encoded as a JSON string instead of URL-encoded.
-            if k in ('meta_data', 'metaData', 'checkout_info', 'metadata') and isinstance(v, dict):
-                serialized.update({k: v})
-            elif k in ('exemption_details', 'item_family_ids', 'item_price_periods', 'currencies') and isinstance(v, list):
-                serialized.update({k: v})
+            should_json_encode = k in json_keys and json_keys[k] == level
+            if should_json_encode:
+                key = f"{prefix or ''}{f'[{k}]' if prefix else k}{f'[{idx}]' if idx is not None else ''}"
+                serialized.update({key : v})
             elif isinstance(v, (dict, list, tuple)):
-                serialized.update(serialize(v, k))
+                temp_prefix = f"{prefix}[{k}]" if prefix is not None else k
+                serialized.update(serialize(v, temp_prefix, None, json_keys, level+1))
             else:
                 key = ''.join([
                     prefix or '',
@@ -24,7 +29,7 @@ def serialize(value, prefix=None, idx=None):
 
     elif isinstance(value, (list, tuple)):
         for i, v in enumerate(value):
-            serialized.update(serialize(v, prefix, i))
+            serialized.update(serialize(v, prefix, i, json_keys, level))
 
     else:
         if prefix is not None and idx is not None:

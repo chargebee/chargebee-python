@@ -35,28 +35,44 @@ class Plan(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("plans"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+        }
+        return request.send('post', request.uri_path("plans"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("plans",id), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+        }
+        return request.send('post', request.uri_path("plans",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("plans"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("plans"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("plans",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("plans",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("plans",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("plans",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def copy(params, env=None, headers=None):
-        return request.send('post', request.uri_path("plans","copy"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("plans","copy"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def unarchive(id, env=None, headers=None):
-        return request.send('post', request.uri_path("plans",id,"unarchive"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("plans",id,"unarchive"), None, env, headers, None, False,json_keys)

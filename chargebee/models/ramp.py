@@ -30,20 +30,30 @@ class Ramp(Model):
 
     @staticmethod
     def create_for_subscription(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"create_ramp"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"create_ramp"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("ramps",id,"update"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("ramps",id,"update"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("ramps",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("ramps",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("ramps",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("ramps",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("ramps"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("ramps"), params, env, headers, None, False,json_keys)

@@ -19,11 +19,14 @@ class InvoiceEstimate(Model):
     class LineItemTier(Model):
       fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal"]
       pass
+    class LineItemCredit(Model):
+      fields = ["cn_id", "applied_amount", "line_item_id"]
+      pass
     class LineItemDiscount(Model):
       fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
 
     fields = ["recurring", "price_type", "currency_code", "sub_total", "total", "credits_applied", \
     "amount_paid", "amount_due", "line_items", "discounts", "taxes", "line_item_taxes", "line_item_tiers", \
-    "line_item_discounts", "round_off_amount", "customer_id"]
+    "line_item_credits", "line_item_discounts", "round_off_amount", "customer_id"]
 

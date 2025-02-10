@@ -33,8 +33,12 @@ class Event(Model):
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("events"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("events"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("events",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("events",id), None, env, headers, None, False,json_keys)

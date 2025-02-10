@@ -14,20 +14,30 @@ class Card(Model):
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("cards",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("cards",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_card_for_customer(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"credit_card"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"credit_card"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def switch_gateway_for_customer(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"switch_gateway"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"switch_gateway"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def copy_card_for_customer(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"copy_card"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"copy_card"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete_card_for_customer(id, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"delete_card"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"delete_card"), None, env, headers, None, False,json_keys)

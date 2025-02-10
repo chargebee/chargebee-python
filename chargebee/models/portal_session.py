@@ -14,16 +14,24 @@ class PortalSession(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("portal_sessions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("portal_sessions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("portal_sessions",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("portal_sessions",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def logout(id, env=None, headers=None):
-        return request.send('post', request.uri_path("portal_sessions",id,"logout"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("portal_sessions",id,"logout"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def activate(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("portal_sessions",id,"activate"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("portal_sessions",id,"activate"), params, env, headers, None, False,json_keys)

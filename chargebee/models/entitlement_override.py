@@ -11,8 +11,12 @@ class EntitlementOverride(Model):
 
     @staticmethod
     def add_entitlement_override_for_subscription(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"entitlement_overrides"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"entitlement_overrides"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list_entitlement_override_for_subscription(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"entitlement_overrides"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"entitlement_overrides"), params, env, headers, None, False,json_keys)

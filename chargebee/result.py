@@ -6,14 +6,19 @@ class Result(object):
 
     IDEMPOTENCY_REPLAYED_HEADER = 'chargebee-idempotency-replayed'
 
-    def __init__(self, response, response_header=None):
+    def __init__(self, response, response_header=None, http_status_code=None):
         self._response = response
         self._response_obj = {}
         self._response_header = response_header
+        self._http_status_code = http_status_code
 
     @property
     def get_response_headers(self):
         return self._response_header
+
+    @property
+    def get_http_status_code(self):
+        return self._http_status_code
 
     @property
     def is_idempotency_replayed(self):
@@ -100,7 +105,7 @@ class Result(object):
     @property
     def invoice(self):
         invoice = self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation, 'tax_origin' : Invoice.TaxOrigin});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation, 'tax_origin' : Invoice.TaxOrigin});
         return invoice;
 
     @property
@@ -161,13 +166,13 @@ class Result(object):
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
+        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
+        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant_list(self._response['estimate'], 'subscription_estimates',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant_list(self._response['estimate'], 'invoice_estimates',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
+        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount});
         estimate.init_dependant_list(self._response['estimate'], 'payment_schedule_estimates',
         {'schedule_entries' : PaymentScheduleEstimate.ScheduleEntry});
         estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
@@ -464,6 +469,16 @@ class Result(object):
         return recorded_purchase;
 
     @property
+    def rule(self):
+        rule = self._get('rule', Rule);
+        return rule;
+
+    @property
+    def usage_event(self):
+        usage_event = self._get('usage_event', UsageEvent);
+        return usage_event;
+
+    @property
     def advance_invoice_schedules(self):
         advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
@@ -478,7 +493,7 @@ class Result(object):
     @property
     def invoices(self):
         invoices = self._get_list('invoices', Invoice,
-        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation, 'tax_origin' : Invoice.TaxOrigin});
+        {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation, 'tax_origin' : Invoice.TaxOrigin});
         return invoices;
 
     @property

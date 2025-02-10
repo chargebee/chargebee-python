@@ -11,8 +11,12 @@ class Address(Model):
 
     @staticmethod
     def retrieve(params, env=None, headers=None):
-        return request.send('get', request.uri_path("addresses"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("addresses"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(params, env=None, headers=None):
-        return request.send('post', request.uri_path("addresses"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("addresses"), params, env, headers, None, False,json_keys)

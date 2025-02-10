@@ -10,4 +10,6 @@ class CustomerEntitlement(Model):
 
     @staticmethod
     def entitlements_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"customer_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"customer_entitlements"), params, env, headers, None, False,json_keys)

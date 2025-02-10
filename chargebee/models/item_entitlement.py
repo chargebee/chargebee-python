@@ -10,16 +10,24 @@ class ItemEntitlement(Model):
 
     @staticmethod
     def item_entitlements_for_item(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("items",id,"item_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("items",id,"item_entitlements"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def item_entitlements_for_feature(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("features",id,"item_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("features",id,"item_entitlements"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def add_item_entitlements(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("features",id,"item_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("features",id,"item_entitlements"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def upsert_or_remove_item_entitlements_for_item(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("items",id,"item_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("items",id,"item_entitlements"), params, env, headers, None, False,json_keys)

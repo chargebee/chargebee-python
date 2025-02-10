@@ -24,33 +24,49 @@ class ItemPrice(Model):
     "resource_version", "updated_at", "created_at", "usage_accumulation_reset_frequency", "archived_at", \
     "invoice_notes", "tiers", "is_taxable", "tax_detail", "tax_providers_fields", "accounting_detail", \
     "metadata", "item_type", "archivable", "parent_item_id", "show_description_in_invoices", "show_description_in_quotes", \
-    "business_entity_id"]
+    "deleted", "business_entity_id"]
 
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("item_prices"), params, env, headers)
+        json_keys = { 
+            "metadata": 0,
+        }
+        return request.send('post', request.uri_path("item_prices"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("item_prices",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("item_prices",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("item_prices",id), params, env, headers)
+        json_keys = { 
+            "metadata": 0,
+        }
+        return request.send('post', request.uri_path("item_prices",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("item_prices"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("item_prices"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("item_prices",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("item_prices",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def find_applicable_items(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("item_prices",id,"applicable_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("item_prices",id,"applicable_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def find_applicable_item_prices(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("item_prices",id,"applicable_item_prices"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("item_prices",id,"applicable_item_prices"), params, env, headers, None, False,json_keys)

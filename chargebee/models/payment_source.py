@@ -43,64 +43,105 @@ class PaymentSource(Model):
 
     @staticmethod
     def create_using_temp_token(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_using_temp_token"), params, env, headers)
+        json_keys = { 
+            "additional_information": 0,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_using_temp_token"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_using_permanent_token(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_using_permanent_token"), params, env, headers)
+        json_keys = { 
+            "additional_information": 0,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_using_permanent_token"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_using_token(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_using_token"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources","create_using_token"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_using_payment_intent(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_using_payment_intent"), params, env, headers)
+        json_keys = { 
+            "additional_info": 1,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_using_payment_intent"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_voucher_payment_source(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_voucher_payment_source"), params, env, headers)
+        json_keys = { 
+            "billing_address": 1,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_voucher_payment_source"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_card(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_card"), params, env, headers)
+        json_keys = { 
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_card"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_bank_account(params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources","create_bank_account"), params, env, headers)
+        json_keys = { 
+            "billing_address": 1,
+        }
+        return request.send('post', request.uri_path("payment_sources","create_bank_account"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_card(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"update_card"), params, env, headers)
+        json_keys = { 
+            "gateway_meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"update_card"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_bank_account(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"update_bank_account"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"update_bank_account"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def verify_bank_account(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"verify_bank_account"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"verify_bank_account"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("payment_sources",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("payment_sources",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("payment_sources"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("payment_sources"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def switch_gateway_account(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"switch_gateway_account"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"switch_gateway_account"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def export_payment_source(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"export_payment_source"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"export_payment_source"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete_local(id, env=None, headers=None):
-        return request.send('post', request.uri_path("payment_sources",id,"delete_local"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("payment_sources",id,"delete_local"), None, env, headers, None, False,json_keys)

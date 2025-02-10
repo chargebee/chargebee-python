@@ -33,44 +33,66 @@ class Transaction(Model):
 
     @staticmethod
     def create_authorization(params, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions","create_authorization"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions","create_authorization"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def void_transaction(id, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions",id,"void"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions",id,"void"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def record_refund(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions",id,"record_refund"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions",id,"record_refund"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def reconcile(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions",id,"reconcile"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions",id,"reconcile"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def refund(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions",id,"refund"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions",id,"refund"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("transactions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("transactions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def transactions_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"transactions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"transactions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def transactions_for_subscription(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"transactions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"transactions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def payments_for_invoice(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("invoices",id,"payments"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("invoices",id,"payments"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("transactions",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("transactions",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete_offline_transaction(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("transactions",id,"delete_offline_transaction"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("transactions",id,"delete_offline_transaction"), params, env, headers, None, False,json_keys)

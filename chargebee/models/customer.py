@@ -52,100 +52,158 @@ class Customer(Model):
 
     @staticmethod
     def create(params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers"), params, env, headers)
+        json_keys = { 
+            "exemption_details": 0,
+            "meta_data": 0,
+            "additional_information": 1,
+            "billing_address": 1,
+        }
+        return request.send('post', request.uri_path("customers"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("customers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("customers"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id), params, env, headers)
+        json_keys = { 
+            "exemption_details": 0,
+            "meta_data": 0,
+        }
+        return request.send('post', request.uri_path("customers",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_payment_method(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"update_payment_method"), params, env, headers)
+        json_keys = { 
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("customers",id,"update_payment_method"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_billing_info(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"update_billing_info"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def contacts_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"contacts"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"contacts"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def assign_payment_role(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"assign_payment_role"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"assign_payment_role"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def add_contact(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"add_contact"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"add_contact"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_contact(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"update_contact"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"update_contact"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete_contact(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"delete_contact"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"delete_contact"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def add_promotional_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"add_promotional_credits"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"add_promotional_credits"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def deduct_promotional_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"deduct_promotional_credits"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"deduct_promotional_credits"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def set_promotional_credits(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"set_promotional_credits"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"set_promotional_credits"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def record_excess_payment(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"record_excess_payment"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"record_excess_payment"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def collect_payment(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"collect_payment"), params, env, headers)
+        json_keys = { 
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("customers",id,"collect_payment"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"delete"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"delete"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def move(params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers","move"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers","move"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def change_billing_date(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"change_billing_date"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"change_billing_date"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def merge(params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers","merge"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers","merge"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def clear_personal_data(id, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"clear_personal_data"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"clear_personal_data"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def relationships(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"relationships"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"relationships"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete_relationship(id, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"delete_relationship"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"delete_relationship"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def hierarchy(id, params, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_hierarchy_settings(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"update_hierarchy_settings"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"update_hierarchy_settings"), params, env, headers, None, False,json_keys)

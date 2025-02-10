@@ -10,8 +10,12 @@ class BusinessEntity(Model):
 
     @staticmethod
     def create_transfers(params, env=None, headers=None):
-        return request.send('post', request.uri_path("business_entities","transfers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("business_entities","transfers"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def get_transfers(params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("business_entities","transfers"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("business_entities","transfers"), params, env, headers, None, False,json_keys)

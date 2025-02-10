@@ -36,12 +36,18 @@ class TimeMachine(Model):
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("time_machines",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("time_machines",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def start_afresh(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("time_machines",id,"start_afresh"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("time_machines",id,"start_afresh"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def travel_forward(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("time_machines",id,"travel_forward"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("time_machines",id,"travel_forward"), params, env, headers, None, False,json_keys)

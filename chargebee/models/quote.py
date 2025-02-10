@@ -40,80 +40,120 @@ class Quote(Model):
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("quotes",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("quotes",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_sub_for_customer_quote(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"create_subscription_quote"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"create_subscription_quote"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_create_sub_for_customer_quote(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_create_subscription_quote"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_create_subscription_quote"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_subscription_quote(params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes","update_subscription_quote"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes","update_subscription_quote"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_update_subscription_quote(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_update_subscription_quote"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_update_subscription_quote"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_for_onetime_charges(params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes","create_for_onetime_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes","create_for_onetime_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_one_time_quote(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_one_time_quote"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_one_time_quote"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_sub_items_for_customer_quote(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"create_subscription_quote_for_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("customers",id,"create_subscription_quote_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_create_sub_customer_quote_for_items(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_create_subscription_quote_for_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_create_subscription_quote_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_subscription_quote_for_items(params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes","update_subscription_quote_for_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes","update_subscription_quote_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_update_subscription_quote_for_items(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_update_subscription_quote_for_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_update_subscription_quote_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_for_charge_items_and_charges(params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes","create_for_charge_items_and_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes","create_for_charge_items_and_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_for_charge_items_and_charges(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"edit_for_charge_items_and_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"edit_for_charge_items_and_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("quotes"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("quotes"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def quote_line_groups_for_quote(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("quotes",id,"quote_line_groups"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("quotes",id,"quote_line_groups"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def convert(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"convert"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"convert"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_status(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"update_status"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"update_status"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def extend_expiry_date(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"extend_expiry_date"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"extend_expiry_date"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"delete"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"delete"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def pdf(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("quotes",id,"pdf"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("quotes",id,"pdf"), params, env, headers, None, False,json_keys)

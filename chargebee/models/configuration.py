@@ -10,4 +10,6 @@ class Configuration(Model):
 
     @staticmethod
     def list(env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("configurations"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("configurations"), None, env, headers, None, False,json_keys)

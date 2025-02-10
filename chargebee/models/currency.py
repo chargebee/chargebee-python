@@ -10,24 +10,36 @@ class Currency(Model):
 
     @staticmethod
     def list(env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("currencies","list"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("currencies","list"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("currencies",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("currencies",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("currencies"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("currencies"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("currencies",id), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("currencies",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def add_schedule(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("currencies",id,"add_schedule"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("currencies",id,"add_schedule"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_schedule(id, env=None, headers=None):
-        return request.send('post', request.uri_path("currencies",id,"remove_schedule"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("currencies",id,"remove_schedule"), None, env, headers, None, False,json_keys)

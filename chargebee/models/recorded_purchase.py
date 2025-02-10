@@ -17,8 +17,12 @@ class RecordedPurchase(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("recorded_purchases"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("recorded_purchases"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("recorded_purchases",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("recorded_purchases",id), None, env, headers, None, False,json_keys)

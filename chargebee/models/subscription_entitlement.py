@@ -15,8 +15,12 @@ class SubscriptionEntitlement(Model):
 
     @staticmethod
     def subscription_entitlements_for_subscription(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"subscription_entitlements"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"subscription_entitlements"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def set_subscription_entitlement_availability(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"subscription_entitlements/set_availability"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"subscription_entitlements/set_availability"), params, env, headers, None, False,json_keys)

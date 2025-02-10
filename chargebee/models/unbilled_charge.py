@@ -16,24 +16,36 @@ class UnbilledCharge(Model):
 
     @staticmethod
     def create_unbilled_charge(params, env=None, headers=None):
-        return request.send('post', request.uri_path("unbilled_charges","create"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("unbilled_charges","create"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("unbilled_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("unbilled_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def invoice_unbilled_charges(params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("unbilled_charges","invoice_unbilled_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("unbilled_charges","invoice_unbilled_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("unbilled_charges",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("unbilled_charges",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("unbilled_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("unbilled_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def invoice_now_estimate(params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("unbilled_charges","invoice_now_estimate"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("unbilled_charges","invoice_now_estimate"), params, env, headers, None, False,json_keys)

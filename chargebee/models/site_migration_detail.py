@@ -11,4 +11,6 @@ class SiteMigrationDetail(Model):
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("site_migration_details"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("site_migration_details"), params, env, headers, None, False,json_keys)

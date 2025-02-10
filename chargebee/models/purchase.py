@@ -10,8 +10,14 @@ class Purchase(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("purchases"), params, env, headers)
+        json_keys = { 
+            "meta_data": 1,
+        }
+        return request.send('post', request.uri_path("purchases"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def estimate(params, env=None, headers=None):
-        return request.send('post', request.uri_path("purchases","estimate"), params, env, headers)
+        json_keys = { 
+            "exemption_details": 1,
+        }
+        return request.send('post', request.uri_path("purchases","estimate"), params, env, headers, None, False,json_keys)

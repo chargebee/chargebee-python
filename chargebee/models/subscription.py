@@ -80,148 +80,240 @@ class Subscription(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "exemption_details": 1,
+            "additional_information": 1,
+            "billing_address": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_for_customer(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"subscriptions"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("customers",id,"subscriptions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_with_items(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"subscription_for_items"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("customers",id,"subscription_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("subscriptions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("subscriptions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def subscriptions_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"subscriptions"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"subscriptions"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def contract_terms_for_subscription(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"contract_terms"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"contract_terms"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list_discounts(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"discounts"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"discounts"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve_with_scheduled_changes(id, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"retrieve_with_scheduled_changes"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"retrieve_with_scheduled_changes"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_scheduled_changes(id, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_changes"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_changes"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_scheduled_cancellation(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_cancellation"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_cancellation"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_coupons(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_coupons"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_coupons"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update_for_items(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"update_for_items"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"update_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def change_term_end(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"change_term_end"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"change_term_end"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def reactivate(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"reactivate"), params, env, headers)
+        json_keys = { 
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"reactivate"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def add_charge_at_term_end(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"add_charge_at_term_end"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"add_charge_at_term_end"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def charge_addon_at_term_end(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"charge_addon_at_term_end"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def charge_future_renewals(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"charge_future_renewals"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"charge_future_renewals"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def edit_advance_invoice_schedule(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"edit_advance_invoice_schedule"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"edit_advance_invoice_schedule"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve_advance_invoice_schedule(id, env=None, headers=None):
-        return request.send('get', request.uri_path("subscriptions",id,"retrieve_advance_invoice_schedule"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("subscriptions",id,"retrieve_advance_invoice_schedule"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_advance_invoice_schedule(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_advance_invoice_schedule"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_advance_invoice_schedule"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def regenerate_invoice(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"regenerate_invoice"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"regenerate_invoice"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_subscription(params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions","import_subscription"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions","import_subscription"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_for_customer(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"import_subscription"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+        }
+        return request.send('post', request.uri_path("customers",id,"import_subscription"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_contract_term(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"import_contract_term"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"import_contract_term"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_unbilled_charges(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"import_unbilled_charges"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"import_unbilled_charges"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_for_items(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("customers",id,"import_for_items"), params, env, headers)
+        json_keys = { 
+            "meta_data": 0,
+        }
+        return request.send('post', request.uri_path("customers",id,"import_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def override_billing_profile(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"override_billing_profile"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"override_billing_profile"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def pause(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"pause"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"pause"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def cancel(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"cancel"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def cancel_for_items(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"cancel_for_items"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"cancel_for_items"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def resume(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"resume"), params, env, headers)
+        json_keys = { 
+            "additional_information": 1,
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"resume"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_scheduled_pause(id, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_pause"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_pause"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_scheduled_resumption(id, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_resumption"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"remove_scheduled_resumption"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def move(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("subscriptions",id,"move"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("subscriptions",id,"move"), params, env, headers, None, False,json_keys)

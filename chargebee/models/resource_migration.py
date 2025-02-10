@@ -10,4 +10,6 @@ class ResourceMigration(Model):
 
     @staticmethod
     def retrieve_latest(params, env=None, headers=None):
-        return request.send('get', request.uri_path("resource_migrations","retrieve_latest"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("resource_migrations","retrieve_latest"), params, env, headers, None, False,json_keys)

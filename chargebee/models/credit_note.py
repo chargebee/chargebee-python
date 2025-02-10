@@ -29,7 +29,7 @@ class CreditNote(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount", "refund_reason_code"]
       pass
     class Allocation(Model):
-      fields = ["invoice_id", "allocated_amount", "allocated_at", "invoice_date", "invoice_status"]
+      fields = ["invoice_id", "allocated_amount", "allocated_at", "invoice_date", "invoice_status", "tax_application"]
       pass
     class ShippingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
@@ -56,56 +56,84 @@ class CreditNote(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes"), params, env, headers, None, False,json_keys)
 
     @staticmethod
-    def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("credit_notes",id), None, env, headers)
+    def retrieve(id, params=None, env=None, headers=None):
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("credit_notes",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def pdf(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"pdf"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"pdf"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def download_einvoice(id, env=None, headers=None):
-        return request.send('get', request.uri_path("credit_notes",id,"download_einvoice"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("credit_notes",id,"download_einvoice"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def refund(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"refund"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"refund"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def record_refund(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"record_refund"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"record_refund"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def void_credit_note(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"void"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"void"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("credit_notes"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("credit_notes"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def credit_notes_for_customer(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("customers",id,"credit_notes"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"credit_notes"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"delete"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def remove_tax_withheld_refund(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"remove_tax_withheld_refund"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"remove_tax_withheld_refund"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def resend_einvoice(id, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"resend_einvoice"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def send_einvoice(id, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes",id,"send_einvoice"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes",id,"send_einvoice"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_credit_note(params, env=None, headers=None):
-        return request.send('post', request.uri_path("credit_notes","import_credit_note"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("credit_notes","import_credit_note"), params, env, headers, None, False,json_keys)

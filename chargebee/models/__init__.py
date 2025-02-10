@@ -41,8 +41,8 @@ from chargebee.models.item import Item
 from chargebee.models.item_entitlement import ItemEntitlement
 from chargebee.models.item_family import ItemFamily
 from chargebee.models.item_price import ItemPrice
-from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.metadata import Metadata
+from chargebee.models.non_subscription import NonSubscription
 from chargebee.models.omnichannel_subscription import OmnichannelSubscription
 from chargebee.models.omnichannel_subscription_item import OmnichannelSubscriptionItem
 from chargebee.models.omnichannel_transaction import OmnichannelTransaction
@@ -67,6 +67,7 @@ from chargebee.models.quoted_subscription import QuotedSubscription
 from chargebee.models.ramp import Ramp
 from chargebee.models.recorded_purchase import RecordedPurchase
 from chargebee.models.resource_migration import ResourceMigration
+from chargebee.models.rule import Rule
 from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.subscription import Subscription
 from chargebee.models.subscription_entitlement import SubscriptionEntitlement
@@ -78,5 +79,6 @@ from chargebee.models.token import Token
 from chargebee.models.transaction import Transaction
 from chargebee.models.unbilled_charge import UnbilledCharge
 from chargebee.models.usage import Usage
+from chargebee.models.usage_event import UsageEvent
 from chargebee.models.virtual_bank_account import VirtualBankAccount
 from chargebee.models.content import Content

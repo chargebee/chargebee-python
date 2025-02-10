@@ -40,48 +40,72 @@ class Order(Model):
 
     @staticmethod
     def create(params, env=None, headers=None):
-        return request.send('post', request.uri_path("orders"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def update(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_order(params, env=None, headers=None):
-        return request.send('post', request.uri_path("orders","import_order"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders","import_order"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def assign_order_number(id, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"assign_order_number"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"assign_order_number"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def cancel(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"cancel"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"cancel"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def create_refundable_credit_note(id, params, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"create_refundable_credit_note"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"create_refundable_credit_note"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def reopen(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"reopen"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"reopen"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):
-        return request.send('get', request.uri_path("orders",id), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("orders",id), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def delete(id, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"delete"), None, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"delete"), None, env, headers, None, False,json_keys)
 
     @staticmethod
     def list(params=None, env=None, headers=None):
-        return request.send_list_request('get', request.uri_path("orders"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send_list_request('get', request.uri_path("orders"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def orders_for_invoice(id, params=None, env=None, headers=None):
-        return request.send('get', request.uri_path("invoices",id,"orders"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("invoices",id,"orders"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def resend(id, params=None, env=None, headers=None):
-        return request.send('post', request.uri_path("orders",id,"resend"), params, env, headers)
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("orders",id,"resend"), params, env, headers, None, False,json_keys)

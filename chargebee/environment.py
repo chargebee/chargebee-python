@@ -15,5 +15,11 @@ class Environment(object):
         else:
             self.api_endpoint = 'http://%s.%s/api/%s' % (self.site, self.chargebee_domain, self.API_VERSION)
 
-    def api_url(self, url):
-        return self.api_endpoint + url
+    def api_url(self, url, subDomain=None):
+        if subDomain is None:
+            return self.api_endpoint + url
+        else:
+            if self.chargebee_domain is None:
+               return 'https://%s.%s.chargebee.com/api/%s' % (self.site,subDomain, self.API_VERSION) + url
+            else:
+               return 'http://%s.%s.%s/api/%s' % (self.site, subDomain, self.chargebee_domain, self.API_VERSION)
