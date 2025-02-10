@@ -14,6 +14,7 @@ class CreditNote:
     class Type(Enum):
         ADJUSTMENT = "adjustment"
         REFUNDABLE = "refundable"
+        STORE = "store"
 
         def __str__(self):
             return self.value
@@ -92,6 +93,13 @@ class CreditNote:
         PRORATED_CREDITS = "prorated_credits"
         ITEM_LEVEL_DISCOUNT = "item_level_discount"
         DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
+
+        def __str__(self):
+            return self.value
+
+    class AppliedCreditTaxApplication(Enum):
+        PRE_TAX = "pre_tax"
+        POST_TAX = "post_tax"
 
         def __str__(self):
             return self.value
@@ -191,6 +199,7 @@ class CreditNote:
         allocated_at: Required[int]
         invoice_date: NotRequired[int]
         invoice_status: Required["invoice.Invoice.Status"]
+        tax_application: NotRequired["CreditNote.AppliedCreditTaxApplication"]
 
     class ShippingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -424,6 +433,7 @@ class CreditNote:
         linked_refunds: Required[List["CreditNote.ImportCreditNoteLinkedRefundParams"]]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes"),
@@ -431,9 +441,13 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("credit_notes", id),
@@ -441,9 +455,13 @@ class CreditNote:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "pdf"),
@@ -451,9 +469,13 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             PdfResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("credit_notes", id, "download_einvoice"),
@@ -461,9 +483,13 @@ class CreditNote:
             None,
             headers,
             DownloadEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "refund"),
@@ -471,11 +497,15 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             RefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "record_refund"),
@@ -483,11 +513,15 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             RecordRefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def void_credit_note(
         self, id, params: VoidCreditNoteParams = None, headers=None
     ) -> VoidCreditNoteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "void"),
@@ -495,9 +529,13 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             VoidCreditNoteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("credit_notes"),
@@ -505,11 +543,15 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def credit_notes_for_customer(
         self, id, params: CreditNotesForCustomerParams = None, headers=None
     ) -> CreditNotesForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "credit_notes"),
@@ -517,9 +559,13 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             CreditNotesForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "delete"),
@@ -527,11 +573,15 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_tax_withheld_refund(
         self, id, params: RemoveTaxWithheldRefundParams, headers=None
     ) -> RemoveTaxWithheldRefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "remove_tax_withheld_refund"),
@@ -539,9 +589,13 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             RemoveTaxWithheldRefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "resend_einvoice"),
@@ -549,9 +603,13 @@ class CreditNote:
             None,
             headers,
             ResendEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "send_einvoice"),
@@ -559,11 +617,15 @@ class CreditNote:
             None,
             headers,
             SendEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_credit_note(
         self, params: ImportCreditNoteParams, headers=None
     ) -> ImportCreditNoteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("credit_notes", "import_credit_note"),
@@ -571,4 +633,7 @@ class CreditNote:
             cast(Dict[Any, Any], params),
             headers,
             ImportCreditNoteResponse,
+            None,
+            False,
+            jsonKeys,
         )

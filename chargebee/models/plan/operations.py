@@ -297,6 +297,9 @@ class Plan:
         for_site_merging: NotRequired[bool]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("plans"),
@@ -304,9 +307,15 @@ class Plan:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("plans", id),
@@ -314,9 +323,13 @@ class Plan:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("plans"),
@@ -324,9 +337,13 @@ class Plan:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("plans", id),
@@ -334,9 +351,13 @@ class Plan:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("plans", id, "delete"),
@@ -344,9 +365,13 @@ class Plan:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("plans", "copy"),
@@ -354,9 +379,13 @@ class Plan:
             cast(Dict[Any, Any], params),
             headers,
             CopyResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("plans", id, "unarchive"),
@@ -364,4 +393,7 @@ class Plan:
             None,
             headers,
             UnarchiveResponse,
+            None,
+            False,
+            jsonKeys,
         )

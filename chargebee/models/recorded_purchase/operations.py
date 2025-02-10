@@ -42,6 +42,7 @@ class RecordedPurchase:
         apple_app_store: NotRequired["RecordedPurchase.CreateAppleAppStoreParams"]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("recorded_purchases"),
@@ -49,9 +50,13 @@ class RecordedPurchase:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("recorded_purchases", id),
@@ -59,4 +64,7 @@ class RecordedPurchase:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )

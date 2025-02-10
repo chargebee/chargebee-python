@@ -212,6 +212,7 @@ class Ramp:
     def create_for_subscription(
         self, id, params: CreateForSubscriptionParams, headers=None
     ) -> CreateForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "create_ramp"),
@@ -219,9 +220,13 @@ class Ramp:
             cast(Dict[Any, Any], params),
             headers,
             CreateForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("ramps", id, "update"),
@@ -229,9 +234,13 @@ class Ramp:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("ramps", id),
@@ -239,9 +248,13 @@ class Ramp:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("ramps", id, "delete"),
@@ -249,9 +262,13 @@ class Ramp:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("ramps"),
@@ -259,4 +276,7 @@ class Ramp:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )

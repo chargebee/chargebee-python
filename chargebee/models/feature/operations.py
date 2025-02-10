@@ -68,6 +68,7 @@ class Feature:
         levels: NotRequired[List["Feature.UpdateLevelParams"]]
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("features"),
@@ -75,9 +76,13 @@ class Feature:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features"),
@@ -85,9 +90,13 @@ class Feature:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features", id),
@@ -95,9 +104,13 @@ class Feature:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("features", id),
@@ -105,9 +118,13 @@ class Feature:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features", id, "delete"),
@@ -115,9 +132,13 @@ class Feature:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def activate(self, id, headers=None) -> ActivateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features", id, "activate_command"),
@@ -125,9 +146,13 @@ class Feature:
             None,
             headers,
             ActivateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def archive(self, id, headers=None) -> ArchiveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features", id, "archive_command"),
@@ -135,9 +160,13 @@ class Feature:
             None,
             headers,
             ArchiveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def reactivate(self, id, headers=None) -> ReactivateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("features", id, "reactivate_command"),
@@ -145,4 +174,7 @@ class Feature:
             None,
             headers,
             ReactivateResponse,
+            None,
+            False,
+            jsonKeys,
         )

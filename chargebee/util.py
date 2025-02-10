@@ -3,26 +3,21 @@ from collections import OrderedDict
 from enum import Enum
 
 
-def serialize(value, prefix=None, idx=None):
+def serialize(value, prefix=None, idx=None, jsonKeys=None, level=0):
+    if level is None:
+        level = 0
+
+    if jsonKeys is None:
+        jsonKeys = {}
 
     serialized = OrderedDict()
 
     if isinstance(value, dict):
         for k, v in list(value.items()):
-            if k in (
-                "meta_data",
-                "metaData",
-                "metadata",
-                "checkout_info",
-            ) and isinstance(v, dict):
-                serialized.update({k: v})
-            elif k in (
-                "exemption_details",
-                "item_family_ids",
-                "item_price_periods",
-                "currencies",
-            ) and isinstance(v, list):
-                serialized.update({k: v})
+            should_json_encode = k in jsonKeys and jsonKeys[k] == level
+            if should_json_encode:
+                key = f"{prefix or ''}{f'[{k}]' if prefix else k}{f'[{idx}]' if idx is not None else ''}"
+                serialized.update({key: v})
             elif k in ("in", "not_in", "between") and isinstance(v, list):
                 v = [str(i) for i in v]
                 key = "".join(
@@ -34,7 +29,8 @@ def serialize(value, prefix=None, idx=None):
                 )
                 serialized.update({key: str(v)})
             elif isinstance(v, (dict, list, tuple)):
-                serialized.update(serialize(v, k))
+                temp_prefix = f"{prefix}[{k}]" if prefix is not None else k
+                serialized.update(serialize(v, temp_prefix, None, jsonKeys, level + 1))
             else:
                 if isinstance(v, Enum):
                     v = str(v)
@@ -49,7 +45,7 @@ def serialize(value, prefix=None, idx=None):
 
     elif isinstance(value, (list, tuple)):
         for i, v in enumerate(value):
-            serialized.update(serialize(v, prefix, i))
+            serialized.update(serialize(v, prefix, i, jsonKeys, level))
 
     else:
         if prefix is not None and idx is not None:

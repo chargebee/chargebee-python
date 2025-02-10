@@ -14,7 +14,17 @@ def lowercase_keys(data):
         return data
 
 
-def send_list_request(method, url, env, params=None, headers=None, response_type=None):
+def send_list_request(
+    method,
+    url,
+    params=None,
+    env=None,
+    headers=None,
+    response_type=None,
+    subDomain=None,
+    isJsonRequest=False,
+    jsonKeys=None,
+):
     serialized = {}
 
     if params is None:
@@ -24,26 +34,54 @@ def send_list_request(method, url, env, params=None, headers=None, response_type
         if isinstance(v, list):
             v = json.dumps(v)
         serialized.update({k: v})
-    return send(method, url, env, serialized, headers, response_type)
+    return send(
+        method,
+        url,
+        env,
+        serialized,
+        headers,
+        response_type,
+        subDomain,
+        isJsonRequest,
+        jsonKeys,
+    )
 
 
-def send(method, url, env, params=None, headers=None, response_type=None):
+def send(
+    method,
+    url,
+    env,
+    params=None,
+    headers=None,
+    response_type=None,
+    subDomain=None,
+    isJsonRequest=False,
+    jsonKeys=None,
+):
     params = lowercase_keys(params)
 
     if params is None:
         params = {}
 
-    ser_params = util.serialize(params)
+    ser_params = (
+        json.dumps(params)
+        if isJsonRequest
+        else util.serialize(params, None, None, jsonKeys)
+    )
 
-    response, response_headers = http_request.request(
-        method, url, env, ser_params, headers
+    response, response_headers, http_code = http_request.request(
+        method, url, env, ser_params, headers, subDomain, isJsonRequest
     )
 
     from chargebee.responses import Response
 
     if "list" in response:
-        return Response(response_type, response, response_headers).parse_list_response()
-    return Response(response_type, response, response_headers).parse_response()
+        return Response(
+            response_type, response, response_headers, http_code
+        ).parse_list_response()
+    return Response(
+        response_type, response, response_headers, http_code
+    ).parse_response()
 
 
 def uri_path(*paths):

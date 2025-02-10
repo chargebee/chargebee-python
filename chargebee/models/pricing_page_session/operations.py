@@ -121,6 +121,7 @@ class PricingPageSession:
     def create_for_new_subscription(
         self, params: CreateForNewSubscriptionParams, headers=None
     ) -> CreateForNewSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("pricing_page_sessions", "create_for_new_subscription"),
@@ -128,11 +129,15 @@ class PricingPageSession:
             cast(Dict[Any, Any], params),
             headers,
             CreateForNewSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_existing_subscription(
         self, params: CreateForExistingSubscriptionParams, headers=None
     ) -> CreateForExistingSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path(
@@ -142,4 +147,7 @@ class PricingPageSession:
             cast(Dict[Any, Any], params),
             headers,
             CreateForExistingSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )

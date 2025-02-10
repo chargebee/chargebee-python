@@ -63,6 +63,7 @@ class AttachedItem:
         updated_at: NotRequired[Filters.TimestampFilter]
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("items", id, "attached_items"),
@@ -70,9 +71,13 @@ class AttachedItem:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("attached_items", id),
@@ -80,9 +85,13 @@ class AttachedItem:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("attached_items", id),
@@ -90,9 +99,13 @@ class AttachedItem:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("attached_items", id, "delete"),
@@ -100,9 +113,13 @@ class AttachedItem:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, id, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("items", id, "attached_items"),
@@ -110,4 +127,7 @@ class AttachedItem:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )

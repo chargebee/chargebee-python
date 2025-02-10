@@ -163,6 +163,9 @@ class Item:
         sort_by: NotRequired[Filters.SortFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "metadata": 0,
+        }
         return request.send(
             "post",
             request.uri_path("items"),
@@ -170,9 +173,13 @@ class Item:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("items", id),
@@ -180,9 +187,15 @@ class Item:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "metadata": 0,
+        }
         return request.send(
             "post",
             request.uri_path("items", id),
@@ -190,9 +203,13 @@ class Item:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("items"),
@@ -200,9 +217,13 @@ class Item:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("items", id, "delete"),
@@ -210,4 +231,7 @@ class Item:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )

@@ -37,6 +37,7 @@ class DifferentialPriceResponse(Model):
     currency_code: str = None
     parent_periods: List[ParentPeriodResponse] = None
     business_entity_id: str = None
+    deleted: bool = None
 
 
 @dataclass

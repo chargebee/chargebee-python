@@ -44,6 +44,7 @@ class Usage:
         disposition_type: NotRequired[enums.DispositionType]
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "usages"),
@@ -51,9 +52,13 @@ class Usage:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "usages"),
@@ -61,9 +66,13 @@ class Usage:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "delete_usage"),
@@ -71,9 +80,13 @@ class Usage:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("usages"),
@@ -81,9 +94,13 @@ class Usage:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pdf(self, params: PdfParams, headers=None) -> PdfResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("usages", "pdf"),
@@ -91,4 +108,7 @@ class Usage:
             cast(Dict[Any, Any], params),
             headers,
             PdfResponse,
+            None,
+            False,
+            jsonKeys,
         )

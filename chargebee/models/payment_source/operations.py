@@ -315,6 +315,9 @@ class PaymentSource:
     def create_using_temp_token(
         self, params: CreateUsingTempTokenParams, headers=None
     ) -> CreateUsingTempTokenResponse:
+        jsonKeys = {
+            "additional_information": 0,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_temp_token"),
@@ -322,11 +325,17 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateUsingTempTokenResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_using_permanent_token(
         self, params: CreateUsingPermanentTokenParams, headers=None
     ) -> CreateUsingPermanentTokenResponse:
+        jsonKeys = {
+            "additional_information": 0,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_permanent_token"),
@@ -334,11 +343,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateUsingPermanentTokenResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_using_token(
         self, params: CreateUsingTokenParams, headers=None
     ) -> CreateUsingTokenResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_token"),
@@ -346,11 +359,18 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateUsingTokenResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_using_payment_intent(
         self, params: CreateUsingPaymentIntentParams, headers=None
     ) -> CreateUsingPaymentIntentResponse:
+        jsonKeys = {
+            "additional_info": 1,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_payment_intent"),
@@ -358,11 +378,17 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateUsingPaymentIntentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_voucher_payment_source(
         self, params: CreateVoucherPaymentSourceParams, headers=None
     ) -> CreateVoucherPaymentSourceResponse:
+        jsonKeys = {
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_voucher_payment_source"),
@@ -370,9 +396,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateVoucherPaymentSourceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_card(self, params: CreateCardParams, headers=None) -> CreateCardResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_card"),
@@ -380,11 +412,17 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateCardResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_bank_account(
         self, params: CreateBankAccountParams, headers=None
     ) -> CreateBankAccountResponse:
+        jsonKeys = {
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_bank_account"),
@@ -392,11 +430,18 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             CreateBankAccountResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_card(
         self, id, params: UpdateCardParams = None, headers=None
     ) -> UpdateCardResponse:
+        jsonKeys = {
+            "gateway_meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "update_card"),
@@ -404,11 +449,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             UpdateCardResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_bank_account(
         self, id, params: UpdateBankAccountParams = None, headers=None
     ) -> UpdateBankAccountResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "update_bank_account"),
@@ -416,11 +465,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             UpdateBankAccountResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def verify_bank_account(
         self, id, params: VerifyBankAccountParams, headers=None
     ) -> VerifyBankAccountResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "verify_bank_account"),
@@ -428,9 +481,13 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             VerifyBankAccountResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("payment_sources", id),
@@ -438,9 +495,13 @@ class PaymentSource:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("payment_sources"),
@@ -448,11 +509,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def switch_gateway_account(
         self, id, params: SwitchGatewayAccountParams, headers=None
     ) -> SwitchGatewayAccountResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "switch_gateway_account"),
@@ -460,11 +525,15 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             SwitchGatewayAccountResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def export_payment_source(
         self, id, params: ExportPaymentSourceParams, headers=None
     ) -> ExportPaymentSourceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "export_payment_source"),
@@ -472,9 +541,13 @@ class PaymentSource:
             cast(Dict[Any, Any], params),
             headers,
             ExportPaymentSourceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete"),
@@ -482,9 +555,13 @@ class PaymentSource:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_local(self, id, headers=None) -> DeleteLocalResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete_local"),
@@ -492,4 +569,7 @@ class PaymentSource:
             None,
             headers,
             DeleteLocalResponse,
+            None,
+            False,
+            jsonKeys,
         )

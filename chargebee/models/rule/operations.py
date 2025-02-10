@@ -1,22 +1,30 @@
 from .responses import *
 from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 
 
 @dataclass
-class Configuration:
+class Rule:
 
     env: environment.Environment
 
-    def list(self, headers=None) -> ListResponse:
+    class Status(Enum):
+        ACTIVE = "active"
+        DISABLED = "disabled"
+
+        def __str__(self):
+            return self.value
+
+    def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
-        return request.send_list_request(
+        return request.send(
             "get",
-            request.uri_path("configurations"),
+            request.uri_path("rules", id),
             self.env,
             None,
             headers,
-            ListResponse,
+            RetrieveResponse,
             None,
             False,
             jsonKeys,

@@ -60,6 +60,7 @@ class PriceVariant:
         sort_by: NotRequired[Filters.SortFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("price_variants"),
@@ -67,9 +68,13 @@ class PriceVariant:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("price_variants", id),
@@ -77,9 +82,13 @@ class PriceVariant:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("price_variants", id),
@@ -87,9 +96,13 @@ class PriceVariant:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("price_variants", id, "delete"),
@@ -97,9 +110,13 @@ class PriceVariant:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("price_variants"),
@@ -107,4 +124,7 @@ class PriceVariant:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )

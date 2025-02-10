@@ -36,6 +36,7 @@ class BusinessEntity:
     def create_transfers(
         self, params: CreateTransfersParams, headers=None
     ) -> CreateTransfersResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("business_entities", "transfers"),
@@ -43,11 +44,15 @@ class BusinessEntity:
             cast(Dict[Any, Any], params),
             headers,
             CreateTransfersResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def get_transfers(
         self, params: GetTransfersParams = None, headers=None
     ) -> GetTransfersResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("business_entities", "transfers"),
@@ -55,4 +60,7 @@ class BusinessEntity:
             cast(Dict[Any, Any], params),
             headers,
             GetTransfersResponse,
+            None,
+            False,
+            jsonKeys,
         )

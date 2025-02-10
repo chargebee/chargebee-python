@@ -118,6 +118,11 @@ class InvoiceEstimate:
         quantity_used_in_decimal: NotRequired[str]
         unit_amount_in_decimal: NotRequired[str]
 
+    class LineItemCredit(TypedDict):
+        cn_id: Required[str]
+        applied_amount: Required[float]
+        line_item_id: NotRequired[str]
+
     class LineItemDiscount(TypedDict):
         line_item_id: Required[str]
         discount_type: Required["InvoiceEstimate.LineItemDiscountDiscountType"]

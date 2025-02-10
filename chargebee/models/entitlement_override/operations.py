@@ -42,6 +42,7 @@ class EntitlementOverride:
     def add_entitlement_override_for_subscription(
         self, id, params: AddEntitlementOverrideForSubscriptionParams, headers=None
     ) -> AddEntitlementOverrideForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
@@ -49,6 +50,9 @@ class EntitlementOverride:
             cast(Dict[Any, Any], params),
             headers,
             AddEntitlementOverrideForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list_entitlement_override_for_subscription(
@@ -57,6 +61,7 @@ class EntitlementOverride:
         params: ListEntitlementOverrideForSubscriptionParams = None,
         headers=None,
     ) -> ListEntitlementOverrideForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
@@ -64,4 +69,7 @@ class EntitlementOverride:
             cast(Dict[Any, Any], params),
             headers,
             ListEntitlementOverrideForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )

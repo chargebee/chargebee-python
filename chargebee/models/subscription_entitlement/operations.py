@@ -49,6 +49,7 @@ class SubscriptionEntitlement:
         params: SubscriptionEntitlementsForSubscriptionParams = None,
         headers=None,
     ) -> SubscriptionEntitlementsForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "subscription_entitlements"),
@@ -56,11 +57,15 @@ class SubscriptionEntitlement:
             cast(Dict[Any, Any], params),
             headers,
             SubscriptionEntitlementsForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def set_subscription_entitlement_availability(
         self, id, params: SetSubscriptionEntitlementAvailabilityParams, headers=None
     ) -> SetSubscriptionEntitlementAvailabilityResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path(
@@ -70,4 +75,7 @@ class SubscriptionEntitlement:
             cast(Dict[Any, Any], params),
             headers,
             SetSubscriptionEntitlementAvailabilityResponse,
+            None,
+            False,
+            jsonKeys,
         )

@@ -24,19 +24,25 @@ def _basic_auth_str(username):
     ).strip().decode("latin1")
 
 
-def request(method, url, env, params=None, headers=None):
+def request(
+    method, url, env, params=None, headers=None, subDomain=None, isJsonRequest=False
+):
     if not env:
         raise Exception("No environment configured.")
     if headers is None:
         headers = {}
 
-    url = env.api_url(url)
+    url = env.api_url(url, subDomain)
     if method.lower() in ("get", "head", "delete"):
         url = "%s?%s" % (url, compat.urlencode(params))
         payload = None
     else:
-        payload = compat.urlencode(params)
-        headers["Content-type"] = "application/x-www-form-urlencoded"
+        if isJsonRequest:
+            payload = params
+            headers["Content-type"] = "application/json;charset=UTF-8"
+        else:
+            payload = compat.urlencode(params)
+            headers["Content-type"] = "application/x-www-form-urlencoded"
 
     headers.update(
         {
@@ -131,12 +137,12 @@ def process_response(url, response, http_code, response_headers):
             )
 
     if http_code < 200 or http_code > 299:
-        handle_api_resp_error(url, http_code, resp_json, response_headers)
+        handle_api_resp_error(url, http_code, resp_json)
 
-    return resp_json, response_headers
+    return resp_json, response_headers, http_code
 
 
-def handle_api_resp_error(url, http_code, resp_json, response_headers=None):
+def handle_api_resp_error(url, http_code, resp_json):
     if "api_error_code" not in resp_json:
         raise Exception(
             "The api_error_code is not present. Probably not a chargebee error. \n URL is "
@@ -146,10 +152,10 @@ def handle_api_resp_error(url, http_code, resp_json, response_headers=None):
         )
 
     if "payment" == resp_json.get("type"):
-        raise PaymentError(http_code, resp_json, response_headers)
+        raise PaymentError(http_code, resp_json)
     elif "operation_failed" == resp_json.get("type"):
-        raise OperationFailedError(http_code, resp_json, response_headers)
+        raise OperationFailedError(http_code, resp_json)
     elif "invalid_request" == resp_json.get("type"):
-        raise InvalidRequestError(http_code, resp_json, response_headers)
+        raise InvalidRequestError(http_code, resp_json)
     else:
-        raise APIError(http_code, resp_json, response_headers)
+        raise APIError(http_code, resp_json)

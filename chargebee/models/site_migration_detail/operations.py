@@ -28,6 +28,7 @@ class SiteMigrationDetail:
         status: NotRequired[Filters.EnumFilter]
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("site_migration_details"),
@@ -35,4 +36,7 @@ class SiteMigrationDetail:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )

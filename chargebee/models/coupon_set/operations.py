@@ -33,6 +33,9 @@ class CouponSet:
         meta_data: NotRequired[Dict[Any, Any]]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets"),
@@ -40,11 +43,15 @@ class CouponSet:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_coupon_codes(
         self, id, params: AddCouponCodesParams = None, headers=None
     ) -> AddCouponCodesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "add_coupon_codes"),
@@ -52,9 +59,13 @@ class CouponSet:
             cast(Dict[Any, Any], params),
             headers,
             AddCouponCodesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupon_sets"),
@@ -62,9 +73,13 @@ class CouponSet:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("coupon_sets", id),
@@ -72,9 +87,15 @@ class CouponSet:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "update"),
@@ -82,9 +103,13 @@ class CouponSet:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete"),
@@ -92,11 +117,15 @@ class CouponSet:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_unused_coupon_codes(
         self, id, headers=None
     ) -> DeleteUnusedCouponCodesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete_unused_coupon_codes"),
@@ -104,4 +133,7 @@ class CouponSet:
             None,
             headers,
             DeleteUnusedCouponCodesResponse,
+            None,
+            False,
+            jsonKeys,
         )

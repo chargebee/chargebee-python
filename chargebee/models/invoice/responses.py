@@ -90,6 +90,13 @@ class LineItemTaxResponse(Model):
 
 
 @dataclass
+class LineItemCreditResponse(Model):
+    cn_id: str = None
+    applied_amount: float = None
+    line_item_id: str = None
+
+
+@dataclass
 class LineItemTierResponse(Model):
     line_item_id: str = None
     starting_unit: int = None
@@ -131,6 +138,7 @@ class AppliedCreditResponse(Model):
     cn_create_reason_code: str = None
     cn_date: int = None
     cn_status: str = None
+    tax_application: str = None
 
 
 @dataclass
@@ -283,6 +291,7 @@ class InvoiceResponse(Model):
     line_item_discounts: List[LineItemDiscountResponse] = None
     taxes: List[TaxResponse] = None
     line_item_taxes: List[LineItemTaxResponse] = None
+    line_item_credits: List[LineItemCreditResponse] = None
     line_item_tiers: List[LineItemTierResponse] = None
     linked_payments: List[LinkedPaymentResponse] = None
     dunning_attempts: List[DunningAttemptResponse] = None

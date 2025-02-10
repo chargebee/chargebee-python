@@ -38,6 +38,7 @@ class PortalSession:
         token: Required[str]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("portal_sessions"),
@@ -45,9 +46,13 @@ class PortalSession:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("portal_sessions", id),
@@ -55,9 +60,13 @@ class PortalSession:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def logout(self, id, headers=None) -> LogoutResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "logout"),
@@ -65,9 +74,13 @@ class PortalSession:
             None,
             headers,
             LogoutResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def activate(self, id, params: ActivateParams, headers=None) -> ActivateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "activate"),
@@ -75,4 +88,7 @@ class PortalSession:
             cast(Dict[Any, Any], params),
             headers,
             ActivateResponse,
+            None,
+            False,
+            jsonKeys,
         )
