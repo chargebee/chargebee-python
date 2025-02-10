@@ -54,6 +54,7 @@ class PaymentVoucher:
         sort_by: NotRequired[Filters.SortFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_vouchers"),
@@ -61,9 +62,13 @@ class PaymentVoucher:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("payment_vouchers", id),
@@ -71,11 +76,15 @@ class PaymentVoucher:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def payment_vouchers_for_invoice(
         self, id, params: PaymentVouchersForInvoiceParams = None, headers=None
     ) -> PaymentVouchersForInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_vouchers"),
@@ -83,11 +92,15 @@ class PaymentVoucher:
             cast(Dict[Any, Any], params),
             headers,
             PaymentVouchersForInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def payment_vouchers_for_customer(
         self, id, params: PaymentVouchersForCustomerParams = None, headers=None
     ) -> PaymentVouchersForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "payment_vouchers"),
@@ -95,4 +108,7 @@ class PaymentVoucher:
             cast(Dict[Any, Any], params),
             headers,
             PaymentVouchersForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )

@@ -117,6 +117,7 @@ class AllocationResponse(Model):
     allocated_at: int = None
     invoice_date: int = None
     invoice_status: str = None
+    tax_application: str = None
 
 
 @dataclass

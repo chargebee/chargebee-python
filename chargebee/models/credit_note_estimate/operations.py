@@ -13,6 +13,7 @@ class CreditNoteEstimate:
     class Type(Enum):
         ADJUSTMENT = "adjustment"
         REFUNDABLE = "refundable"
+        STORE = "store"
 
         def __str__(self):
             return self.value

@@ -335,6 +335,7 @@ class EntityType(Enum):
     OMNICHANNEL_SUBSCRIPTION = "omnichannel_subscription"
     OMNICHANNEL_SUBSCRIPTION_ITEM = "omnichannel_subscription_item"
     OMNICHANNEL_TRANSACTION = "omnichannel_transaction"
+    RECORDED_PURCHASE = "recorded_purchase"
 
     def __str__(self):
         return self.value
@@ -571,6 +572,10 @@ class EventType(Enum):
     OMNICHANNEL_SUBSCRIPTION_ITEM_DUNNING_EXPIRED = (
         "omnichannel_subscription_item_dunning_expired"
     )
+    RULE_CREATED = "rule_created"
+    RULE_UPDATED = "rule_updated"
+    RULE_DELETED = "rule_deleted"
+    RECORD_PURCHASE_FAILED = "record_purchase_failed"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"

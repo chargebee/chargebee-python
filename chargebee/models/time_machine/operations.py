@@ -59,6 +59,7 @@ class TimeMachine:
         destination_time: NotRequired[int]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("time_machines", id),
@@ -66,11 +67,15 @@ class TimeMachine:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def start_afresh(
         self, id, params: StartAfreshParams = None, headers=None
     ) -> StartAfreshResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("time_machines", id, "start_afresh"),
@@ -78,11 +83,15 @@ class TimeMachine:
             cast(Dict[Any, Any], params),
             headers,
             StartAfreshResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def travel_forward(
         self, id, params: TravelForwardParams = None, headers=None
     ) -> TravelForwardResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("time_machines", id, "travel_forward"),
@@ -90,4 +99,7 @@ class TimeMachine:
             cast(Dict[Any, Any], params),
             headers,
             TravelForwardResponse,
+            None,
+            False,
+            jsonKeys,
         )

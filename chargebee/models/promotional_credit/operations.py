@@ -54,6 +54,7 @@ class PromotionalCredit:
         customer_id: NotRequired[Filters.StringFilter]
 
     def add(self, params: AddParams, headers=None) -> AddResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("promotional_credits", "add"),
@@ -61,9 +62,13 @@ class PromotionalCredit:
             cast(Dict[Any, Any], params),
             headers,
             AddResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def deduct(self, params: DeductParams, headers=None) -> DeductResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("promotional_credits", "deduct"),
@@ -71,9 +76,13 @@ class PromotionalCredit:
             cast(Dict[Any, Any], params),
             headers,
             DeductResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def set(self, params: SetParams, headers=None) -> SetResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("promotional_credits", "set"),
@@ -81,9 +90,13 @@ class PromotionalCredit:
             cast(Dict[Any, Any], params),
             headers,
             SetResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("promotional_credits"),
@@ -91,9 +104,13 @@ class PromotionalCredit:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("promotional_credits", id),
@@ -101,4 +118,7 @@ class PromotionalCredit:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )

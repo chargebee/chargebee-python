@@ -220,6 +220,8 @@ from chargebee.models.recorded_purchase.operations import RecordedPurchase
 
 from chargebee.models.resource_migration.operations import ResourceMigration
 
+from chargebee.models.rule.operations import Rule
+
 from chargebee.models.site_migration_detail.operations import SiteMigrationDetail
 
 from chargebee.models.subscription.operations import Subscription
@@ -243,5 +245,7 @@ from chargebee.models.transaction.operations import Transaction
 from chargebee.models.unbilled_charge.operations import UnbilledCharge
 
 from chargebee.models.usage.operations import Usage
+
+from chargebee.models.usage_event.operations import UsageEvent
 
 from chargebee.models.virtual_bank_account.operations import VirtualBankAccount

@@ -35,6 +35,7 @@ class PaymentScheduleScheme:
         ]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes"),
@@ -42,9 +43,13 @@ class PaymentScheduleScheme:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("payment_schedule_schemes", id),
@@ -52,9 +57,13 @@ class PaymentScheduleScheme:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes", id, "delete"),
@@ -62,4 +71,7 @@ class PaymentScheduleScheme:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )

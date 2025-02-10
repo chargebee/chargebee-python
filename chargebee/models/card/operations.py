@@ -107,6 +107,7 @@ class Card:
         gateway_account_id: Required[str]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("cards", id),
@@ -114,11 +115,15 @@ class Card:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_card_for_customer(
         self, id, params: UpdateCardForCustomerParams, headers=None
     ) -> UpdateCardForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "credit_card"),
@@ -126,11 +131,15 @@ class Card:
             cast(Dict[Any, Any], params),
             headers,
             UpdateCardForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def switch_gateway_for_customer(
         self, id, params: SwitchGatewayForCustomerParams, headers=None
     ) -> SwitchGatewayForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "switch_gateway"),
@@ -138,11 +147,15 @@ class Card:
             cast(Dict[Any, Any], params),
             headers,
             SwitchGatewayForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def copy_card_for_customer(
         self, id, params: CopyCardForCustomerParams, headers=None
     ) -> CopyCardForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "copy_card"),
@@ -150,11 +163,15 @@ class Card:
             cast(Dict[Any, Any], params),
             headers,
             CopyCardForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_card_for_customer(
         self, id, headers=None
     ) -> DeleteCardForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_card"),
@@ -162,4 +179,7 @@ class Card:
             None,
             headers,
             DeleteCardForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )

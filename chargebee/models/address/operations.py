@@ -32,6 +32,7 @@ class Address:
         validation_status: NotRequired[enums.ValidationStatus]
 
     def retrieve(self, params: RetrieveParams, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("addresses"),
@@ -39,9 +40,13 @@ class Address:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("addresses"),
@@ -49,4 +54,7 @@ class Address:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )

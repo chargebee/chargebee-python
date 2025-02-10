@@ -1623,6 +1623,7 @@ class Subscription:
         tiers: Required[List["Subscription.ImportUnbilledChargesTierParams"]]
 
     class ImportForItemsParams(TypedDict):
+        exhausted_coupon_ids: NotRequired[List[str]]
         id: NotRequired[str]
         trial_end: NotRequired[int]
         billing_cycles: NotRequired[int]
@@ -1721,6 +1722,12 @@ class Subscription:
         copy_payment_source: NotRequired[bool]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "exemption_details": 1,
+            "additional_information": 1,
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions"),
@@ -1728,11 +1735,18 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_customer(
         self, id, params: CreateForCustomerParams, headers=None
     ) -> CreateForCustomerResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "subscriptions"),
@@ -1740,11 +1754,18 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             CreateForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_with_items(
         self, id, params: CreateWithItemsParams, headers=None
     ) -> CreateWithItemsResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "subscription_for_items"),
@@ -1752,9 +1773,13 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             CreateWithItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("subscriptions"),
@@ -1762,11 +1787,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def subscriptions_for_customer(
         self, id, params: SubscriptionsForCustomerParams = None, headers=None
     ) -> SubscriptionsForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "subscriptions"),
@@ -1774,11 +1803,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             SubscriptionsForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def contract_terms_for_subscription(
         self, id, params: ContractTermsForSubscriptionParams = None, headers=None
     ) -> ContractTermsForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "contract_terms"),
@@ -1786,11 +1819,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ContractTermsForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list_discounts(
         self, id, params: ListDiscountsParams = None, headers=None
     ) -> ListDiscountsResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "discounts"),
@@ -1798,9 +1835,13 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ListDiscountsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id),
@@ -1808,11 +1849,15 @@ class Subscription:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve_with_scheduled_changes(
         self, id, headers=None
     ) -> RetrieveWithScheduledChangesResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_with_scheduled_changes"),
@@ -1820,11 +1865,15 @@ class Subscription:
             None,
             headers,
             RetrieveWithScheduledChangesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_scheduled_changes(
         self, id, headers=None
     ) -> RemoveScheduledChangesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_changes"),
@@ -1832,11 +1881,15 @@ class Subscription:
             None,
             headers,
             RemoveScheduledChangesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_scheduled_cancellation(
         self, id, params: RemoveScheduledCancellationParams = None, headers=None
     ) -> RemoveScheduledCancellationResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_cancellation"),
@@ -1844,11 +1897,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             RemoveScheduledCancellationResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_coupons(
         self, id, params: RemoveCouponsParams = None, headers=None
     ) -> RemoveCouponsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_coupons"),
@@ -1856,9 +1913,16 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             RemoveCouponsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id),
@@ -1866,11 +1930,18 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_for_items(
         self, id, params: UpdateForItemsParams, headers=None
     ) -> UpdateForItemsResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "update_for_items"),
@@ -1878,11 +1949,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             UpdateForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def change_term_end(
         self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end"),
@@ -1890,11 +1965,17 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ChangeTermEndResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def reactivate(
         self, id, params: ReactivateParams = None, headers=None
     ) -> ReactivateResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "reactivate"),
@@ -1902,11 +1983,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ReactivateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_charge_at_term_end(
         self, id, params: AddChargeAtTermEndParams, headers=None
     ) -> AddChargeAtTermEndResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "add_charge_at_term_end"),
@@ -1914,11 +1999,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             AddChargeAtTermEndResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def charge_addon_at_term_end(
         self, id, params: ChargeAddonAtTermEndParams, headers=None
     ) -> ChargeAddonAtTermEndResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_addon_at_term_end"),
@@ -1926,11 +2015,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ChargeAddonAtTermEndResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def charge_future_renewals(
         self, id, params: ChargeFutureRenewalsParams = None, headers=None
     ) -> ChargeFutureRenewalsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_future_renewals"),
@@ -1938,11 +2031,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ChargeFutureRenewalsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def edit_advance_invoice_schedule(
         self, id, params: EditAdvanceInvoiceScheduleParams = None, headers=None
     ) -> EditAdvanceInvoiceScheduleResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "edit_advance_invoice_schedule"),
@@ -1950,11 +2047,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             EditAdvanceInvoiceScheduleResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve_advance_invoice_schedule(
         self, id, headers=None
     ) -> RetrieveAdvanceInvoiceScheduleResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_advance_invoice_schedule"),
@@ -1962,11 +2063,15 @@ class Subscription:
             None,
             headers,
             RetrieveAdvanceInvoiceScheduleResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_advance_invoice_schedule(
         self, id, params: RemoveAdvanceInvoiceScheduleParams = None, headers=None
     ) -> RemoveAdvanceInvoiceScheduleResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_advance_invoice_schedule"),
@@ -1974,11 +2079,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             RemoveAdvanceInvoiceScheduleResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def regenerate_invoice(
         self, id, params: RegenerateInvoiceParams = None, headers=None
     ) -> RegenerateInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice"),
@@ -1986,11 +2095,18 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             RegenerateInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_subscription(
         self, params: ImportSubscriptionParams, headers=None
     ) -> ImportSubscriptionResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", "import_subscription"),
@@ -1998,11 +2114,17 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_for_customer(
         self, id, params: ImportForCustomerParams, headers=None
     ) -> ImportForCustomerResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "import_subscription"),
@@ -2010,11 +2132,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_contract_term(
         self, id, params: ImportContractTermParams = None, headers=None
     ) -> ImportContractTermResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_contract_term"),
@@ -2022,11 +2148,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportContractTermResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_unbilled_charges(
         self, id, params: ImportUnbilledChargesParams, headers=None
     ) -> ImportUnbilledChargesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_unbilled_charges"),
@@ -2034,11 +2164,17 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportUnbilledChargesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_for_items(
         self, id, params: ImportForItemsParams, headers=None
     ) -> ImportForItemsResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "import_for_items"),
@@ -2046,11 +2182,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def override_billing_profile(
         self, id, params: OverrideBillingProfileParams = None, headers=None
     ) -> OverrideBillingProfileResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "override_billing_profile"),
@@ -2058,9 +2198,13 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             OverrideBillingProfileResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "delete"),
@@ -2068,9 +2212,13 @@ class Subscription:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pause(self, id, params: PauseParams = None, headers=None) -> PauseResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause"),
@@ -2078,9 +2226,13 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             PauseResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel(self, id, params: CancelParams = None, headers=None) -> CancelResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel"),
@@ -2088,11 +2240,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             CancelResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel_for_items(
         self, id, params: CancelForItemsParams = None, headers=None
     ) -> CancelForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_for_items"),
@@ -2100,9 +2256,15 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             CancelForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def resume(self, id, params: ResumeParams = None, headers=None) -> ResumeResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "resume"),
@@ -2110,9 +2272,13 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             ResumeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_scheduled_pause(self, id, headers=None) -> RemoveScheduledPauseResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_pause"),
@@ -2120,11 +2286,15 @@ class Subscription:
             None,
             headers,
             RemoveScheduledPauseResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_scheduled_resumption(
         self, id, headers=None
     ) -> RemoveScheduledResumptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_resumption"),
@@ -2132,9 +2302,13 @@ class Subscription:
             None,
             headers,
             RemoveScheduledResumptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "move"),
@@ -2142,4 +2316,7 @@ class Subscription:
             cast(Dict[Any, Any], params),
             headers,
             MoveResponse,
+            None,
+            False,
+            jsonKeys,
         )

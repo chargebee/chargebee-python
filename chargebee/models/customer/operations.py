@@ -397,16 +397,6 @@ class Customer:
         reference_id: NotRequired[str]
         additional_information: NotRequired[Dict[Any, Any]]
 
-    class MoveTaxProvidersFieldParams(TypedDict):
-        provider_name: NotRequired[str]
-        field_id: NotRequired[str]
-        field_value: NotRequired[str]
-
-    class MergeTaxProvidersFieldParams(TypedDict):
-        provider_name: NotRequired[str]
-        field_id: NotRequired[str]
-        field_value: NotRequired[str]
-
     class RelationshipsParentAccountAccessParams(TypedDict):
         portal_edit_child_subscriptions: NotRequired[
             "Customer.ParentAccountAccessPortalEditChildSubscriptions"
@@ -627,7 +617,6 @@ class Customer:
     class MoveParams(TypedDict):
         id_at_from_site: Required[str]
         from_site: Required[str]
-        tax_providers_fields: NotRequired[List["Customer.MoveTaxProvidersFieldParams"]]
 
     class ChangeBillingDateParams(TypedDict):
         billing_date: NotRequired[int]
@@ -639,7 +628,6 @@ class Customer:
     class MergeParams(TypedDict):
         from_customer_id: Required[str]
         to_customer_id: Required[str]
-        tax_providers_fields: NotRequired[List["Customer.MergeTaxProvidersFieldParams"]]
 
     class RelationshipsParams(TypedDict):
         parent_id: NotRequired[str]
@@ -666,6 +654,12 @@ class Customer:
         ]
 
     def create(self, params: CreateParams = None, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "exemption_details": 0,
+            "meta_data": 0,
+            "additional_information": 1,
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("customers"),
@@ -673,9 +667,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("customers"),
@@ -683,9 +681,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id),
@@ -693,9 +695,16 @@ class Customer:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "exemption_details": 0,
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id),
@@ -703,11 +712,17 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_payment_method(
         self, id, params: UpdatePaymentMethodParams, headers=None
     ) -> UpdatePaymentMethodResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "update_payment_method"),
@@ -715,11 +730,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             UpdatePaymentMethodResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_billing_info(
         self, id, params: UpdateBillingInfoParams = None, headers=None
     ) -> UpdateBillingInfoResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "update_billing_info"),
@@ -727,11 +746,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             UpdateBillingInfoResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def contacts_for_customer(
         self, id, params: ContactsForCustomerParams = None, headers=None
     ) -> ContactsForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "contacts"),
@@ -739,11 +762,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             ContactsForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def assign_payment_role(
         self, id, params: AssignPaymentRoleParams, headers=None
     ) -> AssignPaymentRoleResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "assign_payment_role"),
@@ -751,11 +778,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             AssignPaymentRoleResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_contact(
         self, id, params: AddContactParams, headers=None
     ) -> AddContactResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "add_contact"),
@@ -763,11 +794,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             AddContactResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_contact(
         self, id, params: UpdateContactParams, headers=None
     ) -> UpdateContactResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "update_contact"),
@@ -775,11 +810,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             UpdateContactResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_contact(
         self, id, params: DeleteContactParams, headers=None
     ) -> DeleteContactResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_contact"),
@@ -787,11 +826,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             DeleteContactResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_promotional_credits(
         self, id, params: AddPromotionalCreditsParams, headers=None
     ) -> AddPromotionalCreditsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "add_promotional_credits"),
@@ -799,11 +842,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             AddPromotionalCreditsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def deduct_promotional_credits(
         self, id, params: DeductPromotionalCreditsParams, headers=None
     ) -> DeductPromotionalCreditsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "deduct_promotional_credits"),
@@ -811,11 +858,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             DeductPromotionalCreditsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def set_promotional_credits(
         self, id, params: SetPromotionalCreditsParams, headers=None
     ) -> SetPromotionalCreditsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "set_promotional_credits"),
@@ -823,11 +874,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             SetPromotionalCreditsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_excess_payment(
         self, id, params: RecordExcessPaymentParams, headers=None
     ) -> RecordExcessPaymentResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "record_excess_payment"),
@@ -835,11 +890,17 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             RecordExcessPaymentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def collect_payment(
         self, id, params: CollectPaymentParams, headers=None
     ) -> CollectPaymentResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "collect_payment"),
@@ -847,9 +908,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             CollectPaymentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "delete"),
@@ -857,9 +922,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def move(self, params: MoveParams, headers=None) -> MoveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", "move"),
@@ -867,11 +936,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             MoveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def change_billing_date(
         self, id, params: ChangeBillingDateParams = None, headers=None
     ) -> ChangeBillingDateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "change_billing_date"),
@@ -879,9 +952,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             ChangeBillingDateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def merge(self, params: MergeParams, headers=None) -> MergeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", "merge"),
@@ -889,9 +966,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             MergeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def clear_personal_data(self, id, headers=None) -> ClearPersonalDataResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "clear_personal_data"),
@@ -899,11 +980,15 @@ class Customer:
             None,
             headers,
             ClearPersonalDataResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def relationships(
         self, id, params: RelationshipsParams = None, headers=None
     ) -> RelationshipsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "relationships"),
@@ -911,9 +996,13 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             RelationshipsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_relationship(self, id, headers=None) -> DeleteRelationshipResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_relationship"),
@@ -921,9 +1010,13 @@ class Customer:
             None,
             headers,
             DeleteRelationshipResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def hierarchy(self, id, params: HierarchyParams, headers=None) -> HierarchyResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "hierarchy"),
@@ -931,11 +1024,15 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             HierarchyResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_hierarchy_settings(
         self, id, params: UpdateHierarchySettingsParams = None, headers=None
     ) -> UpdateHierarchySettingsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "update_hierarchy_settings"),
@@ -943,4 +1040,7 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             UpdateHierarchySettingsResponse,
+            None,
+            False,
+            jsonKeys,
         )

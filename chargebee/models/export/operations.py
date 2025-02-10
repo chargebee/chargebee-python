@@ -465,6 +465,7 @@ class Export:
         include_site_level_resources: NotRequired[Filters.BooleanFilter]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("exports", id),
@@ -472,11 +473,15 @@ class Export:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def revenue_recognition(
         self, params: RevenueRecognitionParams, headers=None
     ) -> RevenueRecognitionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "revenue_recognition"),
@@ -484,11 +489,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             RevenueRecognitionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def deferred_revenue(
         self, params: DeferredRevenueParams, headers=None
     ) -> DeferredRevenueResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "deferred_revenue"),
@@ -496,9 +505,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             DeferredRevenueResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def plans(self, params: PlansParams = None, headers=None) -> PlansResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "plans"),
@@ -506,9 +519,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             PlansResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def addons(self, params: AddonsParams = None, headers=None) -> AddonsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "addons"),
@@ -516,9 +533,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             AddonsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def coupons(self, params: CouponsParams = None, headers=None) -> CouponsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "coupons"),
@@ -526,11 +547,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             CouponsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def customers(
         self, params: CustomersParams = None, headers=None
     ) -> CustomersResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "customers"),
@@ -538,11 +563,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             CustomersResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def subscriptions(
         self, params: SubscriptionsParams = None, headers=None
     ) -> SubscriptionsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "subscriptions"),
@@ -550,9 +579,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             SubscriptionsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def invoices(self, params: InvoicesParams = None, headers=None) -> InvoicesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "invoices"),
@@ -560,11 +593,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             InvoicesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def credit_notes(
         self, params: CreditNotesParams = None, headers=None
     ) -> CreditNotesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "credit_notes"),
@@ -572,11 +609,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             CreditNotesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def transactions(
         self, params: TransactionsParams = None, headers=None
     ) -> TransactionsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "transactions"),
@@ -584,9 +625,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             TransactionsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def orders(self, params: OrdersParams = None, headers=None) -> OrdersResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "orders"),
@@ -594,11 +639,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             OrdersResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def item_families(
         self, params: ItemFamiliesParams = None, headers=None
     ) -> ItemFamiliesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "item_families"),
@@ -606,9 +655,13 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             ItemFamiliesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def items(self, params: ItemsParams = None, headers=None) -> ItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "items"),
@@ -616,11 +669,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             ItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def item_prices(
         self, params: ItemPricesParams = None, headers=None
     ) -> ItemPricesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "item_prices"),
@@ -628,11 +685,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             ItemPricesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def attached_items(
         self, params: AttachedItemsParams = None, headers=None
     ) -> AttachedItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "attached_items"),
@@ -640,11 +701,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             AttachedItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def differential_prices(
         self, params: DifferentialPricesParams = None, headers=None
     ) -> DifferentialPricesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "differential_prices"),
@@ -652,11 +717,15 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             DifferentialPricesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def price_variants(
         self, params: PriceVariantsParams = None, headers=None
     ) -> PriceVariantsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("exports", "price_variants"),
@@ -664,4 +733,7 @@ class Export:
             cast(Dict[Any, Any], params),
             headers,
             PriceVariantsResponse,
+            None,
+            False,
+            jsonKeys,
         )

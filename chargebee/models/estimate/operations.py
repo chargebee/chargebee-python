@@ -1034,6 +1034,9 @@ class Estimate:
     def create_subscription(
         self, params: CreateSubscriptionParams, headers=None
     ) -> CreateSubscriptionResponse:
+        jsonKeys = {
+            "exemption_details": 1,
+        }
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription"),
@@ -1041,11 +1044,17 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_sub_item_estimate(
         self, params: CreateSubItemEstimateParams, headers=None
     ) -> CreateSubItemEstimateResponse:
+        jsonKeys = {
+            "exemption_details": 1,
+        }
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription_for_items"),
@@ -1053,11 +1062,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateSubItemEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_sub_for_customer_estimate(
         self, id, params: CreateSubForCustomerEstimateParams, headers=None
     ) -> CreateSubForCustomerEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "create_subscription_estimate"),
@@ -1065,11 +1078,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateSubForCustomerEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_sub_item_for_customer_estimate(
         self, id, params: CreateSubItemForCustomerEstimateParams, headers=None
     ) -> CreateSubItemForCustomerEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_for_items_estimate"),
@@ -1077,11 +1094,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateSubItemForCustomerEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_subscription(
         self, params: UpdateSubscriptionParams, headers=None
     ) -> UpdateSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription"),
@@ -1089,11 +1110,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             UpdateSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_subscription_for_items(
         self, params: UpdateSubscriptionForItemsParams, headers=None
     ) -> UpdateSubscriptionForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription_for_items"),
@@ -1101,11 +1126,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             UpdateSubscriptionForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def renewal_estimate(
         self, id, params: RenewalEstimateParams = None, headers=None
     ) -> RenewalEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "renewal_estimate"),
@@ -1113,11 +1142,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             RenewalEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def advance_invoice_estimate(
         self, id, params: AdvanceInvoiceEstimateParams = None, headers=None
     ) -> AdvanceInvoiceEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "advance_invoice_estimate"),
@@ -1125,11 +1158,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             AdvanceInvoiceEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def regenerate_invoice_estimate(
         self, id, params: RegenerateInvoiceEstimateParams = None, headers=None
     ) -> RegenerateInvoiceEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice_estimate"),
@@ -1137,11 +1174,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             RegenerateInvoiceEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def upcoming_invoices_estimate(
         self, id, headers=None
     ) -> UpcomingInvoicesEstimateResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "upcoming_invoices_estimate"),
@@ -1149,11 +1190,15 @@ class Estimate:
             None,
             headers,
             UpcomingInvoicesEstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def change_term_end(
         self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end_estimate"),
@@ -1161,11 +1206,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             ChangeTermEndResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel_subscription(
         self, id, params: CancelSubscriptionParams = None, headers=None
     ) -> CancelSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_subscription_estimate"),
@@ -1173,11 +1222,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CancelSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel_subscription_for_items(
         self, id, params: CancelSubscriptionForItemsParams = None, headers=None
     ) -> CancelSubscriptionForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path(
@@ -1187,11 +1240,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CancelSubscriptionForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pause_subscription(
         self, id, params: PauseSubscriptionParams = None, headers=None
     ) -> PauseSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause_subscription_estimate"),
@@ -1199,11 +1256,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             PauseSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def resume_subscription(
         self, id, params: ResumeSubscriptionParams = None, headers=None
     ) -> ResumeSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "resume_subscription_estimate"),
@@ -1211,11 +1272,17 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             ResumeSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def gift_subscription(
         self, params: GiftSubscriptionParams, headers=None
     ) -> GiftSubscriptionResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription"),
@@ -1223,11 +1290,17 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             GiftSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def gift_subscription_for_items(
         self, params: GiftSubscriptionForItemsParams, headers=None
     ) -> GiftSubscriptionForItemsResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription_for_items"),
@@ -1235,11 +1308,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             GiftSubscriptionForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_invoice(
         self, params: CreateInvoiceParams = None, headers=None
     ) -> CreateInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice"),
@@ -1247,11 +1324,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_invoice_for_items(
         self, params: CreateInvoiceForItemsParams, headers=None
     ) -> CreateInvoiceForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice_for_items"),
@@ -1259,11 +1340,15 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             CreateInvoiceForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def payment_schedules(
         self, params: PaymentSchedulesParams, headers=None
     ) -> PaymentSchedulesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("estimates", "payment_schedules"),
@@ -1271,4 +1356,7 @@ class Estimate:
             cast(Dict[Any, Any], params),
             headers,
             PaymentSchedulesResponse,
+            None,
+            False,
+            jsonKeys,
         )

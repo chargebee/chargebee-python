@@ -102,6 +102,7 @@ class Chargebee:
         self.Ramp = chargebee.Ramp(self.env)
         self.RecordedPurchase = chargebee.RecordedPurchase(self.env)
         self.ResourceMigration = chargebee.ResourceMigration(self.env)
+        self.Rule = chargebee.Rule(self.env)
         self.SiteMigrationDetail = chargebee.SiteMigrationDetail(self.env)
         self.Subscription = chargebee.Subscription(self.env)
         self.SubscriptionEntitlement = chargebee.SubscriptionEntitlement(self.env)
@@ -113,6 +114,7 @@ class Chargebee:
         self.Transaction = chargebee.Transaction(self.env)
         self.UnbilledCharge = chargebee.UnbilledCharge(self.env)
         self.Usage = chargebee.Usage(self.env)
+        self.UsageEvent = chargebee.UsageEvent(self.env)
         self.VirtualBankAccount = chargebee.VirtualBankAccount(self.env)
 
     def update_connect_timeout_secs(self, connect_timeout):

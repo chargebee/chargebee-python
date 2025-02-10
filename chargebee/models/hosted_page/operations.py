@@ -863,6 +863,7 @@ class HostedPage:
     def checkout_new(
         self, params: CheckoutNewParams, headers=None
     ) -> CheckoutNewResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new"),
@@ -870,11 +871,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutNewResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_one_time(
         self, params: CheckoutOneTimeParams = None, headers=None
     ) -> CheckoutOneTimeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time"),
@@ -882,11 +887,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutOneTimeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_one_time_for_items(
         self, params: CheckoutOneTimeForItemsParams, headers=None
     ) -> CheckoutOneTimeForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time_for_items"),
@@ -894,11 +903,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutOneTimeForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_new_for_items(
         self, params: CheckoutNewForItemsParams, headers=None
     ) -> CheckoutNewForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new_for_items"),
@@ -906,11 +919,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutNewForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_existing(
         self, params: CheckoutExistingParams, headers=None
     ) -> CheckoutExistingResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing"),
@@ -918,11 +935,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutExistingResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_existing_for_items(
         self, params: CheckoutExistingForItemsParams, headers=None
     ) -> CheckoutExistingForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing_for_items"),
@@ -930,9 +951,13 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutExistingForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_card(self, params: UpdateCardParams, headers=None) -> UpdateCardResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_card"),
@@ -940,11 +965,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             UpdateCardResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_payment_method(
         self, params: UpdatePaymentMethodParams, headers=None
     ) -> UpdatePaymentMethodResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_payment_method"),
@@ -952,11 +981,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             UpdatePaymentMethodResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def manage_payment_sources(
         self, params: ManagePaymentSourcesParams, headers=None
     ) -> ManagePaymentSourcesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "manage_payment_sources"),
@@ -964,9 +997,13 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             ManagePaymentSourcesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def collect_now(self, params: CollectNowParams, headers=None) -> CollectNowResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "collect_now"),
@@ -974,11 +1011,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CollectNowResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def accept_quote(
         self, params: AcceptQuoteParams, headers=None
     ) -> AcceptQuoteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "accept_quote"),
@@ -986,11 +1027,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             AcceptQuoteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def extend_subscription(
         self, params: ExtendSubscriptionParams, headers=None
     ) -> ExtendSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "extend_subscription"),
@@ -998,11 +1043,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             ExtendSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_gift(
         self, params: CheckoutGiftParams, headers=None
     ) -> CheckoutGiftResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift"),
@@ -1010,11 +1059,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutGiftResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def checkout_gift_for_items(
         self, params: CheckoutGiftForItemsParams = None, headers=None
     ) -> CheckoutGiftForItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift_for_items"),
@@ -1022,9 +1075,13 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             CheckoutGiftForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def claim_gift(self, params: ClaimGiftParams, headers=None) -> ClaimGiftResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "claim_gift"),
@@ -1032,11 +1089,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             ClaimGiftResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve_agreement_pdf(
         self, params: RetrieveAgreementPdfParams, headers=None
     ) -> RetrieveAgreementPdfResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "retrieve_agreement_pdf"),
@@ -1044,9 +1105,13 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveAgreementPdfResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def acknowledge(self, id, headers=None) -> AcknowledgeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", id, "acknowledge"),
@@ -1054,9 +1119,13 @@ class HostedPage:
             None,
             headers,
             AcknowledgeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("hosted_pages", id),
@@ -1064,9 +1133,13 @@ class HostedPage:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("hosted_pages"),
@@ -1074,9 +1147,13 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pre_cancel(self, params: PreCancelParams, headers=None) -> PreCancelResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "pre_cancel"),
@@ -1084,9 +1161,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             PreCancelResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def events(self, params: EventsParams, headers=None) -> EventsResponse:
+        jsonKeys = {
+            "event_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "events"),
@@ -1094,11 +1177,15 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             EventsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def view_voucher(
         self, params: ViewVoucherParams, headers=None
     ) -> ViewVoucherResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("hosted_pages", "view_voucher"),
@@ -1106,4 +1193,7 @@ class HostedPage:
             cast(Dict[Any, Any], params),
             headers,
             ViewVoucherResponse,
+            None,
+            False,
+            jsonKeys,
         )

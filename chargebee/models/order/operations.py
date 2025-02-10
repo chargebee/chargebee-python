@@ -108,6 +108,7 @@ class Order:
     class OrderLineItemLinkedCreditType(Enum):
         ADJUSTMENT = "adjustment"
         REFUNDABLE = "refundable"
+        STORE = "store"
 
         def __str__(self):
             return self.value
@@ -378,6 +379,7 @@ class Order:
         order_line_items: NotRequired[List["Order.ResendOrderLineItemParams"]]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders"),
@@ -385,9 +387,13 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id),
@@ -395,11 +401,15 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_order(
         self, params: ImportOrderParams, headers=None
     ) -> ImportOrderResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", "import_order"),
@@ -407,9 +417,13 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             ImportOrderResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def assign_order_number(self, id, headers=None) -> AssignOrderNumberResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "assign_order_number"),
@@ -417,9 +431,13 @@ class Order:
             None,
             headers,
             AssignOrderNumberResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel(self, id, params: CancelParams, headers=None) -> CancelResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "cancel"),
@@ -427,11 +445,15 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             CancelResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_refundable_credit_note(
         self, id, params: CreateRefundableCreditNoteParams, headers=None
     ) -> CreateRefundableCreditNoteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "create_refundable_credit_note"),
@@ -439,9 +461,13 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             CreateRefundableCreditNoteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def reopen(self, id, params: ReopenParams = None, headers=None) -> ReopenResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "reopen"),
@@ -449,9 +475,13 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             ReopenResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("orders", id),
@@ -459,9 +489,13 @@ class Order:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "delete"),
@@ -469,9 +503,13 @@ class Order:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("orders"),
@@ -479,11 +517,15 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def orders_for_invoice(
         self, id, params: OrdersForInvoiceParams = None, headers=None
     ) -> OrdersForInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "orders"),
@@ -491,9 +533,13 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             OrdersForInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def resend(self, id, params: ResendParams = None, headers=None) -> ResendResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("orders", id, "resend"),
@@ -501,4 +547,7 @@ class Order:
             cast(Dict[Any, Any], params),
             headers,
             ResendResponse,
+            None,
+            False,
+            jsonKeys,
         )

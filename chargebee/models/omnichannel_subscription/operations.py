@@ -73,6 +73,7 @@ class OmnichannelSubscription:
         offset: NotRequired[str]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("omnichannel_subscriptions", id),
@@ -80,9 +81,13 @@ class OmnichannelSubscription:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("omnichannel_subscriptions"),
@@ -90,6 +95,9 @@ class OmnichannelSubscription:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def omnichannel_transactions_for_omnichannel_subscription(
@@ -98,6 +106,7 @@ class OmnichannelSubscription:
         params: OmnichannelTransactionsForOmnichannelSubscriptionParams = None,
         headers=None,
     ) -> OmnichannelTransactionsForOmnichannelSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path(
@@ -107,4 +116,7 @@ class OmnichannelSubscription:
             cast(Dict[Any, Any], params),
             headers,
             OmnichannelTransactionsForOmnichannelSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )

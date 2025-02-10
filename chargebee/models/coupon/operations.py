@@ -284,6 +284,9 @@ class Coupon:
         for_site_merging: NotRequired[bool]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("coupons"),
@@ -291,11 +294,21 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_items(
         self, params: CreateForItemsParams, headers=None
     ) -> CreateForItemsResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "item_price_ids": 1,
+            "item_family_ids": 1,
+            "currencies": 1,
+            "item_price_periods": 1,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", "create_for_items"),
@@ -303,11 +316,21 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             CreateForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_for_items(
         self, id, params: UpdateForItemsParams, headers=None
     ) -> UpdateForItemsResponse:
+        jsonKeys = {
+            "meta_data": 0,
+            "item_price_ids": 1,
+            "item_family_ids": 1,
+            "currencies": 1,
+            "item_price_periods": 1,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", id, "update_for_items"),
@@ -315,9 +338,13 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             UpdateForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupons"),
@@ -325,9 +352,13 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("coupons", id),
@@ -335,9 +366,15 @@ class Coupon:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "meta_data": 0,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", id),
@@ -345,9 +382,13 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupons", id, "delete"),
@@ -355,9 +396,13 @@ class Coupon:
             None,
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupons", "copy"),
@@ -365,9 +410,13 @@ class Coupon:
             cast(Dict[Any, Any], params),
             headers,
             CopyResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupons", id, "unarchive"),
@@ -375,4 +424,7 @@ class Coupon:
             None,
             headers,
             UnarchiveResponse,
+            None,
+            False,
+            jsonKeys,
         )

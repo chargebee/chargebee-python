@@ -171,6 +171,9 @@ class Purchase:
         customer_id: NotRequired[str]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "meta_data": 1,
+        }
         return request.send(
             "post",
             request.uri_path("purchases"),
@@ -178,9 +181,15 @@ class Purchase:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def estimate(self, params: EstimateParams, headers=None) -> EstimateResponse:
+        jsonKeys = {
+            "exemption_details": 1,
+        }
         return request.send(
             "post",
             request.uri_path("purchases", "estimate"),
@@ -188,4 +197,7 @@ class Purchase:
             cast(Dict[Any, Any], params),
             headers,
             EstimateResponse,
+            None,
+            False,
+            jsonKeys,
         )

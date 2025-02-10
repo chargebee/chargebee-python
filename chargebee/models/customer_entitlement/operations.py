@@ -15,6 +15,7 @@ class CustomerEntitlement:
     def entitlements_for_customer(
         self, id, params: EntitlementsForCustomerParams = None, headers=None
     ) -> EntitlementsForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "customer_entitlements"),
@@ -22,4 +23,7 @@ class CustomerEntitlement:
             cast(Dict[Any, Any], params),
             headers,
             EntitlementsForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )

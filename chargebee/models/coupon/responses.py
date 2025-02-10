@@ -62,6 +62,7 @@ class CouponResponse(Model):
     invoice_notes: str = None
     meta_data: Dict[Any, Any] = None
     coupon_constraints: List[CouponConstraintResponse] = None
+    deleted: bool = None
 
 
 @dataclass

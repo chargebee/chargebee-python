@@ -92,6 +92,9 @@ class DifferentialPrice:
         parent_item_id: NotRequired[Filters.StringFilter]
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "period": 1,
+        }
         return request.send(
             "post",
             request.uri_path("item_prices", id, "differential_prices"),
@@ -99,9 +102,13 @@ class DifferentialPrice:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("differential_prices", id),
@@ -109,9 +116,15 @@ class DifferentialPrice:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
+        jsonKeys = {
+            "period": 1,
+        }
         return request.send(
             "post",
             request.uri_path("differential_prices", id),
@@ -119,9 +132,13 @@ class DifferentialPrice:
             cast(Dict[Any, Any], params),
             headers,
             UpdateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("differential_prices", id, "delete"),
@@ -129,9 +146,13 @@ class DifferentialPrice:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("differential_prices"),
@@ -139,4 +160,7 @@ class DifferentialPrice:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )

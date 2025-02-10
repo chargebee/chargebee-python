@@ -26,6 +26,7 @@ class ResourceMigration:
     def retrieve_latest(
         self, params: RetrieveLatestParams, headers=None
     ) -> RetrieveLatestResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("resource_migrations", "retrieve_latest"),
@@ -33,4 +34,7 @@ class ResourceMigration:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveLatestResponse,
+            None,
+            False,
+            jsonKeys,
         )

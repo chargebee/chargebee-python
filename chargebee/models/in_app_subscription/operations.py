@@ -74,6 +74,7 @@ class InAppSubscription:
     def process_receipt(
         self, id, params: ProcessReceiptParams, headers=None
     ) -> ProcessReceiptResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "process_purchase_command"),
@@ -81,11 +82,15 @@ class InAppSubscription:
             cast(Dict[Any, Any], params),
             headers,
             ProcessReceiptResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_receipt(
         self, id, params: ImportReceiptParams, headers=None
     ) -> ImportReceiptResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_receipt"),
@@ -93,11 +98,15 @@ class InAppSubscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportReceiptResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_subscription(
         self, id, params: ImportSubscriptionParams, headers=None
     ) -> ImportSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_subscription"),
@@ -105,11 +114,15 @@ class InAppSubscription:
             cast(Dict[Any, Any], params),
             headers,
             ImportSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve_store_subs(
         self, id, params: RetrieveStoreSubsParams, headers=None
     ) -> RetrieveStoreSubsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "retrieve"),
@@ -117,4 +130,7 @@ class InAppSubscription:
             cast(Dict[Any, Any], params),
             headers,
             RetrieveStoreSubsResponse,
+            None,
+            False,
+            jsonKeys,
         )

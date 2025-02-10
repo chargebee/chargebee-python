@@ -177,6 +177,9 @@ class Gift:
         comment: NotRequired[str]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("gifts"),
@@ -184,11 +187,17 @@ class Gift:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_items(
         self, params: CreateForItemsParams, headers=None
     ) -> CreateForItemsResponse:
+        jsonKeys = {
+            "additional_information": 1,
+        }
         return request.send(
             "post",
             request.uri_path("gifts", "create_for_items"),
@@ -196,9 +205,13 @@ class Gift:
             cast(Dict[Any, Any], params),
             headers,
             CreateForItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("gifts", id),
@@ -206,9 +219,13 @@ class Gift:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("gifts"),
@@ -216,9 +233,13 @@ class Gift:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def claim(self, id, headers=None) -> ClaimResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("gifts", id, "claim"),
@@ -226,9 +247,13 @@ class Gift:
             None,
             headers,
             ClaimResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def cancel(self, id, headers=None) -> CancelResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("gifts", id, "cancel"),
@@ -236,11 +261,15 @@ class Gift:
             None,
             headers,
             CancelResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_gift(
         self, id, params: UpdateGiftParams, headers=None
     ) -> UpdateGiftResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("gifts", id, "update_gift"),
@@ -248,4 +277,7 @@ class Gift:
             cast(Dict[Any, Any], params),
             headers,
             UpdateGiftResponse,
+            None,
+            False,
+            jsonKeys,
         )

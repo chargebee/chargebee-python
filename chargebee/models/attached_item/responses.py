@@ -22,6 +22,7 @@ class AttachedItemResponse(Model):
     updated_at: int = None
     channel: str = None
     business_entity_id: str = None
+    deleted: bool = None
 
 
 @dataclass

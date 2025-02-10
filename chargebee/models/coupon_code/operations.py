@@ -32,6 +32,7 @@ class CouponCode:
         status: NotRequired[Filters.EnumFilter]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupon_codes"),
@@ -39,9 +40,13 @@ class CouponCode:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("coupon_codes", id),
@@ -49,9 +54,13 @@ class CouponCode:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupon_codes"),
@@ -59,9 +68,13 @@ class CouponCode:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def archive(self, id, headers=None) -> ArchiveResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("coupon_codes", id, "archive"),
@@ -69,4 +82,7 @@ class CouponCode:
             None,
             headers,
             ArchiveResponse,
+            None,
+            False,
+            jsonKeys,
         )

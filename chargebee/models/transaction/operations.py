@@ -175,6 +175,7 @@ class Transaction:
     def create_authorization(
         self, params: CreateAuthorizationParams, headers=None
     ) -> CreateAuthorizationResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", "create_authorization"),
@@ -182,9 +183,13 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             CreateAuthorizationResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def void_transaction(self, id, headers=None) -> VoidTransactionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", id, "void"),
@@ -192,11 +197,15 @@ class Transaction:
             None,
             headers,
             VoidTransactionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", id, "record_refund"),
@@ -204,11 +213,15 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             RecordRefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def reconcile(
         self, id, params: ReconcileParams = None, headers=None
     ) -> ReconcileResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", id, "reconcile"),
@@ -216,9 +229,13 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             ReconcileResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", id, "refund"),
@@ -226,9 +243,13 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             RefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("transactions"),
@@ -236,11 +257,15 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def transactions_for_customer(
         self, id, params: TransactionsForCustomerParams = None, headers=None
     ) -> TransactionsForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "transactions"),
@@ -248,11 +273,15 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             TransactionsForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def transactions_for_subscription(
         self, id, params: TransactionsForSubscriptionParams = None, headers=None
     ) -> TransactionsForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "transactions"),
@@ -260,11 +289,15 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             TransactionsForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def payments_for_invoice(
         self, id, params: PaymentsForInvoiceParams = None, headers=None
     ) -> PaymentsForInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payments"),
@@ -272,9 +305,13 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             PaymentsForInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("transactions", id),
@@ -282,11 +319,15 @@ class Transaction:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_offline_transaction(
         self, id, params: DeleteOfflineTransactionParams = None, headers=None
     ) -> DeleteOfflineTransactionResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("transactions", id, "delete_offline_transaction"),
@@ -294,4 +335,7 @@ class Transaction:
             cast(Dict[Any, Any], params),
             headers,
             DeleteOfflineTransactionResponse,
+            None,
+            False,
+            jsonKeys,
         )

@@ -79,6 +79,13 @@ class Invoice:
         def __str__(self):
             return self.value
 
+    class AppliedCreditTaxApplication(Enum):
+        PRE_TAX = "pre_tax"
+        POST_TAX = "post_tax"
+
+        def __str__(self):
+            return self.value
+
     class LinkedOrderStatus(Enum):
         NEW = "new"
         PROCESSING = "processing"
@@ -191,6 +198,11 @@ class Invoice:
         tax_amount_in_local_currency: NotRequired[int]
         local_currency_code: NotRequired[str]
 
+    class LineItemCredit(TypedDict):
+        cn_id: Required[str]
+        applied_amount: Required[float]
+        line_item_id: NotRequired[str]
+
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]
         starting_unit: Required[int]
@@ -226,6 +238,7 @@ class Invoice:
         cn_create_reason_code: NotRequired[str]
         cn_date: NotRequired[int]
         cn_status: Required["credit_note.CreditNote.Status"]
+        tax_application: NotRequired["Invoice.AppliedCreditTaxApplication"]
 
     class AdjustmentCreditNote(TypedDict):
         cn_id: Required[str]
@@ -1126,6 +1139,10 @@ class Invoice:
         amount: NotRequired[int]
 
     def create(self, params: CreateParams = None, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "additional_information": 1,
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("invoices"),
@@ -1133,11 +1150,18 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             CreateResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_charge_items_and_charges(
         self, params: CreateForChargeItemsAndChargesParams, headers=None
     ) -> CreateForChargeItemsAndChargesResponse:
+        jsonKeys = {
+            "additional_information": 1,
+            "billing_address": 1,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", "create_for_charge_items_and_charges"),
@@ -1145,9 +1169,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             CreateForChargeItemsAndChargesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def charge(self, params: ChargeParams, headers=None) -> ChargeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", "charge"),
@@ -1155,11 +1183,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ChargeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def charge_addon(
         self, params: ChargeAddonParams, headers=None
     ) -> ChargeAddonResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", "charge_addon"),
@@ -1167,11 +1199,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ChargeAddonResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def create_for_charge_item(
         self, params: CreateForChargeItemParams, headers=None
     ) -> CreateForChargeItemResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", "create_for_charge_item"),
@@ -1179,11 +1215,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             CreateForChargeItemResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def stop_dunning(
         self, id, params: StopDunningParams = None, headers=None
     ) -> StopDunningResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "stop_dunning"),
@@ -1191,11 +1231,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             StopDunningResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def import_invoice(
         self, params: ImportInvoiceParams, headers=None
     ) -> ImportInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", "import_invoice"),
@@ -1203,11 +1247,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ImportInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def apply_payments(
         self, id, params: ApplyPaymentsParams = None, headers=None
     ) -> ApplyPaymentsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payments"),
@@ -1215,9 +1263,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ApplyPaymentsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def sync_usages(self, id, headers=None) -> SyncUsagesResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "sync_usages"),
@@ -1225,11 +1277,15 @@ class Invoice:
             None,
             headers,
             SyncUsagesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete_line_items(
         self, id, params: DeleteLineItemsParams = None, headers=None
     ) -> DeleteLineItemsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete_line_items"),
@@ -1237,11 +1293,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             DeleteLineItemsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def apply_credits(
         self, id, params: ApplyCreditsParams = None, headers=None
     ) -> ApplyCreditsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_credits"),
@@ -1249,9 +1309,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ApplyCreditsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
+        jsonKeys = {}
         return request.send_list_request(
             "get",
             request.uri_path("invoices"),
@@ -1259,11 +1323,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ListResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def invoices_for_customer(
         self, id, params: InvoicesForCustomerParams = None, headers=None
     ) -> InvoicesForCustomerResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "invoices"),
@@ -1271,11 +1339,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             InvoicesForCustomerResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def invoices_for_subscription(
         self, id, params: InvoicesForSubscriptionParams = None, headers=None
     ) -> InvoicesForSubscriptionResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "invoices"),
@@ -1283,9 +1355,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             InvoicesForSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id),
@@ -1293,9 +1369,13 @@ class Invoice:
             None,
             headers,
             RetrieveResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "pdf"),
@@ -1303,9 +1383,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             PdfResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "download_einvoice"),
@@ -1313,11 +1397,15 @@ class Invoice:
             None,
             headers,
             DownloadEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def list_payment_reference_numbers(
         self, params: ListPaymentReferenceNumbersParams = None, headers=None
     ) -> ListPaymentReferenceNumbersResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", "payment_reference_numbers"),
@@ -1325,11 +1413,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ListPaymentReferenceNumbersResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_charge(
         self, id, params: AddChargeParams, headers=None
     ) -> AddChargeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge"),
@@ -1337,11 +1429,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             AddChargeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_addon_charge(
         self, id, params: AddAddonChargeParams, headers=None
     ) -> AddAddonChargeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_addon_charge"),
@@ -1349,11 +1445,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             AddAddonChargeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def add_charge_item(
         self, id, params: AddChargeItemParams, headers=None
     ) -> AddChargeItemResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge_item"),
@@ -1361,9 +1461,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             AddChargeItemResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def close(self, id, params: CloseParams = None, headers=None) -> CloseResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "close"),
@@ -1371,11 +1475,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             CloseResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def collect_payment(
         self, id, params: CollectPaymentParams = None, headers=None
     ) -> CollectPaymentResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "collect_payment"),
@@ -1383,11 +1491,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             CollectPaymentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_payment(
         self, id, params: RecordPaymentParams, headers=None
     ) -> RecordPaymentResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_payment"),
@@ -1395,11 +1507,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RecordPaymentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_tax_withheld(
         self, id, params: RecordTaxWithheldParams, headers=None
     ) -> RecordTaxWithheldResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_tax_withheld"),
@@ -1407,11 +1523,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RecordTaxWithheldResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_tax_withheld(
         self, id, params: RemoveTaxWithheldParams, headers=None
     ) -> RemoveTaxWithheldResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_tax_withheld"),
@@ -1419,9 +1539,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RemoveTaxWithheldResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "refund"),
@@ -1429,11 +1553,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_refund"),
@@ -1441,11 +1569,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RecordRefundResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_payment(
         self, id, params: RemovePaymentParams, headers=None
     ) -> RemovePaymentResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_payment"),
@@ -1453,11 +1585,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RemovePaymentResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def remove_credit_note(
         self, id, params: RemoveCreditNoteParams, headers=None
     ) -> RemoveCreditNoteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_credit_note"),
@@ -1465,11 +1601,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             RemoveCreditNoteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def void_invoice(
         self, id, params: VoidInvoiceParams = None, headers=None
     ) -> VoidInvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "void"),
@@ -1477,11 +1617,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             VoidInvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def write_off(
         self, id, params: WriteOffParams = None, headers=None
     ) -> WriteOffResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "write_off"),
@@ -1489,9 +1633,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             WriteOffResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete"),
@@ -1499,11 +1647,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             DeleteResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def update_details(
         self, id, params: UpdateDetailsParams = None, headers=None
     ) -> UpdateDetailsResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "update_details"),
@@ -1511,11 +1663,15 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             UpdateDetailsResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def apply_payment_schedule_scheme(
         self, id, params: ApplyPaymentScheduleSchemeParams, headers=None
     ) -> ApplyPaymentScheduleSchemeResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payment_schedule_scheme"),
@@ -1523,9 +1679,13 @@ class Invoice:
             cast(Dict[Any, Any], params),
             headers,
             ApplyPaymentScheduleSchemeResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def payment_schedules(self, id, headers=None) -> PaymentSchedulesResponse:
+        jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_schedules"),
@@ -1533,9 +1693,13 @@ class Invoice:
             None,
             headers,
             PaymentSchedulesResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "resend_einvoice"),
@@ -1543,9 +1707,13 @@ class Invoice:
             None,
             headers,
             ResendEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
+        jsonKeys = {}
         return request.send(
             "post",
             request.uri_path("invoices", id, "send_einvoice"),
@@ -1553,4 +1721,7 @@ class Invoice:
             None,
             headers,
             SendEinvoiceResponse,
+            None,
+            False,
+            jsonKeys,
         )

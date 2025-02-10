@@ -81,6 +81,13 @@ class LineItemTierResponse(Model):
 
 
 @dataclass
+class LineItemCreditResponse(Model):
+    cn_id: str = None
+    applied_amount: float = None
+    line_item_id: str = None
+
+
+@dataclass
 class LineItemDiscountResponse(Model):
     line_item_id: str = None
     discount_type: str = None
@@ -105,6 +112,7 @@ class InvoiceEstimateResponse(Model):
     taxes: List[TaxResponse] = None
     line_item_taxes: List[LineItemTaxResponse] = None
     line_item_tiers: List[LineItemTierResponse] = None
+    line_item_credits: List[LineItemCreditResponse] = None
     line_item_discounts: List[LineItemDiscountResponse] = None
     round_off_amount: int = None
     customer_id: str = None
