@@ -1,3 +1,10 @@
+### v3.1.1 (2025-02-12)
+* * * 
+
+#### Bug Fixes 
+* Included http_status_code in GET requests. 
+* Parameter order in send_list_request.
+
 ### v3.1.0 (2025-02-10)
 * * * 
 

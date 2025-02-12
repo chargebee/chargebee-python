@@ -19,8 +19,8 @@ class BusinessEntityResponse(Model):
 
 @dataclass
 class CreateTransfersResponse(Response):
+    is_idempotency_replayed: bool
     business_entity_transfer: "business_entity_transfer.BusinessEntityTransferResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -29,7 +29,7 @@ class GetTransfersBusinessEntityResponse:
 
 
 @dataclass
-class GetTransfersResponse:
+class GetTransfersResponse(Response):
+
     list: List[GetTransfersBusinessEntityResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

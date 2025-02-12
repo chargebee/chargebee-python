@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 
 
 @dataclass
@@ -11,6 +12,6 @@ class ConfigurationResponse(Model):
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     configurations: List[ConfigurationResponse]
-    headers: Dict[str, str] = None

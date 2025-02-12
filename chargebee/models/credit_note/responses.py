@@ -222,47 +222,47 @@ class CreditNoteResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PdfResponse(Response):
+    is_idempotency_replayed: bool
     download: "download.DownloadResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class DownloadEinvoiceResponse:
+class DownloadEinvoiceResponse(Response):
+
     downloads: List["download.DownloadResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RefundResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordRefundResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
     transaction: "transaction.TransactionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class VoidCreditNoteResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -271,10 +271,10 @@ class ListCreditNoteResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListCreditNoteResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -283,37 +283,37 @@ class CreditNotesForCustomerCreditNoteResponse:
 
 
 @dataclass
-class CreditNotesForCustomerResponse:
+class CreditNotesForCustomerResponse(Response):
+
     list: List[CreditNotesForCustomerCreditNoteResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveTaxWithheldRefundResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ResendEinvoiceResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SendEinvoiceResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportCreditNoteResponse(Response):
+    is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
-    headers: Dict[str, str] = None

@@ -115,32 +115,32 @@ class TransactionResponse(Model):
 
 @dataclass
 class CreateAuthorizationResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class VoidTransactionResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordRefundResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ReconcileResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RefundResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -149,10 +149,10 @@ class ListTransactionResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListTransactionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -161,10 +161,10 @@ class TransactionsForCustomerTransactionResponse:
 
 
 @dataclass
-class TransactionsForCustomerResponse:
+class TransactionsForCustomerResponse(Response):
+
     list: List[TransactionsForCustomerTransactionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -173,10 +173,10 @@ class TransactionsForSubscriptionTransactionResponse:
 
 
 @dataclass
-class TransactionsForSubscriptionResponse:
+class TransactionsForSubscriptionResponse(Response):
+
     list: List[TransactionsForSubscriptionTransactionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -185,19 +185,19 @@ class PaymentsForInvoiceTransactionResponse:
 
 
 @dataclass
-class PaymentsForInvoiceResponse:
+class PaymentsForInvoiceResponse(Response):
+
     list: List[PaymentsForInvoiceTransactionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     transaction: TransactionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteOfflineTransactionResponse(Response):
+    is_idempotency_replayed: bool
     transaction: TransactionResponse
-    headers: Dict[str, str] = None

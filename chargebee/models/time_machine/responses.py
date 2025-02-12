@@ -17,18 +17,18 @@ class TimeMachineResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     time_machine: TimeMachineResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class StartAfreshResponse(Response):
+    is_idempotency_replayed: bool
     time_machine: TimeMachineResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class TravelForwardResponse(Response):
+    is_idempotency_replayed: bool
     time_machine: TimeMachineResponse
-    headers: Dict[str, str] = None

@@ -27,22 +27,22 @@ class VirtualBankAccountResponse(Model):
 
 @dataclass
 class CreateUsingPermanentTokenResponse(Response):
+    is_idempotency_replayed: bool
     virtual_bank_account: VirtualBankAccountResponse
     customer: "customer.CustomerResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     virtual_bank_account: VirtualBankAccountResponse
     customer: "customer.CustomerResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     virtual_bank_account: VirtualBankAccountResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -51,19 +51,19 @@ class ListVirtualBankAccountResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListVirtualBankAccountResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     virtual_bank_account: VirtualBankAccountResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteLocalResponse(Response):
+    is_idempotency_replayed: bool
     virtual_bank_account: VirtualBankAccountResponse
-    headers: Dict[str, str] = None

@@ -93,20 +93,20 @@ class ItemPriceResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     item_price: ItemPriceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     item_price: ItemPriceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     item_price: ItemPriceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -115,16 +115,16 @@ class ListItemPriceResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListItemPriceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     item_price: ItemPriceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -133,10 +133,10 @@ class FindApplicableItemsItemPriceResponse:
 
 
 @dataclass
-class FindApplicableItemsResponse:
+class FindApplicableItemsResponse(Response):
+
     list: List[FindApplicableItemsItemPriceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -145,7 +145,7 @@ class FindApplicableItemPricesItemPriceResponse:
 
 
 @dataclass
-class FindApplicableItemPricesResponse:
+class FindApplicableItemPricesResponse(Response):
+
     list: List[FindApplicableItemPricesItemPriceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

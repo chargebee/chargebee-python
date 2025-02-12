@@ -17,8 +17,8 @@ def lowercase_keys(data):
 def send_list_request(
     method,
     url,
-    params=None,
     env=None,
+    params=None,
     headers=None,
     response_type=None,
     subDomain=None,

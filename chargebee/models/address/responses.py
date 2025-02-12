@@ -26,12 +26,12 @@ class AddressResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     address: AddressResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     address: AddressResponse
-    headers: Dict[str, str] = None

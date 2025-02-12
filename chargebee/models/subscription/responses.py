@@ -272,32 +272,32 @@ class SubscriptionResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateWithItemsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -308,10 +308,10 @@ class ListSubscriptionResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListSubscriptionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -320,10 +320,10 @@ class SubscriptionsForCustomerSubscriptionResponse:
 
 
 @dataclass
-class SubscriptionsForCustomerResponse:
+class SubscriptionsForCustomerResponse(Response):
+
     list: List[SubscriptionsForCustomerSubscriptionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -332,10 +332,10 @@ class ContractTermsForSubscriptionSubscriptionResponse:
 
 
 @dataclass
-class ContractTermsForSubscriptionResponse:
+class ContractTermsForSubscriptionResponse(Response):
+
     list: List[ContractTermsForSubscriptionSubscriptionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -344,110 +344,111 @@ class ListDiscountsSubscriptionResponse:
 
 
 @dataclass
-class ListDiscountsResponse:
+class ListDiscountsResponse(Response):
+
     list: List[ListDiscountsSubscriptionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveWithScheduledChangesResponse:
+class RetrieveWithScheduledChangesResponse(Response):
+
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveScheduledChangesResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveScheduledCancellationResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveCouponsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateForItemsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChangeTermEndResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ReactivateResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddChargeAtTermEndResponse(Response):
+    is_idempotency_replayed: bool
     estimate: "estimate.EstimateResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChargeAddonAtTermEndResponse(Response):
+    is_idempotency_replayed: bool
     estimate: "estimate.EstimateResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChargeFutureRenewalsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
@@ -455,155 +456,154 @@ class ChargeFutureRenewalsResponse(Response):
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditAdvanceInvoiceScheduleResponse(Response):
+    is_idempotency_replayed: bool
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ]
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveAdvanceInvoiceScheduleResponse:
+class RetrieveAdvanceInvoiceScheduleResponse(Response):
+
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveAdvanceInvoiceScheduleResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RegenerateInvoiceResponse(Response):
+    is_idempotency_replayed: bool
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportContractTermResponse(Response):
+    is_idempotency_replayed: bool
     contract_term: "contract_term.ContractTermResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportUnbilledChargesResponse(Response):
+    is_idempotency_replayed: bool
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportForItemsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class OverrideBillingProfileResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     payment_source: "payment_source.PaymentSourceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PauseResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelForItemsResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
     credit_notes: List["credit_note.CreditNoteResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ResumeResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveScheduledPauseResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveScheduledResumptionResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class MoveResponse(Response):
+    is_idempotency_replayed: bool
     subscription: SubscriptionResponse
-    headers: Dict[str, str] = None

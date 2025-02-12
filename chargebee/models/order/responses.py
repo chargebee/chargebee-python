@@ -174,56 +174,56 @@ class OrderResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportOrderResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AssignOrderNumberResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateRefundableCreditNoteResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ReopenResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -232,10 +232,10 @@ class ListOrderResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListOrderResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -244,13 +244,13 @@ class OrdersForInvoiceOrderResponse:
 
 
 @dataclass
-class OrdersForInvoiceResponse:
+class OrdersForInvoiceResponse(Response):
+
     list: List[OrdersForInvoiceOrderResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ResendResponse(Response):
+    is_idempotency_replayed: bool
     order: OrderResponse
-    headers: Dict[str, str] = None

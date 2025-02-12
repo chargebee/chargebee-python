@@ -34,13 +34,13 @@ class SubscriptionEntitlementsForSubscriptionSubscriptionEntitlementResponse:
 
 
 @dataclass
-class SubscriptionEntitlementsForSubscriptionResponse:
+class SubscriptionEntitlementsForSubscriptionResponse(Response):
+
     list: List[SubscriptionEntitlementsForSubscriptionSubscriptionEntitlementResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SetSubscriptionEntitlementAvailabilityResponse(Response):
+    is_idempotency_replayed: bool
     subscription_entitlement: SubscriptionEntitlementResponse
-    headers: Dict[str, str] = None

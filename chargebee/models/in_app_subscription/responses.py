@@ -17,23 +17,23 @@ class InAppSubscriptionResponse(Model):
 
 @dataclass
 class ProcessReceiptResponse(Response):
+    is_idempotency_replayed: bool
     in_app_subscription: InAppSubscriptionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportReceiptResponse(Response):
+    is_idempotency_replayed: bool
     in_app_subscriptions: List[InAppSubscriptionResponse]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     in_app_subscription: InAppSubscriptionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveStoreSubsResponse(Response):
+    is_idempotency_replayed: bool
     in_app_subscriptions: List[InAppSubscriptionResponse]
-    headers: Dict[str, str] = None

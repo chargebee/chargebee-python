@@ -15,11 +15,11 @@ class PricingPageSessionResponse(Model):
 
 @dataclass
 class CreateForNewSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     pricing_page_session: PricingPageSessionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForExistingSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     pricing_page_session: PricingPageSessionResponse
-    headers: Dict[str, str] = None

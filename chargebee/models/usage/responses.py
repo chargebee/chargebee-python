@@ -24,20 +24,20 @@ class UsageResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     usage: UsageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     usage: UsageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     usage: UsageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -46,13 +46,13 @@ class ListUsageResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListUsageResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PdfResponse(Response):
+    is_idempotency_replayed: bool
     download: "download.DownloadResponse"
-    headers: Dict[str, str] = None

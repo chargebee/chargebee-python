@@ -1,6 +1,6 @@
 import importlib
 from dataclasses import fields
-from typing import Type, TypeVar
+from typing import Type, TypeVar, Any
 
 T = TypeVar("T")
 
@@ -14,6 +14,14 @@ def get_class_from_string(class_path: str):
     module_path = "chargebee.models." + module_name + ".responses"
     module = importlib.import_module(module_path)
     return getattr(module, class_name)
+
+
+def parse_any_type_data(data):
+    if isinstance(data, dict):
+        return dict(data)
+    elif isinstance(data, list):
+        return list(data)
+    return data
 
 
 class Response(object):
@@ -69,9 +77,14 @@ class Response(object):
                 else:
                     if type(field_type) == str:
                         field_type = get_class_from_string(field_type)
-                    init_data[field_name] = field_type.construct(
-                        self._response[field_name]
-                    )
+                    if field_type == Any:
+                        init_data[field_name] = parse_any_type_data(
+                            self._response[field_name]
+                        )
+                    else:
+                        init_data[field_name] = field_type.construct(
+                            self._response[field_name]
+                        )
 
             init_data["headers"] = self._response_header
             init_data["http_status_code"] = self._response_status_code
@@ -99,14 +112,19 @@ class Response(object):
                                     inner_field_type = get_class_from_string(
                                         inner_field_type
                                     )
-                                data[inner_field_name] = inner_field_type.construct(
-                                    response[inner_field_name]
-                                )
+                                if field_type == Any:
+                                    data[inner_field_name] = parse_any_type_data(
+                                        response[inner_field_name]
+                                    )
+                                else:
+                                    data[inner_field_name] = inner_field_type.construct(
+                                        response[inner_field_name]
+                                    )
+
                     list_data.append(field_type.__args__[0](**data))
 
                 result[field_name] = list_data
                 result["next_offset"] = self._next_offset
                 result["headers"] = self._response_header
                 result["http_status_code"] = self._response_status_code
-
         return self._response_type(**result)

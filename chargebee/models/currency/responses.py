@@ -16,38 +16,38 @@ class CurrencyResponse(Model):
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     currency: CurrencyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     currency: CurrencyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     currency: CurrencyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     currency: CurrencyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddScheduleResponse(Response):
+    is_idempotency_replayed: bool
     scheduled_at: int
     currency: CurrencyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveScheduleResponse(Response):
+    is_idempotency_replayed: bool
     scheduled_at: int
     currency: CurrencyResponse
-    headers: Dict[str, str] = None

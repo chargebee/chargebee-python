@@ -43,17 +43,17 @@ class PaymentIntentResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     payment_intent: PaymentIntentResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     payment_intent: PaymentIntentResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     payment_intent: PaymentIntentResponse
-    headers: Dict[str, str] = None

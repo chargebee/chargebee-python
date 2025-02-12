@@ -22,13 +22,13 @@ class ListEntitlementResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListEntitlementResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     entitlement: EntitlementResponse
-    headers: Dict[str, str] = None

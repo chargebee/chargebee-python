@@ -1,7 +1,8 @@
 from dataclasses import dataclass
+from typing import Dict
 
 
 @dataclass
 class Response:
-    is_idempotency_replayed: bool
     http_status_code: int
+    headers: Dict[str, str]

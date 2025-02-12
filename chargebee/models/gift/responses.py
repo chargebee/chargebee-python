@@ -46,25 +46,25 @@ class GiftResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForItemsResponse(Response):
+    is_idempotency_replayed: bool
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
     invoice: "invoice.InvoiceResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -74,28 +74,28 @@ class ListGiftResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListGiftResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ClaimResponse(Response):
+    is_idempotency_replayed: bool
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelResponse(Response):
+    is_idempotency_replayed: bool
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateGiftResponse(Response):
+    is_idempotency_replayed: bool
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
-    headers: Dict[str, str] = None

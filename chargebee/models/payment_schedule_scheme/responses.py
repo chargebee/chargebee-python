@@ -27,17 +27,17 @@ class PaymentScheduleSchemeResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     payment_schedule_scheme: PaymentScheduleSchemeResponse
-    headers: Dict[str, str] = None

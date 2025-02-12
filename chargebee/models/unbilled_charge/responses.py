@@ -48,26 +48,26 @@ class UnbilledChargeResponse(Model):
 
 @dataclass
 class CreateUnbilledChargeResponse(Response):
+    is_idempotency_replayed: bool
     unbilled_charges: List[UnbilledChargeResponse]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     unbilled_charges: List[UnbilledChargeResponse]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class InvoiceUnbilledChargesResponse(Response):
+    is_idempotency_replayed: bool
     invoices: List["invoice.InvoiceResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     unbilled_charge: UnbilledChargeResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -76,13 +76,13 @@ class ListUnbilledChargeResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListUnbilledChargeResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class InvoiceNowEstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: "estimate.EstimateResponse"
-    headers: Dict[str, str] = None

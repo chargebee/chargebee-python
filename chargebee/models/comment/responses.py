@@ -18,14 +18,14 @@ class CommentResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     comment: CommentResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     comment: CommentResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -34,13 +34,13 @@ class ListCommentResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListCommentResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     comment: CommentResponse
-    headers: Dict[str, str] = None

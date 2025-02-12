@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from chargebee.model import Model
-from typing import Dict, List, Any
+from typing import Dict, Any
 from chargebee.response import Response
 
 
@@ -15,12 +15,12 @@ class UsageEventResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     usage_event: UsageEventResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class BatchIngestResponse(Response):
+    is_idempotency_replayed: bool
     batch_id: str
-    failed_events: List[Any]
-    headers: Dict[str, str] = None
+    failed_events: Any
