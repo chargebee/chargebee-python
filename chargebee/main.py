@@ -127,6 +127,8 @@ class Chargebee:
         self.env.chargebee_domain = domain
 
     def update_protocol(self, protocol):
+        if protocol == 'http':
+            self.verify_ca_certs = False
         self.env.protocol = protocol
 
     def update_export_retry_delay_ms(self, export_retry_delay_ms):
