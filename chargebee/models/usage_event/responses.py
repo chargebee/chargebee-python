@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
-from chargebee.models import failed_event
 
 
 @dataclass
@@ -24,4 +23,4 @@ class CreateResponse(Response):
 class BatchIngestResponse(Response):
     is_idempotency_replayed: bool
     batch_id: str
-    failed_events: List["any.AnyResponse"]
+    failed_events: List[Any]

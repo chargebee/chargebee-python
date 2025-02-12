@@ -1,6 +1,6 @@
 import importlib
 from dataclasses import fields
-from typing import Type, TypeVar
+from typing import Type, TypeVar, Any
 
 T = TypeVar("T")
 
@@ -69,9 +69,12 @@ class Response(object):
                 else:
                     if type(field_type) == str:
                         field_type = get_class_from_string(field_type)
-                    init_data[field_name] = field_type.construct(
-                        self._response[field_name]
-                    )
+                    if field_type == Any:
+                        init_data[field_name] = self._response[field_name]
+                    else:
+                        init_data[field_name] = field_type.construct(
+                            self._response[field_name]
+                        )
 
             init_data["headers"] = self._response_header
             init_data["http_status_code"] = self._response_status_code
@@ -99,9 +102,13 @@ class Response(object):
                                     inner_field_type = get_class_from_string(
                                         inner_field_type
                                     )
-                                data[inner_field_name] = inner_field_type.construct(
-                                    response[inner_field_name]
-                                )
+                                if field_type == Any:
+                                    data[inner_field_name] = response[inner_field_name]
+                                else:
+                                    data[inner_field_name] = inner_field_type.construct(
+                                        response[inner_field_name]
+                                    )
+
                     list_data.append(field_type.__args__[0](**data))
 
                 result[field_name] = list_data

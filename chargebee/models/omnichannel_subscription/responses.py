@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
+from chargebee.response import Response
 from chargebee.models import omnichannel_subscription_item, omnichannel_transaction
 
 
