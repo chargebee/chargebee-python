@@ -9,8 +9,8 @@ if sys.version_info < (3, 11):
     sys.exit("Sorry, Python < 3.11 is not supported")
 import version
 
-# with open("README.md", "r") as file:
-#     description = file.read()
+with open("README.md", "r") as file:
+    description = file.read()
 
 requires = ["requests"]
 
@@ -26,6 +26,6 @@ setup(
     python_requires=">=3.11",
     install_requires=requires,
     test_suite="tests",
-    # long_description=description,
+    long_description=description,
     long_description_content_type="text/markdown",
 )
