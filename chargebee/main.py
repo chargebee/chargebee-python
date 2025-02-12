@@ -9,7 +9,6 @@ from chargebee.environment import Environment
 class Chargebee:
 
     env: Environment = None
-
     verify_ca_certs: bool = True
     ca_cert_path = os.path.join(os.path.dirname(__file__), "ssl", "ca-certs.crt")
 
@@ -31,6 +30,7 @@ class Chargebee:
             self.update_connect_timeout_secs(connection_time_out)
         if read_time_out is not None:
             self.update_read_timeout_secs(read_time_out)
+        self.env.set_api_endpoint()
 
         self.Addon = chargebee.Addon(self.env)
         self.Address = chargebee.Address(self.env)

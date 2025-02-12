@@ -10,6 +10,8 @@ class Environment(object):
     def __init__(self, options):
         self.api_key = options["api_key"]
         self.site = options["site"]
+
+    def set_api_endpoint(self):
         self.api_endpoint = "%s://%s.%s/api/%s" % (
             self.protocol,
             self.site,
