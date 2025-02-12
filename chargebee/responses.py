@@ -16,6 +16,14 @@ def get_class_from_string(class_path: str):
     return getattr(module, class_name)
 
 
+def parse_any_type_data(data):
+    if isinstance(data, dict):
+        return dict(data)
+    elif isinstance(data, list):
+        return list(data)
+    return data
+
+
 class Response(object):
     IDEMPOTENCY_REPLAYED_HEADER = "chargebee-idempotency-replayed"
 
@@ -70,7 +78,9 @@ class Response(object):
                     if type(field_type) == str:
                         field_type = get_class_from_string(field_type)
                     if field_type == Any:
-                        init_data[field_name] = self._response[field_name]
+                        init_data[field_name] = parse_any_type_data(
+                            self._response[field_name]
+                        )
                     else:
                         init_data[field_name] = field_type.construct(
                             self._response[field_name]
@@ -103,7 +113,9 @@ class Response(object):
                                         inner_field_type
                                     )
                                 if field_type == Any:
-                                    data[inner_field_name] = response[inner_field_name]
+                                    data[inner_field_name] = parse_any_type_data(
+                                        response[inner_field_name]
+                                    )
                                 else:
                                     data[inner_field_name] = inner_field_type.construct(
                                         response[inner_field_name]
@@ -115,5 +127,4 @@ class Response(object):
                 result["next_offset"] = self._next_offset
                 result["headers"] = self._response_header
                 result["http_status_code"] = self._response_status_code
-
         return self._response_type(**result)
