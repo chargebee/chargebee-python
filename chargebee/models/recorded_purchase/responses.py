@@ -32,12 +32,12 @@ class RecordedPurchaseResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     recorded_purchase: RecordedPurchaseResponse
     customer: "customer.CustomerResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     recorded_purchase: RecordedPurchaseResponse
-    headers: Dict[str, str] = None

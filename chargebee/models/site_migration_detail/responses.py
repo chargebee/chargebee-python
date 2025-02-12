@@ -20,7 +20,7 @@ class ListSiteMigrationDetailResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListSiteMigrationDetailResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

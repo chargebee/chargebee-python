@@ -20,7 +20,7 @@ class EntitlementsForCustomerCustomerEntitlementResponse:
 
 
 @dataclass
-class EntitlementsForCustomerResponse:
+class EntitlementsForCustomerResponse(Response):
+
     list: List[EntitlementsForCustomerCustomerEntitlementResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

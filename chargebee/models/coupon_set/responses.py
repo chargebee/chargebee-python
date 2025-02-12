@@ -18,14 +18,14 @@ class CouponSetResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddCouponCodesResponse(Response):
+    is_idempotency_replayed: bool
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -34,31 +34,31 @@ class ListCouponSetResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListCouponSetResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteUnusedCouponCodesResponse(Response):
+    is_idempotency_replayed: bool
     coupon_set: CouponSetResponse
-    headers: Dict[str, str] = None

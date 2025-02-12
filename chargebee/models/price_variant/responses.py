@@ -30,26 +30,26 @@ class PriceVariantResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     price_variant: PriceVariantResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     price_variant: PriceVariantResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     price_variant: PriceVariantResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     price_variant: PriceVariantResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -58,7 +58,7 @@ class ListPriceVariantResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListPriceVariantResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

@@ -16,6 +16,6 @@ class ResourceMigrationResponse(Model):
 
 
 @dataclass
-class RetrieveLatestResponse:
+class RetrieveLatestResponse(Response):
+
     resource_migration: ResourceMigrationResponse
-    headers: Dict[str, str] = None

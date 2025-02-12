@@ -11,6 +11,6 @@ class ConfigurationResponse(Model):
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     configurations: List[ConfigurationResponse]
-    headers: Dict[str, str] = None

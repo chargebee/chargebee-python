@@ -189,9 +189,9 @@ class CustomerResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -201,38 +201,38 @@ class ListCustomerResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListCustomerResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdatePaymentMethodResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateBillingInfoResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -241,122 +241,122 @@ class ContactsForCustomerCustomerResponse:
 
 
 @dataclass
-class ContactsForCustomerResponse:
+class ContactsForCustomerResponse(Response):
+
     list: List[ContactsForCustomerCustomerResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AssignPaymentRoleResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     payment_source: "payment_source.PaymentSourceResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddContactResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateContactResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteContactResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddPromotionalCreditsResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeductPromotionalCreditsResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SetPromotionalCreditsResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordExcessPaymentResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CollectPaymentResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
     card: "card.CardResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class MoveResponse(Response):
+    is_idempotency_replayed: bool
     resource_migration: "resource_migration.ResourceMigrationResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChangeBillingDateResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class MergeResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ClearPersonalDataResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RelationshipsResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteRelationshipResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class HierarchyResponse:
+class HierarchyResponse(Response):
+
     hierarchies: List["hierarchy.HierarchyResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateHierarchySettingsResponse(Response):
+    is_idempotency_replayed: bool
     customer: CustomerResponse
-    headers: Dict[str, str] = None

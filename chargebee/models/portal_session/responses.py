@@ -33,23 +33,23 @@ class PortalSessionResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     portal_session: PortalSessionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     portal_session: PortalSessionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class LogoutResponse(Response):
+    is_idempotency_replayed: bool
     portal_session: PortalSessionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ActivateResponse(Response):
+    is_idempotency_replayed: bool
     portal_session: PortalSessionResponse
-    headers: Dict[str, str] = None

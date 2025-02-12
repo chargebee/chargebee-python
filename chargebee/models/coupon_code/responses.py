@@ -16,14 +16,14 @@ class CouponCodeResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     coupon_code: CouponCodeResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     coupon_code: CouponCodeResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -32,13 +32,13 @@ class ListCouponCodeResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListCouponCodeResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ArchiveResponse(Response):
+    is_idempotency_replayed: bool
     coupon_code: CouponCodeResponse
-    headers: Dict[str, str] = None

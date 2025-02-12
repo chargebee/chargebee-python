@@ -35,119 +35,119 @@ class EstimateResponse(Model):
 
 @dataclass
 class CreateSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateSubItemEstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class CreateSubForCustomerEstimateResponse:
+class CreateSubForCustomerEstimateResponse(Response):
+
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateSubItemForCustomerEstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateSubscriptionForItemsResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RenewalEstimateResponse:
+class RenewalEstimateResponse(Response):
+
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AdvanceInvoiceEstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RegenerateInvoiceEstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class UpcomingInvoicesEstimateResponse:
+class UpcomingInvoicesEstimateResponse(Response):
+
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChangeTermEndResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CancelSubscriptionForItemsResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PauseSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ResumeSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class GiftSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class GiftSubscriptionForItemsResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateInvoiceResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateInvoiceForItemsResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PaymentSchedulesResponse(Response):
+    is_idempotency_replayed: bool
     estimate: EstimateResponse
-    headers: Dict[str, str] = None

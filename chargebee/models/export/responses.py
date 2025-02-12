@@ -23,108 +23,108 @@ class ExportResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RevenueRecognitionResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeferredRevenueResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PlansResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddonsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CouponsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CustomersResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SubscriptionsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class InvoicesResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreditNotesResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class TransactionsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class OrdersResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ItemFamiliesResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ItemsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ItemPricesResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AttachedItemsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DifferentialPricesResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PriceVariantsResponse(Response):
+    is_idempotency_replayed: bool
     export: ExportResponse
-    headers: Dict[str, str] = None

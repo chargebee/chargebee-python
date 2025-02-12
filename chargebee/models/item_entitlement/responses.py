@@ -22,10 +22,10 @@ class ItemEntitlementsForItemItemEntitlementResponse:
 
 
 @dataclass
-class ItemEntitlementsForItemResponse:
+class ItemEntitlementsForItemResponse(Response):
+
     list: List[ItemEntitlementsForItemItemEntitlementResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -34,19 +34,19 @@ class ItemEntitlementsForFeatureItemEntitlementResponse:
 
 
 @dataclass
-class ItemEntitlementsForFeatureResponse:
+class ItemEntitlementsForFeatureResponse(Response):
+
     list: List[ItemEntitlementsForFeatureItemEntitlementResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddItemEntitlementsResponse(Response):
+    is_idempotency_replayed: bool
     item_entitlement: ItemEntitlementResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpsertOrRemoveItemEntitlementsForItemResponse(Response):
+    is_idempotency_replayed: bool
     item_entitlement: ItemEntitlementResponse
-    headers: Dict[str, str] = None

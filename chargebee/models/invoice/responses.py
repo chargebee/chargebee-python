@@ -317,69 +317,69 @@ class InvoiceResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForChargeItemsAndChargesResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChargeResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ChargeAddonResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForChargeItemResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class StopDunningResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ImportInvoiceResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ApplyPaymentsResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SyncUsagesResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteLineItemsResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ApplyCreditsResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -388,10 +388,10 @@ class ListInvoiceResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListInvoiceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -400,10 +400,10 @@ class InvoicesForCustomerInvoiceResponse:
 
 
 @dataclass
-class InvoicesForCustomerResponse:
+class InvoicesForCustomerResponse(Response):
+
     list: List[InvoicesForCustomerInvoiceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -412,28 +412,28 @@ class InvoicesForSubscriptionInvoiceResponse:
 
 
 @dataclass
-class InvoicesForSubscriptionResponse:
+class InvoicesForSubscriptionResponse(Response):
+
     list: List[InvoicesForSubscriptionInvoiceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PdfResponse(Response):
+    is_idempotency_replayed: bool
     download: "download.DownloadResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class DownloadEinvoiceResponse:
+class DownloadEinvoiceResponse(Response):
+
     downloads: List["download.DownloadResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -442,137 +442,137 @@ class ListPaymentReferenceNumbersInvoiceResponse:
 
 
 @dataclass
-class ListPaymentReferenceNumbersResponse:
+class ListPaymentReferenceNumbersResponse(Response):
+
     list: List[ListPaymentReferenceNumbersInvoiceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddChargeResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddAddonChargeResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AddChargeItemResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CloseResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CollectPaymentResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordPaymentResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordTaxWithheldResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveTaxWithheldResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RefundResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
     credit_note: "credit_note.CreditNoteResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RecordRefundResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse" = None
     credit_note: "credit_note.CreditNoteResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemovePaymentResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     transaction: "transaction.TransactionResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RemoveCreditNoteResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class VoidInvoiceResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class WriteOffResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse"
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateDetailsResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ApplyPaymentScheduleSchemeResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class PaymentSchedulesResponse:
+class PaymentSchedulesResponse(Response):
+
     payment_schedules: List["payment_schedule.PaymentScheduleResponse"]
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ResendEinvoiceResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SendEinvoiceResponse(Response):
+    is_idempotency_replayed: bool
     invoice: InvoiceResponse
-    headers: Dict[str, str] = None

@@ -103,26 +103,26 @@ class RampResponse(Model):
 
 @dataclass
 class CreateForSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     ramp: RampResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     ramp: RampResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     ramp: RampResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     ramp: RampResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -131,7 +131,7 @@ class ListRampResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListRampResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

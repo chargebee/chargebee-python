@@ -33,49 +33,49 @@ class ListFeatureResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListFeatureResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ActivateResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ArchiveResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ReactivateResponse(Response):
+    is_idempotency_replayed: bool
     feature: FeatureResponse
-    headers: Dict[str, str] = None

@@ -26,110 +26,110 @@ class HostedPageResponse(Model):
 
 @dataclass
 class CheckoutNewResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutOneTimeResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutOneTimeForItemsResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutNewForItemsResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutExistingResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutExistingForItemsResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateCardResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdatePaymentMethodResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ManagePaymentSourcesResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CollectNowResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AcceptQuoteResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ExtendSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutGiftResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CheckoutGiftForItemsResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ClaimGiftResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class RetrieveAgreementPdfResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class AcknowledgeResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -138,25 +138,25 @@ class ListHostedPageResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListHostedPageResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PreCancelResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EventsResponse(Response):
+    is_idempotency_replayed: bool
     success: bool
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ViewVoucherResponse(Response):
+    is_idempotency_replayed: bool
     hosted_page: HostedPageResponse
-    headers: Dict[str, str] = None

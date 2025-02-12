@@ -24,23 +24,23 @@ class PromotionalCreditResponse(Model):
 
 @dataclass
 class AddResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeductResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SetResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     promotional_credit: PromotionalCreditResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -49,13 +49,13 @@ class ListPromotionalCreditResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListPromotionalCreditResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     promotional_credit: PromotionalCreditResponse
-    headers: Dict[str, str] = None

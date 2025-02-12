@@ -137,77 +137,77 @@ class PaymentSourceResponse(Model):
 
 @dataclass
 class CreateUsingTempTokenResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateUsingPermanentTokenResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateUsingTokenResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateUsingPaymentIntentResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateVoucherPaymentSourceResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateCardResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateBankAccountResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateCardResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateBankAccountResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class VerifyBankAccountResponse(Response):
+    is_idempotency_replayed: bool
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -216,36 +216,36 @@ class ListPaymentSourceResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListPaymentSourceResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SwitchGatewayAccountResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ExportPaymentSourceResponse(Response):
+    is_idempotency_replayed: bool
     third_party_payment_method: (
         "third_party_payment_method.ThirdPartyPaymentMethodResponse"
     )
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteLocalResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     payment_source: PaymentSourceResponse
-    headers: Dict[str, str] = None

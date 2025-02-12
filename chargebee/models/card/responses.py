@@ -39,34 +39,34 @@ class CardResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     card: CardResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateCardForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     card: CardResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class SwitchGatewayForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
     card: CardResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CopyCardForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     third_party_payment_method: (
         "third_party_payment_method.ThirdPartyPaymentMethodResponse"
     )
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteCardForCustomerResponse(Response):
+    is_idempotency_replayed: bool
     customer: "customer.CustomerResponse"
-    headers: Dict[str, str] = None

@@ -19,6 +19,6 @@ class RuleResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     rule: RuleResponse
-    headers: Dict[str, str] = None

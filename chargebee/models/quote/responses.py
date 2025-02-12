@@ -184,95 +184,95 @@ class QuoteResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateSubForCustomerQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditCreateSubForCustomerQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateSubscriptionQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditUpdateSubscriptionQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForOnetimeChargesResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditOneTimeQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateSubItemsForCustomerQuoteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditCreateSubCustomerQuoteForItemsResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateSubscriptionQuoteForItemsResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditUpdateSubscriptionQuoteForItemsResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class CreateForChargeItemsAndChargesResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EditForChargeItemsAndChargesResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -282,10 +282,10 @@ class ListQuoteResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListQuoteResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -294,14 +294,15 @@ class QuoteLineGroupsForQuoteQuoteResponse:
 
 
 @dataclass
-class QuoteLineGroupsForQuoteResponse:
+class QuoteLineGroupsForQuoteResponse(Response):
+
     list: List[QuoteLineGroupsForQuoteQuoteResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ConvertResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     customer: "customer.CustomerResponse"
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
@@ -310,34 +311,33 @@ class ConvertResponse(Response):
     invoice: "invoice.InvoiceResponse" = None
     credit_note: "credit_note.CreditNoteResponse" = None
     unbilled_charges: List["unbilled_charge.UnbilledChargeResponse"] = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateStatusResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class ExtendExpiryDateResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class PdfResponse(Response):
+    is_idempotency_replayed: bool
     download: "download.DownloadResponse"
-    headers: Dict[str, str] = None

@@ -1,3 +1,10 @@
+### v3.1.0 (2025-02-12)
+* * * 
+
+#### Bug Fixes 
+* http_status_code not getting included in get request fixed. 
+* parameter oder in send_list_request fixed. 
+
 ### v3.1.0 (2025-02-10)
 * * * 
 

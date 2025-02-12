@@ -37,9 +37,9 @@ class OmnichannelSubscriptionResponse(Model):
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     omnichannel_subscription: OmnichannelSubscriptionResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -48,10 +48,10 @@ class ListOmnichannelSubscriptionResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListOmnichannelSubscriptionResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -60,9 +60,9 @@ class OmnichannelTransactionsForOmnichannelSubscriptionOmnichannelSubscriptionRe
 
 
 @dataclass
-class OmnichannelTransactionsForOmnichannelSubscriptionResponse:
+class OmnichannelTransactionsForOmnichannelSubscriptionResponse(Response):
+
     list: List[
         OmnichannelTransactionsForOmnichannelSubscriptionOmnichannelSubscriptionResponse
     ]
     next_offset: str = None
-    headers: Dict[str, str] = None

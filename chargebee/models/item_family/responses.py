@@ -20,14 +20,14 @@ class ItemFamilyResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     item_family: ItemFamilyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     item_family: ItemFamilyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -36,19 +36,19 @@ class ListItemFamilyResponse:
 
 
 @dataclass
-class ListResponse:
+class ListResponse(Response):
+
     list: List[ListItemFamilyResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class UpdateResponse(Response):
+    is_idempotency_replayed: bool
     item_family: ItemFamilyResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class DeleteResponse(Response):
+    is_idempotency_replayed: bool
     item_family: ItemFamilyResponse
-    headers: Dict[str, str] = None

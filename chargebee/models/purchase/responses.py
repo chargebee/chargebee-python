@@ -18,11 +18,11 @@ class PurchaseResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     purchase: PurchaseResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
 class EstimateResponse(Response):
+    is_idempotency_replayed: bool
     estimate: "estimate.EstimateResponse"
-    headers: Dict[str, str] = None

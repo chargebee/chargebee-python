@@ -38,14 +38,14 @@ class PaymentVoucherResponse(Model):
 
 @dataclass
 class CreateResponse(Response):
+    is_idempotency_replayed: bool
     payment_voucher: PaymentVoucherResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
-class RetrieveResponse:
+class RetrieveResponse(Response):
+
     payment_voucher: PaymentVoucherResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -54,10 +54,10 @@ class PaymentVouchersForInvoicePaymentVoucherResponse:
 
 
 @dataclass
-class PaymentVouchersForInvoiceResponse:
+class PaymentVouchersForInvoiceResponse(Response):
+
     list: List[PaymentVouchersForInvoicePaymentVoucherResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -66,7 +66,7 @@ class PaymentVouchersForCustomerPaymentVoucherResponse:
 
 
 @dataclass
-class PaymentVouchersForCustomerResponse:
+class PaymentVouchersForCustomerResponse(Response):
+
     list: List[PaymentVouchersForCustomerPaymentVoucherResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None

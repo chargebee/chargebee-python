@@ -21,8 +21,8 @@ class EntitlementOverrideResponse(Model):
 
 @dataclass
 class AddEntitlementOverrideForSubscriptionResponse(Response):
+    is_idempotency_replayed: bool
     entitlement_override: EntitlementOverrideResponse
-    headers: Dict[str, str] = None
 
 
 @dataclass
@@ -31,7 +31,7 @@ class ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse:
 
 
 @dataclass
-class ListEntitlementOverrideForSubscriptionResponse:
+class ListEntitlementOverrideForSubscriptionResponse(Response):
+
     list: List[ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse]
     next_offset: str = None
-    headers: Dict[str, str] = None
