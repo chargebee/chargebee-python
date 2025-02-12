@@ -127,7 +127,7 @@ class Chargebee:
         self.env.chargebee_domain = domain
 
     def update_protocol(self, protocol):
-        if protocol == 'http':
+        if protocol == "http":
             self.verify_ca_certs = False
         self.env.protocol = protocol
 
