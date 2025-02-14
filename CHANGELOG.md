@@ -1,3 +1,12 @@
+### v3.1.2 (2025-02-14)
+* * * 
+
+#### Bug Fixes 
+* Type fix for `http_status_code` in response.
+* Response parsing fixes for `ForwardRef` in type annotations.
+* `error_cause_id` has been added to API Error.
+* Fixed issue preventing access to response headers during exceptions.
+
 ### v3.1.1 (2025-02-12)
 * * * 
 

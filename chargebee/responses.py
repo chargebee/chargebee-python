@@ -1,19 +1,8 @@
 import importlib
 from dataclasses import fields
-from typing import Type, TypeVar, Any
+from typing import Type, TypeVar, Any, get_type_hints
 
 T = TypeVar("T")
-
-
-def _is_primitive(field_type):
-    return field_type in (int, str, float, bool)
-
-
-def get_class_from_string(class_path: str):
-    module_name, class_name = class_path.rsplit(".", 1)
-    module_path = "chargebee.models." + module_name + ".responses"
-    module = importlib.import_module(module_path)
-    return getattr(module, class_name)
 
 
 def parse_any_type_data(data):
@@ -22,6 +11,10 @@ def parse_any_type_data(data):
     elif isinstance(data, list):
         return list(data)
     return data
+
+
+def _is_primitive(field_type):
+    return field_type in (int, str, float, bool)
 
 
 class Response(object):
@@ -41,14 +34,14 @@ class Response(object):
     def is_idempotency_replayed(self) -> bool:
         return bool(self._response_header.get(self.IDEMPOTENCY_REPLAYED_HEADER, False))
 
-    def http_status_code(self) -> bool:
-        return bool(self._response_status_code)
+    def http_status_code(self) -> int:
+        return int(self._response_status_code)
 
     def parse_response(self) -> T:
         init_data = {}
-        for field in fields(self._response_type):
-            field_name = field.name
-            field_type = field.type
+        for name, type in get_type_hints(self._response_type).items():
+            field_name = name
+            field_type = type
             if field_name == "is_idempotency_replayed":
                 init_data["is_idempotency_replayed"] = self.is_idempotency_replayed()
             if field_name in self._response:
@@ -56,17 +49,15 @@ class Response(object):
                     list_data = []
                     for response in self._response:
                         data = {}
-                        for inner_field in fields(field_type.__args__[0]):
-                            inner_field_name = inner_field.name
-                            inner_field_type = inner_field.type
+                        for inner_name, inner_type in get_type_hints(
+                            field_type.__args__[0]
+                        ).items():
+                            inner_field_name = inner_name
+                            inner_field_type = inner_type
                             if inner_field_name in response:
                                 if _is_primitive(inner_field_type):
                                     data[inner_field_name] = response[inner_field_name]
                                 else:
-                                    if type(inner_field_type) == str:
-                                        inner_field_type = get_class_from_string(
-                                            inner_field_type
-                                        )
                                     data[inner_field_name] = inner_field_type.construct(
                                         response[inner_field_name]
                                     )
@@ -75,8 +66,6 @@ class Response(object):
                 elif _is_primitive(field_type):
                     init_data[field_name] = self._response[field_name]
                 else:
-                    if type(field_type) == str:
-                        field_type = get_class_from_string(field_type)
                     if field_type == Any:
                         init_data[field_name] = parse_any_type_data(
                             self._response[field_name]
@@ -93,33 +82,30 @@ class Response(object):
 
     def parse_list_response(self) -> T:
         result = {}
-        for field in fields(self._response_type):
-            field_name = field.name
-            field_type = field.type
+        for name, type in get_type_hints(self._response_type).items():
+            field_name = name
+            field_type = type
 
             if hasattr(field_type, "__origin__") and field_type.__origin__ == list:
                 list_data = []
                 for response in self._response:
                     data = {}
-                    for inner_field in fields(field_type.__args__[0]):
-                        inner_field_name = inner_field.name
-                        inner_field_type = inner_field.type
+                    for inner_name, inner_type in get_type_hints(
+                        field_type.__args__[0]
+                    ).items():
+                        inner_field_name = inner_name
+                        inner_field_type = inner_type
                         if inner_field_name in response:
                             if _is_primitive(inner_field_type):
                                 data[inner_field_name] = response[inner_field_name]
+                            if field_type == Any:
+                                data[inner_field_name] = parse_any_type_data(
+                                    response[inner_field_name]
+                                )
                             else:
-                                if type(inner_field_type) == str:
-                                    inner_field_type = get_class_from_string(
-                                        inner_field_type
-                                    )
-                                if field_type == Any:
-                                    data[inner_field_name] = parse_any_type_data(
-                                        response[inner_field_name]
-                                    )
-                                else:
-                                    data[inner_field_name] = inner_field_type.construct(
-                                        response[inner_field_name]
-                                    )
+                                data[inner_field_name] = inner_field_type.construct(
+                                    response[inner_field_name]
+                                )
 
                     list_data.append(field_type.__args__[0](**data))
 
