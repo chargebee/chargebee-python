@@ -513,6 +513,7 @@ class EventType(Enum):
     ITEM_ENTITLEMENTS_REMOVED = "item_entitlements_removed"
     ENTITLEMENT_OVERRIDES_AUTO_REMOVED = "entitlement_overrides_auto_removed"
     SUBSCRIPTION_ENTITLEMENTS_CREATED = "subscription_entitlements_created"
+    SUBSCRIPTION_ENTITLEMENTS_UPDATED = "subscription_entitlements_updated"
     BUSINESS_ENTITY_CREATED = "business_entity_created"
     BUSINESS_ENTITY_UPDATED = "business_entity_updated"
     BUSINESS_ENTITY_DELETED = "business_entity_deleted"
@@ -617,6 +618,7 @@ class FriendOfferType(Enum):
 class Gateway(Enum):
     CHARGEBEE = "chargebee"
     CHARGEBEE_PAYMENTS = "chargebee_payments"
+    ADYEN = "adyen"
     STRIPE = "stripe"
     WEPAY = "wepay"
     BRAINTREE = "braintree"
@@ -642,7 +644,6 @@ class Gateway(Enum):
     WIRECARD = "wirecard"
     AMAZON_PAYMENTS = "amazon_payments"
     PAYPAL_EXPRESS_CHECKOUT = "paypal_express_checkout"
-    ADYEN = "adyen"
     ORBITAL = "orbital"
     MONERIS_US = "moneris_us"
     MONERIS = "moneris"

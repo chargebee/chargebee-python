@@ -9,6 +9,7 @@ from chargebee.environment import Environment
 class Chargebee:
 
     env: Environment = None
+
     verify_ca_certs: bool = True
     ca_cert_path = os.path.join(os.path.dirname(__file__), "ssl", "ca-certs.crt")
 
