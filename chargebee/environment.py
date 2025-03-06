@@ -22,4 +22,4 @@ class Environment(object):
             if self.chargebee_domain is None:
                return 'https://%s.%s.chargebee.com/api/%s' % (self.site,subDomain, self.API_VERSION) + url
             else:
-               return 'http://%s.%s.%s/api/%s' % (self.site, subDomain, self.chargebee_domain, self.API_VERSION)
+               return 'http://%s.%s.%s/api/%s' % (self.site, subDomain, self.chargebee_domain, self.API_VERSION) + url

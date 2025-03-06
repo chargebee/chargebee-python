@@ -11,6 +11,7 @@ class Purchase(Model):
     @staticmethod
     def create(params, env=None, headers=None):
         json_keys = { 
+            "additional_information": 1,
             "meta_data": 1,
         }
         return request.send('post', request.uri_path("purchases"), params, env, headers, None, False,json_keys)
