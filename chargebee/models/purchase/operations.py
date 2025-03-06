@@ -1,7 +1,7 @@
 from .responses import *
 from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
-from chargebee.models import enums, contract_term
+from chargebee.models import enums, payment_intent, contract_term
 
 
 @dataclass
@@ -72,6 +72,17 @@ class Purchase:
 
     class CreateStatementDescriptorParams(TypedDict):
         descriptor: NotRequired[str]
+
+    class CreatePaymentIntentParams(TypedDict):
+        id: NotRequired[str]
+        gateway_account_id: NotRequired[str]
+        gw_token: NotRequired[str]
+        payment_method_type: NotRequired[
+            "payment_intent.PaymentIntent.PaymentMethodType"
+        ]
+        reference_id: NotRequired[str]
+        gw_payment_method_id: NotRequired[str]
+        additional_information: NotRequired[Dict[Any, Any]]
 
     class EstimatePurchaseItemParams(TypedDict):
         index: Required[int]
@@ -157,6 +168,7 @@ class Purchase:
         statement_descriptor: NotRequired["Purchase.CreateStatementDescriptorParams"]
         customer_id: Required[str]
         payment_source_id: NotRequired[str]
+        payment_intent: NotRequired["Purchase.CreatePaymentIntentParams"]
 
     class EstimateParams(TypedDict):
         purchase_items: Required[List["Purchase.EstimatePurchaseItemParams"]]
@@ -172,6 +184,7 @@ class Purchase:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {
+            "additional_information": 1,
             "meta_data": 1,
         }
         return request.send(

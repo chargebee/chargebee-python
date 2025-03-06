@@ -621,6 +621,7 @@ class Invoice:
         tax9_amount: NotRequired[int]
         tax10_name: NotRequired[str]
         tax10_amount: NotRequired[int]
+        created_at: NotRequired[int]
 
     class ImportInvoicePaymentReferenceNumberParams(TypedDict):
         id: NotRequired[str]
