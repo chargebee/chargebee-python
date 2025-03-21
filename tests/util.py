@@ -1,5 +1,7 @@
 import unittest
 
+import datetime
+
 from chargebee import util
 
 
@@ -25,7 +27,8 @@ class UtilTest(unittest.TestCase):
                 'expiry_month': '1',
                 'expiry_year': '2024',
                 'cvv': '007',
-            }
+            },
+            'starts': datetime.datetime(2017,01,10)
         }
 
         after = {
@@ -40,6 +43,7 @@ class UtilTest(unittest.TestCase):
             'card[expiry_month]': '1',
             'card[expiry_year]': '2024',
             'card[cvv]': '007',
+            'starts': 1484006400,
         }
 
         self.assertEqual(after, util.serialize(before))

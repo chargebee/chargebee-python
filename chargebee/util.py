@@ -1,3 +1,6 @@
+import calendar
+from datetime import datetime
+
 from chargebee import compat
 from collections import OrderedDict
 from enum import Enum
@@ -62,5 +65,7 @@ def get_val(val):
         return ""
     elif isinstance(val, bool):
         return str(val).lower()
+    elif isinstance(val, datetime):
+        return calendar.timegm(val.utctimetuple())
     else:
         return val
