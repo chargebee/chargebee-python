@@ -1,6 +1,11 @@
 # Chargebee Python Client Library v3
 
-The Chargebee Python library streamlines integration with the Chargebee API in Python applications. It offers built-in type annotations and enhanced IDE autocompletion for API resources and responses, which improves the developer experience. To get started, please sign up for a Chargebee account [here](https://www.chargebee.com).
+This is the official Python library for integrating with Chargebee.
+
+- 📘 For a complete reference of available APIs, check out our [API Documentation](https://apidocs.chargebee.com/docs/api/?lang=python).  
+- 🧪 To explore and test API capabilities interactively, head over to our [API Explorer](https://api-explorer.chargebee.com).
+
+If you're upgrading from an older version please refer to the [Migration Guide](https://github.com/chargebee/chargebee-python/wiki/Migration-guide-for-v3)
 
 ## Requirements
 
