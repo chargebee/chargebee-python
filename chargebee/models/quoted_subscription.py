@@ -17,7 +17,7 @@ class QuotedSubscription(Model):
       fields = ["item_price_id", "item_type", "quantity", "quantity_in_decimal", "metered_quantity", "last_calculated_at", "unit_price", "unit_price_in_decimal", "amount", "current_term_start", "current_term_end", "next_billing_at", "amount_in_decimal", "billing_period", "billing_period_unit", "free_quantity", "free_quantity_in_decimal", "trial_end", "billing_cycles", "service_period_days", "charge_on_event", "charge_once", "charge_on_option", "proration_type", "usage_accumulation_reset_frequency"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "pricing_type", "package_size", "index"]
       pass
     class QuotedContractTerm(Model):
       fields = ["contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "cancellation_cutoff_period"]

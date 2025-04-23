@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class ItemPrice(Model):
     class Tier(Model):
-      fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
+      fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "pricing_type", "package_size"]
       pass
     class TaxDetail(Model):
       fields = ["tax_profile_id", "avalara_sale_type", "avalara_transaction_type", "avalara_service_type", "avalara_tax_code", "hsn_code", "taxjar_product_code"]

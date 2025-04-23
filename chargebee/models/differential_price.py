@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class DifferentialPrice(Model):
     class Tier(Model):
-      fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal"]
+      fields = ["starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "pricing_type", "package_size"]
       pass
     class ParentPeriod(Model):
       fields = ["period_unit", "period"]

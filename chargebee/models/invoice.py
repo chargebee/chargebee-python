@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "usage_percentage", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "metered", "percentage", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
@@ -23,7 +23,7 @@ class Invoice(Model):
       fields = ["cn_id", "applied_amount", "line_item_id"]
       pass
     class LineItemTier(Model):
-      fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal"]
+      fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal", "pricing_type", "package_size"]
       pass
     class LinkedPayment(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
@@ -64,6 +64,9 @@ class Invoice(Model):
     class TaxOrigin(Model):
       fields = ["country", "registration_number"]
       pass
+    class LineItemAddress(Model):
+      fields = ["line_item_id", "first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
+      pass
 
     fields = ["id", "po_number", "customer_id", "subscription_id", "recurring", "status", "vat_number", \
     "price_type", "date", "due_date", "net_term_days", "exchange_rate", "currency_code", "total", \
@@ -76,7 +79,7 @@ class Invoice(Model):
     "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", \
     "notes", "shipping_address", "statement_descriptor", "billing_address", "einvoice", "payment_owner", \
     "void_reason_code", "deleted", "tax_category", "vat_number_prefix", "channel", "business_entity_id", \
-    "site_details_at_creation", "tax_origin"]
+    "site_details_at_creation", "tax_origin", "line_item_addresses"]
 
 
     @staticmethod

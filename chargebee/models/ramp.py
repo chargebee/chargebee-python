@@ -17,7 +17,7 @@ class Ramp(Model):
       fields = ["id", "invoice_name", "type", "percentage", "amount", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at"]
       pass
     class ItemTier(Model):
-      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "index"]
+      fields = ["item_price_id", "starting_unit", "ending_unit", "price", "starting_unit_in_decimal", "ending_unit_in_decimal", "price_in_decimal", "pricing_type", "package_size", "index"]
       pass
     class StatusTransitionReason(Model):
       fields = ["code", "message"]
