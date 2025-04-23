@@ -67,6 +67,8 @@ class ItemPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class TaxDetail(TypedDict):
         tax_profile_id: NotRequired[str]
@@ -97,6 +99,8 @@ class ItemPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateTaxDetailParams(TypedDict):
         tax_profile_id: NotRequired[str]
@@ -127,6 +131,8 @@ class ItemPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateTaxDetailParams(TypedDict):
         tax_profile_id: NotRequired[str]

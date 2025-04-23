@@ -87,7 +87,8 @@ class Quote:
         amount_in_decimal: NotRequired[str]
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
-        usage_percentage: NotRequired[str]
+        metered: NotRequired[bool]
+        percentage: NotRequired[str]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -143,6 +144,8 @@ class Quote:
         ending_unit_in_decimal: NotRequired[str]
         quantity_used_in_decimal: NotRequired[str]
         unit_amount_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class ShippingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -552,6 +555,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateSubItemsForCustomerQuoteShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -613,6 +618,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class EditCreateSubCustomerQuoteForItemsShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -678,6 +685,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateSubscriptionQuoteForItemsBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -763,6 +772,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class EditUpdateSubscriptionQuoteForItemsBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -821,6 +832,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateForChargeItemsAndChargesChargeParams(TypedDict):
         amount: NotRequired[int]
@@ -874,6 +887,8 @@ class Quote:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class EditForChargeItemsAndChargesChargeParams(TypedDict):
         amount: NotRequired[int]

@@ -11,6 +11,7 @@ class RecordedPurchase:
 
     class Source(Enum):
         APPLE_APP_STORE = "apple_app_store"
+        GOOGLE_PLAY_STORE = "google_play_store"
 
         def __str__(self):
             return self.value
@@ -35,11 +36,17 @@ class RecordedPurchase:
 
     class CreateAppleAppStoreParams(TypedDict):
         transaction_id: NotRequired[str]
+        receipt: NotRequired[str]
+        product_id: NotRequired[str]
+
+    class CreateGooglePlayStoreParams(TypedDict):
+        purchase_token: NotRequired[str]
 
     class CreateParams(TypedDict):
         app_id: Required[str]
         customer: Required["RecordedPurchase.CreateCustomerParams"]
         apple_app_store: NotRequired["RecordedPurchase.CreateAppleAppStoreParams"]
+        google_play_store: NotRequired["RecordedPurchase.CreateGooglePlayStoreParams"]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}

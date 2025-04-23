@@ -83,6 +83,8 @@ class Ramp:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
         index: Required[int]
 
     class StatusTransitionReason(TypedDict):
@@ -115,6 +117,8 @@ class Ramp:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateForSubscriptionCouponsToAddParams(TypedDict):
         coupon_id: NotRequired[str]
@@ -156,6 +160,8 @@ class Ramp:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateCouponsToAddParams(TypedDict):
         coupon_id: NotRequired[str]

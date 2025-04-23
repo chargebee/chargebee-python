@@ -76,7 +76,8 @@ class CreditNoteEstimate:
         amount_in_decimal: NotRequired[str]
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
-        usage_percentage: NotRequired[str]
+        metered: NotRequired[bool]
+        percentage: NotRequired[str]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -132,5 +133,7 @@ class CreditNoteEstimate:
         ending_unit_in_decimal: NotRequired[str]
         quantity_used_in_decimal: NotRequired[str]
         unit_amount_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     pass

@@ -3,6 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
+from chargebee.models import enums
 
 
 @dataclass
@@ -33,6 +34,8 @@ class DifferentialPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class ParentPeriod(TypedDict):
         period_unit: Required["DifferentialPrice.ParentPeriodPeriodUnit"]
@@ -49,6 +52,8 @@ class DifferentialPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateParentPeriodParams(TypedDict):
         period_unit: Required["DifferentialPrice.ParentPeriodPeriodUnit"]
@@ -61,6 +66,8 @@ class DifferentialPrice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateParams(TypedDict):
         parent_item_id: Required[str]

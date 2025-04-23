@@ -54,6 +54,7 @@ from chargebee.models.enums import (
     PeriodUnit,
     PriceType,
     PricingModel,
+    PricingType,
     ProductCatalogVersion,
     ProrationType,
     ReferralSystem,
@@ -172,6 +173,10 @@ from chargebee.models.omnichannel_subscription.operations import OmnichannelSubs
 
 from chargebee.models.omnichannel_subscription_item.operations import (
     OmnichannelSubscriptionItem,
+)
+
+from chargebee.models.omnichannel_subscription_item_scheduled_change.operations import (
+    OmnichannelSubscriptionItemScheduledChange,
 )
 
 from chargebee.models.omnichannel_transaction.operations import OmnichannelTransaction

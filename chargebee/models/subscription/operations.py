@@ -114,6 +114,8 @@ class Subscription:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
         index: Required[int]
 
     class ChargedItem(TypedDict):
@@ -477,6 +479,8 @@ class Subscription:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateWithItemsShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -674,6 +678,8 @@ class Subscription:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateForItemsCardParams(TypedDict):
         gateway: NotRequired[enums.Gateway]
@@ -1079,6 +1085,8 @@ class Subscription:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class ImportForItemsContractTermParams(TypedDict):
         id: NotRequired[str]

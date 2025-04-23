@@ -45,6 +45,7 @@ class ItemResponse(Model):
     unit: str = None
     metered: bool = None
     usage_calculation: str = None
+    is_percentage_pricing: bool = None
     archived_at: int = None
     channel: str = None
     applicable_items: List[ApplicableItemResponse] = None
