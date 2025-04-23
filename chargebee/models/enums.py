@@ -169,6 +169,8 @@ class ChargesHandling(Enum):
 class ContractTermCancelOption(Enum):
     TERMINATE_IMMEDIATELY = "terminate_immediately"
     END_OF_CONTRACT_TERM = "end_of_contract_term"
+    SPECIFIC_DATE = "specific_date"
+    END_OF_SUBSCRIPTION_BILLING_TERM = "end_of_subscription_billing_term"
 
     def __str__(self):
         return self.value
@@ -336,6 +338,10 @@ class EntityType(Enum):
     OMNICHANNEL_SUBSCRIPTION_ITEM = "omnichannel_subscription_item"
     OMNICHANNEL_TRANSACTION = "omnichannel_transaction"
     RECORDED_PURCHASE = "recorded_purchase"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_CHANGE = (
+        "omnichannel_subscription_item_scheduled_change"
+    )
+    SALES_ORDER = "sales_order"
 
     def __str__(self):
         return self.value
@@ -539,12 +545,6 @@ class EventType(Enum):
     SUBSCRIPTION_MOVEMENT_FAILED = "subscription_movement_failed"
     OMNICHANNEL_SUBSCRIPTION_CREATED = "omnichannel_subscription_created"
     OMNICHANNEL_SUBSCRIPTION_ITEM_RENEWED = "omnichannel_subscription_item_renewed"
-    OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADE_SCHEDULED = (
-        "omnichannel_subscription_item_downgrade_scheduled"
-    )
-    OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_DOWNGRADE_REMOVED = (
-        "omnichannel_subscription_item_scheduled_downgrade_removed"
-    )
     OMNICHANNEL_SUBSCRIPTION_ITEM_DOWNGRADED = (
         "omnichannel_subscription_item_downgraded"
     )
@@ -577,6 +577,18 @@ class EventType(Enum):
     RULE_UPDATED = "rule_updated"
     RULE_DELETED = "rule_deleted"
     RECORD_PURCHASE_FAILED = "record_purchase_failed"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_CHANGE_SCHEDULED = (
+        "omnichannel_subscription_item_change_scheduled"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_SCHEDULED_CHANGE_REMOVED = (
+        "omnichannel_subscription_item_scheduled_change_removed"
+    )
+    OMNICHANNEL_SUBSCRIPTION_ITEM_REACTIVATED = (
+        "omnichannel_subscription_item_reactivated"
+    )
+    SALES_ORDER_CREATED = "sales_order_created"
+    SALES_ORDER_UPDATED = "sales_order_updated"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_CHANGED = "omnichannel_subscription_item_changed"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -666,6 +678,8 @@ class Gateway(Enum):
     EBANX = "ebanx"
     DLOCAL = "dlocal"
     NUVEI = "nuvei"
+    PAYSTACK = "paystack"
+    JP_MORGAN = "jp_morgan"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 
@@ -880,6 +894,15 @@ class PricingModel(Enum):
     TIERED = "tiered"
     VOLUME = "volume"
     STAIRSTEP = "stairstep"
+
+    def __str__(self):
+        return self.value
+
+
+class PricingType(Enum):
+    PER_UNIT = "per_unit"
+    FLAT_FEE = "flat_fee"
+    PACKAGE = "package"
 
     def __str__(self):
         return self.value

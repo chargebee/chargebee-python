@@ -152,7 +152,8 @@ class Invoice:
         amount_in_decimal: NotRequired[str]
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
-        usage_percentage: NotRequired[str]
+        metered: NotRequired[bool]
+        percentage: NotRequired[str]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -213,6 +214,8 @@ class Invoice:
         ending_unit_in_decimal: NotRequired[str]
         quantity_used_in_decimal: NotRequired[str]
         unit_amount_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class LinkedPayment(TypedDict):
         txn_id: Required[str]
@@ -321,6 +324,23 @@ class Invoice:
     class TaxOrigin(TypedDict):
         country: NotRequired[str]
         registration_number: NotRequired[str]
+
+    class LineItemAddress(TypedDict):
+        line_item_id: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        country: NotRequired[str]
+        zip: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateAddonParams(TypedDict):
         id: NotRequired[str]
@@ -451,6 +471,8 @@ class Invoice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateForChargeItemsAndChargesChargeParams(TypedDict):
         amount: NotRequired[int]
@@ -582,6 +604,8 @@ class Invoice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class ImportInvoiceLineItemParams(TypedDict):
         id: NotRequired[str]
@@ -740,6 +764,8 @@ class Invoice:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CloseNotesToRemoveParams(TypedDict):
         entity_type: NotRequired[enums.EntityType]

@@ -299,6 +299,7 @@ class PaymentSource:
         limit: NotRequired[int]
         offset: NotRequired[str]
         subscription_id: NotRequired[str]
+        include_deleted: NotRequired[bool]
         customer_id: NotRequired[Filters.StringFilter]
         type: NotRequired[Filters.EnumFilter]
         status: NotRequired[Filters.EnumFilter]

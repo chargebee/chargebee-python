@@ -81,6 +81,9 @@ class Chargebee:
         self.OmnichannelSubscriptionItem = chargebee.OmnichannelSubscriptionItem(
             self.env
         )
+        self.OmnichannelSubscriptionItemScheduledChange = (
+            chargebee.OmnichannelSubscriptionItemScheduledChange(self.env)
+        )
         self.OmnichannelTransaction = chargebee.OmnichannelTransaction(self.env)
         self.Order = chargebee.Order(self.env)
         self.PaymentIntent = chargebee.PaymentIntent(self.env)

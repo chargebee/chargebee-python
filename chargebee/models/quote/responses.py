@@ -34,7 +34,8 @@ class LineItemResponse(Model):
     amount_in_decimal: str = None
     discount_amount: int = None
     item_level_discount_amount: int = None
-    usage_percentage: str = None
+    metered: bool = None
+    percentage: str = None
     reference_line_item_id: str = None
     description: str = None
     entity_description: str = None
@@ -100,6 +101,8 @@ class LineItemTierResponse(Model):
     ending_unit_in_decimal: str = None
     quantity_used_in_decimal: str = None
     unit_amount_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass

@@ -156,6 +156,8 @@ class Estimate:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateSubItemEstimateBillingAddressParams(TypedDict):
         line1: NotRequired[str]
@@ -289,6 +291,8 @@ class Estimate:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateSubItemForCustomerEstimateShippingAddressParams(TypedDict):
         line1: NotRequired[str]
@@ -426,6 +430,8 @@ class Estimate:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class UpdateSubscriptionForItemsBillingAddressParams(TypedDict):
         line1: NotRequired[str]
@@ -666,6 +672,8 @@ class Estimate:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class CreateInvoiceForItemsChargeParams(TypedDict):
         amount: NotRequired[int]
@@ -712,6 +720,16 @@ class Estimate:
         provider_name: NotRequired[str]
         field_id: NotRequired[str]
         field_value: NotRequired[str]
+
+    class CreateInvoiceForItemsBillingAddressParams(TypedDict):
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateSubscriptionParams(TypedDict):
         subscription: Required["Estimate.CreateSubscriptionSubscriptionParams"]
@@ -1024,6 +1042,9 @@ class Estimate:
             List["Estimate.CreateInvoiceForItemsTaxProvidersFieldParams"]
         ]
         invoice_date: NotRequired[int]
+        billing_address: NotRequired[
+            "Estimate.CreateInvoiceForItemsBillingAddressParams"
+        ]
 
     class PaymentSchedulesParams(TypedDict):
         scheme_id: Required[str]

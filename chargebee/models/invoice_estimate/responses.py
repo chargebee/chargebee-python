@@ -21,7 +21,8 @@ class LineItemResponse(Model):
     amount_in_decimal: str = None
     discount_amount: int = None
     item_level_discount_amount: int = None
-    usage_percentage: str = None
+    metered: bool = None
+    percentage: str = None
     reference_line_item_id: str = None
     description: str = None
     entity_description: str = None
@@ -78,6 +79,8 @@ class LineItemTierResponse(Model):
     ending_unit_in_decimal: str = None
     quantity_used_in_decimal: str = None
     unit_amount_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass
@@ -94,6 +97,25 @@ class LineItemDiscountResponse(Model):
     coupon_id: str = None
     entity_id: str = None
     discount_amount: int = None
+
+
+@dataclass
+class LineItemAddressResponse(Model):
+    line_item_id: str = None
+    first_name: str = None
+    last_name: str = None
+    email: str = None
+    company: str = None
+    phone: str = None
+    line1: str = None
+    line2: str = None
+    line3: str = None
+    city: str = None
+    state_code: str = None
+    state: str = None
+    country: str = None
+    zip: str = None
+    validation_status: str = None
 
 
 @dataclass
@@ -116,3 +138,4 @@ class InvoiceEstimateResponse(Model):
     line_item_discounts: List[LineItemDiscountResponse] = None
     round_off_amount: int = None
     customer_id: str = None
+    line_item_addresses: List[LineItemAddressResponse] = None

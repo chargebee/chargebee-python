@@ -34,6 +34,8 @@ class QuotedCharge:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
         index: Required[int]
 
     class Coupon(TypedDict):

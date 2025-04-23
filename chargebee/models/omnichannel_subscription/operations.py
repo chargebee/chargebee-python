@@ -13,6 +13,7 @@ class OmnichannelSubscription:
 
     class Source(Enum):
         APPLE_APP_STORE = "apple_app_store"
+        GOOGLE_PLAY_STORE = "google_play_store"
 
         def __str__(self):
             return self.value
@@ -23,6 +24,13 @@ class OmnichannelSubscription:
         CANCELLED = "cancelled"
         IN_DUNNING = "in_dunning"
         IN_GRACE_PERIOD = "in_grace_period"
+
+        def __str__(self):
+            return self.value
+
+    class OmnichannelSubscriptionItemAutoRenewStatus(Enum):
+        OFF = "off"
+        ON = "on"
 
         def __str__(self):
             return self.value
@@ -40,6 +48,8 @@ class OmnichannelSubscription:
         CUSTOMER_DID_NOT_CONSENT_TO_PRICE_INCREASE = (
             "customer_did_not_consent_to_price_increase"
         )
+        REFUNDED_DUE_TO_APP_ISSUE = "refunded_due_to_app_issue"
+        REFUNDED_FOR_OTHER_REASON = "refunded_for_other_reason"
 
         def __str__(self):
             return self.value
@@ -55,11 +65,11 @@ class OmnichannelSubscription:
         id: Required[str]
         id_at_source: Required[str]
         app_id: Required[str]
-        price_currency: Required[str]
-        price_units: Required[int]
-        price_nanos: Required[int]
+        price_currency: NotRequired[str]
+        price_units: NotRequired[int]
+        price_nanos: NotRequired[int]
         type: Required["OmnichannelSubscription.OmnichannelTransactionType"]
-        transacted_at: Required[int]
+        transacted_at: NotRequired[int]
         created_at: Required[int]
         resource_version: NotRequired[int]
 

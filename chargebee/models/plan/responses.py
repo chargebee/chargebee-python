@@ -12,6 +12,8 @@ class TierResponse(Model):
     starting_unit_in_decimal: str = None
     ending_unit_in_decimal: str = None
     price_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass

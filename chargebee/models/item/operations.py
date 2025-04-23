@@ -114,6 +114,7 @@ class Item:
         metadata: NotRequired[Dict[Any, Any]]
         business_entity_id: NotRequired[str]
         bundle_items_to_add: NotRequired[List["Item.CreateBundleItemsToAddParams"]]
+        is_percentage_pricing: NotRequired[bool]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
