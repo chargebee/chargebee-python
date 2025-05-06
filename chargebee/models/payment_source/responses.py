@@ -13,6 +13,7 @@ from chargebee.models import (
 
 @dataclass
 class CardResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     iin: str = None
@@ -33,6 +34,7 @@ class CardResponse(Model):
 
 @dataclass
 class BankAccountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     last4: str = None
     name_on_account: str = None
     first_name: str = None
@@ -48,6 +50,7 @@ class BankAccountResponse(Model):
 
 @dataclass
 class CustVoucherSourceResponse(Model):
+    raw_data: Dict[Any, Any] = None
     last4: str = None
     first_name: str = None
     last_name: str = None
@@ -56,6 +59,7 @@ class CustVoucherSourceResponse(Model):
 
 @dataclass
 class BillingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -74,33 +78,39 @@ class BillingAddressResponse(Model):
 
 @dataclass
 class AmazonPaymentResponse(Model):
+    raw_data: Dict[Any, Any] = None
     email: str = None
     agreement_id: str = None
 
 
 @dataclass
 class UpiResponse(Model):
+    raw_data: Dict[Any, Any] = None
     vpa: str = None
 
 
 @dataclass
 class PaypalResponse(Model):
+    raw_data: Dict[Any, Any] = None
     email: str = None
     agreement_id: str = None
 
 
 @dataclass
 class VenmoResponse(Model):
+    raw_data: Dict[Any, Any] = None
     user_name: str = None
 
 
 @dataclass
 class KlarnaPayNowResponse(Model):
+    raw_data: Dict[Any, Any] = None
     email: str = None
 
 
 @dataclass
 class MandateResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     subscription_id: str = None
     created_at: int = None

@@ -7,6 +7,7 @@ from chargebee.models import omnichannel_subscription_item, omnichannel_transact
 
 @dataclass
 class OmnichannelTransactionResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     id_at_source: str = None
     app_id: str = None

@@ -1,3 +1,9 @@
+### v3.3.1 (2025-04-23)
+* * * 
+
+### Bug Fixes: 
+* Fixed an issue where child resource classes were not correctly propagated from the Resource class.
+
 ### v3.3.0 (2025-04-23)
 * * * 
 

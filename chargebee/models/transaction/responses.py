@@ -7,6 +7,7 @@ from chargebee.models import credit_note, invoice, transaction
 
 @dataclass
 class LinkedInvoiceResponse(Model):
+    raw_data: Dict[Any, Any] = None
     invoice_id: str = None
     applied_amount: int = None
     applied_at: int = None
@@ -17,6 +18,7 @@ class LinkedInvoiceResponse(Model):
 
 @dataclass
 class LinkedCreditNoteResponse(Model):
+    raw_data: Dict[Any, Any] = None
     cn_id: str = None
     applied_amount: int = None
     applied_at: int = None
@@ -30,6 +32,7 @@ class LinkedCreditNoteResponse(Model):
 
 @dataclass
 class LinkedRefundResponse(Model):
+    raw_data: Dict[Any, Any] = None
     txn_id: str = None
     txn_status: str = None
     txn_date: int = None
@@ -38,6 +41,7 @@ class LinkedRefundResponse(Model):
 
 @dataclass
 class LinkedPaymentResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     status: str = None
     amount: int = None
@@ -46,6 +50,7 @@ class LinkedPaymentResponse(Model):
 
 @dataclass
 class GatewayErrorDetailResponse(Model):
+    raw_data: Dict[Any, Any] = None
     request_id: str = None
     error_category: str = None
     error_code: str = None

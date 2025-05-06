@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class ItemsToAddResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     item_type: str = None
     quantity: int = None
@@ -23,6 +24,7 @@ class ItemsToAddResponse(Model):
 
 @dataclass
 class ItemsToUpdateResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     item_type: str = None
     quantity: int = None
@@ -40,12 +42,14 @@ class ItemsToUpdateResponse(Model):
 
 @dataclass
 class CouponsToAddResponse(Model):
+    raw_data: Dict[Any, Any] = None
     coupon_id: str = None
     apply_till: int = None
 
 
 @dataclass
 class DiscountsToAddResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     invoice_name: str = None
     type: str = None
@@ -62,6 +66,7 @@ class DiscountsToAddResponse(Model):
 
 @dataclass
 class ItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -76,6 +81,7 @@ class ItemTierResponse(Model):
 
 @dataclass
 class StatusTransitionReasonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     code: str = None
     message: str = None
 

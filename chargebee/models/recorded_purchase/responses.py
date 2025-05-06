@@ -7,11 +7,13 @@ from chargebee.models import customer
 
 @dataclass
 class LinkedOmnichannelSubscriptionResponse(Model):
+    raw_data: Dict[Any, Any] = None
     omnichannel_subscription_id: str = None
 
 
 @dataclass
 class ErrorDetailResponse(Model):
+    raw_data: Dict[Any, Any] = None
     error_message: str = None
 
 

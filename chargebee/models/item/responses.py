@@ -6,11 +6,13 @@ from chargebee.response import Response
 
 @dataclass
 class ApplicableItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
 
 
 @dataclass
 class BundleItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_id: str = None
     item_type: str = None
     quantity: int = None
@@ -19,6 +21,7 @@ class BundleItemResponse(Model):
 
 @dataclass
 class BundleConfigurationResponse(Model):
+    raw_data: Dict[Any, Any] = None
     type: str = None
 
 

@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class TierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     starting_unit: int = None
     ending_unit: int = None
     price: int = None
@@ -18,6 +19,7 @@ class TierResponse(Model):
 
 @dataclass
 class ParentPeriodResponse(Model):
+    raw_data: Dict[Any, Any] = None
     period_unit: str = None
     period: List[Dict[Any, Any]] = None
 

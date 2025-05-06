@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class TierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     starting_unit: int = None
     ending_unit: int = None
     price: int = None
@@ -18,6 +19,7 @@ class TierResponse(Model):
 
 @dataclass
 class TaxProvidersFieldResponse(Model):
+    raw_data: Dict[Any, Any] = None
     provider_name: str = None
     field_id: str = None
     field_value: str = None

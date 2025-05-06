@@ -18,6 +18,7 @@ from chargebee.models import (
 
 @dataclass
 class LineItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     subscription_id: str = None
     date_from: int = None
@@ -47,6 +48,7 @@ class LineItemResponse(Model):
 
 @dataclass
 class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     amount: int = None
     description: str = None
     entity_type: str = None
@@ -57,6 +59,7 @@ class DiscountResponse(Model):
 
 @dataclass
 class LineItemDiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     discount_type: str = None
     coupon_id: str = None
@@ -66,6 +69,7 @@ class LineItemDiscountResponse(Model):
 
 @dataclass
 class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
     name: str = None
     amount: int = None
     description: str = None
@@ -73,6 +77,7 @@ class TaxResponse(Model):
 
 @dataclass
 class LineItemTaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     tax_name: str = None
     tax_rate: float = None
@@ -92,6 +97,7 @@ class LineItemTaxResponse(Model):
 
 @dataclass
 class LineItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -107,6 +113,7 @@ class LineItemTierResponse(Model):
 
 @dataclass
 class ShippingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -126,6 +133,7 @@ class ShippingAddressResponse(Model):
 
 @dataclass
 class BillingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None

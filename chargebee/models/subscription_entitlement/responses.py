@@ -7,6 +7,7 @@ from chargebee.models import entitlement_override
 
 @dataclass
 class ComponentResponse(Model):
+    raw_data: Dict[Any, Any] = None
     entitlement_overrides: entitlement_override.EntitlementOverrideResponse = None
 
 

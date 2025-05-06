@@ -7,6 +7,7 @@ from chargebee.models import payment_intent, subscription, invoice
 
 @dataclass
 class GifterResponse(Model):
+    raw_data: Dict[Any, Any] = None
     customer_id: str = None
     invoice_id: str = None
     signature: str = None
@@ -15,6 +16,7 @@ class GifterResponse(Model):
 
 @dataclass
 class GiftReceiverResponse(Model):
+    raw_data: Dict[Any, Any] = None
     customer_id: str = None
     subscription_id: str = None
     first_name: str = None
@@ -24,6 +26,7 @@ class GiftReceiverResponse(Model):
 
 @dataclass
 class GiftTimelineResponse(Model):
+    raw_data: Dict[Any, Any] = None
     status: str = None
     occurred_at: int = None
 

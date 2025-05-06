@@ -5,11 +5,13 @@ from typing import Dict, List, Any
 
 @dataclass
 class CouponResponse(Model):
+    raw_data: Dict[Any, Any] = None
     coupon_id: str = None
 
 
 @dataclass
 class SubscriptionItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     item_type: str = None
     quantity: int = None
@@ -39,6 +41,7 @@ class SubscriptionItemResponse(Model):
 
 @dataclass
 class ItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -53,6 +56,7 @@ class ItemTierResponse(Model):
 
 @dataclass
 class QuotedContractTermResponse(Model):
+    raw_data: Dict[Any, Any] = None
     contract_start: int = None
     contract_end: int = None
     billing_cycle: int = None
@@ -63,6 +67,7 @@ class QuotedContractTermResponse(Model):
 
 @dataclass
 class EventBasedAddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     quantity: int = None
     unit_price: int = None
@@ -75,6 +80,7 @@ class EventBasedAddonResponse(Model):
 
 @dataclass
 class AddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     quantity: int = None
     unit_price: int = None

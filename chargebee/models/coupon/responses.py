@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class ItemConstraintResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_type: str = None
     constraint: str = None
     item_price_ids: List[Dict[Any, Any]] = None
@@ -13,6 +14,7 @@ class ItemConstraintResponse(Model):
 
 @dataclass
 class ItemConstraintCriteriaResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_type: str = None
     currencies: List[Dict[Any, Any]] = None
     item_family_ids: List[Dict[Any, Any]] = None
@@ -21,6 +23,7 @@ class ItemConstraintCriteriaResponse(Model):
 
 @dataclass
 class CouponConstraintResponse(Model):
+    raw_data: Dict[Any, Any] = None
     entity_type: str = None
     type: str = None
     value: str = None

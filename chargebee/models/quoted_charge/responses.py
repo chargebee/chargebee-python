@@ -5,6 +5,7 @@ from typing import Dict, List, Any
 
 @dataclass
 class ChargeResponse(Model):
+    raw_data: Dict[Any, Any] = None
     amount: int = None
     amount_in_decimal: str = None
     description: str = None
@@ -16,6 +17,7 @@ class ChargeResponse(Model):
 
 @dataclass
 class InvoiceItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     quantity: int = None
     quantity_in_decimal: str = None
@@ -26,6 +28,7 @@ class InvoiceItemResponse(Model):
 
 @dataclass
 class ItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -40,11 +43,13 @@ class ItemTierResponse(Model):
 
 @dataclass
 class CouponResponse(Model):
+    raw_data: Dict[Any, Any] = None
     coupon_id: str = None
 
 
 @dataclass
 class AddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     quantity: int = None
     unit_price: int = None

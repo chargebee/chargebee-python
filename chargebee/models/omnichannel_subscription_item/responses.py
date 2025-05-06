@@ -7,6 +7,7 @@ from chargebee.models import omnichannel_subscription_item_scheduled_change
 
 @dataclass
 class UpcomingRenewalResponse(Model):
+    raw_data: Dict[Any, Any] = None
     price_currency: str = None
     price_units: int = None
     price_nanos: int = None

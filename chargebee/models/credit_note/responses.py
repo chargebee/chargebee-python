@@ -7,6 +7,7 @@ from chargebee.models import invoice, transaction, transaction, invoice, downloa
 
 @dataclass
 class EinvoiceResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     reference_number: str = None
     status: str = None
@@ -15,6 +16,7 @@ class EinvoiceResponse(Model):
 
 @dataclass
 class LineItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     subscription_id: str = None
     date_from: int = None
@@ -44,6 +46,7 @@ class LineItemResponse(Model):
 
 @dataclass
 class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     amount: int = None
     description: str = None
     entity_type: str = None
@@ -54,6 +57,7 @@ class DiscountResponse(Model):
 
 @dataclass
 class LineItemDiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     discount_type: str = None
     coupon_id: str = None
@@ -63,6 +67,7 @@ class LineItemDiscountResponse(Model):
 
 @dataclass
 class LineItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -78,6 +83,7 @@ class LineItemTierResponse(Model):
 
 @dataclass
 class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
     name: str = None
     amount: int = None
     description: str = None
@@ -85,6 +91,7 @@ class TaxResponse(Model):
 
 @dataclass
 class LineItemTaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     tax_name: str = None
     tax_rate: float = None
@@ -104,6 +111,7 @@ class LineItemTaxResponse(Model):
 
 @dataclass
 class LinkedRefundResponse(Model):
+    raw_data: Dict[Any, Any] = None
     txn_id: str = None
     applied_amount: int = None
     applied_at: int = None
@@ -115,6 +123,7 @@ class LinkedRefundResponse(Model):
 
 @dataclass
 class AllocationResponse(Model):
+    raw_data: Dict[Any, Any] = None
     invoice_id: str = None
     allocated_amount: int = None
     allocated_at: int = None
@@ -125,6 +134,7 @@ class AllocationResponse(Model):
 
 @dataclass
 class ShippingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -144,6 +154,7 @@ class ShippingAddressResponse(Model):
 
 @dataclass
 class BillingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -162,18 +173,21 @@ class BillingAddressResponse(Model):
 
 @dataclass
 class SiteDetailsAtCreationResponse(Model):
+    raw_data: Dict[Any, Any] = None
     timezone: str = None
     organization_address: Dict[Any, Any] = None
 
 
 @dataclass
 class TaxOriginResponse(Model):
+    raw_data: Dict[Any, Any] = None
     country: str = None
     registration_number: str = None
 
 
 @dataclass
 class LineItemAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     first_name: str = None
     last_name: str = None

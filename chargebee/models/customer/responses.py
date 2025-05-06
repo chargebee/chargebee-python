@@ -16,6 +16,7 @@ from chargebee.models import (
 
 @dataclass
 class BillingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -34,6 +35,7 @@ class BillingAddressResponse(Model):
 
 @dataclass
 class ReferralUrlResponse(Model):
+    raw_data: Dict[Any, Any] = None
     external_customer_id: str = None
     referral_sharing_url: str = None
     created_at: int = None
@@ -46,6 +48,7 @@ class ReferralUrlResponse(Model):
 
 @dataclass
 class ContactResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     first_name: str = None
     last_name: str = None
@@ -59,6 +62,7 @@ class ContactResponse(Model):
 
 @dataclass
 class PaymentMethodResponse(Model):
+    raw_data: Dict[Any, Any] = None
     type: str = None
     gateway: str = None
     gateway_account_id: str = None
@@ -68,6 +72,7 @@ class PaymentMethodResponse(Model):
 
 @dataclass
 class BalanceResponse(Model):
+    raw_data: Dict[Any, Any] = None
     promotional_credits: int = None
     excess_payments: int = None
     refundable_credits: int = None
@@ -78,6 +83,7 @@ class BalanceResponse(Model):
 
 @dataclass
 class EntityIdentifierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     value: str = None
     scheme: str = None
@@ -86,6 +92,7 @@ class EntityIdentifierResponse(Model):
 
 @dataclass
 class TaxProvidersFieldResponse(Model):
+    raw_data: Dict[Any, Any] = None
     provider_name: str = None
     field_id: str = None
     field_value: str = None
@@ -93,6 +100,7 @@ class TaxProvidersFieldResponse(Model):
 
 @dataclass
 class RelationshipResponse(Model):
+    raw_data: Dict[Any, Any] = None
     parent_id: str = None
     payment_owner_id: str = None
     invoice_owner_id: str = None
@@ -100,6 +108,7 @@ class RelationshipResponse(Model):
 
 @dataclass
 class ParentAccountAccessResponse(Model):
+    raw_data: Dict[Any, Any] = None
     portal_edit_child_subscriptions: str = None
     portal_download_child_invoices: str = None
     send_subscription_emails: bool = None
@@ -109,6 +118,7 @@ class ParentAccountAccessResponse(Model):
 
 @dataclass
 class ChildAccountAccessResponse(Model):
+    raw_data: Dict[Any, Any] = None
     portal_edit_subscriptions: str = None
     portal_download_invoices: str = None
     send_subscription_emails: bool = None
