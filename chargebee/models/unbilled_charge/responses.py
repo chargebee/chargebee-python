@@ -7,6 +7,7 @@ from chargebee.models import estimate, invoice
 
 @dataclass
 class TierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     starting_unit: int = None
     ending_unit: int = None
     quantity_used: int = None

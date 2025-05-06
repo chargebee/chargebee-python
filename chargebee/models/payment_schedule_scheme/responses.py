@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class PreferredScheduleResponse(Model):
+    raw_data: Dict[Any, Any] = None
     period: int = None
     amount_percentage: float = None
 

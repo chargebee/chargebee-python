@@ -5,11 +5,13 @@ from typing import Dict, List, Any
 
 @dataclass
 class CurrentStateResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_id_at_source: str = None
 
 
 @dataclass
 class ScheduledStateResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_id_at_source: str = None
 
 

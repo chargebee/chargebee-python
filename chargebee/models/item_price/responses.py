@@ -7,6 +7,7 @@ from chargebee.models import item
 
 @dataclass
 class TierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     starting_unit: int = None
     ending_unit: int = None
     price: int = None
@@ -19,6 +20,7 @@ class TierResponse(Model):
 
 @dataclass
 class TaxDetailResponse(Model):
+    raw_data: Dict[Any, Any] = None
     tax_profile_id: str = None
     avalara_sale_type: str = None
     avalara_transaction_type: int = None
@@ -30,6 +32,7 @@ class TaxDetailResponse(Model):
 
 @dataclass
 class TaxProvidersFieldResponse(Model):
+    raw_data: Dict[Any, Any] = None
     provider_name: str = None
     field_id: str = None
     field_value: str = None
@@ -37,6 +40,7 @@ class TaxProvidersFieldResponse(Model):
 
 @dataclass
 class AccountingDetailResponse(Model):
+    raw_data: Dict[Any, Any] = None
     sku: str = None
     accounting_code: str = None
     accounting_category1: str = None

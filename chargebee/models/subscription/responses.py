@@ -22,6 +22,7 @@ from chargebee.models import (
 
 @dataclass
 class SubscriptionItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     item_type: str = None
     quantity: int = None
@@ -51,6 +52,7 @@ class SubscriptionItemResponse(Model):
 
 @dataclass
 class ItemTierResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     starting_unit: int = None
     ending_unit: int = None
@@ -65,12 +67,14 @@ class ItemTierResponse(Model):
 
 @dataclass
 class ChargedItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     item_price_id: str = None
     last_charged_at: int = None
 
 
 @dataclass
 class CouponResponse(Model):
+    raw_data: Dict[Any, Any] = None
     coupon_id: str = None
     apply_till: int = None
     applied_count: int = None
@@ -79,6 +83,7 @@ class CouponResponse(Model):
 
 @dataclass
 class ShippingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -98,6 +103,7 @@ class ShippingAddressResponse(Model):
 
 @dataclass
 class ReferralInfoResponse(Model):
+    raw_data: Dict[Any, Any] = None
     referral_code: str = None
     coupon_code: str = None
     referrer_id: str = None
@@ -116,12 +122,14 @@ class ReferralInfoResponse(Model):
 
 @dataclass
 class BillingOverrideResponse(Model):
+    raw_data: Dict[Any, Any] = None
     max_excess_payment_usage: int = None
     max_refundable_credits_usage: int = None
 
 
 @dataclass
 class ContractTermResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     status: str = None
     contract_start: int = None
@@ -138,6 +146,7 @@ class ContractTermResponse(Model):
 
 @dataclass
 class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     invoice_name: str = None
     type: str = None
@@ -159,6 +168,7 @@ class DiscountResponse(Model):
 
 @dataclass
 class AddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     quantity: int = None
     unit_price: int = None
@@ -173,12 +183,14 @@ class AddonResponse(Model):
 
 @dataclass
 class ChargedEventBasedAddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     last_charged_at: int = None
 
 
 @dataclass
 class EventBasedAddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     quantity: int = None
     unit_price: int = None

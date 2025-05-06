@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class WebhookResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     webhook_status: str = None
 

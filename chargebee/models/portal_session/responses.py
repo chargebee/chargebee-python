@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class LinkedCustomerResponse(Model):
+    raw_data: Dict[Any, Any] = None
     customer_id: str = None
     email: str = None
     has_billing_address: bool = None

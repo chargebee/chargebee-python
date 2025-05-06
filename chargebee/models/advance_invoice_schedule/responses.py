@@ -5,6 +5,7 @@ from typing import Dict, List, Any
 
 @dataclass
 class FixedIntervalScheduleResponse(Model):
+    raw_data: Dict[Any, Any] = None
     end_schedule_on: str = None
     number_of_occurrences: int = None
     days_before_renewal: int = None
@@ -15,6 +16,7 @@ class FixedIntervalScheduleResponse(Model):
 
 @dataclass
 class SpecificDatesScheduleResponse(Model):
+    raw_data: Dict[Any, Any] = None
     terms_to_charge: int = None
     date: int = None
     created_at: int = None

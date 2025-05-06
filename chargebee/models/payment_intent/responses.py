@@ -7,6 +7,7 @@ from chargebee.models import gateway_error_detail
 
 @dataclass
 class PaymentAttemptResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     status: str = None
     payment_method_type: str = None

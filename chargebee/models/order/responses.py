@@ -7,6 +7,7 @@ from chargebee.models import credit_note
 
 @dataclass
 class OrderLineItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     invoice_id: str = None
     invoice_line_item_id: str = None
@@ -31,6 +32,7 @@ class OrderLineItemResponse(Model):
 
 @dataclass
 class ShippingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -50,6 +52,7 @@ class ShippingAddressResponse(Model):
 
 @dataclass
 class BillingAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
     first_name: str = None
     last_name: str = None
     email: str = None
@@ -68,6 +71,7 @@ class BillingAddressResponse(Model):
 
 @dataclass
 class LineItemTaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     tax_name: str = None
     tax_rate: float = None
@@ -87,6 +91,7 @@ class LineItemTaxResponse(Model):
 
 @dataclass
 class LineItemDiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
     line_item_id: str = None
     discount_type: str = None
     coupon_id: str = None
@@ -96,6 +101,7 @@ class LineItemDiscountResponse(Model):
 
 @dataclass
 class LinkedCreditNoteResponse(Model):
+    raw_data: Dict[Any, Any] = None
     amount: int = None
     type: str = None
     id: str = None
@@ -106,6 +112,7 @@ class LinkedCreditNoteResponse(Model):
 
 @dataclass
 class ResentOrderResponse(Model):
+    raw_data: Dict[Any, Any] = None
     order_id: str = None
     reason: str = None
     amount: int = None

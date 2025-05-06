@@ -6,6 +6,7 @@ from chargebee.response import Response
 
 @dataclass
 class LinkedInvoiceResponse(Model):
+    raw_data: Dict[Any, Any] = None
     invoice_id: str = None
     txn_id: str = None
     applied_at: int = None

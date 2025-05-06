@@ -5,6 +5,7 @@ from typing import Dict, List, Any
 
 @dataclass
 class ScheduleEntryResponse(Model):
+    raw_data: Dict[Any, Any] = None
     id: str = None
     date: int = None
     amount: int = None
