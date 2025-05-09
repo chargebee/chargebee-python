@@ -1,3 +1,9 @@
+### v3.3.2 (2025-05-09)
+* * * 
+
+### Bug Fixes: 
+* Fixed an issue where child resource classes of type `JsonObject` or `JsonArray` were not correctly propagated from `Resource`.
+
 ### v3.3.1 (2025-04-23)
 * * * 
 

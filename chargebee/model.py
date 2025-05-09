@@ -26,7 +26,7 @@ class Model(object):
                 if field_type and hasattr(field_type, 'construct'):
                     val = field_type.construct(v, depth=depth+1)
                 else:
-                    val = self.construct(v, depth=depth+1)
+                    val = v
             elif isinstance(v, (list, tuple)):
                 if field_type and get_origin(field_type) in (list, tuple):
                     item_type = get_args(field_type)[0] if get_args(field_type) else None
@@ -34,8 +34,6 @@ class Model(object):
                     for item in v:
                         if isinstance(item, dict) and item_type and hasattr(item_type, 'construct'):
                             val.append(item_type.construct(item, depth=depth+1))
-                        elif isinstance(item, dict):
-                            val.append(self.construct(item, depth=depth+1))
                         else:
                             val.append(item)
                 else:
