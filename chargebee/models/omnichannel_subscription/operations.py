@@ -24,6 +24,7 @@ class OmnichannelSubscription:
         CANCELLED = "cancelled"
         IN_DUNNING = "in_dunning"
         IN_GRACE_PERIOD = "in_grace_period"
+        PAUSED = "paused"
 
         def __str__(self):
             return self.value
@@ -50,6 +51,7 @@ class OmnichannelSubscription:
         )
         REFUNDED_DUE_TO_APP_ISSUE = "refunded_due_to_app_issue"
         REFUNDED_FOR_OTHER_REASON = "refunded_for_other_reason"
+        MERCHANT_REVOKED = "merchant_revoked"
 
         def __str__(self):
             return self.value
@@ -76,6 +78,7 @@ class OmnichannelSubscription:
     class ListParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+        source: NotRequired[Filters.EnumFilter]
         customer_id: NotRequired[Filters.StringFilter]
 
     class OmnichannelTransactionsForOmnichannelSubscriptionParams(TypedDict):

@@ -538,7 +538,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CreateSubItemsForCustomerQuoteDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -601,7 +601,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class EditCreateSubCustomerQuoteForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -666,7 +666,7 @@ class Quote:
         item_type: NotRequired[enums.ItemType]
 
     class UpdateSubscriptionQuoteForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -753,7 +753,7 @@ class Quote:
         contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class EditUpdateSubscriptionQuoteForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]

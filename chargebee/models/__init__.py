@@ -253,4 +253,6 @@ from chargebee.models.usage.operations import Usage
 
 from chargebee.models.usage_event.operations import UsageEvent
 
+from chargebee.models.usage_file.operations import UsageFile
+
 from chargebee.models.virtual_bank_account.operations import VirtualBankAccount

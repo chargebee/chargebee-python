@@ -589,6 +589,7 @@ class EventType(Enum):
     SALES_ORDER_CREATED = "sales_order_created"
     SALES_ORDER_UPDATED = "sales_order_updated"
     OMNICHANNEL_SUBSCRIPTION_ITEM_CHANGED = "omnichannel_subscription_item_changed"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_PAUSED = "omnichannel_subscription_item_paused"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"

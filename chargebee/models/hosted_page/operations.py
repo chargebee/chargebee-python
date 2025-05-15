@@ -355,7 +355,7 @@ class HostedPage:
         charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CheckoutNewForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -495,7 +495,7 @@ class HostedPage:
         item_type: NotRequired[enums.ItemType]
 
     class CheckoutExistingForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]

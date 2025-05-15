@@ -462,7 +462,7 @@ class Subscription:
         ]
 
     class CreateWithItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -659,7 +659,7 @@ class Subscription:
         ]
 
     class UpdateForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -1064,7 +1064,7 @@ class Subscription:
         item_type: NotRequired[enums.ItemType]
 
     class ImportForItemsDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]

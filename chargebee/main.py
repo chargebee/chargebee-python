@@ -119,6 +119,7 @@ class Chargebee:
         self.UnbilledCharge = chargebee.UnbilledCharge(self.env)
         self.Usage = chargebee.Usage(self.env)
         self.UsageEvent = chargebee.UsageEvent(self.env)
+        self.UsageFile = chargebee.UsageFile(self.env)
         self.VirtualBankAccount = chargebee.VirtualBankAccount(self.env)
 
     def update_connect_timeout_secs(self, connect_timeout):

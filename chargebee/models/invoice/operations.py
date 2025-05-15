@@ -724,6 +724,23 @@ class Invoice:
         country: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
 
+    class ImportInvoiceLineItemAddressParams(TypedDict):
+        line_item_id: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
     class ApplyPaymentsTransactionParams(TypedDict):
         id: NotRequired[str]
         amount: NotRequired[int]
@@ -1011,6 +1028,9 @@ class Invoice:
         notes: NotRequired[List["Invoice.ImportInvoiceNoteParams"]]
         billing_address: NotRequired["Invoice.ImportInvoiceBillingAddressParams"]
         shipping_address: NotRequired["Invoice.ImportInvoiceShippingAddressParams"]
+        line_item_addresses: NotRequired[
+            List["Invoice.ImportInvoiceLineItemAddressParams"]
+        ]
 
     class ApplyPaymentsParams(TypedDict):
         transactions: NotRequired[List["Invoice.ApplyPaymentsTransactionParams"]]

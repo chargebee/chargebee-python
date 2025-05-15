@@ -25,7 +25,7 @@ class PricingPageSession:
         locale: NotRequired[str]
 
     class CreateForNewSubscriptionDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -74,7 +74,7 @@ class PricingPageSession:
         id: Required[str]
 
     class CreateForExistingSubscriptionDiscountParams(TypedDict):
-        apply_on: Required[enums.ApplyOn]
+        apply_on: NotRequired[enums.ApplyOn]
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
