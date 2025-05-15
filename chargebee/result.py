@@ -486,6 +486,12 @@ class Result(object):
         return omnichannel_subscription_item_scheduled_change;
 
     @property
+    def usage_file(self):
+        usage_file = self._get('usage_file', UsageFile,
+        {'upload_detail' : UsageFile.UploadDetail});
+        return usage_file;
+
+    @property
     def advance_invoice_schedules(self):
         advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});

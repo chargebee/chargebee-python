@@ -81,5 +81,6 @@ from chargebee.models.transaction import Transaction
 from chargebee.models.unbilled_charge import UnbilledCharge
 from chargebee.models.usage import Usage
 from chargebee.models.usage_event import UsageEvent
+from chargebee.models.usage_file import UsageFile
 from chargebee.models.virtual_bank_account import VirtualBankAccount
 from chargebee.models.content import Content
