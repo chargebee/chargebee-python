@@ -92,7 +92,7 @@ class Subscription:
         next_billing_at: NotRequired[int]
         amount_in_decimal: NotRequired[str]
         billing_period: NotRequired[int]
-        billing_period_unit: NotRequired["Subscription.BillingPeriodUnit"]
+        billing_period_unit: NotRequired[enums.BillingPeriodUnit]
         free_quantity: NotRequired[int]
         free_quantity_in_decimal: NotRequired[str]
         trial_end: NotRequired[int]
@@ -1330,6 +1330,7 @@ class Subscription:
     class ContractTermsForSubscriptionParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+        sort_by: NotRequired[Filters.SortFilter]
 
     class ListDiscountsParams(TypedDict):
         limit: NotRequired[int]

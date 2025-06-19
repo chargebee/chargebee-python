@@ -319,6 +319,10 @@ class Estimate:
         contract_start: NotRequired[int]
         cancellation_cutoff_period: NotRequired[int]
 
+    class CreateSubItemForCustomerEstimateBillingOverrideParams(TypedDict):
+        max_excess_payment_usage: NotRequired[int]
+        max_refundable_credits_usage: NotRequired[int]
+
     class UpdateSubscriptionSubscriptionParams(TypedDict):
         id: Required[str]
         plan_id: NotRequired[str]
@@ -458,6 +462,10 @@ class Estimate:
         vat_number_prefix: NotRequired[str]
         registered_for_gst: NotRequired[bool]
         taxability: NotRequired[enums.Taxability]
+
+    class UpdateSubscriptionForItemsBillingOverrideParams(TypedDict):
+        max_excess_payment_usage: NotRequired[int]
+        max_refundable_credits_usage: NotRequired[int]
 
     class AdvanceInvoiceEstimateSpecificDatesScheduleParams(TypedDict):
         terms_to_charge: NotRequired[int]
@@ -835,6 +843,9 @@ class Estimate:
         contract_term: NotRequired[
             "Estimate.CreateSubItemForCustomerEstimateContractTermParams"
         ]
+        billing_override: NotRequired[
+            "Estimate.CreateSubItemForCustomerEstimateBillingOverrideParams"
+        ]
 
     class UpdateSubscriptionParams(TypedDict):
         subscription: Required["Estimate.UpdateSubscriptionSubscriptionParams"]
@@ -901,6 +912,9 @@ class Estimate:
         customer: NotRequired["Estimate.UpdateSubscriptionForItemsCustomerParams"]
         invoice_immediately: NotRequired[bool]
         invoice_usages: NotRequired[bool]
+        billing_override: NotRequired[
+            "Estimate.UpdateSubscriptionForItemsBillingOverrideParams"
+        ]
 
     class RenewalEstimateParams(TypedDict):
         include_delayed_charges: NotRequired[bool]

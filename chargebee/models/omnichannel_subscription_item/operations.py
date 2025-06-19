@@ -52,6 +52,10 @@ class OmnichannelSubscriptionItem:
         price_units: NotRequired[int]
         price_nanos: NotRequired[int]
 
+    class LinkedItem(TypedDict):
+        id: Required[str]
+        linked_at: NotRequired[int]
+
     class ListOmniSubItemScheduleChangesParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]

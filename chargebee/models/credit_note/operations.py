@@ -128,7 +128,7 @@ class CreditNote:
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
         metered: NotRequired[bool]
-        percentage: NotRequired[str]
+        is_percentage_pricing: NotRequired[bool]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -275,6 +275,10 @@ class CreditNote:
         entity_type: NotRequired["CreditNote.LineItemEntityType"]
         entity_id: NotRequired[str]
 
+    class RetrieveLineItemParams(TypedDict):
+        subscription_id: NotRequired[Filters.StringFilter]
+        customer_id: NotRequired[Filters.StringFilter]
+
     class RecordRefundTransactionParams(TypedDict):
         amount: NotRequired[int]
         payment_method: Required[enums.PaymentMethod]
@@ -378,6 +382,9 @@ class CreditNote:
         line_items: NotRequired[List["CreditNote.CreateLineItemParams"]]
         comment: NotRequired[str]
 
+    class RetrieveParams(TypedDict):
+        line_item: NotRequired["CreditNote.RetrieveLineItemParams"]
+
     class PdfParams(TypedDict):
         disposition_type: NotRequired[enums.DispositionType]
 
@@ -466,13 +473,15 @@ class CreditNote:
             jsonKeys,
         )
 
-    def retrieve(self, id, headers=None) -> RetrieveResponse:
+    def retrieve(
+        self, id, params: RetrieveParams = None, headers=None
+    ) -> RetrieveResponse:
         jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("credit_notes", id),
             self.env,
-            None,
+            cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
             None,

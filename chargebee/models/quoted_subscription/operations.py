@@ -54,7 +54,7 @@ class QuotedSubscription:
         next_billing_at: NotRequired[int]
         amount_in_decimal: NotRequired[str]
         billing_period: NotRequired[int]
-        billing_period_unit: NotRequired["QuotedSubscription.BillingPeriodUnit"]
+        billing_period_unit: NotRequired[enums.BillingPeriodUnit]
         free_quantity: NotRequired[int]
         free_quantity_in_decimal: NotRequired[str]
         trial_end: NotRequired[int]

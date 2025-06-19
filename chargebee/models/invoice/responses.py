@@ -36,7 +36,7 @@ class LineItemResponse(Model):
     discount_amount: int = None
     item_level_discount_amount: int = None
     metered: bool = None
-    percentage: str = None
+    is_percentage_pricing: bool = None
     reference_line_item_id: str = None
     description: str = None
     entity_description: str = None
@@ -192,9 +192,9 @@ class LinkedOrderResponse(Model):
 @dataclass
 class NoteResponse(Model):
     raw_data: Dict[Any, Any] = None
-    entity_type: str = None
     note: str = None
     entity_id: str = None
+    entity_type: str = None
 
 
 @dataclass
@@ -391,6 +391,18 @@ class CreateForChargeItemResponse(Response):
 
 @dataclass
 class StopDunningResponse(Response):
+    is_idempotency_replayed: bool
+    invoice: InvoiceResponse
+
+
+@dataclass
+class PauseDunningResponse(Response):
+    is_idempotency_replayed: bool
+    invoice: InvoiceResponse
+
+
+@dataclass
+class ResumeDunningResponse(Response):
     is_idempotency_replayed: bool
     invoice: InvoiceResponse
 

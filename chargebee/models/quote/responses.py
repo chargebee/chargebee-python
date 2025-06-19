@@ -36,7 +36,7 @@ class LineItemResponse(Model):
     discount_amount: int = None
     item_level_discount_amount: int = None
     metered: bool = None
-    percentage: str = None
+    is_percentage_pricing: bool = None
     reference_line_item_id: str = None
     description: str = None
     entity_description: str = None
@@ -192,6 +192,8 @@ class QuoteResponse(Model):
     contract_term_termination_fee: int = None
     business_entity_id: str = None
     deleted: bool = None
+    total_contract_value: int = None
+    total_discount: int = None
 
 
 @dataclass

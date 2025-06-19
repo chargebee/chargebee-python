@@ -111,10 +111,10 @@ class Item:
         included_in_mrr: NotRequired[bool]
         metered: NotRequired[bool]
         usage_calculation: NotRequired["Item.UsageCalculation"]
+        is_percentage_pricing: NotRequired[bool]
         metadata: NotRequired[Dict[Any, Any]]
         business_entity_id: NotRequired[str]
         bundle_items_to_add: NotRequired[List["Item.CreateBundleItemsToAddParams"]]
-        is_percentage_pricing: NotRequired[bool]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
@@ -134,6 +134,7 @@ class Item:
         metadata: NotRequired[Dict[Any, Any]]
         included_in_mrr: NotRequired[bool]
         status: NotRequired["Item.Status"]
+        is_percentage_pricing: NotRequired[bool]
         bundle_items_to_add: NotRequired[List["Item.UpdateBundleItemsToAddParams"]]
         bundle_items_to_update: NotRequired[
             List["Item.UpdateBundleItemsToUpdateParams"]

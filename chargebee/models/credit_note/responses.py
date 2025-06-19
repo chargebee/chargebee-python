@@ -34,7 +34,7 @@ class LineItemResponse(Model):
     discount_amount: int = None
     item_level_discount_amount: int = None
     metered: bool = None
-    percentage: str = None
+    is_percentage_pricing: bool = None
     reference_line_item_id: str = None
     description: str = None
     entity_description: str = None

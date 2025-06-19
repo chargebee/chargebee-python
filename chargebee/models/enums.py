@@ -94,6 +94,24 @@ class BillingDayOfWeekMode(Enum):
         return self.value
 
 
+class BillingPeriodUnit(Enum):
+    DAY = "day"
+    WEEK = "week"
+    MONTH = "month"
+    YEAR = "year"
+
+    def __str__(self):
+        return self.value
+
+
+class BillingStartOption(Enum):
+    IMMEDIATELY = "immediately"
+    ON_SPECIFIC_DATE = "on_specific_date"
+
+    def __str__(self):
+        return self.value
+
+
 class CancelOption(Enum):
     IMMEDIATELY = "immediately"
     END_OF_TERM = "end_of_term"
@@ -153,6 +171,15 @@ class ChargeOnEvent(Enum):
 class ChargeOnOption(Enum):
     IMMEDIATELY = "immediately"
     ON_EVENT = "on_event"
+
+    def __str__(self):
+        return self.value
+
+
+class ChargebeeResponseSchemaType(Enum):
+    PLANS_ADDONS = "plans_addons"
+    ITEMS = "items"
+    COMPAT = "compat"
 
     def __str__(self):
         return self.value
@@ -590,6 +617,7 @@ class EventType(Enum):
     SALES_ORDER_UPDATED = "sales_order_updated"
     OMNICHANNEL_SUBSCRIPTION_ITEM_CHANGED = "omnichannel_subscription_item_changed"
     OMNICHANNEL_SUBSCRIPTION_ITEM_PAUSED = "omnichannel_subscription_item_paused"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_RESUMED = "omnichannel_subscription_item_resumed"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"

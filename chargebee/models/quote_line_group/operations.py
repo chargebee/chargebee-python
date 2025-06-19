@@ -80,7 +80,7 @@ class QuoteLineGroup:
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
         metered: NotRequired[bool]
-        percentage: NotRequired[str]
+        is_percentage_pricing: NotRequired[bool]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]

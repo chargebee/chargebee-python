@@ -9,6 +9,7 @@ class ConfigurationResponse(Model):
     raw_data: Dict[Any, Any] = None
     domain: str = None
     product_catalog_version: str = None
+    chargebee_response_schema_type: str = None
 
 
 @dataclass

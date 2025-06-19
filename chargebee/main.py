@@ -102,6 +102,7 @@ class Chargebee:
         self.Quote = chargebee.Quote(self.env)
         self.QuoteLineGroup = chargebee.QuoteLineGroup(self.env)
         self.QuotedCharge = chargebee.QuotedCharge(self.env)
+        self.QuotedRamp = chargebee.QuotedRamp(self.env)
         self.QuotedSubscription = chargebee.QuotedSubscription(self.env)
         self.Ramp = chargebee.Ramp(self.env)
         self.RecordedPurchase = chargebee.RecordedPurchase(self.env)

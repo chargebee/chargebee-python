@@ -17,6 +17,11 @@ class Quote:
         DECLINED = "declined"
         INVOICED = "invoiced"
         CLOSED = "closed"
+        PENDING_APPROVAL = "pending_approval"
+        APPROVAL_REJECTED = "approval_rejected"
+        PROPOSED = "proposed"
+        VOIDED = "voided"
+        EXPIRED = "expired"
 
         def __str__(self):
             return self.value
@@ -25,6 +30,7 @@ class Quote:
         CREATE_SUBSCRIPTION_FOR_CUSTOMER = "create_subscription_for_customer"
         CHANGE_SUBSCRIPTION = "change_subscription"
         ONETIME_INVOICE = "onetime_invoice"
+        RENEW_SUBSCRIPTION = "renew_subscription"
 
         def __str__(self):
             return self.value
@@ -88,7 +94,7 @@ class Quote:
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
         metered: NotRequired[bool]
-        percentage: NotRequired[str]
+        is_percentage_pricing: NotRequired[bool]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -536,6 +542,9 @@ class Quote:
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class CreateSubItemsForCustomerQuoteDiscountParams(TypedDict):
         apply_on: NotRequired[enums.ApplyOn]
@@ -546,6 +555,8 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class CreateSubItemsForCustomerQuoteItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -557,6 +568,7 @@ class Quote:
         price_in_decimal: NotRequired[str]
         pricing_type: NotRequired[enums.PricingType]
         package_size: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class CreateSubItemsForCustomerQuoteShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -577,6 +589,27 @@ class Quote:
     class CreateSubItemsForCustomerQuoteContractTermParams(TypedDict):
         action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
+
+    class CreateSubItemsForCustomerQuoteBillingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class CreateSubItemsForCustomerQuoteCouponParams(TypedDict):
+        id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class EditCreateSubCustomerQuoteForItemsSubscriptionParams(TypedDict):
         id: NotRequired[str]
@@ -599,6 +632,9 @@ class Quote:
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class EditCreateSubCustomerQuoteForItemsDiscountParams(TypedDict):
         apply_on: NotRequired[enums.ApplyOn]
@@ -609,6 +645,8 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class EditCreateSubCustomerQuoteForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -620,6 +658,7 @@ class Quote:
         price_in_decimal: NotRequired[str]
         pricing_type: NotRequired[enums.PricingType]
         package_size: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class EditCreateSubCustomerQuoteForItemsShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -640,6 +679,27 @@ class Quote:
     class EditCreateSubCustomerQuoteForItemsContractTermParams(TypedDict):
         action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
+
+    class EditCreateSubCustomerQuoteForItemsBillingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class EditCreateSubCustomerQuoteForItemsCouponParams(TypedDict):
+        id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class UpdateSubscriptionQuoteForItemsSubscriptionParams(TypedDict):
         id: Required[str]
@@ -664,6 +724,9 @@ class Quote:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         item_type: NotRequired[enums.ItemType]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class UpdateSubscriptionQuoteForItemsDiscountParams(TypedDict):
         apply_on: NotRequired[enums.ApplyOn]
@@ -676,6 +739,8 @@ class Quote:
         item_price_id: NotRequired[str]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class UpdateSubscriptionQuoteForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -687,6 +752,7 @@ class Quote:
         price_in_decimal: NotRequired[str]
         pricing_type: NotRequired[enums.PricingType]
         package_size: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class UpdateSubscriptionQuoteForItemsBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -729,6 +795,11 @@ class Quote:
         action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
 
+    class UpdateSubscriptionQuoteForItemsCouponParams(TypedDict):
+        id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
     class EditUpdateSubscriptionQuoteForItemsSubscriptionItemParams(TypedDict):
         item_price_id: Required[str]
         quantity: NotRequired[int]
@@ -742,6 +813,9 @@ class Quote:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         item_type: NotRequired[enums.ItemType]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class EditUpdateSubscriptionQuoteForItemsSubscriptionParams(TypedDict):
         setup_fee: NotRequired[int]
@@ -763,6 +837,8 @@ class Quote:
         item_price_id: NotRequired[str]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
 
     class EditUpdateSubscriptionQuoteForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -774,6 +850,7 @@ class Quote:
         price_in_decimal: NotRequired[str]
         pricing_type: NotRequired[enums.PricingType]
         package_size: NotRequired[int]
+        ramp_tier_id: NotRequired[str]
 
     class EditUpdateSubscriptionQuoteForItemsBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -816,6 +893,11 @@ class Quote:
         action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
 
+    class EditUpdateSubscriptionQuoteForItemsCouponParams(TypedDict):
+        id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
     class CreateForChargeItemsAndChargesItemPriceParams(TypedDict):
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
@@ -843,6 +925,22 @@ class Quote:
         avalara_transaction_type: NotRequired[int]
         avalara_service_type: NotRequired[int]
         service_period: NotRequired[int]
+
+    class CreateForChargeItemsAndChargesBillingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateForChargeItemsAndChargesShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -898,6 +996,22 @@ class Quote:
         avalara_transaction_type: NotRequired[int]
         avalara_service_type: NotRequired[int]
         service_period: NotRequired[int]
+
+    class EditForChargeItemsAndChargesBillingAddressParams(TypedDict):
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        zip: NotRequired[str]
+        country: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
 
     class EditForChargeItemsAndChargesShippingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -1089,6 +1203,12 @@ class Quote:
             "Quote.CreateSubItemsForCustomerQuoteContractTermParams"
         ]
         coupon_ids: NotRequired[List[str]]
+        billing_start_option: NotRequired[enums.BillingStartOption]
+        billing_address: NotRequired[
+            "Quote.CreateSubItemsForCustomerQuoteBillingAddressParams"
+        ]
+        net_term_days: NotRequired[int]
+        coupons: NotRequired[List["Quote.CreateSubItemsForCustomerQuoteCouponParams"]]
 
     class EditCreateSubCustomerQuoteForItemsParams(TypedDict):
         notes: NotRequired[str]
@@ -1116,6 +1236,14 @@ class Quote:
             "Quote.EditCreateSubCustomerQuoteForItemsContractTermParams"
         ]
         coupon_ids: NotRequired[List[str]]
+        billing_start_option: NotRequired[enums.BillingStartOption]
+        billing_address: NotRequired[
+            "Quote.EditCreateSubCustomerQuoteForItemsBillingAddressParams"
+        ]
+        net_term_days: NotRequired[int]
+        coupons: NotRequired[
+            List["Quote.EditCreateSubCustomerQuoteForItemsCouponParams"]
+        ]
 
     class UpdateSubscriptionQuoteForItemsParams(TypedDict):
         name: NotRequired[str]
@@ -1153,6 +1281,8 @@ class Quote:
         contract_term: NotRequired[
             "Quote.UpdateSubscriptionQuoteForItemsContractTermParams"
         ]
+        net_term_days: NotRequired[int]
+        coupons: NotRequired[List["Quote.UpdateSubscriptionQuoteForItemsCouponParams"]]
 
     class EditUpdateSubscriptionQuoteForItemsParams(TypedDict):
         notes: NotRequired[str]
@@ -1191,6 +1321,10 @@ class Quote:
         contract_term: NotRequired[
             "Quote.EditUpdateSubscriptionQuoteForItemsContractTermParams"
         ]
+        net_term_days: NotRequired[int]
+        coupons: NotRequired[
+            List["Quote.EditUpdateSubscriptionQuoteForItemsCouponParams"]
+        ]
 
     class CreateForChargeItemsAndChargesParams(TypedDict):
         name: NotRequired[str]
@@ -1208,6 +1342,9 @@ class Quote:
         charges: NotRequired[List["Quote.CreateForChargeItemsAndChargesChargeParams"]]
         coupon: NotRequired[str]
         coupon_ids: NotRequired[List[str]]
+        billing_address: NotRequired[
+            "Quote.CreateForChargeItemsAndChargesBillingAddressParams"
+        ]
         shipping_address: NotRequired[
             "Quote.CreateForChargeItemsAndChargesShippingAddressParams"
         ]
@@ -1230,6 +1367,9 @@ class Quote:
         charges: NotRequired[List["Quote.EditForChargeItemsAndChargesChargeParams"]]
         coupon: NotRequired[str]
         coupon_ids: NotRequired[List[str]]
+        billing_address: NotRequired[
+            "Quote.EditForChargeItemsAndChargesBillingAddressParams"
+        ]
         shipping_address: NotRequired[
             "Quote.EditForChargeItemsAndChargesShippingAddressParams"
         ]

@@ -14,6 +14,13 @@ class UpcomingRenewalResponse(Model):
 
 
 @dataclass
+class LinkedItemResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    id: str = None
+    linked_at: int = None
+
+
+@dataclass
 class OmnichannelSubscriptionItemResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -28,9 +35,11 @@ class OmnichannelSubscriptionItemResponse(Model):
     cancelled_at: int = None
     cancellation_reason: str = None
     grace_period_expires_at: int = None
+    resumes_at: int = None
     has_scheduled_changes: bool = None
     resource_version: int = None
     upcoming_renewal: UpcomingRenewalResponse = None
+    linked_item: LinkedItemResponse = None
 
 
 @dataclass

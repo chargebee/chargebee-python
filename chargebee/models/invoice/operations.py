@@ -153,7 +153,7 @@ class Invoice:
         discount_amount: NotRequired[int]
         item_level_discount_amount: NotRequired[int]
         metered: NotRequired[bool]
-        percentage: NotRequired[str]
+        is_percentage_pricing: NotRequired[bool]
         reference_line_item_id: NotRequired[str]
         description: Required[str]
         entity_description: NotRequired[str]
@@ -270,9 +270,9 @@ class Invoice:
         created_at: Required[int]
 
     class Note(TypedDict):
-        entity_type: Required["Invoice.NoteEntityType"]
         note: Required[str]
         entity_id: NotRequired[str]
+        entity_type: NotRequired["Invoice.NoteEntityType"]
 
     class ShippingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -754,6 +754,10 @@ class Invoice:
     class ListEinvoiceParams(TypedDict):
         status: NotRequired[Filters.EnumFilter]
 
+    class RetrieveLineItemParams(TypedDict):
+        subscription_id: NotRequired[Filters.StringFilter]
+        customer_id: NotRequired[Filters.StringFilter]
+
     class ListPaymentReferenceNumbersPaymentReferenceNumberParams(TypedDict):
         number: NotRequired[Filters.StringFilter]
 
@@ -993,6 +997,13 @@ class Invoice:
     class StopDunningParams(TypedDict):
         comment: NotRequired[str]
 
+    class PauseDunningParams(TypedDict):
+        expected_payment_date: Required[int]
+        comment: NotRequired[str]
+
+    class ResumeDunningParams(TypedDict):
+        comment: NotRequired[str]
+
     class ImportInvoiceParams(TypedDict):
         id: Required[str]
         currency_code: NotRequired[str]
@@ -1077,6 +1088,9 @@ class Invoice:
     class InvoicesForSubscriptionParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+
+    class RetrieveParams(TypedDict):
+        line_item: NotRequired["Invoice.RetrieveLineItemParams"]
 
     class PdfParams(TypedDict):
         disposition_type: NotRequired[enums.DispositionType]
@@ -1283,6 +1297,38 @@ class Invoice:
             jsonKeys,
         )
 
+    def pause_dunning(
+        self, id, params: PauseDunningParams, headers=None
+    ) -> PauseDunningResponse:
+        jsonKeys = {}
+        return request.send(
+            "post",
+            request.uri_path("invoices", id, "pause_dunning"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            PauseDunningResponse,
+            None,
+            False,
+            jsonKeys,
+        )
+
+    def resume_dunning(
+        self, id, params: ResumeDunningParams = None, headers=None
+    ) -> ResumeDunningResponse:
+        jsonKeys = {}
+        return request.send(
+            "post",
+            request.uri_path("invoices", id, "resume_dunning"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            ResumeDunningResponse,
+            None,
+            False,
+            jsonKeys,
+        )
+
     def import_invoice(
         self, params: ImportInvoiceParams, headers=None
     ) -> ImportInvoiceResponse:
@@ -1407,13 +1453,15 @@ class Invoice:
             jsonKeys,
         )
 
-    def retrieve(self, id, headers=None) -> RetrieveResponse:
+    def retrieve(
+        self, id, params: RetrieveParams = None, headers=None
+    ) -> RetrieveResponse:
         jsonKeys = {}
         return request.send(
             "get",
             request.uri_path("invoices", id),
             self.env,
-            None,
+            cast(Dict[Any, Any], params),
             headers,
             RetrieveResponse,
             None,
