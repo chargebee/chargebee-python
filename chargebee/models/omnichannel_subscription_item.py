@@ -7,11 +7,14 @@ class OmnichannelSubscriptionItem(Model):
     class UpcomingRenewal(Model):
       fields = ["price_currency", "price_units", "price_nanos"]
       pass
+    class LinkedItem(Model):
+      fields = ["id", "linked_at"]
+      pass
 
     fields = ["id", "item_id_at_source", "item_parent_id_at_source", "status", "auto_renew_status", \
     "current_term_start", "current_term_end", "expired_at", "expiration_reason", "cancelled_at", \
-    "cancellation_reason", "grace_period_expires_at", "has_scheduled_changes", "resource_version", \
-    "upcoming_renewal"]
+    "cancellation_reason", "grace_period_expires_at", "resumes_at", "has_scheduled_changes", "resource_version", \
+    "upcoming_renewal", "linked_item"]
 
 
     @staticmethod

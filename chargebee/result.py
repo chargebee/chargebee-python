@@ -200,6 +200,12 @@ class Result(object):
         return quoted_charge;
 
     @property
+    def quoted_ramp(self):
+        quoted_ramp = self._get('quoted_ramp', QuotedRamp,
+        {'line_items' : QuotedRamp.LineItem, 'discounts' : QuotedRamp.Discount, 'item_tiers' : QuotedRamp.ItemTier});
+        return quoted_ramp;
+
+    @property
     def quote_line_group(self):
         quote_line_group = self._get('quote_line_group', QuoteLineGroup,
         {'line_items' : QuoteLineGroup.LineItem, 'discounts' : QuoteLineGroup.Discount, 'line_item_discounts' : QuoteLineGroup.LineItemDiscount, 'taxes' : QuoteLineGroup.Tax, 'line_item_taxes' : QuoteLineGroup.LineItemTax});
@@ -449,7 +455,7 @@ class Result(object):
         omnichannel_subscription = self._get('omnichannel_subscription', OmnichannelSubscription, {},
         {'omnichannel_subscription_items' : OmnichannelSubscriptionItem});
         omnichannel_subscription.init_dependant_list(self._response['omnichannel_subscription'], 'omnichannel_subscription_items',
-        {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal});
+        {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal, 'linked_item' : OmnichannelSubscriptionItem.LinkedItem});
         return omnichannel_subscription;
 
     @property
@@ -460,7 +466,7 @@ class Result(object):
     @property
     def omnichannel_subscription_item(self):
         omnichannel_subscription_item = self._get('omnichannel_subscription_item', OmnichannelSubscriptionItem,
-        {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal});
+        {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal, 'linked_item' : OmnichannelSubscriptionItem.LinkedItem});
         return omnichannel_subscription_item;
 
     @property

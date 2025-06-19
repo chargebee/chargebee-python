@@ -5,7 +5,7 @@ from chargebee import APIError
 
 class Invoice(Model):
     class LineItem(Model):
-      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "metered", "percentage", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
+      fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "metered", "is_percentage_pricing", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
     class Discount(Model):
       fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
@@ -44,7 +44,7 @@ class Invoice(Model):
       fields = ["id", "document_number", "status", "order_type", "reference_id", "fulfillment_status", "batch_id", "created_at"]
       pass
     class Note(Model):
-      fields = ["entity_type", "note", "entity_id"]
+      fields = ["note", "entity_id", "entity_type"]
       pass
     class ShippingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
@@ -121,6 +121,18 @@ class Invoice(Model):
         json_keys = { 
         }
         return request.send('post', request.uri_path("invoices",id,"stop_dunning"), params, env, headers, None, False,json_keys)
+
+    @staticmethod
+    def pause_dunning(id, params, env=None, headers=None):
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("invoices",id,"pause_dunning"), params, env, headers, None, False,json_keys)
+
+    @staticmethod
+    def resume_dunning(id, params=None, env=None, headers=None):
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("invoices",id,"resume_dunning"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def import_invoice(params, env=None, headers=None):

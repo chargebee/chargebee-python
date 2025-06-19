@@ -64,6 +64,7 @@ from chargebee.models.purchase import Purchase
 from chargebee.models.quote import Quote
 from chargebee.models.quote_line_group import QuoteLineGroup
 from chargebee.models.quoted_charge import QuotedCharge
+from chargebee.models.quoted_ramp import QuotedRamp
 from chargebee.models.quoted_subscription import QuotedSubscription
 from chargebee.models.ramp import Ramp
 from chargebee.models.recorded_purchase import RecordedPurchase
