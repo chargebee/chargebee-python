@@ -27,6 +27,7 @@ def send_list_request(
     subDomain=None,
     isJsonRequest=False,
     jsonKeys=None,
+    options=None,
 ):
     serialized = {}
 
@@ -47,6 +48,7 @@ def send_list_request(
         subDomain,
         isJsonRequest,
         jsonKeys,
+        options
     )
 
 

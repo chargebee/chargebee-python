@@ -1,3 +1,9 @@
+### v3.7.0 (2025-06-23)
+* * * 
+
+### New Features 
+* Added built-in retry support for handling transient errors and rate-limiting, for list requests.
+
 ### v3.6.0 (2025-06-23)
 * * * 
 
