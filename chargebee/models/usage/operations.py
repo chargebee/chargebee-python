@@ -45,6 +45,9 @@ class Usage:
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "usages"),
@@ -55,10 +58,12 @@ class Usage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "usages"),
@@ -69,10 +74,14 @@ class Usage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "delete_usage"),
@@ -83,10 +92,12 @@ class Usage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("usages"),
@@ -97,10 +108,14 @@ class Usage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pdf(self, params: PdfParams, headers=None) -> PdfResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("usages", "pdf"),
@@ -111,4 +126,5 @@ class Usage:
             None,
             False,
             jsonKeys,
+            options,
         )

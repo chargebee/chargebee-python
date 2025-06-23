@@ -191,6 +191,61 @@ response = cb_client.Export.customers(
 print(cb_client.Export.wait_for_export_completion(response.export))
 ```
 
+### Retry Handling
+
+Chargebee's SDK includes built-in retry logic to handle temporary network issues and server-side errors. This feature is **disabled by default** but can be **enabled when needed**.
+
+#### Key features include:
+
+- **Automatic retries for specific HTTP status codes**: Retries are automatically triggered for status codes `500`, `502`, `503`, and `504`.
+- **Exponential backoff**: Retry delays increase exponentially to prevent overwhelming the server.
+- **Rate limit management**: If a `429 Too Many Requests` response is received with a `Retry-After` header, the SDK waits for the specified duration before retrying.
+  > *Note: Exponential backoff and max retries do not apply in this case.*
+- **Customizable retry behavior**: Retry logic can be configured using the `retryConfig` parameter in the environment configuration.
+
+#### Example: Customizing Retry Logic
+
+You can enable and configure the retry logic by passing a `retryConfig` object when initializing the Chargebee environment:
+
+```python
+from chargebee import Chargebee
+from chargebee.retry_config import RetryConfig
+
+retry_config = RetryConfig(
+    enabled=True,
+    max_retries=5,
+    delay_ms=1000,
+    retry_on=[500]
+)
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_retry_config(retry_config)
+
+# ... your Chargebee API operations ...
+
+```
+
+#### Example: Rate Limit retry logic
+
+You can enable and configure the retry logic for rate-limit by passing a `retryConfig` object when initializing the Chargebee environment:
+
+```python
+from chargebee import Chargebee
+from chargebee.retry_config import RetryConfig
+
+retry_config = RetryConfig(
+    enabled=True,
+    max_retries=5,
+    delay_ms=1000,
+    retry_on=[429]
+)
+cb_client = Chargebee(api_key="api_key", site="site")
+cb_client.update_retry_config(retry_config)
+
+# ... your Chargebee API operations ...
+
+```
+
+
 ## Feedback
 
 If you find any bugs or have any feedback, open an issue in this repository or email it to dx@chargebee.com

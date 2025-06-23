@@ -870,6 +870,9 @@ class HostedPage:
         self, params: CheckoutNewParams, headers=None
     ) -> CheckoutNewResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new"),
@@ -880,12 +883,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_one_time(
         self, params: CheckoutOneTimeParams = None, headers=None
     ) -> CheckoutOneTimeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time"),
@@ -896,12 +903,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_one_time_for_items(
         self, params: CheckoutOneTimeForItemsParams, headers=None
     ) -> CheckoutOneTimeForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_one_time_for_items"),
@@ -912,12 +923,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_new_for_items(
         self, params: CheckoutNewForItemsParams, headers=None
     ) -> CheckoutNewForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_new_for_items"),
@@ -928,12 +943,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_existing(
         self, params: CheckoutExistingParams, headers=None
     ) -> CheckoutExistingResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing"),
@@ -944,12 +963,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_existing_for_items(
         self, params: CheckoutExistingForItemsParams, headers=None
     ) -> CheckoutExistingForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_existing_for_items"),
@@ -960,10 +983,14 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_card(self, params: UpdateCardParams, headers=None) -> UpdateCardResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_card"),
@@ -974,12 +1001,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_payment_method(
         self, params: UpdatePaymentMethodParams, headers=None
     ) -> UpdatePaymentMethodResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "update_payment_method"),
@@ -990,12 +1021,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def manage_payment_sources(
         self, params: ManagePaymentSourcesParams, headers=None
     ) -> ManagePaymentSourcesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "manage_payment_sources"),
@@ -1006,10 +1041,14 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def collect_now(self, params: CollectNowParams, headers=None) -> CollectNowResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "collect_now"),
@@ -1020,12 +1059,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def accept_quote(
         self, params: AcceptQuoteParams, headers=None
     ) -> AcceptQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "accept_quote"),
@@ -1036,12 +1079,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def extend_subscription(
         self, params: ExtendSubscriptionParams, headers=None
     ) -> ExtendSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "extend_subscription"),
@@ -1052,12 +1099,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_gift(
         self, params: CheckoutGiftParams, headers=None
     ) -> CheckoutGiftResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift"),
@@ -1068,12 +1119,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def checkout_gift_for_items(
         self, params: CheckoutGiftForItemsParams = None, headers=None
     ) -> CheckoutGiftForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "checkout_gift_for_items"),
@@ -1084,10 +1139,14 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def claim_gift(self, params: ClaimGiftParams, headers=None) -> ClaimGiftResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "claim_gift"),
@@ -1098,12 +1157,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve_agreement_pdf(
         self, params: RetrieveAgreementPdfParams, headers=None
     ) -> RetrieveAgreementPdfResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "retrieve_agreement_pdf"),
@@ -1114,10 +1177,14 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def acknowledge(self, id, headers=None) -> AcknowledgeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", id, "acknowledge"),
@@ -1128,10 +1195,12 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("hosted_pages", id),
@@ -1142,10 +1211,12 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("hosted_pages"),
@@ -1156,10 +1227,14 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pre_cancel(self, params: PreCancelParams, headers=None) -> PreCancelResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "pre_cancel"),
@@ -1170,11 +1245,15 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def events(self, params: EventsParams, headers=None) -> EventsResponse:
         jsonKeys = {
             "event_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1186,12 +1265,16 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def view_voucher(
         self, params: ViewVoucherParams, headers=None
     ) -> ViewVoucherResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("hosted_pages", "view_voucher"),
@@ -1202,4 +1285,5 @@ class HostedPage:
             None,
             False,
             jsonKeys,
+            options,
         )

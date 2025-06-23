@@ -168,6 +168,9 @@ class Item:
         jsonKeys = {
             "metadata": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("items"),
@@ -178,10 +181,12 @@ class Item:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("items", id),
@@ -192,11 +197,15 @@ class Item:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {
             "metadata": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -208,10 +217,12 @@ class Item:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("items"),
@@ -222,10 +233,14 @@ class Item:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("items", id, "delete"),
@@ -236,4 +251,5 @@ class Item:
             None,
             False,
             jsonKeys,
+            options,
         )

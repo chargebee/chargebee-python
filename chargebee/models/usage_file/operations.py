@@ -29,6 +29,7 @@ class UsageFile:
 
     def upload(self, params: UploadParams, headers=None) -> UploadResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("usage_files", "upload"),
@@ -39,10 +40,12 @@ class UsageFile:
             "file-ingest",
             False,
             jsonKeys,
+            options,
         )
 
     def status(self, id, headers=None) -> StatusResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("usage_files", id, "status"),
@@ -53,4 +56,5 @@ class UsageFile:
             "file-ingest",
             False,
             jsonKeys,
+            options,
         )

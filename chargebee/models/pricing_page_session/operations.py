@@ -122,6 +122,9 @@ class PricingPageSession:
         self, params: CreateForNewSubscriptionParams, headers=None
     ) -> CreateForNewSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("pricing_page_sessions", "create_for_new_subscription"),
@@ -132,12 +135,16 @@ class PricingPageSession:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_existing_subscription(
         self, params: CreateForExistingSubscriptionParams, headers=None
     ) -> CreateForExistingSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path(
@@ -150,4 +157,5 @@ class PricingPageSession:
             None,
             False,
             jsonKeys,
+            options,
         )

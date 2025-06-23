@@ -1204,6 +1204,9 @@ class Invoice:
             "additional_information": 1,
             "billing_address": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices"),
@@ -1214,6 +1217,7 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_charge_items_and_charges(
@@ -1222,6 +1226,9 @@ class Invoice:
         jsonKeys = {
             "additional_information": 1,
             "billing_address": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1233,10 +1240,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def charge(self, params: ChargeParams, headers=None) -> ChargeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", "charge"),
@@ -1247,12 +1258,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def charge_addon(
         self, params: ChargeAddonParams, headers=None
     ) -> ChargeAddonResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", "charge_addon"),
@@ -1263,12 +1278,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_charge_item(
         self, params: CreateForChargeItemParams, headers=None
     ) -> CreateForChargeItemResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", "create_for_charge_item"),
@@ -1279,12 +1298,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def stop_dunning(
         self, id, params: StopDunningParams = None, headers=None
     ) -> StopDunningResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "stop_dunning"),
@@ -1295,12 +1318,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pause_dunning(
         self, id, params: PauseDunningParams, headers=None
     ) -> PauseDunningResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "pause_dunning"),
@@ -1311,12 +1338,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resume_dunning(
         self, id, params: ResumeDunningParams = None, headers=None
     ) -> ResumeDunningResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "resume_dunning"),
@@ -1327,12 +1358,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_invoice(
         self, params: ImportInvoiceParams, headers=None
     ) -> ImportInvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", "import_invoice"),
@@ -1343,12 +1378,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def apply_payments(
         self, id, params: ApplyPaymentsParams = None, headers=None
     ) -> ApplyPaymentsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payments"),
@@ -1359,10 +1398,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def sync_usages(self, id, headers=None) -> SyncUsagesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "sync_usages"),
@@ -1373,12 +1416,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_line_items(
         self, id, params: DeleteLineItemsParams = None, headers=None
     ) -> DeleteLineItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete_line_items"),
@@ -1389,12 +1436,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def apply_credits(
         self, id, params: ApplyCreditsParams = None, headers=None
     ) -> ApplyCreditsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_credits"),
@@ -1405,10 +1456,12 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("invoices"),
@@ -1419,12 +1472,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def invoices_for_customer(
         self, id, params: InvoicesForCustomerParams = None, headers=None
     ) -> InvoicesForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "invoices"),
@@ -1435,12 +1490,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def invoices_for_subscription(
         self, id, params: InvoicesForSubscriptionParams = None, headers=None
     ) -> InvoicesForSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "invoices"),
@@ -1451,12 +1508,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(
         self, id, params: RetrieveParams = None, headers=None
     ) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id),
@@ -1467,10 +1526,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "pdf"),
@@ -1481,10 +1544,12 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "download_einvoice"),
@@ -1495,12 +1560,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list_payment_reference_numbers(
         self, params: ListPaymentReferenceNumbersParams = None, headers=None
     ) -> ListPaymentReferenceNumbersResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", "payment_reference_numbers"),
@@ -1511,12 +1578,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_charge(
         self, id, params: AddChargeParams, headers=None
     ) -> AddChargeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge"),
@@ -1527,12 +1598,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_addon_charge(
         self, id, params: AddAddonChargeParams, headers=None
     ) -> AddAddonChargeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_addon_charge"),
@@ -1543,12 +1618,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_charge_item(
         self, id, params: AddChargeItemParams, headers=None
     ) -> AddChargeItemResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "add_charge_item"),
@@ -1559,10 +1638,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def close(self, id, params: CloseParams = None, headers=None) -> CloseResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "close"),
@@ -1573,12 +1656,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def collect_payment(
         self, id, params: CollectPaymentParams = None, headers=None
     ) -> CollectPaymentResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "collect_payment"),
@@ -1589,12 +1676,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_payment(
         self, id, params: RecordPaymentParams, headers=None
     ) -> RecordPaymentResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_payment"),
@@ -1605,12 +1696,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_tax_withheld(
         self, id, params: RecordTaxWithheldParams, headers=None
     ) -> RecordTaxWithheldResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_tax_withheld"),
@@ -1621,12 +1716,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_tax_withheld(
         self, id, params: RemoveTaxWithheldParams, headers=None
     ) -> RemoveTaxWithheldResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_tax_withheld"),
@@ -1637,10 +1736,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "refund"),
@@ -1651,12 +1754,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "record_refund"),
@@ -1667,12 +1774,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_payment(
         self, id, params: RemovePaymentParams, headers=None
     ) -> RemovePaymentResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_payment"),
@@ -1683,12 +1794,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_credit_note(
         self, id, params: RemoveCreditNoteParams, headers=None
     ) -> RemoveCreditNoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "remove_credit_note"),
@@ -1699,12 +1814,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def void_invoice(
         self, id, params: VoidInvoiceParams = None, headers=None
     ) -> VoidInvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "void"),
@@ -1715,12 +1834,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def write_off(
         self, id, params: WriteOffParams = None, headers=None
     ) -> WriteOffResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "write_off"),
@@ -1731,10 +1854,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "delete"),
@@ -1745,12 +1872,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_details(
         self, id, params: UpdateDetailsParams = None, headers=None
     ) -> UpdateDetailsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "update_details"),
@@ -1761,12 +1892,16 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def apply_payment_schedule_scheme(
         self, id, params: ApplyPaymentScheduleSchemeParams, headers=None
     ) -> ApplyPaymentScheduleSchemeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "apply_payment_schedule_scheme"),
@@ -1777,10 +1912,12 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def payment_schedules(self, id, headers=None) -> PaymentSchedulesResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_schedules"),
@@ -1791,10 +1928,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "resend_einvoice"),
@@ -1805,10 +1946,14 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("invoices", id, "send_einvoice"),
@@ -1819,4 +1964,5 @@ class Invoice:
             None,
             False,
             jsonKeys,
+            options,
         )

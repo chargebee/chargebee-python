@@ -466,6 +466,7 @@ class Export:
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("exports", id),
@@ -476,12 +477,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def revenue_recognition(
         self, params: RevenueRecognitionParams, headers=None
     ) -> RevenueRecognitionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "revenue_recognition"),
@@ -492,12 +497,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def deferred_revenue(
         self, params: DeferredRevenueParams, headers=None
     ) -> DeferredRevenueResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "deferred_revenue"),
@@ -508,10 +517,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def plans(self, params: PlansParams = None, headers=None) -> PlansResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "plans"),
@@ -522,10 +535,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def addons(self, params: AddonsParams = None, headers=None) -> AddonsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "addons"),
@@ -536,10 +553,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def coupons(self, params: CouponsParams = None, headers=None) -> CouponsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "coupons"),
@@ -550,12 +571,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def customers(
         self, params: CustomersParams = None, headers=None
     ) -> CustomersResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "customers"),
@@ -566,12 +591,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def subscriptions(
         self, params: SubscriptionsParams = None, headers=None
     ) -> SubscriptionsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "subscriptions"),
@@ -582,10 +611,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def invoices(self, params: InvoicesParams = None, headers=None) -> InvoicesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "invoices"),
@@ -596,12 +629,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def credit_notes(
         self, params: CreditNotesParams = None, headers=None
     ) -> CreditNotesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "credit_notes"),
@@ -612,12 +649,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def transactions(
         self, params: TransactionsParams = None, headers=None
     ) -> TransactionsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "transactions"),
@@ -628,10 +669,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def orders(self, params: OrdersParams = None, headers=None) -> OrdersResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "orders"),
@@ -642,12 +687,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def item_families(
         self, params: ItemFamiliesParams = None, headers=None
     ) -> ItemFamiliesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "item_families"),
@@ -658,10 +707,14 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def items(self, params: ItemsParams = None, headers=None) -> ItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "items"),
@@ -672,12 +725,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def item_prices(
         self, params: ItemPricesParams = None, headers=None
     ) -> ItemPricesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "item_prices"),
@@ -688,12 +745,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def attached_items(
         self, params: AttachedItemsParams = None, headers=None
     ) -> AttachedItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "attached_items"),
@@ -704,12 +765,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def differential_prices(
         self, params: DifferentialPricesParams = None, headers=None
     ) -> DifferentialPricesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "differential_prices"),
@@ -720,12 +785,16 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def price_variants(
         self, params: PriceVariantsParams = None, headers=None
     ) -> PriceVariantsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("exports", "price_variants"),
@@ -736,4 +805,5 @@ class Export:
             None,
             False,
             jsonKeys,
+            options,
         )

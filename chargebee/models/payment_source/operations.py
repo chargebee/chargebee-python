@@ -319,6 +319,9 @@ class PaymentSource:
         jsonKeys = {
             "additional_information": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_temp_token"),
@@ -329,6 +332,7 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_using_permanent_token(
@@ -336,6 +340,9 @@ class PaymentSource:
     ) -> CreateUsingPermanentTokenResponse:
         jsonKeys = {
             "additional_information": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -347,12 +354,16 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_using_token(
         self, params: CreateUsingTokenParams, headers=None
     ) -> CreateUsingTokenResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", "create_using_token"),
@@ -363,6 +374,7 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_using_payment_intent(
@@ -371,6 +383,9 @@ class PaymentSource:
         jsonKeys = {
             "additional_info": 1,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -382,6 +397,7 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_voucher_payment_source(
@@ -389,6 +405,9 @@ class PaymentSource:
     ) -> CreateVoucherPaymentSourceResponse:
         jsonKeys = {
             "billing_address": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -400,11 +419,15 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_card(self, params: CreateCardParams, headers=None) -> CreateCardResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -416,6 +439,7 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_bank_account(
@@ -423,6 +447,9 @@ class PaymentSource:
     ) -> CreateBankAccountResponse:
         jsonKeys = {
             "billing_address": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -434,6 +461,7 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_card(
@@ -442,6 +470,9 @@ class PaymentSource:
         jsonKeys = {
             "gateway_meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -453,12 +484,16 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_bank_account(
         self, id, params: UpdateBankAccountParams = None, headers=None
     ) -> UpdateBankAccountResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "update_bank_account"),
@@ -469,12 +504,16 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def verify_bank_account(
         self, id, params: VerifyBankAccountParams, headers=None
     ) -> VerifyBankAccountResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "verify_bank_account"),
@@ -485,10 +524,12 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("payment_sources", id),
@@ -499,10 +540,12 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("payment_sources"),
@@ -513,12 +556,16 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def switch_gateway_account(
         self, id, params: SwitchGatewayAccountParams, headers=None
     ) -> SwitchGatewayAccountResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "switch_gateway_account"),
@@ -529,12 +576,16 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def export_payment_source(
         self, id, params: ExportPaymentSourceParams, headers=None
     ) -> ExportPaymentSourceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "export_payment_source"),
@@ -545,10 +596,14 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete"),
@@ -559,10 +614,14 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_local(self, id, headers=None) -> DeleteLocalResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_sources", id, "delete_local"),
@@ -573,4 +632,5 @@ class PaymentSource:
             None,
             False,
             jsonKeys,
+            options,
         )

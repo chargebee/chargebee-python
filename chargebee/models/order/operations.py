@@ -380,6 +380,9 @@ class Order:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders"),
@@ -390,10 +393,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id),
@@ -404,12 +411,16 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_order(
         self, params: ImportOrderParams, headers=None
     ) -> ImportOrderResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", "import_order"),
@@ -420,10 +431,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def assign_order_number(self, id, headers=None) -> AssignOrderNumberResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "assign_order_number"),
@@ -434,10 +449,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel(self, id, params: CancelParams, headers=None) -> CancelResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "cancel"),
@@ -448,12 +467,16 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_refundable_credit_note(
         self, id, params: CreateRefundableCreditNoteParams, headers=None
     ) -> CreateRefundableCreditNoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "create_refundable_credit_note"),
@@ -464,10 +487,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def reopen(self, id, params: ReopenParams = None, headers=None) -> ReopenResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "reopen"),
@@ -478,10 +505,12 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("orders", id),
@@ -492,10 +521,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "delete"),
@@ -506,10 +539,12 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("orders"),
@@ -520,12 +555,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def orders_for_invoice(
         self, id, params: OrdersForInvoiceParams = None, headers=None
     ) -> OrdersForInvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "orders"),
@@ -536,10 +573,14 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resend(self, id, params: ResendParams = None, headers=None) -> ResendResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("orders", id, "resend"),
@@ -550,4 +591,5 @@ class Order:
             None,
             False,
             jsonKeys,
+            options,
         )

@@ -58,6 +58,7 @@ class ItemEntitlement:
         self, id, params: ItemEntitlementsForItemParams = None, headers=None
     ) -> ItemEntitlementsForItemResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("items", id, "item_entitlements"),
@@ -68,12 +69,14 @@ class ItemEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def item_entitlements_for_feature(
         self, id, params: ItemEntitlementsForFeatureParams = None, headers=None
     ) -> ItemEntitlementsForFeatureResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("features", id, "item_entitlements"),
@@ -84,12 +87,16 @@ class ItemEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_item_entitlements(
         self, id, params: AddItemEntitlementsParams, headers=None
     ) -> AddItemEntitlementsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("features", id, "item_entitlements"),
@@ -100,12 +107,16 @@ class ItemEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def upsert_or_remove_item_entitlements_for_item(
         self, id, params: UpsertOrRemoveItemEntitlementsForItemParams, headers=None
     ) -> UpsertOrRemoveItemEntitlementsForItemResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("items", id, "item_entitlements"),
@@ -116,4 +127,5 @@ class ItemEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )

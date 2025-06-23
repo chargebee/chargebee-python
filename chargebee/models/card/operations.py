@@ -108,6 +108,7 @@ class Card:
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("cards", id),
@@ -118,12 +119,16 @@ class Card:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_card_for_customer(
         self, id, params: UpdateCardForCustomerParams, headers=None
     ) -> UpdateCardForCustomerResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "credit_card"),
@@ -134,12 +139,16 @@ class Card:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def switch_gateway_for_customer(
         self, id, params: SwitchGatewayForCustomerParams, headers=None
     ) -> SwitchGatewayForCustomerResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "switch_gateway"),
@@ -150,12 +159,16 @@ class Card:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def copy_card_for_customer(
         self, id, params: CopyCardForCustomerParams, headers=None
     ) -> CopyCardForCustomerResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "copy_card"),
@@ -166,12 +179,16 @@ class Card:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_card_for_customer(
         self, id, headers=None
     ) -> DeleteCardForCustomerResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_card"),
@@ -182,4 +199,5 @@ class Card:
             None,
             False,
             jsonKeys,
+            options,
         )

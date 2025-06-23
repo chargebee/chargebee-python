@@ -43,6 +43,9 @@ class EntitlementOverride:
         self, id, params: AddEntitlementOverrideForSubscriptionParams, headers=None
     ) -> AddEntitlementOverrideForSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
@@ -53,6 +56,7 @@ class EntitlementOverride:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list_entitlement_override_for_subscription(
@@ -62,6 +66,7 @@ class EntitlementOverride:
         headers=None,
     ) -> ListEntitlementOverrideForSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "entitlement_overrides"),
@@ -72,4 +77,5 @@ class EntitlementOverride:
             None,
             False,
             jsonKeys,
+            options,
         )

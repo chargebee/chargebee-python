@@ -180,6 +180,9 @@ class Gift:
         jsonKeys = {
             "additional_information": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("gifts"),
@@ -190,6 +193,7 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_items(
@@ -197,6 +201,9 @@ class Gift:
     ) -> CreateForItemsResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -208,10 +215,12 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("gifts", id),
@@ -222,10 +231,12 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("gifts"),
@@ -236,10 +247,14 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def claim(self, id, headers=None) -> ClaimResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("gifts", id, "claim"),
@@ -250,10 +265,14 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel(self, id, headers=None) -> CancelResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("gifts", id, "cancel"),
@@ -264,12 +283,16 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_gift(
         self, id, params: UpdateGiftParams, headers=None
     ) -> UpdateGiftResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("gifts", id, "update_gift"),
@@ -280,4 +303,5 @@ class Gift:
             None,
             False,
             jsonKeys,
+            options,
         )

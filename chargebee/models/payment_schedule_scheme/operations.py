@@ -36,6 +36,9 @@ class PaymentScheduleScheme:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes"),
@@ -46,10 +49,12 @@ class PaymentScheduleScheme:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("payment_schedule_schemes", id),
@@ -60,10 +65,14 @@ class PaymentScheduleScheme:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_schedule_schemes", id, "delete"),
@@ -74,4 +83,5 @@ class PaymentScheduleScheme:
             None,
             False,
             jsonKeys,
+            options,
         )

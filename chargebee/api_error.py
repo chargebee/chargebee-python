@@ -12,7 +12,7 @@ class APIError(Exception):
         self.http_headers = headers
         self.http_code = http_code
         self.http_body = None
-        self.error_code = json_obj["error_code"]
+        self.error_code = json_obj.get("error_code")
 
 
 class PaymentError(APIError):

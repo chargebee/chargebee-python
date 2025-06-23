@@ -36,6 +36,9 @@ class CouponSet:
         jsonKeys = {
             "meta_data": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets"),
@@ -46,12 +49,16 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_coupon_codes(
         self, id, params: AddCouponCodesParams = None, headers=None
     ) -> AddCouponCodesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "add_coupon_codes"),
@@ -62,10 +69,12 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupon_sets"),
@@ -76,10 +85,12 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("coupon_sets", id),
@@ -90,11 +101,15 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -106,10 +121,14 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete"),
@@ -120,12 +139,16 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_unused_coupon_codes(
         self, id, headers=None
     ) -> DeleteUnusedCouponCodesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_sets", id, "delete_unused_coupon_codes"),
@@ -136,4 +159,5 @@ class CouponSet:
             None,
             False,
             jsonKeys,
+            options,
         )

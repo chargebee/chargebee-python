@@ -461,6 +461,9 @@ class CreditNote:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes"),
@@ -471,12 +474,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(
         self, id, params: RetrieveParams = None, headers=None
     ) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("credit_notes", id),
@@ -487,10 +492,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "pdf"),
@@ -501,10 +510,12 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("credit_notes", id, "download_einvoice"),
@@ -515,10 +526,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "refund"),
@@ -529,12 +544,16 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "record_refund"),
@@ -545,12 +564,16 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def void_credit_note(
         self, id, params: VoidCreditNoteParams = None, headers=None
     ) -> VoidCreditNoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "void"),
@@ -561,10 +584,12 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("credit_notes"),
@@ -575,12 +600,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def credit_notes_for_customer(
         self, id, params: CreditNotesForCustomerParams = None, headers=None
     ) -> CreditNotesForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "credit_notes"),
@@ -591,10 +618,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "delete"),
@@ -605,12 +636,16 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_tax_withheld_refund(
         self, id, params: RemoveTaxWithheldRefundParams, headers=None
     ) -> RemoveTaxWithheldRefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "remove_tax_withheld_refund"),
@@ -621,10 +656,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "resend_einvoice"),
@@ -635,10 +674,14 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", id, "send_einvoice"),
@@ -649,12 +692,16 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_credit_note(
         self, params: ImportCreditNoteParams, headers=None
     ) -> ImportCreditNoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("credit_notes", "import_credit_note"),
@@ -665,4 +712,5 @@ class CreditNote:
             None,
             False,
             jsonKeys,
+            options,
         )

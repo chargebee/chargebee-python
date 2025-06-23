@@ -64,6 +64,9 @@ class AttachedItem:
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("items", id, "attached_items"),
@@ -74,10 +77,14 @@ class AttachedItem:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("attached_items", id),
@@ -88,10 +95,12 @@ class AttachedItem:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("attached_items", id),
@@ -102,10 +111,14 @@ class AttachedItem:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("attached_items", id, "delete"),
@@ -116,10 +129,12 @@ class AttachedItem:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, id, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("items", id, "attached_items"),
@@ -130,4 +145,5 @@ class AttachedItem:
             None,
             False,
             jsonKeys,
+            options,
         )

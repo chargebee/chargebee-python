@@ -1,3 +1,6 @@
+from chargebee.retry_config import RetryConfig
+
+
 class Environment(object):
     chargebee_domain = "chargebee.com"
     protocol = "https"
@@ -6,6 +9,8 @@ class Environment(object):
     read_timeout = 80
     export_retry_delay_ms = 10000
     time_travel_retry_delay_ms = 3000
+    retry_config = RetryConfig()
+    enable_debug_logs = False
 
     def __init__(self, options):
         self.api_key = options["api_key"]
@@ -41,3 +46,6 @@ class Environment(object):
                     )
                     + url
                 )
+
+    def get_retry_config(self):
+        return self.retry_config

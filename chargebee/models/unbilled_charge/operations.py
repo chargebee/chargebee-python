@@ -143,6 +143,9 @@ class UnbilledCharge:
         self, params: CreateUnbilledChargeParams, headers=None
     ) -> CreateUnbilledChargeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "create"),
@@ -153,10 +156,14 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("unbilled_charges"),
@@ -167,12 +174,16 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def invoice_unbilled_charges(
         self, params: InvoiceUnbilledChargesParams = None, headers=None
     ) -> InvoiceUnbilledChargesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "invoice_unbilled_charges"),
@@ -183,10 +194,14 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("unbilled_charges", id, "delete"),
@@ -197,10 +212,12 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("unbilled_charges"),
@@ -211,12 +228,14 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def invoice_now_estimate(
         self, params: InvoiceNowEstimateParams = None, headers=None
     ) -> InvoiceNowEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("unbilled_charges", "invoice_now_estimate"),
@@ -227,4 +246,5 @@ class UnbilledCharge:
             None,
             False,
             jsonKeys,
+            options,
         )

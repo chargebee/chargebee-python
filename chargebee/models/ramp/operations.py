@@ -219,6 +219,9 @@ class Ramp:
         self, id, params: CreateForSubscriptionParams, headers=None
     ) -> CreateForSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "create_ramp"),
@@ -229,10 +232,14 @@ class Ramp:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("ramps", id, "update"),
@@ -243,10 +250,12 @@ class Ramp:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("ramps", id),
@@ -257,10 +266,14 @@ class Ramp:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("ramps", id, "delete"),
@@ -271,10 +284,12 @@ class Ramp:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("ramps"),
@@ -285,4 +300,5 @@ class Ramp:
             None,
             False,
             jsonKeys,
+            options,
         )

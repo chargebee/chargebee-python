@@ -9,6 +9,7 @@ from chargebee.environment import Environment
 class Chargebee:
 
     env: Environment = None
+    idempotency_header: str = "chargebee-idempotency-key"
 
     verify_ca_certs: bool = True
     ca_cert_path = os.path.join(os.path.dirname(__file__), "ssl", "ca-certs.crt")
@@ -142,3 +143,9 @@ class Chargebee:
 
     def update_time_travel_retry_delay_ms(self, time_travel_retry_delay_ms):
         self.env.time_travel_retry_delay_ms = time_travel_retry_delay_ms
+
+    def update_retry_config(self, retry_config):
+        self.env.retry_config = retry_config
+
+    def update_enable_debug_logs(self, enable_debug_logs):
+        self.env.enable_debug_logs = enable_debug_logs

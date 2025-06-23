@@ -39,6 +39,9 @@ class PortalSession:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("portal_sessions"),
@@ -49,10 +52,12 @@ class PortalSession:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("portal_sessions", id),
@@ -63,10 +68,14 @@ class PortalSession:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def logout(self, id, headers=None) -> LogoutResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "logout"),
@@ -77,10 +86,14 @@ class PortalSession:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def activate(self, id, params: ActivateParams, headers=None) -> ActivateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("portal_sessions", id, "activate"),
@@ -91,4 +104,5 @@ class PortalSession:
             None,
             False,
             jsonKeys,
+            options,
         )

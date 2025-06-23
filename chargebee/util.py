@@ -1,4 +1,5 @@
-from chargebee import compat
+import os
+
 from collections import OrderedDict
 from enum import Enum
 
@@ -64,3 +65,25 @@ def get_val(val):
         return str(val).lower()
     else:
         return val
+
+
+def generate_uuid_v4() -> str:
+    # Generate 16 random bytes
+    try:
+        bytes_ = os.urandom(16)
+    except NotImplementedError:
+        # Fallback: insecure random if urandom not available (highly unlikely)
+        import random
+
+        bytes_ = bytes([random.randint(0, 255) for _ in range(16)])
+
+    byte_array = list(bytes_)
+
+    # Set version to 4 -> bits 12-15 of time_hi_and_version
+    byte_array[6] = (byte_array[6] & 0x0F) | 0x40
+    # Set variant to RFC 4122 -> bits 6-7 of clock_seq_hi_and_reserved
+    byte_array[8] = (byte_array[8] & 0x3F) | 0x80
+
+    hex_str = "".join(f"{byte:02x}" for byte in byte_array)
+
+    return f"{hex_str[0:8]}-{hex_str[8:12]}-{hex_str[12:16]}-{hex_str[16:20]}-{hex_str[20:32]}"

@@ -43,6 +43,9 @@ class VirtualBankAccount:
         self, params: CreateUsingPermanentTokenParams, headers=None
     ) -> CreateUsingPermanentTokenResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("virtual_bank_accounts", "create_using_permanent_token"),
@@ -53,10 +56,14 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("virtual_bank_accounts"),
@@ -67,10 +74,12 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("virtual_bank_accounts", id),
@@ -81,10 +90,12 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("virtual_bank_accounts"),
@@ -95,10 +106,14 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("virtual_bank_accounts", id, "delete"),
@@ -109,10 +124,14 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_local(self, id, headers=None) -> DeleteLocalResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("virtual_bank_accounts", id, "delete_local"),
@@ -123,4 +142,5 @@ class VirtualBankAccount:
             None,
             False,
             jsonKeys,
+            options,
         )

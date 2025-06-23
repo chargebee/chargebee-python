@@ -64,6 +64,7 @@ class OmnichannelSubscriptionItem:
         self, id, params: ListOmniSubItemScheduleChangesParams = None, headers=None
     ) -> ListOmniSubItemScheduleChangesResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("omnichannel_subscription_items", id, "scheduled_changes"),
@@ -74,4 +75,5 @@ class OmnichannelSubscriptionItem:
             None,
             False,
             jsonKeys,
+            options,
         )

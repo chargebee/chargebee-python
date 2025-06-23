@@ -27,6 +27,7 @@ class UsageEvent:
         jsonKeys = {
             "properties": 0,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("usage_events"),
@@ -37,6 +38,7 @@ class UsageEvent:
             "ingest",
             True,
             jsonKeys,
+            options,
         )
 
     def batch_ingest(
@@ -45,6 +47,7 @@ class UsageEvent:
         jsonKeys = {
             "properties": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("batch", "usage_events"),
@@ -55,4 +58,5 @@ class UsageEvent:
             "ingest",
             True,
             jsonKeys,
+            options,
         )

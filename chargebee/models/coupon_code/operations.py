@@ -33,6 +33,9 @@ class CouponCode:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_codes"),
@@ -43,10 +46,12 @@ class CouponCode:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("coupon_codes", id),
@@ -57,10 +62,12 @@ class CouponCode:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupon_codes"),
@@ -71,10 +78,14 @@ class CouponCode:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def archive(self, id, headers=None) -> ArchiveResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupon_codes", id, "archive"),
@@ -85,4 +96,5 @@ class CouponCode:
             None,
             False,
             jsonKeys,
+            options,
         )

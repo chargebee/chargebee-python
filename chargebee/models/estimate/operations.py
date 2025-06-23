@@ -1072,6 +1072,7 @@ class Estimate:
         jsonKeys = {
             "exemption_details": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription"),
@@ -1082,6 +1083,7 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_sub_item_estimate(
@@ -1090,6 +1092,7 @@ class Estimate:
         jsonKeys = {
             "exemption_details": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_subscription_for_items"),
@@ -1100,12 +1103,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_sub_for_customer_estimate(
         self, id, params: CreateSubForCustomerEstimateParams, headers=None
     ) -> CreateSubForCustomerEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "create_subscription_estimate"),
@@ -1116,12 +1121,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_sub_item_for_customer_estimate(
         self, id, params: CreateSubItemForCustomerEstimateParams, headers=None
     ) -> CreateSubItemForCustomerEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_for_items_estimate"),
@@ -1132,12 +1139,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_subscription(
         self, params: UpdateSubscriptionParams, headers=None
     ) -> UpdateSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription"),
@@ -1148,12 +1157,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_subscription_for_items(
         self, params: UpdateSubscriptionForItemsParams, headers=None
     ) -> UpdateSubscriptionForItemsResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "update_subscription_for_items"),
@@ -1164,12 +1175,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def renewal_estimate(
         self, id, params: RenewalEstimateParams = None, headers=None
     ) -> RenewalEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "renewal_estimate"),
@@ -1180,12 +1193,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def advance_invoice_estimate(
         self, id, params: AdvanceInvoiceEstimateParams = None, headers=None
     ) -> AdvanceInvoiceEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "advance_invoice_estimate"),
@@ -1196,12 +1211,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def regenerate_invoice_estimate(
         self, id, params: RegenerateInvoiceEstimateParams = None, headers=None
     ) -> RegenerateInvoiceEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice_estimate"),
@@ -1212,12 +1229,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def upcoming_invoices_estimate(
         self, id, headers=None
     ) -> UpcomingInvoicesEstimateResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "upcoming_invoices_estimate"),
@@ -1228,12 +1247,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def change_term_end(
         self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end_estimate"),
@@ -1244,12 +1265,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel_subscription(
         self, id, params: CancelSubscriptionParams = None, headers=None
     ) -> CancelSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_subscription_estimate"),
@@ -1260,12 +1283,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel_subscription_for_items(
         self, id, params: CancelSubscriptionForItemsParams = None, headers=None
     ) -> CancelSubscriptionForItemsResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path(
@@ -1278,12 +1303,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pause_subscription(
         self, id, params: PauseSubscriptionParams = None, headers=None
     ) -> PauseSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause_subscription_estimate"),
@@ -1294,12 +1321,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resume_subscription(
         self, id, params: ResumeSubscriptionParams = None, headers=None
     ) -> ResumeSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "resume_subscription_estimate"),
@@ -1310,6 +1339,7 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def gift_subscription(
@@ -1318,6 +1348,7 @@ class Estimate:
         jsonKeys = {
             "additional_information": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription"),
@@ -1328,6 +1359,7 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def gift_subscription_for_items(
@@ -1336,6 +1368,7 @@ class Estimate:
         jsonKeys = {
             "additional_information": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "gift_subscription_for_items"),
@@ -1346,12 +1379,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_invoice(
         self, params: CreateInvoiceParams = None, headers=None
     ) -> CreateInvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice"),
@@ -1362,12 +1397,14 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_invoice_for_items(
         self, params: CreateInvoiceForItemsParams, headers=None
     ) -> CreateInvoiceForItemsResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "post",
             request.uri_path("estimates", "create_invoice_for_items"),
@@ -1378,12 +1415,16 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def payment_schedules(
         self, params: PaymentSchedulesParams, headers=None
     ) -> PaymentSchedulesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("estimates", "payment_schedules"),
@@ -1394,4 +1435,5 @@ class Estimate:
             None,
             False,
             jsonKeys,
+            options,
         )

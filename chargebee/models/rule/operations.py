@@ -18,6 +18,7 @@ class Rule:
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("rules", id),
@@ -28,4 +29,5 @@ class Rule:
             None,
             False,
             jsonKeys,
+            options,
         )

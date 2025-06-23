@@ -31,6 +31,7 @@ class Currency:
 
     def list(self, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("currencies", "list"),
@@ -41,10 +42,12 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("currencies", id),
@@ -55,10 +58,14 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("currencies"),
@@ -69,10 +76,14 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("currencies", id),
@@ -83,12 +94,16 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_schedule(
         self, id, params: AddScheduleParams, headers=None
     ) -> AddScheduleResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("currencies", id, "add_schedule"),
@@ -99,10 +114,14 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_schedule(self, id, headers=None) -> RemoveScheduleResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("currencies", id, "remove_schedule"),
@@ -113,4 +132,5 @@ class Currency:
             None,
             False,
             jsonKeys,
+            options,
         )

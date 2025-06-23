@@ -27,6 +27,7 @@ class ResourceMigration:
         self, params: RetrieveLatestParams, headers=None
     ) -> RetrieveLatestResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("resource_migrations", "retrieve_latest"),
@@ -37,4 +38,5 @@ class ResourceMigration:
             None,
             False,
             jsonKeys,
+            options,
         )

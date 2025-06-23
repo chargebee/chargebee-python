@@ -187,6 +187,9 @@ class Purchase:
             "additional_information": 1,
             "meta_data": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("purchases"),
@@ -197,12 +200,14 @@ class Purchase:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def estimate(self, params: EstimateParams, headers=None) -> EstimateResponse:
         jsonKeys = {
             "exemption_details": 1,
         }
+        options = {}
         return request.send(
             "post",
             request.uri_path("purchases", "estimate"),
@@ -213,4 +218,5 @@ class Purchase:
             None,
             False,
             jsonKeys,
+            options,
         )

@@ -1737,6 +1737,9 @@ class Subscription:
             "additional_information": 1,
             "billing_address": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions"),
@@ -1747,6 +1750,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_customer(
@@ -1755,6 +1759,9 @@ class Subscription:
         jsonKeys = {
             "meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1766,6 +1773,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_with_items(
@@ -1774,6 +1782,9 @@ class Subscription:
         jsonKeys = {
             "meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1785,10 +1796,12 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("subscriptions"),
@@ -1799,12 +1812,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def subscriptions_for_customer(
         self, id, params: SubscriptionsForCustomerParams = None, headers=None
     ) -> SubscriptionsForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "subscriptions"),
@@ -1815,12 +1830,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def contract_terms_for_subscription(
         self, id, params: ContractTermsForSubscriptionParams = None, headers=None
     ) -> ContractTermsForSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "contract_terms"),
@@ -1831,12 +1848,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list_discounts(
         self, id, params: ListDiscountsParams = None, headers=None
     ) -> ListDiscountsResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "discounts"),
@@ -1847,10 +1866,12 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id),
@@ -1861,12 +1882,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve_with_scheduled_changes(
         self, id, headers=None
     ) -> RetrieveWithScheduledChangesResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_with_scheduled_changes"),
@@ -1877,12 +1900,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_scheduled_changes(
         self, id, headers=None
     ) -> RemoveScheduledChangesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_changes"),
@@ -1893,12 +1920,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_scheduled_cancellation(
         self, id, params: RemoveScheduledCancellationParams = None, headers=None
     ) -> RemoveScheduledCancellationResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_cancellation"),
@@ -1909,12 +1940,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_coupons(
         self, id, params: RemoveCouponsParams = None, headers=None
     ) -> RemoveCouponsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_coupons"),
@@ -1925,12 +1960,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {
             "meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1942,6 +1981,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_for_items(
@@ -1950,6 +1990,9 @@ class Subscription:
         jsonKeys = {
             "meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1961,12 +2004,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def change_term_end(
         self, id, params: ChangeTermEndParams, headers=None
     ) -> ChangeTermEndResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "change_term_end"),
@@ -1977,6 +2024,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def reactivate(
@@ -1984,6 +2032,9 @@ class Subscription:
     ) -> ReactivateResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -1995,12 +2046,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_charge_at_term_end(
         self, id, params: AddChargeAtTermEndParams, headers=None
     ) -> AddChargeAtTermEndResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "add_charge_at_term_end"),
@@ -2011,12 +2066,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def charge_addon_at_term_end(
         self, id, params: ChargeAddonAtTermEndParams, headers=None
     ) -> ChargeAddonAtTermEndResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_addon_at_term_end"),
@@ -2027,12 +2086,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def charge_future_renewals(
         self, id, params: ChargeFutureRenewalsParams = None, headers=None
     ) -> ChargeFutureRenewalsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "charge_future_renewals"),
@@ -2043,12 +2106,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_advance_invoice_schedule(
         self, id, params: EditAdvanceInvoiceScheduleParams = None, headers=None
     ) -> EditAdvanceInvoiceScheduleResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "edit_advance_invoice_schedule"),
@@ -2059,12 +2126,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve_advance_invoice_schedule(
         self, id, headers=None
     ) -> RetrieveAdvanceInvoiceScheduleResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "retrieve_advance_invoice_schedule"),
@@ -2075,12 +2144,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_advance_invoice_schedule(
         self, id, params: RemoveAdvanceInvoiceScheduleParams = None, headers=None
     ) -> RemoveAdvanceInvoiceScheduleResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_advance_invoice_schedule"),
@@ -2091,12 +2164,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def regenerate_invoice(
         self, id, params: RegenerateInvoiceParams = None, headers=None
     ) -> RegenerateInvoiceResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "regenerate_invoice"),
@@ -2107,6 +2184,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_subscription(
@@ -2115,6 +2193,9 @@ class Subscription:
         jsonKeys = {
             "meta_data": 0,
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -2126,6 +2207,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_for_customer(
@@ -2133,6 +2215,9 @@ class Subscription:
     ) -> ImportForCustomerResponse:
         jsonKeys = {
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -2144,12 +2229,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_contract_term(
         self, id, params: ImportContractTermParams = None, headers=None
     ) -> ImportContractTermResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_contract_term"),
@@ -2160,12 +2249,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_unbilled_charges(
         self, id, params: ImportUnbilledChargesParams, headers=None
     ) -> ImportUnbilledChargesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "import_unbilled_charges"),
@@ -2176,6 +2269,7 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_for_items(
@@ -2183,6 +2277,9 @@ class Subscription:
     ) -> ImportForItemsResponse:
         jsonKeys = {
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -2194,12 +2291,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def override_billing_profile(
         self, id, params: OverrideBillingProfileParams = None, headers=None
     ) -> OverrideBillingProfileResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "override_billing_profile"),
@@ -2210,10 +2311,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "delete"),
@@ -2224,10 +2329,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pause(self, id, params: PauseParams = None, headers=None) -> PauseResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "pause"),
@@ -2238,10 +2347,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel(self, id, params: CancelParams = None, headers=None) -> CancelResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel"),
@@ -2252,12 +2365,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def cancel_for_items(
         self, id, params: CancelForItemsParams = None, headers=None
     ) -> CancelForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "cancel_for_items"),
@@ -2268,11 +2385,15 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def resume(self, id, params: ResumeParams = None, headers=None) -> ResumeResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -2284,10 +2405,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_scheduled_pause(self, id, headers=None) -> RemoveScheduledPauseResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_pause"),
@@ -2298,12 +2423,16 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def remove_scheduled_resumption(
         self, id, headers=None
     ) -> RemoveScheduledResumptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "remove_scheduled_resumption"),
@@ -2314,10 +2443,14 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("subscriptions", id, "move"),
@@ -2328,4 +2461,5 @@ class Subscription:
             None,
             False,
             jsonKeys,
+            options,
         )

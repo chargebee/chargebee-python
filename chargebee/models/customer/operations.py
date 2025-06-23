@@ -660,6 +660,9 @@ class Customer:
             "additional_information": 1,
             "billing_address": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers"),
@@ -670,10 +673,12 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("customers"),
@@ -684,10 +689,12 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id),
@@ -698,12 +705,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {
             "exemption_details": 0,
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -715,6 +726,7 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_payment_method(
@@ -722,6 +734,9 @@ class Customer:
     ) -> UpdatePaymentMethodResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -733,12 +748,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_billing_info(
         self, id, params: UpdateBillingInfoParams = None, headers=None
     ) -> UpdateBillingInfoResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "update_billing_info"),
@@ -749,12 +768,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def contacts_for_customer(
         self, id, params: ContactsForCustomerParams = None, headers=None
     ) -> ContactsForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "contacts"),
@@ -765,12 +786,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def assign_payment_role(
         self, id, params: AssignPaymentRoleParams, headers=None
     ) -> AssignPaymentRoleResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "assign_payment_role"),
@@ -781,12 +806,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_contact(
         self, id, params: AddContactParams, headers=None
     ) -> AddContactResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "add_contact"),
@@ -797,12 +826,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_contact(
         self, id, params: UpdateContactParams, headers=None
     ) -> UpdateContactResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "update_contact"),
@@ -813,12 +846,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_contact(
         self, id, params: DeleteContactParams, headers=None
     ) -> DeleteContactResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_contact"),
@@ -829,12 +866,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def add_promotional_credits(
         self, id, params: AddPromotionalCreditsParams, headers=None
     ) -> AddPromotionalCreditsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "add_promotional_credits"),
@@ -845,12 +886,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def deduct_promotional_credits(
         self, id, params: DeductPromotionalCreditsParams, headers=None
     ) -> DeductPromotionalCreditsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "deduct_promotional_credits"),
@@ -861,12 +906,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def set_promotional_credits(
         self, id, params: SetPromotionalCreditsParams, headers=None
     ) -> SetPromotionalCreditsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "set_promotional_credits"),
@@ -877,12 +926,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_excess_payment(
         self, id, params: RecordExcessPaymentParams, headers=None
     ) -> RecordExcessPaymentResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "record_excess_payment"),
@@ -893,6 +946,7 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def collect_payment(
@@ -900,6 +954,9 @@ class Customer:
     ) -> CollectPaymentResponse:
         jsonKeys = {
             "additional_information": 1,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -911,10 +968,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "delete"),
@@ -925,10 +986,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def move(self, params: MoveParams, headers=None) -> MoveResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", "move"),
@@ -939,12 +1004,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def change_billing_date(
         self, id, params: ChangeBillingDateParams = None, headers=None
     ) -> ChangeBillingDateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "change_billing_date"),
@@ -955,10 +1024,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def merge(self, params: MergeParams, headers=None) -> MergeResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", "merge"),
@@ -969,10 +1042,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def clear_personal_data(self, id, headers=None) -> ClearPersonalDataResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "clear_personal_data"),
@@ -983,12 +1060,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def relationships(
         self, id, params: RelationshipsParams = None, headers=None
     ) -> RelationshipsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "relationships"),
@@ -999,10 +1080,14 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_relationship(self, id, headers=None) -> DeleteRelationshipResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "delete_relationship"),
@@ -1013,10 +1098,12 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def hierarchy(self, id, params: HierarchyParams, headers=None) -> HierarchyResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "hierarchy"),
@@ -1027,12 +1114,16 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_hierarchy_settings(
         self, id, params: UpdateHierarchySettingsParams = None, headers=None
     ) -> UpdateHierarchySettingsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "update_hierarchy_settings"),
@@ -1043,4 +1134,5 @@ class Customer:
             None,
             False,
             jsonKeys,
+            options,
         )

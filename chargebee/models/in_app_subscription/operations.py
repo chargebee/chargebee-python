@@ -75,6 +75,9 @@ class InAppSubscription:
         self, id, params: ProcessReceiptParams, headers=None
     ) -> ProcessReceiptResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "process_purchase_command"),
@@ -85,12 +88,16 @@ class InAppSubscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_receipt(
         self, id, params: ImportReceiptParams, headers=None
     ) -> ImportReceiptResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_receipt"),
@@ -101,12 +108,16 @@ class InAppSubscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def import_subscription(
         self, id, params: ImportSubscriptionParams, headers=None
     ) -> ImportSubscriptionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "import_subscription"),
@@ -117,12 +128,16 @@ class InAppSubscription:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve_store_subs(
         self, id, params: RetrieveStoreSubsParams, headers=None
     ) -> RetrieveStoreSubsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("in_app_subscriptions", id, "retrieve"),
@@ -133,4 +148,5 @@ class InAppSubscription:
             None,
             False,
             jsonKeys,
+            options,
         )

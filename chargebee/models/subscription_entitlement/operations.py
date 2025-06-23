@@ -50,6 +50,7 @@ class SubscriptionEntitlement:
         headers=None,
     ) -> SubscriptionEntitlementsForSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "subscription_entitlements"),
@@ -60,12 +61,16 @@ class SubscriptionEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def set_subscription_entitlement_availability(
         self, id, params: SetSubscriptionEntitlementAvailabilityParams, headers=None
     ) -> SetSubscriptionEntitlementAvailabilityResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path(
@@ -78,4 +83,5 @@ class SubscriptionEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )

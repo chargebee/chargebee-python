@@ -1417,6 +1417,7 @@ class Quote:
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("quotes", id),
@@ -1427,12 +1428,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_sub_for_customer_quote(
         self, id, params: CreateSubForCustomerQuoteParams, headers=None
     ) -> CreateSubForCustomerQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_quote"),
@@ -1443,12 +1448,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_create_sub_for_customer_quote(
         self, id, params: EditCreateSubForCustomerQuoteParams, headers=None
     ) -> EditCreateSubForCustomerQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_create_subscription_quote"),
@@ -1459,12 +1468,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_subscription_quote(
         self, params: UpdateSubscriptionQuoteParams, headers=None
     ) -> UpdateSubscriptionQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", "update_subscription_quote"),
@@ -1475,12 +1488,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_update_subscription_quote(
         self, id, params: EditUpdateSubscriptionQuoteParams = None, headers=None
     ) -> EditUpdateSubscriptionQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_update_subscription_quote"),
@@ -1491,12 +1508,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_onetime_charges(
         self, params: CreateForOnetimeChargesParams, headers=None
     ) -> CreateForOnetimeChargesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", "create_for_onetime_charges"),
@@ -1507,12 +1528,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_one_time_quote(
         self, id, params: EditOneTimeQuoteParams = None, headers=None
     ) -> EditOneTimeQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_one_time_quote"),
@@ -1523,12 +1548,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_sub_items_for_customer_quote(
         self, id, params: CreateSubItemsForCustomerQuoteParams, headers=None
     ) -> CreateSubItemsForCustomerQuoteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("customers", id, "create_subscription_quote_for_items"),
@@ -1539,12 +1568,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_create_sub_customer_quote_for_items(
         self, id, params: EditCreateSubCustomerQuoteForItemsParams, headers=None
     ) -> EditCreateSubCustomerQuoteForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_create_subscription_quote_for_items"),
@@ -1555,12 +1588,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_subscription_quote_for_items(
         self, params: UpdateSubscriptionQuoteForItemsParams, headers=None
     ) -> UpdateSubscriptionQuoteForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", "update_subscription_quote_for_items"),
@@ -1571,12 +1608,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_update_subscription_quote_for_items(
         self, id, params: EditUpdateSubscriptionQuoteForItemsParams, headers=None
     ) -> EditUpdateSubscriptionQuoteForItemsResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_update_subscription_quote_for_items"),
@@ -1587,12 +1628,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_charge_items_and_charges(
         self, params: CreateForChargeItemsAndChargesParams, headers=None
     ) -> CreateForChargeItemsAndChargesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", "create_for_charge_items_and_charges"),
@@ -1603,12 +1648,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def edit_for_charge_items_and_charges(
         self, id, params: EditForChargeItemsAndChargesParams, headers=None
     ) -> EditForChargeItemsAndChargesResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "edit_for_charge_items_and_charges"),
@@ -1619,10 +1668,12 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("quotes"),
@@ -1633,12 +1684,14 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def quote_line_groups_for_quote(
         self, id, params: QuoteLineGroupsForQuoteParams = None, headers=None
     ) -> QuoteLineGroupsForQuoteResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("quotes", id, "quote_line_groups"),
@@ -1649,12 +1702,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def convert(
         self, id, params: ConvertParams = None, headers=None
     ) -> ConvertResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "convert"),
@@ -1665,12 +1722,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_status(
         self, id, params: UpdateStatusParams, headers=None
     ) -> UpdateStatusResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "update_status"),
@@ -1681,12 +1742,16 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def extend_expiry_date(
         self, id, params: ExtendExpiryDateParams, headers=None
     ) -> ExtendExpiryDateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "extend_expiry_date"),
@@ -1697,10 +1762,14 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "delete"),
@@ -1711,10 +1780,14 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("quotes", id, "pdf"),
@@ -1725,4 +1798,5 @@ class Quote:
             None,
             False,
             jsonKeys,
+            options,
         )

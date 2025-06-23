@@ -77,6 +77,7 @@ class Event:
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("events"),
@@ -87,10 +88,12 @@ class Event:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("events", id),
@@ -101,4 +104,5 @@ class Event:
             None,
             False,
             jsonKeys,
+            options,
         )

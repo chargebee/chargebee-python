@@ -263,6 +263,9 @@ class ItemPrice:
         jsonKeys = {
             "metadata": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("item_prices"),
@@ -273,10 +276,12 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("item_prices", id),
@@ -287,11 +292,15 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {
             "metadata": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -303,10 +312,12 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("item_prices"),
@@ -317,10 +328,14 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("item_prices", id, "delete"),
@@ -331,12 +346,14 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def find_applicable_items(
         self, id, params: FindApplicableItemsParams = None, headers=None
     ) -> FindApplicableItemsResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("item_prices", id, "applicable_items"),
@@ -347,12 +364,14 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def find_applicable_item_prices(
         self, id, params: FindApplicableItemPricesParams = None, headers=None
     ) -> FindApplicableItemPricesResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("item_prices", id, "applicable_item_prices"),
@@ -363,4 +382,5 @@ class ItemPrice:
             None,
             False,
             jsonKeys,
+            options,
         )

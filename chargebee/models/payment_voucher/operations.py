@@ -55,6 +55,9 @@ class PaymentVoucher:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_vouchers"),
@@ -65,10 +68,12 @@ class PaymentVoucher:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("payment_vouchers", id),
@@ -79,12 +84,14 @@ class PaymentVoucher:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def payment_vouchers_for_invoice(
         self, id, params: PaymentVouchersForInvoiceParams = None, headers=None
     ) -> PaymentVouchersForInvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payment_vouchers"),
@@ -95,12 +102,14 @@ class PaymentVoucher:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def payment_vouchers_for_customer(
         self, id, params: PaymentVouchersForCustomerParams = None, headers=None
     ) -> PaymentVouchersForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "payment_vouchers"),
@@ -111,4 +120,5 @@ class PaymentVoucher:
             None,
             False,
             jsonKeys,
+            options,
         )

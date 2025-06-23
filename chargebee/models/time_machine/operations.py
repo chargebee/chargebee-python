@@ -60,6 +60,7 @@ class TimeMachine:
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("time_machines", id),
@@ -70,12 +71,16 @@ class TimeMachine:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def start_afresh(
         self, id, params: StartAfreshParams = None, headers=None
     ) -> StartAfreshResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("time_machines", id, "start_afresh"),
@@ -86,12 +91,16 @@ class TimeMachine:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def travel_forward(
         self, id, params: TravelForwardParams = None, headers=None
     ) -> TravelForwardResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("time_machines", id, "travel_forward"),
@@ -102,4 +111,5 @@ class TimeMachine:
             None,
             False,
             jsonKeys,
+            options,
         )

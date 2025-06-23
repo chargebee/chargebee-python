@@ -33,6 +33,7 @@ class Address:
 
     def retrieve(self, params: RetrieveParams, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("addresses"),
@@ -43,10 +44,14 @@ class Address:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("addresses"),
@@ -57,4 +62,5 @@ class Address:
             None,
             False,
             jsonKeys,
+            options,
         )

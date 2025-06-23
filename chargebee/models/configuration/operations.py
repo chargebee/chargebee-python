@@ -10,6 +10,7 @@ class Configuration:
 
     def list(self, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("configurations"),
@@ -20,4 +21,5 @@ class Configuration:
             None,
             False,
             jsonKeys,
+            options,
         )

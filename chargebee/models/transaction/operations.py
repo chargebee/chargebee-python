@@ -176,6 +176,9 @@ class Transaction:
         self, params: CreateAuthorizationParams, headers=None
     ) -> CreateAuthorizationResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", "create_authorization"),
@@ -186,10 +189,14 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def void_transaction(self, id, headers=None) -> VoidTransactionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", id, "void"),
@@ -200,12 +207,16 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def record_refund(
         self, id, params: RecordRefundParams, headers=None
     ) -> RecordRefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", id, "record_refund"),
@@ -216,12 +227,16 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def reconcile(
         self, id, params: ReconcileParams = None, headers=None
     ) -> ReconcileResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", id, "reconcile"),
@@ -232,10 +247,14 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", id, "refund"),
@@ -246,10 +265,12 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("transactions"),
@@ -260,12 +281,14 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def transactions_for_customer(
         self, id, params: TransactionsForCustomerParams = None, headers=None
     ) -> TransactionsForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "transactions"),
@@ -276,12 +299,14 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def transactions_for_subscription(
         self, id, params: TransactionsForSubscriptionParams = None, headers=None
     ) -> TransactionsForSubscriptionResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("subscriptions", id, "transactions"),
@@ -292,12 +317,14 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def payments_for_invoice(
         self, id, params: PaymentsForInvoiceParams = None, headers=None
     ) -> PaymentsForInvoiceResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("invoices", id, "payments"),
@@ -308,10 +335,12 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("transactions", id),
@@ -322,12 +351,16 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete_offline_transaction(
         self, id, params: DeleteOfflineTransactionParams = None, headers=None
     ) -> DeleteOfflineTransactionResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("transactions", id, "delete_offline_transaction"),
@@ -338,4 +371,5 @@ class Transaction:
             None,
             False,
             jsonKeys,
+            options,
         )

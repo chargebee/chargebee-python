@@ -37,6 +37,9 @@ class BusinessEntity:
         self, params: CreateTransfersParams, headers=None
     ) -> CreateTransfersResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("business_entities", "transfers"),
@@ -47,12 +50,14 @@ class BusinessEntity:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def get_transfers(
         self, params: GetTransfersParams = None, headers=None
     ) -> GetTransfersResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("business_entities", "transfers"),
@@ -63,4 +68,5 @@ class BusinessEntity:
             None,
             False,
             jsonKeys,
+            options,
         )

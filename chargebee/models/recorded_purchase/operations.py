@@ -50,6 +50,9 @@ class RecordedPurchase:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("recorded_purchases"),
@@ -60,10 +63,12 @@ class RecordedPurchase:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("recorded_purchases", id),
@@ -74,4 +79,5 @@ class RecordedPurchase:
             None,
             False,
             jsonKeys,
+            options,
         )

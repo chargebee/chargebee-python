@@ -55,6 +55,9 @@ class PromotionalCredit:
 
     def add(self, params: AddParams, headers=None) -> AddResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("promotional_credits", "add"),
@@ -65,10 +68,14 @@ class PromotionalCredit:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def deduct(self, params: DeductParams, headers=None) -> DeductResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("promotional_credits", "deduct"),
@@ -79,10 +86,14 @@ class PromotionalCredit:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def set(self, params: SetParams, headers=None) -> SetResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("promotional_credits", "set"),
@@ -93,10 +104,12 @@ class PromotionalCredit:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("promotional_credits"),
@@ -107,10 +120,12 @@ class PromotionalCredit:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("promotional_credits", id),
@@ -121,4 +136,5 @@ class PromotionalCredit:
             None,
             False,
             jsonKeys,
+            options,
         )

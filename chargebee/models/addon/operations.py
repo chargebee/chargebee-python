@@ -213,6 +213,9 @@ class Addon:
         jsonKeys = {
             "meta_data": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("addons"),
@@ -223,11 +226,15 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
         jsonKeys = {
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -239,10 +246,12 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("addons"),
@@ -253,10 +262,12 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("addons", id),
@@ -267,10 +278,14 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("addons", id, "delete"),
@@ -281,10 +296,14 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("addons", "copy"),
@@ -295,10 +314,14 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("addons", id, "unarchive"),
@@ -309,4 +332,5 @@ class Addon:
             None,
             False,
             jsonKeys,
+            options,
         )

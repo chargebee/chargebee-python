@@ -16,6 +16,7 @@ class CustomerEntitlement:
         self, id, params: EntitlementsForCustomerParams = None, headers=None
     ) -> EntitlementsForCustomerResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("customers", id, "customer_entitlements"),
@@ -26,4 +27,5 @@ class CustomerEntitlement:
             None,
             False,
             jsonKeys,
+            options,
         )

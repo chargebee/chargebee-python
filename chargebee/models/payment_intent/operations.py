@@ -89,6 +89,9 @@ class PaymentIntent:
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_intents"),
@@ -99,10 +102,14 @@ class PaymentIntent:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("payment_intents", id),
@@ -113,10 +120,12 @@ class PaymentIntent:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("payment_intents", id),
@@ -127,4 +136,5 @@ class PaymentIntent:
             None,
             False,
             jsonKeys,
+            options,
         )

@@ -287,6 +287,9 @@ class Coupon:
         jsonKeys = {
             "meta_data": 0,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons"),
@@ -297,6 +300,7 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def create_for_items(
@@ -309,6 +313,9 @@ class Coupon:
             "currencies": 1,
             "item_price_periods": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", "create_for_items"),
@@ -319,6 +326,7 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update_for_items(
@@ -331,6 +339,9 @@ class Coupon:
             "currencies": 1,
             "item_price_periods": 1,
         }
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", id, "update_for_items"),
@@ -341,10 +352,12 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("coupons"),
@@ -355,10 +368,12 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
+        options = {}
         return request.send(
             "get",
             request.uri_path("coupons", id),
@@ -369,11 +384,15 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
         jsonKeys = {
             "meta_data": 0,
+        }
+        options = {
+            "isIdempotent": True,
         }
         return request.send(
             "post",
@@ -385,10 +404,14 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", id, "delete"),
@@ -399,10 +422,14 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", "copy"),
@@ -413,10 +440,14 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
         jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
         return request.send(
             "post",
             request.uri_path("coupons", id, "unarchive"),
@@ -427,4 +458,5 @@ class Coupon:
             None,
             False,
             jsonKeys,
+            options,
         )

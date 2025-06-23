@@ -29,6 +29,7 @@ class SiteMigrationDetail:
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
+        options = {}
         return request.send_list_request(
             "get",
             request.uri_path("site_migration_details"),
@@ -39,4 +40,5 @@ class SiteMigrationDetail:
             None,
             False,
             jsonKeys,
+            options,
         )
