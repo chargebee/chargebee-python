@@ -525,6 +525,10 @@ class Subscription:
         max_excess_payment_usage: NotRequired[int]
         max_refundable_credits_usage: NotRequired[int]
 
+    class RemoveScheduledCancellationContractTermParams(TypedDict):
+        action_at_term_end: NotRequired["Subscription.ContractTermActionAtTermEnd"]
+        cancellation_cutoff_period: NotRequired[int]
+
     class UpdateAddonParams(TypedDict):
         id: NotRequired[str]
         quantity: NotRequired[int]
@@ -1338,6 +1342,10 @@ class Subscription:
 
     class RemoveScheduledCancellationParams(TypedDict):
         billing_cycles: NotRequired[int]
+        contract_term: NotRequired[
+            "Subscription.RemoveScheduledCancellationContractTermParams"
+        ]
+        contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class RemoveCouponsParams(TypedDict):
         coupon_ids: NotRequired[List[str]]

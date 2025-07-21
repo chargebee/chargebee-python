@@ -5,6 +5,7 @@ from chargebee.response import Response
 from chargebee.models import (
     contract_term,
     quoted_subscription,
+    quoted_ramp,
     quoted_charge,
     quote_line_group,
     download,
@@ -202,6 +203,7 @@ class RetrieveResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -251,6 +253,7 @@ class CreateSubItemsForCustomerQuoteResponse(Response):
     is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -258,6 +261,7 @@ class EditCreateSubCustomerQuoteForItemsResponse(Response):
     is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -265,6 +269,7 @@ class UpdateSubscriptionQuoteForItemsResponse(Response):
     is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -272,6 +277,7 @@ class EditUpdateSubscriptionQuoteForItemsResponse(Response):
     is_idempotency_replayed: bool
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -292,6 +298,7 @@ class EditForChargeItemsAndChargesResponse(Response):
 class ListQuoteResponse:
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -320,6 +327,7 @@ class ConvertResponse(Response):
     customer: "customer.CustomerResponse"
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
     subscription: "subscription.SubscriptionResponse" = None
     invoice: "invoice.InvoiceResponse" = None
     credit_note: "credit_note.CreditNoteResponse" = None
@@ -332,6 +340,7 @@ class UpdateStatusResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -340,6 +349,7 @@ class ExtendExpiryDateResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass
@@ -348,6 +358,7 @@ class DeleteResponse(Response):
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
+    quoted_ramp: "quoted_ramp.QuotedRampResponse" = None
 
 
 @dataclass

@@ -94,6 +94,10 @@ from chargebee.models.attached_item.operations import AttachedItem
 
 from chargebee.models.attribute.operations import Attribute
 
+from chargebee.models.billing_configuration.operations import BillingConfiguration
+
+from chargebee.models.brand.operations import Brand
+
 from chargebee.models.business_entity.operations import BusinessEntity
 
 from chargebee.models.business_entity_transfer.operations import BusinessEntityTransfer

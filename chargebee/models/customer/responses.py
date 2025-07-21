@@ -367,6 +367,18 @@ class HierarchyResponse(Response):
 
 
 @dataclass
+class ListHierarchyDetailCustomerResponse:
+    hierarchies: List["hierarchy.HierarchyResponse"]
+
+
+@dataclass
+class ListHierarchyDetailResponse(Response):
+
+    list: List[ListHierarchyDetailCustomerResponse]
+    next_offset: str = None
+
+
+@dataclass
 class UpdateHierarchySettingsResponse(Response):
     is_idempotency_replayed: bool
     customer: CustomerResponse

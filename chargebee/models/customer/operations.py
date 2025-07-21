@@ -644,6 +644,11 @@ class Customer:
     class HierarchyParams(TypedDict):
         hierarchy_operation_type: Required[enums.HierarchyOperationType]
 
+    class ListHierarchyDetailParams(TypedDict):
+        limit: NotRequired[int]
+        offset: NotRequired[str]
+        hierarchy_operation_type: Required[enums.HierarchyOperationType]
+
     class UpdateHierarchySettingsParams(TypedDict):
         use_default_hierarchy_settings: NotRequired[bool]
         parent_account_access: NotRequired[
@@ -1111,6 +1116,24 @@ class Customer:
             cast(Dict[Any, Any], params),
             headers,
             HierarchyResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def list_hierarchy_detail(
+        self, id, params: ListHierarchyDetailParams, headers=None
+    ) -> ListHierarchyDetailResponse:
+        jsonKeys = {}
+        options = {}
+        return request.send(
+            "get",
+            request.uri_path("customers", id, "hierarchy_detail"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            ListHierarchyDetailResponse,
             None,
             False,
             jsonKeys,

@@ -70,6 +70,7 @@ class Card:
         GIROPAY = "giropay"
         CARD = "card"
         LATAM_LOCAL_CARD = "latam_local_card"
+        PAYCONIQ = "payconiq"
         NOT_APPLICABLE = "not_applicable"
 
         def __str__(self):

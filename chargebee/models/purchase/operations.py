@@ -169,6 +169,7 @@ class Purchase:
         customer_id: Required[str]
         payment_source_id: NotRequired[str]
         payment_intent: NotRequired["Purchase.CreatePaymentIntentParams"]
+        replace_primary_payment_source: NotRequired[bool]
 
     class EstimateParams(TypedDict):
         purchase_items: Required[List["Purchase.EstimatePurchaseItemParams"]]
