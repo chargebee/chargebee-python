@@ -203,6 +203,12 @@ class Customer(Model):
         return request.send('get', request.uri_path("customers",id,"hierarchy"), params, env, headers, None, False,json_keys)
 
     @staticmethod
+    def list_hierarchy_detail(id, params, env=None, headers=None):
+        json_keys = { 
+        }
+        return request.send('get', request.uri_path("customers",id,"hierarchy_detail"), params, env, headers, None, False,json_keys)
+
+    @staticmethod
     def update_hierarchy_settings(id, params=None, env=None, headers=None):
         json_keys = { 
         }
