@@ -202,8 +202,14 @@ class Result(object):
     @property
     def quoted_ramp(self):
         quoted_ramp = self._get('quoted_ramp', QuotedRamp,
-        {'line_items' : QuotedRamp.LineItem, 'discounts' : QuotedRamp.Discount, 'item_tiers' : QuotedRamp.ItemTier});
+        {'line_items' : QuotedRamp.LineItem, 'discounts' : QuotedRamp.Discount, 'item_tiers' : QuotedRamp.ItemTier, 'coupon_applicability_mappings' : QuotedRamp.CouponApplicabilityMapping});
         return quoted_ramp;
+
+    @property
+    def billing_configuration(self):
+        billing_configuration = self._get('billing_configuration', BillingConfiguration,
+        {'billing_dates' : BillingConfiguration.BillingDate});
+        return billing_configuration;
 
     @property
     def quote_line_group(self):
@@ -498,6 +504,11 @@ class Result(object):
         return usage_file;
 
     @property
+    def brand(self):
+        brand = self._get('brand', Brand);
+        return brand;
+
+    @property
     def advance_invoice_schedules(self):
         advance_invoice_schedules = self._get_list('advance_invoice_schedules', AdvanceInvoiceSchedule,
         {'fixed_interval_schedule' : AdvanceInvoiceSchedule.FixedIntervalSchedule, 'specific_dates_schedule' : AdvanceInvoiceSchedule.SpecificDatesSchedule});
@@ -514,12 +525,6 @@ class Result(object):
         invoices = self._get_list('invoices', Invoice,
         {'line_items' : Invoice.LineItem, 'discounts' : Invoice.Discount, 'line_item_discounts' : Invoice.LineItemDiscount, 'taxes' : Invoice.Tax, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_tiers' : Invoice.LineItemTier, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'billing_address' : Invoice.BillingAddress, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation, 'tax_origin' : Invoice.TaxOrigin, 'line_item_addresses' : Invoice.LineItemAddress});
         return invoices;
-
-    @property
-    def differential_prices(self):
-        differential_prices = self._get_list('differential_prices', DifferentialPrice,
-        {'tiers' : DifferentialPrice.Tier, 'parent_periods' : DifferentialPrice.ParentPeriod});
-        return differential_prices;
 
     @property
     def payment_schedules(self):
