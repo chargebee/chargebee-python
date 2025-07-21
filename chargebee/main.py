@@ -39,6 +39,8 @@ class Chargebee:
         self.AdvanceInvoiceSchedule = chargebee.AdvanceInvoiceSchedule(self.env)
         self.AttachedItem = chargebee.AttachedItem(self.env)
         self.Attribute = chargebee.Attribute(self.env)
+        self.BillingConfiguration = chargebee.BillingConfiguration(self.env)
+        self.Brand = chargebee.Brand(self.env)
         self.BusinessEntity = chargebee.BusinessEntity(self.env)
         self.BusinessEntityTransfer = chargebee.BusinessEntityTransfer(self.env)
         self.Card = chargebee.Card(self.env)

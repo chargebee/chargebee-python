@@ -27,16 +27,10 @@ class LineItemResponse(Model):
     start_date: int = None
     end_date: int = None
     ramp_tier_id: str = None
-    discount_amount: int = None
-    md_discount_amount: str = None
-    item_level_discount_amount: int = None
-    md_item_level_discount_amount: str = None
     discount_per_billing_cycle: int = None
     discount_per_billing_cycle_in_decimal: str = None
     item_level_discount_per_billing_cycle: int = None
     item_level_discount_per_billing_cycle_in_decimal: str = None
-    net_amount: int = None
-    md_net_amount: str = None
     amount_per_billing_cycle: int = None
     amount_per_billing_cycle_in_decimal: str = None
     net_amount_per_billing_cycle: int = None
@@ -47,7 +41,6 @@ class LineItemResponse(Model):
 class DiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
-    name: str = None
     invoice_name: str = None
     type: str = None
     percentage: float = None
@@ -59,7 +52,6 @@ class DiscountResponse(Model):
     period_unit: str = None
     included_in_mrr: bool = None
     apply_on: str = None
-    apply_on_item_type: str = None
     item_price_id: str = None
     created_at: int = None
     updated_at: int = None
@@ -78,6 +70,15 @@ class ItemTierResponse(Model):
     ending_unit_in_decimal: str = None
     price_in_decimal: str = None
     ramp_tier_id: str = None
+    pricing_type: str = None
+    package_size: int = None
+
+
+@dataclass
+class CouponApplicabilityMappingResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    coupon_id: str = None
+    applicable_item_price_ids: List[str] = None
 
 
 @dataclass
@@ -87,3 +88,4 @@ class QuotedRampResponse(Model):
     line_items: List[LineItemResponse] = None
     discounts: List[DiscountResponse] = None
     item_tiers: List[ItemTierResponse] = None
+    coupon_applicability_mappings: List[CouponApplicabilityMappingResponse] = None

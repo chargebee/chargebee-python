@@ -707,6 +707,7 @@ class Gateway(Enum):
     EBANX = "ebanx"
     DLOCAL = "dlocal"
     NUVEI = "nuvei"
+    SOLIDGATE = "solidgate"
     PAYSTACK = "paystack"
     JP_MORGAN = "jp_morgan"
     GOCARDLESS = "gocardless"
@@ -857,6 +858,7 @@ class PaymentMethod(Enum):
     AUTOMATED_BANK_TRANSFER = "automated_bank_transfer"
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
+    PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
 
     def __str__(self):
         return self.value
@@ -887,6 +889,7 @@ class PaymentMethodType(Enum):
     AUTOMATED_BANK_TRANSFER = "automated_bank_transfer"
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
+    PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
 
     def __str__(self):
         return self.value
@@ -1125,6 +1128,7 @@ class Type(Enum):
     AUTOMATED_BANK_TRANSFER = "automated_bank_transfer"
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
+    PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
 
     def __str__(self):
         return self.value

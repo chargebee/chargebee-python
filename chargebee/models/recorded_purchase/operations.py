@@ -42,11 +42,17 @@ class RecordedPurchase:
     class CreateGooglePlayStoreParams(TypedDict):
         purchase_token: NotRequired[str]
 
+    class CreateOmnichannelSubscriptionParams(TypedDict):
+        id: NotRequired[str]
+
     class CreateParams(TypedDict):
         app_id: Required[str]
         customer: Required["RecordedPurchase.CreateCustomerParams"]
         apple_app_store: NotRequired["RecordedPurchase.CreateAppleAppStoreParams"]
         google_play_store: NotRequired["RecordedPurchase.CreateGooglePlayStoreParams"]
+        omnichannel_subscription: NotRequired[
+            "RecordedPurchase.CreateOmnichannelSubscriptionParams"
+        ]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}

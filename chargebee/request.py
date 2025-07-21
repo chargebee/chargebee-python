@@ -48,7 +48,7 @@ def send_list_request(
         subDomain,
         isJsonRequest,
         jsonKeys,
-        options
+        options,
     )
 
 

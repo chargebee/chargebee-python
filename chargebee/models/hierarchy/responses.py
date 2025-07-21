@@ -10,4 +10,5 @@ class HierarchyResponse(Model):
     parent_id: str = None
     payment_owner_id: str = None
     invoice_owner_id: str = None
+    has_children: bool = None
     children_ids: List[str] = None

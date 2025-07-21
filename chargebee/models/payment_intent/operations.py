@@ -41,6 +41,7 @@ class PaymentIntent:
         SEPA_INSTANT_TRANSFER = "sepa_instant_transfer"
         KLARNA_PAY_NOW = "klarna_pay_now"
         ONLINE_BANKING_POLAND = "online_banking_poland"
+        PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
 
         def __str__(self):
             return self.value
