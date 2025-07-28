@@ -78,16 +78,17 @@ async def request_async(
         "headers": headers,
         "url": full_url,
     }
+    verify = None
     if Chargebee.verify_ca_certs:
-        request_args["verify"] = Chargebee.ca_cert_path
+        verify = Chargebee.ca_cert_path
 
-    return await process_response_async(full_url, request_args, retry_config, env.enable_debug_logs)
+    return await process_response_async(full_url, request_args, retry_config, env.enable_debug_logs, verify)
 
 
-async def process_response_async(url, request_args, retry_config, enable_debug_logs):
+async def process_response_async(url, request_args, retry_config, enable_debug_logs, verify=None):
     retry_count = 0
 
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(verify=verify) as client:
         while True:
             try:
                 _logger.debug(f"{request_args['method']} Request: {url}")
