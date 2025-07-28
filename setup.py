@@ -12,7 +12,7 @@ import version
 with open("README.md", "r") as file:
     description = file.read()
 
-requires = ["requests"]
+requires = ["requests", "httpx"]
 
 setup(
     name="chargebee",

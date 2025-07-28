@@ -1,5 +1,5 @@
 from .responses import *
-from chargebee import request, environment
+from chargebee import request, request_async, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
@@ -669,6 +669,30 @@ class Customer:
             "isIdempotent": True,
         }
         return request.send(
+            "post",
+            request.uri_path("customers"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            CreateResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+    
+    # Example of async create
+    async def create_async(self, params: CreateParams, headers=None) -> CreateResponse:
+        jsonKeys = {
+            "exemption_details": 0,
+            "meta_data": 0,
+            "additional_information": 1,
+            "billing_address": 1,
+        }
+        options = {
+            "isIdempotent": True,
+        }
+        return await request_async.send_async(
             "post",
             request.uri_path("customers"),
             self.env,

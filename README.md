@@ -80,6 +80,33 @@ customer = response.customer
 card = response.card
 ```
 
+### Using Async
+
+```python
+# Create a Customer
+
+async def create_customer():
+    response = await cb_client.Customer.create_async(
+        cb_client.Customer.CreateParams(
+            first_name="John",
+            last_name="Doe",
+            email="john@test.com",
+            locale="fr-CA",
+            billing_address=cb_client.Customer.BillingAddress(
+                first_name="John",
+                last_name=" Doe",
+                line1="PO Box 9999",
+                city="Walnut",
+                state="California",
+                zip="91789",
+                country="US",
+            ),
+        )
+    )
+    customer = response.customer
+    card = response.card
+```
+
 ### List API Request With Filter
 
 For pagination, `offset` is the parameter that is being used. The value used for this parameter must be the value returned in `next_offset` parameter from the previous API call.
