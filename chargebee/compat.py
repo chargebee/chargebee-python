@@ -10,3 +10,9 @@ py_minor_v = sys.version_info[1]
 
 if py_major_v >= 3:
     from urllib.parse import urlencode, urlparse
+
+# httpx supports trio and asyncio
+try:
+    import trio as event_loop
+except ImportError:
+    import asyncio as event_loop

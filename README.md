@@ -80,6 +80,33 @@ customer = response.customer
 card = response.card
 ```
 
+### Async HTTP client
+
+Starting with version `3.9.0`, the Chargebee Python SDK can optionally be configured to use an asynchronous HTTP client which uses `asyncio` to perform non-blocking requests. This can be enabled by passing the `use_async_client=True` argument to the constructor:
+
+```python
+cb_client = Chargebee(api_key="api_key", site="site", use_async_client=True)
+```
+
+When configured to use the async client, all model methods return a coroutine, which will have to be awaited to get the response:
+
+```python
+async def get_customers():
+    response = await cb_client.Customer.list(
+        cb_client.Customer.ListParams(
+            first_name=Filters.StringFilter(IS="John")
+        )
+    )
+    return response
+```
+
+Note: The async methods will have to be wrapped in an event loop during invocation. For example, the `asyncio.run` method can be used to run the above example:
+
+```python
+import asyncio
+response = asyncio.run(get_customers())
+```
+
 ### List API Request With Filter
 
 For pagination, `offset` is the parameter that is being used. The value used for this parameter must be the value returned in `next_offset` parameter from the previous API call.

@@ -22,6 +22,7 @@ class Chargebee:
         protocol: str = None,
         connection_time_out: int = None,
         read_time_out: int = None,
+        use_async_client: bool = False,
     ):
         self.env = Environment({"api_key": api_key, "site": site})
         if chargebee_domain is not None:
@@ -32,6 +33,8 @@ class Chargebee:
             self.update_connect_timeout_secs(connection_time_out)
         if read_time_out is not None:
             self.update_read_timeout_secs(read_time_out)
+        if use_async_client:
+            self.env.use_async_client = True
         self.env.set_api_endpoint()
 
         self.Addon = chargebee.Addon(self.env)
