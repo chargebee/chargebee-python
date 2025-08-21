@@ -11,6 +11,7 @@ class Environment(object):
     time_travel_retry_delay_ms = 3000
     retry_config = RetryConfig()
     enable_debug_logs = False
+    use_async_client = False
 
     def __init__(self, options):
         self.api_key = options["api_key"]
