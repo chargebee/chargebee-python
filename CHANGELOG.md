@@ -1,3 +1,10 @@
+### v3.9.0b1 (2025-08-20)
+* * *
+
+### New Features
+
+* Use `httpx` instead of `requests`, thereby adding support for asynchronous API requests.
+
 ### v3.8.0 (2025-07-18) 
 * * * 
 
