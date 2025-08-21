@@ -33,6 +33,7 @@ class PricingPageSession:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         label: NotRequired[str]
 
     class CreateForNewSubscriptionBillingAddressParams(TypedDict):
@@ -82,6 +83,7 @@ class PricingPageSession:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         label: NotRequired[str]
 
     class CreateForNewSubscriptionParams(TypedDict):

@@ -154,6 +154,8 @@ from chargebee.models.hierarchy.operations import Hierarchy
 
 from chargebee.models.hosted_page.operations import HostedPage
 
+from chargebee.models.impacted_customer.operations import ImpactedCustomer
+
 from chargebee.models.impacted_item.operations import ImpactedItem
 
 from chargebee.models.impacted_item_price.operations import ImpactedItemPrice
@@ -175,6 +177,14 @@ from chargebee.models.item_family.operations import ItemFamily
 from chargebee.models.item_price.operations import ItemPrice
 
 from chargebee.models.metadata.operations import Metadata
+
+from chargebee.models.omnichannel_one_time_order.operations import (
+    OmnichannelOneTimeOrder,
+)
+
+from chargebee.models.omnichannel_one_time_order_item.operations import (
+    OmnichannelOneTimeOrderItem,
+)
 
 from chargebee.models.omnichannel_subscription.operations import OmnichannelSubscription
 
@@ -242,6 +252,14 @@ from chargebee.models.subscription.operations import Subscription
 
 from chargebee.models.subscription_entitlement.operations import SubscriptionEntitlement
 
+from chargebee.models.subscription_entitlements_created_detail.operations import (
+    SubscriptionEntitlementsCreatedDetail,
+)
+
+from chargebee.models.subscription_entitlements_updated_detail.operations import (
+    SubscriptionEntitlementsUpdatedDetail,
+)
+
 from chargebee.models.subscription_estimate.operations import SubscriptionEstimate
 
 from chargebee.models.tax_withheld.operations import TaxWithheld
@@ -265,3 +283,5 @@ from chargebee.models.usage_event.operations import UsageEvent
 from chargebee.models.usage_file.operations import UsageFile
 
 from chargebee.models.virtual_bank_account.operations import VirtualBankAccount
+
+from chargebee.models.webhook_endpoint.operations import WebhookEndpoint

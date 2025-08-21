@@ -73,6 +73,7 @@ class Subscription:
     class DiscountType(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
+        OFFER_QUANTITY = "offer_quantity"
 
         def __str__(self):
             return self.value
@@ -185,6 +186,7 @@ class Subscription:
         type: Required["Subscription.DiscountType"]
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         currency_code: NotRequired[str]
         duration_type: Required[enums.DurationType]
         period: NotRequired[int]
@@ -470,6 +472,7 @@ class Subscription:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
 
     class CreateWithItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -671,6 +674,7 @@ class Subscription:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
 
@@ -1076,6 +1080,7 @@ class Subscription:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
 
     class ImportForItemsChargedItemParams(TypedDict):
         item_price_id: NotRequired[str]

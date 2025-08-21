@@ -20,6 +20,7 @@ class PromotionalCreditResponse(Model):
     closing_balance: int = None
     done_by: str = None
     created_at: int = None
+    business_entity_id: str = None
 
 
 @dataclass

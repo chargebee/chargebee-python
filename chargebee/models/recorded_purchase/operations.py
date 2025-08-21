@@ -28,6 +28,9 @@ class RecordedPurchase:
     class LinkedOmnichannelSubscription(TypedDict):
         omnichannel_subscription_id: NotRequired[str]
 
+    class LinkedOmnichannelOneTimeOrder(TypedDict):
+        omnichannel_one_time_order_id: NotRequired[str]
+
     class ErrorDetail(TypedDict):
         error_message: NotRequired[str]
 
@@ -41,6 +44,8 @@ class RecordedPurchase:
 
     class CreateGooglePlayStoreParams(TypedDict):
         purchase_token: NotRequired[str]
+        product_id: NotRequired[str]
+        order_id: NotRequired[str]
 
     class CreateOmnichannelSubscriptionParams(TypedDict):
         id: NotRequired[str]

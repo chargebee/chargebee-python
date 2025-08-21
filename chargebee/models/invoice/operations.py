@@ -50,6 +50,17 @@ class Invoice:
         def __str__(self):
             return self.value
 
+    class LineItemDiscountDiscountType(Enum):
+        ITEM_LEVEL_COUPON = "item_level_coupon"
+        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
+        PROMOTIONAL_CREDITS = "promotional_credits"
+        PRORATED_CREDITS = "prorated_credits"
+        ITEM_LEVEL_DISCOUNT = "item_level_discount"
+        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
+
+        def __str__(self):
+            return self.value
+
     class DiscountEntityType(Enum):
         ITEM_LEVEL_COUPON = "item_level_coupon"
         DOCUMENT_LEVEL_COUPON = "document_level_coupon"
@@ -64,17 +75,6 @@ class Invoice:
     class DiscountDiscountType(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
-
-        def __str__(self):
-            return self.value
-
-    class LineItemDiscountDiscountType(Enum):
-        ITEM_LEVEL_COUPON = "item_level_coupon"
-        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
-        PROMOTIONAL_CREDITS = "promotional_credits"
-        PRORATED_CREDITS = "prorated_credits"
-        ITEM_LEVEL_DISCOUNT = "item_level_discount"
-        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
 
         def __str__(self):
             return self.value
@@ -162,13 +162,18 @@ class Invoice:
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    class Discount(TypedDict):
-        amount: Required[int]
-        description: NotRequired[str]
-        entity_type: Required["Invoice.DiscountEntityType"]
-        discount_type: NotRequired["Invoice.DiscountDiscountType"]
-        entity_id: NotRequired[str]
-        coupon_set_code: NotRequired[str]
+    class LineItemTier(TypedDict):
+        line_item_id: NotRequired[str]
+        starting_unit: Required[int]
+        ending_unit: NotRequired[int]
+        quantity_used: Required[int]
+        unit_amount: Required[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        quantity_used_in_decimal: NotRequired[str]
+        unit_amount_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class LineItemDiscount(TypedDict):
         line_item_id: Required[str]
@@ -176,11 +181,6 @@ class Invoice:
         coupon_id: NotRequired[str]
         entity_id: NotRequired[str]
         discount_amount: Required[int]
-
-    class Tax(TypedDict):
-        name: Required[str]
-        amount: Required[int]
-        description: NotRequired[str]
 
     class LineItemTax(TypedDict):
         line_item_id: NotRequired[str]
@@ -204,18 +204,39 @@ class Invoice:
         applied_amount: Required[float]
         line_item_id: NotRequired[str]
 
-    class LineItemTier(TypedDict):
+    class LineItemAddress(TypedDict):
         line_item_id: NotRequired[str]
-        starting_unit: Required[int]
-        ending_unit: NotRequired[int]
-        quantity_used: Required[int]
-        unit_amount: Required[int]
-        starting_unit_in_decimal: NotRequired[str]
-        ending_unit_in_decimal: NotRequired[str]
-        quantity_used_in_decimal: NotRequired[str]
-        unit_amount_in_decimal: NotRequired[str]
-        pricing_type: NotRequired[enums.PricingType]
-        package_size: NotRequired[int]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        country: NotRequired[str]
+        zip: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class Discount(TypedDict):
+        amount: Required[int]
+        description: NotRequired[str]
+        entity_type: Required["Invoice.DiscountEntityType"]
+        discount_type: NotRequired["Invoice.DiscountDiscountType"]
+        entity_id: NotRequired[str]
+        coupon_set_code: NotRequired[str]
+
+    class Tax(TypedDict):
+        name: Required[str]
+        amount: Required[int]
+        description: NotRequired[str]
+
+    class TaxOrigin(TypedDict):
+        country: NotRequired[str]
+        registration_number: NotRequired[str]
 
     class LinkedPayment(TypedDict):
         txn_id: Required[str]
@@ -291,10 +312,6 @@ class Invoice:
         validation_status: NotRequired[enums.ValidationStatus]
         index: Required[int]
 
-    class StatementDescriptor(TypedDict):
-        id: Required[str]
-        descriptor: NotRequired[str]
-
     class BillingAddress(TypedDict):
         first_name: NotRequired[str]
         last_name: NotRequired[str]
@@ -311,6 +328,10 @@ class Invoice:
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
 
+    class StatementDescriptor(TypedDict):
+        id: Required[str]
+        descriptor: NotRequired[str]
+
     class Einvoice(TypedDict):
         id: Required[str]
         reference_number: NotRequired[str]
@@ -320,27 +341,6 @@ class Invoice:
     class SiteDetailsAtCreation(TypedDict):
         timezone: NotRequired[str]
         organization_address: NotRequired[Dict[Any, Any]]
-
-    class TaxOrigin(TypedDict):
-        country: NotRequired[str]
-        registration_number: NotRequired[str]
-
-    class LineItemAddress(TypedDict):
-        line_item_id: NotRequired[str]
-        first_name: NotRequired[str]
-        last_name: NotRequired[str]
-        email: NotRequired[str]
-        company: NotRequired[str]
-        phone: NotRequired[str]
-        line1: NotRequired[str]
-        line2: NotRequired[str]
-        line3: NotRequired[str]
-        city: NotRequired[str]
-        state_code: NotRequired[str]
-        state: NotRequired[str]
-        country: NotRequired[str]
-        zip: NotRequired[str]
-        validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateAddonParams(TypedDict):
         id: NotRequired[str]
@@ -501,6 +501,7 @@ class Invoice:
     class CreateForChargeItemsAndChargesDiscountParams(TypedDict):
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         apply_on: Required[enums.ApplyOn]
         item_price_id: NotRequired[str]
 
@@ -682,6 +683,7 @@ class Invoice:
         id: NotRequired[str]
 
     class ImportInvoicePaymentParams(TypedDict):
+        id: NotRequired[str]
         amount: Required[int]
         payment_method: Required[enums.PaymentMethod]
         date: NotRequired[int]

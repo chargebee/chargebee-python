@@ -69,6 +69,7 @@ class Chargebee:
         self.Gift = chargebee.Gift(self.env)
         self.Hierarchy = chargebee.Hierarchy(self.env)
         self.HostedPage = chargebee.HostedPage(self.env)
+        self.ImpactedCustomer = chargebee.ImpactedCustomer(self.env)
         self.ImpactedItem = chargebee.ImpactedItem(self.env)
         self.ImpactedItemPrice = chargebee.ImpactedItemPrice(self.env)
         self.ImpactedSubscription = chargebee.ImpactedSubscription(self.env)
@@ -80,6 +81,10 @@ class Chargebee:
         self.ItemFamily = chargebee.ItemFamily(self.env)
         self.ItemPrice = chargebee.ItemPrice(self.env)
         self.Metadata = chargebee.Metadata(self.env)
+        self.OmnichannelOneTimeOrder = chargebee.OmnichannelOneTimeOrder(self.env)
+        self.OmnichannelOneTimeOrderItem = chargebee.OmnichannelOneTimeOrderItem(
+            self.env
+        )
         self.OmnichannelSubscription = chargebee.OmnichannelSubscription(self.env)
         self.OmnichannelSubscriptionItem = chargebee.OmnichannelSubscriptionItem(
             self.env
@@ -114,6 +119,12 @@ class Chargebee:
         self.SiteMigrationDetail = chargebee.SiteMigrationDetail(self.env)
         self.Subscription = chargebee.Subscription(self.env)
         self.SubscriptionEntitlement = chargebee.SubscriptionEntitlement(self.env)
+        self.SubscriptionEntitlementsCreatedDetail = (
+            chargebee.SubscriptionEntitlementsCreatedDetail(self.env)
+        )
+        self.SubscriptionEntitlementsUpdatedDetail = (
+            chargebee.SubscriptionEntitlementsUpdatedDetail(self.env)
+        )
         self.SubscriptionEstimate = chargebee.SubscriptionEstimate(self.env)
         self.TaxWithheld = chargebee.TaxWithheld(self.env)
         self.ThirdPartyPaymentMethod = chargebee.ThirdPartyPaymentMethod(self.env)
@@ -125,6 +136,7 @@ class Chargebee:
         self.UsageEvent = chargebee.UsageEvent(self.env)
         self.UsageFile = chargebee.UsageFile(self.env)
         self.VirtualBankAccount = chargebee.VirtualBankAccount(self.env)
+        self.WebhookEndpoint = chargebee.WebhookEndpoint(self.env)
 
     def update_connect_timeout_secs(self, connect_timeout):
         self.env.connect_timeout = connect_timeout

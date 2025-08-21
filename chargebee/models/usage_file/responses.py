@@ -32,12 +32,12 @@ class UsageFileResponse(Model):
 
 
 @dataclass
-class UploadResponse(Response):
+class UploadUrlResponse(Response):
     is_idempotency_replayed: bool
     usage_file: UsageFileResponse
 
 
 @dataclass
-class StatusResponse(Response):
+class ProcessingStatusResponse(Response):
 
     usage_file: UsageFileResponse

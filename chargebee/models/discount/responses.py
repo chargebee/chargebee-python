@@ -11,6 +11,7 @@ class DiscountResponse(Model):
     type: str = None
     percentage: float = None
     amount: int = None
+    quantity: int = None
     currency_code: str = None
     duration_type: str = None
     period: int = None

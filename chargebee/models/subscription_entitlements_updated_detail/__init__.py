@@ -1,0 +1,2 @@
+from .operations import SubscriptionEntitlementsUpdatedDetail
+from .responses import SubscriptionEntitlementsUpdatedDetailResponse
