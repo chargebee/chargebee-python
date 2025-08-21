@@ -6,15 +6,6 @@ from chargebee.models import invoice, transaction, transaction, invoice, downloa
 
 
 @dataclass
-class EinvoiceResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    id: str = None
-    reference_number: str = None
-    status: str = None
-    message: str = None
-
-
-@dataclass
 class LineItemResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -45,27 +36,6 @@ class LineItemResponse(Model):
 
 
 @dataclass
-class DiscountResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    amount: int = None
-    description: str = None
-    entity_type: str = None
-    discount_type: str = None
-    entity_id: str = None
-    coupon_set_code: str = None
-
-
-@dataclass
-class LineItemDiscountResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    discount_type: str = None
-    coupon_id: str = None
-    entity_id: str = None
-    discount_amount: int = None
-
-
-@dataclass
 class LineItemTierResponse(Model):
     raw_data: Dict[Any, Any] = None
     line_item_id: str = None
@@ -82,11 +52,13 @@ class LineItemTierResponse(Model):
 
 
 @dataclass
-class TaxResponse(Model):
+class LineItemDiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
-    name: str = None
-    amount: int = None
-    description: str = None
+    line_item_id: str = None
+    discount_type: str = None
+    coupon_id: str = None
+    entity_id: str = None
+    discount_amount: int = None
 
 
 @dataclass
@@ -107,6 +79,52 @@ class LineItemTaxResponse(Model):
     tax_juris_code: str = None
     tax_amount_in_local_currency: int = None
     local_currency_code: str = None
+
+
+@dataclass
+class LineItemAddressResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    line_item_id: str = None
+    first_name: str = None
+    last_name: str = None
+    email: str = None
+    company: str = None
+    phone: str = None
+    line1: str = None
+    line2: str = None
+    line3: str = None
+    city: str = None
+    state_code: str = None
+    state: str = None
+    country: str = None
+    zip: str = None
+    validation_status: str = None
+
+
+@dataclass
+class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    amount: int = None
+    description: str = None
+    entity_type: str = None
+    discount_type: str = None
+    entity_id: str = None
+    coupon_set_code: str = None
+
+
+@dataclass
+class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    name: str = None
+    amount: int = None
+    description: str = None
+
+
+@dataclass
+class TaxOriginResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    country: str = None
+    registration_number: str = None
 
 
 @dataclass
@@ -172,37 +190,19 @@ class BillingAddressResponse(Model):
 
 
 @dataclass
+class EinvoiceResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    id: str = None
+    reference_number: str = None
+    status: str = None
+    message: str = None
+
+
+@dataclass
 class SiteDetailsAtCreationResponse(Model):
     raw_data: Dict[Any, Any] = None
     timezone: str = None
     organization_address: Dict[Any, Any] = None
-
-
-@dataclass
-class TaxOriginResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    country: str = None
-    registration_number: str = None
-
-
-@dataclass
-class LineItemAddressResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    first_name: str = None
-    last_name: str = None
-    email: str = None
-    company: str = None
-    phone: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    state_code: str = None
-    state: str = None
-    country: str = None
-    zip: str = None
-    validation_status: str = None
 
 
 @dataclass
@@ -229,7 +229,6 @@ class CreditNoteResponse(Model):
     resource_version: int = None
     updated_at: int = None
     channel: str = None
-    einvoice: EinvoiceResponse = None
     sub_total: int = None
     sub_total_in_local_currency: int = None
     total_in_local_currency: int = None
@@ -237,11 +236,13 @@ class CreditNoteResponse(Model):
     round_off_amount: int = None
     fractional_correction: int = None
     line_items: List[LineItemResponse] = None
-    discounts: List[DiscountResponse] = None
-    line_item_discounts: List[LineItemDiscountResponse] = None
     line_item_tiers: List[LineItemTierResponse] = None
-    taxes: List[TaxResponse] = None
+    line_item_discounts: List[LineItemDiscountResponse] = None
     line_item_taxes: List[LineItemTaxResponse] = None
+    line_item_addresses: List[LineItemAddressResponse] = None
+    discounts: List[DiscountResponse] = None
+    taxes: List[TaxResponse] = None
+    tax_origin: TaxOriginResponse = None
     linked_refunds: List[LinkedRefundResponse] = None
     allocations: List[AllocationResponse] = None
     deleted: bool = None
@@ -252,9 +253,8 @@ class CreditNoteResponse(Model):
     business_entity_id: str = None
     shipping_address: ShippingAddressResponse = None
     billing_address: BillingAddressResponse = None
+    einvoice: EinvoiceResponse = None
     site_details_at_creation: SiteDetailsAtCreationResponse = None
-    tax_origin: TaxOriginResponse = None
-    line_item_addresses: List[LineItemAddressResponse] = None
 
 
 @dataclass

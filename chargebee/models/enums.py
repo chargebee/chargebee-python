@@ -369,6 +369,9 @@ class EntityType(Enum):
         "omnichannel_subscription_item_scheduled_change"
     )
     SALES_ORDER = "sales_order"
+    OMNICHANNEL_ONE_TIME_ORDER = "omnichannel_one_time_order"
+    OMNICHANNEL_ONE_TIME_ORDER_ITEM = "omnichannel_one_time_order_item"
+    USAGE_FILE = "usage_file"
 
     def __str__(self):
         return self.value
@@ -618,6 +621,14 @@ class EventType(Enum):
     OMNICHANNEL_SUBSCRIPTION_ITEM_CHANGED = "omnichannel_subscription_item_changed"
     OMNICHANNEL_SUBSCRIPTION_ITEM_PAUSED = "omnichannel_subscription_item_paused"
     OMNICHANNEL_SUBSCRIPTION_ITEM_RESUMED = "omnichannel_subscription_item_resumed"
+    OMNICHANNEL_ONE_TIME_ORDER_CREATED = "omnichannel_one_time_order_created"
+    OMNICHANNEL_ONE_TIME_ORDER_ITEM_CANCELLED = (
+        "omnichannel_one_time_order_item_cancelled"
+    )
+    USAGE_FILE_INGESTED = "usage_file_ingested"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_PAUSE_SCHEDULED = (
+        "omnichannel_subscription_item_pause_scheduled"
+    )
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"

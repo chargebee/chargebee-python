@@ -11,6 +11,7 @@ class CustomerEntitlement:
     class EntitlementsForCustomerParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+        consolidate_entitlements: NotRequired[bool]
 
     def entitlements_for_customer(
         self, id, params: EntitlementsForCustomerParams = None, headers=None

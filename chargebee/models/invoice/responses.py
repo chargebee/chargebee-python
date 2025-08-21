@@ -47,14 +47,19 @@ class LineItemResponse(Model):
 
 
 @dataclass
-class DiscountResponse(Model):
+class LineItemTierResponse(Model):
     raw_data: Dict[Any, Any] = None
-    amount: int = None
-    description: str = None
-    entity_type: str = None
-    discount_type: str = None
-    entity_id: str = None
-    coupon_set_code: str = None
+    line_item_id: str = None
+    starting_unit: int = None
+    ending_unit: int = None
+    quantity_used: int = None
+    unit_amount: int = None
+    starting_unit_in_decimal: str = None
+    ending_unit_in_decimal: str = None
+    quantity_used_in_decimal: str = None
+    unit_amount_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass
@@ -65,14 +70,6 @@ class LineItemDiscountResponse(Model):
     coupon_id: str = None
     entity_id: str = None
     discount_amount: int = None
-
-
-@dataclass
-class TaxResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    name: str = None
-    amount: int = None
-    description: str = None
 
 
 @dataclass
@@ -104,19 +101,49 @@ class LineItemCreditResponse(Model):
 
 
 @dataclass
-class LineItemTierResponse(Model):
+class LineItemAddressResponse(Model):
     raw_data: Dict[Any, Any] = None
     line_item_id: str = None
-    starting_unit: int = None
-    ending_unit: int = None
-    quantity_used: int = None
-    unit_amount: int = None
-    starting_unit_in_decimal: str = None
-    ending_unit_in_decimal: str = None
-    quantity_used_in_decimal: str = None
-    unit_amount_in_decimal: str = None
-    pricing_type: str = None
-    package_size: int = None
+    first_name: str = None
+    last_name: str = None
+    email: str = None
+    company: str = None
+    phone: str = None
+    line1: str = None
+    line2: str = None
+    line3: str = None
+    city: str = None
+    state_code: str = None
+    state: str = None
+    country: str = None
+    zip: str = None
+    validation_status: str = None
+
+
+@dataclass
+class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    amount: int = None
+    description: str = None
+    entity_type: str = None
+    discount_type: str = None
+    entity_id: str = None
+    coupon_set_code: str = None
+
+
+@dataclass
+class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    name: str = None
+    amount: int = None
+    description: str = None
+
+
+@dataclass
+class TaxOriginResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    country: str = None
+    registration_number: str = None
 
 
 @dataclass
@@ -218,13 +245,6 @@ class ShippingAddressResponse(Model):
 
 
 @dataclass
-class StatementDescriptorResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    id: str = None
-    descriptor: str = None
-
-
-@dataclass
 class BillingAddressResponse(Model):
     raw_data: Dict[Any, Any] = None
     first_name: str = None
@@ -244,6 +264,13 @@ class BillingAddressResponse(Model):
 
 
 @dataclass
+class StatementDescriptorResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    id: str = None
+    descriptor: str = None
+
+
+@dataclass
 class EinvoiceResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -260,66 +287,40 @@ class SiteDetailsAtCreationResponse(Model):
 
 
 @dataclass
-class TaxOriginResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    country: str = None
-    registration_number: str = None
-
-
-@dataclass
-class LineItemAddressResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    first_name: str = None
-    last_name: str = None
-    email: str = None
-    company: str = None
-    phone: str = None
-    line1: str = None
-    line2: str = None
-    line3: str = None
-    city: str = None
-    state_code: str = None
-    state: str = None
-    country: str = None
-    zip: str = None
-    validation_status: str = None
-
-
-@dataclass
 class InvoiceResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
-    po_number: str = None
     customer_id: str = None
+    payment_owner: str = None
     subscription_id: str = None
     recurring: bool = None
     status: str = None
-    vat_number: str = None
-    price_type: str = None
     date: int = None
     due_date: int = None
     net_term_days: int = None
+    po_number: str = None
+    vat_number: str = None
+    price_type: str = None
     exchange_rate: float = None
+    local_currency_exchange_rate: float = None
     currency_code: str = None
+    local_currency_code: str = None
+    tax: int = None
+    sub_total: int = None
+    sub_total_in_local_currency: int = None
     total: int = None
-    amount_paid: int = None
+    total_in_local_currency: int = None
+    amount_due: int = None
     amount_adjusted: int = None
+    amount_paid: int = None
+    paid_at: int = None
     write_off_amount: int = None
     credits_applied: int = None
-    amount_due: int = None
-    paid_at: int = None
     dunning_status: str = None
     next_retry_at: int = None
     voided_at: int = None
     resource_version: int = None
     updated_at: int = None
-    sub_total: int = None
-    sub_total_in_local_currency: int = None
-    total_in_local_currency: int = None
-    local_currency_code: str = None
-    tax: int = None
-    local_currency_exchange_rate: float = None
     first_invoice: bool = None
     new_sales_amount: int = None
     has_advance_charges: bool = None
@@ -330,12 +331,14 @@ class InvoiceResponse(Model):
     amount_to_collect: int = None
     round_off_amount: int = None
     line_items: List[LineItemResponse] = None
-    discounts: List[DiscountResponse] = None
+    line_item_tiers: List[LineItemTierResponse] = None
     line_item_discounts: List[LineItemDiscountResponse] = None
-    taxes: List[TaxResponse] = None
     line_item_taxes: List[LineItemTaxResponse] = None
     line_item_credits: List[LineItemCreditResponse] = None
-    line_item_tiers: List[LineItemTierResponse] = None
+    line_item_addresses: List[LineItemAddressResponse] = None
+    discounts: List[DiscountResponse] = None
+    taxes: List[TaxResponse] = None
+    tax_origin: TaxOriginResponse = None
     linked_payments: List[LinkedPaymentResponse] = None
     dunning_attempts: List[DunningAttemptResponse] = None
     applied_credits: List[AppliedCreditResponse] = None
@@ -344,10 +347,9 @@ class InvoiceResponse(Model):
     linked_orders: List[LinkedOrderResponse] = None
     notes: List[NoteResponse] = None
     shipping_address: ShippingAddressResponse = None
-    statement_descriptor: StatementDescriptorResponse = None
     billing_address: BillingAddressResponse = None
+    statement_descriptor: StatementDescriptorResponse = None
     einvoice: EinvoiceResponse = None
-    payment_owner: str = None
     void_reason_code: str = None
     deleted: bool = None
     tax_category: str = None
@@ -355,8 +357,6 @@ class InvoiceResponse(Model):
     channel: str = None
     business_entity_id: str = None
     site_details_at_creation: SiteDetailsAtCreationResponse = None
-    tax_origin: TaxOriginResponse = None
-    line_item_addresses: List[LineItemAddressResponse] = None
 
 
 @dataclass

@@ -12,6 +12,7 @@ class Discount:
     class Type(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
+        OFFER_QUANTITY = "offer_quantity"
 
         def __str__(self):
             return self.value

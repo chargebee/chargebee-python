@@ -23,36 +23,36 @@ class UsageFile:
         url: Required[str]
         expires_at: Required[int]
 
-    class UploadParams(TypedDict):
+    class UploadUrlParams(TypedDict):
         file_name: Required[str]
         mime_type: Required[str]
 
-    def upload(self, params: UploadParams, headers=None) -> UploadResponse:
+    def upload_url(self, params: UploadUrlParams, headers=None) -> UploadUrlResponse:
         jsonKeys = {}
         options = {}
         return request.send(
             "post",
-            request.uri_path("usage_files", "upload"),
+            request.uri_path("usage_files", "upload_url"),
             self.env,
             cast(Dict[Any, Any], params),
             headers,
-            UploadResponse,
+            UploadUrlResponse,
             "file-ingest",
             False,
             jsonKeys,
             options,
         )
 
-    def status(self, id, headers=None) -> StatusResponse:
+    def processing_status(self, id, headers=None) -> ProcessingStatusResponse:
         jsonKeys = {}
         options = {}
         return request.send(
             "get",
-            request.uri_path("usage_files", id, "status"),
+            request.uri_path("usage_files", id, "processing_status"),
             self.env,
             None,
             headers,
-            StatusResponse,
+            ProcessingStatusResponse,
             "file-ingest",
             False,
             jsonKeys,

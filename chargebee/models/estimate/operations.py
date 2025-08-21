@@ -147,6 +147,7 @@ class Estimate:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
 
     class CreateSubItemEstimateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -282,6 +283,7 @@ class Estimate:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
 
     class CreateSubItemForCustomerEstimateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -423,6 +425,7 @@ class Estimate:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
 
@@ -705,6 +708,7 @@ class Estimate:
     class CreateInvoiceForItemsDiscountParams(TypedDict):
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         apply_on: Required[enums.ApplyOn]
         item_price_id: NotRequired[str]
 

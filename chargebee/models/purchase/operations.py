@@ -47,6 +47,7 @@ class Purchase:
         index: NotRequired[int]
         coupon_id: NotRequired[str]
         percentage: NotRequired[float]
+        quantity: NotRequired[int]
         amount: NotRequired[int]
         included_in_mrr: NotRequired[bool]
 
@@ -122,6 +123,7 @@ class Purchase:
         index: NotRequired[int]
         coupon_id: NotRequired[str]
         percentage: NotRequired[float]
+        quantity: NotRequired[int]
         amount: NotRequired[int]
         included_in_mrr: NotRequired[bool]
 

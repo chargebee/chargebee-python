@@ -41,6 +41,10 @@ class QuotedCharge:
     class Coupon(TypedDict):
         coupon_id: Required[str]
 
+    class CouponApplicabilityMapping(TypedDict):
+        coupon_id: NotRequired[str]
+        applicable_item_price_ids: NotRequired[List[str]]
+
     class Addon(TypedDict):
         id: Required[str]
         quantity: NotRequired[int]

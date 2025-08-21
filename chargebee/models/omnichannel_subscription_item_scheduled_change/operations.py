@@ -11,6 +11,7 @@ class OmnichannelSubscriptionItemScheduledChange:
 
     class ChangeType(Enum):
         DOWNGRADE = "downgrade"
+        PAUSE = "pause"
 
         def __str__(self):
             return self.value

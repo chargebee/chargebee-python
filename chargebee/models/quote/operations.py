@@ -555,6 +555,7 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
@@ -645,6 +646,7 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
@@ -737,6 +739,7 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
         start_date: NotRequired[int]
@@ -835,6 +838,7 @@ class Quote:
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
+        quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
         start_date: NotRequired[int]
@@ -960,6 +964,7 @@ class Quote:
 
     class CreateForChargeItemsAndChargesDiscountParams(TypedDict):
         percentage: NotRequired[float]
+        quantity: NotRequired[int]
         amount: NotRequired[int]
         apply_on: Required[enums.ApplyOn]
         item_price_id: NotRequired[str]
@@ -1031,6 +1036,7 @@ class Quote:
 
     class EditForChargeItemsAndChargesDiscountParams(TypedDict):
         percentage: NotRequired[float]
+        quantity: NotRequired[int]
         amount: NotRequired[int]
         apply_on: Required[enums.ApplyOn]
         item_price_id: NotRequired[str]
