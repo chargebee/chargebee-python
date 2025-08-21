@@ -40,7 +40,7 @@ class Subscription(Model):
       fields = ["id", "status", "contract_start", "contract_end", "billing_cycle", "action_at_term_end", "total_contract_value", "total_contract_value_before_tax", "cancellation_cutoff_period", "created_at", "subscription_id", "remaining_billing_cycles"]
       pass
     class Discount(Model):
-      fields = ["id", "invoice_name", "type", "percentage", "amount", "currency_code", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at", "apply_till", "applied_count", "coupon_id", "index"]
+      fields = ["id", "invoice_name", "type", "percentage", "amount", "quantity", "currency_code", "duration_type", "period", "period_unit", "included_in_mrr", "apply_on", "item_price_id", "created_at", "apply_till", "applied_count", "coupon_id", "index"]
       pass
 
     fields = ["id", "currency_code", "plan_id", "plan_quantity", "plan_unit_price", "setup_fee", \

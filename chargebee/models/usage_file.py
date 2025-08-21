@@ -14,13 +14,13 @@ class UsageFile(Model):
 
 
     @staticmethod
-    def upload(params, env=None, headers=None):
+    def upload_url(params, env=None, headers=None):
         json_keys = { 
         }
-        return request.send('post', request.uri_path("usage_files","upload"), params, env, headers, "file-ingest", False,json_keys)
+        return request.send('post', request.uri_path("usage_files","upload_url"), params, env, headers, "file-ingest", False,json_keys)
 
     @staticmethod
-    def status(id, env=None, headers=None):
+    def processing_status(id, env=None, headers=None):
         json_keys = { 
         }
-        return request.send('get', request.uri_path("usage_files",id,"status"), None, env, headers, "file-ingest", False,json_keys)
+        return request.send('get', request.uri_path("usage_files",id,"processing_status"), None, env, headers, "file-ingest", False,json_keys)
