@@ -45,17 +45,6 @@ class CreditNote:
         def __str__(self):
             return self.value
 
-    class EinvoiceStatus(Enum):
-        SCHEDULED = "scheduled"
-        SKIPPED = "skipped"
-        IN_PROGRESS = "in_progress"
-        SUCCESS = "success"
-        FAILED = "failed"
-        REGISTERED = "registered"
-
-        def __str__(self):
-            return self.value
-
     class LineItemEntityType(Enum):
         ADHOC = "adhoc"
         PLAN_ITEM_PRICE = "plan_item_price"
@@ -64,6 +53,17 @@ class CreditNote:
         PLAN_SETUP = "plan_setup"
         PLAN = "plan"
         ADDON = "addon"
+
+        def __str__(self):
+            return self.value
+
+    class LineItemDiscountDiscountType(Enum):
+        ITEM_LEVEL_COUPON = "item_level_coupon"
+        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
+        PROMOTIONAL_CREDITS = "promotional_credits"
+        PRORATED_CREDITS = "prorated_credits"
+        ITEM_LEVEL_DISCOUNT = "item_level_discount"
+        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
 
         def __str__(self):
             return self.value
@@ -86,17 +86,6 @@ class CreditNote:
         def __str__(self):
             return self.value
 
-    class LineItemDiscountDiscountType(Enum):
-        ITEM_LEVEL_COUPON = "item_level_coupon"
-        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
-        PROMOTIONAL_CREDITS = "promotional_credits"
-        PRORATED_CREDITS = "prorated_credits"
-        ITEM_LEVEL_DISCOUNT = "item_level_discount"
-        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
-
-        def __str__(self):
-            return self.value
-
     class AppliedCreditTaxApplication(Enum):
         PRE_TAX = "pre_tax"
         POST_TAX = "post_tax"
@@ -104,11 +93,16 @@ class CreditNote:
         def __str__(self):
             return self.value
 
-    class Einvoice(TypedDict):
-        id: Required[str]
-        reference_number: NotRequired[str]
-        status: Required["CreditNote.EinvoiceStatus"]
-        message: NotRequired[str]
+    class EinvoiceStatus(Enum):
+        SCHEDULED = "scheduled"
+        SKIPPED = "skipped"
+        IN_PROGRESS = "in_progress"
+        SUCCESS = "success"
+        FAILED = "failed"
+        REGISTERED = "registered"
+
+        def __str__(self):
+            return self.value
 
     class LineItem(TypedDict):
         id: NotRequired[str]
@@ -137,21 +131,6 @@ class CreditNote:
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    class Discount(TypedDict):
-        amount: Required[int]
-        description: NotRequired[str]
-        entity_type: Required["CreditNote.DiscountEntityType"]
-        discount_type: NotRequired["CreditNote.DiscountDiscountType"]
-        entity_id: NotRequired[str]
-        coupon_set_code: NotRequired[str]
-
-    class LineItemDiscount(TypedDict):
-        line_item_id: Required[str]
-        discount_type: Required["CreditNote.LineItemDiscountDiscountType"]
-        coupon_id: NotRequired[str]
-        entity_id: NotRequired[str]
-        discount_amount: Required[int]
-
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]
         starting_unit: Required[int]
@@ -165,10 +144,12 @@ class CreditNote:
         pricing_type: NotRequired[enums.PricingType]
         package_size: NotRequired[int]
 
-    class Tax(TypedDict):
-        name: Required[str]
-        amount: Required[int]
-        description: NotRequired[str]
+    class LineItemDiscount(TypedDict):
+        line_item_id: Required[str]
+        discount_type: Required["CreditNote.LineItemDiscountDiscountType"]
+        coupon_id: NotRequired[str]
+        entity_id: NotRequired[str]
+        discount_amount: Required[int]
 
     class LineItemTax(TypedDict):
         line_item_id: NotRequired[str]
@@ -186,6 +167,40 @@ class CreditNote:
         tax_juris_code: NotRequired[str]
         tax_amount_in_local_currency: NotRequired[int]
         local_currency_code: NotRequired[str]
+
+    class LineItemAddress(TypedDict):
+        line_item_id: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        email: NotRequired[str]
+        company: NotRequired[str]
+        phone: NotRequired[str]
+        line1: NotRequired[str]
+        line2: NotRequired[str]
+        line3: NotRequired[str]
+        city: NotRequired[str]
+        state_code: NotRequired[str]
+        state: NotRequired[str]
+        country: NotRequired[str]
+        zip: NotRequired[str]
+        validation_status: NotRequired[enums.ValidationStatus]
+
+    class Discount(TypedDict):
+        amount: Required[int]
+        description: NotRequired[str]
+        entity_type: Required["CreditNote.DiscountEntityType"]
+        discount_type: NotRequired["CreditNote.DiscountDiscountType"]
+        entity_id: NotRequired[str]
+        coupon_set_code: NotRequired[str]
+
+    class Tax(TypedDict):
+        name: Required[str]
+        amount: Required[int]
+        description: NotRequired[str]
+
+    class TaxOrigin(TypedDict):
+        country: NotRequired[str]
+        registration_number: NotRequired[str]
 
     class LinkedRefund(TypedDict):
         txn_id: Required[str]
@@ -237,30 +252,15 @@ class CreditNote:
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
 
+    class Einvoice(TypedDict):
+        id: Required[str]
+        reference_number: NotRequired[str]
+        status: Required["CreditNote.EinvoiceStatus"]
+        message: NotRequired[str]
+
     class SiteDetailsAtCreation(TypedDict):
         timezone: NotRequired[str]
         organization_address: NotRequired[Dict[Any, Any]]
-
-    class TaxOrigin(TypedDict):
-        country: NotRequired[str]
-        registration_number: NotRequired[str]
-
-    class LineItemAddress(TypedDict):
-        line_item_id: NotRequired[str]
-        first_name: NotRequired[str]
-        last_name: NotRequired[str]
-        email: NotRequired[str]
-        company: NotRequired[str]
-        phone: NotRequired[str]
-        line1: NotRequired[str]
-        line2: NotRequired[str]
-        line3: NotRequired[str]
-        city: NotRequired[str]
-        state_code: NotRequired[str]
-        state: NotRequired[str]
-        country: NotRequired[str]
-        zip: NotRequired[str]
-        validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateLineItemParams(TypedDict):
         reference_line_item_id: NotRequired[str]
@@ -280,6 +280,7 @@ class CreditNote:
         customer_id: NotRequired[Filters.StringFilter]
 
     class RecordRefundTransactionParams(TypedDict):
+        id: NotRequired[str]
         amount: NotRequired[int]
         payment_method: Required[enums.PaymentMethod]
         reference_number: NotRequired[str]
@@ -364,6 +365,7 @@ class CreditNote:
         allocated_at: Required[int]
 
     class ImportCreditNoteLinkedRefundParams(TypedDict):
+        id: NotRequired[str]
         amount: Required[int]
         payment_method: Required[enums.PaymentMethod]
         date: Required[int]

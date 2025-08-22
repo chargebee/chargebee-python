@@ -350,6 +350,7 @@ class Customer:
         id: Required[str]
 
     class RecordExcessPaymentTransactionParams(TypedDict):
+        id: NotRequired[str]
         amount: Required[int]
         currency_code: NotRequired[str]
         date: Required[int]

@@ -48,6 +48,13 @@ class CouponResponse(Model):
 
 
 @dataclass
+class CouponApplicabilityMappingResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    coupon_id: str = None
+    applicable_item_price_ids: List[str] = None
+
+
+@dataclass
 class AddonResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -67,3 +74,4 @@ class QuotedChargeResponse(Model):
     invoice_items: List[InvoiceItemResponse] = None
     item_tiers: List[ItemTierResponse] = None
     coupons: List[CouponResponse] = None
+    coupon_applicability_mappings: List[CouponApplicabilityMappingResponse] = None

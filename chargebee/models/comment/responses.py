@@ -14,6 +14,7 @@ class CommentResponse(Model):
     created_at: int = None
     type: str = None
     entity_id: str = None
+    business_entity_id: str = None
 
 
 @dataclass

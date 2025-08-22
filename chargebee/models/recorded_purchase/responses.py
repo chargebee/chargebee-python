@@ -12,6 +12,12 @@ class LinkedOmnichannelSubscriptionResponse(Model):
 
 
 @dataclass
+class LinkedOmnichannelOneTimeOrderResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    omnichannel_one_time_order_id: str = None
+
+
+@dataclass
 class ErrorDetailResponse(Model):
     raw_data: Dict[Any, Any] = None
     error_message: str = None
@@ -29,6 +35,9 @@ class RecordedPurchaseResponse(Model):
     created_at: int = None
     resource_version: int = None
     linked_omnichannel_subscriptions: List[LinkedOmnichannelSubscriptionResponse] = None
+    linked_omnichannel_one_time_orders: List[LinkedOmnichannelOneTimeOrderResponse] = (
+        None
+    )
     error_detail: ErrorDetailResponse = None
 
 
