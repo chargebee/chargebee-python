@@ -33,6 +33,7 @@ from chargebee.models.gateway_error_detail import GatewayErrorDetail
 from chargebee.models.gift import Gift
 from chargebee.models.hierarchy import Hierarchy
 from chargebee.models.hosted_page import HostedPage
+from chargebee.models.impacted_customer import ImpactedCustomer
 from chargebee.models.impacted_item import ImpactedItem
 from chargebee.models.impacted_item_price import ImpactedItemPrice
 from chargebee.models.impacted_subscription import ImpactedSubscription
@@ -45,6 +46,8 @@ from chargebee.models.item_family import ItemFamily
 from chargebee.models.item_price import ItemPrice
 from chargebee.models.metadata import Metadata
 from chargebee.models.non_subscription import NonSubscription
+from chargebee.models.omnichannel_one_time_order import OmnichannelOneTimeOrder
+from chargebee.models.omnichannel_one_time_order_item import OmnichannelOneTimeOrderItem
 from chargebee.models.omnichannel_subscription import OmnichannelSubscription
 from chargebee.models.omnichannel_subscription_item import OmnichannelSubscriptionItem
 from chargebee.models.omnichannel_subscription_item_scheduled_change import OmnichannelSubscriptionItemScheduledChange
@@ -75,6 +78,8 @@ from chargebee.models.rule import Rule
 from chargebee.models.site_migration_detail import SiteMigrationDetail
 from chargebee.models.subscription import Subscription
 from chargebee.models.subscription_entitlement import SubscriptionEntitlement
+from chargebee.models.subscription_entitlements_created_detail import SubscriptionEntitlementsCreatedDetail
+from chargebee.models.subscription_entitlements_updated_detail import SubscriptionEntitlementsUpdatedDetail
 from chargebee.models.subscription_estimate import SubscriptionEstimate
 from chargebee.models.tax_withheld import TaxWithheld
 from chargebee.models.third_party_payment_method import ThirdPartyPaymentMethod
@@ -86,4 +91,5 @@ from chargebee.models.usage import Usage
 from chargebee.models.usage_event import UsageEvent
 from chargebee.models.usage_file import UsageFile
 from chargebee.models.virtual_bank_account import VirtualBankAccount
+from chargebee.models.webhook_endpoint import WebhookEndpoint
 from chargebee.models.content import Content

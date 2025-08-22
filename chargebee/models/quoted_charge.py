@@ -19,6 +19,9 @@ class QuotedCharge(Model):
     class Coupon(Model):
       fields = ["coupon_id"]
       pass
+    class CouponApplicabilityMapping(Model):
+      fields = ["coupon_id", "applicable_item_price_ids"]
+      pass
 
-    fields = ["charges", "addons", "invoice_items", "item_tiers", "coupons"]
+    fields = ["charges", "addons", "invoice_items", "item_tiers", "coupons", "coupon_applicability_mappings"]
 
