@@ -1,3 +1,10 @@
+### v2.56.0 (2025-08-25) 
+* * * 
+
+### New enhancement: 
+* Updated the `./chargebee/ssl/ca-certs.crt` to use the latest version of `DigiCert Global Root G2`.
+
+
 ### v2.55.0 (2025-08-19)
 * * * 
 
