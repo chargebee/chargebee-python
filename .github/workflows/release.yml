@@ -39,8 +39,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install build twine
 
-      - name: Build sdist and wheel
-        run: python -m build
+      - name: Build sdist
+        run: python setup.py sdist
 
       - name: Check metadata (twine)
         run: twine check dist/*
