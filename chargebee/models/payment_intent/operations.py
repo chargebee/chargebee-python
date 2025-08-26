@@ -7,7 +7,6 @@ from chargebee.models import gateway_error_detail
 
 @dataclass
 class PaymentIntent:
-
     env: environment.Environment
 
     class Status(Enum):

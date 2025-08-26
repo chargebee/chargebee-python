@@ -43,9 +43,7 @@ def request(
         raise Exception("No environment configured.")
 
     headers = headers or {}
-    request_args = {
-        "method": method.upper()
-    }
+    request_args = {"method": method.upper()}
 
     retry_config = env.get_retry_config() if hasattr(env, "get_retry_config") else None
     url = env.api_url(url, subDomain)
@@ -101,9 +99,13 @@ def request(
         request_args["verify"] = ctx
 
     if use_async_client:
-        return _process_response_async(full_url, request_args, retry_config, env.enable_debug_logs)
+        return _process_response_async(
+            full_url, request_args, retry_config, env.enable_debug_logs
+        )
     else:
-        return _process_response(full_url, request_args, retry_config, env.enable_debug_logs)
+        return _process_response(
+            full_url, request_args, retry_config, env.enable_debug_logs
+        )
 
 
 def _process_response(url, request_args, retry_config, enable_debug_logs):

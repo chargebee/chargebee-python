@@ -34,12 +34,10 @@ class ListEventResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListEventResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     event: EventResponse

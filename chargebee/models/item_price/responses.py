@@ -105,7 +105,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     item_price: ItemPriceResponse
 
 
@@ -122,7 +121,6 @@ class ListItemPriceResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListItemPriceResponse]
     next_offset: str = None
 
@@ -140,7 +138,6 @@ class FindApplicableItemsItemPriceResponse:
 
 @dataclass
 class FindApplicableItemsResponse(Response):
-
     list: List[FindApplicableItemsItemPriceResponse]
     next_offset: str = None
 
@@ -152,6 +149,5 @@ class FindApplicableItemPricesItemPriceResponse:
 
 @dataclass
 class FindApplicableItemPricesResponse(Response):
-
     list: List[FindApplicableItemPricesItemPriceResponse]
     next_offset: str = None

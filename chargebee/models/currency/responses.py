@@ -17,13 +17,11 @@ class CurrencyResponse(Model):
 
 @dataclass
 class ListResponse(Response):
-
     currency: CurrencyResponse
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     currency: CurrencyResponse
 
 

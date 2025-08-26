@@ -199,7 +199,6 @@ class QuoteResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
-
     quote: QuoteResponse
     quoted_subscription: "quoted_subscription.QuotedSubscriptionResponse" = None
     quoted_charge: "quoted_charge.QuotedChargeResponse" = None
@@ -303,7 +302,6 @@ class ListQuoteResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListQuoteResponse]
     next_offset: str = None
 
@@ -315,7 +313,6 @@ class QuoteLineGroupsForQuoteQuoteResponse:
 
 @dataclass
 class QuoteLineGroupsForQuoteResponse(Response):
-
     list: List[QuoteLineGroupsForQuoteQuoteResponse]
     next_offset: str = None
 

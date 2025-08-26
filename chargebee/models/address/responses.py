@@ -27,7 +27,6 @@ class AddressResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
-
     address: AddressResponse
 
 

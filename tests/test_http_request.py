@@ -38,6 +38,7 @@ class MockEnvironment(environment.Environment):
     def get_retry_config(self):
         return MockRetryConfig()
 
+
 def make_mock_client(status_code=200, text="", headers={}, is_async=False):
     mock_client = Mock() if not is_async else AsyncMock()
     mock_response = Mock()
@@ -48,10 +49,11 @@ def make_mock_client(status_code=200, text="", headers={}, is_async=False):
 
 
 class RequestTests(unittest.TestCase):
-
     @patch("httpx.Client")
     def test_successful_request(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(text=json.dumps({"message": "success"}))
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "success"})
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
@@ -64,7 +66,9 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_rate_limit_retry(self, mock_client_class):
-        mock_client, retry_response = make_mock_client(429, json.dumps({"api_error_code": "rate_limit"}), {"Retry-After": "1"})
+        mock_client, retry_response = make_mock_client(
+            429, json.dumps({"api_error_code": "rate_limit"}), {"Retry-After": "1"}
+        )
 
         success_response = Mock()
         success_response.status_code = 200
@@ -100,7 +104,12 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_no_retry_on_400(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(400, json.dumps({"api_error_code": "invalid_request", "type": "invalid_request"}))
+        mock_client, mock_response = make_mock_client(
+            400,
+            json.dumps(
+                {"api_error_code": "invalid_request", "type": "invalid_request"}
+            ),
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
@@ -116,7 +125,9 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_custom_retry_on_header_parsing(self, mock_client_class):
-        mock_client, retry_response = make_mock_client(429, json.dumps({"api_error_code": "rate_limit"}), {"Retry-After": "2"})
+        mock_client, retry_response = make_mock_client(
+            429, json.dumps({"api_error_code": "rate_limit"}), {"Retry-After": "2"}
+        )
 
         success_response = Mock()
         success_response.status_code = 200
@@ -135,14 +146,18 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.AsyncClient")
     def test_async_successful_request(self, mock_async_client_class):
-        mock_async_client, mock_response = make_mock_client(text=json.dumps({"message": "async_success"}), is_async=True)
+        mock_async_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "async_success"}), is_async=True
+        )
         mock_async_client.request.return_value = mock_response
         mock_async_client_class.return_value.__aenter__.return_value = mock_async_client
 
         from chargebee.http_request import request
 
         async def test_async_request():
-            resp, headers, status = await request("GET", "/test", MockEnvironment(), params={}, use_async_client=True)
+            resp, headers, status = await request(
+                "GET", "/test", MockEnvironment(), params={}, use_async_client=True
+            )
             return resp, headers, status
 
         resp, headers, status = asyncio.run(test_async_request())
@@ -152,7 +167,12 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.AsyncClient")
     def test_async_rate_limit_retry(self, mock_async_client_class):
-        mock_async_client, retry_response = make_mock_client(429, json.dumps({"api_error_code": "rate_limit"}), {"Retry-After": "1"}, is_async=True)
+        mock_async_client, retry_response = make_mock_client(
+            429,
+            json.dumps({"api_error_code": "rate_limit"}),
+            {"Retry-After": "1"},
+            is_async=True,
+        )
 
         success_response = Mock()
         success_response.status_code = 200
@@ -165,7 +185,9 @@ class RequestTests(unittest.TestCase):
         from chargebee.http_request import request
 
         async def test_async_retry():
-            resp, headers, status = await request("GET", "/test", MockEnvironment(), params={}, use_async_client=True)
+            resp, headers, status = await request(
+                "GET", "/test", MockEnvironment(), params={}, use_async_client=True
+            )
             return resp, headers, status
 
         resp, headers, status = asyncio.run(test_async_retry())
@@ -176,32 +198,40 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_json_request_payload(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(text=json.dumps({"message": "json_success"}))
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "json_success"})
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
         from chargebee.http_request import request
 
         test_data = {"key": "value", "nested": {"data": "test"}}
-        resp, headers, status = request("POST", "/test", MockEnvironment(), params=test_data, isJsonRequest=True)
+        resp, headers, status = request(
+            "POST", "/test", MockEnvironment(), params=test_data, isJsonRequest=True
+        )
 
         # Verify that the request was made with json parameter
         call_args = mock_client.request.call_args
         self.assertIn("json", call_args[1])
-        self.assertIn( "application/json", call_args[1]["headers"]["Content-Type"])
+        self.assertIn("application/json", call_args[1]["headers"]["Content-Type"])
         self.assertEqual(call_args[1]["json"], test_data)
         self.assertNotIn("data", call_args[1])
 
     @patch("httpx.Client")
     def test_get_request(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(text=json.dumps({"message": "json_success"}))
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "json_success"})
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
         from chargebee.http_request import request
 
         params = {"page": 1, "count": 10}
-        resp, headers, status = request("GET", "/test", MockEnvironment(), params=params, isJsonRequest=True)
+        resp, headers, status = request(
+            "GET", "/test", MockEnvironment(), params=params, isJsonRequest=True
+        )
 
         call_args = mock_client.request.call_args
         self.assertNotIn("json", call_args[1])
@@ -211,7 +241,9 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_timeout(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(text=json.dumps({"message": "json_success"}))
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "json_success"})
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
@@ -219,7 +251,9 @@ class RequestTests(unittest.TestCase):
 
         params = {"page": 1, "count": 10}
         env = MockEnvironment()
-        resp, headers, status = request("GET", "/test", env, params=params, isJsonRequest=True)
+        resp, headers, status = request(
+            "GET", "/test", env, params=params, isJsonRequest=True
+        )
 
         call_args = mock_client.request.call_args
         self.assertEqual(call_args[1]["timeout"].connect, env.connect_timeout)
@@ -227,7 +261,9 @@ class RequestTests(unittest.TestCase):
 
     @patch("httpx.Client")
     def test_subdomain_url(self, mock_client_class):
-        mock_client, mock_response = make_mock_client(text=json.dumps({"message": "json_success"}))
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "json_success"})
+        )
         mock_client.request.return_value = mock_response
         mock_client_class.return_value.__enter__.return_value = mock_client
 
@@ -237,4 +273,6 @@ class RequestTests(unittest.TestCase):
         resp, headers, status = request("GET", "/test", env, subDomain="ingest")
 
         call_args = mock_client.request.call_args
-        self.assertEqual(call_args[1]["url"], "https://test_site.ingest.chargebee.com/api/v2/test?")
+        self.assertEqual(
+            call_args[1]["url"], "https://test_site.ingest.chargebee.com/api/v2/test?"
+        )

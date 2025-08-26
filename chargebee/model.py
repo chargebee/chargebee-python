@@ -3,7 +3,6 @@ from typing import get_type_hints, get_origin, get_args
 
 
 class Model(object):
-
     def __init__(self, values):
         self.raw_data = values
         self._response_type = self.__class__

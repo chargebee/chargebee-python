@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class ContractTerm:
-
     env: environment.Environment
 
     class Status(Enum):

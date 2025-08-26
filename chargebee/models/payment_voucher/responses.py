@@ -45,7 +45,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     payment_voucher: PaymentVoucherResponse
 
 
@@ -56,7 +55,6 @@ class PaymentVouchersForInvoicePaymentVoucherResponse:
 
 @dataclass
 class PaymentVouchersForInvoiceResponse(Response):
-
     list: List[PaymentVouchersForInvoicePaymentVoucherResponse]
     next_offset: str = None
 
@@ -68,6 +66,5 @@ class PaymentVouchersForCustomerPaymentVoucherResponse:
 
 @dataclass
 class PaymentVouchersForCustomerResponse(Response):
-
     list: List[PaymentVouchersForCustomerPaymentVoucherResponse]
     next_offset: str = None

@@ -8,7 +8,6 @@ from chargebee.models import enums, unbilled_charge, payment_intent, invoice, ca
 
 @dataclass
 class Subscription:
-
     env: environment.Environment
 
     class Status(Enum):

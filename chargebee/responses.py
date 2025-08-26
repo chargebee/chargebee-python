@@ -39,7 +39,11 @@ class Response(object):
         return int(self._response_status_code)
 
     def parse(self) -> T:
-        return self.parse_list_response() if self._is_list_response else self.parse_response()
+        return (
+            self.parse_list_response()
+            if self._is_list_response
+            else self.parse_response()
+        )
 
     def parse_response(self) -> T:
         init_data = {}

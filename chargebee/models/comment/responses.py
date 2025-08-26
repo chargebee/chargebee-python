@@ -25,7 +25,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     comment: CommentResponse
 
 
@@ -36,7 +35,6 @@ class ListCommentResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListCommentResponse]
     next_offset: str = None
 

@@ -7,7 +7,6 @@ from chargebee.environment import Environment
 
 @dataclass
 class Chargebee:
-
     env: Environment = None
     idempotency_header: str = "chargebee-idempotency-key"
 

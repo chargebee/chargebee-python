@@ -6,7 +6,6 @@ from chargebee.models import enums
 
 @dataclass
 class QuotedCharge:
-
     env: environment.Environment
 
     class Charge(TypedDict):

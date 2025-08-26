@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class PaymentScheduleScheme:
-
     env: environment.Environment
 
     class PeriodUnit(Enum):

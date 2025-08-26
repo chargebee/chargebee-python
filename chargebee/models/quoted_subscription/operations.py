@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class QuotedSubscription:
-
     env: environment.Environment
 
     class ChangeOption(Enum):

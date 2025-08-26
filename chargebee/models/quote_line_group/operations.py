@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class QuoteLineGroup:
-
     env: environment.Environment
 
     class ChargeEvent(Enum):

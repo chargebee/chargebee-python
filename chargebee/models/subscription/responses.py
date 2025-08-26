@@ -324,7 +324,6 @@ class ListSubscriptionResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListSubscriptionResponse]
     next_offset: str = None
 
@@ -336,7 +335,6 @@ class SubscriptionsForCustomerSubscriptionResponse:
 
 @dataclass
 class SubscriptionsForCustomerResponse(Response):
-
     list: List[SubscriptionsForCustomerSubscriptionResponse]
     next_offset: str = None
 
@@ -348,7 +346,6 @@ class ContractTermsForSubscriptionSubscriptionResponse:
 
 @dataclass
 class ContractTermsForSubscriptionResponse(Response):
-
     list: List[ContractTermsForSubscriptionSubscriptionResponse]
     next_offset: str = None
 
@@ -360,14 +357,12 @@ class ListDiscountsSubscriptionResponse:
 
 @dataclass
 class ListDiscountsResponse(Response):
-
     list: List[ListDiscountsSubscriptionResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
@@ -375,7 +370,6 @@ class RetrieveResponse(Response):
 
 @dataclass
 class RetrieveWithScheduledChangesResponse(Response):
-
     subscription: SubscriptionResponse
     customer: "customer.CustomerResponse"
     card: "card.CardResponse" = None
@@ -483,7 +477,6 @@ class EditAdvanceInvoiceScheduleResponse(Response):
 
 @dataclass
 class RetrieveAdvanceInvoiceScheduleResponse(Response):
-
     advance_invoice_schedules: List[
         "advance_invoice_schedule.AdvanceInvoiceScheduleResponse"
     ]

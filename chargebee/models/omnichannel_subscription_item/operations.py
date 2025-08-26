@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class OmnichannelSubscriptionItem:
-
     env: environment.Environment
 
     class Status(Enum):

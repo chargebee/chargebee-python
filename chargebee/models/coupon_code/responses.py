@@ -22,7 +22,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     coupon_code: CouponCodeResponse
 
 
@@ -33,7 +32,6 @@ class ListCouponCodeResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListCouponCodeResponse]
     next_offset: str = None
 

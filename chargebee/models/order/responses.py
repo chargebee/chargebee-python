@@ -223,7 +223,6 @@ class ReopenResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     order: OrderResponse
 
 
@@ -240,7 +239,6 @@ class ListOrderResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListOrderResponse]
     next_offset: str = None
 
@@ -252,7 +250,6 @@ class OrdersForInvoiceOrderResponse:
 
 @dataclass
 class OrdersForInvoiceResponse(Response):
-
     list: List[OrdersForInvoiceOrderResponse]
     next_offset: str = None
 

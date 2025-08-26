@@ -5,7 +5,6 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 @dataclass
 class UsageEvent:
-
     env: environment.Environment
 
     class BatchIngestEventParams(TypedDict):

@@ -88,14 +88,20 @@ def send(
     }
 
     if env.use_async_client:
+
         async def async_request():
-            response, response_headers, http_code = await http_request.request(**request_args)
-            return Response(response_type, response, response_headers, http_code).parse()
+            response, response_headers, http_code = await http_request.request(
+                **request_args
+            )
+            return Response(
+                response_type, response, response_headers, http_code
+            ).parse()
 
         return async_request()
     else:
         response, response_headers, http_code = http_request.request(**request_args)
         return Response(response_type, response, response_headers, http_code).parse()
+
 
 def uri_path(*paths):
     url = ""

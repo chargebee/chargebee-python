@@ -18,5 +18,4 @@ class ResourceMigrationResponse(Model):
 
 @dataclass
 class RetrieveLatestResponse(Response):
-
     resource_migration: ResourceMigrationResponse

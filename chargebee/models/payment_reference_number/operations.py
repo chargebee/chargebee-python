@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class PaymentReferenceNumber:
-
     env: environment.Environment
 
     class Type(Enum):

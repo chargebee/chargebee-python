@@ -25,7 +25,6 @@ class ExportResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
-
     export: ExportResponse
 
 

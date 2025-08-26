@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class CreditNoteEstimate:
-
     env: environment.Environment
 
     class Type(Enum):
