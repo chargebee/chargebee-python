@@ -1,7 +1,14 @@
-### v3.10.0 (2025-08-20)
+### v3.11.0b1 (2025-08-27)
 * * *
+
 ### New Features
 * Use `httpx` instead of `requests`, thereby adding support for asynchronous API requests.
+
+### v3.10.0 (2025-08-25) 
+* * * 
+
+### New enhancement: 
+* Updated the `./chargebee/ssl/ca-certs.crt` to use the latest version of `DigiCert Global Root G2`.
 
 ### v3.9.0 (2025-08-19)
 * * * 
