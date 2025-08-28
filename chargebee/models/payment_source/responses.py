@@ -216,7 +216,6 @@ class VerifyBankAccountResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     payment_source: PaymentSourceResponse
 
 
@@ -227,7 +226,6 @@ class ListPaymentSourceResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListPaymentSourceResponse]
     next_offset: str = None
 

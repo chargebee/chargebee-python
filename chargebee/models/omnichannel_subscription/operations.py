@@ -8,7 +8,6 @@ from chargebee.models import omnichannel_subscription_item
 
 @dataclass
 class OmnichannelSubscription:
-
     env: environment.Environment
 
     class Source(Enum):

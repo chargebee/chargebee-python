@@ -47,7 +47,6 @@ class CreateSubItemEstimateResponse(Response):
 
 @dataclass
 class CreateSubForCustomerEstimateResponse(Response):
-
     estimate: EstimateResponse
 
 
@@ -71,7 +70,6 @@ class UpdateSubscriptionForItemsResponse(Response):
 
 @dataclass
 class RenewalEstimateResponse(Response):
-
     estimate: EstimateResponse
 
 
@@ -89,7 +87,6 @@ class RegenerateInvoiceEstimateResponse(Response):
 
 @dataclass
 class UpcomingInvoicesEstimateResponse(Response):
-
     estimate: EstimateResponse
 
 

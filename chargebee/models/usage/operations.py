@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class Usage:
-
     env: environment.Environment
 
     class PdfInvoiceParams(TypedDict):

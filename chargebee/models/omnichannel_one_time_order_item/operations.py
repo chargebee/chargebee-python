@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class OmnichannelOneTimeOrderItem:
-
     env: environment.Environment
 
     class CancellationReason(Enum):

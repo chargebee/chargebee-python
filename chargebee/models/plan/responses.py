@@ -131,14 +131,12 @@ class ListPlanResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListPlanResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     plan: PlanResponse
 
 

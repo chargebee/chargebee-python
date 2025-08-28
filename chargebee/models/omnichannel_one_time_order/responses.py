@@ -41,7 +41,6 @@ class OmnichannelOneTimeOrderResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
-
     omnichannel_one_time_order: OmnichannelOneTimeOrderResponse
 
 
@@ -52,6 +51,5 @@ class ListOmnichannelOneTimeOrderResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListOmnichannelOneTimeOrderResponse]
     next_offset: str = None

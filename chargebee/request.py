@@ -1,8 +1,8 @@
 import json
 import urllib
 
-from chargebee import compat
-from chargebee import util, http_request
+from chargebee import compat, environment, util, http_request
+from chargebee.responses import Response
 
 
 def lowercase_keys(data):
@@ -20,7 +20,7 @@ def lowercase_keys(data):
 def send_list_request(
     method,
     url,
-    env=None,
+    env: environment.Environment = None,
     params=None,
     headers=None,
     response_type=None,
@@ -55,7 +55,7 @@ def send_list_request(
 def send(
     method,
     url,
-    env,
+    env: environment.Environment,
     params=None,
     headers=None,
     response_type=None,
@@ -75,19 +75,32 @@ def send(
         else util.serialize(params, None, None, jsonKeys)
     )
 
-    response, response_headers, http_code = http_request.request(
-        method, url, env, ser_params, headers, subDomain, isJsonRequest, options
-    )
+    request_args = {
+        "method": method,
+        "url": url,
+        "env": env,
+        "params": ser_params,
+        "headers": headers,
+        "subDomain": subDomain,
+        "isJsonRequest": isJsonRequest,
+        "options": options,
+        "use_async_client": env.use_async_client,
+    }
 
-    from chargebee.responses import Response
+    if env.use_async_client:
 
-    if "list" in response:
-        return Response(
-            response_type, response, response_headers, http_code
-        ).parse_list_response()
-    return Response(
-        response_type, response, response_headers, http_code
-    ).parse_response()
+        async def async_request():
+            response, response_headers, http_code = await http_request.request(
+                **request_args
+            )
+            return Response(
+                response_type, response, response_headers, http_code
+            ).parse()
+
+        return async_request()
+    else:
+        response, response_headers, http_code = http_request.request(**request_args)
+        return Response(response_type, response, response_headers, http_code).parse()
 
 
 def uri_path(*paths):

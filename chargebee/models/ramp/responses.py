@@ -123,7 +123,6 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     ramp: RampResponse
 
 
@@ -140,6 +139,5 @@ class ListRampResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListRampResponse]
     next_offset: str = None

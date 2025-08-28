@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class WebhookEndpoint:
-
     env: environment.Environment
 
     class ApiVersion(Enum):

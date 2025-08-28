@@ -7,7 +7,6 @@ from chargebee.models import entitlement_override
 
 @dataclass
 class SubscriptionEntitlement:
-
     env: environment.Environment
 
     class ScheduleStatus(Enum):

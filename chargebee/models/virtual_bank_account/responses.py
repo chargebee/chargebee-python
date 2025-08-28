@@ -41,7 +41,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     virtual_bank_account: VirtualBankAccountResponse
 
 
@@ -52,7 +51,6 @@ class ListVirtualBankAccountResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListVirtualBankAccountResponse]
     next_offset: str = None
 

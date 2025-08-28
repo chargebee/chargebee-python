@@ -23,7 +23,6 @@ class ListEntitlementResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListEntitlementResponse]
     next_offset: str = None
 

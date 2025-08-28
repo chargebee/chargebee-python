@@ -35,14 +35,12 @@ class ListCouponSetResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListCouponSetResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     coupon_set: CouponSetResponse
 
 

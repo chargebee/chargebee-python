@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class OmnichannelTransaction:
-
     env: environment.Environment
 
     class Type(Enum):

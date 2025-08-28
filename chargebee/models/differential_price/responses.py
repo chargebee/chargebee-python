@@ -52,7 +52,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     differential_price: DifferentialPriceResponse
 
 
@@ -75,6 +74,5 @@ class ListDifferentialPriceResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListDifferentialPriceResponse]
     next_offset: str = None

@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class PaymentScheduleEstimate:
-
     env: environment.Environment
 
     class EntityType(Enum):

@@ -40,7 +40,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     portal_session: PortalSessionResponse
 
 

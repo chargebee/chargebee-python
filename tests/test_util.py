@@ -4,7 +4,6 @@ from chargebee import util
 
 
 class UtilTest(unittest.TestCase):
-
     def test_serialize(self):
         before = {
             "id": "sub_KyVq7DNSNM7CSD",

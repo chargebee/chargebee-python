@@ -32,7 +32,6 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     webhook_endpoint: WebhookEndpointResponse
 
 
@@ -49,6 +48,5 @@ class ListWebhookEndpointResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListWebhookEndpointResponse]
     next_offset: str = None

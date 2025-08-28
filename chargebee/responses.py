@@ -24,7 +24,8 @@ class Response(object):
         self, response_type: Type[T], response, response_header=None, http_code=None
     ):
         self._response = response
-        if "list" in response:
+        self._is_list_response = "list" in response
+        if self._is_list_response:
             self._response = response["list"]
             self._next_offset = response.get("next_offset", None)
         self._response_header = response_header
@@ -36,6 +37,13 @@ class Response(object):
 
     def http_status_code(self) -> int:
         return int(self._response_status_code)
+
+    def parse(self) -> T:
+        return (
+            self.parse_list_response()
+            if self._is_list_response
+            else self.parse_response()
+        )
 
     def parse_response(self) -> T:
         init_data = {}
