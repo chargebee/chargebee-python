@@ -1,4 +1,4 @@
-from chargebee.api_error import APIError,PaymentError,InvalidRequestError,OperationFailedError
+from chargebee.api_error import APIError,PaymentError,InvalidRequestError,OperationFailedError,UbbBatchIngestionInvalidRequestError
 from chargebee.models import *
 from chargebee.main import ChargeBee
 

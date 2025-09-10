@@ -3,7 +3,7 @@ import logging
 import platform
 import requests
 
-from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError, compat
+from chargebee import APIError,PaymentError,InvalidRequestError,OperationFailedError,UbbBatchIngestionInvalidRequestError, compat
 from chargebee.main import ChargeBee
 from chargebee.main import Environment
 from chargebee import compat
@@ -48,7 +48,6 @@ def request(method, url, env, params=None, headers=None, subDomain=None, isJsonR
         'headers': headers,
     }
     uri = meta.netloc + meta.path + '?' + meta.query
-
     if ChargeBee.verify_ca_certs:
         request_args.update({
             'verify': ChargeBee.ca_cert_path,
@@ -110,6 +109,8 @@ def handle_api_resp_error(url,http_code, resp_json, response_headers=None):
         raise OperationFailedError(http_code, resp_json, response_headers)
     elif 'invalid_request' == resp_json.get('type'):
         raise InvalidRequestError(http_code, resp_json, response_headers)
+    elif 'ubb_batch_ingestion_invalid_request' == resp_json.get('type'):
+        raise UbbBatchIngestionInvalidRequestError(http_code, resp_json, response_headers)
     else:
         raise APIError(http_code, resp_json, response_headers)
 
