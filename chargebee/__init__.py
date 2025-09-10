@@ -3,6 +3,7 @@ from chargebee.api_error import (
     PaymentError,
     InvalidRequestError,
     OperationFailedError,
+    UbbBatchIngestionInvalidRequestError,
 )
 from chargebee.filters import Filters
 from chargebee.main import Chargebee
