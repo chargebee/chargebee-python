@@ -14,6 +14,7 @@ from chargebee import (
     PaymentError,
     InvalidRequestError,
     OperationFailedError,
+    UbbBatchIngestionInvalidRequestError,
 )
 from chargebee import compat, util, environment
 from chargebee.main import Chargebee
@@ -365,5 +366,9 @@ def handle_api_resp_error(url, http_code, resp_json, response_headers=None):
         raise OperationFailedError(http_code, resp_json, response_headers)
     elif "invalid_request" == resp_json.get("type"):
         raise InvalidRequestError(http_code, resp_json, response_headers)
+    elif "ubb_batch_ingestion_invalid_request" == resp_json.get("type"):
+        raise UbbBatchIngestionInvalidRequestError(
+            http_code, resp_json, response_headers
+        )
     else:
         raise APIError(http_code, resp_json, response_headers)
