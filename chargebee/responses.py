@@ -94,6 +94,9 @@ class Response(object):
             field_name = name
             field_type = type
 
+            if field_name == "is_idempotency_replayed":
+                result["is_idempotency_replayed"] = self.is_idempotency_replayed()
+
             if hasattr(field_type, "__origin__") and field_type.__origin__ == list:
                 list_data = []
                 for response in self._response:
@@ -118,7 +121,10 @@ class Response(object):
                     list_data.append(field_type.__args__[0](**data))
 
                 result[field_name] = list_data
-                result["next_offset"] = self._next_offset
                 result["headers"] = self._response_header
                 result["http_status_code"] = self._response_status_code
+
+                if hasattr(self._response_type, 'next_offset'):
+                    result["next_offset"] = self._next_offset
+
         return self._response_type(**result)

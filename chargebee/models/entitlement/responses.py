@@ -30,4 +30,4 @@ class ListResponse(Response):
 @dataclass
 class CreateResponse(Response):
     is_idempotency_replayed: bool
-    entitlement: EntitlementResponse
+    list: List[ListEntitlementResponse]
