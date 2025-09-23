@@ -14,7 +14,7 @@ class OmnichannelSubscriptionItem(Model):
     fields = ["id", "item_id_at_source", "item_parent_id_at_source", "status", "auto_renew_status", \
     "current_term_start", "current_term_end", "expired_at", "expiration_reason", "cancelled_at", \
     "cancellation_reason", "grace_period_expires_at", "resumes_at", "has_scheduled_changes", "resource_version", \
-    "upcoming_renewal", "linked_item"]
+    "omnichannel_subscription_item_offers", "upcoming_renewal", "linked_item"]
 
 
     @staticmethod

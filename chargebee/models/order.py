@@ -8,7 +8,7 @@ class Order(Model):
       fields = ["id", "invoice_id", "invoice_line_item_id", "unit_price", "description", "amount", "fulfillment_quantity", "fulfillment_amount", "tax_amount", "amount_paid", "amount_adjusted", "refundable_credits_issued", "refundable_credits", "is_shippable", "sku", "status", "entity_type", "item_level_discount_amount", "discount_amount", "entity_id"]
       pass
     class ShippingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]

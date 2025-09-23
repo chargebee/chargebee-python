@@ -46,10 +46,13 @@ from chargebee.models.item_family import ItemFamily
 from chargebee.models.item_price import ItemPrice
 from chargebee.models.metadata import Metadata
 from chargebee.models.non_subscription import NonSubscription
+from chargebee.models.offer_event import OfferEvent
+from chargebee.models.offer_fulfillment import OfferFulfillment
 from chargebee.models.omnichannel_one_time_order import OmnichannelOneTimeOrder
 from chargebee.models.omnichannel_one_time_order_item import OmnichannelOneTimeOrderItem
 from chargebee.models.omnichannel_subscription import OmnichannelSubscription
 from chargebee.models.omnichannel_subscription_item import OmnichannelSubscriptionItem
+from chargebee.models.omnichannel_subscription_item_offer import OmnichannelSubscriptionItemOffer
 from chargebee.models.omnichannel_subscription_item_scheduled_change import OmnichannelSubscriptionItemScheduledChange
 from chargebee.models.omnichannel_transaction import OmnichannelTransaction
 from chargebee.models.order import Order
@@ -60,6 +63,7 @@ from chargebee.models.payment_schedule_estimate import PaymentScheduleEstimate
 from chargebee.models.payment_schedule_scheme import PaymentScheduleScheme
 from chargebee.models.payment_source import PaymentSource
 from chargebee.models.payment_voucher import PaymentVoucher
+from chargebee.models.personalized_offer import PersonalizedOffer
 from chargebee.models.plan import Plan
 from chargebee.models.portal_session import PortalSession
 from chargebee.models.price_variant import PriceVariant

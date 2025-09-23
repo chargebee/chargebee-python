@@ -9,10 +9,10 @@ class Currency(Model):
 
 
     @staticmethod
-    def list(env=None, headers=None):
+    def list(params=None, env=None, headers=None):
         json_keys = { 
         }
-        return request.send_list_request('get', request.uri_path("currencies","list"), None, env, headers, None, False,json_keys)
+        return request.send_list_request('get', request.uri_path("currencies","list"), params, env, headers, None, False,json_keys)
 
     @staticmethod
     def retrieve(id, env=None, headers=None):

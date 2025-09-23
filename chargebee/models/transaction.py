@@ -17,7 +17,7 @@ class Transaction(Model):
       fields = ["id", "status", "amount", "date"]
       pass
     class GatewayErrorDetail(Model):
-      fields = ["request_id", "error_category", "error_code", "error_message", "decline_code", "decline_message", "network_error_code", "network_error_message", "error_field", "recommendation_code", "recommendation_message", "processor_error_code", "processor_error_message", "error_cause_id"]
+      fields = ["request_id", "error_category", "error_code", "error_message", "decline_code", "decline_message", "network_error_code", "network_error_message", "error_field", "recommendation_code", "recommendation_message", "processor_error_code", "processor_error_message", "error_cause_id", "processor_advice_code"]
       pass
 
     fields = ["id", "customer_id", "subscription_id", "gateway_account_id", "payment_source_id", \

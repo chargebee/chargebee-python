@@ -166,17 +166,17 @@ class Result(object):
         estimate.init_dependant(self._response['estimate'], 'subscription_estimate',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant(self._response['estimate'], 'invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_addresses' : InvoiceEstimate.LineItemAddress});
+        {'line_items' : InvoiceEstimate.LineItem, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_addresses' : InvoiceEstimate.LineItemAddress, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax});
         estimate.init_dependant(self._response['estimate'], 'next_invoice_estimate',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_addresses' : InvoiceEstimate.LineItemAddress});
+        {'line_items' : InvoiceEstimate.LineItem, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_addresses' : InvoiceEstimate.LineItemAddress, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax});
         estimate.init_dependant_list(self._response['estimate'], 'subscription_estimates',
         {'shipping_address' : SubscriptionEstimate.ShippingAddress, 'contract_term' : SubscriptionEstimate.ContractTerm});
         estimate.init_dependant_list(self._response['estimate'], 'invoice_estimates',
-        {'line_items' : InvoiceEstimate.LineItem, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_addresses' : InvoiceEstimate.LineItemAddress});
+        {'line_items' : InvoiceEstimate.LineItem, 'line_item_tiers' : InvoiceEstimate.LineItemTier, 'line_item_discounts' : InvoiceEstimate.LineItemDiscount, 'line_item_taxes' : InvoiceEstimate.LineItemTax, 'line_item_credits' : InvoiceEstimate.LineItemCredit, 'line_item_addresses' : InvoiceEstimate.LineItemAddress, 'discounts' : InvoiceEstimate.Discount, 'taxes' : InvoiceEstimate.Tax});
         estimate.init_dependant_list(self._response['estimate'], 'payment_schedule_estimates',
         {'schedule_entries' : PaymentScheduleEstimate.ScheduleEntry});
         estimate.init_dependant_list(self._response['estimate'], 'credit_note_estimates',
-        {'line_items' : CreditNoteEstimate.LineItem, 'discounts' : CreditNoteEstimate.Discount, 'taxes' : CreditNoteEstimate.Tax, 'line_item_taxes' : CreditNoteEstimate.LineItemTax, 'line_item_discounts' : CreditNoteEstimate.LineItemDiscount, 'line_item_tiers' : CreditNoteEstimate.LineItemTier});
+        {'line_items' : CreditNoteEstimate.LineItem, 'line_item_tiers' : CreditNoteEstimate.LineItemTier, 'line_item_discounts' : CreditNoteEstimate.LineItemDiscount, 'line_item_taxes' : CreditNoteEstimate.LineItemTax, 'discounts' : CreditNoteEstimate.Discount, 'taxes' : CreditNoteEstimate.Tax});
         estimate.init_dependant_list(self._response['estimate'], 'unbilled_charge_estimates',
         {'tiers' : UnbilledCharge.Tier});
         return estimate;
@@ -184,7 +184,7 @@ class Result(object):
     @property
     def quote(self):
         quote = self._get('quote', Quote,
-        {'line_items' : Quote.LineItem, 'discounts' : Quote.Discount, 'line_item_discounts' : Quote.LineItemDiscount, 'taxes' : Quote.Tax, 'line_item_taxes' : Quote.LineItemTax, 'line_item_tiers' : Quote.LineItemTier, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
+        {'line_items' : Quote.LineItem, 'line_item_tiers' : Quote.LineItemTier, 'line_item_discounts' : Quote.LineItemDiscount, 'line_item_taxes' : Quote.LineItemTax, 'discounts' : Quote.Discount, 'taxes' : Quote.Tax, 'shipping_address' : Quote.ShippingAddress, 'billing_address' : Quote.BillingAddress});
         return quote;
 
     @property
@@ -214,7 +214,7 @@ class Result(object):
     @property
     def quote_line_group(self):
         quote_line_group = self._get('quote_line_group', QuoteLineGroup,
-        {'line_items' : QuoteLineGroup.LineItem, 'discounts' : QuoteLineGroup.Discount, 'line_item_discounts' : QuoteLineGroup.LineItemDiscount, 'taxes' : QuoteLineGroup.Tax, 'line_item_taxes' : QuoteLineGroup.LineItemTax});
+        {'line_items' : QuoteLineGroup.LineItem, 'line_item_discounts' : QuoteLineGroup.LineItemDiscount, 'line_item_taxes' : QuoteLineGroup.LineItemTax, 'discounts' : QuoteLineGroup.Discount, 'taxes' : QuoteLineGroup.Tax});
         return quote_line_group;
 
     @property
@@ -442,7 +442,7 @@ class Result(object):
     @property
     def ramp(self):
         ramp = self._get('ramp', Ramp,
-        {'items_to_add' : Ramp.ItemsToAdd, 'items_to_update' : Ramp.ItemsToUpdate, 'coupons_to_add' : Ramp.CouponsToAdd, 'discounts_to_add' : Ramp.DiscountsToAdd, 'item_tiers' : Ramp.ItemTier, 'status_transition_reason' : Ramp.StatusTransitionReason});
+        {'items_to_add' : Ramp.ItemsToAdd, 'items_to_update' : Ramp.ItemsToUpdate, 'coupons_to_add' : Ramp.CouponsToAdd, 'discounts_to_add' : Ramp.DiscountsToAdd, 'item_tiers' : Ramp.ItemTier, 'contract_term' : Ramp.ContractTerm, 'status_transition_reason' : Ramp.StatusTransitionReason});
         return ramp;
 
     @property
@@ -459,20 +459,25 @@ class Result(object):
     @property
     def omnichannel_subscription(self):
         omnichannel_subscription = self._get('omnichannel_subscription', OmnichannelSubscription, {},
-        {'omnichannel_subscription_items' : OmnichannelSubscriptionItem});
+        {'omnichannel_subscription_items' : OmnichannelSubscriptionItem, 'initial_purchase_transaction' : OmnichannelTransaction});
+        omnichannel_subscription.init_dependant(self._response['omnichannel_subscription'], 'initial_purchase_transaction',
+        {'linked_omnichannel_subscriptions' : OmnichannelTransaction.LinkedOmnichannelSubscription, 'linked_omnichannel_one_time_orders' : OmnichannelTransaction.LinkedOmnichannelOneTimeOrder});
         omnichannel_subscription.init_dependant_list(self._response['omnichannel_subscription'], 'omnichannel_subscription_items',
         {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal, 'linked_item' : OmnichannelSubscriptionItem.LinkedItem});
         return omnichannel_subscription;
 
     @property
     def omnichannel_transaction(self):
-        omnichannel_transaction = self._get('omnichannel_transaction', OmnichannelTransaction);
+        omnichannel_transaction = self._get('omnichannel_transaction', OmnichannelTransaction,
+        {'linked_omnichannel_subscriptions' : OmnichannelTransaction.LinkedOmnichannelSubscription, 'linked_omnichannel_one_time_orders' : OmnichannelTransaction.LinkedOmnichannelOneTimeOrder});
         return omnichannel_transaction;
 
     @property
     def omnichannel_subscription_item(self):
-        omnichannel_subscription_item = self._get('omnichannel_subscription_item', OmnichannelSubscriptionItem,
-        {'upcoming_renewal' : OmnichannelSubscriptionItem.UpcomingRenewal, 'linked_item' : OmnichannelSubscriptionItem.LinkedItem});
+        omnichannel_subscription_item = self._get('omnichannel_subscription_item', OmnichannelSubscriptionItem, {},
+        {'omnichannel_subscription_item_offers' : OmnichannelSubscriptionItemOffer});
+        omnichannel_subscription_item.init_dependant_list(self._response['omnichannel_subscription_item'], 'omnichannel_subscription_item_offers',
+        {});
         return omnichannel_subscription_item;
 
     @property
@@ -484,7 +489,9 @@ class Result(object):
     @property
     def omnichannel_one_time_order(self):
         omnichannel_one_time_order = self._get('omnichannel_one_time_order', OmnichannelOneTimeOrder, {},
-        {'omnichannel_one_time_order_items' : OmnichannelOneTimeOrderItem});
+        {'omnichannel_one_time_order_items' : OmnichannelOneTimeOrderItem, 'purchase_transaction' : OmnichannelTransaction});
+        omnichannel_one_time_order.init_dependant(self._response['omnichannel_one_time_order'], 'purchase_transaction',
+        {'linked_omnichannel_subscriptions' : OmnichannelTransaction.LinkedOmnichannelSubscription, 'linked_omnichannel_one_time_orders' : OmnichannelTransaction.LinkedOmnichannelOneTimeOrder});
         omnichannel_one_time_order.init_dependant_list(self._response['omnichannel_one_time_order'], 'omnichannel_one_time_order_items',
         {});
         return omnichannel_one_time_order;
@@ -517,9 +524,26 @@ class Result(object):
         return usage_file;
 
     @property
+    def personalized_offer(self):
+        personalized_offer = self._get('personalized_offer', PersonalizedOffer,
+        {'content' : PersonalizedOffer.Content, 'options' : PersonalizedOffer.Option});
+        return personalized_offer;
+
+    @property
     def brand(self):
         brand = self._get('brand', Brand);
         return brand;
+
+    @property
+    def offer_fulfillment(self):
+        offer_fulfillment = self._get('offer_fulfillment', OfferFulfillment,
+        {'error' : OfferFulfillment.Error});
+        return offer_fulfillment;
+
+    @property
+    def offer_event(self):
+        offer_event = self._get('offer_event', OfferEvent);
+        return offer_event;
 
     @property
     def webhook_endpoint(self):
@@ -595,6 +619,12 @@ class Result(object):
         in_app_subscriptions = self._get_list('in_app_subscriptions', InAppSubscription,
         {});
         return in_app_subscriptions;
+
+    @property
+    def personalized_offers(self):
+        personalized_offers = self._get_list('personalized_offers', PersonalizedOffer,
+        {'content' : PersonalizedOffer.Content, 'options' : PersonalizedOffer.Option});
+        return personalized_offers;
 
 
     def _get_list(self, type, cls, sub_types={}, dependant_types={}, dependant_sub_types={}):

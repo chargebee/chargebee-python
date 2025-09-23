@@ -84,7 +84,7 @@ def request(method, url, env, params=None, headers=None, subDomain=None, isJsonR
 
 def process_response(url,response, http_code, response_headers):
     try:
-        resp_json = compat.json.loads(response)
+        resp_json = response if http_code == 204 else compat.json.loads(response)
     except Exception as ex:
         if "503" in response:
             raise Exception("Sorry, the server is currently unable to handle the request due to a temporary overload or scheduled maintenance. Please retry after sometime. \n type: internal_temporary_error, \n http_status_code: 503, \n error_code: internal_temporary_error,\n content:" + response)

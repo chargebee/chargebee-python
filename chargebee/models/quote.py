@@ -7,23 +7,23 @@ class Quote(Model):
     class LineItem(Model):
       fields = ["id", "subscription_id", "date_from", "date_to", "unit_amount", "quantity", "amount", "pricing_model", "is_taxed", "tax_amount", "tax_rate", "unit_amount_in_decimal", "quantity_in_decimal", "amount_in_decimal", "discount_amount", "item_level_discount_amount", "metered", "is_percentage_pricing", "reference_line_item_id", "description", "entity_description", "entity_type", "tax_exempt_reason", "entity_id", "customer_id"]
       pass
-    class Discount(Model):
-      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
+    class LineItemTier(Model):
+      fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal", "pricing_type", "package_size"]
       pass
     class LineItemDiscount(Model):
       fields = ["line_item_id", "discount_type", "coupon_id", "entity_id", "discount_amount"]
       pass
-    class Tax(Model):
-      fields = ["name", "amount", "description"]
-      pass
     class LineItemTax(Model):
       fields = ["line_item_id", "tax_name", "tax_rate", "date_to", "date_from", "prorated_taxable_amount", "is_partial_tax_applied", "is_non_compliance_tax", "taxable_amount", "tax_amount", "tax_juris_type", "tax_juris_name", "tax_juris_code", "tax_amount_in_local_currency", "local_currency_code"]
       pass
-    class LineItemTier(Model):
-      fields = ["line_item_id", "starting_unit", "ending_unit", "quantity_used", "unit_amount", "starting_unit_in_decimal", "ending_unit_in_decimal", "quantity_used_in_decimal", "unit_amount_in_decimal", "pricing_type", "package_size"]
+    class Discount(Model):
+      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
+      pass
+    class Tax(Model):
+      fields = ["name", "amount", "description"]
       pass
     class ShippingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
@@ -32,10 +32,10 @@ class Quote(Model):
     fields = ["id", "name", "po_number", "customer_id", "subscription_id", "invoice_id", "status", \
     "operation_type", "vat_number", "price_type", "valid_till", "date", "total_payable", "charge_on_acceptance", \
     "sub_total", "total", "credits_applied", "amount_paid", "amount_due", "version", "resource_version", \
-    "updated_at", "vat_number_prefix", "line_items", "discounts", "line_item_discounts", "taxes", \
-    "line_item_taxes", "line_item_tiers", "tax_category", "currency_code", "notes", "shipping_address", \
-    "billing_address", "contract_term_start", "contract_term_end", "contract_term_termination_fee", \
-    "business_entity_id", "deleted", "total_contract_value", "total_discount"]
+    "updated_at", "vat_number_prefix", "line_items", "line_item_tiers", "line_item_discounts", "line_item_taxes", \
+    "discounts", "taxes", "tax_category", "currency_code", "notes", "shipping_address", "billing_address", \
+    "contract_term_start", "contract_term_end", "contract_term_termination_fee", "business_entity_id", \
+    "deleted", "total_contract_value", "total_discount"]
 
 
     @staticmethod
