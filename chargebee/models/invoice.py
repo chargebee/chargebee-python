@@ -53,7 +53,7 @@ class Invoice(Model):
       fields = ["note", "entity_id", "entity_type"]
       pass
     class ShippingAddress(Model):
-      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status", "index"]
+      fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class BillingAddress(Model):
       fields = ["first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]

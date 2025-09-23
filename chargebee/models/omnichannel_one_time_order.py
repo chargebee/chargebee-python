@@ -4,9 +4,6 @@ from chargebee import request
 from chargebee import APIError
 
 class OmnichannelOneTimeOrder(Model):
-    class OmnichannelTransaction(Model):
-      fields = ["id", "id_at_source", "app_id", "price_currency", "price_units", "price_nanos", "type", "transacted_at", "created_at", "resource_version"]
-      pass
 
     fields = ["id", "app_id", "customer_id", "id_at_source", "origin", "source", "created_at", \
     "resource_version", "omnichannel_one_time_order_items", "purchase_transaction"]

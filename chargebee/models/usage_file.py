@@ -10,7 +10,8 @@ class UsageFile(Model):
 
     fields = ["id", "name", "mime_type", "error_code", "error_reason", "status", "total_records_count", \
     "processed_records_count", "failed_records_count", "file_size_in_bytes", "processing_started_at", \
-    "processing_completed_at", "uploaded_by", "uploaded_at", "upload_details"]
+    "processing_completed_at", "uploaded_by", "uploaded_at", "error_file_path", "error_file_url", \
+    "upload_details"]
 
 
     @staticmethod
