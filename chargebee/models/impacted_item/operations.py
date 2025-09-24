@@ -5,6 +5,7 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 @dataclass
 class ImpactedItem:
+
     env: environment.Environment
 
     class Download(TypedDict):

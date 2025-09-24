@@ -51,10 +51,12 @@ class ListPromotionalCreditResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListPromotionalCreditResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
+
     promotional_credit: PromotionalCreditResponse

@@ -22,5 +22,6 @@ class ListSiteMigrationDetailResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListSiteMigrationDetailResponse]
     next_offset: str = None

@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class AttachedItem:
+
     env: environment.Environment
 
     class Type(Enum):

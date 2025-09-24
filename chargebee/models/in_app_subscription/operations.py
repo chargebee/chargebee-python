@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class InAppSubscription:
+
     env: environment.Environment
 
     class StoreStatus(Enum):

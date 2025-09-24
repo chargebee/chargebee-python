@@ -40,6 +40,7 @@ class CardResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
+
     card: CardResponse
 
 

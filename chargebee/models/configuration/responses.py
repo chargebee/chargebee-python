@@ -14,4 +14,5 @@ class ConfigurationResponse(Model):
 
 @dataclass
 class ListResponse(Response):
+
     configurations: List[ConfigurationResponse]

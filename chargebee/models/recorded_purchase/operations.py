@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class RecordedPurchase:
+
     env: environment.Environment
 
     class Source(Enum):

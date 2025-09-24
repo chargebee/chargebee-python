@@ -8,6 +8,7 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class HostedPage:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -20,6 +21,7 @@ class HostedPage:
         CHECKOUT_ONE_TIME = "checkout_one_time"
         PRE_CANCEL = "pre_cancel"
         VIEW_VOUCHER = "view_voucher"
+        ACCEPT_QUOTE = "accept_quote"
         CHECKOUT_GIFT = "checkout_gift"
         CLAIM_GIFT = "claim_gift"
 
@@ -320,6 +322,7 @@ class HostedPage:
         start_date: NotRequired[int]
         coupon: NotRequired[str]
         auto_collection: NotRequired[enums.AutoCollection]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         invoice_notes: NotRequired[str]
         po_number: NotRequired[str]
         contract_term_billing_cycle_on_renewal: NotRequired[int]

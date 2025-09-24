@@ -6,6 +6,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class CouponSet:
+
     env: environment.Environment
 
     class CreateParams(TypedDict):

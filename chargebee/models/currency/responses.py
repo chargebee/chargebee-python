@@ -16,12 +16,20 @@ class CurrencyResponse(Model):
 
 
 @dataclass
-class ListResponse(Response):
+class ListCurrencyResponse:
     currency: CurrencyResponse
 
 
 @dataclass
+class ListResponse(Response):
+
+    list: List[ListCurrencyResponse]
+    next_offset: str = None
+
+
+@dataclass
 class RetrieveResponse(Response):
+
     currency: CurrencyResponse
 
 

@@ -50,4 +50,5 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     recorded_purchase: RecordedPurchaseResponse

@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class AdvanceInvoiceSchedule:
+
     env: environment.Environment
 
     class ScheduleType(Enum):

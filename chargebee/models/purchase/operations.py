@@ -6,6 +6,7 @@ from chargebee.models import enums, payment_intent, contract_term
 
 @dataclass
 class Purchase:
+
     env: environment.Environment
 
     class CreatePurchaseItemParams(TypedDict):

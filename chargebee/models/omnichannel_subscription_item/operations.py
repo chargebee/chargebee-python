@@ -2,10 +2,12 @@ from .responses import *
 from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
+from chargebee.models import omnichannel_subscription_item_offer
 
 
 @dataclass
 class OmnichannelSubscriptionItem:
+
     env: environment.Environment
 
     class Status(Enum):

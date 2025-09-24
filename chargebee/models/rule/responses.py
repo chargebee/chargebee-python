@@ -21,4 +21,5 @@ class RuleResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
+
     rule: RuleResponse

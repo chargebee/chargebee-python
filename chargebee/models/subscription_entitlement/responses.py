@@ -36,6 +36,7 @@ class SubscriptionEntitlementsForSubscriptionSubscriptionEntitlementResponse:
 
 @dataclass
 class SubscriptionEntitlementsForSubscriptionResponse(Response):
+
     list: List[SubscriptionEntitlementsForSubscriptionSubscriptionEntitlementResponse]
     next_offset: str = None
 

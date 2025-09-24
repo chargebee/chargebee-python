@@ -18,6 +18,7 @@ class TimeMachineResponse(Model):
 
 @dataclass
 class RetrieveResponse(Response):
+
     time_machine: TimeMachineResponse
 
 

@@ -30,6 +30,7 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     usage: UsageResponse
 
 
@@ -46,6 +47,7 @@ class ListUsageResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListUsageResponse]
     next_offset: str = None
 

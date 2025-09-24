@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class DifferentialPrice:
+
     env: environment.Environment
 
     class Status(Enum):

@@ -30,5 +30,6 @@ class GetTransfersBusinessEntityResponse:
 
 @dataclass
 class GetTransfersResponse(Response):
+
     list: List[GetTransfersBusinessEntityResponse]
     next_offset: str = None

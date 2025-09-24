@@ -47,7 +47,6 @@ class ShippingAddressResponse(Model):
     country: str = None
     zip: str = None
     validation_status: str = None
-    index: int = None
 
 
 @dataclass
@@ -223,6 +222,7 @@ class ReopenResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     order: OrderResponse
 
 
@@ -239,6 +239,7 @@ class ListOrderResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListOrderResponse]
     next_offset: str = None
 
@@ -250,6 +251,7 @@ class OrdersForInvoiceOrderResponse:
 
 @dataclass
 class OrdersForInvoiceResponse(Response):
+
     list: List[OrdersForInvoiceOrderResponse]
     next_offset: str = None
 

@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class UsageFile:
+
     env: environment.Environment
 
     class Status(Enum):

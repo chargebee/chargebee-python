@@ -8,6 +8,7 @@ from chargebee.models import enums, payment_intent, card
 
 @dataclass
 class Customer:
+
     env: environment.Environment
 
     class VatNumberStatus(Enum):
@@ -150,6 +151,7 @@ class Customer:
         unbilled_charges: Required[int]
         currency_code: Required[str]
         balance_currency_code: Required[str]
+        business_entity_id: NotRequired[str]
 
     class EntityIdentifier(TypedDict):
         id: Required[str]

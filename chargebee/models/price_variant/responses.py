@@ -37,6 +37,7 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     price_variant: PriceVariantResponse
 
 
@@ -59,5 +60,6 @@ class ListPriceVariantResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListPriceVariantResponse]
     next_offset: str = None

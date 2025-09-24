@@ -16,6 +16,7 @@ from chargebee.models import (
 
 @dataclass
 class Estimate:
+
     env: environment.Environment
 
     class PaymentScheduleEstimateEntityType(Enum):
@@ -118,6 +119,7 @@ class Estimate:
         setup_fee: NotRequired[int]
         start_date: NotRequired[int]
         coupon: NotRequired[str]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         free_period: NotRequired[int]
         free_period_unit: NotRequired[enums.FreePeriodUnit]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
@@ -254,6 +256,7 @@ class Estimate:
         trial_end: NotRequired[int]
         setup_fee: NotRequired[int]
         start_date: NotRequired[int]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         free_period: NotRequired[int]
         free_period_unit: NotRequired[enums.FreePeriodUnit]
         contract_term_billing_cycle_on_renewal: NotRequired[int]

@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class ResourceMigration:
+
     env: environment.Environment
 
     class Status(Enum):

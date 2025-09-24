@@ -65,6 +65,7 @@ class CreateForItemsResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     gift: GiftResponse
     subscription: "subscription.SubscriptionResponse"
 
@@ -77,6 +78,7 @@ class ListGiftResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListGiftResponse]
     next_offset: str = None
 

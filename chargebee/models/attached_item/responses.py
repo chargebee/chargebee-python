@@ -39,6 +39,7 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     attached_item: AttachedItemResponse
 
 
@@ -55,5 +56,6 @@ class ListAttachedItemResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListAttachedItemResponse]
     next_offset: str = None

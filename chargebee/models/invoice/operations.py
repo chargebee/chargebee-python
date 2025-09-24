@@ -15,6 +15,7 @@ from chargebee.models import (
 
 @dataclass
 class Invoice:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -309,7 +310,6 @@ class Invoice:
         country: NotRequired[str]
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
-        index: Required[int]
 
     class BillingAddress(TypedDict):
         first_name: NotRequired[str]

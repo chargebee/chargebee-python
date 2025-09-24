@@ -34,22 +34,29 @@ class LineItemResponse(Model):
 
 
 @dataclass
-class DiscountResponse(Model):
+class LineItemTierResponse(Model):
     raw_data: Dict[Any, Any] = None
-    amount: int = None
-    description: str = None
-    entity_type: str = None
-    discount_type: str = None
-    entity_id: str = None
-    coupon_set_code: str = None
+    line_item_id: str = None
+    starting_unit: int = None
+    ending_unit: int = None
+    quantity_used: int = None
+    unit_amount: int = None
+    starting_unit_in_decimal: str = None
+    ending_unit_in_decimal: str = None
+    quantity_used_in_decimal: str = None
+    unit_amount_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass
-class TaxResponse(Model):
+class LineItemDiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
-    name: str = None
-    amount: int = None
-    description: str = None
+    line_item_id: str = None
+    discount_type: str = None
+    coupon_id: str = None
+    entity_id: str = None
+    discount_amount: int = None
 
 
 @dataclass
@@ -73,37 +80,11 @@ class LineItemTaxResponse(Model):
 
 
 @dataclass
-class LineItemTierResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    starting_unit: int = None
-    ending_unit: int = None
-    quantity_used: int = None
-    unit_amount: int = None
-    starting_unit_in_decimal: str = None
-    ending_unit_in_decimal: str = None
-    quantity_used_in_decimal: str = None
-    unit_amount_in_decimal: str = None
-    pricing_type: str = None
-    package_size: int = None
-
-
-@dataclass
 class LineItemCreditResponse(Model):
     raw_data: Dict[Any, Any] = None
     cn_id: str = None
     applied_amount: float = None
     line_item_id: str = None
-
-
-@dataclass
-class LineItemDiscountResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    discount_type: str = None
-    coupon_id: str = None
-    entity_id: str = None
-    discount_amount: int = None
 
 
 @dataclass
@@ -127,6 +108,25 @@ class LineItemAddressResponse(Model):
 
 
 @dataclass
+class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    amount: int = None
+    description: str = None
+    entity_type: str = None
+    discount_type: str = None
+    entity_id: str = None
+    coupon_set_code: str = None
+
+
+@dataclass
+class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    name: str = None
+    amount: int = None
+    description: str = None
+
+
+@dataclass
 class InvoiceEstimateResponse(Model):
     raw_data: Dict[Any, Any] = None
     recurring: bool = None
@@ -138,12 +138,12 @@ class InvoiceEstimateResponse(Model):
     amount_paid: int = None
     amount_due: int = None
     line_items: List[LineItemResponse] = None
+    line_item_tiers: List[LineItemTierResponse] = None
+    line_item_discounts: List[LineItemDiscountResponse] = None
+    line_item_taxes: List[LineItemTaxResponse] = None
+    line_item_credits: List[LineItemCreditResponse] = None
+    line_item_addresses: List[LineItemAddressResponse] = None
     discounts: List[DiscountResponse] = None
     taxes: List[TaxResponse] = None
-    line_item_taxes: List[LineItemTaxResponse] = None
-    line_item_tiers: List[LineItemTierResponse] = None
-    line_item_credits: List[LineItemCreditResponse] = None
-    line_item_discounts: List[LineItemDiscountResponse] = None
     round_off_amount: int = None
     customer_id: str = None
-    line_item_addresses: List[LineItemAddressResponse] = None

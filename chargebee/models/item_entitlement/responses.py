@@ -23,6 +23,7 @@ class ItemEntitlementsForItemItemEntitlementResponse:
 
 @dataclass
 class ItemEntitlementsForItemResponse(Response):
+
     list: List[ItemEntitlementsForItemItemEntitlementResponse]
     next_offset: str = None
 
@@ -34,6 +35,7 @@ class ItemEntitlementsForFeatureItemEntitlementResponse:
 
 @dataclass
 class ItemEntitlementsForFeatureResponse(Response):
+
     list: List[ItemEntitlementsForFeatureItemEntitlementResponse]
     next_offset: str = None
 

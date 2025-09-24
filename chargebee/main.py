@@ -7,6 +7,7 @@ from chargebee.environment import Environment
 
 @dataclass
 class Chargebee:
+
     env: Environment = None
     idempotency_header: str = "chargebee-idempotency-key"
 
@@ -83,6 +84,8 @@ class Chargebee:
         self.ItemFamily = chargebee.ItemFamily(self.env)
         self.ItemPrice = chargebee.ItemPrice(self.env)
         self.Metadata = chargebee.Metadata(self.env)
+        self.OfferEvent = chargebee.OfferEvent(self.env)
+        self.OfferFulfillment = chargebee.OfferFulfillment(self.env)
         self.OmnichannelOneTimeOrder = chargebee.OmnichannelOneTimeOrder(self.env)
         self.OmnichannelOneTimeOrderItem = chargebee.OmnichannelOneTimeOrderItem(
             self.env
@@ -90,6 +93,9 @@ class Chargebee:
         self.OmnichannelSubscription = chargebee.OmnichannelSubscription(self.env)
         self.OmnichannelSubscriptionItem = chargebee.OmnichannelSubscriptionItem(
             self.env
+        )
+        self.OmnichannelSubscriptionItemOffer = (
+            chargebee.OmnichannelSubscriptionItemOffer(self.env)
         )
         self.OmnichannelSubscriptionItemScheduledChange = (
             chargebee.OmnichannelSubscriptionItemScheduledChange(self.env)
@@ -103,6 +109,7 @@ class Chargebee:
         self.PaymentScheduleScheme = chargebee.PaymentScheduleScheme(self.env)
         self.PaymentSource = chargebee.PaymentSource(self.env)
         self.PaymentVoucher = chargebee.PaymentVoucher(self.env)
+        self.PersonalizedOffer = chargebee.PersonalizedOffer(self.env)
         self.Plan = chargebee.Plan(self.env)
         self.PortalSession = chargebee.PortalSession(self.env)
         self.PriceVariant = chargebee.PriceVariant(self.env)

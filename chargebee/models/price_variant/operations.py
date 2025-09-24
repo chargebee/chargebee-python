@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class PriceVariant:
+
     env: environment.Environment
 
     class Status(Enum):

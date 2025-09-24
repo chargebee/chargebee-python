@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class ItemEntitlement:
+
     env: environment.Environment
 
     class ItemType(Enum):

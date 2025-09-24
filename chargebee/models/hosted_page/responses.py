@@ -128,6 +128,7 @@ class AcknowledgeResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     hosted_page: HostedPageResponse
 
 
@@ -138,6 +139,7 @@ class ListHostedPageResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListHostedPageResponse]
     next_offset: str = None
 

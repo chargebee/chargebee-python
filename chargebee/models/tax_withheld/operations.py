@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class TaxWithheld:
+
     env: environment.Environment
 
     class Type(Enum):

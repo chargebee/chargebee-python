@@ -67,6 +67,7 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     item: ItemResponse
 
 
@@ -83,6 +84,7 @@ class ListItemResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListItemResponse]
     next_offset: str = None
 

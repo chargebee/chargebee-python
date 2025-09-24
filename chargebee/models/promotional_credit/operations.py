@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class PromotionalCredit:
+
     env: environment.Environment
 
     class Type(Enum):

@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class OmnichannelSubscriptionItemScheduledChange:
+
     env: environment.Environment
 
     class ChangeType(Enum):

@@ -8,6 +8,7 @@ from chargebee.models import enums, unbilled_charge, payment_intent, invoice, ca
 
 @dataclass
 class Subscription:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -143,7 +144,6 @@ class Subscription:
         country: NotRequired[str]
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
-        index: Required[int]
 
     class ReferralInfo(TypedDict):
         referral_code: NotRequired[str]
@@ -1275,6 +1275,7 @@ class Subscription:
         auto_collection: NotRequired[enums.AutoCollection]
         terms_to_charge: NotRequired[int]
         billing_alignment_mode: NotRequired[enums.BillingAlignmentMode]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         po_number: NotRequired[str]
         coupon_ids: NotRequired[List[str]]
         payment_source_id: NotRequired[str]

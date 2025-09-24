@@ -26,6 +26,7 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     item_family: ItemFamilyResponse
 
 
@@ -36,6 +37,7 @@ class ListItemFamilyResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListItemFamilyResponse]
     next_offset: str = None
 

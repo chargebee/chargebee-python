@@ -5,6 +5,7 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 @dataclass
 class Configuration:
+
     env: environment.Environment
 
     def list(self, headers=None) -> ListResponse:

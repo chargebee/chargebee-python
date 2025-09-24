@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class Discount:
+
     env: environment.Environment
 
     class Type(Enum):

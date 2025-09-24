@@ -20,6 +20,9 @@ class ItemsToAddResponse(Model):
     billing_cycles: int = None
     service_period_days: int = None
     metered_quantity: str = None
+    charge_once: bool = None
+    charge_on_option: str = None
+    charge_on_event: str = None
 
 
 @dataclass
@@ -38,6 +41,9 @@ class ItemsToUpdateResponse(Model):
     billing_cycles: int = None
     service_period_days: int = None
     metered_quantity: str = None
+    charge_once: bool = None
+    charge_on_option: str = None
+    charge_on_event: str = None
 
 
 @dataclass
@@ -80,6 +86,14 @@ class ItemTierResponse(Model):
 
 
 @dataclass
+class ContractTermResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    cancellation_cutoff_period: int = None
+    renewal_billing_cycles: int = None
+    action_at_term_end: str = None
+
+
+@dataclass
 class StatusTransitionReasonResponse(Model):
     raw_data: Dict[Any, Any] = None
     code: str = None
@@ -105,6 +119,7 @@ class RampResponse(Model):
     items_to_remove: List[str] = None
     coupons_to_remove: List[str] = None
     discounts_to_remove: List[str] = None
+    contract_term: ContractTermResponse = None
     deleted: bool = None
     status_transition_reason: StatusTransitionReasonResponse = None
 
@@ -123,6 +138,7 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     ramp: RampResponse
 
 
@@ -139,5 +155,6 @@ class ListRampResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListRampResponse]
     next_offset: str = None

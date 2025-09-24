@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class Token:
+
     env: environment.Environment
 
     class Status(Enum):

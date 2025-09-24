@@ -3,11 +3,12 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import omnichannel_one_time_order_item
+from chargebee.models import omnichannel_one_time_order_item, omnichannel_transaction
 
 
 @dataclass
 class OmnichannelOneTimeOrder:
+
     env: environment.Environment
 
     class Source(Enum):
@@ -35,18 +36,6 @@ class OmnichannelOneTimeOrder:
 
         def __str__(self):
             return self.value
-
-    class OmnichannelTransaction(TypedDict):
-        id: Required[str]
-        id_at_source: Required[str]
-        app_id: Required[str]
-        price_currency: NotRequired[str]
-        price_units: NotRequired[int]
-        price_nanos: NotRequired[int]
-        type: Required["OmnichannelOneTimeOrder.OmnichannelTransactionType"]
-        transacted_at: NotRequired[int]
-        created_at: Required[int]
-        resource_version: NotRequired[int]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

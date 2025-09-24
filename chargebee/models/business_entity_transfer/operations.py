@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class BusinessEntityTransfer:
+
     env: environment.Environment
 
     class ResourceType(Enum):

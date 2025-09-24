@@ -8,6 +8,7 @@ from chargebee.models import enums, invoice, transaction
 
 @dataclass
 class CreditNote:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -233,7 +234,6 @@ class CreditNote:
         country: NotRequired[str]
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
-        index: Required[int]
 
     class BillingAddress(TypedDict):
         first_name: NotRequired[str]

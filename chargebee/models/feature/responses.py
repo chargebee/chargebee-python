@@ -35,6 +35,7 @@ class ListFeatureResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListFeatureResponse]
     next_offset: str = None
 
@@ -53,6 +54,7 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     feature: FeatureResponse
 
 

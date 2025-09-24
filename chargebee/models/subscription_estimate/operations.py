@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class SubscriptionEstimate:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -54,7 +55,6 @@ class SubscriptionEstimate:
         country: NotRequired[str]
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
-        index: Required[int]
 
     class ContractTerm(TypedDict):
         id: Required[str]

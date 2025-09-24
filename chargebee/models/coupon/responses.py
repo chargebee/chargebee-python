@@ -93,12 +93,14 @@ class ListCouponResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListCouponResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
+
     coupon: CouponResponse
 
 

@@ -9,6 +9,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class Event:
+
     env: environment.Environment
 
     class WebhookStatus(Enum):

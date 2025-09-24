@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class UnbilledCharge:
+
     env: environment.Environment
 
     class EntityType(Enum):

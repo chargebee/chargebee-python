@@ -32,5 +32,6 @@ class ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse:
 
 @dataclass
 class ListEntitlementOverrideForSubscriptionResponse(Response):
+
     list: List[ListEntitlementOverrideForSubscriptionEntitlementOverrideResponse]
     next_offset: str = None

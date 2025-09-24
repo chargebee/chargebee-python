@@ -56,4 +56,5 @@ class UpdateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     payment_intent: PaymentIntentResponse

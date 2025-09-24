@@ -167,7 +167,6 @@ class ShippingAddressResponse(Model):
     country: str = None
     zip: str = None
     validation_status: str = None
-    index: int = None
 
 
 @dataclass
@@ -266,6 +265,7 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
+
     credit_note: CreditNoteResponse
 
 
@@ -277,6 +277,7 @@ class PdfResponse(Response):
 
 @dataclass
 class DownloadEinvoiceResponse(Response):
+
     downloads: List["download.DownloadResponse"]
 
 
@@ -307,6 +308,7 @@ class ListCreditNoteResponse:
 
 @dataclass
 class ListResponse(Response):
+
     list: List[ListCreditNoteResponse]
     next_offset: str = None
 
@@ -318,6 +320,7 @@ class CreditNotesForCustomerCreditNoteResponse:
 
 @dataclass
 class CreditNotesForCustomerResponse(Response):
+
     list: List[CreditNotesForCustomerCreditNoteResponse]
     next_offset: str = None
 
