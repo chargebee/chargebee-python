@@ -34,7 +34,6 @@ class CreateResponse(Response):
 
 @dataclass
 class RetrieveResponse(Response):
-
     payment_schedule_scheme: PaymentScheduleSchemeResponse
 
 

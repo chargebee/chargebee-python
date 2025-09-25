@@ -444,7 +444,6 @@ class ListInvoiceResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListInvoiceResponse]
     next_offset: str = None
 
@@ -456,7 +455,6 @@ class InvoicesForCustomerInvoiceResponse:
 
 @dataclass
 class InvoicesForCustomerResponse(Response):
-
     list: List[InvoicesForCustomerInvoiceResponse]
     next_offset: str = None
 
@@ -468,14 +466,12 @@ class InvoicesForSubscriptionInvoiceResponse:
 
 @dataclass
 class InvoicesForSubscriptionResponse(Response):
-
     list: List[InvoicesForSubscriptionInvoiceResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     invoice: InvoiceResponse
 
 
@@ -487,7 +483,6 @@ class PdfResponse(Response):
 
 @dataclass
 class DownloadEinvoiceResponse(Response):
-
     downloads: List["download.DownloadResponse"]
 
 
@@ -498,7 +493,6 @@ class ListPaymentReferenceNumbersInvoiceResponse:
 
 @dataclass
 class ListPaymentReferenceNumbersResponse(Response):
-
     list: List[ListPaymentReferenceNumbersInvoiceResponse]
     next_offset: str = None
 
@@ -617,7 +611,6 @@ class ApplyPaymentScheduleSchemeResponse(Response):
 
 @dataclass
 class PaymentSchedulesResponse(Response):
-
     payment_schedules: List["payment_schedule.PaymentScheduleResponse"]
 
 

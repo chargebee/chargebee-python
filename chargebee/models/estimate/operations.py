@@ -16,7 +16,6 @@ from chargebee.models import (
 
 @dataclass
 class Estimate:
-
     env: environment.Environment
 
     class PaymentScheduleEstimateEntityType(Enum):

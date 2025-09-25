@@ -15,7 +15,6 @@ from chargebee.models import (
 
 @dataclass
 class Invoice:
-
     env: environment.Environment
 
     class Status(Enum):

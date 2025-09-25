@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class OfferFulfillment:
-
     env: environment.Environment
 
     class ProcessingType(Enum):

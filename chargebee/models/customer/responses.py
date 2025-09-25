@@ -213,14 +213,12 @@ class ListCustomerResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListCustomerResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     customer: CustomerResponse
     card: "card.CardResponse" = None
 
@@ -253,7 +251,6 @@ class ContactsForCustomerCustomerResponse:
 
 @dataclass
 class ContactsForCustomerResponse(Response):
-
     list: List[ContactsForCustomerCustomerResponse]
     next_offset: str = None
 
@@ -363,7 +360,6 @@ class DeleteRelationshipResponse(Response):
 
 @dataclass
 class HierarchyResponse(Response):
-
     hierarchies: List["hierarchy.HierarchyResponse"]
 
 
@@ -374,7 +370,6 @@ class ListHierarchyDetailCustomerResponse:
 
 @dataclass
 class ListHierarchyDetailResponse(Response):
-
     list: List[ListHierarchyDetailCustomerResponse]
     next_offset: str = None
 

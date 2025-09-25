@@ -22,14 +22,11 @@ class OmnichannelSubscriptionResponse(Model):
     omnichannel_subscription_items: List[
         "omnichannel_subscription_item.OmnichannelSubscriptionItemResponse"
     ] = None
-    initial_purchase_transaction: (
-        "omnichannel_transaction.OmnichannelTransactionResponse"
-    ) = None
+    initial_purchase_transaction: "omnichannel_transaction.OmnichannelTransactionResponse" = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     omnichannel_subscription: OmnichannelSubscriptionResponse
 
 
@@ -40,7 +37,6 @@ class ListOmnichannelSubscriptionResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListOmnichannelSubscriptionResponse]
     next_offset: str = None
 
@@ -52,7 +48,6 @@ class OmnichannelTransactionsForOmnichannelSubscriptionOmnichannelSubscriptionRe
 
 @dataclass
 class OmnichannelTransactionsForOmnichannelSubscriptionResponse(Response):
-
     list: List[
         OmnichannelTransactionsForOmnichannelSubscriptionOmnichannelSubscriptionResponse
     ]

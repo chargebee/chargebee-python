@@ -156,7 +156,6 @@ class ListTransactionResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListTransactionResponse]
     next_offset: str = None
 
@@ -168,7 +167,6 @@ class TransactionsForCustomerTransactionResponse:
 
 @dataclass
 class TransactionsForCustomerResponse(Response):
-
     list: List[TransactionsForCustomerTransactionResponse]
     next_offset: str = None
 
@@ -180,7 +178,6 @@ class TransactionsForSubscriptionTransactionResponse:
 
 @dataclass
 class TransactionsForSubscriptionResponse(Response):
-
     list: List[TransactionsForSubscriptionTransactionResponse]
     next_offset: str = None
 
@@ -192,14 +189,12 @@ class PaymentsForInvoiceTransactionResponse:
 
 @dataclass
 class PaymentsForInvoiceResponse(Response):
-
     list: List[PaymentsForInvoiceTransactionResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     transaction: TransactionResponse
 
 

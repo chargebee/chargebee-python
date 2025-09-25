@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class PortalSession:
-
     env: environment.Environment
 
     class Status(Enum):

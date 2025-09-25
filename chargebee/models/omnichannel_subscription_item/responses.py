@@ -55,6 +55,5 @@ class ListOmniSubItemScheduleChangesOmnichannelSubscriptionItemResponse:
 
 @dataclass
 class ListOmniSubItemScheduleChangesResponse(Response):
-
     list: List[ListOmniSubItemScheduleChangesOmnichannelSubscriptionItemResponse]
     next_offset: str = None

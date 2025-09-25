@@ -8,7 +8,6 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class Quote:
-
     env: environment.Environment
 
     class Status(Enum):

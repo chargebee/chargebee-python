@@ -8,7 +8,6 @@ from chargebee.models import enums, invoice, transaction
 
 @dataclass
 class CreditNote:
-
     env: environment.Environment
 
     class Type(Enum):

@@ -36,7 +36,6 @@ class OfferFulfillmentsResponse(Response):
 
 @dataclass
 class OfferFulfillmentsGetResponse(Response):
-
     offer_fulfillment: OfferFulfillmentResponse
 
 

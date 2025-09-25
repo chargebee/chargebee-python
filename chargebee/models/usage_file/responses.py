@@ -41,5 +41,4 @@ class UploadUrlResponse(Response):
 
 @dataclass
 class ProcessingStatusResponse(Response):
-
     usage_file: UsageFileResponse

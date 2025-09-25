@@ -22,14 +22,12 @@ class ListCurrencyResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListCurrencyResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     currency: CurrencyResponse
 
 

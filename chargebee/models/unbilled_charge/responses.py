@@ -80,7 +80,6 @@ class ListUnbilledChargeResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListUnbilledChargeResponse]
     next_offset: str = None
 

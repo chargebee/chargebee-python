@@ -22,6 +22,5 @@ class EntitlementsForCustomerCustomerEntitlementResponse:
 
 @dataclass
 class EntitlementsForCustomerResponse(Response):
-
     list: List[EntitlementsForCustomerCustomerEntitlementResponse]
     next_offset: str = None

@@ -93,14 +93,12 @@ class ListAddonResponse:
 
 @dataclass
 class ListResponse(Response):
-
     list: List[ListAddonResponse]
     next_offset: str = None
 
 
 @dataclass
 class RetrieveResponse(Response):
-
     addon: AddonResponse
 
 

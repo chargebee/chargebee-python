@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class SubscriptionEstimate:
-
     env: environment.Environment
 
     class Status(Enum):
