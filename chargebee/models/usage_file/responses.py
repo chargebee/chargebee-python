@@ -28,6 +28,8 @@ class UsageFileResponse(Model):
     processing_completed_at: int = None
     uploaded_by: str = None
     uploaded_at: int = None
+    error_file_path: str = None
+    error_file_url: str = None
     upload_details: UploadDetailResponse = None
 
 

@@ -111,6 +111,7 @@ class Transaction:
         processor_error_code: NotRequired[str]
         processor_error_message: NotRequired[str]
         error_cause_id: NotRequired[str]
+        processor_advice_code: NotRequired[str]
 
     class CreateAuthorizationParams(TypedDict):
         customer_id: Required[str]

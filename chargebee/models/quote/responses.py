@@ -48,14 +48,19 @@ class LineItemResponse(Model):
 
 
 @dataclass
-class DiscountResponse(Model):
+class LineItemTierResponse(Model):
     raw_data: Dict[Any, Any] = None
-    amount: int = None
-    description: str = None
-    entity_type: str = None
-    discount_type: str = None
-    entity_id: str = None
-    coupon_set_code: str = None
+    line_item_id: str = None
+    starting_unit: int = None
+    ending_unit: int = None
+    quantity_used: int = None
+    unit_amount: int = None
+    starting_unit_in_decimal: str = None
+    ending_unit_in_decimal: str = None
+    quantity_used_in_decimal: str = None
+    unit_amount_in_decimal: str = None
+    pricing_type: str = None
+    package_size: int = None
 
 
 @dataclass
@@ -66,14 +71,6 @@ class LineItemDiscountResponse(Model):
     coupon_id: str = None
     entity_id: str = None
     discount_amount: int = None
-
-
-@dataclass
-class TaxResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    name: str = None
-    amount: int = None
-    description: str = None
 
 
 @dataclass
@@ -97,19 +94,22 @@ class LineItemTaxResponse(Model):
 
 
 @dataclass
-class LineItemTierResponse(Model):
+class DiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
-    line_item_id: str = None
-    starting_unit: int = None
-    ending_unit: int = None
-    quantity_used: int = None
-    unit_amount: int = None
-    starting_unit_in_decimal: str = None
-    ending_unit_in_decimal: str = None
-    quantity_used_in_decimal: str = None
-    unit_amount_in_decimal: str = None
-    pricing_type: str = None
-    package_size: int = None
+    amount: int = None
+    description: str = None
+    entity_type: str = None
+    discount_type: str = None
+    entity_id: str = None
+    coupon_set_code: str = None
+
+
+@dataclass
+class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    name: str = None
+    amount: int = None
+    description: str = None
 
 
 @dataclass
@@ -129,7 +129,6 @@ class ShippingAddressResponse(Model):
     country: str = None
     zip: str = None
     validation_status: str = None
-    index: int = None
 
 
 @dataclass
@@ -178,11 +177,11 @@ class QuoteResponse(Model):
     updated_at: int = None
     vat_number_prefix: str = None
     line_items: List[LineItemResponse] = None
-    discounts: List[DiscountResponse] = None
-    line_item_discounts: List[LineItemDiscountResponse] = None
-    taxes: List[TaxResponse] = None
-    line_item_taxes: List[LineItemTaxResponse] = None
     line_item_tiers: List[LineItemTierResponse] = None
+    line_item_discounts: List[LineItemDiscountResponse] = None
+    line_item_taxes: List[LineItemTaxResponse] = None
+    discounts: List[DiscountResponse] = None
+    taxes: List[TaxResponse] = None
     tax_category: str = None
     currency_code: str = None
     notes: List[Dict[Any, Any]] = None

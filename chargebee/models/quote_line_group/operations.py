@@ -32,6 +32,17 @@ class QuoteLineGroup:
         def __str__(self):
             return self.value
 
+    class LineItemDiscountDiscountType(Enum):
+        ITEM_LEVEL_COUPON = "item_level_coupon"
+        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
+        PROMOTIONAL_CREDITS = "promotional_credits"
+        PRORATED_CREDITS = "prorated_credits"
+        ITEM_LEVEL_DISCOUNT = "item_level_discount"
+        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
+
+        def __str__(self):
+            return self.value
+
     class DiscountEntityType(Enum):
         ITEM_LEVEL_COUPON = "item_level_coupon"
         DOCUMENT_LEVEL_COUPON = "document_level_coupon"
@@ -46,17 +57,6 @@ class QuoteLineGroup:
     class DiscountDiscountType(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
-
-        def __str__(self):
-            return self.value
-
-    class LineItemDiscountDiscountType(Enum):
-        ITEM_LEVEL_COUPON = "item_level_coupon"
-        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
-        PROMOTIONAL_CREDITS = "promotional_credits"
-        PRORATED_CREDITS = "prorated_credits"
-        ITEM_LEVEL_DISCOUNT = "item_level_discount"
-        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
 
         def __str__(self):
             return self.value
@@ -88,25 +88,12 @@ class QuoteLineGroup:
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    class Discount(TypedDict):
-        amount: Required[int]
-        description: NotRequired[str]
-        entity_type: Required["QuoteLineGroup.DiscountEntityType"]
-        discount_type: NotRequired["QuoteLineGroup.DiscountDiscountType"]
-        entity_id: NotRequired[str]
-        coupon_set_code: NotRequired[str]
-
     class LineItemDiscount(TypedDict):
         line_item_id: Required[str]
         discount_type: Required["QuoteLineGroup.LineItemDiscountDiscountType"]
         coupon_id: NotRequired[str]
         entity_id: NotRequired[str]
         discount_amount: Required[int]
-
-    class Tax(TypedDict):
-        name: Required[str]
-        amount: Required[int]
-        description: NotRequired[str]
 
     class LineItemTax(TypedDict):
         line_item_id: NotRequired[str]
@@ -124,5 +111,18 @@ class QuoteLineGroup:
         tax_juris_code: NotRequired[str]
         tax_amount_in_local_currency: NotRequired[int]
         local_currency_code: NotRequired[str]
+
+    class Discount(TypedDict):
+        amount: Required[int]
+        description: NotRequired[str]
+        entity_type: Required["QuoteLineGroup.DiscountEntityType"]
+        discount_type: NotRequired["QuoteLineGroup.DiscountDiscountType"]
+        entity_id: NotRequired[str]
+        coupon_set_code: NotRequired[str]
+
+    class Tax(TypedDict):
+        name: Required[str]
+        amount: Required[int]
+        description: NotRequired[str]
 
     pass

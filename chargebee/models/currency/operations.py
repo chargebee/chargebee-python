@@ -15,6 +15,10 @@ class Currency:
         def __str__(self):
             return self.value
 
+    class ListParams(TypedDict):
+        limit: NotRequired[int]
+        offset: NotRequired[str]
+
     class CreateParams(TypedDict):
         currency_code: Required[str]
         forex_type: Required["Currency.ForexType"]
@@ -28,14 +32,14 @@ class Currency:
         manual_exchange_rate: Required[str]
         schedule_at: Required[int]
 
-    def list(self, headers=None) -> ListResponse:
+    def list(self, params: ListParams = None, headers=None) -> ListResponse:
         jsonKeys = {}
         options = {}
         return request.send_list_request(
             "get",
             request.uri_path("currencies", "list"),
             self.env,
-            None,
+            cast(Dict[Any, Any], params),
             headers,
             ListResponse,
             None,

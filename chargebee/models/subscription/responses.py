@@ -98,7 +98,6 @@ class ShippingAddressResponse(Model):
     country: str = None
     zip: str = None
     validation_status: str = None
-    index: int = None
 
 
 @dataclass

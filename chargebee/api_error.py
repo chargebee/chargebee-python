@@ -1,5 +1,4 @@
 class APIError(Exception):
-
     def __init__(self, http_code, json_obj, headers=None):
         Exception.__init__(self, json_obj.get("message"))
         self.json_obj = json_obj

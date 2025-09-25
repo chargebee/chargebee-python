@@ -34,17 +34,6 @@ class LineItemResponse(Model):
 
 
 @dataclass
-class DiscountResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    amount: int = None
-    description: str = None
-    entity_type: str = None
-    discount_type: str = None
-    entity_id: str = None
-    coupon_set_code: str = None
-
-
-@dataclass
 class LineItemDiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
     line_item_id: str = None
@@ -52,14 +41,6 @@ class LineItemDiscountResponse(Model):
     coupon_id: str = None
     entity_id: str = None
     discount_amount: int = None
-
-
-@dataclass
-class TaxResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    name: str = None
-    amount: int = None
-    description: str = None
 
 
 @dataclass
@@ -83,6 +64,25 @@ class LineItemTaxResponse(Model):
 
 
 @dataclass
+class DiscountResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    amount: int = None
+    description: str = None
+    entity_type: str = None
+    discount_type: str = None
+    entity_id: str = None
+    coupon_set_code: str = None
+
+
+@dataclass
+class TaxResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    name: str = None
+    amount: int = None
+    description: str = None
+
+
+@dataclass
 class QuoteLineGroupResponse(Model):
     raw_data: Dict[Any, Any] = None
     version: int = None
@@ -95,7 +95,7 @@ class QuoteLineGroupResponse(Model):
     charge_event: str = None
     billing_cycle_number: int = None
     line_items: List[LineItemResponse] = None
-    discounts: List[DiscountResponse] = None
     line_item_discounts: List[LineItemDiscountResponse] = None
-    taxes: List[TaxResponse] = None
     line_item_taxes: List[LineItemTaxResponse] = None
+    discounts: List[DiscountResponse] = None
+    taxes: List[TaxResponse] = None

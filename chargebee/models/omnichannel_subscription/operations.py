@@ -3,7 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import omnichannel_subscription_item
+from chargebee.models import omnichannel_subscription_item, omnichannel_transaction
 
 
 @dataclass
@@ -62,18 +62,6 @@ class OmnichannelSubscription:
         def __str__(self):
             return self.value
 
-    class OmnichannelTransaction(TypedDict):
-        id: Required[str]
-        id_at_source: Required[str]
-        app_id: Required[str]
-        price_currency: NotRequired[str]
-        price_units: NotRequired[int]
-        price_nanos: NotRequired[int]
-        type: Required["OmnichannelSubscription.OmnichannelTransactionType"]
-        transacted_at: NotRequired[int]
-        created_at: Required[int]
-        resource_version: NotRequired[int]
-
     class ListParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
@@ -83,6 +71,9 @@ class OmnichannelSubscription:
     class OmnichannelTransactionsForOmnichannelSubscriptionParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+
+    class MoveParams(TypedDict):
+        to_customer_id: Required[str]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
@@ -133,6 +124,24 @@ class OmnichannelSubscription:
             cast(Dict[Any, Any], params),
             headers,
             OmnichannelTransactionsForOmnichannelSubscriptionResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("omnichannel_subscriptions", id, "move"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            MoveResponse,
             None,
             False,
             jsonKeys,

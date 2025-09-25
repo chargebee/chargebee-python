@@ -65,6 +65,7 @@ class GatewayErrorDetailResponse(Model):
     processor_error_code: str = None
     processor_error_message: str = None
     error_cause_id: str = None
+    processor_advice_code: str = None
 
 
 @dataclass

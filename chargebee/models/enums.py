@@ -122,6 +122,15 @@ class CancelOption(Enum):
         return self.value
 
 
+class Category(Enum):
+    INTRODUCTORY = "introductory"
+    PROMOTIONAL = "promotional"
+    DEVELOPER_DETERMINED = "developer_determined"
+
+    def __str__(self):
+        return self.value
+
+
 class ChangeOption(Enum):
     IMMEDIATELY = "immediately"
     END_OF_TERM = "end_of_term"
@@ -248,6 +257,15 @@ class DirectDebitScheme(Enum):
     BECS_NZ = "becs_nz"
     PAD = "pad"
     NOT_APPLICABLE = "not_applicable"
+
+    def __str__(self):
+        return self.value
+
+
+class DiscountType(Enum):
+    FIXED_AMOUNT = "fixed_amount"
+    PERCENTAGE = "percentage"
+    PRICE = "price"
 
     def __str__(self):
         return self.value
@@ -466,6 +484,7 @@ class EventType(Enum):
     TRANSACTION_DELETED = "transaction_deleted"
     PAYMENT_SUCCEEDED = "payment_succeeded"
     PAYMENT_FAILED = "payment_failed"
+    DUNNING_UPDATED = "dunning_updated"
     PAYMENT_REFUNDED = "payment_refunded"
     PAYMENT_INITIATED = "payment_initiated"
     REFUND_INITIATED = "refund_initiated"
@@ -629,6 +648,7 @@ class EventType(Enum):
     OMNICHANNEL_SUBSCRIPTION_ITEM_PAUSE_SCHEDULED = (
         "omnichannel_subscription_item_pause_scheduled"
     )
+    OMNICHANNEL_SUBSCRIPTION_MOVED_IN = "omnichannel_subscription_moved_in"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -1140,6 +1160,9 @@ class Type(Enum):
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
     PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
+    FREE_TRIAL = "free_trial"
+    PAY_UP_FRONT = "pay_up_front"
+    PAY_AS_YOU_GO = "pay_as_you_go"
 
     def __str__(self):
         return self.value

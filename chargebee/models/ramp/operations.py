@@ -26,6 +26,15 @@ class Ramp:
         def __str__(self):
             return self.value
 
+    class ContractTermActionAtTermEnd(Enum):
+        RENEW = "renew"
+        EVERGREEN = "evergreen"
+        CANCEL = "cancel"
+        RENEW_ONCE = "renew_once"
+
+        def __str__(self):
+            return self.value
+
     class ItemsToAdd(TypedDict):
         item_price_id: Required[str]
         item_type: Required[enums.ItemType]
@@ -40,6 +49,9 @@ class Ramp:
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
         metered_quantity: NotRequired[str]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
 
     class ItemsToUpdate(TypedDict):
         item_price_id: Required[str]
@@ -55,6 +67,9 @@ class Ramp:
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
         metered_quantity: NotRequired[str]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
 
     class CouponsToAdd(TypedDict):
         coupon_id: Required[str]
@@ -86,6 +101,11 @@ class Ramp:
         package_size: NotRequired[int]
         index: Required[int]
 
+    class ContractTerm(TypedDict):
+        cancellation_cutoff_period: NotRequired[int]
+        renewal_billing_cycles: NotRequired[int]
+        action_at_term_end: Required["Ramp.ContractTermActionAtTermEnd"]
+
     class StatusTransitionReason(TypedDict):
         code: NotRequired[str]
         message: NotRequired[str]
@@ -98,6 +118,9 @@ class Ramp:
         unit_price_in_decimal: NotRequired[str]
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CreateForSubscriptionItemsToUpdateParams(TypedDict):
         item_price_id: Required[str]
@@ -107,6 +130,9 @@ class Ramp:
         unit_price_in_decimal: NotRequired[str]
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CreateForSubscriptionItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -133,6 +159,11 @@ class Ramp:
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
 
+    class CreateForSubscriptionContractTermParams(TypedDict):
+        action_at_term_end: NotRequired["Ramp.ContractTermActionAtTermEnd"]
+        cancellation_cutoff_period: NotRequired[int]
+        renewal_billing_cycles: NotRequired[int]
+
     class UpdateItemsToAddParams(TypedDict):
         item_price_id: Required[str]
         quantity: NotRequired[int]
@@ -141,6 +172,9 @@ class Ramp:
         unit_price_in_decimal: NotRequired[str]
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class UpdateItemsToUpdateParams(TypedDict):
         item_price_id: Required[str]
@@ -150,6 +184,9 @@ class Ramp:
         unit_price_in_decimal: NotRequired[str]
         billing_cycles: NotRequired[int]
         service_period_days: NotRequired[int]
+        charge_on_event: NotRequired[enums.ChargeOnEvent]
+        charge_once: NotRequired[bool]
+        charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class UpdateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -176,6 +213,11 @@ class Ramp:
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
 
+    class UpdateContractTermParams(TypedDict):
+        action_at_term_end: NotRequired["Ramp.ContractTermActionAtTermEnd"]
+        cancellation_cutoff_period: NotRequired[int]
+        renewal_billing_cycles: NotRequired[int]
+
     class CreateForSubscriptionParams(TypedDict):
         effective_from: Required[int]
         description: NotRequired[str]
@@ -191,6 +233,7 @@ class Ramp:
         discounts_to_add: Required[
             List["Ramp.CreateForSubscriptionDiscountsToAddParams"]
         ]
+        contract_term: NotRequired["Ramp.CreateForSubscriptionContractTermParams"]
 
     class UpdateParams(TypedDict):
         effective_from: Required[int]
@@ -203,6 +246,7 @@ class Ramp:
         item_tiers: NotRequired[List["Ramp.UpdateItemTierParams"]]
         coupons_to_add: NotRequired[List["Ramp.UpdateCouponsToAddParams"]]
         discounts_to_add: Required[List["Ramp.UpdateDiscountsToAddParams"]]
+        contract_term: NotRequired["Ramp.UpdateContractTermParams"]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

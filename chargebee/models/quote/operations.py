@@ -46,6 +46,17 @@ class Quote:
         def __str__(self):
             return self.value
 
+    class LineItemDiscountDiscountType(Enum):
+        ITEM_LEVEL_COUPON = "item_level_coupon"
+        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
+        PROMOTIONAL_CREDITS = "promotional_credits"
+        PRORATED_CREDITS = "prorated_credits"
+        ITEM_LEVEL_DISCOUNT = "item_level_discount"
+        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
+
+        def __str__(self):
+            return self.value
+
     class DiscountEntityType(Enum):
         ITEM_LEVEL_COUPON = "item_level_coupon"
         DOCUMENT_LEVEL_COUPON = "document_level_coupon"
@@ -60,17 +71,6 @@ class Quote:
     class DiscountDiscountType(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
-
-        def __str__(self):
-            return self.value
-
-    class LineItemDiscountDiscountType(Enum):
-        ITEM_LEVEL_COUPON = "item_level_coupon"
-        DOCUMENT_LEVEL_COUPON = "document_level_coupon"
-        PROMOTIONAL_CREDITS = "promotional_credits"
-        PRORATED_CREDITS = "prorated_credits"
-        ITEM_LEVEL_DISCOUNT = "item_level_discount"
-        DOCUMENT_LEVEL_DISCOUNT = "document_level_discount"
 
         def __str__(self):
             return self.value
@@ -102,13 +102,18 @@ class Quote:
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
 
-    class Discount(TypedDict):
-        amount: Required[int]
-        description: NotRequired[str]
-        entity_type: Required["Quote.DiscountEntityType"]
-        discount_type: NotRequired["Quote.DiscountDiscountType"]
-        entity_id: NotRequired[str]
-        coupon_set_code: NotRequired[str]
+    class LineItemTier(TypedDict):
+        line_item_id: NotRequired[str]
+        starting_unit: Required[int]
+        ending_unit: NotRequired[int]
+        quantity_used: Required[int]
+        unit_amount: Required[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        quantity_used_in_decimal: NotRequired[str]
+        unit_amount_in_decimal: NotRequired[str]
+        pricing_type: NotRequired[enums.PricingType]
+        package_size: NotRequired[int]
 
     class LineItemDiscount(TypedDict):
         line_item_id: Required[str]
@@ -116,11 +121,6 @@ class Quote:
         coupon_id: NotRequired[str]
         entity_id: NotRequired[str]
         discount_amount: Required[int]
-
-    class Tax(TypedDict):
-        name: Required[str]
-        amount: Required[int]
-        description: NotRequired[str]
 
     class LineItemTax(TypedDict):
         line_item_id: NotRequired[str]
@@ -139,18 +139,18 @@ class Quote:
         tax_amount_in_local_currency: NotRequired[int]
         local_currency_code: NotRequired[str]
 
-    class LineItemTier(TypedDict):
-        line_item_id: NotRequired[str]
-        starting_unit: Required[int]
-        ending_unit: NotRequired[int]
-        quantity_used: Required[int]
-        unit_amount: Required[int]
-        starting_unit_in_decimal: NotRequired[str]
-        ending_unit_in_decimal: NotRequired[str]
-        quantity_used_in_decimal: NotRequired[str]
-        unit_amount_in_decimal: NotRequired[str]
-        pricing_type: NotRequired[enums.PricingType]
-        package_size: NotRequired[int]
+    class Discount(TypedDict):
+        amount: Required[int]
+        description: NotRequired[str]
+        entity_type: Required["Quote.DiscountEntityType"]
+        discount_type: NotRequired["Quote.DiscountDiscountType"]
+        entity_id: NotRequired[str]
+        coupon_set_code: NotRequired[str]
+
+    class Tax(TypedDict):
+        name: Required[str]
+        amount: Required[int]
+        description: NotRequired[str]
 
     class ShippingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -167,7 +167,6 @@ class Quote:
         country: NotRequired[str]
         zip: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
-        index: Required[int]
 
     class BillingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -526,6 +525,7 @@ class Quote:
         trial_end: NotRequired[int]
         setup_fee: NotRequired[int]
         start_date: NotRequired[int]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class CreateSubItemsForCustomerQuoteSubscriptionItemParams(TypedDict):
@@ -617,6 +617,7 @@ class Quote:
         trial_end: NotRequired[int]
         setup_fee: NotRequired[int]
         start_date: NotRequired[int]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class EditCreateSubCustomerQuoteForItemsSubscriptionItemParams(TypedDict):

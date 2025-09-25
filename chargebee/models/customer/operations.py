@@ -150,6 +150,7 @@ class Customer:
         unbilled_charges: Required[int]
         currency_code: Required[str]
         balance_currency_code: Required[str]
+        business_entity_id: NotRequired[str]
 
     class EntityIdentifier(TypedDict):
         id: Required[str]
