@@ -44,8 +44,8 @@ class OmnichannelSubscriptionItemResponse(Model):
     omnichannel_subscription_item_offers: List[
         "omnichannel_subscription_item_offer.OmnichannelSubscriptionItemOfferResponse"
     ] = None
-    upcoming_renewal: "upcoming_renewal.UpcomingRenewalResponse" = None
-    linked_item: "linked_item.LinkedItemResponse" = None
+    upcoming_renewal: UpcomingRenewalResponse = None
+    linked_item: LinkedItemResponse = None
 
 
 @dataclass
