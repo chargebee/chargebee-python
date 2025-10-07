@@ -1,3 +1,10 @@
+### v3.12.1 (2025-10-06)
+* * * 
+
+### Bug Fixes: 
+* Fixed incorrect type for upcoming_renewal in OmnichannelSubscriptionItemResponse.
+* Fixed incorrect type for linked_item in OmnichannelSubscriptionItemResponse.
+
 ### v3.12.0 (2025-09-24)
 * * * 
 
