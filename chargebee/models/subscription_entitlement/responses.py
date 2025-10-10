@@ -41,6 +41,11 @@ class SubscriptionEntitlementsForSubscriptionResponse(Response):
 
 
 @dataclass
+class SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementResponse:
+    subscription_entitlement: SubscriptionEntitlementResponse
+
+
+@dataclass
 class SetSubscriptionEntitlementAvailabilityResponse(Response):
     is_idempotency_replayed: bool
-    subscription_entitlement: SubscriptionEntitlementResponse
+    list: List[SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementResponse]

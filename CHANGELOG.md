@@ -1,3 +1,11 @@
+### v3.12.2 (2025-10-10)
+* * * 
+
+### Bug fixes: 
+* Made a correct response schema for Entitlement#CreateResponse.
+* Made a correct response schema for EntitlementOverride#AddEntitlementOverrideForSubscriptionResponse.
+* Made a correct response schema for SubscriptionEntitlements#SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementResponse.
+
 ### v3.12.1 (2025-10-06)
 * * * 
 

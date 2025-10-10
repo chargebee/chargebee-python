@@ -20,9 +20,14 @@ class EntitlementOverrideResponse(Model):
 
 
 @dataclass
+class AddEntitlementOverrideForSubscriptionEntitlementOverrideResponse:
+    entitlement_override: EntitlementOverrideResponse
+
+
+@dataclass
 class AddEntitlementOverrideForSubscriptionResponse(Response):
     is_idempotency_replayed: bool
-    entitlement_override: EntitlementOverrideResponse
+    list: List[AddEntitlementOverrideForSubscriptionEntitlementOverrideResponse]
 
 
 @dataclass
