@@ -142,6 +142,7 @@ class Quote:
     class Discount(TypedDict):
         amount: Required[int]
         description: NotRequired[str]
+        line_item_id: NotRequired[str]
         entity_type: Required["Quote.DiscountEntityType"]
         discount_type: NotRequired["Quote.DiscountDiscountType"]
         entity_id: NotRequired[str]

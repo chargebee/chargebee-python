@@ -125,6 +125,7 @@ class DiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
     amount: int = None
     description: str = None
+    line_item_id: str = None
     entity_type: str = None
     discount_type: str = None
     entity_id: str = None
@@ -155,6 +156,20 @@ class LinkedPaymentResponse(Model):
     txn_status: str = None
     txn_date: int = None
     txn_amount: int = None
+
+
+@dataclass
+class ReferenceTransactionResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    applied_amount: int = None
+    applied_at: int = None
+    txn_id: str = None
+    txn_status: str = None
+    txn_date: int = None
+    txn_amount: int = None
+    txn_type: str = None
+    amount_capturable: int = None
+    authorization_reason: str = None
 
 
 @dataclass
@@ -339,6 +354,7 @@ class InvoiceResponse(Model):
     taxes: List[TaxResponse] = None
     tax_origin: TaxOriginResponse = None
     linked_payments: List[LinkedPaymentResponse] = None
+    reference_transactions: List[ReferenceTransactionResponse] = None
     dunning_attempts: List[DunningAttemptResponse] = None
     applied_credits: List[AppliedCreditResponse] = None
     adjustment_credit_notes: List[AdjustmentCreditNoteResponse] = None

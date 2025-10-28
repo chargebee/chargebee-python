@@ -365,7 +365,7 @@ class HierarchyResponse(Response):
 
 @dataclass
 class ListHierarchyDetailCustomerResponse:
-    hierarchies: List["hierarchy.HierarchyResponse"]
+    hierarchy: "hierarchy.HierarchyResponse"
 
 
 @dataclass

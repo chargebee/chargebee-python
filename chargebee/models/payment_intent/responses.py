@@ -14,6 +14,22 @@ class PaymentAttemptResponse(Model):
     id_at_gateway: str = None
     error_code: str = None
     error_text: str = None
+    checkout_details: str = None
+    created_at: int = None
+    modified_at: int = None
+    error_detail: gateway_error_detail.GatewayErrorDetailResponse = None
+
+
+@dataclass
+class PaymentAttemptResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    id: str = None
+    status: str = None
+    payment_method_type: str = None
+    id_at_gateway: str = None
+    error_code: str = None
+    error_text: str = None
+    checkout_details: str = None
     created_at: int = None
     modified_at: int = None
     error_detail: gateway_error_detail.GatewayErrorDetailResponse = None
@@ -39,6 +55,7 @@ class PaymentIntentResponse(Model):
     customer_id: str = None
     gateway: str = None
     active_payment_attempt: PaymentAttemptResponse = None
+    payment_attempts: List[PaymentAttemptResponse] = None
     business_entity_id: str = None
 
 

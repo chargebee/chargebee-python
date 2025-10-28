@@ -223,6 +223,7 @@ class Invoice:
     class Discount(TypedDict):
         amount: Required[int]
         description: NotRequired[str]
+        line_item_id: NotRequired[str]
         entity_type: Required["Invoice.DiscountEntityType"]
         discount_type: NotRequired["Invoice.DiscountDiscountType"]
         entity_id: NotRequired[str]
@@ -244,6 +245,17 @@ class Invoice:
         txn_status: NotRequired["transaction.Transaction.Status"]
         txn_date: NotRequired[int]
         txn_amount: NotRequired[int]
+
+    class ReferenceTransaction(TypedDict):
+        applied_amount: Required[int]
+        applied_at: Required[int]
+        txn_id: Required[str]
+        txn_status: NotRequired["transaction.Transaction.Status"]
+        txn_date: NotRequired[int]
+        txn_amount: NotRequired[int]
+        txn_type: Required["Invoice.TxnType"]
+        amount_capturable: Required[int]
+        authorization_reason: NotRequired["Invoice.AuthorizationReason"]
 
     class DunningAttempt(TypedDict):
         attempt: Required[int]
@@ -663,6 +675,7 @@ class Invoice:
         unit_amount_in_decimal: NotRequired[str]
 
     class ImportInvoiceDiscountParams(TypedDict):
+        line_item_id: NotRequired[str]
         entity_type: Required["Invoice.DiscountEntityType"]
         entity_id: NotRequired[str]
         description: NotRequired[str]
