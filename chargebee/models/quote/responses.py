@@ -98,6 +98,7 @@ class DiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
     amount: int = None
     description: str = None
+    line_item_id: str = None
     entity_type: str = None
     discount_type: str = None
     entity_id: str = None

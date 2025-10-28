@@ -57,6 +57,18 @@ class PaymentIntent:
         def __str__(self):
             return self.value
 
+    class PaymentAttemptStatus(Enum):
+        INITED = "inited"
+        REQUIRES_IDENTIFICATION = "requires_identification"
+        REQUIRES_CHALLENGE = "requires_challenge"
+        REQUIRES_REDIRECTION = "requires_redirection"
+        AUTHORIZED = "authorized"
+        REFUSED = "refused"
+        PENDING_AUTHORIZATION = "pending_authorization"
+
+        def __str__(self):
+            return self.value
+
     class PaymentAttempt(TypedDict):
         id: NotRequired[str]
         status: Required["PaymentIntent.PaymentAttemptStatus"]
@@ -64,6 +76,19 @@ class PaymentIntent:
         id_at_gateway: NotRequired[str]
         error_code: NotRequired[str]
         error_text: NotRequired[str]
+        checkout_details: NotRequired[str]
+        created_at: Required[int]
+        modified_at: Required[int]
+        error_detail: NotRequired[gateway_error_detail.GatewayErrorDetailResponse]
+
+    class PaymentAttempt(TypedDict):
+        id: NotRequired[str]
+        status: Required["PaymentIntent.PaymentAttemptStatus"]
+        payment_method_type: NotRequired["PaymentIntent.PaymentMethodType"]
+        id_at_gateway: NotRequired[str]
+        error_code: NotRequired[str]
+        error_text: NotRequired[str]
+        checkout_details: NotRequired[str]
         created_at: Required[int]
         modified_at: Required[int]
         error_detail: NotRequired[gateway_error_detail.GatewayErrorDetailResponse]

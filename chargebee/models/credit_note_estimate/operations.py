@@ -125,6 +125,7 @@ class CreditNoteEstimate:
     class Discount(TypedDict):
         amount: Required[int]
         description: NotRequired[str]
+        line_item_id: NotRequired[str]
         entity_type: Required["CreditNoteEstimate.DiscountEntityType"]
         discount_type: NotRequired["CreditNoteEstimate.DiscountDiscountType"]
         entity_id: NotRequired[str]

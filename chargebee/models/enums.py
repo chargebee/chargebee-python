@@ -649,6 +649,7 @@ class EventType(Enum):
         "omnichannel_subscription_item_pause_scheduled"
     )
     OMNICHANNEL_SUBSCRIPTION_MOVED_IN = "omnichannel_subscription_moved_in"
+    OMNICHANNEL_TRANSACTION_CREATED = "omnichannel_transaction_created"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -741,6 +742,7 @@ class Gateway(Enum):
     SOLIDGATE = "solidgate"
     PAYSTACK = "paystack"
     JP_MORGAN = "jp_morgan"
+    DEUTSCHE_BANK = "deutsche_bank"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 

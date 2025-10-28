@@ -187,6 +187,7 @@ class CreditNote:
     class Discount(TypedDict):
         amount: Required[int]
         description: NotRequired[str]
+        line_item_id: NotRequired[str]
         entity_type: Required["CreditNote.DiscountEntityType"]
         discount_type: NotRequired["CreditNote.DiscountDiscountType"]
         entity_id: NotRequired[str]
@@ -343,6 +344,7 @@ class CreditNote:
         unit_amount_in_decimal: NotRequired[str]
 
     class ImportCreditNoteDiscountParams(TypedDict):
+        line_item_id: NotRequired[str]
         entity_type: Required["CreditNote.DiscountEntityType"]
         entity_id: NotRequired[str]
         description: NotRequired[str]

@@ -49,6 +49,7 @@ class Transaction:
     class AuthorizationReason(Enum):
         BLOCKING_FUNDS = "blocking_funds"
         VERIFICATION = "verification"
+        SCHEDULED_CAPTURE = "scheduled_capture"
 
         def __str__(self):
             return self.value
