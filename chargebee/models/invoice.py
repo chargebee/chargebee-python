@@ -23,7 +23,7 @@ class Invoice(Model):
       fields = ["line_item_id", "first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class Discount(Model):
-      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
+      fields = ["amount", "description", "line_item_id", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
       pass
     class Tax(Model):
       fields = ["name", "amount", "description"]
@@ -33,6 +33,9 @@ class Invoice(Model):
       pass
     class LinkedPayment(Model):
       fields = ["txn_id", "applied_amount", "applied_at", "txn_status", "txn_date", "txn_amount"]
+      pass
+    class ReferenceTransaction(Model):
+      fields = ["applied_amount", "applied_at", "txn_id", "txn_status", "txn_date", "txn_amount", "txn_type", "amount_capturable", "authorization_reason"]
       pass
     class DunningAttempt(Model):
       fields = ["attempt", "transaction_id", "dunning_type", "created_at", "txn_status", "txn_amount"]
@@ -77,9 +80,10 @@ class Invoice(Model):
     "term_finalized", "is_gifted", "generated_at", "expected_payment_date", "amount_to_collect", \
     "round_off_amount", "line_items", "line_item_tiers", "line_item_discounts", "line_item_taxes", \
     "line_item_credits", "line_item_addresses", "discounts", "taxes", "tax_origin", "linked_payments", \
-    "dunning_attempts", "applied_credits", "adjustment_credit_notes", "issued_credit_notes", "linked_orders", \
-    "notes", "shipping_address", "billing_address", "statement_descriptor", "einvoice", "void_reason_code", \
-    "deleted", "tax_category", "vat_number_prefix", "channel", "business_entity_id", "site_details_at_creation"]
+    "reference_transactions", "dunning_attempts", "applied_credits", "adjustment_credit_notes", \
+    "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address", "statement_descriptor", \
+    "einvoice", "void_reason_code", "deleted", "tax_category", "vat_number_prefix", "channel", "business_entity_id", \
+    "site_details_at_creation"]
 
 
     @staticmethod

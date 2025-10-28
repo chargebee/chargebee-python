@@ -105,7 +105,7 @@ class Result(object):
     @property
     def invoice(self):
         invoice = self._get('invoice', Invoice,
-        {'line_items' : Invoice.LineItem, 'line_item_tiers' : Invoice.LineItemTier, 'line_item_discounts' : Invoice.LineItemDiscount, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_addresses' : Invoice.LineItemAddress, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'tax_origin' : Invoice.TaxOrigin, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation});
+        {'line_items' : Invoice.LineItem, 'line_item_tiers' : Invoice.LineItemTier, 'line_item_discounts' : Invoice.LineItemDiscount, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_addresses' : Invoice.LineItemAddress, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'tax_origin' : Invoice.TaxOrigin, 'linked_payments' : Invoice.LinkedPayment, 'reference_transactions' : Invoice.ReferenceTransaction, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation});
         return invoice;
 
     @property
@@ -301,7 +301,7 @@ class Result(object):
     @property
     def payment_intent(self):
         payment_intent = self._get('payment_intent', PaymentIntent,
-        {'payment_attempt' : PaymentIntent.PaymentAttempt});
+        {'payment_attempt' : PaymentIntent.PaymentAttempt, 'payment_attempts' : PaymentIntent.PaymentAttempt});
         return payment_intent;
 
     @property
@@ -581,7 +581,7 @@ class Result(object):
     @property
     def invoices(self):
         invoices = self._get_list('invoices', Invoice,
-        {'line_items' : Invoice.LineItem, 'line_item_tiers' : Invoice.LineItemTier, 'line_item_discounts' : Invoice.LineItemDiscount, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_addresses' : Invoice.LineItemAddress, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'tax_origin' : Invoice.TaxOrigin, 'linked_payments' : Invoice.LinkedPayment, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation});
+        {'line_items' : Invoice.LineItem, 'line_item_tiers' : Invoice.LineItemTier, 'line_item_discounts' : Invoice.LineItemDiscount, 'line_item_taxes' : Invoice.LineItemTax, 'line_item_credits' : Invoice.LineItemCredit, 'line_item_addresses' : Invoice.LineItemAddress, 'discounts' : Invoice.Discount, 'taxes' : Invoice.Tax, 'tax_origin' : Invoice.TaxOrigin, 'linked_payments' : Invoice.LinkedPayment, 'reference_transactions' : Invoice.ReferenceTransaction, 'dunning_attempts' : Invoice.DunningAttempt, 'applied_credits' : Invoice.AppliedCredit, 'adjustment_credit_notes' : Invoice.AdjustmentCreditNote, 'issued_credit_notes' : Invoice.IssuedCreditNote, 'linked_orders' : Invoice.LinkedOrder, 'notes' : Invoice.Note, 'shipping_address' : Invoice.ShippingAddress, 'billing_address' : Invoice.BillingAddress, 'statement_descriptor' : Invoice.StatementDescriptor, 'einvoice' : Invoice.Einvoice, 'site_details_at_creation' : Invoice.SiteDetailsAtCreation});
         return invoices;
 
     @property

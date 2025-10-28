@@ -20,7 +20,7 @@ class CreditNote(Model):
       fields = ["line_item_id", "first_name", "last_name", "email", "company", "phone", "line1", "line2", "line3", "city", "state_code", "state", "country", "zip", "validation_status"]
       pass
     class Discount(Model):
-      fields = ["amount", "description", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
+      fields = ["amount", "description", "line_item_id", "entity_type", "discount_type", "entity_id", "coupon_set_code"]
       pass
     class Tax(Model):
       fields = ["name", "amount", "description"]
