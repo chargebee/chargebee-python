@@ -335,6 +335,7 @@ class InvoiceResponse(Model):
     voided_at: int = None
     resource_version: int = None
     updated_at: int = None
+    line_items_next_offset: str = None
     first_invoice: bool = None
     new_sales_amount: int = None
     has_advance_charges: bool = None

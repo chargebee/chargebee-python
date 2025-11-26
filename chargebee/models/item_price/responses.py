@@ -151,3 +151,9 @@ class FindApplicableItemPricesItemPriceResponse:
 class FindApplicableItemPricesResponse(Response):
     list: List[FindApplicableItemPricesItemPriceResponse]
     next_offset: str = None
+
+
+@dataclass
+class MoveItemPriceResponse(Response):
+    is_idempotency_replayed: bool
+    item_price: ItemPriceResponse

@@ -390,6 +390,8 @@ class EntityType(Enum):
     OMNICHANNEL_ONE_TIME_ORDER = "omnichannel_one_time_order"
     OMNICHANNEL_ONE_TIME_ORDER_ITEM = "omnichannel_one_time_order_item"
     USAGE_FILE = "usage_file"
+    BUSINESS_RULE = "business_rule"
+    RULESET = "ruleset"
 
     def __str__(self):
         return self.value
@@ -743,6 +745,7 @@ class Gateway(Enum):
     PAYSTACK = "paystack"
     JP_MORGAN = "jp_morgan"
     DEUTSCHE_BANK = "deutsche_bank"
+    EZIDEBIT = "ezidebit"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 

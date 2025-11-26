@@ -136,6 +136,8 @@ from chargebee.models.discount.operations import Discount
 
 from chargebee.models.download.operations import Download
 
+from chargebee.models.einvoice.operations import Einvoice
+
 from chargebee.models.entitlement.operations import Entitlement
 
 from chargebee.models.entitlement_override.operations import EntitlementOverride
@@ -245,6 +247,8 @@ from chargebee.models.quote.operations import Quote
 from chargebee.models.quote_line_group.operations import QuoteLineGroup
 
 from chargebee.models.quoted_charge.operations import QuotedCharge
+
+from chargebee.models.quoted_delta_ramp.operations import QuotedDeltaRamp
 
 from chargebee.models.quoted_ramp.operations import QuotedRamp
 

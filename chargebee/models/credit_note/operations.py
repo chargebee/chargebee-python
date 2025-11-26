@@ -386,6 +386,8 @@ class CreditNote:
 
     class RetrieveParams(TypedDict):
         line_item: NotRequired["CreditNote.RetrieveLineItemParams"]
+        line_items_limit: NotRequired[int]
+        line_items_offset: NotRequired[str]
 
     class PdfParams(TypedDict):
         disposition_type: NotRequired[enums.DispositionType]

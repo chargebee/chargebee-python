@@ -129,6 +129,17 @@ class Gift:
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
         quantity_in_decimal: NotRequired[str]
+        unit_price: NotRequired[int]
+        unit_price_in_decimal: NotRequired[str]
+
+    class CreateForItemsItemTierParams(TypedDict):
+        item_price_id: NotRequired[str]
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
 
     class ListGiftReceiverParams(TypedDict):
         email: NotRequired[Filters.StringFilter]
@@ -163,6 +174,8 @@ class Gift:
         subscription_items: NotRequired[
             List["Gift.CreateForItemsSubscriptionItemParams"]
         ]
+        meta_data: NotRequired[Dict[Any, Any]]
+        item_tiers: NotRequired[List["Gift.CreateForItemsItemTierParams"]]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]
@@ -199,6 +212,7 @@ class Gift:
         self, params: CreateForItemsParams, headers=None
     ) -> CreateForItemsResponse:
         jsonKeys = {
+            "meta_data": 0,
             "additional_information": 1,
         }
         options = {
