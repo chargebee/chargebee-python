@@ -70,3 +70,9 @@ class ItemPrice(Model):
         json_keys = { 
         }
         return request.send('get', request.uri_path("item_prices",id,"applicable_item_prices"), params, env, headers, None, False,json_keys)
+
+    @staticmethod
+    def move_item_price(id, params, env=None, headers=None):
+        json_keys = { 
+        }
+        return request.send('post', request.uri_path("item_prices",id,"move"), params, env, headers, None, False,json_keys)

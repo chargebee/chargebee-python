@@ -76,11 +76,11 @@ class Invoice(Model):
     "local_currency_exchange_rate", "currency_code", "local_currency_code", "tax", "sub_total", \
     "sub_total_in_local_currency", "total", "total_in_local_currency", "amount_due", "amount_adjusted", \
     "amount_paid", "paid_at", "write_off_amount", "credits_applied", "dunning_status", "next_retry_at", \
-    "voided_at", "resource_version", "updated_at", "first_invoice", "new_sales_amount", "has_advance_charges", \
-    "term_finalized", "is_gifted", "generated_at", "expected_payment_date", "amount_to_collect", \
-    "round_off_amount", "line_items", "line_item_tiers", "line_item_discounts", "line_item_taxes", \
-    "line_item_credits", "line_item_addresses", "discounts", "taxes", "tax_origin", "linked_payments", \
-    "reference_transactions", "dunning_attempts", "applied_credits", "adjustment_credit_notes", \
+    "voided_at", "resource_version", "updated_at", "line_items_next_offset", "first_invoice", "new_sales_amount", \
+    "has_advance_charges", "term_finalized", "is_gifted", "generated_at", "expected_payment_date", \
+    "amount_to_collect", "round_off_amount", "line_items", "line_item_tiers", "line_item_discounts", \
+    "line_item_taxes", "line_item_credits", "line_item_addresses", "discounts", "taxes", "tax_origin", \
+    "linked_payments", "reference_transactions", "dunning_attempts", "applied_credits", "adjustment_credit_notes", \
     "issued_credit_notes", "linked_orders", "notes", "shipping_address", "billing_address", "statement_descriptor", \
     "einvoice", "void_reason_code", "deleted", "tax_category", "vat_number_prefix", "channel", "business_entity_id", \
     "site_details_at_creation"]

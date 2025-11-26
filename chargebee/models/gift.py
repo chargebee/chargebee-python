@@ -28,6 +28,7 @@ class Gift(Model):
     @staticmethod
     def create_for_items(params, env=None, headers=None):
         json_keys = { 
+            "meta_data": 0,
             "additional_information": 1,
         }
         return request.send('post', request.uri_path("gifts","create_for_items"), params, env, headers, None, False,json_keys)
