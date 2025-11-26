@@ -602,6 +602,17 @@ class HostedPage:
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
         quantity_in_decimal: NotRequired[str]
+        unit_price: NotRequired[int]
+        unit_price_in_decimal: NotRequired[str]
+
+    class CheckoutGiftForItemsItemTierParams(TypedDict):
+        item_price_id: NotRequired[str]
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
 
     class ClaimGiftGiftParams(TypedDict):
         id: Required[str]
@@ -837,6 +848,7 @@ class HostedPage:
         subscription_items: NotRequired[
             List["HostedPage.CheckoutGiftForItemsSubscriptionItemParams"]
         ]
+        item_tiers: NotRequired[List["HostedPage.CheckoutGiftForItemsItemTierParams"]]
         coupon_ids: NotRequired[List[str]]
 
     class ClaimGiftParams(TypedDict):

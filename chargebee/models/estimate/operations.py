@@ -607,6 +607,17 @@ class Estimate:
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
         quantity_in_decimal: NotRequired[str]
+        unit_price: NotRequired[int]
+        unit_price_in_decimal: NotRequired[str]
+
+    class GiftSubscriptionForItemsItemTierParams(TypedDict):
+        item_price_id: NotRequired[str]
+        starting_unit: NotRequired[int]
+        ending_unit: NotRequired[int]
+        price: NotRequired[int]
+        starting_unit_in_decimal: NotRequired[str]
+        ending_unit_in_decimal: NotRequired[str]
+        price_in_decimal: NotRequired[str]
 
     class CreateInvoiceInvoiceParams(TypedDict):
         customer_id: NotRequired[str]
@@ -1017,6 +1028,7 @@ class Estimate:
         subscription_items: NotRequired[
             List["Estimate.GiftSubscriptionForItemsSubscriptionItemParams"]
         ]
+        item_tiers: NotRequired[List["Estimate.GiftSubscriptionForItemsItemTierParams"]]
 
     class CreateInvoiceParams(TypedDict):
         invoice: NotRequired["Estimate.CreateInvoiceInvoiceParams"]

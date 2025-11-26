@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
-from chargebee.models import invoice, transaction, transaction, invoice, download
+from chargebee.models import invoice, transaction, transaction, download, invoice
 
 
 @dataclass
@@ -229,6 +229,7 @@ class CreditNoteResponse(Model):
     resource_version: int = None
     updated_at: int = None
     channel: str = None
+    line_items_next_offset: str = None
     sub_total: int = None
     sub_total_in_local_currency: int = None
     total_in_local_currency: int = None
