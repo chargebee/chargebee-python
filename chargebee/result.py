@@ -120,6 +120,11 @@ class Result(object):
         return payment_schedule;
 
     @property
+    def einvoice(self):
+        einvoice = self._get('einvoice', Einvoice);
+        return einvoice;
+
+    @property
     def tax_withheld(self):
         tax_withheld = self._get('tax_withheld', TaxWithheld);
         return tax_withheld;
@@ -204,6 +209,12 @@ class Result(object):
         quoted_ramp = self._get('quoted_ramp', QuotedRamp,
         {'line_items' : QuotedRamp.LineItem, 'discounts' : QuotedRamp.Discount, 'item_tiers' : QuotedRamp.ItemTier, 'coupon_applicability_mappings' : QuotedRamp.CouponApplicabilityMapping});
         return quoted_ramp;
+
+    @property
+    def quoted_delta_ramp(self):
+        quoted_delta_ramp = self._get('quoted_delta_ramp', QuotedDeltaRamp,
+        {'line_items' : QuotedDeltaRamp.LineItem});
+        return quoted_delta_ramp;
 
     @property
     def billing_configuration(self):

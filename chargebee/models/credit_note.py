@@ -50,12 +50,12 @@ class CreditNote(Model):
     fields = ["id", "customer_id", "subscription_id", "reference_invoice_id", "type", "reason_code", \
     "status", "vat_number", "date", "price_type", "currency_code", "total", "amount_allocated", \
     "amount_refunded", "amount_available", "refunded_at", "voided_at", "generated_at", "resource_version", \
-    "updated_at", "channel", "sub_total", "sub_total_in_local_currency", "total_in_local_currency", \
-    "local_currency_code", "round_off_amount", "fractional_correction", "line_items", "line_item_tiers", \
-    "line_item_discounts", "line_item_taxes", "line_item_addresses", "discounts", "taxes", "tax_origin", \
-    "linked_refunds", "allocations", "deleted", "tax_category", "local_currency_exchange_rate", \
-    "create_reason_code", "vat_number_prefix", "business_entity_id", "shipping_address", "billing_address", \
-    "einvoice", "site_details_at_creation"]
+    "updated_at", "channel", "line_items_next_offset", "sub_total", "sub_total_in_local_currency", \
+    "total_in_local_currency", "local_currency_code", "round_off_amount", "fractional_correction", \
+    "line_items", "line_item_tiers", "line_item_discounts", "line_item_taxes", "line_item_addresses", \
+    "discounts", "taxes", "tax_origin", "linked_refunds", "allocations", "deleted", "tax_category", \
+    "local_currency_exchange_rate", "create_reason_code", "vat_number_prefix", "business_entity_id", \
+    "shipping_address", "billing_address", "einvoice", "site_details_at_creation"]
 
 
     @staticmethod
