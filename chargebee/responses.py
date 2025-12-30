@@ -55,21 +55,10 @@ class Response(object):
             if field_name in self._response:
                 if hasattr(field_type, "__origin__") and field_type.__origin__ == list:
                     list_data = []
-                    for response in self._response:
-                        data = {}
-                        for inner_name, inner_type in get_type_hints(
-                            field_type.__args__[0]
-                        ).items():
-                            inner_field_name = inner_name
-                            inner_field_type = inner_type
-                            if inner_field_name in response:
-                                if _is_primitive(inner_field_type):
-                                    data[inner_field_name] = response[inner_field_name]
-                                else:
-                                    data[inner_field_name] = inner_field_type.construct(
-                                        response[inner_field_name]
-                                    )
-                        list_data.append(field_type.__args__[0](**data))
+                    inner_type = field_type.__args__[0]
+                    for response in self._response[field_name]:
+                        data = inner_type.construct(response)
+                        list_data.append(data)
                     init_data[field_name] = list_data
                 elif _is_primitive(field_type):
                     init_data[field_name] = self._response[field_name]

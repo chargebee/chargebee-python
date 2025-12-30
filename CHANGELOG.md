@@ -1,3 +1,9 @@
+### v3.14.1 (2025-12-18)
+* * * 
+
+### Bug Fixes: 
+* Fixed an issue where top level array resources for non-list response are not getting parsed correctly.
+
 ### v3.14.0 (2025-11-26)
 * * * 
 
