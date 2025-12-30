@@ -41,6 +41,11 @@ class PaymentIntent:
         KLARNA_PAY_NOW = "klarna_pay_now"
         ONLINE_BANKING_POLAND = "online_banking_poland"
         PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
+        ELECTRONIC_PAYMENT_STANDARD = "electronic_payment_standard"
+        KBC_PAYMENT_BUTTON = "kbc_payment_button"
+        PAY_BY_BANK = "pay_by_bank"
+        TRUSTLY = "trustly"
+        STABLECOIN = "stablecoin"
 
         def __str__(self):
             return self.value

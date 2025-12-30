@@ -937,6 +937,7 @@ class Estimate:
         use_existing_balances: NotRequired[bool]
         ignore_scheduled_cancellation: NotRequired[bool]
         ignore_scheduled_changes: NotRequired[bool]
+        exclude_tax_type: NotRequired[enums.ExcludeTaxType]
 
     class AdvanceInvoiceEstimateParams(TypedDict):
         terms_to_charge: NotRequired[int]

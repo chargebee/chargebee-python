@@ -663,6 +663,14 @@ class EventType(Enum):
         return self.value
 
 
+class ExcludeTaxType(Enum):
+    EXCLUSIVE = "exclusive"
+    NONE = "none"
+
+    def __str__(self):
+        return self.value
+
+
 class ExportType(Enum):
     DATA = "data"
     IMPORT_FRIENDLY_DATA = "import_friendly_data"
@@ -895,6 +903,11 @@ class PaymentMethod(Enum):
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
     PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
+    ELECTRONIC_PAYMENT_STANDARD = "electronic_payment_standard"
+    KBC_PAYMENT_BUTTON = "kbc_payment_button"
+    PAY_BY_BANK = "pay_by_bank"
+    TRUSTLY = "trustly"
+    STABLECOIN = "stablecoin"
 
     def __str__(self):
         return self.value
@@ -926,6 +939,11 @@ class PaymentMethodType(Enum):
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
     PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
+    ELECTRONIC_PAYMENT_STANDARD = "electronic_payment_standard"
+    KBC_PAYMENT_BUTTON = "kbc_payment_button"
+    PAY_BY_BANK = "pay_by_bank"
+    TRUSTLY = "trustly"
+    STABLECOIN = "stablecoin"
 
     def __str__(self):
         return self.value
@@ -1033,6 +1051,15 @@ class ReportBy(Enum):
 class ResumeOption(Enum):
     IMMEDIATELY = "immediately"
     SPECIFIC_DATE = "specific_date"
+
+    def __str__(self):
+        return self.value
+
+
+class RetryEngine(Enum):
+    CHARGEBEE = "chargebee"
+    FLEXPAY = "flexpay"
+    SUCCESSPLUS = "successplus"
 
     def __str__(self):
         return self.value
@@ -1165,6 +1192,11 @@ class Type(Enum):
     KLARNA_PAY_NOW = "klarna_pay_now"
     ONLINE_BANKING_POLAND = "online_banking_poland"
     PAYCONIQ_BY_BANCONTACT = "payconiq_by_bancontact"
+    ELECTRONIC_PAYMENT_STANDARD = "electronic_payment_standard"
+    KBC_PAYMENT_BUTTON = "kbc_payment_button"
+    PAY_BY_BANK = "pay_by_bank"
+    TRUSTLY = "trustly"
+    STABLECOIN = "stablecoin"
     FREE_TRIAL = "free_trial"
     PAY_UP_FRONT = "pay_up_front"
     PAY_AS_YOU_GO = "pay_as_you_go"
