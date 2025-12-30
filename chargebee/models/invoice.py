@@ -38,7 +38,7 @@ class Invoice(Model):
       fields = ["applied_amount", "applied_at", "txn_id", "txn_status", "txn_date", "txn_amount", "txn_type", "amount_capturable", "authorization_reason"]
       pass
     class DunningAttempt(Model):
-      fields = ["attempt", "transaction_id", "dunning_type", "created_at", "txn_status", "txn_amount"]
+      fields = ["attempt", "transaction_id", "dunning_type", "created_at", "txn_status", "txn_amount", "retry_engine"]
       pass
     class AppliedCredit(Model):
       fields = ["cn_id", "applied_amount", "applied_at", "cn_reason_code", "cn_create_reason_code", "cn_date", "cn_status", "tax_application"]
