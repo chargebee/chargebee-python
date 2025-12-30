@@ -181,6 +181,7 @@ class DunningAttemptResponse(Model):
     created_at: int = None
     txn_status: str = None
     txn_amount: int = None
+    retry_engine: str = None
 
 
 @dataclass

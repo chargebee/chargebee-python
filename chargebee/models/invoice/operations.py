@@ -264,6 +264,7 @@ class Invoice:
         created_at: NotRequired[int]
         txn_status: NotRequired["transaction.Transaction.Status"]
         txn_amount: NotRequired[int]
+        retry_engine: NotRequired[enums.RetryEngine]
 
     class AppliedCredit(TypedDict):
         cn_id: Required[str]

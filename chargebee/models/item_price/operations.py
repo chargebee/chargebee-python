@@ -260,6 +260,7 @@ class ItemPrice:
 
     class MoveItemPriceParams(TypedDict):
         destination_item_id: Required[str]
+        variant_id: NotRequired[str]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {

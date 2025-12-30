@@ -95,6 +95,7 @@ class PricingPageSession:
         ]
         business_entity_id: NotRequired[str]
         auto_select_local_currency: NotRequired[bool]
+        custom: NotRequired[Dict[Any, Any]]
         customer: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionCustomerParams"
         ]
@@ -116,6 +117,7 @@ class PricingPageSession:
         subscription: Required[
             "PricingPageSession.CreateForExistingSubscriptionSubscriptionParams"
         ]
+        custom: NotRequired[Dict[Any, Any]]
         discounts: Required[
             List["PricingPageSession.CreateForExistingSubscriptionDiscountParams"]
         ]
@@ -123,7 +125,9 @@ class PricingPageSession:
     def create_for_new_subscription(
         self, params: CreateForNewSubscriptionParams, headers=None
     ) -> CreateForNewSubscriptionResponse:
-        jsonKeys = {}
+        jsonKeys = {
+            "custom": 0,
+        }
         options = {
             "isIdempotent": True,
         }
@@ -143,7 +147,9 @@ class PricingPageSession:
     def create_for_existing_subscription(
         self, params: CreateForExistingSubscriptionParams, headers=None
     ) -> CreateForExistingSubscriptionResponse:
-        jsonKeys = {}
+        jsonKeys = {
+            "custom": 0,
+        }
         options = {
             "isIdempotent": True,
         }
