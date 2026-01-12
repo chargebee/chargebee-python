@@ -783,6 +783,7 @@ class HostedPage:
         change_option: NotRequired[enums.ChangeOption]
         changes_scheduled_at: NotRequired[int]
         customer: NotRequired["HostedPage.CheckoutExistingForItemsCustomerParams"]
+        invoice_usages: NotRequired[bool]
         entity_identifiers: NotRequired[
             List["HostedPage.CheckoutExistingForItemsEntityIdentifierParams"]
         ]
