@@ -258,10 +258,6 @@ class ItemPrice:
         item_id: NotRequired[str]
         sort_by: NotRequired[Filters.SortFilter]
 
-    class MoveItemPriceParams(TypedDict):
-        destination_item_id: Required[str]
-        variant_id: NotRequired[str]
-
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {
             "metadata": 0,
@@ -382,26 +378,6 @@ class ItemPrice:
             cast(Dict[Any, Any], params),
             headers,
             FindApplicableItemPricesResponse,
-            None,
-            False,
-            jsonKeys,
-            options,
-        )
-
-    def move_item_price(
-        self, id, params: MoveItemPriceParams, headers=None
-    ) -> MoveItemPriceResponse:
-        jsonKeys = {}
-        options = {
-            "isIdempotent": True,
-        }
-        return request.send(
-            "post",
-            request.uri_path("item_prices", id, "move"),
-            self.env,
-            cast(Dict[Any, Any], params),
-            headers,
-            MoveItemPriceResponse,
             None,
             False,
             jsonKeys,

@@ -754,6 +754,7 @@ class Gateway(Enum):
     JP_MORGAN = "jp_morgan"
     DEUTSCHE_BANK = "deutsche_bank"
     EZIDEBIT = "ezidebit"
+    TWIKEY = "twikey"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 
