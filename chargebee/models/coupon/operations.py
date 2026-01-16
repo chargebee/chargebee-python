@@ -252,6 +252,7 @@ class Coupon:
         updated_at: NotRequired[Filters.TimestampFilter]
         sort_by: NotRequired[Filters.SortFilter]
         currency_code: NotRequired[Filters.StringFilter]
+        applicable_item_price_ids: NotRequired[Filters.StringFilter]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]

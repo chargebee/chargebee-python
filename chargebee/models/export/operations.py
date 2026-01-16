@@ -402,6 +402,7 @@ class Export:
     class CouponsParams(TypedDict):
         coupon: NotRequired["Export.CouponsCouponParams"]
         currency_code: NotRequired[Filters.StringFilter]
+        applicable_item_price_ids: NotRequired[Filters.StringFilter]
 
     class CustomersParams(TypedDict):
         customer: NotRequired["Export.CustomersCustomerParams"]
