@@ -53,7 +53,7 @@ install-dev:
 	@$(PIP) install -e ".[dev]"
 	@$(PIP) install pytest pytest-cov black flake8 pylint mypy
 
-test:
+test: install install-dev 
 	@echo "Running tests..."
 	@$(PYTHON) -m pytest tests/ -v
 
@@ -75,6 +75,7 @@ check: format-check lint test
 
 build: clean
 	@echo "Building distribution packages..."
+	@$(PYTHON) -m pip install -U build || $(PYTHON) -m pip install build
 	@$(PYTHON) -m build
 
 clean:
