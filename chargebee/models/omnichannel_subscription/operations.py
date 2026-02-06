@@ -62,9 +62,16 @@ class OmnichannelSubscription:
         def __str__(self):
             return self.value
 
+    class ListOmnichannelSubscriptionItemParams(TypedDict):
+        status: NotRequired[Filters.EnumFilter]
+        item_id_at_source: NotRequired[Filters.StringFilter]
+
     class ListParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
+        omnichannel_subscription_item: NotRequired[
+            "OmnichannelSubscription.ListOmnichannelSubscriptionItemParams"
+        ]
         source: NotRequired[Filters.EnumFilter]
         customer_id: NotRequired[Filters.StringFilter]
 

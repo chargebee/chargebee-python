@@ -282,6 +282,7 @@ class SubscriptionResponse(Model):
     auto_close_invoices: bool = None
     discounts: List[DiscountResponse] = None
     business_entity_id: str = None
+    decommissioned: bool = None
 
 
 @dataclass

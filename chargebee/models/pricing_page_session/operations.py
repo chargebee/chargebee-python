@@ -68,7 +68,7 @@ class PricingPageSession:
         validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateForExistingSubscriptionPricingPageParams(TypedDict):
-        id: Required[str]
+        id: NotRequired[str]
 
     class CreateForExistingSubscriptionSubscriptionParams(TypedDict):
         id: Required[str]
@@ -111,7 +111,7 @@ class PricingPageSession:
 
     class CreateForExistingSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
-        pricing_page: Required[
+        pricing_page: NotRequired[
             "PricingPageSession.CreateForExistingSubscriptionPricingPageParams"
         ]
         subscription: Required[

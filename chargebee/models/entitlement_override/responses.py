@@ -8,6 +8,7 @@ from chargebee.response import Response
 class EntitlementOverrideResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
+    subscription_id: str = None
     entity_id: str = None
     entity_type: str = None
     feature_id: str = None
@@ -16,6 +17,7 @@ class EntitlementOverrideResponse(Model):
     name: str = None
     expires_at: int = None
     effective_from: int = None
+    is_enabled: bool = None
     schedule_status: str = None
 
 
