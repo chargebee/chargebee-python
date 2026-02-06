@@ -55,6 +55,7 @@ from chargebee.models.enums import (
     PauseOption,
     PaymentInitiator,
     PaymentMethod,
+    PaymentMethodSavePolicy,
     PaymentMethodType,
     PaymentVoucherType,
     PeriodUnit,

@@ -19,9 +19,12 @@ class EntitlementOverride:
 
     class AddEntitlementOverrideForSubscriptionEntitlementOverrideParams(TypedDict):
         feature_id: Required[str]
+        entity_id: NotRequired[str]
+        entity_type: NotRequired[enums.EntityType]
         value: NotRequired[str]
         expires_at: NotRequired[int]
         effective_from: NotRequired[int]
+        is_enabled: NotRequired[bool]
 
     class AddEntitlementOverrideForSubscriptionParams(TypedDict):
         action: NotRequired[enums.Action]

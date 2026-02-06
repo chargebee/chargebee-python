@@ -1729,6 +1729,7 @@ class Subscription:
             List["Subscription.CancelForItemsSubscriptionItemParams"]
         ]
         cancel_reason_code: NotRequired[str]
+        decommissioned: NotRequired[bool]
 
     class ResumeParams(TypedDict):
         resume_option: NotRequired[enums.ResumeOption]

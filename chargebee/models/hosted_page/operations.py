@@ -704,8 +704,8 @@ class HostedPage:
     class CheckoutNewForItemsParams(TypedDict):
         subscription: NotRequired["HostedPage.CheckoutNewForItemsSubscriptionParams"]
         layout: NotRequired[enums.Layout]
-        customer: NotRequired["HostedPage.CheckoutNewForItemsCustomerParams"]
         business_entity_id: NotRequired[str]
+        customer: NotRequired["HostedPage.CheckoutNewForItemsCustomerParams"]
         billing_cycles: NotRequired[int]
         subscription_items: Required[
             List["HostedPage.CheckoutNewForItemsSubscriptionItemParams"]
@@ -824,6 +824,7 @@ class HostedPage:
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.CollectNowCardParams"]
         currency_code: NotRequired[str]
+        payment_method_save_policy: NotRequired[enums.PaymentMethodSavePolicy]
 
     class AcceptQuoteParams(TypedDict):
         quote: Required["HostedPage.AcceptQuoteQuoteParams"]

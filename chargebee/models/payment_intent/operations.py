@@ -46,6 +46,12 @@ class PaymentIntent:
         PAY_BY_BANK = "pay_by_bank"
         TRUSTLY = "trustly"
         STABLECOIN = "stablecoin"
+        KAKAO_PAY = "kakao_pay"
+        NAVER_PAY = "naver_pay"
+        REVOLUT_PAY = "revolut_pay"
+        CASH_APP_PAY = "cash_app_pay"
+        WECHAT_PAY = "wechat_pay"
+        ALIPAY = "alipay"
 
         def __str__(self):
             return self.value

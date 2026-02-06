@@ -392,6 +392,7 @@ class EntityType(Enum):
     USAGE_FILE = "usage_file"
     BUSINESS_RULE = "business_rule"
     RULESET = "ruleset"
+    CHARGE = "charge"
 
     def __str__(self):
         return self.value
@@ -481,6 +482,7 @@ class EventType(Enum):
     PAYMENT_SCHEDULE_SCHEME_DELETED = "payment_schedule_scheme_deleted"
     SUBSCRIPTION_RENEWAL_REMINDER = "subscription_renewal_reminder"
     ADD_USAGES_REMINDER = "add_usages_reminder"
+    PAYMENT_DUE_REMINDER = "payment_due_reminder"
     TRANSACTION_CREATED = "transaction_created"
     TRANSACTION_UPDATED = "transaction_updated"
     TRANSACTION_DELETED = "transaction_deleted"
@@ -755,6 +757,7 @@ class Gateway(Enum):
     DEUTSCHE_BANK = "deutsche_bank"
     EZIDEBIT = "ezidebit"
     TWIKEY = "twikey"
+    TEMPUS = "tempus"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 
@@ -909,6 +912,19 @@ class PaymentMethod(Enum):
     PAY_BY_BANK = "pay_by_bank"
     TRUSTLY = "trustly"
     STABLECOIN = "stablecoin"
+    KAKAO_PAY = "kakao_pay"
+    NAVER_PAY = "naver_pay"
+    REVOLUT_PAY = "revolut_pay"
+    CASH_APP_PAY = "cash_app_pay"
+
+    def __str__(self):
+        return self.value
+
+
+class PaymentMethodSavePolicy(Enum):
+    ALWAYS = "always"
+    ASK = "ask"
+    NEVER = "never"
 
     def __str__(self):
         return self.value
@@ -945,6 +961,10 @@ class PaymentMethodType(Enum):
     PAY_BY_BANK = "pay_by_bank"
     TRUSTLY = "trustly"
     STABLECOIN = "stablecoin"
+    KAKAO_PAY = "kakao_pay"
+    NAVER_PAY = "naver_pay"
+    REVOLUT_PAY = "revolut_pay"
+    CASH_APP_PAY = "cash_app_pay"
 
     def __str__(self):
         return self.value
@@ -1198,6 +1218,10 @@ class Type(Enum):
     PAY_BY_BANK = "pay_by_bank"
     TRUSTLY = "trustly"
     STABLECOIN = "stablecoin"
+    KAKAO_PAY = "kakao_pay"
+    NAVER_PAY = "naver_pay"
+    REVOLUT_PAY = "revolut_pay"
+    CASH_APP_PAY = "cash_app_pay"
     FREE_TRIAL = "free_trial"
     PAY_UP_FRONT = "pay_up_front"
     PAY_AS_YOU_GO = "pay_as_you_go"
