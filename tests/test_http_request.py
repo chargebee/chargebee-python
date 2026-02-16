@@ -2,6 +2,7 @@ import json
 import unittest
 import asyncio
 from unittest.mock import patch, Mock, AsyncMock
+from enum import Enum
 
 from chargebee import environment
 from chargebee.api_error import InvalidRequestError
@@ -276,3 +277,78 @@ class RequestTests(unittest.TestCase):
         self.assertEqual(
             call_args[1]["url"], "https://test_site.ingest.chargebee.com/api/v2/test?"
         )
+
+    @patch("httpx.Client")
+    def test_json_request_with_enum_serialization(self, mock_client_class):
+        """Test that enums in JSON requests are converted to their values"""
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "success"})
+        )
+        mock_client.request.return_value = mock_response
+        mock_client_class.return_value.__enter__.return_value = mock_client
+
+        from chargebee.http_request import request
+
+        class Status(Enum):
+            ACTIVE = "active"
+            INACTIVE = "inactive"
+
+        class Priority(Enum):
+            HIGH = 1
+            MEDIUM = 2
+            LOW = 3
+
+        # Test with nested structure containing enums
+        test_data = {
+            "name": "test_user",
+            "status": Status.ACTIVE,
+            "priority": Priority.HIGH,
+            "nested": {
+                "status": Status.INACTIVE,
+                "values": [Priority.LOW, Priority.MEDIUM],
+            },
+            "items": (
+                {"status": Status.ACTIVE, "priority": Priority.HIGH},
+                {"status": Status.INACTIVE, "priority": Priority.LOW},
+            ),
+        }
+
+        request(
+            "POST", "/test", MockEnvironment(), params=test_data, isJsonRequest=True
+        )
+
+        # Verify that the request was made with converted enum values
+        call_args = mock_client.request.call_args
+        json_data = call_args[1]["json"]
+
+        # Check that enums are converted to their values
+        self.assertEqual(json_data["status"], "active")
+        self.assertEqual(json_data["priority"], 1)
+        self.assertEqual(json_data["nested"]["status"], "inactive")
+        self.assertEqual(json_data["nested"]["values"], [3, 2])
+        self.assertEqual(json_data["items"][0]["status"], "active")
+        self.assertEqual(json_data["items"][0]["priority"], 1)
+        self.assertEqual(json_data["items"][1]["status"], "inactive")
+        self.assertEqual(json_data["items"][1]["priority"], 3)
+
+    @patch("httpx.Client")
+    def test_form_request_without_enum_conversion(self, mock_client_class):
+        """Test that form requests (non-JSON) don't use convert_to_serializable"""
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "success"})
+        )
+        mock_client.request.return_value = mock_response
+        mock_client_class.return_value.__enter__.return_value = mock_client
+
+        from chargebee.http_request import request
+
+        test_data = {"key": "value", "number": 42}
+        request(
+            "POST", "/test", MockEnvironment(), params=test_data, isJsonRequest=False
+        )
+
+        # Verify that form requests use data parameter
+        call_args = mock_client.request.call_args
+        self.assertIn("data", call_args[1])
+        self.assertNotIn("json", call_args[1])
+        self.assertEqual(call_args[1]["data"], test_data)
