@@ -1,3 +1,9 @@
+### v3.18.1 (2026-02-16)
+* * * 
+
+### Bug Fixes: 
+- Fixed enum serialization in JSON requests to use actual enum values instead of string representations.
+
 ### v3.18.0 (2026-02-06)
 * * *
 ### New Attributes:

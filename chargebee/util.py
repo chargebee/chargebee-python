@@ -2,6 +2,7 @@ import os
 
 from collections import OrderedDict
 from enum import Enum
+from typing import Any, Dict
 
 
 def serialize(value, prefix=None, idx=None, jsonKeys=None, level=0):
@@ -87,3 +88,17 @@ def generate_uuid_v4() -> str:
     hex_str = "".join(f"{byte:02x}" for byte in byte_array)
 
     return f"{hex_str[0:8]}-{hex_str[8:12]}-{hex_str[12:16]}-{hex_str[16:20]}-{hex_str[20:32]}"
+
+
+def convert_to_serializable(obj: Any) -> Any:
+    """
+    Recursively convert TypedDict and enums to JSON-serializable format.
+    """
+    if isinstance(obj, Enum):
+        return obj.value
+    elif isinstance(obj, dict):
+        return {key: convert_to_serializable(value) for key, value in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return type(obj)(convert_to_serializable(item) for item in obj)
+    else:
+        return obj

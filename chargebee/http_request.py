@@ -48,6 +48,8 @@ def request(
 
     retry_config = env.get_retry_config() if hasattr(env, "get_retry_config") else None
     url = env.api_url(url, subDomain)
+    if isJsonRequest:
+        params = util.convert_to_serializable(params)
 
     match method.lower(), isJsonRequest:
         case "get" | "head" | "delete", _:
@@ -58,7 +60,6 @@ def request(
         case _, False:
             headers["Content-Type"] = "application/x-www-form-urlencoded"
             request_args["data"] = params
-
     headers.update(
         {
             "User-Agent": f"Chargebee-Python-Client v{VERSION}",
