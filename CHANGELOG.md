@@ -1,3 +1,11 @@
+### v2.60.1 (2025-12-30)
+
+---
+
+### Bug Fixes
+
+* Fixed an issue where empty parameters were incorrectly parsed as a JSON string for `Content-Type: application/json` requests. They are now correctly handled as an empty JSON object (`{}`) instead of an empty string.
+
 ### v2.60.0 (2025-12-30)
 * * * 
 
