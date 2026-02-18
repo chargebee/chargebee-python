@@ -24,7 +24,10 @@ def send(method, url, params=None, env=None, headers=None, subDomain=None, isJso
 
     env = env or ChargeBee.default_env
 
-    ser_params = json.dumps(params) if isJsonRequest else util.serialize(params,None, None, json_keys)
+    if isJsonRequest:
+        ser_params = json.dumps(params) if params else {}
+    else:
+        ser_params = util.serialize(params, None, None, json_keys)
 
     response, response_headers, http_status_code = http_request.request(method, url, env, ser_params, headers, subDomain, isJsonRequest)
 
