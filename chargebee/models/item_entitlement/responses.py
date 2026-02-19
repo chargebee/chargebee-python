@@ -39,12 +39,22 @@ class ItemEntitlementsForFeatureResponse(Response):
 
 
 @dataclass
+class AddItemEntitlementsItemEntitlementResponse:
+    item_entitlement: ItemEntitlementResponse
+
+
+@dataclass
 class AddItemEntitlementsResponse(Response):
     is_idempotency_replayed: bool
+    list: List[AddItemEntitlementsItemEntitlementResponse]
+
+
+@dataclass
+class UpsertOrRemoveItemEntitlementsForItemItemEntitlementResponse:
     item_entitlement: ItemEntitlementResponse
 
 
 @dataclass
 class UpsertOrRemoveItemEntitlementsForItemResponse(Response):
     is_idempotency_replayed: bool
-    item_entitlement: ItemEntitlementResponse
+    list: List[UpsertOrRemoveItemEntitlementsForItemItemEntitlementResponse]
