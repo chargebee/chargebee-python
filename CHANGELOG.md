@@ -1,3 +1,10 @@
+### v3.18.1 (2026-02-19)
+* * * 
+
+### Bug Fixes: 
+- corrected the response schema for [`add_item_entitlement`](https://apidocs.chargebee.com/docs/api/item_entitlements/upsert-or-remove-item-entitlements-for-a-feature).
+- corrected the response schema for [`upsert_or_remove_item_entitlements_for_item`](https://apidocs.chargebee.com/docs/api/item_entitlements/upsert-or-remove-item-entitlements-for-an-item).
+
 ### v3.18.1 (2026-02-16)
 * * * 
 

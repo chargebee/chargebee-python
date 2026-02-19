@@ -46,6 +46,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_enum(self):
         """Test that enums are converted to their values"""
+
         class Status(Enum):
             ACTIVE = "active"
             INACTIVE = "inactive"
@@ -55,6 +56,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_dict_containing_enum(self):
         """Test that enums in dicts are converted to their values"""
+
         class Status(Enum):
             ACTIVE = "active"
             INACTIVE = "inactive"
@@ -75,6 +77,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_nested_dict(self):
         """Test that nested dicts with enums are handled correctly"""
+
         class Status(Enum):
             ACTIVE = "active"
 
@@ -109,6 +112,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_list(self):
         """Test that lists with enums are converted correctly"""
+
         class Status(Enum):
             ACTIVE = "active"
             INACTIVE = "inactive"
@@ -120,6 +124,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_tuple(self):
         """Test that tuples with enums are converted correctly and remain tuples"""
+
         class Status(Enum):
             ACTIVE = "active"
             INACTIVE = "inactive"
@@ -132,6 +137,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_list_of_dicts(self):
         """Test that lists of dicts with enums are converted correctly"""
+
         class Status(Enum):
             ACTIVE = "active"
             INACTIVE = "inactive"
@@ -150,6 +156,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_complex_nested_structure(self):
         """Test complex nested structure with enums at various levels"""
+
         class Status(Enum):
             ACTIVE = "active"
 
@@ -216,6 +223,7 @@ class UtilTest(unittest.TestCase):
 
     def test_convert_to_serializable_with_integer_enum(self):
         """Test that enums with integer values are converted correctly"""
+
         class Priority(Enum):
             LOW = 1
             MEDIUM = 2
