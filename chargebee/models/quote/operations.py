@@ -528,6 +528,8 @@ class Quote:
         start_date: NotRequired[int]
         offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
+        free_period: NotRequired[int]
+        free_period_unit: NotRequired[enums.FreePeriodUnit]
 
     class CreateSubItemsForCustomerQuoteSubscriptionItemParams(TypedDict):
         item_price_id: Required[str]
@@ -620,6 +622,8 @@ class Quote:
         start_date: NotRequired[int]
         offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
+        free_period: NotRequired[int]
+        free_period_unit: NotRequired[enums.FreePeriodUnit]
 
     class EditCreateSubCustomerQuoteForItemsSubscriptionItemParams(TypedDict):
         item_price_id: Required[str]

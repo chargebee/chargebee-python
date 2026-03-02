@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
+from chargebee.models import contract_term
 
 
 @dataclass

@@ -939,6 +939,7 @@ class Invoice:
         authorization_transaction_id: NotRequired[str]
         payment_source_id: NotRequired[str]
         auto_collection: NotRequired[enums.AutoCollection]
+        net_term_days: NotRequired[int]
         tax_providers_fields: NotRequired[
             List["Invoice.CreateForChargeItemsAndChargesTaxProvidersFieldParams"]
         ]

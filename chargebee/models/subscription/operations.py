@@ -10,6 +10,15 @@ from chargebee.models import enums, unbilled_charge, payment_intent, invoice, ca
 class Subscription:
     env: environment.Environment
 
+    class BillingPeriodUnit(Enum):
+        DAY = "day"
+        WEEK = "week"
+        MONTH = "month"
+        YEAR = "year"
+
+        def __str__(self):
+            return self.value
+
     class Status(Enum):
         FUTURE = "future"
         IN_TRIAL = "in_trial"
@@ -30,15 +39,6 @@ class Subscription:
         TAX_CALCULATION_FAILED = "tax_calculation_failed"
         CURRENCY_INCOMPATIBLE_WITH_GATEWAY = "currency_incompatible_with_gateway"
         NON_COMPLIANT_CUSTOMER = "non_compliant_customer"
-
-        def __str__(self):
-            return self.value
-
-    class BillingPeriodUnit(Enum):
-        DAY = "day"
-        WEEK = "week"
-        MONTH = "month"
-        YEAR = "year"
 
         def __str__(self):
             return self.value
@@ -198,18 +198,6 @@ class Subscription:
         coupon_id: Required[str]
         index: Required[int]
 
-    class Addon(TypedDict):
-        id: Required[str]
-        quantity: NotRequired[int]
-        unit_price: NotRequired[int]
-        amount: NotRequired[int]
-        trial_end: NotRequired[int]
-        remaining_billing_cycles: NotRequired[int]
-        quantity_in_decimal: NotRequired[str]
-        unit_price_in_decimal: NotRequired[str]
-        amount_in_decimal: NotRequired[str]
-        proration_type: NotRequired[enums.ProrationType]
-
     class ChargedEventBasedAddon(TypedDict):
         id: Required[str]
         last_charged_at: Required[int]
@@ -223,6 +211,18 @@ class Subscription:
         charge_once: Required[bool]
         quantity_in_decimal: NotRequired[str]
         unit_price_in_decimal: NotRequired[str]
+
+    class Addon(TypedDict):
+        id: Required[str]
+        quantity: NotRequired[int]
+        unit_price: NotRequired[int]
+        amount: NotRequired[int]
+        trial_end: NotRequired[int]
+        remaining_billing_cycles: NotRequired[int]
+        quantity_in_decimal: NotRequired[str]
+        unit_price_in_decimal: NotRequired[str]
+        amount_in_decimal: NotRequired[str]
+        proration_type: NotRequired[enums.ProrationType]
 
     class CreateCustomerParams(TypedDict):
         id: NotRequired[str]

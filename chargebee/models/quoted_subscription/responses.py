@@ -112,6 +112,8 @@ class QuotedSubscriptionResponse(Model):
     plan_unit_price_in_decimal: str = None
     changes_scheduled_at: int = None
     change_option: str = None
+    free_period: int = None
+    free_period_unit: str = None
     contract_term_billing_cycle_on_renewal: int = None
     addons: List[AddonResponse] = None
     event_based_addons: List[EventBasedAddonResponse] = None

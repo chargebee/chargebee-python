@@ -167,21 +167,6 @@ class DiscountResponse(Model):
 
 
 @dataclass
-class AddonResponse(Model):
-    raw_data: Dict[Any, Any] = None
-    id: str = None
-    quantity: int = None
-    unit_price: int = None
-    amount: int = None
-    trial_end: int = None
-    remaining_billing_cycles: int = None
-    quantity_in_decimal: str = None
-    unit_price_in_decimal: str = None
-    amount_in_decimal: str = None
-    proration_type: str = None
-
-
-@dataclass
 class ChargedEventBasedAddonResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -199,6 +184,21 @@ class EventBasedAddonResponse(Model):
     charge_once: bool = None
     quantity_in_decimal: str = None
     unit_price_in_decimal: str = None
+
+
+@dataclass
+class AddonResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    id: str = None
+    quantity: int = None
+    unit_price: int = None
+    amount: int = None
+    trial_end: int = None
+    remaining_billing_cycles: int = None
+    quantity_in_decimal: str = None
+    unit_price_in_decimal: str = None
+    amount_in_decimal: str = None
+    proration_type: str = None
 
 
 @dataclass

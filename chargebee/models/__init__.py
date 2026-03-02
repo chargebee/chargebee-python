@@ -86,6 +86,7 @@ from chargebee.models.enums import (
     UsageAccumulationResetFrequency,
     ValidationStatus,
     VoucherType,
+    WindowSize,
     ChargeOn,
 )
 
@@ -297,9 +298,13 @@ from chargebee.models.unbilled_charge.operations import UnbilledCharge
 
 from chargebee.models.usage.operations import Usage
 
+from chargebee.models.usage_charge.operations import UsageCharge
+
 from chargebee.models.usage_event.operations import UsageEvent
 
 from chargebee.models.usage_file.operations import UsageFile
+
+from chargebee.models.usage_summary.operations import UsageSummary
 
 from chargebee.models.virtual_bank_account.operations import VirtualBankAccount
 

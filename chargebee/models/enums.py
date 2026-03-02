@@ -1277,3 +1277,14 @@ class VoucherType(Enum):
 
     def __str__(self):
         return self.value
+
+
+class WindowSize(Enum):
+    MONTH = "month"
+    WEEK = "week"
+    DAY = "day"
+    HOUR = "hour"
+    MINUTE = "minute"
+
+    def __str__(self):
+        return self.value
