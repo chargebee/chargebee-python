@@ -9,19 +9,19 @@ from chargebee.models import enums
 class QuotedSubscription:
     env: environment.Environment
 
-    class ChangeOption(Enum):
-        END_OF_TERM = "end_of_term"
-        SPECIFIC_DATE = "specific_date"
-        IMMEDIATELY = "immediately"
-
-        def __str__(self):
-            return self.value
-
     class BillingPeriodUnit(Enum):
         DAY = "day"
         WEEK = "week"
         MONTH = "month"
         YEAR = "year"
+
+        def __str__(self):
+            return self.value
+
+    class ChangeOption(Enum):
+        END_OF_TERM = "end_of_term"
+        SPECIFIC_DATE = "specific_date"
+        IMMEDIATELY = "immediately"
 
         def __str__(self):
             return self.value

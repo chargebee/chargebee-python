@@ -143,8 +143,10 @@ class Chargebee:
         self.Transaction = chargebee.Transaction(self.env)
         self.UnbilledCharge = chargebee.UnbilledCharge(self.env)
         self.Usage = chargebee.Usage(self.env)
+        self.UsageCharge = chargebee.UsageCharge(self.env)
         self.UsageEvent = chargebee.UsageEvent(self.env)
         self.UsageFile = chargebee.UsageFile(self.env)
+        self.UsageSummary = chargebee.UsageSummary(self.env)
         self.VirtualBankAccount = chargebee.VirtualBankAccount(self.env)
         self.WebhookEndpoint = chargebee.WebhookEndpoint(self.env)
 
