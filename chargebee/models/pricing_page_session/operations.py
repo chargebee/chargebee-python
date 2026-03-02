@@ -1,7 +1,7 @@
 from .responses import *
 from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
-from chargebee.models import enums
+from chargebee.models import enums, contract_term
 
 
 @dataclass
@@ -67,6 +67,10 @@ class PricingPageSession:
         country: NotRequired[str]
         validation_status: NotRequired[enums.ValidationStatus]
 
+    class CreateForNewSubscriptionContractTermParams(TypedDict):
+        action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
+        cancellation_cutoff_period: NotRequired[int]
+
     class CreateForExistingSubscriptionPricingPageParams(TypedDict):
         id: NotRequired[str]
 
@@ -84,6 +88,10 @@ class PricingPageSession:
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
         label: NotRequired[str]
+
+    class CreateForExistingSubscriptionContractTermParams(TypedDict):
+        action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
+        cancellation_cutoff_period: NotRequired[int]
 
     class CreateForNewSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
@@ -108,6 +116,9 @@ class PricingPageSession:
         shipping_address: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionShippingAddressParams"
         ]
+        contract_term: NotRequired[
+            "PricingPageSession.CreateForNewSubscriptionContractTermParams"
+        ]
 
     class CreateForExistingSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
@@ -120,6 +131,9 @@ class PricingPageSession:
         custom: NotRequired[Dict[Any, Any]]
         discounts: Required[
             List["PricingPageSession.CreateForExistingSubscriptionDiscountParams"]
+        ]
+        contract_term: NotRequired[
+            "PricingPageSession.CreateForExistingSubscriptionContractTermParams"
         ]
 
     def create_for_new_subscription(
