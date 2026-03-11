@@ -81,8 +81,8 @@ def request(
 
     meta = compat.urlparse(url)
     scheme = "https" if Chargebee.verify_ca_certs or env.protocol == "https" else "http"
-    full_url = f"{scheme}://{meta.netloc + meta.path + '?' + meta.query}"
-
+    base = f"{scheme}://{meta.netloc}{meta.path}"
+    full_url = f"{base}?{meta.query}" if meta.query else base
     timeout = httpx.Timeout(
         None,
         connect=env.connect_timeout,

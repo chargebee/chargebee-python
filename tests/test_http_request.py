@@ -275,7 +275,7 @@ class RequestTests(unittest.TestCase):
 
         call_args = mock_client.request.call_args
         self.assertEqual(
-            call_args[1]["url"], "https://test_site.ingest.chargebee.com/api/v2/test?"
+            call_args[1]["url"], "https://test_site.ingest.chargebee.com/api/v2/test"
         )
 
     @patch("httpx.Client")
@@ -330,6 +330,49 @@ class RequestTests(unittest.TestCase):
         self.assertEqual(json_data["items"][0]["priority"], 1)
         self.assertEqual(json_data["items"][1]["status"], "inactive")
         self.assertEqual(json_data["items"][1]["priority"], 3)
+
+    @patch("httpx.Client")
+    def test_url_no_trailing_question_mark_without_query_params(
+        self, mock_client_class
+    ):
+        """Test that URLs without query params don't get a trailing '?'"""
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "success"})
+        )
+        mock_client.request.return_value = mock_response
+        mock_client_class.return_value.__enter__.return_value = mock_client
+
+        from chargebee.http_request import request
+
+        request("POST", "/test", MockEnvironment(), params={"key": "value"})
+
+        call_args = mock_client.request.call_args
+        url = call_args[1]["url"]
+        self.assertFalse(url.endswith("?"), f"URL should not end with '?', got: {url}")
+
+    @patch("httpx.Client")
+    def test_url_preserves_query_string_when_present(self, mock_client_class):
+        """Test that URLs with an existing query string are preserved correctly"""
+        mock_client, mock_response = make_mock_client(
+            text=json.dumps({"message": "success"})
+        )
+        mock_client.request.return_value = mock_response
+        mock_client_class.return_value.__enter__.return_value = mock_client
+
+        from chargebee.http_request import request
+
+        class MockEnvironmentWithQuery(MockEnvironment):
+            def api_url(self, url, subDomain=None):
+                return super().api_url(url, subDomain) + "?existing=param"
+
+        request("GET", "/test", MockEnvironmentWithQuery(), params={})
+
+        call_args = mock_client.request.call_args
+        url = call_args[1]["url"]
+        self.assertIn("?existing=param", url)
+        self.assertFalse(
+            url.endswith("?"), f"URL should not end with bare '?', got: {url}"
+        )
 
     @patch("httpx.Client")
     def test_form_request_without_enum_conversion(self, mock_client_class):
