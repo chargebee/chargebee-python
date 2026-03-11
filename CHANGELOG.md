@@ -1,3 +1,8 @@
+### v3.19.1 (2026-03-11)
+* * *
+### Bug Fixes:
+- Fixed URL construction to avoid appending a trailing `?` when there are no query parameters.
+
 ### v3.19.0 (2026-03-02)
 * * *
 ### New Resources:
