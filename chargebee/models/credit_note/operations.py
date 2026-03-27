@@ -260,9 +260,11 @@ class CreditNote:
 
     class Einvoice(TypedDict):
         id: Required[str]
+        reference_id: NotRequired[str]
         reference_number: NotRequired[str]
         status: Required["CreditNote.EinvoiceStatus"]
         message: NotRequired[str]
+        provider_references: NotRequired[List[Dict[Any, Any]]]
 
     class SiteDetailsAtCreation(TypedDict):
         timezone: NotRequired[str]

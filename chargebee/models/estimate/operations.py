@@ -956,6 +956,9 @@ class Estimate:
         prorate: NotRequired[bool]
         invoice_immediately: NotRequired[bool]
 
+    class UpcomingInvoicesEstimateParams(TypedDict):
+        include_usage_charges: NotRequired[bool]
+
     class ChangeTermEndParams(TypedDict):
         term_ends_at: Required[int]
         prorate: NotRequired[bool]
@@ -1251,7 +1254,7 @@ class Estimate:
         )
 
     def upcoming_invoices_estimate(
-        self, id, headers=None
+        self, id, params: UpcomingInvoicesEstimateParams = None, headers=None
     ) -> UpcomingInvoicesEstimateResponse:
         jsonKeys = {}
         options = {}
@@ -1259,7 +1262,7 @@ class Estimate:
             "get",
             request.uri_path("customers", id, "upcoming_invoices_estimate"),
             self.env,
-            None,
+            cast(Dict[Any, Any], params),
             headers,
             UpcomingInvoicesEstimateResponse,
             None,

@@ -52,6 +52,7 @@ class PaymentIntent:
         CASH_APP_PAY = "cash_app_pay"
         WECHAT_PAY = "wechat_pay"
         ALIPAY = "alipay"
+        PIX = "pix"
 
         def __str__(self):
             return self.value

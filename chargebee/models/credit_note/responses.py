@@ -193,9 +193,11 @@ class BillingAddressResponse(Model):
 class EinvoiceResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
+    reference_id: str = None
     reference_number: str = None
     status: str = None
     message: str = None
+    provider_references: List[Dict[Any, Any]] = None
 
 
 @dataclass

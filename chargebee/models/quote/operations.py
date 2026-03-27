@@ -3,7 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import enums, contract_term
+from chargebee.models import enums, cpq_quote_signature, contract_term
 
 
 @dataclass
@@ -1057,6 +1057,9 @@ class Quote:
         po_number: NotRequired[str]
         auto_close_invoices: NotRequired[bool]
 
+    class UpdateSignatureStatusCpqQuoteSignatureParams(TypedDict):
+        status: NotRequired["cpq_quote_signature.CpqQuoteSignature.Status"]
+
     class CreateSubForCustomerQuoteParams(TypedDict):
         name: NotRequired[str]
         notes: NotRequired[str]
@@ -1425,6 +1428,11 @@ class Quote:
     class PdfParams(TypedDict):
         consolidated_view: NotRequired[bool]
         disposition_type: NotRequired[enums.DispositionType]
+
+    class UpdateSignatureStatusParams(TypedDict):
+        cpq_quote_signature: NotRequired[
+            "Quote.UpdateSignatureStatusCpqQuoteSignatureParams"
+        ]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
@@ -1806,6 +1814,114 @@ class Quote:
             cast(Dict[Any, Any], params),
             headers,
             PdfResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def retrieve_signature(self, id, headers=None) -> RetrieveSignatureResponse:
+        jsonKeys = {}
+        options = {}
+        return request.send(
+            "get",
+            request.uri_path("quotes", id, "retrieve_signature"),
+            self.env,
+            None,
+            headers,
+            RetrieveSignatureResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def retrieve_signed_pdf(self, id, headers=None) -> RetrieveSignedPdfResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("quotes", id, "retrieve_signed_pdf"),
+            self.env,
+            None,
+            headers,
+            RetrieveSignedPdfResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def create_signature(self, id, headers=None) -> CreateSignatureResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("quotes", id, "create_signature"),
+            self.env,
+            None,
+            headers,
+            CreateSignatureResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def update_signature(self, id, headers=None) -> UpdateSignatureResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("quotes", id, "update_signature"),
+            self.env,
+            None,
+            headers,
+            UpdateSignatureResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def update_signature_status(
+        self, id, params: UpdateSignatureStatusParams = None, headers=None
+    ) -> UpdateSignatureStatusResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("quotes", id, "update_signature_status"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            UpdateSignatureStatusResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+        )
+
+    def refresh_signature_link(self, id, headers=None) -> RefreshSignatureLinkResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("quotes", id, "refresh_signature_link"),
+            self.env,
+            None,
+            headers,
+            RefreshSignatureLinkResponse,
             None,
             False,
             jsonKeys,
