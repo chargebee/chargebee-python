@@ -88,6 +88,8 @@ from chargebee.models.enums import (
     VoucherType,
     WindowSize,
     ChargeOn,
+    AlertStatus,
+    EnabledEvents,
 )
 
 from chargebee.models.addon.operations import Addon
@@ -95,6 +97,10 @@ from chargebee.models.addon.operations import Addon
 from chargebee.models.address.operations import Address
 
 from chargebee.models.advance_invoice_schedule.operations import AdvanceInvoiceSchedule
+
+from chargebee.models.alert.operations import Alert
+
+from chargebee.models.alert_status.operations import AlertStatus
 
 from chargebee.models.attached_item.operations import AttachedItem
 
@@ -123,6 +129,8 @@ from chargebee.models.coupon.operations import Coupon
 from chargebee.models.coupon_code.operations import CouponCode
 
 from chargebee.models.coupon_set.operations import CouponSet
+
+from chargebee.models.cpq_quote_signature.operations import CpqQuoteSignature
 
 from chargebee.models.credit_note.operations import CreditNote
 

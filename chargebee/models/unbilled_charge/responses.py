@@ -42,6 +42,7 @@ class UnbilledChargeResponse(Model):
     unit_amount_in_decimal: str = None
     quantity_in_decimal: str = None
     amount_in_decimal: str = None
+    created_at: int = None
     updated_at: int = None
     tiers: List[TierResponse] = None
     is_advance_charge: bool = None

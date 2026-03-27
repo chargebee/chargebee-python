@@ -3,17 +3,19 @@ from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
 from chargebee.models import (
+    cpq_quote_signature,
     contract_term,
     quoted_subscription,
     quoted_ramp,
     quoted_charge,
-    quote_line_group,
+    cpq_quote_signature,
     download,
     customer,
     subscription,
     invoice,
     credit_note,
     unbilled_charge,
+    quote_line_group,
 )
 
 
@@ -362,3 +364,38 @@ class DeleteResponse(Response):
 class PdfResponse(Response):
     is_idempotency_replayed: bool
     download: "download.DownloadResponse"
+
+
+@dataclass
+class RetrieveSignatureResponse(Response):
+    cpq_quote_signature: "cpq_quote_signature.CpqQuoteSignatureResponse"
+
+
+@dataclass
+class RetrieveSignedPdfResponse(Response):
+    is_idempotency_replayed: bool
+    download: "download.DownloadResponse"
+
+
+@dataclass
+class CreateSignatureResponse(Response):
+    is_idempotency_replayed: bool
+    cpq_quote_signature: "cpq_quote_signature.CpqQuoteSignatureResponse"
+
+
+@dataclass
+class UpdateSignatureResponse(Response):
+    is_idempotency_replayed: bool
+    cpq_quote_signature: "cpq_quote_signature.CpqQuoteSignatureResponse"
+
+
+@dataclass
+class UpdateSignatureStatusResponse(Response):
+    is_idempotency_replayed: bool
+    cpq_quote_signature: "cpq_quote_signature.CpqQuoteSignatureResponse"
+
+
+@dataclass
+class RefreshSignatureLinkResponse(Response):
+    is_idempotency_replayed: bool
+    cpq_quote_signature: "cpq_quote_signature.CpqQuoteSignatureResponse"

@@ -815,6 +815,7 @@ class HostedPage:
         iframe_messaging: NotRequired[bool]
 
     class ManagePaymentSourcesParams(TypedDict):
+        business_entity_id: NotRequired[str]
         customer: Required["HostedPage.ManagePaymentSourcesCustomerParams"]
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.ManagePaymentSourcesCardParams"]
