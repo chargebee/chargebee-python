@@ -53,6 +53,13 @@ class PaymentIntent:
         WECHAT_PAY = "wechat_pay"
         ALIPAY = "alipay"
         PIX = "pix"
+        TWINT = "twint"
+        GO_PAY = "go_pay"
+        GRAB_PAY = "grab_pay"
+        PAY_CO = "pay_co"
+        AFTER_PAY = "after_pay"
+        SWISH = "swish"
+        PAYME = "payme"
 
         def __str__(self):
             return self.value
@@ -112,6 +119,7 @@ class PaymentIntent:
         currency_code: Required[str]
         gateway_account_id: NotRequired[str]
         reference_id: NotRequired[str]
+        defer_payment_method_type: NotRequired[bool]
         payment_method_type: NotRequired["PaymentIntent.PaymentMethodType"]
         success_url: NotRequired[str]
         failure_url: NotRequired[str]

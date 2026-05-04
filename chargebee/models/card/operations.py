@@ -46,6 +46,7 @@ class Card:
         MAESTRO = "maestro"
         DANKORT = "dankort"
         CARTES_BANCAIRES = "cartes_bancaires"
+        MADA = "mada"
         OTHER = "other"
         NOT_APPLICABLE = "not_applicable"
 

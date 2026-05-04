@@ -3,6 +3,7 @@ from chargebee.models.enums import (
     AccountReceivablesHandling,
     AccountType,
     Action,
+    AlarmStatus,
     ApiVersion,
     ApplyOn,
     AutoCollection,
@@ -47,6 +48,7 @@ from chargebee.models.enums import (
     InvoiceDunningHandling,
     ItemType,
     Layout,
+    Mode,
     NotifyReferralSystem,
     OfflinePaymentMethod,
     OnEvent,
@@ -88,7 +90,6 @@ from chargebee.models.enums import (
     VoucherType,
     WindowSize,
     ChargeOn,
-    AlertStatus,
     EnabledEvents,
 )
 
@@ -161,6 +162,8 @@ from chargebee.models.event.operations import Event
 from chargebee.models.export.operations import Export
 
 from chargebee.models.feature.operations import Feature
+
+from chargebee.models.filter_condition.operations import FilterCondition
 
 from chargebee.models.gateway_error_detail.operations import GatewayErrorDetail
 
@@ -255,6 +258,8 @@ from chargebee.models.promotional_credit.operations import PromotionalCredit
 from chargebee.models.purchase.operations import Purchase
 
 from chargebee.models.quote.operations import Quote
+
+from chargebee.models.quote_entitlement.operations import QuoteEntitlement
 
 from chargebee.models.quote_line_group.operations import QuoteLineGroup
 

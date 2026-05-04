@@ -20,6 +20,7 @@ class Event:
         SKIPPED = "skipped"
         NOT_APPLICABLE = "not_applicable"
         DISABLED = "disabled"
+        RATE_LIMITED = "rate_limited"
 
         def __str__(self):
             return self.value
@@ -33,6 +34,7 @@ class Event:
         SKIPPED = "skipped"
         NOT_APPLICABLE = "not_applicable"
         DISABLED = "disabled"
+        RATE_LIMITED = "rate_limited"
 
         def __str__(self):
             return self.value
