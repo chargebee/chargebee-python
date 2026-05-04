@@ -24,11 +24,13 @@ class VirtualBankAccount:
     class CreateUsingPermanentTokenParams(TypedDict):
         customer_id: Required[str]
         reference_id: Required[str]
+        gateway_account_id: NotRequired[str]
         scheme: NotRequired["VirtualBankAccount.Scheme"]
 
     class CreateParams(TypedDict):
         customer_id: Required[str]
         email: NotRequired[str]
+        gateway_account_id: NotRequired[str]
         scheme: NotRequired["VirtualBankAccount.Scheme"]
 
     class ListParams(TypedDict):

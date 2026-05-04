@@ -42,6 +42,7 @@ class PaymentSource:
         MAESTRO = "maestro"
         DANKORT = "dankort"
         CARTES_BANCAIRES = "cartes_bancaires"
+        MADA = "mada"
         NOT_APPLICABLE = "not_applicable"
 
         def __str__(self):

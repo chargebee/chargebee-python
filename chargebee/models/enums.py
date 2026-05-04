@@ -36,7 +36,7 @@ class Action(Enum):
         return self.value
 
 
-class AlertStatus(Enum):
+class AlarmStatus(Enum):
     WITHIN_LIMIT = "within_limit"
     IN_ALARM = "in_alarm"
 
@@ -638,6 +638,10 @@ class EntityType(Enum):
     PLAN_ITEM_PRICE = "plan_item_price"
     ADDON_ITEM_PRICE = "addon_item_price"
     CHARGE_ITEM_PRICE = "charge_item_price"
+    PLAN_PRICE = "plan_price"
+    ADDON_PRICE = "addon_price"
+    CHARGE_PRICE = "charge_price"
+    CHARGE = "charge"
     INVOICE = "invoice"
     QUOTE = "quote"
     CREDIT_NOTE = "credit_note"
@@ -651,9 +655,6 @@ class EntityType(Enum):
     PLAN_ITEM = "plan_item"
     ADDON_ITEM = "addon_item"
     CHARGE_ITEM = "charge_item"
-    PLAN_PRICE = "plan_price"
-    ADDON_PRICE = "addon_price"
-    CHARGE_PRICE = "charge_price"
     DIFFERENTIAL_PRICE = "differential_price"
     ATTACHED_ITEM = "attached_item"
     FEATURE = "feature"
@@ -675,7 +676,6 @@ class EntityType(Enum):
     BUSINESS_RULE = "business_rule"
     RULESET = "ruleset"
     ALERT_STATUS = "alert_status"
-    CHARGE = "charge"
 
     def __str__(self):
         return self.value
@@ -1042,6 +1042,8 @@ class Gateway(Enum):
     EZIDEBIT = "ezidebit"
     TWIKEY = "twikey"
     TEMPUS = "tempus"
+    MOYASAR = "moyasar"
+    PAYWAY = "payway"
     GOCARDLESS = "gocardless"
     NOT_APPLICABLE = "not_applicable"
 
@@ -1078,6 +1080,14 @@ class ItemType(Enum):
 class Layout(Enum):
     IN_APP = "in_app"
     FULL_PAGE = "full_page"
+
+    def __str__(self):
+        return self.value
+
+
+class Mode(Enum):
+    ABSOLUTE = "absolute"
+    PERCENTAGE = "percentage"
 
     def __str__(self):
         return self.value
@@ -1201,6 +1211,13 @@ class PaymentMethod(Enum):
     REVOLUT_PAY = "revolut_pay"
     CASH_APP_PAY = "cash_app_pay"
     PIX = "pix"
+    TWINT = "twint"
+    GO_PAY = "go_pay"
+    GRAB_PAY = "grab_pay"
+    PAY_CO = "pay_co"
+    AFTER_PAY = "after_pay"
+    SWISH = "swish"
+    PAYME = "payme"
 
     def __str__(self):
         return self.value
@@ -1251,6 +1268,13 @@ class PaymentMethodType(Enum):
     REVOLUT_PAY = "revolut_pay"
     CASH_APP_PAY = "cash_app_pay"
     PIX = "pix"
+    TWINT = "twint"
+    GO_PAY = "go_pay"
+    GRAB_PAY = "grab_pay"
+    PAY_CO = "pay_co"
+    AFTER_PAY = "after_pay"
+    SWISH = "swish"
+    PAYME = "payme"
 
     def __str__(self):
         return self.value
@@ -1509,6 +1533,13 @@ class Type(Enum):
     REVOLUT_PAY = "revolut_pay"
     CASH_APP_PAY = "cash_app_pay"
     PIX = "pix"
+    TWINT = "twint"
+    GO_PAY = "go_pay"
+    GRAB_PAY = "grab_pay"
+    PAY_CO = "pay_co"
+    AFTER_PAY = "after_pay"
+    SWISH = "swish"
+    PAYME = "payme"
     FREE_TRIAL = "free_trial"
     PAY_UP_FRONT = "pay_up_front"
     PAY_AS_YOU_GO = "pay_as_you_go"

@@ -1104,6 +1104,7 @@ class Invoice:
         voided_at: NotRequired[Filters.TimestampFilter]
         void_reason_code: NotRequired[Filters.StringFilter]
         sort_by: NotRequired[Filters.SortFilter]
+        exclude: NotRequired[Filters.StringFilter]
 
     class InvoicesForCustomerParams(TypedDict):
         limit: NotRequired[int]

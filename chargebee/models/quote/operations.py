@@ -1359,6 +1359,7 @@ class Quote:
         billing_address: NotRequired[
             "Quote.CreateForChargeItemsAndChargesBillingAddressParams"
         ]
+        net_term_days: NotRequired[int]
         shipping_address: NotRequired[
             "Quote.CreateForChargeItemsAndChargesShippingAddressParams"
         ]
@@ -1384,6 +1385,7 @@ class Quote:
         billing_address: NotRequired[
             "Quote.EditForChargeItemsAndChargesBillingAddressParams"
         ]
+        net_term_days: NotRequired[int]
         shipping_address: NotRequired[
             "Quote.EditForChargeItemsAndChargesShippingAddressParams"
         ]
