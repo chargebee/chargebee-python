@@ -268,13 +268,13 @@ class PaymentSource:
 
     class CreateVoucherPaymentSourceParams(TypedDict):
         customer_id: Required[str]
-        voucher_payment_source: Required[
+        voucher_payment_source: NotRequired[
             "PaymentSource.CreateVoucherPaymentSourceVoucherPaymentSourceParams"
         ]
 
     class CreateCardParams(TypedDict):
         customer_id: Required[str]
-        card: Required["PaymentSource.CreateCardCardParams"]
+        card: NotRequired["PaymentSource.CreateCardCardParams"]
         replace_primary_payment_source: NotRequired[bool]
 
     class CreateBankAccountParams(TypedDict):

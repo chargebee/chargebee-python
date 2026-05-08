@@ -141,7 +141,7 @@ class Addon:
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
         price_in_decimal: NotRequired[str]
-        tax_providers_fields: Required[List["Addon.CreateTaxProvidersFieldParams"]]
+        tax_providers_fields: NotRequired[List["Addon.CreateTaxProvidersFieldParams"]]
         proration_type: NotRequired["Addon.ProrationType"]
         status: NotRequired["Addon.Status"]
 
@@ -182,7 +182,7 @@ class Addon:
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]
         price_in_decimal: NotRequired[str]
-        tax_providers_fields: Required[List["Addon.UpdateTaxProvidersFieldParams"]]
+        tax_providers_fields: NotRequired[List["Addon.UpdateTaxProvidersFieldParams"]]
         proration_type: NotRequired["Addon.ProrationType"]
 
     class ListParams(TypedDict):

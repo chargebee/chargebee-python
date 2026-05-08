@@ -407,7 +407,7 @@ class CreditNote:
         refund_reason_code: NotRequired[str]
 
     class RecordRefundParams(TypedDict):
-        transaction: Required["CreditNote.RecordRefundTransactionParams"]
+        transaction: NotRequired["CreditNote.RecordRefundTransactionParams"]
         refund_reason_code: NotRequired[str]
         comment: NotRequired[str]
 
@@ -446,7 +446,7 @@ class CreditNote:
         comment: NotRequired[str]
 
     class RemoveTaxWithheldRefundParams(TypedDict):
-        tax_withheld: Required["CreditNote.RemoveTaxWithheldRefundTaxWithheldParams"]
+        tax_withheld: NotRequired["CreditNote.RemoveTaxWithheldRefundTaxWithheldParams"]
 
     class ImportCreditNoteParams(TypedDict):
         id: Required[str]
@@ -465,12 +465,16 @@ class CreditNote:
         round_off_amount: NotRequired[int]
         fractional_correction: NotRequired[int]
         vat_number_prefix: NotRequired[str]
-        line_items: Required[List["CreditNote.ImportCreditNoteLineItemParams"]]
-        line_item_tiers: Required[List["CreditNote.ImportCreditNoteLineItemTierParams"]]
-        discounts: Required[List["CreditNote.ImportCreditNoteDiscountParams"]]
-        taxes: Required[List["CreditNote.ImportCreditNoteTaxParams"]]
-        allocations: Required[List["CreditNote.ImportCreditNoteAllocationParams"]]
-        linked_refunds: Required[List["CreditNote.ImportCreditNoteLinkedRefundParams"]]
+        line_items: NotRequired[List["CreditNote.ImportCreditNoteLineItemParams"]]
+        line_item_tiers: NotRequired[
+            List["CreditNote.ImportCreditNoteLineItemTierParams"]
+        ]
+        discounts: NotRequired[List["CreditNote.ImportCreditNoteDiscountParams"]]
+        taxes: NotRequired[List["CreditNote.ImportCreditNoteTaxParams"]]
+        allocations: NotRequired[List["CreditNote.ImportCreditNoteAllocationParams"]]
+        linked_refunds: NotRequired[
+            List["CreditNote.ImportCreditNoteLinkedRefundParams"]
+        ]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}

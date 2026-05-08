@@ -339,7 +339,7 @@ class Order:
         cancelled_at: NotRequired[int]
 
     class CreateRefundableCreditNoteParams(TypedDict):
-        credit_note: Required["Order.CreateRefundableCreditNoteCreditNoteParams"]
+        credit_note: NotRequired["Order.CreateRefundableCreditNoteCreditNoteParams"]
         customer_notes: NotRequired[str]
         comment: NotRequired[str]
 

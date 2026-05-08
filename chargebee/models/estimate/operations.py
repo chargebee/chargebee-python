@@ -756,7 +756,7 @@ class Estimate:
         validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateSubscriptionParams(TypedDict):
-        subscription: Required["Estimate.CreateSubscriptionSubscriptionParams"]
+        subscription: NotRequired["Estimate.CreateSubscriptionSubscriptionParams"]
         billing_cycles: NotRequired[int]
         addons: NotRequired[List["Estimate.CreateSubscriptionAddonParams"]]
         event_based_addons: NotRequired[
@@ -782,10 +782,10 @@ class Estimate:
     class CreateSubItemEstimateParams(TypedDict):
         subscription: NotRequired["Estimate.CreateSubItemEstimateSubscriptionParams"]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Estimate.CreateSubItemEstimateSubscriptionItemParams"]
         ]
-        discounts: Required[List["Estimate.CreateSubItemEstimateDiscountParams"]]
+        discounts: NotRequired[List["Estimate.CreateSubItemEstimateDiscountParams"]]
         mandatory_items_to_remove: NotRequired[List[str]]
         item_tiers: NotRequired[List["Estimate.CreateSubItemEstimateItemTierParams"]]
         terms_to_charge: NotRequired[int]
@@ -836,10 +836,10 @@ class Estimate:
         ]
         invoice_immediately: NotRequired[bool]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Estimate.CreateSubItemForCustomerEstimateSubscriptionItemParams"]
         ]
-        discounts: Required[
+        discounts: NotRequired[
             List["Estimate.CreateSubItemForCustomerEstimateDiscountParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
@@ -864,7 +864,7 @@ class Estimate:
         ]
 
     class UpdateSubscriptionParams(TypedDict):
-        subscription: Required["Estimate.UpdateSubscriptionSubscriptionParams"]
+        subscription: NotRequired["Estimate.UpdateSubscriptionSubscriptionParams"]
         changes_scheduled_at: NotRequired[int]
         change_option: NotRequired[enums.ChangeOption]
         addons: NotRequired[List["Estimate.UpdateSubscriptionAddonParams"]]
@@ -894,15 +894,19 @@ class Estimate:
         invoice_immediately: NotRequired[bool]
 
     class UpdateSubscriptionForItemsParams(TypedDict):
-        subscription: Required["Estimate.UpdateSubscriptionForItemsSubscriptionParams"]
+        subscription: NotRequired[
+            "Estimate.UpdateSubscriptionForItemsSubscriptionParams"
+        ]
         changes_scheduled_at: NotRequired[int]
         change_option: NotRequired[enums.ChangeOption]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Estimate.UpdateSubscriptionForItemsSubscriptionItemParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
         replace_items_list: NotRequired[bool]
-        discounts: Required[List["Estimate.UpdateSubscriptionForItemsDiscountParams"]]
+        discounts: NotRequired[
+            List["Estimate.UpdateSubscriptionForItemsDiscountParams"]
+        ]
         item_tiers: NotRequired[
             List["Estimate.UpdateSubscriptionForItemsItemTierParams"]
         ]
@@ -1010,18 +1014,20 @@ class Estimate:
 
     class GiftSubscriptionParams(TypedDict):
         gift: NotRequired["Estimate.GiftSubscriptionGiftParams"]
-        gifter: Required["Estimate.GiftSubscriptionGifterParams"]
-        gift_receiver: Required["Estimate.GiftSubscriptionGiftReceiverParams"]
+        gifter: NotRequired["Estimate.GiftSubscriptionGifterParams"]
+        gift_receiver: NotRequired["Estimate.GiftSubscriptionGiftReceiverParams"]
         coupon_ids: NotRequired[List[str]]
         payment_intent: NotRequired["Estimate.GiftSubscriptionPaymentIntentParams"]
         shipping_address: NotRequired["Estimate.GiftSubscriptionShippingAddressParams"]
-        subscription: Required["Estimate.GiftSubscriptionSubscriptionParams"]
+        subscription: NotRequired["Estimate.GiftSubscriptionSubscriptionParams"]
         addons: NotRequired[List["Estimate.GiftSubscriptionAddonParams"]]
 
     class GiftSubscriptionForItemsParams(TypedDict):
         gift: NotRequired["Estimate.GiftSubscriptionForItemsGiftParams"]
-        gifter: Required["Estimate.GiftSubscriptionForItemsGifterParams"]
-        gift_receiver: Required["Estimate.GiftSubscriptionForItemsGiftReceiverParams"]
+        gifter: NotRequired["Estimate.GiftSubscriptionForItemsGifterParams"]
+        gift_receiver: NotRequired[
+            "Estimate.GiftSubscriptionForItemsGiftReceiverParams"
+        ]
         coupon_ids: NotRequired[List[str]]
         payment_intent: NotRequired[
             "Estimate.GiftSubscriptionForItemsPaymentIntentParams"
@@ -1069,7 +1075,7 @@ class Estimate:
         authorization_transaction_id: NotRequired[str]
         payment_source_id: NotRequired[str]
         auto_collection: NotRequired[enums.AutoCollection]
-        discounts: Required[List["Estimate.CreateInvoiceForItemsDiscountParams"]]
+        discounts: NotRequired[List["Estimate.CreateInvoiceForItemsDiscountParams"]]
         shipping_address: NotRequired[
             "Estimate.CreateInvoiceForItemsShippingAddressParams"
         ]

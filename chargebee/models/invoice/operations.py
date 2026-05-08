@@ -945,7 +945,7 @@ class Invoice:
         tax_providers_fields: NotRequired[
             List["Invoice.CreateForChargeItemsAndChargesTaxProvidersFieldParams"]
         ]
-        discounts: Required[
+        discounts: NotRequired[
             List["Invoice.CreateForChargeItemsAndChargesDiscountParams"]
         ]
         invoice_date: NotRequired[int]
@@ -1010,7 +1010,7 @@ class Invoice:
     class CreateForChargeItemParams(TypedDict):
         customer_id: NotRequired[str]
         subscription_id: NotRequired[str]
-        item_price: Required["Invoice.CreateForChargeItemItemPriceParams"]
+        item_price: NotRequired["Invoice.CreateForChargeItemItemPriceParams"]
         item_tiers: NotRequired[List["Invoice.CreateForChargeItemItemTierParams"]]
         po_number: NotRequired[str]
         coupon: NotRequired[str]
@@ -1051,15 +1051,15 @@ class Invoice:
         net_term_days: NotRequired[int]
         has_advance_charges: NotRequired[bool]
         use_for_proration: NotRequired[bool]
-        line_items: Required[List["Invoice.ImportInvoiceLineItemParams"]]
-        payment_reference_numbers: Required[
+        line_items: NotRequired[List["Invoice.ImportInvoiceLineItemParams"]]
+        payment_reference_numbers: NotRequired[
             List["Invoice.ImportInvoicePaymentReferenceNumberParams"]
         ]
-        line_item_tiers: Required[List["Invoice.ImportInvoiceLineItemTierParams"]]
-        discounts: Required[List["Invoice.ImportInvoiceDiscountParams"]]
-        taxes: Required[List["Invoice.ImportInvoiceTaxParams"]]
+        line_item_tiers: NotRequired[List["Invoice.ImportInvoiceLineItemTierParams"]]
+        discounts: NotRequired[List["Invoice.ImportInvoiceDiscountParams"]]
+        taxes: NotRequired[List["Invoice.ImportInvoiceTaxParams"]]
         credit_note: NotRequired["Invoice.ImportInvoiceCreditNoteParams"]
-        payments: Required[List["Invoice.ImportInvoicePaymentParams"]]
+        payments: NotRequired[List["Invoice.ImportInvoicePaymentParams"]]
         notes: NotRequired[List["Invoice.ImportInvoiceNoteParams"]]
         billing_address: NotRequired["Invoice.ImportInvoiceBillingAddressParams"]
         shipping_address: NotRequired["Invoice.ImportInvoiceShippingAddressParams"]
@@ -1154,7 +1154,7 @@ class Invoice:
         subscription_id: NotRequired[str]
 
     class AddChargeItemParams(TypedDict):
-        item_price: Required["Invoice.AddChargeItemItemPriceParams"]
+        item_price: NotRequired["Invoice.AddChargeItemItemPriceParams"]
         item_tiers: NotRequired[List["Invoice.AddChargeItemItemTierParams"]]
         comment: NotRequired[str]
         subscription_id: NotRequired[str]
@@ -1174,14 +1174,14 @@ class Invoice:
         payment_initiator: NotRequired[enums.PaymentInitiator]
 
     class RecordPaymentParams(TypedDict):
-        transaction: Required["Invoice.RecordPaymentTransactionParams"]
+        transaction: NotRequired["Invoice.RecordPaymentTransactionParams"]
         comment: NotRequired[str]
 
     class RecordTaxWithheldParams(TypedDict):
-        tax_withheld: Required["Invoice.RecordTaxWithheldTaxWithheldParams"]
+        tax_withheld: NotRequired["Invoice.RecordTaxWithheldTaxWithheldParams"]
 
     class RemoveTaxWithheldParams(TypedDict):
-        tax_withheld: Required["Invoice.RemoveTaxWithheldTaxWithheldParams"]
+        tax_withheld: NotRequired["Invoice.RemoveTaxWithheldTaxWithheldParams"]
 
     class RefundParams(TypedDict):
         refund_amount: NotRequired[int]
@@ -1190,16 +1190,16 @@ class Invoice:
         customer_notes: NotRequired[str]
 
     class RecordRefundParams(TypedDict):
-        transaction: Required["Invoice.RecordRefundTransactionParams"]
+        transaction: NotRequired["Invoice.RecordRefundTransactionParams"]
         credit_note: NotRequired["Invoice.RecordRefundCreditNoteParams"]
         comment: NotRequired[str]
         customer_notes: NotRequired[str]
 
     class RemovePaymentParams(TypedDict):
-        transaction: Required["Invoice.RemovePaymentTransactionParams"]
+        transaction: NotRequired["Invoice.RemovePaymentTransactionParams"]
 
     class RemoveCreditNoteParams(TypedDict):
-        credit_note: Required["Invoice.RemoveCreditNoteCreditNoteParams"]
+        credit_note: NotRequired["Invoice.RemoveCreditNoteCreditNoteParams"]
 
     class VoidInvoiceParams(TypedDict):
         comment: NotRequired[str]

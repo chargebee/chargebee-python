@@ -29,7 +29,7 @@ class PortalSession:
         id: Required[str]
 
     class CreateParams(TypedDict):
-        customer: Required["PortalSession.CreateCustomerParams"]
+        customer: NotRequired["PortalSession.CreateCustomerParams"]
         redirect_url: NotRequired[str]
         forward_url: NotRequired[str]
 

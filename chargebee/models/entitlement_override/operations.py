@@ -28,7 +28,7 @@ class EntitlementOverride:
 
     class AddEntitlementOverrideForSubscriptionParams(TypedDict):
         action: NotRequired[enums.Action]
-        entitlement_overrides: Required[
+        entitlement_overrides: NotRequired[
             List[
                 "EntitlementOverride.AddEntitlementOverrideForSubscriptionEntitlementOverrideParams"
             ]

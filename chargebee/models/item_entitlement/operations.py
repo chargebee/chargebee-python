@@ -41,13 +41,13 @@ class ItemEntitlement:
 
     class AddItemEntitlementsParams(TypedDict):
         action: Required[enums.Action]
-        item_entitlements: Required[
+        item_entitlements: NotRequired[
             List["ItemEntitlement.AddItemEntitlementsItemEntitlementParams"]
         ]
 
     class UpsertOrRemoveItemEntitlementsForItemParams(TypedDict):
         action: Required[enums.Action]
-        item_entitlements: Required[
+        item_entitlements: NotRequired[
             List[
                 "ItemEntitlement.UpsertOrRemoveItemEntitlementsForItemItemEntitlementParams"
             ]

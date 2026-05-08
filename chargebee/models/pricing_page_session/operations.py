@@ -95,7 +95,7 @@ class PricingPageSession:
 
     class CreateForNewSubscriptionParams(TypedDict):
         redirect_url: NotRequired[str]
-        pricing_page: Required[
+        pricing_page: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionPricingPageParams"
         ]
         subscription: NotRequired[
@@ -107,7 +107,7 @@ class PricingPageSession:
         customer: NotRequired[
             "PricingPageSession.CreateForNewSubscriptionCustomerParams"
         ]
-        discounts: Required[
+        discounts: NotRequired[
             List["PricingPageSession.CreateForNewSubscriptionDiscountParams"]
         ]
         billing_address: NotRequired[
@@ -125,11 +125,11 @@ class PricingPageSession:
         pricing_page: NotRequired[
             "PricingPageSession.CreateForExistingSubscriptionPricingPageParams"
         ]
-        subscription: Required[
+        subscription: NotRequired[
             "PricingPageSession.CreateForExistingSubscriptionSubscriptionParams"
         ]
         custom: NotRequired[Dict[Any, Any]]
-        discounts: Required[
+        discounts: NotRequired[
             List["PricingPageSession.CreateForExistingSubscriptionDiscountParams"]
         ]
         contract_term: NotRequired[

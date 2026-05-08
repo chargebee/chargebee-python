@@ -203,12 +203,12 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        item_constraints: Required[List["Coupon.CreateForItemsItemConstraintParams"]]
+        item_constraints: NotRequired[List["Coupon.CreateForItemsItemConstraintParams"]]
         item_constraint_criteria: NotRequired[
             List["Coupon.CreateForItemsItemConstraintCriteriaParams"]
         ]
         status: NotRequired["Coupon.Status"]
-        coupon_constraints: Required[
+        coupon_constraints: NotRequired[
             List["Coupon.CreateForItemsCouponConstraintParams"]
         ]
 
@@ -231,11 +231,11 @@ class Coupon:
         included_in_mrr: NotRequired[bool]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
-        item_constraints: Required[List["Coupon.UpdateForItemsItemConstraintParams"]]
+        item_constraints: NotRequired[List["Coupon.UpdateForItemsItemConstraintParams"]]
         item_constraint_criteria: NotRequired[
             List["Coupon.UpdateForItemsItemConstraintCriteriaParams"]
         ]
-        coupon_constraints: Required[
+        coupon_constraints: NotRequired[
             List["Coupon.UpdateForItemsCouponConstraintParams"]
         ]
 
