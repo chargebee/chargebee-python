@@ -224,13 +224,15 @@ class Ramp:
         coupons_to_remove: NotRequired[List[str]]
         discounts_to_remove: NotRequired[List[str]]
         items_to_remove: NotRequired[List[str]]
-        items_to_add: Required[List["Ramp.CreateForSubscriptionItemsToAddParams"]]
-        items_to_update: Required[List["Ramp.CreateForSubscriptionItemsToUpdateParams"]]
+        items_to_add: NotRequired[List["Ramp.CreateForSubscriptionItemsToAddParams"]]
+        items_to_update: NotRequired[
+            List["Ramp.CreateForSubscriptionItemsToUpdateParams"]
+        ]
         item_tiers: NotRequired[List["Ramp.CreateForSubscriptionItemTierParams"]]
         coupons_to_add: NotRequired[
             List["Ramp.CreateForSubscriptionCouponsToAddParams"]
         ]
-        discounts_to_add: Required[
+        discounts_to_add: NotRequired[
             List["Ramp.CreateForSubscriptionDiscountsToAddParams"]
         ]
         contract_term: NotRequired["Ramp.CreateForSubscriptionContractTermParams"]
@@ -241,11 +243,11 @@ class Ramp:
         coupons_to_remove: NotRequired[List[str]]
         discounts_to_remove: NotRequired[List[str]]
         items_to_remove: NotRequired[List[str]]
-        items_to_add: Required[List["Ramp.UpdateItemsToAddParams"]]
-        items_to_update: Required[List["Ramp.UpdateItemsToUpdateParams"]]
+        items_to_add: NotRequired[List["Ramp.UpdateItemsToAddParams"]]
+        items_to_update: NotRequired[List["Ramp.UpdateItemsToUpdateParams"]]
         item_tiers: NotRequired[List["Ramp.UpdateItemTierParams"]]
         coupons_to_add: NotRequired[List["Ramp.UpdateCouponsToAddParams"]]
-        discounts_to_add: Required[List["Ramp.UpdateDiscountsToAddParams"]]
+        discounts_to_add: NotRequired[List["Ramp.UpdateDiscountsToAddParams"]]
         contract_term: NotRequired["Ramp.UpdateContractTermParams"]
 
     class ListParams(TypedDict):

@@ -36,7 +36,7 @@ class SubscriptionEntitlement:
 
     class SetSubscriptionEntitlementAvailabilityParams(TypedDict):
         is_enabled: Required[bool]
-        subscription_entitlements: Required[
+        subscription_entitlements: NotRequired[
             List[
                 "SubscriptionEntitlement.SetSubscriptionEntitlementAvailabilitySubscriptionEntitlementParams"
             ]

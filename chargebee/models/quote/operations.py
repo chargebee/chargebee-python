@@ -1064,7 +1064,7 @@ class Quote:
         name: NotRequired[str]
         notes: NotRequired[str]
         expires_at: NotRequired[int]
-        subscription: Required["Quote.CreateSubForCustomerQuoteSubscriptionParams"]
+        subscription: NotRequired["Quote.CreateSubForCustomerQuoteSubscriptionParams"]
         billing_cycles: NotRequired[int]
         addons: NotRequired[List["Quote.CreateSubForCustomerQuoteAddonParams"]]
         event_based_addons: NotRequired[
@@ -1082,7 +1082,9 @@ class Quote:
     class EditCreateSubForCustomerQuoteParams(TypedDict):
         notes: NotRequired[str]
         expires_at: NotRequired[int]
-        subscription: Required["Quote.EditCreateSubForCustomerQuoteSubscriptionParams"]
+        subscription: NotRequired[
+            "Quote.EditCreateSubForCustomerQuoteSubscriptionParams"
+        ]
         billing_cycles: NotRequired[int]
         addons: NotRequired[List["Quote.EditCreateSubForCustomerQuoteAddonParams"]]
         event_based_addons: NotRequired[
@@ -1103,7 +1105,7 @@ class Quote:
         name: NotRequired[str]
         notes: NotRequired[str]
         expires_at: NotRequired[int]
-        subscription: Required["Quote.UpdateSubscriptionQuoteSubscriptionParams"]
+        subscription: NotRequired["Quote.UpdateSubscriptionQuoteSubscriptionParams"]
         addons: NotRequired[List["Quote.UpdateSubscriptionQuoteAddonParams"]]
         event_based_addons: NotRequired[
             List["Quote.UpdateSubscriptionQuoteEventBasedAddonParams"]
@@ -1200,10 +1202,12 @@ class Quote:
             "Quote.CreateSubItemsForCustomerQuoteSubscriptionParams"
         ]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Quote.CreateSubItemsForCustomerQuoteSubscriptionItemParams"]
         ]
-        discounts: Required[List["Quote.CreateSubItemsForCustomerQuoteDiscountParams"]]
+        discounts: NotRequired[
+            List["Quote.CreateSubItemsForCustomerQuoteDiscountParams"]
+        ]
         mandatory_items_to_remove: NotRequired[List[str]]
         item_tiers: NotRequired[
             List["Quote.CreateSubItemsForCustomerQuoteItemTierParams"]
@@ -1231,10 +1235,10 @@ class Quote:
             "Quote.EditCreateSubCustomerQuoteForItemsSubscriptionParams"
         ]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Quote.EditCreateSubCustomerQuoteForItemsSubscriptionItemParams"]
         ]
-        discounts: Required[
+        discounts: NotRequired[
             List["Quote.EditCreateSubCustomerQuoteForItemsDiscountParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
@@ -1263,15 +1267,17 @@ class Quote:
         name: NotRequired[str]
         notes: NotRequired[str]
         expires_at: NotRequired[int]
-        subscription: Required[
+        subscription: NotRequired[
             "Quote.UpdateSubscriptionQuoteForItemsSubscriptionParams"
         ]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Quote.UpdateSubscriptionQuoteForItemsSubscriptionItemParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
         replace_items_list: NotRequired[bool]
-        discounts: Required[List["Quote.UpdateSubscriptionQuoteForItemsDiscountParams"]]
+        discounts: NotRequired[
+            List["Quote.UpdateSubscriptionQuoteForItemsDiscountParams"]
+        ]
         item_tiers: NotRequired[
             List["Quote.UpdateSubscriptionQuoteForItemsItemTierParams"]
         ]
@@ -1301,7 +1307,7 @@ class Quote:
     class EditUpdateSubscriptionQuoteForItemsParams(TypedDict):
         notes: NotRequired[str]
         expires_at: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Quote.EditUpdateSubscriptionQuoteForItemsSubscriptionItemParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
@@ -1309,7 +1315,7 @@ class Quote:
         subscription: NotRequired[
             "Quote.EditUpdateSubscriptionQuoteForItemsSubscriptionParams"
         ]
-        discounts: Required[
+        discounts: NotRequired[
             List["Quote.EditUpdateSubscriptionQuoteForItemsDiscountParams"]
         ]
         item_tiers: NotRequired[
@@ -1363,7 +1369,9 @@ class Quote:
         shipping_address: NotRequired[
             "Quote.CreateForChargeItemsAndChargesShippingAddressParams"
         ]
-        discounts: Required[List["Quote.CreateForChargeItemsAndChargesDiscountParams"]]
+        discounts: NotRequired[
+            List["Quote.CreateForChargeItemsAndChargesDiscountParams"]
+        ]
         tax_providers_fields: NotRequired[
             List["Quote.CreateForChargeItemsAndChargesTaxProvidersFieldParams"]
         ]
@@ -1389,7 +1397,7 @@ class Quote:
         shipping_address: NotRequired[
             "Quote.EditForChargeItemsAndChargesShippingAddressParams"
         ]
-        discounts: Required[List["Quote.EditForChargeItemsAndChargesDiscountParams"]]
+        discounts: NotRequired[List["Quote.EditForChargeItemsAndChargesDiscountParams"]]
         tax_providers_fields: NotRequired[
             List["Quote.EditForChargeItemsAndChargesTaxProvidersFieldParams"]
         ]

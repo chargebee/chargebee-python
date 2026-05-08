@@ -188,7 +188,9 @@ class ItemPrice:
         billing_cycles: NotRequired[int]
         trial_end_action: NotRequired["ItemPrice.TrialEndAction"]
         tax_detail: NotRequired["ItemPrice.CreateTaxDetailParams"]
-        tax_providers_fields: Required[List["ItemPrice.CreateTaxProvidersFieldParams"]]
+        tax_providers_fields: NotRequired[
+            List["ItemPrice.CreateTaxProvidersFieldParams"]
+        ]
         accounting_detail: NotRequired["ItemPrice.CreateAccountingDetailParams"]
 
     class UpdateParams(TypedDict):
@@ -220,7 +222,9 @@ class ItemPrice:
         billing_cycles: NotRequired[int]
         trial_end_action: NotRequired["ItemPrice.TrialEndAction"]
         tax_detail: NotRequired["ItemPrice.UpdateTaxDetailParams"]
-        tax_providers_fields: Required[List["ItemPrice.UpdateTaxProvidersFieldParams"]]
+        tax_providers_fields: NotRequired[
+            List["ItemPrice.UpdateTaxProvidersFieldParams"]
+        ]
         accounting_detail: NotRequired["ItemPrice.UpdateAccountingDetailParams"]
         show_description_in_invoices: NotRequired[bool]
         show_description_in_quotes: NotRequired[bool]

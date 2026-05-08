@@ -630,7 +630,7 @@ class HostedPage:
         locale: NotRequired[str]
 
     class CheckoutNewParams(TypedDict):
-        subscription: Required["HostedPage.CheckoutNewSubscriptionParams"]
+        subscription: NotRequired["HostedPage.CheckoutNewSubscriptionParams"]
         customer: NotRequired["HostedPage.CheckoutNewCustomerParams"]
         billing_cycles: NotRequired[int]
         addons: NotRequired[List["HostedPage.CheckoutNewAddonParams"]]
@@ -681,7 +681,7 @@ class HostedPage:
             List["HostedPage.CheckoutOneTimeForItemsItemTierParams"]
         ]
         charges: NotRequired[List["HostedPage.CheckoutOneTimeForItemsChargeParams"]]
-        discounts: Required[List["HostedPage.CheckoutOneTimeForItemsDiscountParams"]]
+        discounts: NotRequired[List["HostedPage.CheckoutOneTimeForItemsDiscountParams"]]
         invoice_note: NotRequired[str]
         invoice: NotRequired["HostedPage.CheckoutOneTimeForItemsInvoiceParams"]
         coupon: NotRequired[str]
@@ -707,10 +707,10 @@ class HostedPage:
         business_entity_id: NotRequired[str]
         customer: NotRequired["HostedPage.CheckoutNewForItemsCustomerParams"]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["HostedPage.CheckoutNewForItemsSubscriptionItemParams"]
         ]
-        discounts: Required[List["HostedPage.CheckoutNewForItemsDiscountParams"]]
+        discounts: NotRequired[List["HostedPage.CheckoutNewForItemsDiscountParams"]]
         mandatory_items_to_remove: NotRequired[List[str]]
         item_tiers: NotRequired[List["HostedPage.CheckoutNewForItemsItemTierParams"]]
         terms_to_charge: NotRequired[int]
@@ -733,7 +733,7 @@ class HostedPage:
         contract_term: NotRequired["HostedPage.CheckoutNewForItemsContractTermParams"]
 
     class CheckoutExistingParams(TypedDict):
-        subscription: Required["HostedPage.CheckoutExistingSubscriptionParams"]
+        subscription: NotRequired["HostedPage.CheckoutExistingSubscriptionParams"]
         addons: NotRequired[List["HostedPage.CheckoutExistingAddonParams"]]
         event_based_addons: NotRequired[
             List["HostedPage.CheckoutExistingEventBasedAddonParams"]
@@ -761,13 +761,17 @@ class HostedPage:
 
     class CheckoutExistingForItemsParams(TypedDict):
         layout: NotRequired[enums.Layout]
-        subscription: Required["HostedPage.CheckoutExistingForItemsSubscriptionParams"]
-        subscription_items: Required[
+        subscription: NotRequired[
+            "HostedPage.CheckoutExistingForItemsSubscriptionParams"
+        ]
+        subscription_items: NotRequired[
             List["HostedPage.CheckoutExistingForItemsSubscriptionItemParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
         replace_items_list: NotRequired[bool]
-        discounts: Required[List["HostedPage.CheckoutExistingForItemsDiscountParams"]]
+        discounts: NotRequired[
+            List["HostedPage.CheckoutExistingForItemsDiscountParams"]
+        ]
         item_tiers: NotRequired[
             List["HostedPage.CheckoutExistingForItemsItemTierParams"]
         ]
@@ -797,7 +801,7 @@ class HostedPage:
         ]
 
     class UpdateCardParams(TypedDict):
-        customer: Required["HostedPage.UpdateCardCustomerParams"]
+        customer: NotRequired["HostedPage.UpdateCardCustomerParams"]
         card: NotRequired["HostedPage.UpdateCardCardParams"]
         redirect_url: NotRequired[str]
         cancel_url: NotRequired[str]
@@ -806,7 +810,7 @@ class HostedPage:
         iframe_messaging: NotRequired[bool]
 
     class UpdatePaymentMethodParams(TypedDict):
-        customer: Required["HostedPage.UpdatePaymentMethodCustomerParams"]
+        customer: NotRequired["HostedPage.UpdatePaymentMethodCustomerParams"]
         card: NotRequired["HostedPage.UpdatePaymentMethodCardParams"]
         redirect_url: NotRequired[str]
         cancel_url: NotRequired[str]
@@ -816,31 +820,31 @@ class HostedPage:
 
     class ManagePaymentSourcesParams(TypedDict):
         business_entity_id: NotRequired[str]
-        customer: Required["HostedPage.ManagePaymentSourcesCustomerParams"]
+        customer: NotRequired["HostedPage.ManagePaymentSourcesCustomerParams"]
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.ManagePaymentSourcesCardParams"]
 
     class CollectNowParams(TypedDict):
-        customer: Required["HostedPage.CollectNowCustomerParams"]
+        customer: NotRequired["HostedPage.CollectNowCustomerParams"]
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.CollectNowCardParams"]
         currency_code: NotRequired[str]
         payment_method_save_policy: NotRequired[enums.PaymentMethodSavePolicy]
 
     class AcceptQuoteParams(TypedDict):
-        quote: Required["HostedPage.AcceptQuoteQuoteParams"]
+        quote: NotRequired["HostedPage.AcceptQuoteQuoteParams"]
         redirect_url: NotRequired[str]
         layout: NotRequired[enums.Layout]
 
     class ExtendSubscriptionParams(TypedDict):
-        subscription: Required["HostedPage.ExtendSubscriptionSubscriptionParams"]
+        subscription: NotRequired["HostedPage.ExtendSubscriptionSubscriptionParams"]
         expiry: NotRequired[int]
         billing_cycle: NotRequired[int]
 
     class CheckoutGiftParams(TypedDict):
         gifter: NotRequired["HostedPage.CheckoutGiftGifterParams"]
         redirect_url: NotRequired[str]
-        subscription: Required["HostedPage.CheckoutGiftSubscriptionParams"]
+        subscription: NotRequired["HostedPage.CheckoutGiftSubscriptionParams"]
         addons: NotRequired[List["HostedPage.CheckoutGiftAddonParams"]]
         coupon_ids: NotRequired[List[str]]
 
@@ -855,7 +859,7 @@ class HostedPage:
         coupon_ids: NotRequired[List[str]]
 
     class ClaimGiftParams(TypedDict):
-        gift: Required["HostedPage.ClaimGiftGiftParams"]
+        gift: NotRequired["HostedPage.ClaimGiftGiftParams"]
         redirect_url: NotRequired[str]
         customer: NotRequired["HostedPage.ClaimGiftCustomerParams"]
 
@@ -871,7 +875,7 @@ class HostedPage:
         updated_at: NotRequired[Filters.TimestampFilter]
 
     class PreCancelParams(TypedDict):
-        subscription: Required["HostedPage.PreCancelSubscriptionParams"]
+        subscription: NotRequired["HostedPage.PreCancelSubscriptionParams"]
         pass_thru_content: NotRequired[str]
         cancel_url: NotRequired[str]
         redirect_url: NotRequired[str]
@@ -882,7 +886,7 @@ class HostedPage:
         event_data: Required[Dict[Any, Any]]
 
     class ViewVoucherParams(TypedDict):
-        payment_voucher: Required["HostedPage.ViewVoucherPaymentVoucherParams"]
+        payment_voucher: NotRequired["HostedPage.ViewVoucherPaymentVoucherParams"]
         customer: NotRequired["HostedPage.ViewVoucherCustomerParams"]
 
     def checkout_new(

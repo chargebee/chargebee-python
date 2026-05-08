@@ -537,7 +537,7 @@ class Customer:
         ]
 
     class UpdatePaymentMethodParams(TypedDict):
-        payment_method: Required["Customer.UpdatePaymentMethodPaymentMethodParams"]
+        payment_method: NotRequired["Customer.UpdatePaymentMethodPaymentMethodParams"]
 
     class UpdateBillingInfoParams(TypedDict):
         billing_address: NotRequired["Customer.UpdateBillingInfoBillingAddressParams"]
@@ -565,13 +565,13 @@ class Customer:
         role: Required[enums.Role]
 
     class AddContactParams(TypedDict):
-        contact: Required["Customer.AddContactContactParams"]
+        contact: NotRequired["Customer.AddContactContactParams"]
 
     class UpdateContactParams(TypedDict):
-        contact: Required["Customer.UpdateContactContactParams"]
+        contact: NotRequired["Customer.UpdateContactContactParams"]
 
     class DeleteContactParams(TypedDict):
-        contact: Required["Customer.DeleteContactContactParams"]
+        contact: NotRequired["Customer.DeleteContactContactParams"]
 
     class AddPromotionalCreditsParams(TypedDict):
         amount: Required[int]
@@ -595,12 +595,12 @@ class Customer:
         reference: NotRequired[str]
 
     class RecordExcessPaymentParams(TypedDict):
-        transaction: Required["Customer.RecordExcessPaymentTransactionParams"]
+        transaction: NotRequired["Customer.RecordExcessPaymentTransactionParams"]
         comment: NotRequired[str]
 
     class CollectPaymentParams(TypedDict):
         amount: NotRequired[int]
-        invoice_allocations: Required[
+        invoice_allocations: NotRequired[
             List["Customer.CollectPaymentInvoiceAllocationParams"]
         ]
         payment_source_id: NotRequired[str]

@@ -55,16 +55,18 @@ class InAppSubscription:
 
     class ProcessReceiptParams(TypedDict):
         receipt: Required[str]
-        product: Required["InAppSubscription.ProcessReceiptProductParams"]
+        product: NotRequired["InAppSubscription.ProcessReceiptProductParams"]
         customer: NotRequired["InAppSubscription.ProcessReceiptCustomerParams"]
 
     class ImportReceiptParams(TypedDict):
         receipt: Required[str]
-        product: Required["InAppSubscription.ImportReceiptProductParams"]
+        product: NotRequired["InAppSubscription.ImportReceiptProductParams"]
         customer: NotRequired["InAppSubscription.ImportReceiptCustomerParams"]
 
     class ImportSubscriptionParams(TypedDict):
-        subscription: Required["InAppSubscription.ImportSubscriptionSubscriptionParams"]
+        subscription: NotRequired[
+            "InAppSubscription.ImportSubscriptionSubscriptionParams"
+        ]
         customer: NotRequired["InAppSubscription.ImportSubscriptionCustomerParams"]
 
     class RetrieveStoreSubsParams(TypedDict):

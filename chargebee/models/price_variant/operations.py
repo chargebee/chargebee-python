@@ -36,7 +36,7 @@ class PriceVariant:
         description: NotRequired[str]
         variant_group: NotRequired[str]
         business_entity_id: NotRequired[str]
-        attributes: Required[List["PriceVariant.CreateAttributeParams"]]
+        attributes: NotRequired[List["PriceVariant.CreateAttributeParams"]]
 
     class UpdateParams(TypedDict):
         name: NotRequired[str]
@@ -44,7 +44,7 @@ class PriceVariant:
         description: NotRequired[str]
         variant_group: NotRequired[str]
         status: NotRequired["PriceVariant.Status"]
-        attributes: Required[List["PriceVariant.UpdateAttributeParams"]]
+        attributes: NotRequired[List["PriceVariant.UpdateAttributeParams"]]
 
     class ListParams(TypedDict):
         limit: NotRequired[int]

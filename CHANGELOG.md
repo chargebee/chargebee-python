@@ -1,3 +1,12 @@
+### v3.22.0 (2026-05-07)
+* * *
+
+### Bug fixes: 
+
+- Fixed an inconsistency in required parameters for API methods between the SDK Generator and OpenAPI specifications.
+
+
+
 ### v3.21.0 (2026-05-04)
 * * *
 ### New Resources:

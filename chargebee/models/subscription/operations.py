@@ -1261,11 +1261,11 @@ class Subscription:
         business_entity_id: NotRequired[str]
         trial_end: NotRequired[int]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Subscription.CreateWithItemsSubscriptionItemParams"]
         ]
         setup_fee: NotRequired[int]
-        discounts: Required[List["Subscription.CreateWithItemsDiscountParams"]]
+        discounts: NotRequired[List["Subscription.CreateWithItemsDiscountParams"]]
         mandatory_items_to_remove: NotRequired[List[str]]
         item_tiers: NotRequired[List["Subscription.CreateWithItemsItemTierParams"]]
         net_term_days: NotRequired[int]
@@ -1408,13 +1408,13 @@ class Subscription:
         coupons: NotRequired[List["Subscription.UpdateCouponParams"]]
 
     class UpdateForItemsParams(TypedDict):
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Subscription.UpdateForItemsSubscriptionItemParams"]
         ]
         mandatory_items_to_remove: NotRequired[List[str]]
         replace_items_list: NotRequired[bool]
         setup_fee: NotRequired[int]
-        discounts: Required[List["Subscription.UpdateForItemsDiscountParams"]]
+        discounts: NotRequired[List["Subscription.UpdateForItemsDiscountParams"]]
         item_tiers: NotRequired[List["Subscription.UpdateForItemsItemTierParams"]]
         net_term_days: NotRequired[int]
         invoice_date: NotRequired[int]
@@ -1637,22 +1637,22 @@ class Subscription:
         contract_term_billing_cycle_on_renewal: NotRequired[int]
 
     class ImportUnbilledChargesParams(TypedDict):
-        unbilled_charges: Required[
+        unbilled_charges: NotRequired[
             List["Subscription.ImportUnbilledChargesUnbilledChargeParams"]
         ]
-        discounts: Required[List["Subscription.ImportUnbilledChargesDiscountParams"]]
-        tiers: Required[List["Subscription.ImportUnbilledChargesTierParams"]]
+        discounts: NotRequired[List["Subscription.ImportUnbilledChargesDiscountParams"]]
+        tiers: NotRequired[List["Subscription.ImportUnbilledChargesTierParams"]]
 
     class ImportForItemsParams(TypedDict):
         exhausted_coupon_ids: NotRequired[List[str]]
         id: NotRequired[str]
         trial_end: NotRequired[int]
         billing_cycles: NotRequired[int]
-        subscription_items: Required[
+        subscription_items: NotRequired[
             List["Subscription.ImportForItemsSubscriptionItemParams"]
         ]
         setup_fee: NotRequired[int]
-        discounts: Required[List["Subscription.ImportForItemsDiscountParams"]]
+        discounts: NotRequired[List["Subscription.ImportForItemsDiscountParams"]]
         charged_items: NotRequired[List["Subscription.ImportForItemsChargedItemParams"]]
         item_tiers: NotRequired[List["Subscription.ImportForItemsItemTierParams"]]
         net_term_days: NotRequired[int]

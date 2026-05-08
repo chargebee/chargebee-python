@@ -36,7 +36,7 @@ class Alert:
         description: NotRequired[str]
         metered_feature_id: Required[str]
         subscription_id: NotRequired[str]
-        threshold: Required["Alert.CreateThresholdParams"]
+        threshold: NotRequired["Alert.CreateThresholdParams"]
         meta: NotRequired[str]
         filter_conditions: NotRequired[List["Alert.CreateFilterConditionParams"]]
 

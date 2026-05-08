@@ -39,7 +39,7 @@ class Usage:
         sort_by: NotRequired[Filters.SortFilter]
 
     class PdfParams(TypedDict):
-        invoice: Required["Usage.PdfInvoiceParams"]
+        invoice: NotRequired["Usage.PdfInvoiceParams"]
         disposition_type: NotRequired[enums.DispositionType]
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:

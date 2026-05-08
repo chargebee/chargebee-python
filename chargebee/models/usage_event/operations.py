@@ -20,7 +20,7 @@ class UsageEvent:
         properties: Required[Dict[Any, Any]]
 
     class BatchIngestParams(TypedDict):
-        events: Required[List["UsageEvent.BatchIngestEventParams"]]
+        events: NotRequired[List["UsageEvent.BatchIngestEventParams"]]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {

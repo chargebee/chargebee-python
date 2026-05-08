@@ -32,10 +32,10 @@ class PaymentVoucher:
 
     class CreateParams(TypedDict):
         customer_id: Required[str]
-        voucher_payment_source: Required[
+        voucher_payment_source: NotRequired[
             "PaymentVoucher.CreateVoucherPaymentSourceParams"
         ]
-        invoice_allocations: Required[
+        invoice_allocations: NotRequired[
             List["PaymentVoucher.CreateInvoiceAllocationParams"]
         ]
         payment_source_id: NotRequired[str]

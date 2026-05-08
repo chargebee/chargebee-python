@@ -158,12 +158,12 @@ class Purchase:
         validation_status: NotRequired[enums.ValidationStatus]
 
     class CreateParams(TypedDict):
-        purchase_items: Required[List["Purchase.CreatePurchaseItemParams"]]
-        item_tiers: Required[List["Purchase.CreateItemTierParams"]]
+        purchase_items: NotRequired[List["Purchase.CreatePurchaseItemParams"]]
+        item_tiers: NotRequired[List["Purchase.CreateItemTierParams"]]
         shipping_addresses: NotRequired[List["Purchase.CreateShippingAddressParams"]]
         discounts: NotRequired[List["Purchase.CreateDiscountParams"]]
-        subscription_info: Required[List["Purchase.CreateSubscriptionInfoParams"]]
-        contract_terms: Required[List["Purchase.CreateContractTermParams"]]
+        subscription_info: NotRequired[List["Purchase.CreateSubscriptionInfoParams"]]
+        contract_terms: NotRequired[List["Purchase.CreateContractTermParams"]]
         invoice_info: NotRequired["Purchase.CreateInvoiceInfoParams"]
         payment_schedule: NotRequired["Purchase.CreatePaymentScheduleParams"]
         statement_descriptor: NotRequired["Purchase.CreateStatementDescriptorParams"]
@@ -173,12 +173,12 @@ class Purchase:
         replace_primary_payment_source: NotRequired[bool]
 
     class EstimateParams(TypedDict):
-        purchase_items: Required[List["Purchase.EstimatePurchaseItemParams"]]
-        item_tiers: Required[List["Purchase.EstimateItemTierParams"]]
+        purchase_items: NotRequired[List["Purchase.EstimatePurchaseItemParams"]]
+        item_tiers: NotRequired[List["Purchase.EstimateItemTierParams"]]
         shipping_addresses: NotRequired[List["Purchase.EstimateShippingAddressParams"]]
         discounts: NotRequired[List["Purchase.EstimateDiscountParams"]]
-        subscription_info: Required[List["Purchase.EstimateSubscriptionInfoParams"]]
-        contract_terms: Required[List["Purchase.EstimateContractTermParams"]]
+        subscription_info: NotRequired[List["Purchase.EstimateSubscriptionInfoParams"]]
+        contract_terms: NotRequired[List["Purchase.EstimateContractTermParams"]]
         customer: NotRequired["Purchase.EstimateCustomerParams"]
         billing_address: NotRequired["Purchase.EstimateBillingAddressParams"]
         client_profile_id: NotRequired[str]
