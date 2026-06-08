@@ -18,6 +18,8 @@ class OmnichannelSubscriptionResponse(Model):
     source: str = None
     customer_id: str = None
     created_at: int = None
+    purchased_at: int = None
+    updated_at: int = None
     resource_version: int = None
     omnichannel_subscription_items: List[
         "omnichannel_subscription_item.OmnichannelSubscriptionItemResponse"

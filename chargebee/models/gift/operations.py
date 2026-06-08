@@ -148,6 +148,11 @@ class Gift:
     class ListGifterParams(TypedDict):
         customer_id: NotRequired[Filters.StringFilter]
 
+    class UpdateGiftGiftReceiverParams(TypedDict):
+        email: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+
     class CreateParams(TypedDict):
         scheduled_at: NotRequired[int]
         auto_claim: NotRequired[bool]
@@ -185,7 +190,8 @@ class Gift:
         status: NotRequired[Filters.EnumFilter]
 
     class UpdateGiftParams(TypedDict):
-        scheduled_at: Required[int]
+        scheduled_at: NotRequired[int]
+        gift_receiver: NotRequired["Gift.UpdateGiftGiftReceiverParams"]
         comment: NotRequired[str]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -300,7 +306,7 @@ class Gift:
         )
 
     def update_gift(
-        self, id, params: UpdateGiftParams, headers=None
+        self, id, params: UpdateGiftParams = None, headers=None
     ) -> UpdateGiftResponse:
         jsonKeys = {}
         options = {

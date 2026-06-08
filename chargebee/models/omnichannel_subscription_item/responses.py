@@ -40,6 +40,7 @@ class OmnichannelSubscriptionItemResponse(Model):
     grace_period_expires_at: int = None
     resumes_at: int = None
     has_scheduled_changes: bool = None
+    updated_at: int = None
     resource_version: int = None
     omnichannel_subscription_item_offers: List[
         "omnichannel_subscription_item_offer.OmnichannelSubscriptionItemOfferResponse"

@@ -259,8 +259,6 @@ from chargebee.models.purchase.operations import Purchase
 
 from chargebee.models.quote.operations import Quote
 
-from chargebee.models.quote_entitlement.operations import QuoteEntitlement
-
 from chargebee.models.quote_line_group.operations import QuoteLineGroup
 
 from chargebee.models.quoted_charge.operations import QuotedCharge
