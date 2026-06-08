@@ -121,7 +121,6 @@ class Chargebee:
         self.PromotionalCredit = chargebee.PromotionalCredit(self.env)
         self.Purchase = chargebee.Purchase(self.env)
         self.Quote = chargebee.Quote(self.env)
-        self.QuoteEntitlement = chargebee.QuoteEntitlement(self.env)
         self.QuoteLineGroup = chargebee.QuoteLineGroup(self.env)
         self.QuotedCharge = chargebee.QuotedCharge(self.env)
         self.QuotedDeltaRamp = chargebee.QuotedDeltaRamp(self.env)

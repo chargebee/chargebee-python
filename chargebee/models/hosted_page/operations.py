@@ -849,6 +849,7 @@ class HostedPage:
         coupon_ids: NotRequired[List[str]]
 
     class CheckoutGiftForItemsParams(TypedDict):
+        layout: NotRequired[enums.Layout]
         business_entity_id: NotRequired[str]
         gifter: NotRequired["HostedPage.CheckoutGiftForItemsGifterParams"]
         redirect_url: NotRequired[str]

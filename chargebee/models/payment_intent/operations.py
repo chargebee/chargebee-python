@@ -52,7 +52,6 @@ class PaymentIntent:
         CASH_APP_PAY = "cash_app_pay"
         WECHAT_PAY = "wechat_pay"
         ALIPAY = "alipay"
-        PIX = "pix"
         TWINT = "twint"
         GO_PAY = "go_pay"
         GRAB_PAY = "grab_pay"
@@ -60,6 +59,12 @@ class PaymentIntent:
         AFTER_PAY = "after_pay"
         SWISH = "swish"
         PAYME = "payme"
+        PIX = "pix"
+        KLARNA = "klarna"
+        ALIPAY_HK = "alipay_hk"
+        PAYPAY = "paypay"
+        GCASH = "gcash"
+        SOUTH_KOREAN_CARDS = "south_korean_cards"
 
         def __str__(self):
             return self.value
