@@ -1445,6 +1445,16 @@ class Source(Enum):
         return self.value
 
 
+class Status(Enum):
+    AVAILABLE = "available"
+    EXHAUSTED = "exhausted"
+    SCHEDULED = "scheduled"
+    IN_GRACE_PERIOD = "in_grace_period"
+
+    def __str__(self):
+        return self.value
+
+
 class TaxExemptReason(Enum):
     TAX_NOT_CONFIGURED = "tax_not_configured"
     REGION_NON_TAXABLE = "region_non_taxable"
