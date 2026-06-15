@@ -47,7 +47,7 @@ class LedgerAccountBalance:
             headers,
             ListLedgerAccountBalancesResponse,
             None,
-            True,
+            False,
             jsonKeys,
             options,
         )

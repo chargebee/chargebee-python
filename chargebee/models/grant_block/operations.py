@@ -55,7 +55,7 @@ class GrantBlock:
             headers,
             ListGrantBlocksResponse,
             None,
-            True,
+            False,
             jsonKeys,
             options,
         )
