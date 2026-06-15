@@ -238,6 +238,7 @@ class CreditNoteResponse(Model):
     local_currency_code: str = None
     round_off_amount: int = None
     fractional_correction: int = None
+    notes: List[str] = None
     line_items: List[LineItemResponse] = None
     line_item_tiers: List[LineItemTierResponse] = None
     line_item_discounts: List[LineItemDiscountResponse] = None

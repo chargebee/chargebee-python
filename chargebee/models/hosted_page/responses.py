@@ -17,6 +17,7 @@ class HostedPageResponse(Model):
     embed: bool = None
     created_at: int = None
     expires_at: int = None
+    layout: str = None
     content: Dict[Any, Any] = None
     updated_at: int = None
     resource_version: int = None

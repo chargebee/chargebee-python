@@ -13,7 +13,6 @@ class HostedPage:
     class Type(Enum):
         CHECKOUT_NEW = "checkout_new"
         CHECKOUT_EXISTING = "checkout_existing"
-        UPDATE_PAYMENT_METHOD = "update_payment_method"
         MANAGE_PAYMENT_SOURCES = "manage_payment_sources"
         COLLECT_NOW = "collect_now"
         EXTEND_SUBSCRIPTION = "extend_subscription"
