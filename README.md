@@ -278,6 +278,79 @@ cb_client.update_retry_config(retry_config)
 
 ```
 
+### Telemetry (OpenTelemetry)
+
+Optional. Pass a `telemetry_adapter` when you want Chargebee API calls traced in your observability stack (Datadog, Splunk, Honeycomb, Jaeger, etc.). OpenTelemetry is not bundled with `chargebee` — install and configure it in your app, implement `TelemetryAdapter`, and wire it on the client.
+
+The SDK builds standardized span attributes (`context.start_attributes`, `result.end_attributes`) following the stable [OpenTelemetry HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/) (`url.full`, `http.request.method`, `http.response.status_code`, `server.address`, `error.type`) plus Chargebee-specific `chargebee.*` attributes — use them as-is so spans render correctly in your APM and stay consistent across SDKs.
+
+Spans are named `chargebee.{resource}.{operation}` (e.g. `chargebee.subscription.create`).
+
+#### OpenTelemetry example
+
+```sh
+pip install chargebee opentelemetry-api opentelemetry-sdk opentelemetry-exporter-otlp-proto-grpc
+```
+
+Configure OpenTelemetry at app startup, then pass your adapter:
+
+```python
+# App startup — configure once
+from opentelemetry import trace
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+provider = TracerProvider(resource=Resource.create({"service.name": "billing-service"}))
+provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
+trace.set_tracer_provider(provider)
+```
+
+```python
+from chargebee import Chargebee, RequestTelemetryContext, RequestTelemetryResult, TelemetryAdapter
+from opentelemetry import trace
+from opentelemetry.trace import SpanKind, Status, StatusCode
+
+
+class OtelTelemetryAdapter:
+    def __init__(self, tracer):
+        self._tracer = tracer
+
+    def on_request_start(self, context: RequestTelemetryContext, request_headers: dict):
+        span = self._tracer.start_span(
+            context.span_name,
+            kind=SpanKind.CLIENT,
+            attributes=dict(context.start_attributes),
+        )
+        # Inject W3C trace context into outbound headers
+        from opentelemetry.propagate import inject
+        from opentelemetry.trace import set_span_in_context
+
+        inject(request_headers, context=set_span_in_context(span))
+        return span
+
+    def on_request_end(self, handle, result: RequestTelemetryResult):
+        if handle is None:
+            return
+        span = handle
+        for key, value in result.end_attributes.items():
+            span.set_attribute(key, value)
+        if result.error:
+            span.set_status(Status(StatusCode.ERROR, result.error.message))
+        else:
+            span.set_status(Status(StatusCode.OK))
+        span.end()
+
+
+cb_client = Chargebee(
+    api_key="{{api-key}}",
+    site="{{site}}",
+    telemetry_adapter=OtelTelemetryAdapter(trace.get_tracer("chargebee-python")),
+)
+```
+
+Spans are exported by your own OpenTelemetry setup, so they flow to whatever backend you've configured (Datadog, Splunk, Honeycomb, Jaeger, etc.). The Chargebee config above stays the same regardless of backend — refer to your APM vendor's OpenTelemetry/OTLP documentation for exporter endpoints.
 
 ## Feedback
 

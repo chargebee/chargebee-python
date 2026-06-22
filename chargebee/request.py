@@ -3,6 +3,7 @@ import urllib
 
 from chargebee import compat, environment, util, http_request
 from chargebee.responses import Response
+from chargebee.telemetry.telemetry_executor import execute_async, execute_sync
 
 
 def lowercase_keys(data):
@@ -28,6 +29,9 @@ def send_list_request(
     isJsonRequest=False,
     jsonKeys=None,
     options=None,
+    resource=None,
+    operation=None,
+    telemetry_adapter=None,
 ):
     serialized = {}
 
@@ -49,6 +53,9 @@ def send_list_request(
         isJsonRequest,
         jsonKeys,
         options,
+        resource=resource,
+        operation=operation,
+        telemetry_adapter=telemetry_adapter,
     )
 
 
@@ -63,6 +70,9 @@ def send(
     isJsonRequest=False,
     jsonKeys=None,
     options=None,
+    resource=None,
+    operation=None,
+    telemetry_adapter=None,
 ):
     params = lowercase_keys(params)
 
@@ -85,11 +95,27 @@ def send(
         "use_async_client": env.use_async_client,
     }
 
+    def run_http(request_headers):
+        args = {**request_args, "headers": request_headers}
+        return http_request.request(**args)
+
+    async def run_http_async(request_headers):
+        args = {**request_args, "headers": request_headers}
+        return await http_request.request(**args)
+
     if env.use_async_client:
 
         async def async_request():
-            response, response_headers, http_code = await http_request.request(
-                **request_args
+            response, response_headers, http_code = await execute_async(
+                env,
+                resource,
+                operation,
+                method,
+                url,
+                subDomain,
+                headers,
+                run_http_async,
+                telemetry_adapter,
             )
             return Response(
                 response_type, response, response_headers, http_code
@@ -97,7 +123,17 @@ def send(
 
         return async_request()
     else:
-        response, response_headers, http_code = http_request.request(**request_args)
+        response, response_headers, http_code = execute_sync(
+            env,
+            resource,
+            operation,
+            method,
+            url,
+            subDomain,
+            headers,
+            run_http,
+            telemetry_adapter,
+        )
         return Response(response_type, response, response_headers, http_code).parse()
 
 
