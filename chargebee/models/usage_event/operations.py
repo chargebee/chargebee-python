@@ -5,6 +5,7 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 @dataclass
 class UsageEvent:
+
     env: environment.Environment
 
     class BatchIngestEventParams(TypedDict):
@@ -38,6 +39,8 @@ class UsageEvent:
             True,
             jsonKeys,
             options,
+            resource="usageEvent",
+            operation="create",
         )
 
     def batch_ingest(
@@ -58,4 +61,6 @@ class UsageEvent:
             True,
             jsonKeys,
             options,
+            resource="usageEvent",
+            operation="batchIngest",
         )

@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Ramp:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -278,6 +279,8 @@ class Ramp:
             False,
             jsonKeys,
             options,
+            resource="ramp",
+            operation="createForSubscription",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -296,6 +299,8 @@ class Ramp:
             False,
             jsonKeys,
             options,
+            resource="ramp",
+            operation="update",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -312,6 +317,8 @@ class Ramp:
             False,
             jsonKeys,
             options,
+            resource="ramp",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -330,6 +337,8 @@ class Ramp:
             False,
             jsonKeys,
             options,
+            resource="ramp",
+            operation="delete",
         )
 
     def list(self, params: ListParams, headers=None) -> ListResponse:
@@ -346,4 +355,6 @@ class Ramp:
             False,
             jsonKeys,
             options,
+            resource="ramp",
+            operation="list",
         )

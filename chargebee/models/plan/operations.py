@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Plan:
+
     env: environment.Environment
 
     class PeriodUnit(Enum):
@@ -315,6 +316,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -335,6 +338,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="update",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -351,6 +356,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -367,6 +374,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -385,6 +394,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="delete",
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
@@ -403,6 +414,8 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="copy",
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
@@ -421,4 +434,6 @@ class Plan:
             False,
             jsonKeys,
             options,
+            resource="plan",
+            operation="unarchive",
         )

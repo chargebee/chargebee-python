@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class DifferentialPrice:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -115,6 +116,8 @@ class DifferentialPrice:
             False,
             jsonKeys,
             options,
+            resource="differentialPrice",
+            operation="create",
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
@@ -131,6 +134,8 @@ class DifferentialPrice:
             False,
             jsonKeys,
             options,
+            resource="differentialPrice",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -151,6 +156,8 @@ class DifferentialPrice:
             False,
             jsonKeys,
             options,
+            resource="differentialPrice",
+            operation="update",
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
@@ -169,6 +176,8 @@ class DifferentialPrice:
             False,
             jsonKeys,
             options,
+            resource="differentialPrice",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -185,4 +194,6 @@ class DifferentialPrice:
             False,
             jsonKeys,
             options,
+            resource="differentialPrice",
+            operation="list",
         )

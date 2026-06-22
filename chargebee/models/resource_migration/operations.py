@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class ResourceMigration:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -38,4 +39,6 @@ class ResourceMigration:
             False,
             jsonKeys,
             options,
+            resource="resourceMigration",
+            operation="retrieveLatest",
         )

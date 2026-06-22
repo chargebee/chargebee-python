@@ -8,6 +8,7 @@ from chargebee.models import enums, credit_note, invoice, transaction
 
 @dataclass
 class Transaction:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -191,6 +192,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="createAuthorization",
         )
 
     def void_transaction(self, id, headers=None) -> VoidTransactionResponse:
@@ -209,6 +212,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="voidTransaction",
         )
 
     def record_refund(
@@ -229,6 +234,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="recordRefund",
         )
 
     def reconcile(
@@ -249,6 +256,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="reconcile",
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
@@ -267,6 +276,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="refund",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -283,6 +294,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="list",
         )
 
     def transactions_for_customer(
@@ -301,6 +314,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="transactionsForCustomer",
         )
 
     def transactions_for_subscription(
@@ -319,6 +334,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="transactionsForSubscription",
         )
 
     def payments_for_invoice(
@@ -337,6 +354,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="paymentsForInvoice",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -353,6 +372,8 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="retrieve",
         )
 
     def delete_offline_transaction(
@@ -373,4 +394,6 @@ class Transaction:
             False,
             jsonKeys,
             options,
+            resource="transaction",
+            operation="deleteOfflineTransaction",
         )

@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class Currency:
+
     env: environment.Environment
 
     class ForexType(Enum):
@@ -46,6 +47,8 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -62,6 +65,8 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="retrieve",
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -80,6 +85,8 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -98,6 +105,8 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="update",
         )
 
     def add_schedule(
@@ -118,6 +127,8 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="addSchedule",
         )
 
     def remove_schedule(self, id, headers=None) -> RemoveScheduleResponse:
@@ -136,4 +147,6 @@ class Currency:
             False,
             jsonKeys,
             options,
+            resource="currency",
+            operation="removeSchedule",
         )

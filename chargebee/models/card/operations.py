@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class Card:
+
     env: environment.Environment
 
     class PreferredScheme(Enum):
@@ -121,6 +122,8 @@ class Card:
             False,
             jsonKeys,
             options,
+            resource="card",
+            operation="retrieve",
         )
 
     def update_card_for_customer(
@@ -141,6 +144,8 @@ class Card:
             False,
             jsonKeys,
             options,
+            resource="card",
+            operation="updateCardForCustomer",
         )
 
     def switch_gateway_for_customer(
@@ -161,6 +166,8 @@ class Card:
             False,
             jsonKeys,
             options,
+            resource="card",
+            operation="switchGatewayForCustomer",
         )
 
     def copy_card_for_customer(
@@ -181,6 +188,8 @@ class Card:
             False,
             jsonKeys,
             options,
+            resource="card",
+            operation="copyCardForCustomer",
         )
 
     def delete_card_for_customer(
@@ -201,4 +210,6 @@ class Card:
             False,
             jsonKeys,
             options,
+            resource="card",
+            operation="deleteCardForCustomer",
         )

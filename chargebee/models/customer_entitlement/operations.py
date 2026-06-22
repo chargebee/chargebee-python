@@ -5,6 +5,7 @@ from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 
 @dataclass
 class CustomerEntitlement:
+
     env: environment.Environment
 
     class EntitlementsForCustomerParams(TypedDict):
@@ -28,4 +29,6 @@ class CustomerEntitlement:
             False,
             jsonKeys,
             options,
+            resource="customerEntitlement",
+            operation="entitlementsForCustomer",
         )

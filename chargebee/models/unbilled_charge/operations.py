@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class UnbilledCharge:
+
     env: environment.Environment
 
     class EntityType(Enum):
@@ -156,6 +157,8 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="createUnbilledCharge",
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -174,6 +177,8 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="create",
         )
 
     def invoice_unbilled_charges(
@@ -194,6 +199,8 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="invoiceUnbilledCharges",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -212,6 +219,8 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -228,6 +237,8 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="list",
         )
 
     def invoice_now_estimate(
@@ -246,4 +257,6 @@ class UnbilledCharge:
             False,
             jsonKeys,
             options,
+            resource="unbilledCharge",
+            operation="invoiceNowEstimate",
         )

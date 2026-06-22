@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class InvoiceEstimate:
+
     env: environment.Environment
 
     class LineItemEntityType(Enum):

@@ -6,6 +6,7 @@ from chargebee.models import enums, payment_intent, contract_term
 
 @dataclass
 class Purchase:
+
     env: environment.Environment
 
     class CreatePurchaseItemParams(TypedDict):
@@ -203,6 +204,8 @@ class Purchase:
             False,
             jsonKeys,
             options,
+            resource="purchase",
+            operation="create",
         )
 
     def estimate(self, params: EstimateParams, headers=None) -> EstimateResponse:
@@ -221,4 +224,6 @@ class Purchase:
             False,
             jsonKeys,
             options,
+            resource="purchase",
+            operation="estimate",
         )

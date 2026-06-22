@@ -8,6 +8,7 @@ from chargebee.models import enums, payment_intent, card
 
 @dataclass
 class Customer:
+
     env: environment.Environment
 
     class VatNumberStatus(Enum):
@@ -680,6 +681,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="create",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -696,6 +699,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -712,6 +717,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -733,6 +740,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="update",
         )
 
     def update_payment_method(
@@ -755,6 +764,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="updatePaymentMethod",
         )
 
     def update_billing_info(
@@ -775,6 +786,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="updateBillingInfo",
         )
 
     def contacts_for_customer(
@@ -793,6 +806,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="contactsForCustomer",
         )
 
     def assign_payment_role(
@@ -813,6 +828,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="assignPaymentRole",
         )
 
     def add_contact(
@@ -833,6 +850,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="addContact",
         )
 
     def update_contact(
@@ -853,6 +872,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="updateContact",
         )
 
     def delete_contact(
@@ -873,6 +894,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="deleteContact",
         )
 
     def add_promotional_credits(
@@ -893,6 +916,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="addPromotionalCredits",
         )
 
     def deduct_promotional_credits(
@@ -913,6 +938,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="deductPromotionalCredits",
         )
 
     def set_promotional_credits(
@@ -933,6 +960,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="setPromotionalCredits",
         )
 
     def record_excess_payment(
@@ -953,6 +982,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="recordExcessPayment",
         )
 
     def collect_payment(
@@ -975,6 +1006,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="collectPayment",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
@@ -993,6 +1026,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="delete",
         )
 
     def move(self, params: MoveParams, headers=None) -> MoveResponse:
@@ -1011,6 +1046,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="move",
         )
 
     def change_billing_date(
@@ -1031,6 +1068,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="changeBillingDate",
         )
 
     def merge(self, params: MergeParams, headers=None) -> MergeResponse:
@@ -1049,6 +1088,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="merge",
         )
 
     def clear_personal_data(self, id, headers=None) -> ClearPersonalDataResponse:
@@ -1067,6 +1108,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="clearPersonalData",
         )
 
     def relationships(
@@ -1087,6 +1130,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="relationships",
         )
 
     def delete_relationship(self, id, headers=None) -> DeleteRelationshipResponse:
@@ -1105,6 +1150,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="deleteRelationship",
         )
 
     def hierarchy(self, id, params: HierarchyParams, headers=None) -> HierarchyResponse:
@@ -1121,6 +1168,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="hierarchy",
         )
 
     def list_hierarchy_detail(
@@ -1139,6 +1188,8 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="listHierarchyDetail",
         )
 
     def update_hierarchy_settings(
@@ -1159,4 +1210,6 @@ class Customer:
             False,
             jsonKeys,
             options,
+            resource="customer",
+            operation="updateHierarchySettings",
         )

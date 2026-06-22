@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class ItemFamily:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -51,6 +52,8 @@ class ItemFamily:
             False,
             jsonKeys,
             options,
+            resource="itemFamily",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -67,6 +70,8 @@ class ItemFamily:
             False,
             jsonKeys,
             options,
+            resource="itemFamily",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -83,6 +88,8 @@ class ItemFamily:
             False,
             jsonKeys,
             options,
+            resource="itemFamily",
+            operation="list",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -101,6 +108,8 @@ class ItemFamily:
             False,
             jsonKeys,
             options,
+            resource="itemFamily",
+            operation="update",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -119,4 +128,6 @@ class ItemFamily:
             False,
             jsonKeys,
             options,
+            resource="itemFamily",
+            operation="delete",
         )

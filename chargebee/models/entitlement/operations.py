@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Entitlement:
+
     env: environment.Environment
 
     class EntityType(Enum):
@@ -55,6 +56,8 @@ class Entitlement:
             False,
             jsonKeys,
             options,
+            resource="entitlement",
+            operation="list",
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -73,4 +76,6 @@ class Entitlement:
             False,
             jsonKeys,
             options,
+            resource="entitlement",
+            operation="create",
         )

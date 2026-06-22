@@ -15,6 +15,7 @@ from chargebee.models import (
 
 @dataclass
 class Invoice:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -1244,6 +1245,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="create",
         )
 
     def create_for_charge_items_and_charges(
@@ -1267,6 +1270,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="createForChargeItemsAndCharges",
         )
 
     def charge(self, params: ChargeParams, headers=None) -> ChargeResponse:
@@ -1285,6 +1290,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="charge",
         )
 
     def charge_addon(
@@ -1305,6 +1312,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="chargeAddon",
         )
 
     def create_for_charge_item(
@@ -1325,6 +1334,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="createForChargeItem",
         )
 
     def stop_dunning(
@@ -1345,6 +1356,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="stopDunning",
         )
 
     def pause_dunning(
@@ -1365,6 +1378,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="pauseDunning",
         )
 
     def resume_dunning(
@@ -1385,6 +1400,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="resumeDunning",
         )
 
     def import_invoice(
@@ -1405,6 +1422,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="importInvoice",
         )
 
     def apply_payments(
@@ -1425,6 +1444,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="applyPayments",
         )
 
     def sync_usages(self, id, headers=None) -> SyncUsagesResponse:
@@ -1443,6 +1464,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="syncUsages",
         )
 
     def delete_line_items(
@@ -1463,6 +1486,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="deleteLineItems",
         )
 
     def apply_credits(
@@ -1483,6 +1508,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="applyCredits",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -1499,6 +1526,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="list",
         )
 
     def invoices_for_customer(
@@ -1517,6 +1546,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="invoicesForCustomer",
         )
 
     def invoices_for_subscription(
@@ -1535,6 +1566,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="invoicesForSubscription",
         )
 
     def retrieve(
@@ -1553,6 +1586,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="retrieve",
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
@@ -1571,6 +1606,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="pdf",
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
@@ -1587,6 +1624,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="downloadEinvoice",
         )
 
     def list_payment_reference_numbers(
@@ -1605,6 +1644,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="listPaymentReferenceNumbers",
         )
 
     def add_charge(
@@ -1625,6 +1666,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="addCharge",
         )
 
     def add_addon_charge(
@@ -1645,6 +1688,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="addAddonCharge",
         )
 
     def add_charge_item(
@@ -1665,6 +1710,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="addChargeItem",
         )
 
     def close(self, id, params: CloseParams = None, headers=None) -> CloseResponse:
@@ -1683,6 +1730,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="close",
         )
 
     def collect_payment(
@@ -1703,6 +1752,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="collectPayment",
         )
 
     def record_payment(
@@ -1723,6 +1774,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="recordPayment",
         )
 
     def record_tax_withheld(
@@ -1743,6 +1796,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="recordTaxWithheld",
         )
 
     def remove_tax_withheld(
@@ -1763,6 +1818,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="removeTaxWithheld",
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
@@ -1781,6 +1838,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="refund",
         )
 
     def record_refund(
@@ -1801,6 +1860,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="recordRefund",
         )
 
     def remove_payment(
@@ -1821,6 +1882,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="removePayment",
         )
 
     def remove_credit_note(
@@ -1841,6 +1904,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="removeCreditNote",
         )
 
     def void_invoice(
@@ -1861,6 +1926,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="voidInvoice",
         )
 
     def write_off(
@@ -1881,6 +1948,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="writeOff",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
@@ -1899,6 +1968,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="delete",
         )
 
     def update_details(
@@ -1919,6 +1990,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="updateDetails",
         )
 
     def apply_payment_schedule_scheme(
@@ -1939,6 +2012,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="applyPaymentScheduleScheme",
         )
 
     def payment_schedules(self, id, headers=None) -> PaymentSchedulesResponse:
@@ -1955,6 +2030,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="paymentSchedules",
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
@@ -1973,6 +2050,8 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="resendEinvoice",
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
@@ -1991,4 +2070,6 @@ class Invoice:
             False,
             jsonKeys,
             options,
+            resource="invoice",
+            operation="sendEinvoice",
         )

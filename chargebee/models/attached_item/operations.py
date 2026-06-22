@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class AttachedItem:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -77,6 +78,8 @@ class AttachedItem:
             False,
             jsonKeys,
             options,
+            resource="attachedItem",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -95,6 +98,8 @@ class AttachedItem:
             False,
             jsonKeys,
             options,
+            resource="attachedItem",
+            operation="update",
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
@@ -111,6 +116,8 @@ class AttachedItem:
             False,
             jsonKeys,
             options,
+            resource="attachedItem",
+            operation="retrieve",
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
@@ -129,6 +136,8 @@ class AttachedItem:
             False,
             jsonKeys,
             options,
+            resource="attachedItem",
+            operation="delete",
         )
 
     def list(self, id, params: ListParams = None, headers=None) -> ListResponse:
@@ -145,4 +154,6 @@ class AttachedItem:
             False,
             jsonKeys,
             options,
+            resource="attachedItem",
+            operation="list",
         )

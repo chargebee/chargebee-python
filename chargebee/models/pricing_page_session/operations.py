@@ -6,6 +6,7 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class PricingPageSession:
+
     env: environment.Environment
 
     class CreateForNewSubscriptionPricingPageParams(TypedDict):
@@ -156,6 +157,8 @@ class PricingPageSession:
             False,
             jsonKeys,
             options,
+            resource="pricingPageSession",
+            operation="createForNewSubscription",
         )
 
     def create_for_existing_subscription(
@@ -180,4 +183,6 @@ class PricingPageSession:
             False,
             jsonKeys,
             options,
+            resource="pricingPageSession",
+            operation="createForExistingSubscription",
         )

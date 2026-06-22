@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class InAppSubscription:
+
     env: environment.Environment
 
     class StoreStatus(Enum):
@@ -90,6 +91,8 @@ class InAppSubscription:
             False,
             jsonKeys,
             options,
+            resource="inAppSubscription",
+            operation="processReceipt",
         )
 
     def import_receipt(
@@ -110,6 +113,8 @@ class InAppSubscription:
             False,
             jsonKeys,
             options,
+            resource="inAppSubscription",
+            operation="importReceipt",
         )
 
     def import_subscription(
@@ -130,6 +135,8 @@ class InAppSubscription:
             False,
             jsonKeys,
             options,
+            resource="inAppSubscription",
+            operation="importSubscription",
         )
 
     def retrieve_store_subs(
@@ -150,4 +157,6 @@ class InAppSubscription:
             False,
             jsonKeys,
             options,
+            resource="inAppSubscription",
+            operation="retrieveStoreSubs",
         )

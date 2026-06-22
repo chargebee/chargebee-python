@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class PaymentVoucher:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -68,6 +69,8 @@ class PaymentVoucher:
             False,
             jsonKeys,
             options,
+            resource="paymentVoucher",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -84,6 +87,8 @@ class PaymentVoucher:
             False,
             jsonKeys,
             options,
+            resource="paymentVoucher",
+            operation="retrieve",
         )
 
     def payment_vouchers_for_invoice(
@@ -102,6 +107,8 @@ class PaymentVoucher:
             False,
             jsonKeys,
             options,
+            resource="paymentVoucher",
+            operation="payment_vouchersForInvoice",
         )
 
     def payment_vouchers_for_customer(
@@ -120,4 +127,6 @@ class PaymentVoucher:
             False,
             jsonKeys,
             options,
+            resource="paymentVoucher",
+            operation="payment_vouchersForCustomer",
         )

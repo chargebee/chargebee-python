@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class Usage:
+
     env: environment.Environment
 
     class PdfInvoiceParams(TypedDict):
@@ -58,6 +59,8 @@ class Usage:
             False,
             jsonKeys,
             options,
+            resource="usage",
+            operation="create",
         )
 
     def retrieve(self, id, params: RetrieveParams, headers=None) -> RetrieveResponse:
@@ -74,6 +77,8 @@ class Usage:
             False,
             jsonKeys,
             options,
+            resource="usage",
+            operation="retrieve",
         )
 
     def delete(self, id, params: DeleteParams, headers=None) -> DeleteResponse:
@@ -92,6 +97,8 @@ class Usage:
             False,
             jsonKeys,
             options,
+            resource="usage",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -108,6 +115,8 @@ class Usage:
             False,
             jsonKeys,
             options,
+            resource="usage",
+            operation="list",
         )
 
     def pdf(self, params: PdfParams, headers=None) -> PdfResponse:
@@ -126,4 +135,6 @@ class Usage:
             False,
             jsonKeys,
             options,
+            resource="usage",
+            operation="pdf",
         )

@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Export:
+
     env: environment.Environment
 
     class MimeType(Enum):
@@ -478,6 +479,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="retrieve",
         )
 
     def revenue_recognition(
@@ -498,6 +501,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="revenueRecognition",
         )
 
     def deferred_revenue(
@@ -518,6 +523,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="deferredRevenue",
         )
 
     def plans(self, params: PlansParams = None, headers=None) -> PlansResponse:
@@ -536,6 +543,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="plans",
         )
 
     def addons(self, params: AddonsParams = None, headers=None) -> AddonsResponse:
@@ -554,6 +563,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="addons",
         )
 
     def coupons(self, params: CouponsParams = None, headers=None) -> CouponsResponse:
@@ -572,6 +583,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="coupons",
         )
 
     def customers(
@@ -592,6 +605,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="customers",
         )
 
     def subscriptions(
@@ -612,6 +627,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="subscriptions",
         )
 
     def invoices(self, params: InvoicesParams = None, headers=None) -> InvoicesResponse:
@@ -630,6 +647,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="invoices",
         )
 
     def credit_notes(
@@ -650,6 +669,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="creditNotes",
         )
 
     def transactions(
@@ -670,6 +691,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="transactions",
         )
 
     def orders(self, params: OrdersParams = None, headers=None) -> OrdersResponse:
@@ -688,6 +711,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="orders",
         )
 
     def item_families(
@@ -708,6 +733,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="itemFamilies",
         )
 
     def items(self, params: ItemsParams = None, headers=None) -> ItemsResponse:
@@ -726,6 +753,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="items",
         )
 
     def item_prices(
@@ -746,6 +775,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="itemPrices",
         )
 
     def attached_items(
@@ -766,6 +797,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="attachedItems",
         )
 
     def differential_prices(
@@ -786,6 +819,8 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="differentialPrices",
         )
 
     def price_variants(
@@ -806,4 +841,6 @@ class Export:
             False,
             jsonKeys,
             options,
+            resource="export",
+            operation="priceVariants",
         )
