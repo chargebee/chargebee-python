@@ -17,6 +17,10 @@ TELEMETRY_SPAN_NAME_PREFIX = "chargebee"
 class TelemetryAttributeKeys:
     """Span attribute keys shared across Chargebee SDKs."""
 
+    HTTP_REQUEST_HEADER_ATTRIBUTE_PREFIX = "http.request.header."
+    CHARGEBEE_TELEMETRY_HEADER_PREFIX = "chargebee-"
+    CHARGEBEE_TELEMETRY_HEADER_EXCLUDE_PREFIX = "chargebee-request-origin-"
+
     URL_FULL = "url.full"
     HTTP_REQUEST_METHOD = "http.request.method"
     HTTP_RESPONSE_STATUS_CODE = "http.response.status_code"
@@ -74,3 +78,4 @@ class BuildRequestTelemetryContextInput:
     chargebee_site: str
     chargebee_api_version: Literal["v1", "v2"]
     sdk_version: str
+    request_headers: Mapping[str, str] | None = None

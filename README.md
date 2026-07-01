@@ -280,11 +280,17 @@ cb_client.update_retry_config(retry_config)
 
 ### Telemetry (OpenTelemetry)
 
-Optional. Pass a `telemetry_adapter` when you want Chargebee API calls traced in your observability stack (Datadog, Splunk, Honeycomb, Jaeger, etc.). OpenTelemetry is not bundled with `chargebee` — install and configure it in your app, implement `TelemetryAdapter`, and wire it on the client.
+**Optional add-on.** Existing integrations do not need any changes — if you never set a telemetry adapter, API calls behave exactly as before.
 
-The SDK builds standardized span attributes (`context.start_attributes`, `result.end_attributes`) following the stable [OpenTelemetry HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/) (`url.full`, `http.request.method`, `http.response.status_code`, `server.address`, `error.type`) plus Chargebee-specific `chargebee.*` attributes — use them as-is so spans render correctly in your APM and stay consistent across SDKs.
+Pass a `telemetry_adapter` when you want Chargebee API calls traced in your observability stack (Datadog, Splunk, Honeycomb, Jaeger, etc.). OpenTelemetry is **not** bundled with `chargebee` — install and configure OTel (or your APM SDK) in your application, implement `TelemetryAdapter`, and wire it on the client.
 
-Spans are named `chargebee.{resource}.{operation}` (e.g. `chargebee.subscription.create`).
+The SDK builds standardized span attributes (`context.start_attributes`, `result.end_attributes`) following stable [OpenTelemetry HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/) (`url.full`, `http.request.method`, `http.response.status_code`, `server.address`, `error.type`) plus Chargebee-specific `chargebee.*` attributes (see `chargebee.telemetry.TelemetryAttributeKeys`).
+
+Span names follow `chargebee.{resource}.{operation}` (e.g. `chargebee.subscription.create`). One span is created per SDK API call; retries reuse the same span. Adapter failures are logged and never affect the underlying API request.
+
+Pass `telemetry_adapter` when constructing `Chargebee`, or call `update_telemetry_adapter()` on an existing client. Each new `Chargebee(...)` instance gets its own environment — set the adapter on every client you use for telemetry.
+
+To pass custom `chargebee-*` headers (promoted to `http.request.header.chargebee-*` span attributes), include them in the `headers` argument on resource methods.
 
 #### OpenTelemetry example
 

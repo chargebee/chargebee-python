@@ -42,6 +42,7 @@ def build_context(
     method: str,
     url: str,
     subDomain: str | None,
+    request_headers: dict[str, str] | None = None,
 ) -> BuildRequestTelemetryContextInput:
     full_url = env.api_url(url, subDomain)
     parsed = urlparse(full_url)
@@ -57,6 +58,7 @@ def build_context(
         chargebee_site=env.site,
         chargebee_api_version=resolve_chargebee_api_version(api_path),  # type: ignore[arg-type]
         sdk_version=VERSION,
+        request_headers=request_headers,
     )
 
 
@@ -73,7 +75,7 @@ def _start_telemetry(
     telemetry_headers = dict(headers or {})
     try:
         context = build_request_telemetry_context(
-            build_context(env, resource, operation, method, url, subDomain)
+            build_context(env, resource, operation, method, url, subDomain, headers)
         )
         handle = adapter.on_request_start(context, telemetry_headers)
         return handle, telemetry_headers
@@ -86,7 +88,10 @@ def _start_telemetry(
 
 
 def _end_success(
-    adapter: TelemetryAdapter, handle: object | None, start_ms: float, http_status_code: int
+    adapter: TelemetryAdapter,
+    handle: object | None,
+    start_ms: float,
+    http_status_code: int,
 ) -> None:
     try:
         adapter.on_request_end(
@@ -100,7 +105,10 @@ def _end_success(
 
 
 def _end_failure(
-    adapter: TelemetryAdapter, handle: object | None, start_ms: float, err: BaseException
+    adapter: TelemetryAdapter,
+    handle: object | None,
+    start_ms: float,
+    err: BaseException,
 ) -> None:
     status = extract_http_status_code(err)
     http_status_code = status if status is not None else 500

@@ -81,7 +81,33 @@ def build_request_start_span_attributes(
         TelemetryAttributeKeys.CHARGEBEE_OPERATION: input.operation,
         TelemetryAttributeKeys.CHARGEBEE_SDK_NAME: CHARGEBEE_SDK_NAME,
         TelemetryAttributeKeys.CHARGEBEE_SDK_VERSION: input.sdk_version,
+        **build_request_header_span_attributes(input.request_headers),
     }
+
+
+def build_request_header_span_attributes(
+    request_headers: Mapping[str, str] | None,
+) -> dict[str, str]:
+    # Promotes chargebee-* request headers to http.request.header.* attributes; excludes the chargebee-request-origin-* PII family.
+    attributes: dict[str, str] = {}
+    if not request_headers:
+        return attributes
+
+    for name, value in request_headers.items():
+        if name is None or value is None:
+            continue
+        lower_name = name.lower()
+        if not lower_name.startswith(
+            TelemetryAttributeKeys.CHARGEBEE_TELEMETRY_HEADER_PREFIX
+        ) or lower_name.startswith(
+            TelemetryAttributeKeys.CHARGEBEE_TELEMETRY_HEADER_EXCLUDE_PREFIX
+        ):
+            continue
+        attributes[
+            TelemetryAttributeKeys.HTTP_REQUEST_HEADER_ATTRIBUTE_PREFIX + lower_name
+        ] = value
+
+    return attributes
 
 
 def build_request_end_span_attributes(
@@ -93,14 +119,16 @@ def build_request_end_span_attributes(
     }
 
     if error is not None:
-        attributes[TelemetryAttributeKeys.ERROR_TYPE] = str(http_status_code)
+        if error.chargebee_api_error_type is not None:
+            attributes[TelemetryAttributeKeys.ERROR_TYPE] = (
+                error.chargebee_api_error_type
+            )
+            attributes[TelemetryAttributeKeys.CHARGEBEE_ERROR_TYPE] = (
+                error.chargebee_api_error_type
+            )
         if error.chargebee_error_code is not None:
             attributes[TelemetryAttributeKeys.CHARGEBEE_ERROR_CODE] = (
                 error.chargebee_error_code
-            )
-        if error.chargebee_api_error_type is not None:
-            attributes[TelemetryAttributeKeys.CHARGEBEE_ERROR_TYPE] = (
-                error.chargebee_api_error_type
             )
         if error.chargebee_error_param is not None:
             attributes[TelemetryAttributeKeys.CHARGEBEE_ERROR_PARAM] = (
@@ -141,7 +169,9 @@ def build_request_telemetry_result(
     )
 
 
-def extract_request_telemetry_error(err: BaseException | None) -> RequestTelemetryError | None:
+def extract_request_telemetry_error(
+    err: BaseException | None,
+) -> RequestTelemetryError | None:
     if err is None:
         return None
 

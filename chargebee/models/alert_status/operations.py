@@ -35,6 +35,8 @@ class AlertStatus:
             False,
             jsonKeys,
             options,
+            resource="alertStatus",
+            operation="alert_statusesForSubscription",
         )
 
     def alert_statuses_for_alert(
@@ -53,4 +55,6 @@ class AlertStatus:
             False,
             jsonKeys,
             options,
+            resource="alertStatus",
+            operation="alert_statusesForAlert",
         )
