@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class OfferFulfillment:
+
     env: environment.Environment
 
     class ProcessingType(Enum):
@@ -65,6 +66,8 @@ class OfferFulfillment:
             True,
             jsonKeys,
             options,
+            resource="offerFulfillment",
+            operation="offerFulfillments",
         )
 
     def offer_fulfillments_get(self, id, headers=None) -> OfferFulfillmentsGetResponse:
@@ -81,6 +84,8 @@ class OfferFulfillment:
             False,
             jsonKeys,
             options,
+            resource="offerFulfillment",
+            operation="offerFulfillmentsGet",
         )
 
     def offer_fulfillments_update(
@@ -99,4 +104,6 @@ class OfferFulfillment:
             True,
             jsonKeys,
             options,
+            resource="offerFulfillment",
+            operation="offerFulfillmentsUpdate",
         )

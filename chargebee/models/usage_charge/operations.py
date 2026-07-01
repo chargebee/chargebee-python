@@ -29,4 +29,6 @@ class UsageCharge:
             False,
             jsonKeys,
             options,
+            resource="usageCharge",
+            operation="retrieveUsageChargesForSubscription",
         )

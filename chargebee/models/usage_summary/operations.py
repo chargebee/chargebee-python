@@ -32,4 +32,6 @@ class UsageSummary:
             False,
             jsonKeys,
             options,
+            resource="usageSummary",
+            operation="retrieveUsageSummaryForSubscription",
         )

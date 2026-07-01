@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class PriceVariant:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -74,6 +75,8 @@ class PriceVariant:
             False,
             jsonKeys,
             options,
+            resource="priceVariant",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -90,6 +93,8 @@ class PriceVariant:
             False,
             jsonKeys,
             options,
+            resource="priceVariant",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -108,6 +113,8 @@ class PriceVariant:
             False,
             jsonKeys,
             options,
+            resource="priceVariant",
+            operation="update",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -126,6 +133,8 @@ class PriceVariant:
             False,
             jsonKeys,
             options,
+            resource="priceVariant",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -142,4 +151,6 @@ class PriceVariant:
             False,
             jsonKeys,
             options,
+            resource="priceVariant",
+            operation="list",
         )

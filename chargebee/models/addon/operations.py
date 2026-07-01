@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Addon:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -226,6 +227,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -246,6 +249,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="update",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -262,6 +267,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -278,6 +285,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -296,6 +305,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="delete",
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
@@ -314,6 +325,8 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="copy",
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
@@ -332,4 +345,6 @@ class Addon:
             False,
             jsonKeys,
             options,
+            resource="addon",
+            operation="unarchive",
         )

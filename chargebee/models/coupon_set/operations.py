@@ -6,6 +6,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class CouponSet:
+
     env: environment.Environment
 
     class CreateParams(TypedDict):
@@ -49,6 +50,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="create",
         )
 
     def add_coupon_codes(
@@ -69,6 +72,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="addCouponCodes",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -85,6 +90,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -101,6 +108,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -121,6 +130,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="update",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -139,6 +150,8 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="delete",
         )
 
     def delete_unused_coupon_codes(
@@ -159,4 +172,6 @@ class CouponSet:
             False,
             jsonKeys,
             options,
+            resource="couponSet",
+            operation="deleteUnusedCouponCodes",
         )

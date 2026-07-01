@@ -1764,6 +1764,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="create",
         )
 
     def create_for_customer(
@@ -1787,6 +1789,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="createForCustomer",
         )
 
     def create_with_items(
@@ -1810,6 +1814,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="createWithItems",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -1826,6 +1832,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="list",
         )
 
     def subscriptions_for_customer(
@@ -1844,6 +1852,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="subscriptionsForCustomer",
         )
 
     def contract_terms_for_subscription(
@@ -1862,6 +1872,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="contractTermsForSubscription",
         )
 
     def list_discounts(
@@ -1880,6 +1892,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="listDiscounts",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -1896,6 +1910,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="retrieve",
         )
 
     def retrieve_with_scheduled_changes(
@@ -1914,6 +1930,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="retrieveWithScheduledChanges",
         )
 
     def remove_scheduled_changes(
@@ -1934,6 +1952,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeScheduledChanges",
         )
 
     def remove_scheduled_cancellation(
@@ -1954,6 +1974,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeScheduledCancellation",
         )
 
     def remove_coupons(
@@ -1974,6 +1996,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeCoupons",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -1995,6 +2019,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="update",
         )
 
     def update_for_items(
@@ -2018,6 +2044,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="updateForItems",
         )
 
     def change_term_end(
@@ -2038,6 +2066,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="changeTermEnd",
         )
 
     def reactivate(
@@ -2060,6 +2090,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="reactivate",
         )
 
     def add_charge_at_term_end(
@@ -2080,6 +2112,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="addChargeAtTermEnd",
         )
 
     def charge_addon_at_term_end(
@@ -2100,6 +2134,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="chargeAddonAtTermEnd",
         )
 
     def charge_future_renewals(
@@ -2120,6 +2156,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="chargeFutureRenewals",
         )
 
     def edit_advance_invoice_schedule(
@@ -2140,6 +2178,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="editAdvanceInvoiceSchedule",
         )
 
     def retrieve_advance_invoice_schedule(
@@ -2158,6 +2198,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="retrieveAdvanceInvoiceSchedule",
         )
 
     def remove_advance_invoice_schedule(
@@ -2178,6 +2220,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeAdvanceInvoiceSchedule",
         )
 
     def regenerate_invoice(
@@ -2198,6 +2242,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="regenerateInvoice",
         )
 
     def import_subscription(
@@ -2221,6 +2267,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="importSubscription",
         )
 
     def import_for_customer(
@@ -2243,6 +2291,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="importForCustomer",
         )
 
     def import_contract_term(
@@ -2263,6 +2313,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="importContractTerm",
         )
 
     def import_unbilled_charges(
@@ -2283,6 +2335,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="importUnbilledCharges",
         )
 
     def import_for_items(
@@ -2305,6 +2359,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="importForItems",
         )
 
     def override_billing_profile(
@@ -2325,6 +2381,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="overrideBillingProfile",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -2343,6 +2401,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="delete",
         )
 
     def pause(self, id, params: PauseParams = None, headers=None) -> PauseResponse:
@@ -2361,6 +2421,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="pause",
         )
 
     def cancel(self, id, params: CancelParams = None, headers=None) -> CancelResponse:
@@ -2379,6 +2441,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="cancel",
         )
 
     def cancel_for_items(
@@ -2399,6 +2463,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="cancelForItems",
         )
 
     def resume(self, id, params: ResumeParams = None, headers=None) -> ResumeResponse:
@@ -2419,6 +2485,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="resume",
         )
 
     def remove_scheduled_pause(self, id, headers=None) -> RemoveScheduledPauseResponse:
@@ -2437,6 +2505,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeScheduledPause",
         )
 
     def remove_scheduled_resumption(
@@ -2457,6 +2527,8 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="removeScheduledResumption",
         )
 
     def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
@@ -2475,4 +2547,6 @@ class Subscription:
             False,
             jsonKeys,
             options,
+            resource="subscription",
+            operation="move",
         )

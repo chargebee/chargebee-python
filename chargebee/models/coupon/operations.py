@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Coupon:
+
     env: environment.Environment
 
     class DiscountType(Enum):
@@ -301,6 +302,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="create",
         )
 
     def create_for_items(
@@ -327,6 +330,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="createForItems",
         )
 
     def update_for_items(
@@ -353,6 +358,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="updateForItems",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -369,6 +376,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -385,6 +394,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -405,6 +416,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="update",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -423,6 +436,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="delete",
         )
 
     def copy(self, params: CopyParams, headers=None) -> CopyResponse:
@@ -441,6 +456,8 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="copy",
         )
 
     def unarchive(self, id, headers=None) -> UnarchiveResponse:
@@ -459,4 +476,6 @@ class Coupon:
             False,
             jsonKeys,
             options,
+            resource="coupon",
+            operation="unarchive",
         )

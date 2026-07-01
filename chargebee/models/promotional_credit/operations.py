@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class PromotionalCredit:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -68,6 +69,8 @@ class PromotionalCredit:
             False,
             jsonKeys,
             options,
+            resource="promotionalCredit",
+            operation="add",
         )
 
     def deduct(self, params: DeductParams, headers=None) -> DeductResponse:
@@ -86,6 +89,8 @@ class PromotionalCredit:
             False,
             jsonKeys,
             options,
+            resource="promotionalCredit",
+            operation="deduct",
         )
 
     def set(self, params: SetParams, headers=None) -> SetResponse:
@@ -104,6 +109,8 @@ class PromotionalCredit:
             False,
             jsonKeys,
             options,
+            resource="promotionalCredit",
+            operation="set",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -120,6 +127,8 @@ class PromotionalCredit:
             False,
             jsonKeys,
             options,
+            resource="promotionalCredit",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -136,4 +145,6 @@ class PromotionalCredit:
             False,
             jsonKeys,
             options,
+            resource="promotionalCredit",
+            operation="retrieve",
         )

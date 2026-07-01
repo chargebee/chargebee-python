@@ -8,6 +8,7 @@ from chargebee.models import enums, cpq_quote_signature, contract_term
 
 @dataclass
 class Quote:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -1458,6 +1459,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="retrieve",
         )
 
     def create_sub_for_customer_quote(
@@ -1478,6 +1481,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="createSubForCustomerQuote",
         )
 
     def edit_create_sub_for_customer_quote(
@@ -1498,6 +1503,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editCreateSubForCustomerQuote",
         )
 
     def update_subscription_quote(
@@ -1518,6 +1525,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="updateSubscriptionQuote",
         )
 
     def edit_update_subscription_quote(
@@ -1538,6 +1547,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editUpdateSubscriptionQuote",
         )
 
     def create_for_onetime_charges(
@@ -1558,6 +1569,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="createForOnetimeCharges",
         )
 
     def edit_one_time_quote(
@@ -1578,6 +1591,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editOneTimeQuote",
         )
 
     def create_sub_items_for_customer_quote(
@@ -1598,6 +1613,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="createSubItemsForCustomerQuote",
         )
 
     def edit_create_sub_customer_quote_for_items(
@@ -1618,6 +1635,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editCreateSubCustomerQuoteForItems",
         )
 
     def update_subscription_quote_for_items(
@@ -1638,6 +1657,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="updateSubscriptionQuoteForItems",
         )
 
     def edit_update_subscription_quote_for_items(
@@ -1658,6 +1679,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editUpdateSubscriptionQuoteForItems",
         )
 
     def create_for_charge_items_and_charges(
@@ -1678,6 +1701,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="createForChargeItemsAndCharges",
         )
 
     def edit_for_charge_items_and_charges(
@@ -1698,6 +1723,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="editForChargeItemsAndCharges",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -1714,6 +1741,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="list",
         )
 
     def quote_line_groups_for_quote(
@@ -1732,6 +1761,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="quoteLineGroupsForQuote",
         )
 
     def convert(
@@ -1752,6 +1783,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="convert",
         )
 
     def update_status(
@@ -1772,6 +1805,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="updateStatus",
         )
 
     def extend_expiry_date(
@@ -1792,6 +1827,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="extendExpiryDate",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
@@ -1810,6 +1847,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="delete",
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:

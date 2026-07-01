@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class ItemEntitlement:
+
     env: environment.Environment
 
     class ItemType(Enum):
@@ -69,6 +70,8 @@ class ItemEntitlement:
             False,
             jsonKeys,
             options,
+            resource="itemEntitlement",
+            operation="itemEntitlementsForItem",
         )
 
     def item_entitlements_for_feature(
@@ -87,6 +90,8 @@ class ItemEntitlement:
             False,
             jsonKeys,
             options,
+            resource="itemEntitlement",
+            operation="itemEntitlementsForFeature",
         )
 
     def add_item_entitlements(
@@ -107,6 +112,8 @@ class ItemEntitlement:
             False,
             jsonKeys,
             options,
+            resource="itemEntitlement",
+            operation="addItemEntitlements",
         )
 
     def upsert_or_remove_item_entitlements_for_item(
@@ -127,4 +134,6 @@ class ItemEntitlement:
             False,
             jsonKeys,
             options,
+            resource="itemEntitlement",
+            operation="upsertOrRemoveItemEntitlementsForItem",
         )

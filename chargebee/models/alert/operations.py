@@ -74,6 +74,8 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -90,6 +92,8 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -106,6 +110,8 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="list",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -124,6 +130,8 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="update",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -142,6 +150,8 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="delete",
         )
 
     def application_alerts_for_subscription(
@@ -160,4 +170,6 @@ class Alert:
             False,
             jsonKeys,
             options,
+            resource="alert",
+            operation="application_alertsForSubscription",
         )

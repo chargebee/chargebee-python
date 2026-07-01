@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class PortalSession:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -52,6 +53,8 @@ class PortalSession:
             False,
             jsonKeys,
             options,
+            resource="portalSession",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -68,6 +71,8 @@ class PortalSession:
             False,
             jsonKeys,
             options,
+            resource="portalSession",
+            operation="retrieve",
         )
 
     def logout(self, id, headers=None) -> LogoutResponse:
@@ -86,6 +91,8 @@ class PortalSession:
             False,
             jsonKeys,
             options,
+            resource="portalSession",
+            operation="logout",
         )
 
     def activate(self, id, params: ActivateParams, headers=None) -> ActivateResponse:
@@ -104,4 +111,6 @@ class PortalSession:
             False,
             jsonKeys,
             options,
+            resource="portalSession",
+            operation="activate",
         )

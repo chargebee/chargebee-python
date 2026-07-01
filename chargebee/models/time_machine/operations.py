@@ -8,6 +8,7 @@ from chargebee import OperationFailedError
 
 @dataclass
 class TimeMachine:
+
     env: environment.Environment
 
     class TimeTravelStatus(Enum):
@@ -71,6 +72,8 @@ class TimeMachine:
             False,
             jsonKeys,
             options,
+            resource="timeMachine",
+            operation="retrieve",
         )
 
     def start_afresh(
@@ -91,6 +94,8 @@ class TimeMachine:
             False,
             jsonKeys,
             options,
+            resource="timeMachine",
+            operation="startAfresh",
         )
 
     def travel_forward(
@@ -111,4 +116,6 @@ class TimeMachine:
             False,
             jsonKeys,
             options,
+            resource="timeMachine",
+            operation="travelForward",
         )

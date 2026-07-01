@@ -8,6 +8,7 @@ from chargebee.models import omnichannel_subscription_item, omnichannel_transact
 
 @dataclass
 class OmnichannelSubscription:
+
     env: environment.Environment
 
     class Source(Enum):
@@ -101,6 +102,8 @@ class OmnichannelSubscription:
             False,
             jsonKeys,
             options,
+            resource="omnichannelSubscription",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -117,6 +120,8 @@ class OmnichannelSubscription:
             False,
             jsonKeys,
             options,
+            resource="omnichannelSubscription",
+            operation="list",
         )
 
     def omnichannel_transactions_for_omnichannel_subscription(
@@ -140,6 +145,8 @@ class OmnichannelSubscription:
             False,
             jsonKeys,
             options,
+            resource="omnichannelSubscription",
+            operation="omnichannel_transactionsForOmnichannelSubscription",
         )
 
     def move(self, id, params: MoveParams, headers=None) -> MoveResponse:
@@ -158,4 +165,6 @@ class OmnichannelSubscription:
             False,
             jsonKeys,
             options,
+            resource="omnichannelSubscription",
+            operation="move",
         )

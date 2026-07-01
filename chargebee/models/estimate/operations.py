@@ -16,6 +16,7 @@ from chargebee.models import (
 
 @dataclass
 class Estimate:
+
     env: environment.Environment
 
     class PaymentScheduleEstimateEntityType(Enum):
@@ -1111,6 +1112,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createSubscription",
         )
 
     def create_sub_item_estimate(
@@ -1131,6 +1134,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createSubItemEstimate",
         )
 
     def create_sub_for_customer_estimate(
@@ -1149,6 +1154,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createSubForCustomerEstimate",
         )
 
     def create_sub_item_for_customer_estimate(
@@ -1167,6 +1174,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createSubItemForCustomerEstimate",
         )
 
     def update_subscription(
@@ -1185,6 +1194,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="updateSubscription",
         )
 
     def update_subscription_for_items(
@@ -1203,6 +1214,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="updateSubscriptionForItems",
         )
 
     def renewal_estimate(
@@ -1221,6 +1234,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="renewalEstimate",
         )
 
     def advance_invoice_estimate(
@@ -1239,6 +1254,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="advanceInvoiceEstimate",
         )
 
     def regenerate_invoice_estimate(
@@ -1257,6 +1274,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="regenerateInvoiceEstimate",
         )
 
     def upcoming_invoices_estimate(
@@ -1275,6 +1294,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="upcomingInvoicesEstimate",
         )
 
     def change_term_end(
@@ -1293,6 +1314,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="changeTermEnd",
         )
 
     def cancel_subscription(
@@ -1311,6 +1334,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="cancelSubscription",
         )
 
     def cancel_subscription_for_items(
@@ -1331,6 +1356,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="cancelSubscriptionForItems",
         )
 
     def pause_subscription(
@@ -1349,6 +1376,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="pauseSubscription",
         )
 
     def resume_subscription(
@@ -1367,6 +1396,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="resumeSubscription",
         )
 
     def gift_subscription(
@@ -1387,6 +1418,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="giftSubscription",
         )
 
     def gift_subscription_for_items(
@@ -1407,6 +1440,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="giftSubscriptionForItems",
         )
 
     def create_invoice(
@@ -1425,6 +1460,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createInvoice",
         )
 
     def create_invoice_for_items(
@@ -1443,6 +1480,8 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="createInvoiceForItems",
         )
 
     def payment_schedules(
@@ -1463,4 +1502,6 @@ class Estimate:
             False,
             jsonKeys,
             options,
+            resource="estimate",
+            operation="paymentSchedules",
         )

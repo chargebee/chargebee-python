@@ -9,6 +9,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class Event:
+
     env: environment.Environment
 
     class WebhookStatus(Enum):
@@ -90,6 +91,8 @@ class Event:
             False,
             jsonKeys,
             options,
+            resource="event",
+            operation="list",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -106,4 +109,6 @@ class Event:
             False,
             jsonKeys,
             options,
+            resource="event",
+            operation="retrieve",
         )

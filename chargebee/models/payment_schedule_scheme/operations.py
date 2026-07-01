@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class PaymentScheduleScheme:
+
     env: environment.Environment
 
     class PeriodUnit(Enum):
@@ -49,6 +50,8 @@ class PaymentScheduleScheme:
             False,
             jsonKeys,
             options,
+            resource="paymentScheduleScheme",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -65,6 +68,8 @@ class PaymentScheduleScheme:
             False,
             jsonKeys,
             options,
+            resource="paymentScheduleScheme",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -83,4 +88,6 @@ class PaymentScheduleScheme:
             False,
             jsonKeys,
             options,
+            resource="paymentScheduleScheme",
+            operation="delete",
         )

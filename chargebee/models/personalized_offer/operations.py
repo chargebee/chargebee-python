@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class PersonalizedOffer:
+
     env: environment.Environment
 
     class OptionProcessingType(Enum):
@@ -74,4 +75,6 @@ class PersonalizedOffer:
             True,
             jsonKeys,
             options,
+            resource="personalizedOffer",
+            operation="personalizedOffers",
         )

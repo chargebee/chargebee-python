@@ -8,6 +8,7 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class HostedPage:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -907,6 +908,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutNew",
         )
 
     def checkout_one_time(
@@ -927,6 +930,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutOneTime",
         )
 
     def checkout_one_time_for_items(
@@ -947,6 +952,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutOneTimeForItems",
         )
 
     def checkout_new_for_items(
@@ -967,6 +974,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutNewForItems",
         )
 
     def checkout_existing(
@@ -987,6 +996,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutExisting",
         )
 
     def checkout_existing_for_items(
@@ -1007,6 +1018,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutExistingForItems",
         )
 
     def update_card(self, params: UpdateCardParams, headers=None) -> UpdateCardResponse:
@@ -1025,6 +1038,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="updateCard",
         )
 
     def update_payment_method(
@@ -1045,6 +1060,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="updatePaymentMethod",
         )
 
     def manage_payment_sources(
@@ -1065,6 +1082,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="managePaymentSources",
         )
 
     def collect_now(self, params: CollectNowParams, headers=None) -> CollectNowResponse:
@@ -1083,6 +1102,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="collectNow",
         )
 
     def accept_quote(
@@ -1103,6 +1124,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="acceptQuote",
         )
 
     def extend_subscription(
@@ -1123,6 +1146,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="extendSubscription",
         )
 
     def checkout_gift(
@@ -1143,6 +1168,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutGift",
         )
 
     def checkout_gift_for_items(
@@ -1163,6 +1190,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="checkoutGiftForItems",
         )
 
     def claim_gift(self, params: ClaimGiftParams, headers=None) -> ClaimGiftResponse:
@@ -1181,6 +1210,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="claimGift",
         )
 
     def retrieve_agreement_pdf(
@@ -1201,6 +1232,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="retrieveAgreementPdf",
         )
 
     def acknowledge(self, id, headers=None) -> AcknowledgeResponse:
@@ -1219,6 +1252,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="acknowledge",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -1235,6 +1270,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -1251,6 +1288,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="list",
         )
 
     def pre_cancel(self, params: PreCancelParams, headers=None) -> PreCancelResponse:
@@ -1269,6 +1308,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="preCancel",
         )
 
     def events(self, params: EventsParams, headers=None) -> EventsResponse:
@@ -1289,6 +1330,8 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="events",
         )
 
     def view_voucher(
@@ -1309,4 +1352,6 @@ class HostedPage:
             False,
             jsonKeys,
             options,
+            resource="hostedPage",
+            operation="viewVoucher",
         )

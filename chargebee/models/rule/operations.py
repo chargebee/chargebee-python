@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class Rule:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -29,4 +30,6 @@ class Rule:
             False,
             jsonKeys,
             options,
+            resource="rule",
+            operation="retrieve",
         )

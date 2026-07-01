@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class RecordedPurchase:
+
     env: environment.Environment
 
     class Source(Enum):
@@ -74,6 +75,8 @@ class RecordedPurchase:
             False,
             jsonKeys,
             options,
+            resource="recordedPurchase",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -90,4 +93,6 @@ class RecordedPurchase:
             False,
             jsonKeys,
             options,
+            resource="recordedPurchase",
+            operation="retrieve",
         )

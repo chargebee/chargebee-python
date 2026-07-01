@@ -7,6 +7,7 @@ from chargebee.models import entitlement_override
 
 @dataclass
 class SubscriptionEntitlement:
+
     env: environment.Environment
 
     class ScheduleStatus(Enum):
@@ -61,6 +62,8 @@ class SubscriptionEntitlement:
             False,
             jsonKeys,
             options,
+            resource="subscriptionEntitlement",
+            operation="subscriptionEntitlementsForSubscription",
         )
 
     def set_subscription_entitlement_availability(
@@ -83,4 +86,6 @@ class SubscriptionEntitlement:
             False,
             jsonKeys,
             options,
+            resource="subscriptionEntitlement",
+            operation="setSubscriptionEntitlementAvailability",
         )

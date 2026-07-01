@@ -6,6 +6,7 @@ from chargebee.models import enums
 
 @dataclass
 class Address:
+
     env: environment.Environment
 
     class RetrieveParams(TypedDict):
@@ -44,6 +45,8 @@ class Address:
             False,
             jsonKeys,
             options,
+            resource="address",
+            operation="retrieve",
         )
 
     def update(self, params: UpdateParams, headers=None) -> UpdateResponse:
@@ -62,4 +65,6 @@ class Address:
             False,
             jsonKeys,
             options,
+            resource="address",
+            operation="update",
         )

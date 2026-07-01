@@ -6,6 +6,7 @@ from enum import Enum
 
 @dataclass
 class UsageFile:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -40,6 +41,8 @@ class UsageFile:
             False,
             jsonKeys,
             options,
+            resource="usageFile",
+            operation="uploadUrl",
         )
 
     def processing_status(self, id, headers=None) -> ProcessingStatusResponse:
@@ -56,4 +59,6 @@ class UsageFile:
             False,
             jsonKeys,
             options,
+            resource="usageFile",
+            operation="processingStatus",
         )

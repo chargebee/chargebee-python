@@ -12,10 +12,12 @@ class Environment(object):
     retry_config = RetryConfig()
     enable_debug_logs = False
     use_async_client = False
+    telemetry_adapter = None
 
     def __init__(self, options):
         self.api_key = options["api_key"]
         self.site = options["site"]
+        self.telemetry_adapter = None
 
     def set_api_endpoint(self):
         self.api_endpoint = "%s://%s.%s/api/%s" % (

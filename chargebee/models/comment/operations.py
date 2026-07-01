@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Comment:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -47,6 +48,8 @@ class Comment:
             False,
             jsonKeys,
             options,
+            resource="comment",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -63,6 +66,8 @@ class Comment:
             False,
             jsonKeys,
             options,
+            resource="comment",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -79,6 +84,8 @@ class Comment:
             False,
             jsonKeys,
             options,
+            resource="comment",
+            operation="list",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -97,4 +104,6 @@ class Comment:
             False,
             jsonKeys,
             options,
+            resource="comment",
+            operation="delete",
         )

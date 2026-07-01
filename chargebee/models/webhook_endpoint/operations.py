@@ -7,6 +7,7 @@ from chargebee.models import enums
 
 @dataclass
 class WebhookEndpoint:
+
     env: environment.Environment
 
     class ApiVersion(Enum):
@@ -59,6 +60,8 @@ class WebhookEndpoint:
             False,
             jsonKeys,
             options,
+            resource="webhookEndpoint",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -77,6 +80,8 @@ class WebhookEndpoint:
             False,
             jsonKeys,
             options,
+            resource="webhookEndpoint",
+            operation="update",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -93,6 +98,8 @@ class WebhookEndpoint:
             False,
             jsonKeys,
             options,
+            resource="webhookEndpoint",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -111,6 +118,8 @@ class WebhookEndpoint:
             False,
             jsonKeys,
             options,
+            resource="webhookEndpoint",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -127,4 +136,6 @@ class WebhookEndpoint:
             False,
             jsonKeys,
             options,
+            resource="webhookEndpoint",
+            operation="list",
         )

@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class BusinessEntity:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -50,6 +51,8 @@ class BusinessEntity:
             False,
             jsonKeys,
             options,
+            resource="businessEntity",
+            operation="createTransfers",
         )
 
     def get_transfers(
@@ -68,4 +71,6 @@ class BusinessEntity:
             False,
             jsonKeys,
             options,
+            resource="businessEntity",
+            operation="getTransfers",
         )

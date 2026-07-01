@@ -8,6 +8,7 @@ from chargebee.models import omnichannel_one_time_order_item, omnichannel_transa
 
 @dataclass
 class OmnichannelOneTimeOrder:
+
     env: environment.Environment
 
     class Source(Enum):
@@ -56,6 +57,8 @@ class OmnichannelOneTimeOrder:
             False,
             jsonKeys,
             options,
+            resource="omnichannelOneTimeOrder",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -72,4 +75,6 @@ class OmnichannelOneTimeOrder:
             False,
             jsonKeys,
             options,
+            resource="omnichannelOneTimeOrder",
+            operation="list",
         )

@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class CouponCode:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -46,6 +47,8 @@ class CouponCode:
             False,
             jsonKeys,
             options,
+            resource="couponCode",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -62,6 +65,8 @@ class CouponCode:
             False,
             jsonKeys,
             options,
+            resource="couponCode",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -78,6 +83,8 @@ class CouponCode:
             False,
             jsonKeys,
             options,
+            resource="couponCode",
+            operation="list",
         )
 
     def archive(self, id, headers=None) -> ArchiveResponse:
@@ -96,4 +103,6 @@ class CouponCode:
             False,
             jsonKeys,
             options,
+            resource="couponCode",
+            operation="archive",
         )

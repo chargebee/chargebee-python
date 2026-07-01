@@ -8,6 +8,7 @@ from chargebee.models import enums, payment_intent
 
 @dataclass
 class Gift:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -212,6 +213,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="create",
         )
 
     def create_for_items(
@@ -235,6 +238,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="createForItems",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -251,6 +256,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -267,6 +274,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="list",
         )
 
     def claim(self, id, headers=None) -> ClaimResponse:
@@ -285,6 +294,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="claim",
         )
 
     def cancel(self, id, headers=None) -> CancelResponse:
@@ -303,6 +314,8 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="cancel",
         )
 
     def update_gift(
@@ -323,4 +336,6 @@ class Gift:
             False,
             jsonKeys,
             options,
+            resource="gift",
+            operation="updateGift",
         )

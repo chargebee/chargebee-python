@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class Feature:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -80,6 +81,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="list",
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -98,6 +101,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -116,6 +121,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="update",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -132,6 +139,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -150,6 +159,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="delete",
         )
 
     def activate(self, id, headers=None) -> ActivateResponse:
@@ -168,6 +179,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="activate",
         )
 
     def archive(self, id, headers=None) -> ArchiveResponse:
@@ -186,6 +199,8 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="archive",
         )
 
     def reactivate(self, id, headers=None) -> ReactivateResponse:
@@ -204,4 +219,6 @@ class Feature:
             False,
             jsonKeys,
             options,
+            resource="feature",
+            operation="reactivate",
         )

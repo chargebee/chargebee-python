@@ -278,6 +278,85 @@ cb_client.update_retry_config(retry_config)
 
 ```
 
+### Telemetry (OpenTelemetry)
+
+**Optional add-on.** Existing integrations do not need any changes — if you never set a telemetry adapter, API calls behave exactly as before.
+
+Pass a `telemetry_adapter` when you want Chargebee API calls traced in your observability stack (Datadog, Splunk, Honeycomb, Jaeger, etc.). OpenTelemetry is **not** bundled with `chargebee` — install and configure OTel (or your APM SDK) in your application, implement `TelemetryAdapter`, and wire it on the client.
+
+The SDK builds standardized span attributes (`context.start_attributes`, `result.end_attributes`) following stable [OpenTelemetry HTTP semantic conventions](https://opentelemetry.io/docs/specs/semconv/http/http-spans/) (`url.full`, `http.request.method`, `http.response.status_code`, `server.address`, `error.type`) plus Chargebee-specific `chargebee.*` attributes (see `chargebee.telemetry.TelemetryAttributeKeys`).
+
+Span names follow `chargebee.{resource}.{operation}` (e.g. `chargebee.subscription.create`). One span is created per SDK API call; retries reuse the same span. Adapter failures are logged and never affect the underlying API request.
+
+Pass `telemetry_adapter` when constructing `Chargebee`, or call `update_telemetry_adapter()` on an existing client. Each new `Chargebee(...)` instance gets its own environment — set the adapter on every client you use for telemetry.
+
+To pass custom `chargebee-*` headers (promoted to `http.request.header.chargebee-*` span attributes), include them in the `headers` argument on resource methods.
+
+#### OpenTelemetry example
+
+```sh
+pip install chargebee opentelemetry-api opentelemetry-sdk opentelemetry-exporter-otlp-proto-grpc
+```
+
+Configure OpenTelemetry at app startup, then pass your adapter:
+
+```python
+# App startup — configure once
+from opentelemetry import trace
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+
+provider = TracerProvider(resource=Resource.create({"service.name": "billing-service"}))
+provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter()))
+trace.set_tracer_provider(provider)
+```
+
+```python
+from chargebee import Chargebee, RequestTelemetryContext, RequestTelemetryResult, TelemetryAdapter
+from opentelemetry import trace
+from opentelemetry.trace import SpanKind, Status, StatusCode
+
+
+class OtelTelemetryAdapter:
+    def __init__(self, tracer):
+        self._tracer = tracer
+
+    def on_request_start(self, context: RequestTelemetryContext, request_headers: dict):
+        span = self._tracer.start_span(
+            context.span_name,
+            kind=SpanKind.CLIENT,
+            attributes=dict(context.start_attributes),
+        )
+        # Inject W3C trace context into outbound headers
+        from opentelemetry.propagate import inject
+        from opentelemetry.trace import set_span_in_context
+
+        inject(request_headers, context=set_span_in_context(span))
+        return span
+
+    def on_request_end(self, handle, result: RequestTelemetryResult):
+        if handle is None:
+            return
+        span = handle
+        for key, value in result.end_attributes.items():
+            span.set_attribute(key, value)
+        if result.error:
+            span.set_status(Status(StatusCode.ERROR, result.error.message))
+        else:
+            span.set_status(Status(StatusCode.OK))
+        span.end()
+
+
+cb_client = Chargebee(
+    api_key="{{api-key}}",
+    site="{{site}}",
+    telemetry_adapter=OtelTelemetryAdapter(trace.get_tracer("chargebee-python")),
+)
+```
+
+Spans are exported by your own OpenTelemetry setup, so they flow to whatever backend you've configured (Datadog, Splunk, Honeycomb, Jaeger, etc.). The Chargebee config above stays the same regardless of backend — refer to your APM vendor's OpenTelemetry/OTLP documentation for exporter endpoints.
 
 ## Feedback
 

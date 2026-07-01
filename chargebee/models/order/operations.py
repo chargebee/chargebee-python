@@ -8,6 +8,7 @@ from chargebee.models import enums, credit_note
 
 @dataclass
 class Order:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -392,6 +393,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -410,6 +413,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="update",
         )
 
     def import_order(
@@ -430,6 +435,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="importOrder",
         )
 
     def assign_order_number(self, id, headers=None) -> AssignOrderNumberResponse:
@@ -448,6 +455,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="assignOrderNumber",
         )
 
     def cancel(self, id, params: CancelParams, headers=None) -> CancelResponse:
@@ -466,6 +475,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="cancel",
         )
 
     def create_refundable_credit_note(
@@ -486,6 +497,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="createRefundableCreditNote",
         )
 
     def reopen(self, id, params: ReopenParams = None, headers=None) -> ReopenResponse:
@@ -504,6 +517,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="reopen",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -520,6 +535,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="retrieve",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -538,6 +555,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="delete",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -554,6 +573,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="list",
         )
 
     def orders_for_invoice(
@@ -572,6 +593,8 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="ordersForInvoice",
         )
 
     def resend(self, id, params: ResendParams = None, headers=None) -> ResendResponse:
@@ -590,4 +613,6 @@ class Order:
             False,
             jsonKeys,
             options,
+            resource="order",
+            operation="resend",
         )

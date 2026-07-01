@@ -8,6 +8,7 @@ from chargebee.models import enums, payment_intent, card
 
 @dataclass
 class PaymentSource:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -333,6 +334,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createUsingTempToken",
         )
 
     def create_using_permanent_token(
@@ -355,6 +358,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createUsingPermanentToken",
         )
 
     def create_using_token(
@@ -375,6 +380,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createUsingToken",
         )
 
     def create_using_payment_intent(
@@ -398,6 +405,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createUsingPaymentIntent",
         )
 
     def create_voucher_payment_source(
@@ -420,6 +429,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createVoucherPaymentSource",
         )
 
     def create_card(self, params: CreateCardParams, headers=None) -> CreateCardResponse:
@@ -440,6 +451,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createCard",
         )
 
     def create_bank_account(
@@ -462,6 +475,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="createBankAccount",
         )
 
     def update_card(
@@ -485,6 +500,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="updateCard",
         )
 
     def update_bank_account(
@@ -505,6 +522,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="updateBankAccount",
         )
 
     def verify_bank_account(
@@ -525,6 +544,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="verifyBankAccount",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -541,6 +562,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -557,6 +580,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="list",
         )
 
     def switch_gateway_account(
@@ -577,6 +602,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="switchGatewayAccount",
         )
 
     def export_payment_source(
@@ -597,6 +624,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="exportPaymentSource",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -615,6 +644,8 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="delete",
         )
 
     def delete_local(self, id, headers=None) -> DeleteLocalResponse:
@@ -633,4 +664,6 @@ class PaymentSource:
             False,
             jsonKeys,
             options,
+            resource="paymentSource",
+            operation="deleteLocal",
         )

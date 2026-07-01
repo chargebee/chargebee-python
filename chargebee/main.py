@@ -22,8 +22,11 @@ class Chargebee:
         connection_time_out: int = None,
         read_time_out: int = None,
         use_async_client: bool = False,
+        telemetry_adapter=None,
     ):
         self.env = Environment({"api_key": api_key, "site": site})
+        if telemetry_adapter is not None:
+            self.env.telemetry_adapter = telemetry_adapter
         if chargebee_domain is not None:
             self.update_chargebee_domain(chargebee_domain)
         if protocol is not None:
@@ -183,3 +186,6 @@ class Chargebee:
 
     def update_enable_debug_logs(self, enable_debug_logs):
         self.env.enable_debug_logs = enable_debug_logs
+
+    def update_telemetry_adapter(self, telemetry_adapter):
+        self.env.telemetry_adapter = telemetry_adapter

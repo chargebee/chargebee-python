@@ -8,6 +8,7 @@ from chargebee.models import enums, invoice, transaction
 
 @dataclass
 class CreditNote:
+
     env: environment.Environment
 
     class Type(Enum):
@@ -492,6 +493,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="create",
         )
 
     def retrieve(
@@ -510,6 +513,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="retrieve",
         )
 
     def pdf(self, id, params: PdfParams = None, headers=None) -> PdfResponse:
@@ -528,6 +533,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="pdf",
         )
 
     def download_einvoice(self, id, headers=None) -> DownloadEinvoiceResponse:
@@ -544,6 +551,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="downloadEinvoice",
         )
 
     def refund(self, id, params: RefundParams = None, headers=None) -> RefundResponse:
@@ -562,6 +571,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="refund",
         )
 
     def record_refund(
@@ -582,6 +593,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="recordRefund",
         )
 
     def void_credit_note(
@@ -602,6 +615,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="voidCreditNote",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -618,6 +633,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="list",
         )
 
     def credit_notes_for_customer(
@@ -636,6 +653,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="creditNotesForCustomer",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
@@ -654,6 +673,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="delete",
         )
 
     def remove_tax_withheld_refund(
@@ -674,6 +695,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="removeTaxWithheldRefund",
         )
 
     def resend_einvoice(self, id, headers=None) -> ResendEinvoiceResponse:
@@ -692,6 +715,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="resendEinvoice",
         )
 
     def send_einvoice(self, id, headers=None) -> SendEinvoiceResponse:
@@ -710,6 +735,8 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="sendEinvoice",
         )
 
     def import_credit_note(
@@ -730,4 +757,6 @@ class CreditNote:
             False,
             jsonKeys,
             options,
+            resource="creditNote",
+            operation="importCreditNote",
         )

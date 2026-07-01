@@ -7,6 +7,7 @@ from chargebee.models import gateway_error_detail
 
 @dataclass
 class PaymentIntent:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -153,6 +154,8 @@ class PaymentIntent:
             False,
             jsonKeys,
             options,
+            resource="paymentIntent",
+            operation="create",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -171,6 +174,8 @@ class PaymentIntent:
             False,
             jsonKeys,
             options,
+            resource="paymentIntent",
+            operation="update",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -187,4 +192,6 @@ class PaymentIntent:
             False,
             jsonKeys,
             options,
+            resource="paymentIntent",
+            operation="retrieve",
         )

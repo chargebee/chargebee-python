@@ -7,6 +7,7 @@ from chargebee.filters import Filters
 
 @dataclass
 class VirtualBankAccount:
+
     env: environment.Environment
 
     class Scheme(Enum):
@@ -58,6 +59,8 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="createUsingPermanentToken",
         )
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
@@ -76,6 +79,8 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -92,6 +97,8 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="retrieve",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -108,6 +115,8 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="list",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -126,6 +135,8 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="delete",
         )
 
     def delete_local(self, id, headers=None) -> DeleteLocalResponse:
@@ -144,4 +155,6 @@ class VirtualBankAccount:
             False,
             jsonKeys,
             options,
+            resource="virtualBankAccount",
+            operation="deleteLocal",
         )

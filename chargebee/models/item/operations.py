@@ -8,6 +8,7 @@ from chargebee.models import enums
 
 @dataclass
 class Item:
+
     env: environment.Environment
 
     class Status(Enum):
@@ -181,6 +182,8 @@ class Item:
             False,
             jsonKeys,
             options,
+            resource="item",
+            operation="create",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
@@ -197,6 +200,8 @@ class Item:
             False,
             jsonKeys,
             options,
+            resource="item",
+            operation="retrieve",
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
@@ -217,6 +222,8 @@ class Item:
             False,
             jsonKeys,
             options,
+            resource="item",
+            operation="update",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:
@@ -233,6 +240,8 @@ class Item:
             False,
             jsonKeys,
             options,
+            resource="item",
+            operation="list",
         )
 
     def delete(self, id, headers=None) -> DeleteResponse:
@@ -251,4 +260,6 @@ class Item:
             False,
             jsonKeys,
             options,
+            resource="item",
+            operation="delete",
         )
