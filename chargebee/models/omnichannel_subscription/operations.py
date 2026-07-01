@@ -79,6 +79,7 @@ class OmnichannelSubscription:
         id_at_source: NotRequired[Filters.StringFilter]
         updated_at: NotRequired[Filters.TimestampFilter]
         purchased_at: NotRequired[Filters.TimestampFilter]
+        sort_by: NotRequired[Filters.SortFilter]
 
     class OmnichannelTransactionsForOmnichannelSubscriptionParams(TypedDict):
         limit: NotRequired[int]

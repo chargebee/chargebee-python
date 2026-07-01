@@ -81,7 +81,7 @@ class OfferFulfillment:
             headers,
             OfferFulfillmentsGetResponse,
             "grow",
-            True,
+            False,
             jsonKeys,
             options,
             resource="offerFulfillment",
