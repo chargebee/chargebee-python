@@ -8,7 +8,6 @@ from chargebee.models import enums, credit_note
 
 @dataclass
 class Order:
-
     env: environment.Environment
 
     class Status(Enum):

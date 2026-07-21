@@ -16,7 +16,6 @@ from chargebee.models import (
 
 @dataclass
 class Estimate:
-
     env: environment.Environment
 
     class PaymentScheduleEstimateEntityType(Enum):
@@ -687,6 +686,8 @@ class Estimate:
         unit_price_in_decimal: NotRequired[str]
         date_from: NotRequired[int]
         date_to: NotRequired[int]
+        description: NotRequired[str]
+        entity_description: NotRequired[str]
 
     class CreateInvoiceForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -713,6 +714,7 @@ class Estimate:
         avalara_service_type: NotRequired[int]
         date_from: NotRequired[int]
         date_to: NotRequired[int]
+        entity_description: NotRequired[str]
 
     class CreateInvoiceForItemsNotesToRemoveParams(TypedDict):
         entity_type: NotRequired[enums.EntityType]

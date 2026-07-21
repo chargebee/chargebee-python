@@ -8,7 +8,6 @@ from chargebee.models import omnichannel_one_time_order_item, omnichannel_transa
 
 @dataclass
 class OmnichannelOneTimeOrder:
-
     env: environment.Environment
 
     class Source(Enum):

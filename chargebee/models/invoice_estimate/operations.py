@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class InvoiceEstimate:
-
     env: environment.Environment
 
     class LineItemEntityType(Enum):
@@ -18,6 +17,15 @@ class InvoiceEstimate:
         PLAN_SETUP = "plan_setup"
         PLAN = "plan"
         ADDON = "addon"
+
+        def __str__(self):
+            return self.value
+
+    class LineItemProrationMode(Enum):
+        RESET = "reset"
+        DELTA = "delta"
+        SERVICE_PERIOD_REVISION = "service_period_revision"
+        ADJUSTED_TERM = "adjusted_term"
 
         def __str__(self):
             return self.value
@@ -77,6 +85,7 @@ class InvoiceEstimate:
         tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
+        proration_mode: NotRequired["InvoiceEstimate.LineItemProrationMode"]
 
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]

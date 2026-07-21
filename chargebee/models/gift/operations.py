@@ -8,7 +8,6 @@ from chargebee.models import enums, payment_intent
 
 @dataclass
 class Gift:
-
     env: environment.Environment
 
     class Status(Enum):

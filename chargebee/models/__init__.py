@@ -104,6 +104,10 @@ from chargebee.models.alert.operations import Alert
 
 from chargebee.models.alert_status.operations import AlertStatus
 
+from chargebee.models.async_response.operations import AsyncResponse
+
+from chargebee.models.async_response_list.operations import AsyncResponseList
+
 from chargebee.models.attached_item.operations import AttachedItem
 
 from chargebee.models.attribute.operations import Attribute
@@ -117,6 +121,8 @@ from chargebee.models.business_entity.operations import BusinessEntity
 from chargebee.models.business_entity_transfer.operations import BusinessEntityTransfer
 
 from chargebee.models.card.operations import Card
+
+from chargebee.models.column_definition.operations import ColumnDefinition
 
 from chargebee.models.comment.operations import Comment
 
@@ -203,6 +209,10 @@ from chargebee.models.ledger_account_balance.operations import LedgerAccountBala
 from chargebee.models.ledger_operation.operations import LedgerOperation
 
 from chargebee.models.metadata.operations import Metadata
+
+from chargebee.models.meter.operations import Meter
+
+from chargebee.models.metered_feature.operations import MeteredFeature
 
 from chargebee.models.offer_event.operations import OfferEvent
 

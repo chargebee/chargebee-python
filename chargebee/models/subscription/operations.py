@@ -1330,6 +1330,7 @@ class Subscription:
         sort_by: NotRequired[Filters.SortFilter]
         business_entity_id: NotRequired[Filters.StringFilter]
         channel: NotRequired[Filters.EnumFilter]
+        decommissioned: NotRequired[Filters.BooleanFilter]
 
     class SubscriptionsForCustomerParams(TypedDict):
         limit: NotRequired[int]

@@ -34,4 +34,6 @@ class PromotionalGrant:
             True,
             jsonKeys,
             options,
+            resource="promotionalGrant",
+            operation="promotionalGrants",
         )

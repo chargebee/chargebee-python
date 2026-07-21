@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class OfferEvent:
-
     env: environment.Environment
 
     class Type(Enum):

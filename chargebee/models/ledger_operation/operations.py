@@ -84,6 +84,8 @@ class LedgerOperation:
             False,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="retrieveLedgerOperation",
         )
 
     def list_ledger_operations(
@@ -102,6 +104,8 @@ class LedgerOperation:
             False,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="listLedgerOperations",
         )
 
     def capture(self, params: CaptureParams, headers=None) -> CaptureResponse:
@@ -120,6 +124,8 @@ class LedgerOperation:
             True,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="capture",
         )
 
     def authorize(self, params: AuthorizeParams, headers=None) -> AuthorizeResponse:
@@ -138,6 +144,8 @@ class LedgerOperation:
             True,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="authorize",
         )
 
     def capture_authorization(
@@ -158,6 +166,8 @@ class LedgerOperation:
             True,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="captureAuthorization",
         )
 
     def release_authorization(
@@ -178,4 +188,6 @@ class LedgerOperation:
             True,
             jsonKeys,
             options,
+            resource="ledgerOperation",
+            operation="releaseAuthorization",
         )

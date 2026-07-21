@@ -8,7 +8,6 @@ from chargebee.models import enums, cpq_quote_signature, contract_term
 
 @dataclass
 class Quote:
-
     env: environment.Environment
 
     class Status(Enum):
@@ -43,6 +42,15 @@ class Quote:
         PLAN_SETUP = "plan_setup"
         PLAN = "plan"
         ADDON = "addon"
+
+        def __str__(self):
+            return self.value
+
+    class LineItemProrationMode(Enum):
+        RESET = "reset"
+        DELTA = "delta"
+        SERVICE_PERIOD_REVISION = "service_period_revision"
+        ADJUSTED_TERM = "adjusted_term"
 
         def __str__(self):
             return self.value
@@ -102,6 +110,7 @@ class Quote:
         tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
+        proration_mode: NotRequired["Quote.LineItemProrationMode"]
 
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]
@@ -1867,6 +1876,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="pdf",
         )
 
     def retrieve_signature(self, id, headers=None) -> RetrieveSignatureResponse:
@@ -1883,6 +1894,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="retrieveSignature",
         )
 
     def retrieve_signed_pdf(self, id, headers=None) -> RetrieveSignedPdfResponse:
@@ -1901,6 +1914,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="retrieveSignedPdf",
         )
 
     def create_signature(self, id, headers=None) -> CreateSignatureResponse:
@@ -1919,6 +1934,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="createSignature",
         )
 
     def update_signature(self, id, headers=None) -> UpdateSignatureResponse:
@@ -1937,6 +1954,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="updateSignature",
         )
 
     def update_signature_status(
@@ -1957,6 +1976,8 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="updateSignatureStatus",
         )
 
     def refresh_signature_link(self, id, headers=None) -> RefreshSignatureLinkResponse:
@@ -1975,4 +1996,6 @@ class Quote:
             False,
             jsonKeys,
             options,
+            resource="quote",
+            operation="refreshSignatureLink",
         )

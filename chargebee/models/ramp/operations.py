@@ -8,7 +8,6 @@ from chargebee.models import enums
 
 @dataclass
 class Ramp:
-
     env: environment.Environment
 
     class Status(Enum):
@@ -23,6 +22,7 @@ class Ramp:
     class DiscountsToAddType(Enum):
         FIXED_AMOUNT = "fixed_amount"
         PERCENTAGE = "percentage"
+        OFFER_QUANTITY = "offer_quantity"
 
         def __str__(self):
             return self.value
@@ -82,6 +82,7 @@ class Ramp:
         type: Required["Ramp.DiscountsToAddType"]
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         duration_type: Required[enums.DurationType]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
@@ -155,6 +156,7 @@ class Ramp:
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]
@@ -209,6 +211,7 @@ class Ramp:
         duration_type: Required[enums.DurationType]
         percentage: NotRequired[float]
         amount: NotRequired[int]
+        quantity: NotRequired[int]
         period: NotRequired[int]
         period_unit: NotRequired[enums.PeriodUnit]
         included_in_mrr: NotRequired[bool]

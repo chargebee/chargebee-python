@@ -7,7 +7,6 @@ from chargebee.models import enums
 
 @dataclass
 class Card:
-
     env: environment.Environment
 
     class PreferredScheme(Enum):

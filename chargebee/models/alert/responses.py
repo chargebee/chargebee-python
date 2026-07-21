@@ -2,7 +2,21 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
-from chargebee.models import filter_condition
+
+
+@dataclass
+class ThresholdResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    mode: str = None
+    value: float = None
+
+
+@dataclass
+class FilterConditionResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    field: str = None
+    operator: str = None
+    value: str = None
 
 
 @dataclass
@@ -13,11 +27,14 @@ class AlertResponse(Model):
     name: str = None
     description: str = None
     metered_feature_id: str = None
+    currency_code: str = None
     subscription_id: str = None
     status: str = None
     meta: str = None
     created_at: int = None
     updated_at: int = None
+    threshold: List[ThresholdResponse] = None
+    filter_conditions: List[FilterConditionResponse] = None
 
 
 @dataclass

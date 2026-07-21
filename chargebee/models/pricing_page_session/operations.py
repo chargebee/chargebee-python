@@ -6,7 +6,6 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class PricingPageSession:
-
     env: environment.Environment
 
     class CreateForNewSubscriptionPricingPageParams(TypedDict):

@@ -8,7 +8,6 @@ from chargebee.models import enums, invoice, transaction
 
 @dataclass
 class CreditNote:
-
     env: environment.Environment
 
     class Type(Enum):
@@ -53,6 +52,15 @@ class CreditNote:
         PLAN_SETUP = "plan_setup"
         PLAN = "plan"
         ADDON = "addon"
+
+        def __str__(self):
+            return self.value
+
+    class LineItemProrationMode(Enum):
+        RESET = "reset"
+        DELTA = "delta"
+        SERVICE_PERIOD_REVISION = "service_period_revision"
+        ADJUSTED_TERM = "adjusted_term"
 
         def __str__(self):
             return self.value
@@ -137,6 +145,7 @@ class CreditNote:
         tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
+        proration_mode: NotRequired["CreditNote.LineItemProrationMode"]
 
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]
@@ -226,6 +235,10 @@ class CreditNote:
         invoice_date: NotRequired[int]
         invoice_status: Required["invoice.Invoice.Status"]
         tax_application: NotRequired["CreditNote.AppliedCreditTaxApplication"]
+
+    class ExchangeRate(TypedDict):
+        currency_code: Required[str]
+        rate: Required[float]
 
     class ShippingAddress(TypedDict):
         first_name: NotRequired[str]
@@ -341,6 +354,7 @@ class CreditNote:
         tax9_amount: NotRequired[int]
         tax10_name: NotRequired[str]
         tax10_amount: NotRequired[int]
+        proration_mode: NotRequired["CreditNote.LineItemProrationMode"]
 
     class ImportCreditNoteLineItemTierParams(TypedDict):
         line_item_id: Required[str]

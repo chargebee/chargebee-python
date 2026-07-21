@@ -19,12 +19,12 @@ class GrantBlockResponse(Model):
     voided_amount: str = None
     origin_grant_block_id: str = None
     status: str = None
-    metadata: str = None
     grant_source: str = None
     created_at: int = None
     account_type: str = None
     unit_id: str = None
     unit_type: str = None
+    metadata: Dict[Any, Any] = None
 
 
 @dataclass

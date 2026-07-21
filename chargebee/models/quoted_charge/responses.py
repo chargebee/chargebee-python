@@ -9,6 +9,7 @@ class ChargeResponse(Model):
     amount: int = None
     amount_in_decimal: str = None
     description: str = None
+    entity_description: str = None
     service_period_in_days: int = None
     avalara_sale_type: str = None
     avalara_transaction_type: int = None
@@ -23,6 +24,8 @@ class InvoiceItemResponse(Model):
     quantity_in_decimal: str = None
     unit_price: int = None
     unit_price_in_decimal: str = None
+    description: str = None
+    entity_description: str = None
     service_period_days: int = None
 
 

@@ -47,6 +47,7 @@ class LineItemResponse(Model):
     tax_exempt_reason: str = None
     entity_id: str = None
     customer_id: str = None
+    proration_mode: str = None
 
 
 @dataclass

@@ -8,7 +8,6 @@ from chargebee.models import enums
 
 @dataclass
 class Item:
-
     env: environment.Environment
 
     class Status(Enum):

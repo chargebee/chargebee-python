@@ -8,7 +8,6 @@ from chargebee.models import enums
 
 @dataclass
 class Plan:
-
     env: environment.Environment
 
     class PeriodUnit(Enum):

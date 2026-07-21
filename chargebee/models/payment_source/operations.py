@@ -8,7 +8,6 @@ from chargebee.models import enums, payment_intent, card
 
 @dataclass
 class PaymentSource:
-
     env: environment.Environment
 
     class Status(Enum):

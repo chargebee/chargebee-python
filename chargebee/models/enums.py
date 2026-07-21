@@ -291,6 +291,7 @@ class DunningType(Enum):
     AUTO_COLLECT = "auto_collect"
     OFFLINE = "offline"
     DIRECT_DEBIT = "direct_debit"
+    REAL_TIME_PAYMENTS = "real_time_payments"
 
     def __str__(self):
         return self.value
@@ -497,6 +498,7 @@ class EnabledEvents(Enum):
     BUSINESS_ENTITY_DELETED = "business_entity_deleted"
     CUSTOMER_BUSINESS_ENTITY_CHANGED = "customer_business_entity_changed"
     SUBSCRIPTION_BUSINESS_ENTITY_CHANGED = "subscription_business_entity_changed"
+    PAYMENT_SOURCE_BUSINESS_ENTITY_CHANGED = "payment_source_business_entity_changed"
     PURCHASE_CREATED = "purchase_created"
     VOUCHER_CREATED = "voucher_created"
     VOUCHER_EXPIRED = "voucher_expired"
@@ -863,6 +865,7 @@ class EventType(Enum):
     BUSINESS_ENTITY_DELETED = "business_entity_deleted"
     CUSTOMER_BUSINESS_ENTITY_CHANGED = "customer_business_entity_changed"
     SUBSCRIPTION_BUSINESS_ENTITY_CHANGED = "subscription_business_entity_changed"
+    PAYMENT_SOURCE_BUSINESS_ENTITY_CHANGED = "payment_source_business_entity_changed"
     PURCHASE_CREATED = "purchase_created"
     VOUCHER_CREATED = "voucher_created"
     VOUCHER_EXPIRED = "voucher_expired"
@@ -1227,6 +1230,9 @@ class PaymentMethod(Enum):
     PAYPAY = "paypay"
     GCASH = "gcash"
     SOUTH_KOREAN_CARDS = "south_korean_cards"
+    PAYNOW = "paynow"
+    BIZUM = "bizum"
+    PROMPTPAY = "promptpay"
 
     def __str__(self):
         return self.value
@@ -1289,6 +1295,9 @@ class PaymentMethodType(Enum):
     PAYPAY = "paypay"
     GCASH = "gcash"
     SOUTH_KOREAN_CARDS = "south_korean_cards"
+    PAYNOW = "paynow"
+    BIZUM = "bizum"
+    PROMPTPAY = "promptpay"
 
     def __str__(self):
         return self.value
@@ -1446,6 +1455,9 @@ class Source(Enum):
 
 
 class Status(Enum):
+    ACTIVE = "active"
+    ARCHIVED = "archived"
+    DELETED = "deleted"
     AVAILABLE = "available"
     EXHAUSTED = "exhausted"
     SCHEDULED = "scheduled"
@@ -1486,9 +1498,15 @@ class TaxJurisType(Enum):
 
 
 class TaxOverrideReason(Enum):
+    ZERO_RATED = "zero_rated"
     ID_EXEMPT = "id_exempt"
     CUSTOMER_EXEMPT = "customer_exempt"
+    REGION_NON_TAXABLE = "region_non_taxable"
+    PRODUCT_EXEMPT = "product_exempt"
     EXPORT = "export"
+    HIGH_VALUE_PHYSICAL_GOODS = "high_value_physical_goods"
+    ZERO_VALUE_ITEM = "zero_value_item"
+    TAX_NOT_CONFIGURED_EXTERNAL_PROVIDER = "tax_not_configured_external_provider"
 
     def __str__(self):
         return self.value
@@ -1569,10 +1587,16 @@ class Type(Enum):
     PAYPAY = "paypay"
     GCASH = "gcash"
     SOUTH_KOREAN_CARDS = "south_korean_cards"
+    PAYNOW = "paynow"
+    BIZUM = "bizum"
+    PROMPTPAY = "promptpay"
     FREE_TRIAL = "free_trial"
     PAY_UP_FRONT = "pay_up_front"
     PAY_AS_YOU_GO = "pay_as_you_go"
+    SIMPLE = "simple"
+    COMPOUND = "compound"
     USAGE_EXCEEDED = "usage_exceeded"
+    SPEND_EXCEEDED = "spend_exceeded"
 
     def __str__(self):
         return self.value
