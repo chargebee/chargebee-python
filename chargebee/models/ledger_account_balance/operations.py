@@ -50,4 +50,6 @@ class LedgerAccountBalance:
             False,
             jsonKeys,
             options,
+            resource="ledgerAccountBalance",
+            operation="listLedgerAccountBalances",
         )

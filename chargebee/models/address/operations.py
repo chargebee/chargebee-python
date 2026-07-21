@@ -6,7 +6,6 @@ from chargebee.models import enums
 
 @dataclass
 class Address:
-
     env: environment.Environment
 
     class RetrieveParams(TypedDict):

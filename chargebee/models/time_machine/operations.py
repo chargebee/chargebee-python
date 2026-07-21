@@ -8,7 +8,6 @@ from chargebee import OperationFailedError
 
 @dataclass
 class TimeMachine:
-
     env: environment.Environment
 
     class TimeTravelStatus(Enum):

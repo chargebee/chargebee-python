@@ -7,7 +7,6 @@ from chargebee.filters import Filters
 
 @dataclass
 class BusinessEntity:
-
     env: environment.Environment
 
     class Status(Enum):

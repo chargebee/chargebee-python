@@ -8,7 +8,6 @@ from chargebee.models import enums
 
 @dataclass
 class Comment:
-
     env: environment.Environment
 
     class Type(Enum):

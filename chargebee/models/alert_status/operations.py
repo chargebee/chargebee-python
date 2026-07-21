@@ -36,7 +36,7 @@ class AlertStatus:
             jsonKeys,
             options,
             resource="alertStatus",
-            operation="alertStatusesForSubscription",
+            operation="alert_statusesForSubscription",
         )
 
     def alert_statuses_for_alert(
@@ -56,5 +56,5 @@ class AlertStatus:
             jsonKeys,
             options,
             resource="alertStatus",
-            operation="alertStatusesForAlert",
+            operation="alert_statusesForAlert",
         )

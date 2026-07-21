@@ -12,6 +12,7 @@ class QuotedCharge:
         amount: NotRequired[int]
         amount_in_decimal: NotRequired[str]
         description: NotRequired[str]
+        entity_description: NotRequired[str]
         service_period_in_days: NotRequired[int]
         avalara_sale_type: NotRequired[enums.AvalaraSaleType]
         avalara_transaction_type: NotRequired[int]
@@ -23,6 +24,8 @@ class QuotedCharge:
         quantity_in_decimal: NotRequired[str]
         unit_price: NotRequired[int]
         unit_price_in_decimal: NotRequired[str]
+        description: NotRequired[str]
+        entity_description: NotRequired[str]
         service_period_days: NotRequired[int]
 
     class ItemTier(TypedDict):

@@ -7,7 +7,6 @@ from chargebee.models import omnichannel_subscription_item_offer
 
 @dataclass
 class OmnichannelSubscriptionItem:
-
     env: environment.Environment
 
     class Status(Enum):

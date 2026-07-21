@@ -8,7 +8,6 @@ from chargebee.models import enums, contract_term
 
 @dataclass
 class HostedPage:
-
     env: environment.Environment
 
     class Type(Enum):

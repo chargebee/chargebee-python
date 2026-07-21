@@ -7,7 +7,6 @@ from chargebee.filters import Filters
 
 @dataclass
 class VirtualBankAccount:
-
     env: environment.Environment
 
     class Scheme(Enum):

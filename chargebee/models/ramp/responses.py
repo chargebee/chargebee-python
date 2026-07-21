@@ -61,6 +61,7 @@ class DiscountsToAddResponse(Model):
     type: str = None
     percentage: float = None
     amount: int = None
+    quantity: int = None
     duration_type: str = None
     period: int = None
     period_unit: str = None

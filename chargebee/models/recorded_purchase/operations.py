@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class RecordedPurchase:
-
     env: environment.Environment
 
     class Source(Enum):
@@ -36,6 +35,9 @@ class RecordedPurchase:
 
     class CreateCustomerParams(TypedDict):
         id: Required[str]
+        email: NotRequired[str]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
 
     class CreateAppleAppStoreParams(TypedDict):
         transaction_id: NotRequired[str]

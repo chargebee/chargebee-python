@@ -58,4 +58,6 @@ class GrantBlock:
             False,
             jsonKeys,
             options,
+            resource="grantBlock",
+            operation="listGrantBlocks",
         )

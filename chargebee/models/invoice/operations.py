@@ -15,7 +15,6 @@ from chargebee.models import (
 
 @dataclass
 class Invoice:
-
     env: environment.Environment
 
     class Status(Enum):
@@ -46,6 +45,15 @@ class Invoice:
         PLAN_SETUP = "plan_setup"
         PLAN = "plan"
         ADDON = "addon"
+
+        def __str__(self):
+            return self.value
+
+    class LineItemProrationMode(Enum):
+        RESET = "reset"
+        DELTA = "delta"
+        SERVICE_PERIOD_REVISION = "service_period_revision"
+        ADJUSTED_TERM = "adjusted_term"
 
         def __str__(self):
             return self.value
@@ -142,6 +150,10 @@ class Invoice:
         def __str__(self):
             return self.value
 
+    class ExchangeRate(TypedDict):
+        currency_code: Required[str]
+        rate: Required[float]
+
     class LineItem(TypedDict):
         id: NotRequired[str]
         subscription_id: NotRequired[str]
@@ -168,6 +180,7 @@ class Invoice:
         tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
+        proration_mode: NotRequired["Invoice.LineItemProrationMode"]
 
     class LineItemTier(TypedDict):
         line_item_id: NotRequired[str]
@@ -483,6 +496,8 @@ class Invoice:
         unit_price_in_decimal: NotRequired[str]
         date_from: NotRequired[int]
         date_to: NotRequired[int]
+        description: NotRequired[str]
+        entity_description: NotRequired[str]
 
     class CreateForChargeItemsAndChargesItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -496,6 +511,7 @@ class Invoice:
         package_size: NotRequired[int]
 
     class CreateForChargeItemsAndChargesChargeParams(TypedDict):
+        entity_description: NotRequired[str]
         amount: NotRequired[int]
         amount_in_decimal: NotRequired[str]
         description: NotRequired[str]
@@ -667,6 +683,7 @@ class Invoice:
         tax9_amount: NotRequired[int]
         tax10_name: NotRequired[str]
         tax10_amount: NotRequired[int]
+        proration_mode: NotRequired["Invoice.LineItemProrationMode"]
         created_at: NotRequired[int]
 
     class ImportInvoicePaymentReferenceNumberParams(TypedDict):
@@ -950,6 +967,7 @@ class Invoice:
             List["Invoice.CreateForChargeItemsAndChargesDiscountParams"]
         ]
         invoice_date: NotRequired[int]
+        create_pending_invoice: NotRequired[bool]
         shipping_address: NotRequired[
             "Invoice.CreateForChargeItemsAndChargesShippingAddressParams"
         ]
@@ -1052,6 +1070,7 @@ class Invoice:
         net_term_days: NotRequired[int]
         has_advance_charges: NotRequired[bool]
         use_for_proration: NotRequired[bool]
+        paid_at: NotRequired[int]
         line_items: NotRequired[List["Invoice.ImportInvoiceLineItemParams"]]
         payment_reference_numbers: NotRequired[
             List["Invoice.ImportInvoicePaymentReferenceNumberParams"]

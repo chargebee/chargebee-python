@@ -11,8 +11,6 @@ class LedgerOperationResponse(Model):
     id: str = None
     type: str = None
     amount: str = None
-    start_balance: str = None
-    end_balance: str = None
     provisioned_start_balance: str = None
     provisioned_end_balance: str = None
     overdraft_start_balance: str = None
@@ -20,12 +18,12 @@ class LedgerOperationResponse(Model):
     parent_ledger_operation_id: str = None
     ledger_operation_timestamp: int = None
     auto_release_timestamp: int = None
-    metadata: str = None
     created_at: int = None
     modified_at: int = None
     subscription_id: str = None
     unit_id: str = None
     unit_type: str = None
+    metadata: Dict[Any, Any] = None
 
 
 @dataclass

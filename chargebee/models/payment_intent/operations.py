@@ -7,7 +7,6 @@ from chargebee.models import gateway_error_detail
 
 @dataclass
 class PaymentIntent:
-
     env: environment.Environment
 
     class Status(Enum):
@@ -66,6 +65,9 @@ class PaymentIntent:
         PAYPAY = "paypay"
         GCASH = "gcash"
         SOUTH_KOREAN_CARDS = "south_korean_cards"
+        PAYNOW = "paynow"
+        BIZUM = "bizum"
+        PROMPTPAY = "promptpay"
 
         def __str__(self):
             return self.value
@@ -94,6 +96,21 @@ class PaymentIntent:
         def __str__(self):
             return self.value
 
+    class PaymentIntentMetadataSource(Enum):
+        CB_JS = "cb_js"
+        COMPONENTS_FIELDS = "components_fields"
+        CHECKOUT_V3 = "checkout_v3"
+        PAYNOW_V3 = "paynow_v3"
+        PORTAL_V3 = "portal_v3"
+        GIFT_V3 = "gift_v3"
+        CHECKOUT_V4 = "checkout_v4"
+        PAYMENT_COMPONENT = "payment_component"
+        PC_INAPP_V4 = "pc_inapp_v4"
+        PC_FPC_V4 = "pc_fpc_v4"
+
+        def __str__(self):
+            return self.value
+
     class PaymentAttempt(TypedDict):
         id: NotRequired[str]
         status: Required["PaymentIntent.PaymentAttemptStatus"]
@@ -117,6 +134,12 @@ class PaymentIntent:
         created_at: Required[int]
         modified_at: Required[int]
         error_detail: NotRequired[gateway_error_detail.GatewayErrorDetailResponse]
+
+    class PaymentIntentMetadata(TypedDict):
+        source: Required["PaymentIntent.PaymentIntentMetadataSource"]
+        client_ip_address: NotRequired[str]
+        user_agent: NotRequired[str]
+        created_at: NotRequired[int]
 
     class CreateParams(TypedDict):
         business_entity_id: NotRequired[str]

@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class Rule:
-
     env: environment.Environment
 
     class Status(Enum):

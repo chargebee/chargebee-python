@@ -36,6 +36,15 @@ class PaymentAttemptResponse(Model):
 
 
 @dataclass
+class PaymentIntentMetadataResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    source: str = None
+    client_ip_address: str = None
+    user_agent: str = None
+    created_at: int = None
+
+
+@dataclass
 class PaymentIntentResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -56,6 +65,7 @@ class PaymentIntentResponse(Model):
     gateway: str = None
     active_payment_attempt: PaymentAttemptResponse = None
     payment_attempts: List[PaymentAttemptResponse] = None
+    payment_intent_metadata: PaymentIntentMetadataResponse = None
     business_entity_id: str = None
 
 

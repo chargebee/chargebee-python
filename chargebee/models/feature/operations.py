@@ -7,7 +7,6 @@ from chargebee.filters import Filters
 
 @dataclass
 class Feature:
-
     env: environment.Environment
 
     class Status(Enum):
@@ -52,6 +51,7 @@ class Feature:
         id: NotRequired[Filters.StringFilter]
         status: NotRequired[Filters.EnumFilter]
         type: NotRequired[Filters.EnumFilter]
+        metered: NotRequired[Filters.BooleanFilter]
 
     class CreateParams(TypedDict):
         id: NotRequired[str]

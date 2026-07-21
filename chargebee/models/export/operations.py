@@ -8,7 +8,6 @@ from chargebee.models import enums
 
 @dataclass
 class Export:
-
     env: environment.Environment
 
     class MimeType(Enum):
@@ -207,6 +206,7 @@ class Export:
         offline_payment_method: NotRequired[Filters.EnumFilter]
         auto_close_invoices: NotRequired[Filters.BooleanFilter]
         channel: NotRequired[Filters.EnumFilter]
+        decommissioned: NotRequired[Filters.BooleanFilter]
         plan_id: NotRequired[Filters.StringFilter]
 
     class InvoicesInvoiceParams(TypedDict):

@@ -25,6 +25,7 @@ class FeatureResponse(Model):
     resource_version: int = None
     updated_at: int = None
     created_at: int = None
+    metered: bool = None
     levels: List[LevelResponse] = None
 
 

@@ -32,6 +32,15 @@ class QuoteLineGroup:
         def __str__(self):
             return self.value
 
+    class LineItemProrationMode(Enum):
+        RESET = "reset"
+        DELTA = "delta"
+        SERVICE_PERIOD_REVISION = "service_period_revision"
+        ADJUSTED_TERM = "adjusted_term"
+
+        def __str__(self):
+            return self.value
+
     class LineItemDiscountDiscountType(Enum):
         ITEM_LEVEL_COUPON = "item_level_coupon"
         DOCUMENT_LEVEL_COUPON = "document_level_coupon"
@@ -87,6 +96,7 @@ class QuoteLineGroup:
         tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         entity_id: NotRequired[str]
         customer_id: NotRequired[str]
+        proration_mode: NotRequired["QuoteLineGroup.LineItemProrationMode"]
 
     class LineItemDiscount(TypedDict):
         line_item_id: Required[str]

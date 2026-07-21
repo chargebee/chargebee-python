@@ -33,6 +33,7 @@ class LineItemResponse(Model):
     tax_exempt_reason: str = None
     entity_id: str = None
     customer_id: str = None
+    proration_mode: str = None
 
 
 @dataclass
@@ -152,6 +153,13 @@ class AllocationResponse(Model):
 
 
 @dataclass
+class ExchangeRateResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    currency_code: str = None
+    rate: float = None
+
+
+@dataclass
 class ShippingAddressResponse(Model):
     raw_data: Dict[Any, Any] = None
     first_name: str = None
@@ -252,6 +260,7 @@ class CreditNoteResponse(Model):
     deleted: bool = None
     tax_category: str = None
     local_currency_exchange_rate: float = None
+    exchange_rates: List[ExchangeRateResponse] = None
     create_reason_code: str = None
     vat_number_prefix: str = None
     business_entity_id: str = None

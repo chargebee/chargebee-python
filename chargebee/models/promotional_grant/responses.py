@@ -12,7 +12,7 @@ class PromotionalGrantResponse(Model):
     unit_id: str = None
     amount: str = None
     expires_at: int = None
-    metadata: str = None
+    metadata: Dict[Any, Any] = None
 
 
 @dataclass

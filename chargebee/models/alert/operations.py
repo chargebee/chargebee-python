@@ -3,7 +3,7 @@ from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
 from enum import Enum
 from chargebee.filters import Filters
-from chargebee.models import enums, filter_condition
+from chargebee.models import enums
 
 
 @dataclass
@@ -17,13 +17,35 @@ class Alert:
         def __str__(self):
             return self.value
 
-    class CreateThresholdParams(TypedDict):
+    class FilterConditionField(Enum):
+        PLAN_PRICE_ID = "plan_price_id"
+
+        def __str__(self):
+            return self.value
+
+    class FilterConditionOperator(Enum):
+        EQUALS = "equals"
+        NOT_EQUALS = "not_equals"
+
+        def __str__(self):
+            return self.value
+
+    class Threshold(TypedDict):
         mode: Required[enums.Mode]
         value: Required[float]
 
+    class FilterCondition(TypedDict):
+        field: Required["Alert.FilterConditionField"]
+        operator: Required["Alert.FilterConditionOperator"]
+        value: Required[str]
+
+    class CreateThresholdParams(TypedDict):
+        mode: NotRequired[enums.Mode]
+        value: Required[float]
+
     class CreateFilterConditionParams(TypedDict):
-        field: NotRequired["filter_condition.FilterCondition.Field"]
-        operator: NotRequired["filter_condition.FilterCondition.Operator"]
+        field: NotRequired["Alert.FilterConditionField"]
+        operator: NotRequired["Alert.FilterConditionOperator"]
         value: NotRequired[str]
 
     class UpdateThresholdParams(TypedDict):
@@ -34,7 +56,8 @@ class Alert:
         type: Required[enums.Type]
         name: Required[str]
         description: NotRequired[str]
-        metered_feature_id: Required[str]
+        metered_feature_id: NotRequired[str]
+        currency_code: NotRequired[str]
         subscription_id: NotRequired[str]
         threshold: NotRequired["Alert.CreateThresholdParams"]
         meta: NotRequired[str]

@@ -17,6 +17,13 @@ from chargebee.models import (
 
 
 @dataclass
+class ExchangeRateResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    currency_code: str = None
+    rate: float = None
+
+
+@dataclass
 class LineItemResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -44,6 +51,7 @@ class LineItemResponse(Model):
     tax_exempt_reason: str = None
     entity_id: str = None
     customer_id: str = None
+    proration_mode: str = None
 
 
 @dataclass
@@ -339,6 +347,7 @@ class InvoiceResponse(Model):
     resource_version: int = None
     updated_at: int = None
     line_items_next_offset: str = None
+    exchange_rates: List[ExchangeRateResponse] = None
     first_invoice: bool = None
     new_sales_amount: int = None
     has_advance_charges: bool = None

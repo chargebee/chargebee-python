@@ -6,7 +6,6 @@ from enum import Enum
 
 @dataclass
 class Currency:
-
     env: environment.Environment
 
     class ForexType(Enum):

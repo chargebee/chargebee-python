@@ -8,7 +8,6 @@ from chargebee.models import enums, payment_intent, card
 
 @dataclass
 class Customer:
-
     env: environment.Environment
 
     class VatNumberStatus(Enum):
