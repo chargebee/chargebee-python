@@ -144,6 +144,8 @@ from chargebee.models.credit_note.operations import CreditNote
 
 from chargebee.models.credit_note_estimate.operations import CreditNoteEstimate
 
+from chargebee.models.credit_unit.operations import CreditUnit
+
 from chargebee.models.currency.operations import Currency
 
 from chargebee.models.customer.operations import Customer
@@ -205,6 +207,8 @@ from chargebee.models.item_family.operations import ItemFamily
 from chargebee.models.item_price.operations import ItemPrice
 
 from chargebee.models.ledger_account_balance.operations import LedgerAccountBalance
+
+from chargebee.models.ledger_entry.operations import LedgerEntry
 
 from chargebee.models.ledger_operation.operations import LedgerOperation
 

@@ -8,6 +8,10 @@ from chargebee.response import Response
 class GrantBlockResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
+    subscription_id: str = None
+    account_type: str = None
+    unit_id: str = None
+    unit_type: str = None
     granted_amount: str = None
     effective_from: int = None
     expires_at: int = None
@@ -21,9 +25,8 @@ class GrantBlockResponse(Model):
     status: str = None
     grant_source: str = None
     created_at: int = None
-    account_type: str = None
-    unit_id: str = None
-    unit_type: str = None
+    modified_at: int = None
+    resource_version: int = None
     metadata: Dict[Any, Any] = None
 
 

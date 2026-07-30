@@ -9,6 +9,12 @@ from chargebee.filters import Filters
 class LedgerOperation:
     env: environment.Environment
 
+    class UnitType(Enum):
+        CREDIT_UNIT = "credit_unit"
+
+        def __str__(self):
+            return self.value
+
     class Type(Enum):
         ALLOCATION = "allocation"
         CAPTURE = "capture"
@@ -19,12 +25,6 @@ class LedgerOperation:
         VOID = "void"
         ROLLOVER = "rollover"
         ADJUSTMENT = "adjustment"
-
-        def __str__(self):
-            return self.value
-
-    class UnitType(Enum):
-        CREDIT_UNIT = "credit_unit"
 
         def __str__(self):
             return self.value
@@ -66,6 +66,13 @@ class LedgerOperation:
         authorization_id: Required[str]
         id: NotRequired[str]
         ledger_operation_timestamp: Required[int]
+        metadata: NotRequired[Dict[Any, Any]]
+
+    class AllocateParams(TypedDict):
+        subscription_id: Required[str]
+        unit_id: Required[str]
+        amount: Required[str]
+        expires_at: Required[int]
         metadata: NotRequired[Dict[Any, Any]]
 
     def retrieve_ledger_operation(
@@ -190,4 +197,24 @@ class LedgerOperation:
             options,
             resource="ledgerOperation",
             operation="releaseAuthorization",
+        )
+
+    def allocate(self, params: AllocateParams, headers=None) -> AllocateResponse:
+        jsonKeys = {
+            "metadata": 0,
+        }
+        options = {}
+        return request.send(
+            "post",
+            request.uri_path("ledger_operations", "allocate"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            AllocateResponse,
+            None,
+            True,
+            jsonKeys,
+            options,
+            resource="ledgerOperation",
+            operation="allocate",
         )

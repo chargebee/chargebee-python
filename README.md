@@ -39,6 +39,7 @@ The package needs to be configured with your site's API key, which is available 
 ### Configuring chargebee client
 ```python
 from chargebee import Chargebee
+
 cb_client = Chargebee(api_key="", site="")
 ```
 
@@ -46,6 +47,7 @@ cb_client = Chargebee(api_key="", site="")
 
 ```python
 from chargebee import Chargebee
+
 cb_client = Chargebee(api_key="api_key", site="site")
 cb_client.update_read_timeout_secs(3000)
 cb_client.update_connect_timeout_secs(5000)
@@ -55,6 +57,7 @@ cb_client.update_connect_timeout_secs(5000)
 
 ```python
 from chargebee import Chargebee
+
 cb_client = Chargebee(api_key="api_key", site="site")
 cb_client.update_export_retry_delay_ms(3000)
 cb_client.update_time_travel_retry_delay_ms(5000)
@@ -99,9 +102,7 @@ When configured to use the async client, all model methods return a coroutine, w
 ```python
 async def get_customers():
     response = await cb_client.Customer.list(
-        cb_client.Customer.ListParams(
-            first_name=Filters.StringFilter(IS="John")
-        )
+        cb_client.Customer.ListParams(first_name=Filters.StringFilter(IS="John"))
     )
     return response
 ```
@@ -110,6 +111,7 @@ Note: The async methods will have to be wrapped in an event loop during invocati
 
 ```python
 import asyncio
+
 response = asyncio.run(get_customers())
 ```
 
@@ -121,9 +123,7 @@ For pagination, `offset` is the parameter that is being used. The value used for
 from chargebee import Filters
 
 response = cb_client.Customer.list(
-    cb_client.Customer.ListParams(
-        first_name=Filters.StringFilter(IS="John")
-    )
+    cb_client.Customer.ListParams(first_name=Filters.StringFilter(IS="John"))
 )
 offset = response.next_offset
 print(offset)
@@ -193,15 +193,15 @@ response = cb_client.Customer.create(
         ),
     ),
     None,
-    {
-        "chargebee-idempotency-key": "<<UUID>>"
-    },  # Replace <<UUID>> with a unique string
+    {"chargebee-idempotency-key": "<<UUID>>"},  # Replace <<UUID>> with a unique string
 )
 customer = response.customer
 card = response.card
 responseHeaders = response.headers  # Retrieves response headers
 print(responseHeaders)
-idempotencyReplayedValue = response.is_idempotency_replayed  # Retrieves Idempotency replayed header value
+idempotencyReplayedValue = (
+    response.is_idempotency_replayed
+)  # Retrieves Idempotency replayed header value
 print(idempotencyReplayedValue)
 ```
 
@@ -244,17 +244,11 @@ You can enable and configure the retry logic by passing a `retryConfig` object w
 from chargebee import Chargebee
 from chargebee.retry_config import RetryConfig
 
-retry_config = RetryConfig(
-    enabled=True,
-    max_retries=5,
-    delay_ms=1000,
-    retry_on=[500]
-)
+retry_config = RetryConfig(enabled=True, max_retries=5, delay_ms=1000, retry_on=[500])
 cb_client = Chargebee(api_key="api_key", site="site")
 cb_client.update_retry_config(retry_config)
 
 # ... your Chargebee API operations ...
-
 ```
 
 #### Example: Rate Limit retry logic
@@ -265,17 +259,11 @@ You can enable and configure the retry logic for rate-limit by passing a `retryC
 from chargebee import Chargebee
 from chargebee.retry_config import RetryConfig
 
-retry_config = RetryConfig(
-    enabled=True,
-    max_retries=5,
-    delay_ms=1000,
-    retry_on=[429]
-)
+retry_config = RetryConfig(enabled=True, max_retries=5, delay_ms=1000, retry_on=[429])
 cb_client = Chargebee(api_key="api_key", site="site")
 cb_client.update_retry_config(retry_config)
 
 # ... your Chargebee API operations ...
-
 ```
 
 ### Telemetry (OpenTelemetry)
@@ -314,7 +302,12 @@ trace.set_tracer_provider(provider)
 ```
 
 ```python
-from chargebee import Chargebee, RequestTelemetryContext, RequestTelemetryResult, TelemetryAdapter
+from chargebee import (
+    Chargebee,
+    RequestTelemetryContext,
+    RequestTelemetryResult,
+    TelemetryAdapter,
+)
 from opentelemetry import trace
 from opentelemetry.trace import SpanKind, Status, StatusCode
 

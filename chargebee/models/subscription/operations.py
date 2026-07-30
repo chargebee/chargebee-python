@@ -1729,6 +1729,7 @@ class Subscription:
         subscription_items: NotRequired[
             List["Subscription.CancelForItemsSubscriptionItemParams"]
         ]
+        include_cancellation_day_in_billing: NotRequired[bool]
         cancel_reason_code: NotRequired[str]
         decommissioned: NotRequired[bool]
 

@@ -58,6 +58,7 @@ class Alert:
         description: NotRequired[str]
         metered_feature_id: NotRequired[str]
         currency_code: NotRequired[str]
+        unit_id: NotRequired[str]
         subscription_id: NotRequired[str]
         threshold: NotRequired["Alert.CreateThresholdParams"]
         meta: NotRequired[str]
