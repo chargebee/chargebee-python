@@ -9,16 +9,6 @@ from chargebee.filters import Filters
 class GrantBlock:
     env: environment.Environment
 
-    class GrantSource(Enum):
-        SUBSCRIPTION_CREATED = "subscription_created"
-        SUBSCRIPTION_CHANGED = "subscription_changed"
-        TOP_UP = "top_up"
-        PROMOTIONAL_GRANTS = "promotional_grants"
-        ROLLOVER = "rollover"
-
-        def __str__(self):
-            return self.value
-
     class AccountType(Enum):
         PROVISIONED = "provisioned"
         OVERDRAFT = "overdraft"
@@ -32,11 +22,24 @@ class GrantBlock:
         def __str__(self):
             return self.value
 
+    class GrantSource(Enum):
+        SUBSCRIPTION_CREATED = "subscription_created"
+        SUBSCRIPTION_CHANGED = "subscription_changed"
+        TOP_UP = "top_up"
+        PROMOTIONAL_GRANTS = "promotional_grants"
+        ROLLOVER = "rollover"
+        GRANT_RENEWAL = "grant_renewal"
+        SUBSCRIPTION_RENEWED = "subscription_renewed"
+
+        def __str__(self):
+            return self.value
+
     class ListGrantBlocksParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
         subscription_id: Required[Filters.StringFilter]
         unit_id: NotRequired[Filters.StringFilter]
+        account_type: NotRequired[Filters.EnumFilter]
         effective_from: NotRequired[Filters.TimestampFilter]
         expires_at: NotRequired[Filters.TimestampFilter]
         created_at: NotRequired[Filters.TimestampFilter]

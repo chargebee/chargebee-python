@@ -68,6 +68,10 @@ class PaymentIntent:
         PAYNOW = "paynow"
         BIZUM = "bizum"
         PROMPTPAY = "promptpay"
+        DANA = "dana"
+        TOUCH_N_GO = "touch_n_go"
+        TAMARA = "tamara"
+        QPAY = "qpay"
 
         def __str__(self):
             return self.value

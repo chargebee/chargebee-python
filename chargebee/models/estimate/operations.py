@@ -1003,6 +1003,7 @@ class Estimate:
         subscription_items: NotRequired[
             List["Estimate.CancelSubscriptionForItemsSubscriptionItemParams"]
         ]
+        include_cancellation_day_in_billing: NotRequired[bool]
         cancel_reason_code: NotRequired[str]
 
     class PauseSubscriptionParams(TypedDict):

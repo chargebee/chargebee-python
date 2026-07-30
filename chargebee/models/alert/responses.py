@@ -28,12 +28,13 @@ class AlertResponse(Model):
     description: str = None
     metered_feature_id: str = None
     currency_code: str = None
+    unit_id: str = None
     subscription_id: str = None
     status: str = None
     meta: str = None
     created_at: int = None
     updated_at: int = None
-    threshold: List[ThresholdResponse] = None
+    threshold: ThresholdResponse = None
     filter_conditions: List[FilterConditionResponse] = None
 
 

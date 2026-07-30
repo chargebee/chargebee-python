@@ -29,7 +29,9 @@ class LedgerAccountBalanceResponse(Model):
     subscription_id: str = None
     unit_id: str = None
     unit_type: str = None
+    created_at: int = None
     modified_at: int = None
+    resource_version: int = None
     provisioned_balance: ProvisionedBalanceResponse = None
     overdraft_balance: OverdraftBalanceResponse = None
 
