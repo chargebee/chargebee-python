@@ -80,6 +80,7 @@ class Chargebee:
         self.Feature = chargebee.Feature(self.env)
         self.FilterCondition = chargebee.FilterCondition(self.env)
         self.GatewayErrorDetail = chargebee.GatewayErrorDetail(self.env)
+        self.GatewayPaymentMethodToken = chargebee.GatewayPaymentMethodToken(self.env)
         self.Gift = chargebee.Gift(self.env)
         self.GrantBlock = chargebee.GrantBlock(self.env)
         self.Hierarchy = chargebee.Hierarchy(self.env)
@@ -110,6 +111,9 @@ class Chargebee:
         self.OmnichannelSubscription = chargebee.OmnichannelSubscription(self.env)
         self.OmnichannelSubscriptionItem = chargebee.OmnichannelSubscriptionItem(
             self.env
+        )
+        self.OmnichannelSubscriptionItemMetric = (
+            chargebee.OmnichannelSubscriptionItemMetric(self.env)
         )
         self.OmnichannelSubscriptionItemOffer = (
             chargebee.OmnichannelSubscriptionItemOffer(self.env)
@@ -165,6 +169,7 @@ class Chargebee:
         self.UsageEvent = chargebee.UsageEvent(self.env)
         self.UsageFile = chargebee.UsageFile(self.env)
         self.UsageSummary = chargebee.UsageSummary(self.env)
+        self.VaultedPaymentMethod = chargebee.VaultedPaymentMethod(self.env)
         self.VirtualBankAccount = chargebee.VirtualBankAccount(self.env)
         self.WebhookEndpoint = chargebee.WebhookEndpoint(self.env)
 

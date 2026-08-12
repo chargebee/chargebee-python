@@ -101,16 +101,12 @@ class PaymentIntent:
             return self.value
 
     class PaymentIntentMetadataSource(Enum):
-        CB_JS = "cb_js"
-        COMPONENTS_FIELDS = "components_fields"
-        CHECKOUT_V3 = "checkout_v3"
-        PAYNOW_V3 = "paynow_v3"
-        PORTAL_V3 = "portal_v3"
-        GIFT_V3 = "gift_v3"
-        CHECKOUT_V4 = "checkout_v4"
-        PAYMENT_COMPONENT = "payment_component"
-        PC_INAPP_V4 = "pc_inapp_v4"
-        PC_FPC_V4 = "pc_fpc_v4"
+        PAYMENT_METHOD_HELPER = "payment_method_helper"
+        CARD_COMPONENTS = "card_components"
+        CHECKOUT = "checkout"
+        COLLECT_NOW = "collect_now"
+        PORTAL = "portal"
+        PAYMENT_COMPONENTS = "payment_components"
 
         def __str__(self):
             return self.value

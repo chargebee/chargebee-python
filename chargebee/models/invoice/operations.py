@@ -275,7 +275,7 @@ class Invoice:
         txn_date: NotRequired[int]
         txn_amount: NotRequired[int]
         txn_type: Required["Invoice.TxnType"]
-        amount_capturable: Required[int]
+        amount_capturable: NotRequired[int]
         authorization_reason: NotRequired["Invoice.AuthorizationReason"]
 
     class DunningAttempt(TypedDict):

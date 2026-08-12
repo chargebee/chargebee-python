@@ -460,6 +460,9 @@ class CreditNote:
     class DeleteParams(TypedDict):
         comment: NotRequired[str]
 
+    class UpdateParams(TypedDict):
+        comment: NotRequired[str]
+
     class RemoveTaxWithheldRefundParams(TypedDict):
         tax_withheld: NotRequired["CreditNote.RemoveTaxWithheldRefundTaxWithheldParams"]
 
@@ -689,6 +692,26 @@ class CreditNote:
             options,
             resource="creditNote",
             operation="delete",
+        )
+
+    def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("credit_notes", id, "update"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            UpdateResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="creditNote",
+            operation="update",
         )
 
     def remove_tax_withheld_refund(

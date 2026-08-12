@@ -9,7 +9,7 @@ class PricingPageSession:
     env: environment.Environment
 
     class CreateForNewSubscriptionPricingPageParams(TypedDict):
-        id: Required[str]
+        id: NotRequired[str]
 
     class CreateForNewSubscriptionSubscriptionParams(TypedDict):
         id: NotRequired[str]

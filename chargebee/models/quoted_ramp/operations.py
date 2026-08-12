@@ -55,6 +55,7 @@ class QuotedRamp:
         amount_per_billing_cycle_in_decimal: NotRequired[str]
         net_amount_per_billing_cycle: NotRequired[int]
         net_amount_per_billing_cycle_in_decimal: NotRequired[str]
+        description: NotRequired[str]
 
     class Discount(TypedDict):
         id: Required[str]

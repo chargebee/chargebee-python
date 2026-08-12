@@ -128,3 +128,9 @@ class DifferentialPricesResponse(Response):
 class PriceVariantsResponse(Response):
     is_idempotency_replayed: bool
     export: ExportResponse
+
+
+@dataclass
+class RampsResponse(Response):
+    is_idempotency_replayed: bool
+    export: ExportResponse

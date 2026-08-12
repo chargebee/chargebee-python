@@ -556,6 +556,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class CreateSubItemsForCustomerQuoteDiscountParams(TypedDict):
@@ -650,6 +651,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class EditCreateSubCustomerQuoteForItemsDiscountParams(TypedDict):
@@ -743,6 +745,7 @@ class Quote:
         item_type: NotRequired[enums.ItemType]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class UpdateSubscriptionQuoteForItemsDiscountParams(TypedDict):
@@ -833,6 +836,7 @@ class Quote:
         item_type: NotRequired[enums.ItemType]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class EditUpdateSubscriptionQuoteForItemsSubscriptionParams(TypedDict):
