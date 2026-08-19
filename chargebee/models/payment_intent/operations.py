@@ -101,16 +101,12 @@ class PaymentIntent:
             return self.value
 
     class PaymentIntentMetadataSource(Enum):
-        CB_JS = "cb_js"
-        COMPONENTS_FIELDS = "components_fields"
-        CHECKOUT_V3 = "checkout_v3"
-        PAYNOW_V3 = "paynow_v3"
-        PORTAL_V3 = "portal_v3"
-        GIFT_V3 = "gift_v3"
-        CHECKOUT_V4 = "checkout_v4"
-        PAYMENT_COMPONENT = "payment_component"
-        PC_INAPP_V4 = "pc_inapp_v4"
-        PC_FPC_V4 = "pc_fpc_v4"
+        PAYMENT_METHOD_HELPER = "payment_method_helper"
+        CARD_COMPONENTS = "card_components"
+        CHECKOUT = "checkout"
+        COLLECT_NOW = "collect_now"
+        PORTAL = "portal"
+        PAYMENT_COMPONENTS = "payment_components"
 
         def __str__(self):
             return self.value
@@ -126,6 +122,8 @@ class PaymentIntent:
         created_at: Required[int]
         modified_at: Required[int]
         error_detail: NotRequired[gateway_error_detail.GatewayErrorDetailResponse]
+        routing_rule_id: NotRequired[str]
+        payment_method_display_rule_id: NotRequired[str]
 
     class PaymentAttempt(TypedDict):
         id: NotRequired[str]
@@ -138,6 +136,8 @@ class PaymentIntent:
         created_at: Required[int]
         modified_at: Required[int]
         error_detail: NotRequired[gateway_error_detail.GatewayErrorDetailResponse]
+        routing_rule_id: NotRequired[str]
+        payment_method_display_rule_id: NotRequired[str]
 
     class PaymentIntentMetadata(TypedDict):
         source: Required["PaymentIntent.PaymentIntentMetadataSource"]
@@ -156,6 +156,7 @@ class PaymentIntent:
         payment_method_type: NotRequired["PaymentIntent.PaymentMethodType"]
         success_url: NotRequired[str]
         failure_url: NotRequired[str]
+        payment_method_options: NotRequired[Dict[Any, Any]]
 
     class UpdateParams(TypedDict):
         amount: NotRequired[int]
@@ -164,9 +165,12 @@ class PaymentIntent:
         payment_method_type: NotRequired["PaymentIntent.PaymentMethodType"]
         success_url: NotRequired[str]
         failure_url: NotRequired[str]
+        payment_method_options: NotRequired[Dict[Any, Any]]
 
     def create(self, params: CreateParams, headers=None) -> CreateResponse:
-        jsonKeys = {}
+        jsonKeys = {
+            "payment_method_options": 0,
+        }
         options = {
             "isIdempotent": True,
         }
@@ -186,7 +190,9 @@ class PaymentIntent:
         )
 
     def update(self, id, params: UpdateParams = None, headers=None) -> UpdateResponse:
-        jsonKeys = {}
+        jsonKeys = {
+            "payment_method_options": 0,
+        }
         options = {
             "isIdempotent": True,
         }

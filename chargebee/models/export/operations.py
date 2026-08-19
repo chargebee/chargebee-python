@@ -336,6 +336,12 @@ class Export:
         updated_at: NotRequired[Filters.TimestampFilter]
         created_at: NotRequired[Filters.TimestampFilter]
 
+    class RampsRampParams(TypedDict):
+        status: NotRequired[Filters.EnumFilter]
+        subscription_id: NotRequired[Filters.StringFilter]
+        effective_from: NotRequired[Filters.TimestampFilter]
+        updated_at: NotRequired[Filters.TimestampFilter]
+
     def wait_for_export_completion(
         self, export: ExportResponse, headers=None
     ) -> RetrieveResponse:
@@ -464,6 +470,10 @@ class Export:
         price_variant: NotRequired["Export.PriceVariantsPriceVariantParams"]
         business_entity_id: NotRequired[Filters.StringFilter]
         include_site_level_resources: NotRequired[Filters.BooleanFilter]
+
+    class RampsParams(TypedDict):
+        ramp: NotRequired["Export.RampsRampParams"]
+        export_type: NotRequired[enums.ExportType]
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:
         jsonKeys = {}
@@ -843,4 +853,24 @@ class Export:
             options,
             resource="export",
             operation="priceVariants",
+        )
+
+    def ramps(self, params: RampsParams = None, headers=None) -> RampsResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("exports", "ramps"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            RampsResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="export",
+            operation="ramps",
         )

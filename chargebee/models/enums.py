@@ -224,6 +224,7 @@ class CreditOptionForCurrentTermCharges(Enum):
     NONE = "none"
     PRORATE = "prorate"
     FULL = "full"
+    CONSUMPTION_BASED = "consumption_based"
 
     def __str__(self):
         return self.value
@@ -590,10 +591,16 @@ class EnabledEvents(Enum):
     ALERT_STATUS_CHANGED = "alert_status_changed"
     OMNICHANNEL_SUBSCRIPTION_ITEM_UPDATED = "omnichannel_subscription_item_updated"
     OMNICHANNEL_SUBSCRIPTION_ITEM_RECOVERED = "omnichannel_subscription_item_recovered"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_MRR_UPDATED = (
+        "omnichannel_subscription_item_mrr_updated"
+    )
     LEDGER_ACCOUNT_BALANCE_UPDATED = "ledger_account_balance_updated"
     GRANT_BLOCKS_CREATED = "grant_blocks_created"
     GRANT_BLOCKS_UPDATED = "grant_blocks_updated"
     LEDGER_UPDATED = "ledger_updated"
+    VAULT_TOKEN_CREATED = "vault_token_created"
+    VAULT_TOKEN_UPDATED = "vault_token_updated"
+    VAULT_TOKEN_DELETED = "vault_token_deleted"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -649,7 +656,6 @@ class EntityType(Enum):
     PLAN_PRICE = "plan_price"
     ADDON_PRICE = "addon_price"
     CHARGE_PRICE = "charge_price"
-    CHARGE = "charge"
     INVOICE = "invoice"
     QUOTE = "quote"
     CREDIT_NOTE = "credit_note"
@@ -684,6 +690,7 @@ class EntityType(Enum):
     BUSINESS_RULE = "business_rule"
     RULESET = "ruleset"
     ALERT_STATUS = "alert_status"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_METRIC = "omnichannel_subscription_item_metric"
 
     def __str__(self):
         return self.value
@@ -949,10 +956,16 @@ class EventType(Enum):
     ALERT_STATUS_CHANGED = "alert_status_changed"
     OMNICHANNEL_SUBSCRIPTION_ITEM_UPDATED = "omnichannel_subscription_item_updated"
     OMNICHANNEL_SUBSCRIPTION_ITEM_RECOVERED = "omnichannel_subscription_item_recovered"
+    OMNICHANNEL_SUBSCRIPTION_ITEM_MRR_UPDATED = (
+        "omnichannel_subscription_item_mrr_updated"
+    )
     LEDGER_ACCOUNT_BALANCE_UPDATED = "ledger_account_balance_updated"
     GRANT_BLOCKS_CREATED = "grant_blocks_created"
     GRANT_BLOCKS_UPDATED = "grant_blocks_updated"
     LEDGER_UPDATED = "ledger_updated"
+    VAULT_TOKEN_CREATED = "vault_token_created"
+    VAULT_TOKEN_UPDATED = "vault_token_updated"
+    VAULT_TOKEN_DELETED = "vault_token_deleted"
     PLAN_CREATED = "plan_created"
     PLAN_UPDATED = "plan_updated"
     PLAN_DELETED = "plan_deleted"
@@ -1066,10 +1079,85 @@ class Gateway(Enum):
         return self.value
 
 
+class GatewayName(Enum):
+    CHARGEBEE = "chargebee"
+    CHARGEBEE_PAYMENTS = "chargebee_payments"
+    ADYEN = "adyen"
+    STRIPE = "stripe"
+    WEPAY = "wepay"
+    BRAINTREE = "braintree"
+    AUTHORIZE_NET = "authorize_net"
+    PAYPAL_PRO = "paypal_pro"
+    PIN = "pin"
+    EWAY = "eway"
+    EWAY_RAPID = "eway_rapid"
+    WORLDPAY = "worldpay"
+    BALANCED_PAYMENTS = "balanced_payments"
+    BEANSTREAM = "beanstream"
+    BLUEPAY = "bluepay"
+    ELAVON = "elavon"
+    FIRST_DATA_GLOBAL = "first_data_global"
+    HDFC = "hdfc"
+    MIGS = "migs"
+    NMI = "nmi"
+    OGONE = "ogone"
+    PAYMILL = "paymill"
+    PAYPAL_PAYFLOW_PRO = "paypal_payflow_pro"
+    SAGE_PAY = "sage_pay"
+    TCO = "tco"
+    WIRECARD = "wirecard"
+    AMAZON_PAYMENTS = "amazon_payments"
+    PAYPAL_EXPRESS_CHECKOUT = "paypal_express_checkout"
+    GOCARDLESS = "gocardless"
+    ORBITAL = "orbital"
+    MONERIS_US = "moneris_us"
+    MONERIS = "moneris"
+    BLUESNAP = "bluesnap"
+    CYBERSOURCE = "cybersource"
+    VANTIV = "vantiv"
+    CHECKOUT_COM = "checkout_com"
+    PAYPAL = "paypal"
+    INGENICO_DIRECT = "ingenico_direct"
+    EXACT = "exact"
+    MOLLIE = "mollie"
+    QUICKBOOKS = "quickbooks"
+    RAZORPAY = "razorpay"
+    GLOBAL_PAYMENTS = "global_payments"
+    BANK_OF_AMERICA = "bank_of_america"
+    ECENTRIC = "ecentric"
+    METRICS_GLOBAL = "metrics_global"
+    WINDCAVE = "windcave"
+    PAY_COM = "pay_com"
+    EBANX = "ebanx"
+    DLOCAL = "dlocal"
+    NUVEI = "nuvei"
+    SOLIDGATE = "solidgate"
+    PAYSTACK = "paystack"
+    JP_MORGAN = "jp_morgan"
+    DEUTSCHE_BANK = "deutsche_bank"
+    EZIDEBIT = "ezidebit"
+    TWIKEY = "twikey"
+    TEMPUS = "tempus"
+    MOYASAR = "moyasar"
+    PAYWAY = "payway"
+    NOT_APPLICABLE = "not_applicable"
+
+    def __str__(self):
+        return self.value
+
+
 class HierarchyOperationType(Enum):
     COMPLETE_HIERARCHY = "complete_hierarchy"
     SUBORDINATES = "subordinates"
     PATH_TO_ROOT = "path_to_root"
+
+    def __str__(self):
+        return self.value
+
+
+class InvoiceAction(Enum):
+    VOID = "void"
+    WRITE_OFF = "write_off"
 
     def __str__(self):
         return self.value

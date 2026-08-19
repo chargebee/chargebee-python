@@ -44,7 +44,9 @@ from chargebee.models.enums import (
     FreePeriodUnit,
     FriendOfferType,
     Gateway,
+    GatewayName,
     HierarchyOperationType,
+    InvoiceAction,
     InvoiceDunningHandling,
     ItemType,
     Layout,
@@ -176,6 +178,10 @@ from chargebee.models.filter_condition.operations import FilterCondition
 
 from chargebee.models.gateway_error_detail.operations import GatewayErrorDetail
 
+from chargebee.models.gateway_payment_method_token.operations import (
+    GatewayPaymentMethodToken,
+)
+
 from chargebee.models.gift.operations import Gift
 
 from chargebee.models.grant_block.operations import GrantBlock
@@ -236,6 +242,10 @@ from chargebee.models.omnichannel_subscription_item.operations import (
     OmnichannelSubscriptionItem,
 )
 
+from chargebee.models.omnichannel_subscription_item_metric.operations import (
+    OmnichannelSubscriptionItemMetric,
+)
+
 from chargebee.models.omnichannel_subscription_item_offer.operations import (
     OmnichannelSubscriptionItemOffer,
 )
@@ -281,6 +291,8 @@ from chargebee.models.promotional_grant.operations import PromotionalGrant
 from chargebee.models.purchase.operations import Purchase
 
 from chargebee.models.quote.operations import Quote
+
+from chargebee.models.quote_entitlement.operations import QuoteEntitlement
 
 from chargebee.models.quote_line_group.operations import QuoteLineGroup
 
@@ -339,6 +351,8 @@ from chargebee.models.usage_event.operations import UsageEvent
 from chargebee.models.usage_file.operations import UsageFile
 
 from chargebee.models.usage_summary.operations import UsageSummary
+
+from chargebee.models.vaulted_payment_method.operations import VaultedPaymentMethod
 
 from chargebee.models.virtual_bank_account.operations import VirtualBankAccount
 

@@ -342,6 +342,12 @@ class DeleteResponse(Response):
 
 
 @dataclass
+class UpdateResponse(Response):
+    is_idempotency_replayed: bool
+    credit_note: CreditNoteResponse
+
+
+@dataclass
 class RemoveTaxWithheldRefundResponse(Response):
     is_idempotency_replayed: bool
     credit_note: CreditNoteResponse

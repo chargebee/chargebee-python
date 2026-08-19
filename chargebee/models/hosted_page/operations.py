@@ -879,6 +879,7 @@ class HostedPage:
         pass_thru_content: NotRequired[str]
         cancel_url: NotRequired[str]
         redirect_url: NotRequired[str]
+        locale: NotRequired[str]
 
     class EventsParams(TypedDict):
         event_name: Required[enums.EventName]

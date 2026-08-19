@@ -35,6 +35,7 @@ class LineItemResponse(Model):
     amount_per_billing_cycle_in_decimal: str = None
     net_amount_per_billing_cycle: int = None
     net_amount_per_billing_cycle_in_decimal: str = None
+    description: str = None
 
 
 @dataclass

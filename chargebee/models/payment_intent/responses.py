@@ -18,6 +18,8 @@ class PaymentAttemptResponse(Model):
     created_at: int = None
     modified_at: int = None
     error_detail: gateway_error_detail.GatewayErrorDetailResponse = None
+    routing_rule_id: str = None
+    payment_method_display_rule_id: str = None
 
 
 @dataclass
@@ -33,6 +35,8 @@ class PaymentAttemptResponse(Model):
     created_at: int = None
     modified_at: int = None
     error_detail: gateway_error_detail.GatewayErrorDetailResponse = None
+    routing_rule_id: str = None
+    payment_method_display_rule_id: str = None
 
 
 @dataclass
@@ -61,6 +65,7 @@ class PaymentIntentResponse(Model):
     modified_at: int = None
     resource_version: int = None
     updated_at: int = None
+    payment_method_options: Dict[Any, Any] = None
     customer_id: str = None
     gateway: str = None
     active_payment_attempt: PaymentAttemptResponse = None
