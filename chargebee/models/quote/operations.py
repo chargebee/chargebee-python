@@ -556,6 +556,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class CreateSubItemsForCustomerQuoteDiscountParams(TypedDict):
@@ -624,6 +625,15 @@ class Quote:
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
+    class CreateSubItemsForCustomerQuoteEntitlementOverrideParams(TypedDict):
+        feature_id: NotRequired[str]
+        entity_id: NotRequired[str]
+        entity_type: NotRequired[enums.EntityType]
+        value: NotRequired[str]
+        is_enabled: NotRequired[bool]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
     class EditCreateSubCustomerQuoteForItemsSubscriptionParams(TypedDict):
         id: NotRequired[str]
         po_number: NotRequired[str]
@@ -650,6 +660,7 @@ class Quote:
         charge_on_option: NotRequired[enums.ChargeOnOption]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class EditCreateSubCustomerQuoteForItemsDiscountParams(TypedDict):
@@ -718,6 +729,15 @@ class Quote:
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
+    class EditCreateSubCustomerQuoteForItemsEntitlementOverrideParams(TypedDict):
+        feature_id: NotRequired[str]
+        entity_id: NotRequired[str]
+        entity_type: NotRequired[enums.EntityType]
+        value: NotRequired[str]
+        is_enabled: NotRequired[bool]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
     class UpdateSubscriptionQuoteForItemsSubscriptionParams(TypedDict):
         id: Required[str]
         setup_fee: NotRequired[int]
@@ -743,6 +763,7 @@ class Quote:
         item_type: NotRequired[enums.ItemType]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class UpdateSubscriptionQuoteForItemsDiscountParams(TypedDict):
@@ -818,6 +839,15 @@ class Quote:
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
+    class UpdateSubscriptionQuoteForItemsEntitlementOverrideParams(TypedDict):
+        feature_id: NotRequired[str]
+        entity_id: NotRequired[str]
+        entity_type: NotRequired[enums.EntityType]
+        value: NotRequired[str]
+        is_enabled: NotRequired[bool]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
     class EditUpdateSubscriptionQuoteForItemsSubscriptionItemParams(TypedDict):
         item_price_id: Required[str]
         quantity: NotRequired[int]
@@ -833,6 +863,7 @@ class Quote:
         item_type: NotRequired[enums.ItemType]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
+        description: NotRequired[str]
         ramp_tier_id: NotRequired[str]
 
     class EditUpdateSubscriptionQuoteForItemsSubscriptionParams(TypedDict):
@@ -914,6 +945,15 @@ class Quote:
 
     class EditUpdateSubscriptionQuoteForItemsCouponParams(TypedDict):
         id: NotRequired[str]
+        start_date: NotRequired[int]
+        end_date: NotRequired[int]
+
+    class EditUpdateSubscriptionQuoteForItemsEntitlementOverrideParams(TypedDict):
+        feature_id: NotRequired[str]
+        entity_id: NotRequired[str]
+        entity_type: NotRequired[enums.EntityType]
+        value: NotRequired[str]
+        is_enabled: NotRequired[bool]
         start_date: NotRequired[int]
         end_date: NotRequired[int]
 
@@ -1237,6 +1277,9 @@ class Quote:
         ]
         net_term_days: NotRequired[int]
         coupons: NotRequired[List["Quote.CreateSubItemsForCustomerQuoteCouponParams"]]
+        entitlement_overrides: NotRequired[
+            List["Quote.CreateSubItemsForCustomerQuoteEntitlementOverrideParams"]
+        ]
 
     class EditCreateSubCustomerQuoteForItemsParams(TypedDict):
         notes: NotRequired[str]
@@ -1271,6 +1314,9 @@ class Quote:
         net_term_days: NotRequired[int]
         coupons: NotRequired[
             List["Quote.EditCreateSubCustomerQuoteForItemsCouponParams"]
+        ]
+        entitlement_overrides: NotRequired[
+            List["Quote.EditCreateSubCustomerQuoteForItemsEntitlementOverrideParams"]
         ]
 
     class UpdateSubscriptionQuoteForItemsParams(TypedDict):
@@ -1313,6 +1359,9 @@ class Quote:
         ]
         net_term_days: NotRequired[int]
         coupons: NotRequired[List["Quote.UpdateSubscriptionQuoteForItemsCouponParams"]]
+        entitlement_overrides: NotRequired[
+            List["Quote.UpdateSubscriptionQuoteForItemsEntitlementOverrideParams"]
+        ]
 
     class EditUpdateSubscriptionQuoteForItemsParams(TypedDict):
         notes: NotRequired[str]
@@ -1354,6 +1403,9 @@ class Quote:
         net_term_days: NotRequired[int]
         coupons: NotRequired[
             List["Quote.EditUpdateSubscriptionQuoteForItemsCouponParams"]
+        ]
+        entitlement_overrides: NotRequired[
+            List["Quote.EditUpdateSubscriptionQuoteForItemsEntitlementOverrideParams"]
         ]
 
     class CreateForChargeItemsAndChargesParams(TypedDict):

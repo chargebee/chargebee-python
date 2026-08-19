@@ -198,6 +198,7 @@ class QuoteResponse(Model):
     deleted: bool = None
     total_contract_value: int = None
     total_discount: int = None
+    has_entitlements: bool = None
 
 
 @dataclass

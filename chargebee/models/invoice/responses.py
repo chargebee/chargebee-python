@@ -621,6 +621,13 @@ class WriteOffResponse(Response):
 
 
 @dataclass
+class VoidBeforeCaptureResponse(Response):
+    is_idempotency_replayed: bool
+    invoice: InvoiceResponse
+    credit_note: "credit_note.CreditNoteResponse" = None
+
+
+@dataclass
 class DeleteResponse(Response):
     is_idempotency_replayed: bool
     invoice: InvoiceResponse

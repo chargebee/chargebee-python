@@ -295,6 +295,11 @@ class PaymentSource:
         amount1: Required[int]
         amount2: Required[int]
 
+    class ListGatewayTokensForPaymentSourceParams(TypedDict):
+        limit: NotRequired[int]
+        offset: NotRequired[str]
+        include_deleted: NotRequired[bool]
+
     class ListParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]
@@ -545,6 +550,26 @@ class PaymentSource:
             options,
             resource="paymentSource",
             operation="verifyBankAccount",
+        )
+
+    def list_gateway_tokens_for_payment_source(
+        self, id, params: ListGatewayTokensForPaymentSourceParams = None, headers=None
+    ) -> ListGatewayTokensForPaymentSourceResponse:
+        jsonKeys = {}
+        options = {}
+        return request.send(
+            "get",
+            request.uri_path("payment_sources", id, "gateway_payment_method_tokens"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            ListGatewayTokensForPaymentSourceResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="paymentSource",
+            operation="listGatewayTokensForPaymentSource",
         )
 
     def retrieve(self, id, headers=None) -> RetrieveResponse:

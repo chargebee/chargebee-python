@@ -6,6 +6,7 @@ from chargebee.models import (
     payment_intent,
     card,
     customer,
+    gateway_payment_method_token,
     third_party_payment_method,
     download,
 )
@@ -141,6 +142,7 @@ class PaymentSourceResponse(Model):
     venmo: VenmoResponse = None
     klarna_pay_now: KlarnaPayNowResponse = None
     mandates: List[MandateResponse] = None
+    vault_token: Dict[Any, Any] = None
     deleted: bool = None
     business_entity_id: str = None
 
@@ -212,6 +214,19 @@ class UpdateBankAccountResponse(Response):
 class VerifyBankAccountResponse(Response):
     is_idempotency_replayed: bool
     payment_source: PaymentSourceResponse
+
+
+@dataclass
+class ListGatewayTokensForPaymentSourcePaymentSourceResponse:
+    gateway_payment_method_token: (
+        "gateway_payment_method_token.GatewayPaymentMethodTokenResponse"
+    )
+
+
+@dataclass
+class ListGatewayTokensForPaymentSourceResponse(Response):
+    list: List[ListGatewayTokensForPaymentSourcePaymentSourceResponse]
+    next_offset: str = None
 
 
 @dataclass

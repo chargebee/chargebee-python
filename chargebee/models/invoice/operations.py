@@ -275,7 +275,7 @@ class Invoice:
         txn_date: NotRequired[int]
         txn_amount: NotRequired[int]
         txn_type: Required["Invoice.TxnType"]
-        amount_capturable: Required[int]
+        amount_capturable: NotRequired[int]
         authorization_reason: NotRequired["Invoice.AuthorizationReason"]
 
     class DunningAttempt(TypedDict):
@@ -1227,6 +1227,11 @@ class Invoice:
     class WriteOffParams(TypedDict):
         comment: NotRequired[str]
 
+    class VoidBeforeCaptureParams(TypedDict):
+        comment: NotRequired[str]
+        void_reason_code: NotRequired[str]
+        invoice_action: NotRequired[enums.InvoiceAction]
+
     class DeleteParams(TypedDict):
         comment: NotRequired[str]
 
@@ -1969,6 +1974,28 @@ class Invoice:
             options,
             resource="invoice",
             operation="writeOff",
+        )
+
+    def void_before_capture(
+        self, id, params: VoidBeforeCaptureParams = None, headers=None
+    ) -> VoidBeforeCaptureResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("invoices", id, "void_before_capture"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            VoidBeforeCaptureResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="invoice",
+            operation="voidBeforeCapture",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:
