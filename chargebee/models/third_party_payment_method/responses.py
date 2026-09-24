@@ -10,3 +10,4 @@ class ThirdPartyPaymentMethodResponse(Model):
     gateway: str = None
     gateway_account_id: str = None
     reference_id: str = None
+    network_transaction_reference: Dict[Any, Any] = None

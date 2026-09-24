@@ -9,6 +9,7 @@ class ScheduleEntryResponse(Model):
     id: str = None
     date: int = None
     amount: int = None
+    scheduled_amount: int = None
     status: str = None
 
 

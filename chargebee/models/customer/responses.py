@@ -11,6 +11,7 @@ from chargebee.models import (
     hierarchy,
     contact,
     transaction,
+    email_log,
 )
 
 
@@ -196,6 +197,7 @@ class CustomerResponse(Model):
     vat_number_prefix: str = None
     entity_identifier_scheme: str = None
     entity_identifier_standard: str = None
+    brand_id: str = None
 
 
 @dataclass
@@ -313,6 +315,12 @@ class CollectPaymentResponse(Response):
     is_idempotency_replayed: bool
     customer: CustomerResponse
     transaction: "transaction.TransactionResponse"
+
+
+@dataclass
+class SendPaymentRequestResponse(Response):
+    is_idempotency_replayed: bool
+    email_logs: List["email_log.EmailLogResponse"]
 
 
 @dataclass

@@ -25,6 +25,7 @@ class LedgerOperation:
         VOID = "void"
         ROLLOVER = "rollover"
         ADJUSTMENT = "adjustment"
+        OVERDRAFT_SETTLEMENT = "overdraft_settlement"
 
         def __str__(self):
             return self.value
@@ -71,7 +72,9 @@ class LedgerOperation:
     class AllocateParams(TypedDict):
         subscription_id: Required[str]
         unit_id: Required[str]
+        id: NotRequired[str]
         amount: Required[str]
+        effective_from: NotRequired[int]
         expires_at: Required[int]
         metadata: NotRequired[Dict[Any, Any]]
 

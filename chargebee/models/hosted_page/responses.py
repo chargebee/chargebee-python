@@ -23,6 +23,7 @@ class HostedPageResponse(Model):
     resource_version: int = None
     checkout_info: Dict[Any, Any] = None
     business_entity_id: str = None
+    brand_id: str = None
 
 
 @dataclass

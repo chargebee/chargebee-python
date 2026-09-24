@@ -9,15 +9,15 @@ from chargebee.filters import Filters
 class GrantBlock:
     env: environment.Environment
 
-    class AccountType(Enum):
-        PROVISIONED = "provisioned"
-        OVERDRAFT = "overdraft"
+    class UnitType(Enum):
+        CREDIT_UNIT = "credit_unit"
 
         def __str__(self):
             return self.value
 
-    class UnitType(Enum):
-        CREDIT_UNIT = "credit_unit"
+    class AccountType(Enum):
+        PROVISIONED = "provisioned"
+        OVERDRAFT = "overdraft"
 
         def __str__(self):
             return self.value
@@ -33,6 +33,23 @@ class GrantBlock:
 
         def __str__(self):
             return self.value
+
+    class ProvisionedBlockBalance(TypedDict):
+        granted_amount: NotRequired[str]
+        total_balance: NotRequired[str]
+        usable_balance: NotRequired[str]
+        hold_amount: NotRequired[str]
+        used_amount: NotRequired[str]
+        expired_amount: NotRequired[str]
+        rolled_over_amount: NotRequired[str]
+        voided_amount: NotRequired[str]
+
+    class OverdraftBlockBalance(TypedDict):
+        is_unlimited: Required[bool]
+        limit: NotRequired[str]
+        total_balance: NotRequired[str]
+        usable_balance: NotRequired[str]
+        used_amount: NotRequired[str]
 
     class ListGrantBlocksParams(TypedDict):
         limit: NotRequired[int]

@@ -8,9 +8,9 @@ class LedgerEntryResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
     subscription_id: str = None
-    account_type: str = None
     unit_id: str = None
     unit_type: str = None
+    account_type: str = None
     amount: str = None
     grant_block_start_balance: str = None
     grant_block_end_balance: str = None

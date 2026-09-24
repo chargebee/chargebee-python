@@ -671,6 +671,7 @@ class HostedPage:
 
     class CheckoutOneTimeForItemsParams(TypedDict):
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         layout: NotRequired[enums.Layout]
         customer: NotRequired["HostedPage.CheckoutOneTimeForItemsCustomerParams"]
         item_prices: NotRequired[
@@ -704,6 +705,7 @@ class HostedPage:
         subscription: NotRequired["HostedPage.CheckoutNewForItemsSubscriptionParams"]
         layout: NotRequired[enums.Layout]
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         customer: NotRequired["HostedPage.CheckoutNewForItemsCustomerParams"]
         billing_cycles: NotRequired[int]
         subscription_items: NotRequired[
@@ -763,6 +765,7 @@ class HostedPage:
         subscription: NotRequired[
             "HostedPage.CheckoutExistingForItemsSubscriptionParams"
         ]
+        brand_id: NotRequired[str]
         subscription_items: NotRequired[
             List["HostedPage.CheckoutExistingForItemsSubscriptionItemParams"]
         ]
@@ -819,12 +822,14 @@ class HostedPage:
 
     class ManagePaymentSourcesParams(TypedDict):
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         customer: NotRequired["HostedPage.ManagePaymentSourcesCustomerParams"]
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.ManagePaymentSourcesCardParams"]
 
     class CollectNowParams(TypedDict):
         customer: NotRequired["HostedPage.CollectNowCustomerParams"]
+        brand_id: NotRequired[str]
         redirect_url: NotRequired[str]
         card: NotRequired["HostedPage.CollectNowCardParams"]
         currency_code: NotRequired[str]
@@ -832,11 +837,13 @@ class HostedPage:
 
     class AcceptQuoteParams(TypedDict):
         quote: NotRequired["HostedPage.AcceptQuoteQuoteParams"]
+        brand_id: NotRequired[str]
         redirect_url: NotRequired[str]
         layout: NotRequired[enums.Layout]
 
     class ExtendSubscriptionParams(TypedDict):
         subscription: NotRequired["HostedPage.ExtendSubscriptionSubscriptionParams"]
+        brand_id: NotRequired[str]
         expiry: NotRequired[int]
         billing_cycle: NotRequired[int]
 
@@ -850,6 +857,7 @@ class HostedPage:
     class CheckoutGiftForItemsParams(TypedDict):
         layout: NotRequired[enums.Layout]
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         gifter: NotRequired["HostedPage.CheckoutGiftForItemsGifterParams"]
         redirect_url: NotRequired[str]
         subscription_items: NotRequired[
@@ -860,6 +868,7 @@ class HostedPage:
 
     class ClaimGiftParams(TypedDict):
         gift: NotRequired["HostedPage.ClaimGiftGiftParams"]
+        brand_id: NotRequired[str]
         redirect_url: NotRequired[str]
         customer: NotRequired["HostedPage.ClaimGiftCustomerParams"]
 
@@ -876,6 +885,7 @@ class HostedPage:
 
     class PreCancelParams(TypedDict):
         subscription: NotRequired["HostedPage.PreCancelSubscriptionParams"]
+        brand_id: NotRequired[str]
         pass_thru_content: NotRequired[str]
         cancel_url: NotRequired[str]
         redirect_url: NotRequired[str]

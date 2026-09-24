@@ -26,6 +26,7 @@ class PaymentScheduleEstimate:
         id: Required[str]
         date: Required[int]
         amount: Required[int]
+        scheduled_amount: Required[int]
         status: Required["PaymentScheduleEstimate.ScheduleEntryStatus"]
 
     pass

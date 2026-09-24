@@ -69,6 +69,13 @@ class GatewayErrorDetailResponse(Model):
 
 
 @dataclass
+class NetworkTransactionDetailResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    network_transaction_id: str = None
+    original_network_transaction_id: str = None
+
+
+@dataclass
 class TransactionResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -117,6 +124,7 @@ class TransactionResponse(Model):
     payment_method_details: str = None
     error_detail: GatewayErrorDetailResponse = None
     custom_payment_method_name: str = None
+    network_transaction_details: NetworkTransactionDetailResponse = None
 
 
 @dataclass

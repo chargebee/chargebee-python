@@ -2,7 +2,14 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
-from chargebee.models import invoice, transaction, transaction, download, invoice
+from chargebee.models import (
+    invoice,
+    transaction,
+    transaction,
+    download,
+    invoice,
+    email_log,
+)
 
 
 @dataclass
@@ -264,6 +271,7 @@ class CreditNoteResponse(Model):
     create_reason_code: str = None
     vat_number_prefix: str = None
     business_entity_id: str = None
+    brand_id: str = None
     shipping_address: ShippingAddressResponse = None
     billing_address: BillingAddressResponse = None
     einvoice: EinvoiceResponse = None
@@ -311,6 +319,12 @@ class RecordRefundResponse(Response):
 class VoidCreditNoteResponse(Response):
     is_idempotency_replayed: bool
     credit_note: CreditNoteResponse
+
+
+@dataclass
+class SendEmailResponse(Response):
+    is_idempotency_replayed: bool
+    email_logs: List["email_log.EmailLogResponse"]
 
 
 @dataclass

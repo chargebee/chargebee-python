@@ -106,6 +106,12 @@ from chargebee.models.alert.operations import Alert
 
 from chargebee.models.alert_status.operations import AlertStatus
 
+from chargebee.models.applied_business_rule.operations import AppliedBusinessRule
+
+from chargebee.models.applied_rule.operations import AppliedRule
+
+from chargebee.models.apply_rule.operations import ApplyRule
+
 from chargebee.models.async_response.operations import AsyncResponse
 
 from chargebee.models.async_response_list.operations import AsyncResponseList
@@ -121,6 +127,12 @@ from chargebee.models.brand.operations import Brand
 from chargebee.models.business_entity.operations import BusinessEntity
 
 from chargebee.models.business_entity_transfer.operations import BusinessEntityTransfer
+
+from chargebee.models.business_rule.operations import BusinessRule
+
+from chargebee.models.business_ruleset.operations import BusinessRuleset
+
+from chargebee.models.business_ruleset_rule.operations import BusinessRulesetRule
 
 from chargebee.models.card.operations import Card
 
@@ -150,6 +162,8 @@ from chargebee.models.credit_unit.operations import CreditUnit
 
 from chargebee.models.currency.operations import Currency
 
+from chargebee.models.custom_data_schema.operations import CustomDataSchema
+
 from chargebee.models.customer.operations import Customer
 
 from chargebee.models.customer_entitlement.operations import CustomerEntitlement
@@ -158,9 +172,13 @@ from chargebee.models.differential_price.operations import DifferentialPrice
 
 from chargebee.models.discount.operations import Discount
 
+from chargebee.models.dispute.operations import Dispute
+
 from chargebee.models.download.operations import Download
 
 from chargebee.models.einvoice.operations import Einvoice
+
+from chargebee.models.email_log.operations import EmailLog
 
 from chargebee.models.entitlement.operations import Entitlement
 

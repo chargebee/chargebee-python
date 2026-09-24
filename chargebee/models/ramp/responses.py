@@ -95,6 +95,12 @@ class ContractTermResponse(Model):
 
 
 @dataclass
+class BillingConfigurationResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    po_number: str = None
+
+
+@dataclass
 class StatusTransitionReasonResponse(Model):
     raw_data: Dict[Any, Any] = None
     code: str = None
@@ -121,6 +127,7 @@ class RampResponse(Model):
     coupons_to_remove: List[str] = None
     discounts_to_remove: List[str] = None
     contract_term: ContractTermResponse = None
+    billing_configuration: BillingConfigurationResponse = None
     deleted: bool = None
     status_transition_reason: StatusTransitionReasonResponse = None
 

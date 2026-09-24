@@ -114,6 +114,10 @@ class Transaction:
         error_cause_id: NotRequired[str]
         processor_advice_code: NotRequired[str]
 
+    class NetworkTransactionDetail(TypedDict):
+        network_transaction_id: NotRequired[str]
+        original_network_transaction_id: NotRequired[str]
+
     class CreateAuthorizationParams(TypedDict):
         customer_id: Required[str]
         payment_source_id: NotRequired[str]

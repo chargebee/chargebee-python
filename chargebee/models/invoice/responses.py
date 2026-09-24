@@ -11,6 +11,7 @@ from chargebee.models import (
     credit_note,
     transaction,
     payment_schedule,
+    email_log,
     payment_reference_number,
     download,
 )
@@ -384,6 +385,7 @@ class InvoiceResponse(Model):
     vat_number_prefix: str = None
     channel: str = None
     business_entity_id: str = None
+    brand_id: str = None
     site_details_at_creation: SiteDetailsAtCreationResponse = None
 
 
@@ -625,6 +627,12 @@ class VoidBeforeCaptureResponse(Response):
     is_idempotency_replayed: bool
     invoice: InvoiceResponse
     credit_note: "credit_note.CreditNoteResponse" = None
+
+
+@dataclass
+class SendEmailResponse(Response):
+    is_idempotency_replayed: bool
+    email_logs: List["email_log.EmailLogResponse"]
 
 
 @dataclass

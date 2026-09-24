@@ -118,6 +118,12 @@ class MandateResponse(Model):
 
 
 @dataclass
+class NetworkTransactionReferenceResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    original_network_transaction_id: str = None
+
+
+@dataclass
 class PaymentSourceResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
@@ -143,8 +149,10 @@ class PaymentSourceResponse(Model):
     klarna_pay_now: KlarnaPayNowResponse = None
     mandates: List[MandateResponse] = None
     vault_token: Dict[Any, Any] = None
+    network_transaction_reference: NetworkTransactionReferenceResponse = None
     deleted: bool = None
     business_entity_id: str = None
+    brand_id: str = None
 
 
 @dataclass

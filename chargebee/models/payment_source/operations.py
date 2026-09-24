@@ -133,6 +133,9 @@ class PaymentSource:
         subscription_id: Required[str]
         created_at: Required[int]
 
+    class NetworkTransactionReference(TypedDict):
+        original_network_transaction_id: NotRequired[str]
+
     class CreateUsingPermanentTokenCardParams(TypedDict):
         last4: NotRequired[str]
         iin: NotRequired[str]
@@ -222,6 +225,9 @@ class PaymentSource:
         billing_country: NotRequired[str]
         additional_information: NotRequired[Dict[Any, Any]]
 
+    class UpdateCardNetworkTransactionReferenceParams(TypedDict):
+        original_network_transaction_id: NotRequired[str]
+
     class UpdateBankAccountBankAccountParams(TypedDict):
         first_name: NotRequired[str]
         last_name: NotRequired[str]
@@ -233,11 +239,13 @@ class PaymentSource:
         type: Required[enums.Type]
         tmp_token: Required[str]
         issuing_country: NotRequired[str]
+        brand_id: NotRequired[str]
         replace_primary_payment_source: NotRequired[bool]
         additional_information: NotRequired[Dict[Any, Any]]
 
     class CreateUsingPermanentTokenParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         type: Required[enums.Type]
         gateway_account_id: NotRequired[str]
         reference_id: NotRequired[str]
@@ -256,11 +264,13 @@ class PaymentSource:
 
     class CreateUsingTokenParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         replace_primary_payment_source: NotRequired[bool]
         token_id: Required[str]
 
     class CreateUsingPaymentIntentParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         payment_intent: NotRequired[
             "PaymentSource.CreateUsingPaymentIntentPaymentIntentParams"
         ]
@@ -268,17 +278,20 @@ class PaymentSource:
 
     class CreateVoucherPaymentSourceParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         voucher_payment_source: NotRequired[
             "PaymentSource.CreateVoucherPaymentSourceVoucherPaymentSourceParams"
         ]
 
     class CreateCardParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         card: NotRequired["PaymentSource.CreateCardCardParams"]
         replace_primary_payment_source: NotRequired[bool]
 
     class CreateBankAccountParams(TypedDict):
         customer_id: Required[str]
+        brand_id: NotRequired[str]
         bank_account: NotRequired["PaymentSource.CreateBankAccountBankAccountParams"]
         issuing_country: NotRequired[str]
         replace_primary_payment_source: NotRequired[bool]
@@ -287,6 +300,9 @@ class PaymentSource:
         card: NotRequired["PaymentSource.UpdateCardCardParams"]
         gateway_meta_data: NotRequired[Dict[Any, Any]]
         reference_transaction: NotRequired[str]
+        network_transaction_reference: NotRequired[
+            "PaymentSource.UpdateCardNetworkTransactionReferenceParams"
+        ]
 
     class UpdateBankAccountParams(TypedDict):
         bank_account: NotRequired["PaymentSource.UpdateBankAccountBankAccountParams"]
