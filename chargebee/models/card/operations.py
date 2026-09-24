@@ -13,6 +13,7 @@ class Card:
         CARTES_BANCAIRES = "cartes_bancaires"
         MASTERCARD = "mastercard"
         VISA = "visa"
+        DANKORT = "dankort"
 
         def __str__(self):
             return self.value

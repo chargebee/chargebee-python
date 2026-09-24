@@ -66,6 +66,7 @@ class QuotedSubscription:
         usage_accumulation_reset_frequency: NotRequired[
             enums.UsageAccumulationResetFrequency
         ]
+        description: NotRequired[str]
 
     class ItemTier(TypedDict):
         item_price_id: Required[str]

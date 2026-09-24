@@ -136,6 +136,7 @@ class Estimate:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
         charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CreateSubItemEstimateDiscountParams(TypedDict):
@@ -273,6 +274,7 @@ class Estimate:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
         charge_on_option: NotRequired[enums.ChargeOnOption]
 
     class CreateSubItemForCustomerEstimateDiscountParams(TypedDict):
@@ -415,6 +417,7 @@ class Estimate:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
         proration_type: NotRequired[enums.ProrationType]
 
     class UpdateSubscriptionForItemsDiscountParams(TypedDict):

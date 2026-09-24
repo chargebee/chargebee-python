@@ -683,6 +683,8 @@ class Invoice:
         tax9_amount: NotRequired[int]
         tax10_name: NotRequired[str]
         tax10_amount: NotRequired[int]
+        is_partial_tax_applied: NotRequired[bool]
+        taxable_amount: NotRequired[int]
         proration_mode: NotRequired["Invoice.LineItemProrationMode"]
         created_at: NotRequired[int]
 
@@ -1996,6 +1998,26 @@ class Invoice:
             options,
             resource="invoice",
             operation="voidBeforeCapture",
+        )
+
+    def send_email(self, id, headers=None) -> SendEmailResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("invoices", id, "send_email"),
+            self.env,
+            None,
+            headers,
+            SendEmailResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="invoice",
+            operation="sendEmail",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:

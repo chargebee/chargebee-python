@@ -481,6 +481,7 @@ class Customer:
         billing_address: NotRequired["Customer.CreateBillingAddressParams"]
         entity_identifiers: NotRequired[List["Customer.CreateEntityIdentifierParams"]]
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         tax_providers_fields: NotRequired[
             List["Customer.CreateTaxProvidersFieldParams"]
         ]
@@ -1007,6 +1008,26 @@ class Customer:
             options,
             resource="customer",
             operation="collectPayment",
+        )
+
+    def send_payment_request(self, id, headers=None) -> SendPaymentRequestResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("customers", id, "send_payment_request"),
+            self.env,
+            None,
+            headers,
+            SendPaymentRequestResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="customer",
+            operation="sendPaymentRequest",
         )
 
     def delete(self, id, params: DeleteParams = None, headers=None) -> DeleteResponse:

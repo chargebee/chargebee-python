@@ -105,6 +105,7 @@ class Subscription:
         usage_accumulation_reset_frequency: NotRequired[
             enums.UsageAccumulationResetFrequency
         ]
+        description: NotRequired[str]
 
     class ItemTier(TypedDict):
         item_price_id: Required[str]
@@ -456,6 +457,7 @@ class Subscription:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         usage_accumulation_reset_frequency: NotRequired[
             enums.UsageAccumulationResetFrequency
@@ -658,6 +660,7 @@ class Subscription:
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
         proration_type: NotRequired[enums.ProrationType]
         usage_accumulation_reset_frequency: NotRequired[
             enums.UsageAccumulationResetFrequency
@@ -1068,6 +1071,7 @@ class Subscription:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         item_type: NotRequired[enums.ItemType]
+        description: NotRequired[str]
 
     class ImportForItemsDiscountParams(TypedDict):
         apply_on: NotRequired[enums.ApplyOn]
@@ -1165,6 +1169,7 @@ class Subscription:
         tax_providers_fields: NotRequired[
             List["Subscription.CreateTaxProvidersFieldParams"]
         ]
+        brand_id: NotRequired[str]
         plan_id: Required[str]
         plan_quantity: NotRequired[int]
         plan_quantity_in_decimal: NotRequired[str]
@@ -1213,6 +1218,7 @@ class Subscription:
 
     class CreateForCustomerParams(TypedDict):
         id: NotRequired[str]
+        brand_id: NotRequired[str]
         plan_id: Required[str]
         plan_quantity: NotRequired[int]
         plan_quantity_in_decimal: NotRequired[str]
@@ -1259,6 +1265,7 @@ class Subscription:
     class CreateWithItemsParams(TypedDict):
         id: NotRequired[str]
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         trial_end: NotRequired[int]
         billing_cycles: NotRequired[int]
         subscription_items: NotRequired[

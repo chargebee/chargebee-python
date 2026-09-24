@@ -102,6 +102,7 @@ class PricingPageSession:
             "PricingPageSession.CreateForNewSubscriptionSubscriptionParams"
         ]
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         auto_select_local_currency: NotRequired[bool]
         custom: NotRequired[Dict[Any, Any]]
         customer: NotRequired[

@@ -354,6 +354,8 @@ class CreditNote:
         tax9_amount: NotRequired[int]
         tax10_name: NotRequired[str]
         tax10_amount: NotRequired[int]
+        is_partial_tax_applied: NotRequired[bool]
+        taxable_amount: NotRequired[int]
         proration_mode: NotRequired["CreditNote.LineItemProrationMode"]
 
     class ImportCreditNoteLineItemTierParams(TypedDict):
@@ -634,6 +636,26 @@ class CreditNote:
             options,
             resource="creditNote",
             operation="voidCreditNote",
+        )
+
+    def send_email(self, id, headers=None) -> SendEmailResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("credit_notes", id, "send_email"),
+            self.env,
+            None,
+            headers,
+            SendEmailResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="creditNote",
+            operation="sendEmail",
         )
 
     def list(self, params: ListParams = None, headers=None) -> ListResponse:

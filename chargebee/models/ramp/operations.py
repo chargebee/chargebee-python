@@ -108,9 +108,15 @@ class Ramp:
         renewal_billing_cycles: NotRequired[int]
         action_at_term_end: Required["Ramp.ContractTermActionAtTermEnd"]
 
+    class BillingConfiguration(TypedDict):
+        po_number: NotRequired[str]
+
     class StatusTransitionReason(TypedDict):
         code: NotRequired[str]
         message: NotRequired[str]
+
+    class CreateForSubscriptionBillingConfigurationParams(TypedDict):
+        po_number: NotRequired[str]
 
     class CreateForSubscriptionItemsToAddParams(TypedDict):
         item_price_id: Required[str]
@@ -166,6 +172,9 @@ class Ramp:
         action_at_term_end: NotRequired["Ramp.ContractTermActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
         renewal_billing_cycles: NotRequired[int]
+
+    class UpdateBillingConfigurationParams(TypedDict):
+        po_number: NotRequired[str]
 
     class UpdateItemsToAddParams(TypedDict):
         item_price_id: Required[str]
@@ -228,6 +237,9 @@ class Ramp:
         coupons_to_remove: NotRequired[List[str]]
         discounts_to_remove: NotRequired[List[str]]
         items_to_remove: NotRequired[List[str]]
+        billing_configuration: NotRequired[
+            "Ramp.CreateForSubscriptionBillingConfigurationParams"
+        ]
         items_to_add: NotRequired[List["Ramp.CreateForSubscriptionItemsToAddParams"]]
         items_to_update: NotRequired[
             List["Ramp.CreateForSubscriptionItemsToUpdateParams"]
@@ -247,6 +259,7 @@ class Ramp:
         coupons_to_remove: NotRequired[List[str]]
         discounts_to_remove: NotRequired[List[str]]
         items_to_remove: NotRequired[List[str]]
+        billing_configuration: NotRequired["Ramp.UpdateBillingConfigurationParams"]
         items_to_add: NotRequired[List["Ramp.UpdateItemsToAddParams"]]
         items_to_update: NotRequired[List["Ramp.UpdateItemsToUpdateParams"]]
         item_tiers: NotRequired[List["Ramp.UpdateItemTierParams"]]

@@ -72,6 +72,19 @@ class PaymentIntent:
         TOUCH_N_GO = "touch_n_go"
         TAMARA = "tamara"
         QPAY = "qpay"
+        OVO = "ovo"
+        MOMO = "momo"
+        MERCADO_PAGO = "mercado_pago"
+        NEQUI = "nequi"
+        NUPAY = "nupay"
+        PICPAY = "picpay"
+        THAI_QR = "thai_qr"
+        BLIK = "blik"
+        FPX = "fpx"
+        WERO = "wero"
+        P24 = "p24"
+        AFFIRM_PAY = "affirm_pay"
+        RAKUTEN_PAY = "rakuten_pay"
 
         def __str__(self):
             return self.value
@@ -147,6 +160,7 @@ class PaymentIntent:
 
     class CreateParams(TypedDict):
         business_entity_id: NotRequired[str]
+        brand_id: NotRequired[str]
         customer_id: NotRequired[str]
         amount: Required[int]
         currency_code: Required[str]

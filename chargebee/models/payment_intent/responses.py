@@ -72,6 +72,7 @@ class PaymentIntentResponse(Model):
     payment_attempts: List[PaymentAttemptResponse] = None
     payment_intent_metadata: PaymentIntentMetadataResponse = None
     business_entity_id: str = None
+    brand_id: str = None
 
 
 @dataclass

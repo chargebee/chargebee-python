@@ -38,6 +38,17 @@ class RetrieveResponse(Response):
 
 
 @dataclass
+class ListPaymentScheduleSchemeResponse:
+    payment_schedule_scheme: PaymentScheduleSchemeResponse
+
+
+@dataclass
+class ListResponse(Response):
+    list: List[ListPaymentScheduleSchemeResponse]
+    next_offset: str = None
+
+
+@dataclass
 class DeleteResponse(Response):
     is_idempotency_replayed: bool
     payment_schedule_scheme: PaymentScheduleSchemeResponse

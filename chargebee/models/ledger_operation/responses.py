@@ -45,37 +45,41 @@ class ListLedgerOperationsResponse(Response):
 @dataclass
 class CaptureResponse(Response):
     is_idempotency_replayed: bool
-    ledger_operation: LedgerOperationResponse
+    ledger_operations: List[LedgerOperationResponse]
     ledger_account_balance: "ledger_account_balance.LedgerAccountBalanceResponse"
     grant_blocks: List["grant_block.GrantBlockResponse"]
     ledger_entries: List["ledger_entry.LedgerEntryResponse"]
+    ledger_operation: LedgerOperationResponse = None
 
 
 @dataclass
 class AuthorizeResponse(Response):
     is_idempotency_replayed: bool
-    ledger_operation: LedgerOperationResponse
+    ledger_operations: List[LedgerOperationResponse]
     ledger_account_balance: "ledger_account_balance.LedgerAccountBalanceResponse"
     grant_blocks: List["grant_block.GrantBlockResponse"]
     ledger_entries: List["ledger_entry.LedgerEntryResponse"]
+    ledger_operation: LedgerOperationResponse = None
 
 
 @dataclass
 class CaptureAuthorizationResponse(Response):
     is_idempotency_replayed: bool
-    ledger_operation: LedgerOperationResponse
+    ledger_operations: List[LedgerOperationResponse]
     ledger_account_balance: "ledger_account_balance.LedgerAccountBalanceResponse"
     grant_blocks: List["grant_block.GrantBlockResponse"]
     ledger_entries: List["ledger_entry.LedgerEntryResponse"]
+    ledger_operation: LedgerOperationResponse = None
 
 
 @dataclass
 class ReleaseAuthorizationResponse(Response):
     is_idempotency_replayed: bool
-    ledger_operation: LedgerOperationResponse
+    ledger_operations: List[LedgerOperationResponse]
     ledger_account_balance: "ledger_account_balance.LedgerAccountBalanceResponse"
     grant_blocks: List["grant_block.GrantBlockResponse"]
     ledger_entries: List["ledger_entry.LedgerEntryResponse"]
+    ledger_operation: LedgerOperationResponse = None
 
 
 @dataclass

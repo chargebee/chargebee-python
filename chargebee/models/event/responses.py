@@ -22,6 +22,7 @@ class EventResponse(Model):
     webhook_failure_reason: str = None
     webhooks: List[WebhookResponse] = None
     event_type: str = None
+    site_id: str = None
     api_version: str = None
     content: Dict[Any, Any] = None
     origin_user: str = None

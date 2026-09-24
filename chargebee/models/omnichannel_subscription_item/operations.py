@@ -31,6 +31,7 @@ class OmnichannelSubscriptionItem:
         BILLING_ERROR = "billing_error"
         PRODUCT_NOT_AVAILABLE = "product_not_available"
         OTHER = "other"
+        SUBSCRIPTION_NOT_FOUND_IN_SOURCE = "subscription_not_found_in_source"
 
         def __str__(self):
             return self.value

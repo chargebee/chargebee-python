@@ -48,6 +48,7 @@ class SubscriptionItemResponse(Model):
     charge_on_option: str = None
     proration_type: str = None
     usage_accumulation_reset_frequency: str = None
+    description: str = None
 
 
 @dataclass
@@ -283,6 +284,7 @@ class SubscriptionResponse(Model):
     discounts: List[DiscountResponse] = None
     business_entity_id: str = None
     decommissioned: bool = None
+    brand_id: str = None
 
 
 @dataclass

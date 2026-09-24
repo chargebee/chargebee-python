@@ -5,13 +5,36 @@ from chargebee.response import Response
 
 
 @dataclass
+class ProvisionedBlockBalanceResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    granted_amount: str = None
+    total_balance: str = None
+    usable_balance: str = None
+    hold_amount: str = None
+    used_amount: str = None
+    expired_amount: str = None
+    rolled_over_amount: str = None
+    voided_amount: str = None
+
+
+@dataclass
+class OverdraftBlockBalanceResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    is_unlimited: bool = None
+    limit: str = None
+    total_balance: str = None
+    usable_balance: str = None
+    used_amount: str = None
+
+
+@dataclass
 class GrantBlockResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
     subscription_id: str = None
-    account_type: str = None
     unit_id: str = None
     unit_type: str = None
+    account_type: str = None
     granted_amount: str = None
     effective_from: int = None
     expires_at: int = None
@@ -27,6 +50,8 @@ class GrantBlockResponse(Model):
     created_at: int = None
     modified_at: int = None
     resource_version: int = None
+    provisioned_block_balance: ProvisionedBlockBalanceResponse = None
+    overdraft_block_balance: OverdraftBlockBalanceResponse = None
     metadata: Dict[Any, Any] = None
 
 
