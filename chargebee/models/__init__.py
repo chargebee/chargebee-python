@@ -1,4 +1,5 @@
 from chargebee.models.enums import (
+    AccessMode,
     AccountHolderType,
     AccountReceivablesHandling,
     AccountType,
@@ -54,6 +55,7 @@ from chargebee.models.enums import (
     NotifyReferralSystem,
     OfflinePaymentMethod,
     OnEvent,
+    Operand,
     Operation,
     OperationType,
     PauseOption,
@@ -76,6 +78,7 @@ from chargebee.models.enums import (
     RetryEngine,
     Role,
     ScheduleType,
+    SettingGroup,
     Source,
     Status,
     TaxExemptReason,
@@ -297,6 +300,10 @@ from chargebee.models.personalized_offer.operations import PersonalizedOffer
 from chargebee.models.plan.operations import Plan
 
 from chargebee.models.portal_session.operations import PortalSession
+
+from chargebee.models.preference.operations import Preference
+
+from chargebee.models.preference_definition.operations import PreferenceDefinition
 
 from chargebee.models.price_variant.operations import PriceVariant
 

@@ -142,6 +142,8 @@ class Chargebee:
         self.PersonalizedOffer = chargebee.PersonalizedOffer(self.env)
         self.Plan = chargebee.Plan(self.env)
         self.PortalSession = chargebee.PortalSession(self.env)
+        self.Preference = chargebee.Preference(self.env)
+        self.PreferenceDefinition = chargebee.PreferenceDefinition(self.env)
         self.PriceVariant = chargebee.PriceVariant(self.env)
         self.PricingPageSession = chargebee.PricingPageSession(self.env)
         self.PromotionalCredit = chargebee.PromotionalCredit(self.env)

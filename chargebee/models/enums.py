@@ -1,6 +1,14 @@
 from enum import Enum
 
 
+class AccessMode(Enum):
+    READ_WRITE = "read_write"
+    READ_ONLY = "read_only"
+
+    def __str__(self):
+        return self.value
+
+
 class AccountHolderType(Enum):
     INDIVIDUAL = "individual"
     COMPANY = "company"
@@ -1266,6 +1274,13 @@ class OnEvent(Enum):
         return self.value
 
 
+class Operand(Enum):
+    REQUEST_SOURCE = "request_source"
+
+    def __str__(self):
+        return self.value
+
+
 class Operation(Enum):
     CREATE = "create"
     UPDATE = "update"
@@ -1593,6 +1608,15 @@ class ScheduleType(Enum):
     IMMEDIATE = "immediate"
     SPECIFIC_DATES = "specific_dates"
     FIXED_INTERVALS = "fixed_intervals"
+
+    def __str__(self):
+        return self.value
+
+
+class SettingGroup(Enum):
+    CONTRACT_TERMS = "contract_terms"
+    SUB_CANCELATION = "sub_cancelation"
+    BILLING_RULES = "billing_rules"
 
     def __str__(self):
         return self.value
