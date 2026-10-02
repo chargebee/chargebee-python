@@ -20,6 +20,9 @@ from chargebee import compat, util, environment
 from chargebee.main import Chargebee
 from chargebee.version import VERSION
 
+# Longest Retry-After delay the client will wait for; longer values use the default delay.
+MAX_RETRY_AFTER_MS = 60_000
+
 _logger = logging.getLogger(__name__)
 
 
@@ -321,12 +324,17 @@ def extract_status_code(err):
 
 
 def parse_retry_after(err):
+    """Return the Retry-After delay in milliseconds, or None to use the default delay.
+
+    Delays longer than MAX_RETRY_AFTER_MS are ignored, so a server cannot make the
+    client sleep for an unreasonable time (for example an HTTP-date far in the future).
+    """
     headers = getattr(err, "http_headers", {}) or {}
     retry_after = headers.get("retry-after") or headers.get("Retry-After")
     if not retry_after:
         return None
     try:
-        return int(retry_after) * 1000
+        delay_ms = max(0, int(retry_after) * 1000)
     except ValueError:
         try:
             from email.utils import parsedate_to_datetime
@@ -334,7 +342,7 @@ def parse_retry_after(err):
             retry_time = parsedate_to_datetime(retry_after)
             if retry_time.tzinfo is None:
                 retry_time = retry_time.replace(tzinfo=datetime.timezone.utc)
-            return max(
+            delay_ms = max(
                 0,
                 int(
                     (
@@ -345,6 +353,9 @@ def parse_retry_after(err):
             )
         except Exception:
             return None
+    if delay_ms > MAX_RETRY_AFTER_MS:
+        return None
+    return delay_ms
 
 
 def calculate_backoff_delay(retry_count, base_delay_ms):

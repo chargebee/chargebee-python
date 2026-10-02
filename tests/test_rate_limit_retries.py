@@ -6,6 +6,7 @@ from unittest.mock import AsyncMock, Mock, patch
 from chargebee.api_error import APIError
 from chargebee.http_request import (
     _process_response,
+    MAX_RETRY_AFTER_MS,
     _process_response_async,
     parse_retry_after,
 )
@@ -49,7 +50,15 @@ class RateLimitRetryTests(unittest.TestCase):
                             self.assertEqual(call.args, (2000,))
 
     def test_retry_after_from_api_error_headers(self):
-        for value, expected in (("2", 2000), ("0", 0), ("invalid", None)):
+        for value, expected in (
+            ("2", 2000),
+            ("0", 0),
+            ("-5", 0),
+            ("invalid", None),
+            ("60", MAX_RETRY_AFTER_MS),
+            ("61", None),
+            ("86400", None),
+        ):
             with self.subTest(value=value):
                 error = APIError(429, {}, {"Retry-After": value})
                 self.assertEqual(parse_retry_after(error), expected)
@@ -65,3 +74,15 @@ class RateLimitRetryTests(unittest.TestCase):
 
         with patch("chargebee.http_request.datetime.datetime", FrozenDatetime):
             self.assertEqual(parse_retry_after(error), 2000)
+
+    def test_retry_after_http_date_too_far_uses_default_delay(self):
+        error = APIError(429, {}, {"Retry-After": "Fri, 01 Oct 2027 12:00:00 GMT"})
+        now = datetime.datetime(2026, 10, 1, 12, tzinfo=datetime.timezone.utc)
+
+        class FrozenDatetime(datetime.datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return now
+
+        with patch("chargebee.http_request.datetime.datetime", FrozenDatetime):
+            self.assertIsNone(parse_retry_after(error))
