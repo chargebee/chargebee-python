@@ -138,11 +138,17 @@ def _process_response(url, request_args, retry_config, enable_debug_logs):
         except Exception as err:
             status_code = extract_status_code(err)
 
-            if not retry_config or not retry_config.is_enabled():
+            if (
+                not retry_config
+                or not retry_config.is_enabled()
+                or retry_count >= retry_config.get_max_retries()
+            ):
                 raise err
 
             if status_code == 429:
-                delay_ms = parse_retry_after(err) or retry_config.get_delay_ms()
+                delay_ms = parse_retry_after(err)
+                if delay_ms is None:
+                    delay_ms = retry_config.get_delay_ms()
                 log(
                     f"Rate limit hit. Retrying in {delay_ms}ms",
                     "INFO",
@@ -198,11 +204,17 @@ async def _process_response_async(url, request_args, retry_config, enable_debug_
         except Exception as err:
             status_code = extract_status_code(err)
 
-            if not retry_config or not retry_config.is_enabled():
+            if (
+                not retry_config
+                or not retry_config.is_enabled()
+                or retry_count >= retry_config.get_max_retries()
+            ):
                 raise err
 
             if status_code == 429:
-                delay_ms = parse_retry_after(err) or retry_config.get_delay_ms()
+                delay_ms = parse_retry_after(err)
+                if delay_ms is None:
+                    delay_ms = retry_config.get_delay_ms()
                 log(
                     f"Rate limit hit. Retrying in {delay_ms}ms",
                     "INFO",
@@ -309,7 +321,7 @@ def extract_status_code(err):
 
 
 def parse_retry_after(err):
-    headers = getattr(err, "response_headers", {}) or {}
+    headers = getattr(err, "http_headers", {}) or {}
     retry_after = headers.get("retry-after") or headers.get("Retry-After")
     if not retry_after:
         return None
@@ -320,8 +332,16 @@ def parse_retry_after(err):
             from email.utils import parsedate_to_datetime
 
             retry_time = parsedate_to_datetime(retry_after)
+            if retry_time.tzinfo is None:
+                retry_time = retry_time.replace(tzinfo=datetime.timezone.utc)
             return max(
-                0, int((retry_time - datetime.datetime.utcnow()).total_seconds() * 1000)
+                0,
+                int(
+                    (
+                        retry_time - datetime.datetime.now(datetime.timezone.utc)
+                    ).total_seconds()
+                    * 1000
+                ),
             )
         except Exception:
             return None
