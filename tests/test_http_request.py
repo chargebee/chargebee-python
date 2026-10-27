@@ -50,6 +50,96 @@ def make_mock_client(status_code=200, text="", headers={}, is_async=False):
 
 
 class RequestTests(unittest.TestCase):
+    def test_shared_headers_get_independent_idempotency_keys(self):
+        from chargebee.http_request import request
+        from chargebee.main import Chargebee
+
+        for asynchronous in (False, True):
+            with self.subTest(asynchronous=asynchronous):
+                headers = {"X-Application": "test"}
+                client, response = make_mock_client(
+                    text='{"message": "ok"}', is_async=asynchronous
+                )
+                client.request.return_value = response
+                client_type = "httpx.AsyncClient" if asynchronous else "httpx.Client"
+                with patch(client_type) as factory:
+                    if asynchronous:
+                        factory.return_value.__aenter__.return_value = client
+                    else:
+                        factory.return_value.__enter__.return_value = client
+                    for _ in range(2):
+                        result = request(
+                            "POST",
+                            "/test",
+                            MockEnvironment(),
+                            headers=headers,
+                            options={"isIdempotent": True},
+                            use_async_client=asynchronous,
+                        )
+                        if asynchronous:
+                            asyncio.run(result)
+                keys = [
+                    call.kwargs["headers"][Chargebee.idempotency_header]
+                    for call in client.request.call_args_list
+                ]
+                self.assertNotEqual(keys[0], keys[1])
+                self.assertEqual(headers, {"X-Application": "test"})
+
+    @patch("httpx.Client")
+    def test_explicit_idempotency_key_is_preserved(self, factory):
+        from chargebee.http_request import request
+        from chargebee.main import Chargebee
+
+        client, response = make_mock_client(text='{"message": "ok"}')
+        client.request.return_value = response
+        factory.return_value.__enter__.return_value = client
+        headers = {Chargebee.idempotency_header: "chosen-key"}
+        request(
+            "POST",
+            "/test",
+            MockEnvironment(),
+            headers=headers,
+            options={"isIdempotent": True},
+        )
+        self.assertEqual(
+            client.request.call_args.kwargs["headers"][Chargebee.idempotency_header],
+            "chosen-key",
+        )
+        self.assertEqual(headers, {Chargebee.idempotency_header: "chosen-key"})
+
+    @patch("chargebee.http_request.sleep")
+    @patch("httpx.Client")
+    def test_retries_keep_generated_idempotency_key(self, factory, sleep):
+        from chargebee.http_request import request
+        from chargebee.main import Chargebee
+
+        client, response = make_mock_client(text='{"message": "ok"}')
+        _, failure = make_mock_client(503, '{"api_error_code": "temporary_error"}')
+        sent_headers = []
+        responses = iter((failure, response))
+
+        def send(**kwargs):
+            sent_headers.append(kwargs["headers"].copy())
+            return next(responses)
+
+        client.request.side_effect = send
+        factory.return_value.__enter__.return_value = client
+        headers = {"X-Application": "test"}
+        request(
+            "POST",
+            "/test",
+            MockEnvironment(),
+            headers=headers,
+            options={"isIdempotent": True},
+        )
+        self.assertEqual(len(sent_headers), 2)
+        self.assertEqual(
+            sent_headers[0][Chargebee.idempotency_header],
+            sent_headers[1][Chargebee.idempotency_header],
+        )
+        self.assertEqual(sent_headers[1]["X-CB-Retry-Attempt"], "1")
+        self.assertEqual(headers, {"X-Application": "test"})
+
     @patch("httpx.Client")
     def test_successful_request(self, mock_client_class):
         mock_client, mock_response = make_mock_client(
