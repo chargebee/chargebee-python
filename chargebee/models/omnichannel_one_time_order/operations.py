@@ -13,6 +13,8 @@ class OmnichannelOneTimeOrder:
     class Source(Enum):
         APPLE_APP_STORE = "apple_app_store"
         GOOGLE_PLAY_STORE = "google_play_store"
+        ROKU = "roku"
+        AMAZON_APP_STORE = "amazon_app_store"
 
         def __str__(self):
             return self.value

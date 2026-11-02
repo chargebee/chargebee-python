@@ -18,6 +18,34 @@ class BusinessEntityResponse(Model):
 
 
 @dataclass
+class CreateResponse(Response):
+    is_idempotency_replayed: bool
+    business_entity: BusinessEntityResponse
+
+
+@dataclass
+class ListBusinessEntityResponse:
+    business_entity: BusinessEntityResponse
+
+
+@dataclass
+class ListResponse(Response):
+    list: List[ListBusinessEntityResponse]
+    next_offset: str = None
+
+
+@dataclass
+class RetrieveResponse(Response):
+    business_entity: BusinessEntityResponse
+
+
+@dataclass
+class UpdateResponse(Response):
+    is_idempotency_replayed: bool
+    business_entity: BusinessEntityResponse
+
+
+@dataclass
 class CreateTransfersResponse(Response):
     is_idempotency_replayed: bool
     business_entity_transfer: "business_entity_transfer.BusinessEntityTransferResponse"

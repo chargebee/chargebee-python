@@ -60,6 +60,7 @@ class ItemPriceResponse(Model):
     status: str = None
     external_name: str = None
     price_variant_id: str = None
+    price_ramp_id: str = None
     proration_type: str = None
     pricing_model: str = None
     price: int = None

@@ -17,6 +17,7 @@ class OmnichannelSubscriptionResponse(Model):
     app_id: str = None
     source: str = None
     customer_id: str = None
+    origin: str = None
     created_at: int = None
     purchased_at: int = None
     updated_at: int = None

@@ -35,8 +35,10 @@ class OmnichannelSubscriptionItemResponse(Model):
     current_term_end: int = None
     expired_at: int = None
     expiration_reason: str = None
+    expiration_reason_at_source: str = None
     cancelled_at: int = None
     cancellation_reason: str = None
+    cancellation_reason_at_source: str = None
     grace_period_expires_at: int = None
     resumes_at: int = None
     has_scheduled_changes: bool = None

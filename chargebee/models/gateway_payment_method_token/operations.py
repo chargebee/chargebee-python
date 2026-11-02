@@ -9,8 +9,8 @@ class GatewayPaymentMethodToken:
     env: environment.Environment
 
     class Status(Enum):
-        ACTIVE = "active"
-        INACTIVE = "inactive"
+        VALID = "valid"
+        INVALID = "invalid"
         PENDING_VERIFICATION = "pending_verification"
 
         def __str__(self):

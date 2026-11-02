@@ -22,6 +22,7 @@ class ItemsToAddResponse(Model):
     metered_quantity: str = None
     charge_once: bool = None
     charge_on_option: str = None
+    description: str = None
     charge_on_event: str = None
 
 
@@ -43,6 +44,7 @@ class ItemsToUpdateResponse(Model):
     metered_quantity: str = None
     charge_once: bool = None
     charge_on_option: str = None
+    description: str = None
     charge_on_event: str = None
 
 

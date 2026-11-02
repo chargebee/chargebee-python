@@ -10,6 +10,18 @@ from chargebee.models import enums, payment_intent, card
 class PaymentSource:
     env: environment.Environment
 
+    class BankAccountScheme(Enum):
+        ACH = "ach"
+        BACS = "bacs"
+        SEPA_CORE = "sepa_core"
+        AUTOGIRO = "autogiro"
+        BECS = "becs"
+        BECS_NZ = "becs_nz"
+        PAD = "pad"
+
+        def __str__(self):
+            return self.value
+
     class Status(Enum):
         VALID = "valid"
         EXPIRING = "expiring"
@@ -135,6 +147,7 @@ class PaymentSource:
 
     class NetworkTransactionReference(TypedDict):
         original_network_transaction_id: NotRequired[str]
+        transaction_link_id: NotRequired[str]
 
     class CreateUsingPermanentTokenCardParams(TypedDict):
         last4: NotRequired[str]
@@ -143,6 +156,16 @@ class PaymentSource:
         expiry_year: NotRequired[int]
         brand: NotRequired["PaymentSource.CardBrand"]
         funding_type: NotRequired["PaymentSource.CardFundingType"]
+
+    class CreateUsingPermanentTokenBankAccountParams(TypedDict):
+        account_type: NotRequired[enums.AccountType]
+        account_holder_type: NotRequired[enums.AccountHolderType]
+        first_name: NotRequired[str]
+        last_name: NotRequired[str]
+        company: NotRequired[str]
+        scheme: NotRequired["PaymentSource.BankAccountScheme"]
+        last4: NotRequired[str]
+        echeck_type: NotRequired[enums.EcheckType]
 
     class CreateUsingPermanentTokenBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
@@ -257,6 +280,9 @@ class PaymentSource:
         mandate_id: NotRequired[str]
         skip_retrieval: NotRequired[bool]
         card: NotRequired["PaymentSource.CreateUsingPermanentTokenCardParams"]
+        bank_account: NotRequired[
+            "PaymentSource.CreateUsingPermanentTokenBankAccountParams"
+        ]
         billing_address: NotRequired[
             "PaymentSource.CreateUsingPermanentTokenBillingAddressParams"
         ]

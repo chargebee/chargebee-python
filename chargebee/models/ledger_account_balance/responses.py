@@ -45,3 +45,12 @@ class ListLedgerAccountBalancesLedgerAccountBalanceResponse:
 class ListLedgerAccountBalancesResponse(Response):
     list: List[ListLedgerAccountBalancesLedgerAccountBalanceResponse]
     next_offset: str = None
+
+
+@dataclass
+class UpdateOverdraftLimitResponse(Response):
+    is_idempotency_replayed: bool
+    subscription_id: str
+    unit_id: str
+    overdraft_balance: Dict[Any, Any]
+    change_reason: str = None

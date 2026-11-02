@@ -97,6 +97,9 @@ class Transaction:
         amount: NotRequired[int]
         date: NotRequired[int]
 
+    class GatewayMetadata(TypedDict):
+        acquirer_reference_id: NotRequired[str]
+
     class GatewayErrorDetail(TypedDict):
         request_id: NotRequired[str]
         error_category: NotRequired[str]

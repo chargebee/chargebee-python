@@ -15,6 +15,7 @@ class Purchase:
         unit_amount: NotRequired[int]
         unit_amount_in_decimal: NotRequired[str]
         quantity_in_decimal: NotRequired[str]
+        trial_end: NotRequired[int]
 
     class CreateItemTierParams(TypedDict):
         index: Required[int]
@@ -55,6 +56,8 @@ class Purchase:
         subscription_id: NotRequired[str]
         billing_cycles: NotRequired[int]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
+        trial_end: NotRequired[int]
+        start_date: NotRequired[int]
         meta_data: NotRequired[Dict[Any, Any]]
 
     class CreateContractTermParams(TypedDict):
@@ -91,6 +94,7 @@ class Purchase:
         unit_amount: NotRequired[int]
         unit_amount_in_decimal: NotRequired[str]
         quantity_in_decimal: NotRequired[str]
+        trial_end: NotRequired[int]
 
     class EstimateItemTierParams(TypedDict):
         index: Required[int]
@@ -131,6 +135,8 @@ class Purchase:
         subscription_id: NotRequired[str]
         billing_cycles: NotRequired[int]
         contract_term_billing_cycle_on_renewal: NotRequired[int]
+        trial_end: NotRequired[int]
+        start_date: NotRequired[int]
 
     class EstimateContractTermParams(TypedDict):
         index: Required[int]

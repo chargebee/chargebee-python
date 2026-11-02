@@ -685,6 +685,7 @@ class Invoice:
         tax10_amount: NotRequired[int]
         is_partial_tax_applied: NotRequired[bool]
         taxable_amount: NotRequired[int]
+        tax_exempt_reason: NotRequired[enums.TaxExemptReason]
         proration_mode: NotRequired["Invoice.LineItemProrationMode"]
         created_at: NotRequired[int]
 
@@ -1251,6 +1252,9 @@ class Invoice:
     class ApplyPaymentScheduleSchemeParams(TypedDict):
         scheme_id: Required[str]
         amount: NotRequired[int]
+
+    class RemovePaymentScheduleSchemeParams(TypedDict):
+        comment: NotRequired[str]
 
     def create(self, params: CreateParams = None, headers=None) -> CreateResponse:
         jsonKeys = {
@@ -2082,6 +2086,28 @@ class Invoice:
             options,
             resource="invoice",
             operation="applyPaymentScheduleScheme",
+        )
+
+    def remove_payment_schedule_scheme(
+        self, id, params: RemovePaymentScheduleSchemeParams = None, headers=None
+    ) -> RemovePaymentScheduleSchemeResponse:
+        jsonKeys = {}
+        options = {
+            "isIdempotent": True,
+        }
+        return request.send(
+            "post",
+            request.uri_path("invoices", id, "remove_payment_schedule_scheme"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            RemovePaymentScheduleSchemeResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="invoice",
+            operation="removePaymentScheduleScheme",
         )
 
     def payment_schedules(self, id, headers=None) -> PaymentSchedulesResponse:

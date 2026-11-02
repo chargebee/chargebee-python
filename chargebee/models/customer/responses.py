@@ -8,10 +8,10 @@ from chargebee.models import (
     card,
     payment_source,
     resource_migration,
-    hierarchy,
     contact,
     transaction,
     email_log,
+    hierarchy,
 )
 
 
