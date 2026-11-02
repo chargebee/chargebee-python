@@ -12,6 +12,7 @@ class UsageSummaryResponse(Model):
     aggregated_value: str = None
     aggregated_from: int = None
     aggregated_to: int = None
+    attributes: List[Dict[Any, Any]] = None
 
 
 @dataclass

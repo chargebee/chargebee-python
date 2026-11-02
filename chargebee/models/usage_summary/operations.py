@@ -15,6 +15,7 @@ class UsageSummary:
         window_size: NotRequired[enums.WindowSize]
         timeframe_start: NotRequired[int]
         timeframe_end: NotRequired[int]
+        group_by: NotRequired[List[str]]
 
     def retrieve_usage_summary_for_subscription(
         self, id, params: RetrieveUsageSummaryForSubscriptionParams, headers=None

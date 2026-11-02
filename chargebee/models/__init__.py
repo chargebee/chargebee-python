@@ -44,7 +44,6 @@ from chargebee.models.enums import (
     FreePeriodUnit,
     FriendOfferType,
     Gateway,
-    GatewayName,
     HierarchyOperationType,
     InvoiceAction,
     InvoiceDunningHandling,
@@ -106,8 +105,6 @@ from chargebee.models.alert.operations import Alert
 
 from chargebee.models.alert_status.operations import AlertStatus
 
-from chargebee.models.applied_business_rule.operations import AppliedBusinessRule
-
 from chargebee.models.applied_rule.operations import AppliedRule
 
 from chargebee.models.apply_rule.operations import ApplyRule
@@ -136,6 +133,18 @@ from chargebee.models.business_ruleset_rule.operations import BusinessRulesetRul
 
 from chargebee.models.card.operations import Card
 
+from chargebee.models.citation.operations import Citation
+
+from chargebee.models.collections_dispute.operations import CollectionsDispute
+
+from chargebee.models.collections_payment_promise.operations import (
+    CollectionsPaymentPromise,
+)
+
+from chargebee.models.collections_reminder_sequence.operations import (
+    CollectionsReminderSequence,
+)
+
 from chargebee.models.column_definition.operations import ColumnDefinition
 
 from chargebee.models.comment.operations import Comment
@@ -162,6 +171,8 @@ from chargebee.models.credit_unit.operations import CreditUnit
 
 from chargebee.models.currency.operations import Currency
 
+from chargebee.models.custom_data.operations import CustomData
+
 from chargebee.models.custom_data_schema.operations import CustomDataSchema
 
 from chargebee.models.customer.operations import Customer
@@ -176,9 +187,19 @@ from chargebee.models.dispute.operations import Dispute
 
 from chargebee.models.download.operations import Download
 
+from chargebee.models.draft_estimate.operations import DraftEstimate
+
+from chargebee.models.draft_request.operations import DraftRequest
+
 from chargebee.models.einvoice.operations import Einvoice
 
+from chargebee.models.email_attachment.operations import EmailAttachment
+
+from chargebee.models.email_conversation.operations import EmailConversation
+
 from chargebee.models.email_log.operations import EmailLog
+
+from chargebee.models.email_message.operations import EmailMessage
 
 from chargebee.models.entitlement.operations import Entitlement
 
@@ -187,6 +208,8 @@ from chargebee.models.entitlement_override.operations import EntitlementOverride
 from chargebee.models.estimate.operations import Estimate
 
 from chargebee.models.event.operations import Event
+
+from chargebee.models.execution.operations import Execution
 
 from chargebee.models.export.operations import Export
 
@@ -203,6 +226,10 @@ from chargebee.models.gateway_payment_method_token.operations import (
 from chargebee.models.gift.operations import Gift
 
 from chargebee.models.grant_block.operations import GrantBlock
+
+from chargebee.models.group_by_attribute.operations import GroupByAttribute
+
+from chargebee.models.group_by_recommendation.operations import GroupByRecommendation
 
 from chargebee.models.hierarchy.operations import Hierarchy
 
@@ -298,9 +325,15 @@ from chargebee.models.plan.operations import Plan
 
 from chargebee.models.portal_session.operations import PortalSession
 
+from chargebee.models.preference_variant.operations import PreferenceVariant
+
+from chargebee.models.price_ramp.operations import PriceRamp
+
 from chargebee.models.price_variant.operations import PriceVariant
 
 from chargebee.models.pricing_page_session.operations import PricingPageSession
+
+from chargebee.models.private_note.operations import PrivateNote
 
 from chargebee.models.promotional_credit.operations import PromotionalCredit
 
@@ -324,9 +357,13 @@ from chargebee.models.quoted_subscription.operations import QuotedSubscription
 
 from chargebee.models.ramp.operations import Ramp
 
+from chargebee.models.ramp_interval.operations import RampInterval
+
 from chargebee.models.recorded_purchase.operations import RecordedPurchase
 
 from chargebee.models.resource_migration.operations import ResourceMigration
+
+from chargebee.models.retry_segment.operations import RetrySegment
 
 from chargebee.models.rule.operations import Rule
 

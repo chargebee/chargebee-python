@@ -34,6 +34,13 @@ class LedgerAccountBalance:
         subscription_id: Required[Filters.StringFilter]
         unit_id: NotRequired[Filters.StringFilter]
 
+    class UpdateOverdraftLimitParams(TypedDict):
+        subscription_id: Required[str]
+        unit_id: Required[str]
+        is_unlimited: Required[bool]
+        limit: NotRequired[str]
+        change_reason: NotRequired[str]
+
     def list_ledger_account_balances(
         self, params: ListLedgerAccountBalancesParams, headers=None
     ) -> ListLedgerAccountBalancesResponse:
@@ -52,4 +59,24 @@ class LedgerAccountBalance:
             options,
             resource="ledgerAccountBalance",
             operation="listLedgerAccountBalances",
+        )
+
+    def update_overdraft_limit(
+        self, params: UpdateOverdraftLimitParams, headers=None
+    ) -> UpdateOverdraftLimitResponse:
+        jsonKeys = {}
+        options = {}
+        return request.send(
+            "post",
+            request.uri_path("ledger_account_balances", "update_overdraft_limit"),
+            self.env,
+            cast(Dict[Any, Any], params),
+            headers,
+            UpdateOverdraftLimitResponse,
+            None,
+            False,
+            jsonKeys,
+            options,
+            resource="ledgerAccountBalance",
+            operation="updateOverdraftLimit",
         )

@@ -18,6 +18,7 @@ class MeterResponse(Model):
     updated_at: int = None
     column_definitions: List["column_definition.ColumnDefinitionResponse"] = None
     features: List["feature.FeatureResponse"] = None
+    group_by: List[str] = None
 
 
 @dataclass

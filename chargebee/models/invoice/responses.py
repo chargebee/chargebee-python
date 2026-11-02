@@ -369,6 +369,7 @@ class InvoiceResponse(Model):
     tax_origin: TaxOriginResponse = None
     linked_payments: List[LinkedPaymentResponse] = None
     reference_transactions: List[ReferenceTransactionResponse] = None
+    retry_segment_id: str = None
     dunning_attempts: List[DunningAttemptResponse] = None
     applied_credits: List[AppliedCreditResponse] = None
     adjustment_credit_notes: List[AdjustmentCreditNoteResponse] = None
@@ -649,6 +650,12 @@ class UpdateDetailsResponse(Response):
 
 @dataclass
 class ApplyPaymentScheduleSchemeResponse(Response):
+    is_idempotency_replayed: bool
+    invoice: InvoiceResponse
+
+
+@dataclass
+class RemovePaymentScheduleSchemeResponse(Response):
     is_idempotency_replayed: bool
     invoice: InvoiceResponse
 

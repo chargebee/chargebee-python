@@ -52,6 +52,7 @@ class Ramp:
         metered_quantity: NotRequired[str]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
         charge_on_event: NotRequired[enums.ChargeOnEvent]
 
     class ItemsToUpdate(TypedDict):
@@ -70,6 +71,7 @@ class Ramp:
         metered_quantity: NotRequired[str]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
         charge_on_event: NotRequired[enums.ChargeOnEvent]
 
     class CouponsToAdd(TypedDict):
@@ -129,6 +131,7 @@ class Ramp:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
 
     class CreateForSubscriptionItemsToUpdateParams(TypedDict):
         item_price_id: Required[str]
@@ -141,6 +144,7 @@ class Ramp:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
 
     class CreateForSubscriptionItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -187,6 +191,7 @@ class Ramp:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
 
     class UpdateItemsToUpdateParams(TypedDict):
         item_price_id: Required[str]
@@ -199,6 +204,7 @@ class Ramp:
         charge_on_event: NotRequired[enums.ChargeOnEvent]
         charge_once: NotRequired[bool]
         charge_on_option: NotRequired[enums.ChargeOnOption]
+        description: NotRequired[str]
 
     class UpdateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]

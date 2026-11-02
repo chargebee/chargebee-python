@@ -121,6 +121,7 @@ class MandateResponse(Model):
 class NetworkTransactionReferenceResponse(Model):
     raw_data: Dict[Any, Any] = None
     original_network_transaction_id: str = None
+    transaction_link_id: str = None
 
 
 @dataclass

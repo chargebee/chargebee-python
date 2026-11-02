@@ -8,7 +8,7 @@ class GatewayPaymentMethodTokenResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
     gateway_account_id: str = None
-    gateway_name: str = None
+    gateway: str = None
     gateway_customer_id: str = None
     gateway_token: str = None
     status: str = None

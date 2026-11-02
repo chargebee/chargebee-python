@@ -477,6 +477,7 @@ class CreditNote:
         currency_code: NotRequired[str]
         create_reason_code: Required[str]
         date: Required[int]
+        customer_notes: NotRequired[str]
         status: NotRequired["CreditNote.Status"]
         total: NotRequired[int]
         refunded_at: NotRequired[int]

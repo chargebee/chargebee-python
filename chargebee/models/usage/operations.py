@@ -12,6 +12,10 @@ class Usage:
     class PdfInvoiceParams(TypedDict):
         id: Required[str]
 
+    class PdfGroupByParams(TypedDict):
+        feature_id: NotRequired[str]
+        attributes: NotRequired[List[Dict[Any, Any]]]
+
     class CreateParams(TypedDict):
         id: NotRequired[str]
         item_price_id: Required[str]
@@ -41,6 +45,7 @@ class Usage:
     class PdfParams(TypedDict):
         invoice: NotRequired["Usage.PdfInvoiceParams"]
         disposition_type: NotRequired[enums.DispositionType]
+        group_by: NotRequired[List["Usage.PdfGroupByParams"]]
 
     def create(self, id, params: CreateParams, headers=None) -> CreateResponse:
         jsonKeys = {}
@@ -119,7 +124,9 @@ class Usage:
         )
 
     def pdf(self, params: PdfParams, headers=None) -> PdfResponse:
-        jsonKeys = {}
+        jsonKeys = {
+            "attributes": 1,
+        }
         options = {
             "isIdempotent": True,
         }

@@ -15,6 +15,7 @@ class MeteredFeatureResponse(Model):
     status: str = None
     query: str = None
     column_definitions: List["column_definition.ColumnDefinitionResponse"] = None
+    group_by: List[str] = None
     features: List["feature.FeatureResponse"] = None
 
 

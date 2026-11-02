@@ -15,6 +15,7 @@ class EmailLogResponse(Model):
     status: str = None
     sent_on: int = None
     customer_id: str = None
+    email_conversation_id: str = None
     site_id: str = None
     business_entity_id: str = None
     brand_id: str = None

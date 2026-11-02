@@ -44,6 +44,7 @@ class OmnichannelSubscriptionItem:
         REFUNDED_DUE_TO_APP_ISSUE = "refunded_due_to_app_issue"
         REFUNDED_FOR_OTHER_REASON = "refunded_for_other_reason"
         MERCHANT_REVOKED = "merchant_revoked"
+        OTHER = "other"
 
         def __str__(self):
             return self.value

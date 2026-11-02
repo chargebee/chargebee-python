@@ -20,6 +20,7 @@ class PaymentSchedule:
         POSTED = "posted"
         PAYMENT_DUE = "payment_due"
         PAID = "paid"
+        VOIDED = "voided"
 
         def __str__(self):
             return self.value

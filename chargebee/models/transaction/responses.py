@@ -49,6 +49,12 @@ class LinkedPaymentResponse(Model):
 
 
 @dataclass
+class GatewayMetadataResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    acquirer_reference_id: str = None
+
+
+@dataclass
 class GatewayErrorDetailResponse(Model):
     raw_data: Dict[Any, Any] = None
     request_id: str = None
@@ -122,6 +128,7 @@ class TransactionResponse(Model):
     merchant_reference_id: str = None
     business_entity_id: str = None
     payment_method_details: str = None
+    gateway_metadata: GatewayMetadataResponse = None
     error_detail: GatewayErrorDetailResponse = None
     custom_payment_method_name: str = None
     network_transaction_details: NetworkTransactionDetailResponse = None
