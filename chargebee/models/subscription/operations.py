@@ -182,6 +182,7 @@ class Subscription:
     class Discount(TypedDict):
         id: Required[str]
         invoice_name: NotRequired[str]
+        description: NotRequired[str]
         type: Required["Subscription.DiscountType"]
         percentage: NotRequired[float]
         amount: NotRequired[int]
@@ -473,6 +474,7 @@ class Subscription:
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
+        description: NotRequired[str]
 
     class CreateWithItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -678,6 +680,7 @@ class Subscription:
         quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
+        description: NotRequired[str]
 
     class UpdateForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]

@@ -1,6 +1,7 @@
 from .responses import *
 from chargebee import request, environment
 from typing import TypedDict, Required, NotRequired, Dict, List, Any, cast
+from enum import Enum
 from chargebee.filters import Filters
 from chargebee.models import enums
 
@@ -9,12 +10,20 @@ from chargebee.models import enums
 class Usage:
     env: environment.Environment
 
+    class GroupByWindowSize(Enum):
+        DAY = "day"
+        NONE = "none"
+
+        def __str__(self):
+            return self.value
+
     class PdfInvoiceParams(TypedDict):
         id: Required[str]
 
     class PdfGroupByParams(TypedDict):
         feature_id: NotRequired[str]
         attributes: NotRequired[List[Dict[Any, Any]]]
+        window_size: NotRequired["Usage.GroupByWindowSize"]
 
     class CreateParams(TypedDict):
         id: NotRequired[str]

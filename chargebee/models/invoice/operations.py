@@ -794,6 +794,8 @@ class Invoice:
 
     class ApplyCreditsCreditNoteParams(TypedDict):
         id: NotRequired[str]
+        amount: NotRequired[int]
+        applied_at: NotRequired[int]
 
     class ListEinvoiceParams(TypedDict):
         status: NotRequired[Filters.EnumFilter]
@@ -963,6 +965,7 @@ class Invoice:
         payment_source_id: NotRequired[str]
         auto_collection: NotRequired[enums.AutoCollection]
         net_term_days: NotRequired[int]
+        offline_payment_method: NotRequired[enums.OfflinePaymentMethod]
         tax_providers_fields: NotRequired[
             List["Invoice.CreateForChargeItemsAndChargesTaxProvidersFieldParams"]
         ]

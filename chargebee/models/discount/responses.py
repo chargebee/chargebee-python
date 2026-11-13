@@ -8,6 +8,7 @@ class DiscountResponse(Model):
     raw_data: Dict[Any, Any] = None
     id: str = None
     invoice_name: str = None
+    description: str = None
     type: str = None
     percentage: float = None
     amount: int = None

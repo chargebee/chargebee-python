@@ -352,6 +352,7 @@ class InvoiceResponse(Model):
     first_invoice: bool = None
     new_sales_amount: int = None
     has_advance_charges: bool = None
+    offline_payment_method: str = None
     term_finalized: bool = None
     is_gifted: bool = None
     generated_at: int = None

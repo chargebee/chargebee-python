@@ -149,6 +149,7 @@ class Estimate:
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
+        description: NotRequired[str]
 
     class CreateSubItemEstimateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -287,6 +288,7 @@ class Estimate:
         included_in_mrr: NotRequired[bool]
         item_price_id: NotRequired[str]
         quantity: NotRequired[int]
+        description: NotRequired[str]
 
     class CreateSubItemForCustomerEstimateItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
@@ -432,6 +434,7 @@ class Estimate:
         quantity: NotRequired[int]
         operation_type: Required[enums.OperationType]
         id: NotRequired[str]
+        description: NotRequired[str]
 
     class UpdateSubscriptionForItemsItemTierParams(TypedDict):
         item_price_id: NotRequired[str]
