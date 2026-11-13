@@ -119,6 +119,10 @@ from chargebee.models.attribute.operations import Attribute
 
 from chargebee.models.billing_configuration.operations import BillingConfiguration
 
+from chargebee.models.billing_line_item.operations import BillingLineItem
+
+from chargebee.models.billing_metadata.operations import BillingMetadata
+
 from chargebee.models.brand.operations import Brand
 
 from chargebee.models.business_entity.operations import BusinessEntity
@@ -223,6 +227,10 @@ from chargebee.models.gateway_payment_method_token.operations import (
     GatewayPaymentMethodToken,
 )
 
+from chargebee.models.gateway_request_log.operations import GatewayRequestLog
+
+from chargebee.models.gateway_webhook_log.operations import GatewayWebhookLog
+
 from chargebee.models.gift.operations import Gift
 
 from chargebee.models.grant_block.operations import GrantBlock
@@ -302,6 +310,8 @@ from chargebee.models.omnichannel_subscription_item_scheduled_change.operations 
 from chargebee.models.omnichannel_transaction.operations import OmnichannelTransaction
 
 from chargebee.models.order.operations import Order
+
+from chargebee.models.organization_detail.operations import OrganizationDetail
 
 from chargebee.models.payment_intent.operations import PaymentIntent
 

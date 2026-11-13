@@ -51,6 +51,10 @@ class GrantBlock:
         usable_balance: NotRequired[str]
         used_amount: NotRequired[str]
 
+    class BillingMetadata(TypedDict):
+        item_price_id: NotRequired[str]
+        line_items: NotRequired[List[billing_line_item.BillingLineItem]]
+
     class ListGrantBlocksParams(TypedDict):
         limit: NotRequired[int]
         offset: NotRequired[str]

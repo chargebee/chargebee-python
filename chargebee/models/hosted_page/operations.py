@@ -388,6 +388,10 @@ class HostedPage:
         operation: NotRequired[enums.Operation]
         standard: NotRequired[str]
 
+    class CheckoutNewForItemsAllowedBillingFrequencyParams(TypedDict):
+        period: NotRequired[int]
+        period_unit: NotRequired[enums.PeriodUnit]
+
     class CheckoutNewForItemsBillingAddressParams(TypedDict):
         first_name: NotRequired[str]
         last_name: NotRequired[str]
@@ -538,6 +542,10 @@ class HostedPage:
         gateway: NotRequired[enums.Gateway]
         gateway_account_id: NotRequired[str]
 
+    class CheckoutExistingForItemsAllowedBillingFrequencyParams(TypedDict):
+        period: NotRequired[int]
+        period_unit: NotRequired[enums.PeriodUnit]
+
     class CheckoutExistingForItemsContractTermParams(TypedDict):
         action_at_term_end: NotRequired["contract_term.ContractTerm.ActionAtTermEnd"]
         cancellation_cutoff_period: NotRequired[int]
@@ -612,6 +620,10 @@ class HostedPage:
         starting_unit_in_decimal: NotRequired[str]
         ending_unit_in_decimal: NotRequired[str]
         price_in_decimal: NotRequired[str]
+
+    class CheckoutGiftForItemsAllowedBillingFrequencyParams(TypedDict):
+        period: NotRequired[int]
+        period_unit: NotRequired[enums.PeriodUnit]
 
     class ClaimGiftGiftParams(TypedDict):
         id: Required[str]
@@ -724,6 +736,10 @@ class HostedPage:
         redirect_url: NotRequired[str]
         cancel_url: NotRequired[str]
         pass_thru_content: NotRequired[str]
+        show_billing_frequency_selector: NotRequired[bool]
+        allowed_billing_frequencies: NotRequired[
+            List["HostedPage.CheckoutNewForItemsAllowedBillingFrequencyParams"]
+        ]
         allow_offline_payment_methods: NotRequired[bool]
         billing_address: NotRequired[
             "HostedPage.CheckoutNewForItemsBillingAddressParams"
@@ -797,6 +813,10 @@ class HostedPage:
         redirect_url: NotRequired[str]
         cancel_url: NotRequired[str]
         pass_thru_content: NotRequired[str]
+        show_billing_frequency_selector: NotRequired[bool]
+        allowed_billing_frequencies: NotRequired[
+            List["HostedPage.CheckoutExistingForItemsAllowedBillingFrequencyParams"]
+        ]
         allow_offline_payment_methods: NotRequired[bool]
         contract_term: NotRequired[
             "HostedPage.CheckoutExistingForItemsContractTermParams"
@@ -865,6 +885,10 @@ class HostedPage:
         ]
         item_tiers: NotRequired[List["HostedPage.CheckoutGiftForItemsItemTierParams"]]
         coupon_ids: NotRequired[List[str]]
+        show_billing_frequency_selector: NotRequired[bool]
+        allowed_billing_frequencies: NotRequired[
+            List["HostedPage.CheckoutGiftForItemsAllowedBillingFrequencyParams"]
+        ]
 
     class ClaimGiftParams(TypedDict):
         gift: NotRequired["HostedPage.ClaimGiftGiftParams"]

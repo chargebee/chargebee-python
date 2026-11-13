@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from chargebee.model import Model
 from typing import Dict, List, Any
 from chargebee.response import Response
+from chargebee.models import billing_line_item
 
 
 @dataclass
@@ -25,6 +26,13 @@ class OverdraftBlockBalanceResponse(Model):
     total_balance: str = None
     usable_balance: str = None
     used_amount: str = None
+
+
+@dataclass
+class BillingMetadataResponse(Model):
+    raw_data: Dict[Any, Any] = None
+    item_price_id: str = None
+    line_items: List[billing_line_item.BillingLineItemResponse] = None
 
 
 @dataclass
@@ -52,6 +60,7 @@ class GrantBlockResponse(Model):
     resource_version: int = None
     provisioned_block_balance: ProvisionedBlockBalanceResponse = None
     overdraft_block_balance: OverdraftBlockBalanceResponse = None
+    billing_metadata: BillingMetadataResponse = None
     metadata: Dict[Any, Any] = None
 
 
