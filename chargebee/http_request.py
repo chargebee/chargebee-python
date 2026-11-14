@@ -250,6 +250,7 @@ def _handle_response(request_args: dict, response: httpx.Response):
 
 def _make_request(request_args):
     """Make a synchronous HTTP request using httpx"""
+    request_args = request_args.copy()
     verify = request_args.pop("verify", True)
     with httpx.Client(verify=verify) as client:
         response = client.request(**request_args)
@@ -258,6 +259,7 @@ def _make_request(request_args):
 
 async def _make_request_async(request_args):
     """Make an asynchronous HTTP request using httpx"""
+    request_args = request_args.copy()
     verify = request_args.pop("verify", True)
     async with httpx.AsyncClient(verify=verify) as client:
         response = await client.request(**request_args)
