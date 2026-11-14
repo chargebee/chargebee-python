@@ -20,6 +20,9 @@ from chargebee import compat, util, environment
 from chargebee.main import Chargebee
 from chargebee.version import VERSION
 
+# Longest Retry-After delay the client will wait for; longer values use the default delay.
+MAX_RETRY_AFTER_MS = 60_000
+
 _logger = logging.getLogger(__name__)
 
 
@@ -138,11 +141,17 @@ def _process_response(url, request_args, retry_config, enable_debug_logs):
         except Exception as err:
             status_code = extract_status_code(err)
 
-            if not retry_config or not retry_config.is_enabled():
+            if (
+                not retry_config
+                or not retry_config.is_enabled()
+                or retry_count >= retry_config.get_max_retries()
+            ):
                 raise err
 
             if status_code == 429:
-                delay_ms = parse_retry_after(err) or retry_config.get_delay_ms()
+                delay_ms = parse_retry_after(err)
+                if delay_ms is None:
+                    delay_ms = retry_config.get_delay_ms()
                 log(
                     f"Rate limit hit. Retrying in {delay_ms}ms",
                     "INFO",
@@ -198,11 +207,17 @@ async def _process_response_async(url, request_args, retry_config, enable_debug_
         except Exception as err:
             status_code = extract_status_code(err)
 
-            if not retry_config or not retry_config.is_enabled():
+            if (
+                not retry_config
+                or not retry_config.is_enabled()
+                or retry_count >= retry_config.get_max_retries()
+            ):
                 raise err
 
             if status_code == 429:
-                delay_ms = parse_retry_after(err) or retry_config.get_delay_ms()
+                delay_ms = parse_retry_after(err)
+                if delay_ms is None:
+                    delay_ms = retry_config.get_delay_ms()
                 log(
                     f"Rate limit hit. Retrying in {delay_ms}ms",
                     "INFO",
@@ -309,22 +324,38 @@ def extract_status_code(err):
 
 
 def parse_retry_after(err):
-    headers = getattr(err, "response_headers", {}) or {}
+    """Return the Retry-After delay in milliseconds, or None to use the default delay.
+
+    Delays longer than MAX_RETRY_AFTER_MS are ignored, so a server cannot make the
+    client sleep for an unreasonable time (for example an HTTP-date far in the future).
+    """
+    headers = getattr(err, "http_headers", {}) or {}
     retry_after = headers.get("retry-after") or headers.get("Retry-After")
     if not retry_after:
         return None
     try:
-        return int(retry_after) * 1000
+        delay_ms = max(0, int(retry_after) * 1000)
     except ValueError:
         try:
             from email.utils import parsedate_to_datetime
 
             retry_time = parsedate_to_datetime(retry_after)
-            return max(
-                0, int((retry_time - datetime.datetime.utcnow()).total_seconds() * 1000)
+            if retry_time.tzinfo is None:
+                retry_time = retry_time.replace(tzinfo=datetime.timezone.utc)
+            delay_ms = max(
+                0,
+                int(
+                    (
+                        retry_time - datetime.datetime.now(datetime.timezone.utc)
+                    ).total_seconds()
+                    * 1000
+                ),
             )
         except Exception:
             return None
+    if delay_ms > MAX_RETRY_AFTER_MS:
+        return None
+    return delay_ms
 
 
 def calculate_backoff_delay(retry_count, base_delay_ms):
