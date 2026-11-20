@@ -43,7 +43,7 @@ def request(
     if not env:
         raise Exception("No environment configured.")
 
-    headers = headers or {}
+    headers = dict(headers) if headers is not None else {}
     request_args = {"method": method.upper()}
 
     retry_config = env.get_retry_config() if hasattr(env, "get_retry_config") else None
