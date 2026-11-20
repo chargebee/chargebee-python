@@ -50,6 +50,46 @@ def make_mock_client(status_code=200, text="", headers={}, is_async=False):
 
 
 class RequestTests(unittest.TestCase):
+    def test_retry_preserves_tls_context(self):
+        from chargebee.http_request import request
+
+        for asynchronous in (False, True):
+            with self.subTest(asynchronous=asynchronous):
+                client, response = make_mock_client(
+                    text='{"message": "ok"}', is_async=asynchronous
+                )
+                _, failure = make_mock_client(
+                    503, '{"api_error_code": "temporary_error"}'
+                )
+                client.request.side_effect = [failure, response]
+                client_type = "httpx.AsyncClient" if asynchronous else "httpx.Client"
+                sleep_name = "sleep_async" if asynchronous else "sleep"
+                context = Mock()
+                with (
+                    patch(client_type) as factory,
+                    patch(
+                        "chargebee.http_request.ssl.create_default_context",
+                        return_value=context,
+                    ),
+                    patch("chargebee.http_request." + sleep_name),
+                ):
+                    if asynchronous:
+                        factory.return_value.__aenter__.return_value = client
+                        result = asyncio.run(
+                            request(
+                                "GET", "/test", MockEnvironment(), use_async_client=True
+                            )
+                        )
+                    else:
+                        factory.return_value.__enter__.return_value = client
+                        result = request("GET", "/test", MockEnvironment())
+                self.assertEqual(result[2], 200)
+                self.assertEqual(factory.call_count, 2)
+                for call in factory.call_args_list:
+                    self.assertIs(call.kwargs["verify"], context)
+                for call in client.request.call_args_list:
+                    self.assertNotIn("verify", call.kwargs)
+
     @patch("httpx.Client")
     def test_successful_request(self, mock_client_class):
         mock_client, mock_response = make_mock_client(
